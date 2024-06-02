@@ -1,0 +1,10 @@
+{
+    "singleQuote": true,
+    "plugins": [
+        "prettier-plugin-tailwindcss"
+    ],
+    "tailwindFunctions": [
+        "tv",
+        "twMerge"
+    ]
+}

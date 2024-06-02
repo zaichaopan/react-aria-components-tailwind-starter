@@ -1,0 +1,51 @@
+import type { Meta } from '@storybook/react';
+import { Form } from 'react-aria-components';
+import { Button } from '../src/Button';
+import { DatePicker, DatePickerInput } from '../src/DatePicker';
+import { docs } from '../.storybook/docs';
+import { Description, FieldError, Label } from '../src/Field';
+
+const meta: Meta<typeof DatePicker> = {
+  title: 'DatePicker',
+  component: DatePicker,
+  parameters: {
+    layout: 'centered',
+    docs: {
+      description: {
+        component:
+          'A <a href="https://react-spectrum.adobe.com/react-aria/DatePicker.html" target="_bank">**date picker**</a> combines a DateField and a Calendar popover to allow users to enter or select a date and time value.',
+      },
+      ...docs,
+      controls: {
+        exclude: /.*/g,
+      },
+    },
+  },
+  tags: ['autodocs'],
+};
+
+export default meta;
+
+export const Example = () => {
+  return (
+    <DatePicker>
+      <Label>Birth date</Label>
+      <Description>Please enter your birth date</Description>
+      <DatePickerInput></DatePickerInput>
+    </DatePicker>
+  );
+};
+
+export const Validation = () => (
+  <Form className="flex flex-col items-start gap-2">
+    <DatePicker isRequired>
+      <Label>Birth date</Label>
+      <Description>Please enter your birth date</Description>
+      <DatePickerInput></DatePickerInput>
+      <FieldError />
+    </DatePicker>
+    <Button type="submit" outline>
+      Submit
+    </Button>
+  </Form>
+);

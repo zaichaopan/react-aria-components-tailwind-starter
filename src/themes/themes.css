@@ -1,0 +1,31 @@
+.zinc-theme {
+  --accent: 24 9.8% 10%;
+}
+
+.dark .zinc-theme {
+  --accent: 240 5% 34%;
+}
+
+.blue-theme {
+  --accent: 211 100% 50%;
+}
+
+.dark .blue-theme {
+  --accent: 211 100% 50%;
+}
+
+.pink-theme {
+  --accent: 330 81% 60%;
+}
+
+.dark .pink-theme {
+  --accent: 330 81% 60%;
+}
+
+.purple-theme {
+  --accent: 262 83% 58%;
+}
+
+.dark .purple-theme {
+  --accent: 262 83% 58%;
+}

@@ -1,0 +1,83 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* background colors */
+    --background: 0 0% 100%;
+    --secondary: 0 0% 100%;
+    --popover: 0 0% 100%;
+    --success: 161 94% 30%;
+    --destructive: 0 72% 51%;
+    --hover: 60 4.8% 95.9%;
+
+    /* Text colors */
+    --foreground: 20 14.3% 4.1%;
+    --muted: 240 4% 46%;
+
+    
+    --border: 20 6% 85%;
+  }
+
+  .dark {
+    /* background colors */
+    --background: 240 10% 4%;
+    --secondary: 240 6% 10%;
+    --popover: 240 4% 16%;
+    --success: 161 94% 30%;
+    --destructive: 0 72% 51%;
+    --hover: 240 5% 26%;
+
+    /* zinc 400 */
+    --muted: 240 5% 65%;
+    --foreground: 0 0% 98%;
+
+    --border: 240, 5%, 26%;
+  }
+}
+
+@layer base {
+  *,
+  *:before,
+  *:after {
+    @apply border-border;
+  }
+
+  html {
+    font-family: 'Proxima Nova', system-ui, sans-serif;
+  }
+
+  body {
+    @apply h-full bg-background font-sans text-foreground antialiased;
+    font-feature-settings: 'cv11';
+  }
+
+  /* === Scroll bars === */
+  ::-webkit-scrollbar {
+    @apply w-2;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply rounded-sm bg-zinc-300;
+  }
+
+  .dark {
+    ::-webkit-scrollbar-thumb {
+      @apply bg-zinc-700;
+    }
+  }
+
+  /* scrollbar on firefox */
+  /* https://developer.mozilla.org/en-US/docs/Web/CSS/scrollbar-color#browser_compatibility */
+  html {
+    scrollbar-color: #d4d4d8 transparent;
+  }
+
+  html[class~='dark'] {
+    scrollbar-color: #3f3f46 transparent;
+  }
+}
