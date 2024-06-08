@@ -15,7 +15,7 @@
     /* Text colors */
     --foreground: 20 14.3% 4.1%;
     --muted: 240 4% 46%;
-   
+
     --border: 20 6% 85%;
   }
 
@@ -39,10 +39,6 @@
   *:before,
   *:after {
     @apply border-border;
-  }
-
-  html {
-    font-family: 'Proxima Nova', system-ui, sans-serif;
   }
 
   body {

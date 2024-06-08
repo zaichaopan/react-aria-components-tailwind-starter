@@ -25,6 +25,7 @@ export function DialogHeader({
   className,
   noCloseButton,
   level = 2,
+  children,
   ...props
 }: HeadingProps & {
   noCloseButton?: true;
@@ -54,16 +55,24 @@ export function DialogHeader({
 
   return (
     <div ref={headerRef} className="relative flex">
-      <Heading
-        slot="title"
-        level={level}
-        className={twMerge(
-          'flex flex-1 items-center px-6 pb-2 pt-6',
-          !noCloseButton && 'pr-14',
-          className,
-        )}
-        {...props}
-      />
+      {typeof children === 'string' ? (
+        <Heading
+          level={level}
+          className={twMerge(
+            'flex flex-1 items-center px-6 pb-2 pt-6',
+            !noCloseButton && 'pr-14',
+            className,
+          )}
+          {...props}
+        >
+          {children}
+        </Heading>
+      ) : (
+        <div className="flex flex-1 items-center px-6 pb-2 pt-6">
+          {children}
+        </div>
+      )}
+
       {!noCloseButton && <DialogCloseButton />}
     </div>
   );

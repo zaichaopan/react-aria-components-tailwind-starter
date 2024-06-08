@@ -38,25 +38,8 @@ export const Example = () => {
   return (
     <div className="mt-6 w-full px-6">
       <div className="flex w-full flex-col 2xl:w-2/3">
-        <NativeSelect
-          className="block sm:hidden"
-          value={tab}
-          aria-label="Preference page"
-          onChange={(e) => {
-            setTab(e.target.value);
-          }}
-        >
-          {tabs.map((tab) => {
-            return <option value={tab.id}>{tab.title}</option>;
-          })}
-        </NativeSelect>
-
         <Tabs selectedKey={tab} onSelectionChange={setTab}>
-          <TabList
-            className="hidden sm:flex"
-            aria-label="History of Ancient Rome"
-            items={tabs}
-          >
+          <TabList aria-label="History of Ancient Rome" items={tabs}>
             {(item) => {
               return (
                 <Tab id={item.id} className="">
@@ -271,4 +254,73 @@ export const SegmentsTab = () => {
       </Tabs>
     </div>
   );
+};
+
+export const TabsOnMobile = () => {
+  const [tab, setTab] = React.useState<Key>('For');
+
+  return (
+    <div className="mt-6 w-full px-6">
+      <div className="flex w-full flex-col 2xl:w-2/3">
+        <NativeSelect
+          className="block sm:hidden"
+          value={tab}
+          aria-label="Preference page"
+          onChange={(e) => {
+            setTab(e.target.value);
+          }}
+        >
+          {tabs.map((tab) => {
+            return <option value={tab.id}>{tab.title}</option>;
+          })}
+        </NativeSelect>
+
+        <Tabs selectedKey={tab} onSelectionChange={setTab}>
+          <TabList
+            className="hidden px-4 sm:flex"
+            aria-label="History of Ancient Rome"
+            items={tabs}
+          >
+            {(item) => {
+              return (
+                <Tab id={item.id} className="">
+                  {item.title}
+                </Tab>
+              );
+            }}
+          </TabList>
+
+          <TabPanel id="dashboard" className="px-4">
+            <Heading level={2} displayLevel={3}>
+              Dashboard
+            </Heading>
+          </TabPanel>
+          <TabPanel id="members">
+            <Heading level={2} displayLevel={3}>
+              Members
+            </Heading>
+          </TabPanel>
+          <TabPanel id="billing">
+            <Heading level={2} displayLevel={3}>
+              Billings
+            </Heading>
+          </TabPanel>
+          <TabPanel id="settings">
+            <Heading level={2} displayLevel={3}>
+              Settings
+            </Heading>
+          </TabPanel>
+        </Tabs>
+      </div>
+    </div>
+  );
+};
+
+TabsOnMobile.parameters = {
+  docs: {
+    description: {
+      story:
+        'You can scroll tablist on mobile. If this is not what you want, you can show a selector on mobile. Please resize the screen to test:',
+    },
+  },
 };

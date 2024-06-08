@@ -109,8 +109,7 @@ function buttonStyle({
 }
 
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  function Button(props, ref) {
-    console.log('props', props);
+  function Button(props, ref) {  
     const {
       children,
       isLoading,

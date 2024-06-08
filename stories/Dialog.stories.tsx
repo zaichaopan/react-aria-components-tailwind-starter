@@ -650,6 +650,147 @@ NestedDialogs.parameters = {
   },
 };
 
+export const CustomDialogHeader = () => {
+  return (
+    <DialogTrigger>
+      <Button> Channel settings</Button>
+      <Modal size="xl">
+        <Dialog>
+          {() => {
+            return (
+              <>
+                <DialogHeader>
+                  <div className="flex flex-col">
+                   
+                    <Heading level={2} slot="title">
+                      Channel settings
+                    </Heading>
+                    <div className="flex flex-col gap-6">
+                      <div className="flex flex-wrap gap-2 pt-2">
+                        <MenuTrigger>
+                          <TooltipTrigger>
+                            <MenuButton
+                              outline
+                              aria-label="Start Conversation"
+                              className="py-0.5 text-xs/6"
+                            >
+                              <Star className="h-4 w-4" strokeWidth={1.5} />
+                            </MenuButton>
+                            <Tooltip>Start Channel</Tooltip>
+                          </TooltipTrigger>
+                          <MenuPopover>
+                            <Menu>
+                              <MenuSection title="Move to..">
+                                <MenuItem>Started</MenuItem>
+                                <MenuItem>Move to conversation</MenuItem>
+                              </MenuSection>
+                            </Menu>
+                          </MenuPopover>
+                        </MenuTrigger>
+                        <MenuTrigger>
+                          <TooltipTrigger>
+                            <MenuButton
+                              outline
+                              aria-label="Start Conversation"
+                              className="py-0.5 text-xs/6"
+                            >
+                              <Bell
+                                className="mr-1 h-4 w-4"
+                                strokeWidth={1.5}
+                              />
+                              <span className="hidden md:block">
+                                Get Notifications for All Messages
+                              </span>
+                            </MenuButton>
+                            <Tooltip>
+                              You'll be notified when you're mentioned in this
+                              channel
+                            </Tooltip>
+                          </TooltipTrigger>
+                          <MenuPopover>
+                            <Menu
+                              defaultSelectedKeys={['all_messages']}
+                              selectionMode="single"
+                            >
+                              <MenuItem
+                                id="all_messages"
+                                description="Get notification for all messages"
+                              >
+                                All messages
+                              </MenuItem>
+                              <MenuItem
+                                id="@mentions"
+                                description="Get notifications for @mentions, @here and @channel only"
+                              >
+                                @Mentions
+                              </MenuItem>
+                              <MenuItem
+                                id="muted_channel"
+                                description="Prevent this channel from bolding for unread messages and only receive a badge if you're mentioned"
+                              >
+                                Mute Channel
+                              </MenuItem>
+
+                              <MenuSeparator />
+
+                              <MenuItem
+                                id="off"
+                                description="You won't receive notifications"
+                              >
+                                Off
+                              </MenuItem>
+                            </Menu>
+                          </MenuPopover>
+                        </MenuTrigger>
+                      </div>
+                    </div>
+                  </div>
+                </DialogHeader>
+                <DialogBody>
+                  Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                  Atque consequatur dolorem accusamus consectetur asperiores,
+                  alias fugiat odio, quod quos quisquam provident placeat
+                  impedit possimus. Sequi deleniti omnis perspiciatis eum
+                  aliquid neque harum hic, maiores accusantium nobis saepe
+                  perferendis dolorem itaque rerum labore ipsa consequuntur
+                  doloremque dolores tempore eveniet. Laboriosam asperiores
+                  eaque nemo consectetur alias vero quos deleniti fuga ex
+                  temporibus aliquam sunt ad odit doloribus, dicta, quae, odio
+                  ullam. Blanditiis expedita culpa, rerum laborum numquam atque
+                  hic minus labore sapiente totam explicabo saepe sed! Beatae
+                  illum, facere, dignissimos illo, rem reiciendis cupiditate
+                  corporis est facilis eligendi corrupti nostrum eveniet
+                  excepturi. Lorem ipsum, dolor sit amet consectetur adipisicing
+                  elit. A voluptas, soluta enim sit ipsum qui esse non,
+                  asperiores similique quibusdam quasi. Quibusdam dolorem, ex
+                  nostrum architecto minima nisi esse deleniti illo optio ut
+                  sint nobis cum ullam voluptas nulla pariatur! Mollitia
+                  distinctio voluptatum, quod ipsum doloribus provident
+                  architecto totam ipsa temporibus nemo fugit nulla consequatur
+                  fugiat sint rerum id sed aliquam numquam minima reprehenderit
+                  ad, assumenda itaque. Quam maiores quaerat maxime, saepe at
+                  sint. Atque eius, illo magni aperiam assumenda tempora
+                  accusantium voluptates est beatae vitae facere dolor esse,
+                  debitis inventore dolore numquam maiores fugiat impedit!
+                </DialogBody>
+              </>
+            );
+          }}
+        </Dialog>
+      </Modal>
+    </DialogTrigger>
+  );
+};
+
+CustomDialogHeader.parameters = {
+  docs: {
+    description: {
+      story:
+        'For none string dialog header, please include **\\<Heading level={2} slot="title"\\>***\\</Heading\\>** for accessibility:',
+    },
+  },
+};
+
 export const WithMinHeight = () => {
   return (
     <DialogTrigger>
@@ -659,98 +800,107 @@ export const WithMinHeight = () => {
           {() => {
             return (
               <>
-                <DialogHeader className="gap-2">Channel settings</DialogHeader>
-                <DialogBody className="overflow-hidden px-0">
-                  <div className="flex flex-col gap-6 px-6">
-                    <div className="flex flex-wrap gap-2 pt-2">
-                      <MenuTrigger>
-                        <TooltipTrigger>
-                          <MenuButton
-                            outline
-                            aria-label="Start Conversation"
-                            className="py-0.5 text-xs/6"
-                          >
-                            <Star className="h-4 w-4" strokeWidth={1.5} />
-                          </MenuButton>
-                          <Tooltip>Start Channel</Tooltip>
-                        </TooltipTrigger>
-                        <MenuPopover>
-                          <Menu>
-                            <MenuSection title="Move to..">
-                              <MenuItem>Started</MenuItem>
-                              <MenuItem>Move to conversation</MenuItem>
-                            </MenuSection>
-                          </Menu>
-                        </MenuPopover>
-                      </MenuTrigger>
-                      <MenuTrigger>
-                        <TooltipTrigger>
-                          <MenuButton
-                            outline
-                            aria-label="Start Conversation"
-                            className="py-0.5 text-xs/6"
-                          >
-                            <Bell className="mr-1 h-4 w-4" strokeWidth={1.5} />
-                            <span className="hidden md:block">
-                              Get Notifications for All Messages
-                            </span>
-                          </MenuButton>
-                          <Tooltip>
-                            You'll be notified when you're mentioned in this
-                            channel
-                          </Tooltip>
-                        </TooltipTrigger>
-                        <MenuPopover>
-                          <Menu
-                            defaultSelectedKeys={['all_messages']}
-                            selectionMode="single"
-                          >
-                            <MenuItem
-                              id="all_messages"
-                              description="Get notification for all messages"
+                <DialogHeader>
+                  <div className="flex flex-col">
+                    <Heading level={2}>Channel settings</Heading>
+                    <div className="flex flex-col gap-6">
+                      <div className="flex flex-wrap gap-2 pt-2">
+                        <MenuTrigger>
+                          <TooltipTrigger>
+                            <MenuButton
+                              outline
+                              aria-label="Start Conversation"
+                              className="py-0.5 text-xs/6"
                             >
-                              All messages
-                            </MenuItem>
-                            <MenuItem
-                              id="@mentions"
-                              description="Get notifications for @mentions, @here and @channel only"
+                              <Star className="h-4 w-4" strokeWidth={1.5} />
+                            </MenuButton>
+                            <Tooltip>Start Channel</Tooltip>
+                          </TooltipTrigger>
+                          <MenuPopover>
+                            <Menu>
+                              <MenuSection title="Move to..">
+                                <MenuItem>Started</MenuItem>
+                                <MenuItem>Move to conversation</MenuItem>
+                              </MenuSection>
+                            </Menu>
+                          </MenuPopover>
+                        </MenuTrigger>
+                        <MenuTrigger>
+                          <TooltipTrigger>
+                            <MenuButton
+                              outline
+                              aria-label="Start Conversation"
+                              className="py-0.5 text-xs/6"
                             >
-                              @Mentions
-                            </MenuItem>
-                            <MenuItem
-                              id="muted_channel"
-                              description="Prevent this channel from bolding for unread messages and only receive a badge if you're mentioned"
+                              <Bell
+                                className="mr-1 h-4 w-4"
+                                strokeWidth={1.5}
+                              />
+                              <span className="hidden md:block">
+                                Get Notifications for All Messages
+                              </span>
+                            </MenuButton>
+                            <Tooltip>
+                              You'll be notified when you're mentioned in this
+                              channel
+                            </Tooltip>
+                          </TooltipTrigger>
+                          <MenuPopover>
+                            <Menu
+                              defaultSelectedKeys={['all_messages']}
+                              selectionMode="single"
                             >
-                              Mute Channel
-                            </MenuItem>
+                              <MenuItem
+                                id="all_messages"
+                                description="Get notification for all messages"
+                              >
+                                All messages
+                              </MenuItem>
+                              <MenuItem
+                                id="@mentions"
+                                description="Get notifications for @mentions, @here and @channel only"
+                              >
+                                @Mentions
+                              </MenuItem>
+                              <MenuItem
+                                id="muted_channel"
+                                description="Prevent this channel from bolding for unread messages and only receive a badge if you're mentioned"
+                              >
+                                Mute Channel
+                              </MenuItem>
 
-                            <MenuSeparator />
+                              <MenuSeparator />
 
-                            <MenuItem
-                              id="off"
-                              description="You won't receive notifications"
-                            >
-                              Off
-                            </MenuItem>
-                          </Menu>
-                        </MenuPopover>
-                      </MenuTrigger>
+                              <MenuItem
+                                id="off"
+                                description="You won't receive notifications"
+                              >
+                                Off
+                              </MenuItem>
+                            </Menu>
+                          </MenuPopover>
+                        </MenuTrigger>
+                      </div>
                     </div>
                   </div>
-                  <Tabs className="relative overflow-auto text-sm">
-                    <TabList
-                      aria-label="History of Ancient Rome"
-                      className="sticky top-0 mb-4 bg-background px-6 text-xs/6"
-                    >
-                      <Tab id="about" className="px-0">
-                        About
-                      </Tab>
-                      <Tab id="members">
-                        Members <span className="pl-2">24</span>
-                      </Tab>
-                      <Tab id="integrations">Integrations</Tab>
-                      <Tab id="settings">Settings</Tab>
-                    </TabList>
+                </DialogHeader>
+                <DialogBody className="overflow-hidden px-0">
+                  <Tabs className="overflow-auto p-0 pb-0 text-base/6 sm:text-sm/6">
+                    <div className="sticky top-0 bg-secondary">
+                      <TabList
+                        aria-label="History of Ancient Rome"
+                        className="px-6"
+                      >
+                        <Tab id="about" className="px-0">
+                          About
+                        </Tab>
+                        <Tab id="members">
+                          Members <span className="pl-2">24</span>
+                        </Tab>
+                        <Tab id="integrations">Integrations</Tab>
+                        <Tab id="settings">Settings</Tab>
+                      </TabList>
+                    </div>
 
                     <TabPanel id="about" className="flex flex-col gap-4 px-6">
                       Lorem ipsum dolor sit amet consectetur adipisicing elit.
