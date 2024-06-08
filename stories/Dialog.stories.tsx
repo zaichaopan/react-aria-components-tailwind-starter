@@ -666,6 +666,7 @@ export const WithMinHeight = () => {
                       <MenuTrigger>
                         <TooltipTrigger>
                           <MenuButton
+                            outline
                             aria-label="Start Conversation"
                             className="py-0.5 text-xs/6"
                           >
@@ -736,10 +737,10 @@ export const WithMinHeight = () => {
                       </MenuTrigger>
                     </div>
                   </div>
-                  <Tabs className="overflow-hidden pb-0 text-sm">
+                  <Tabs className="relative overflow-auto text-sm">
                     <TabList
                       aria-label="History of Ancient Rome"
-                      className="mb-4 px-6 text-xs/6"
+                      className="sticky top-0 mb-4 bg-background px-6 text-xs/6"
                     >
                       <Tab id="about" className="px-0">
                         About
@@ -751,10 +752,7 @@ export const WithMinHeight = () => {
                       <Tab id="settings">Settings</Tab>
                     </TabList>
 
-                    <TabPanel
-                      id="about"
-                      className="flex flex-col gap-4 overflow-auto px-6"
-                    >
+                    <TabPanel id="about" className="flex flex-col gap-4 px-6">
                       Lorem ipsum dolor sit amet consectetur adipisicing elit.
                       Architecto tenetur laudantium dolorum consectetur culpa
                       repellat labore dolorem modi reprehenderit. Unde

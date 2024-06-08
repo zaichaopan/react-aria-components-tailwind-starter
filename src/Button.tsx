@@ -155,7 +155,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
                   ...({ unstyle, outline, text } as Variant),
                 }),
                 renderProps.isFocusVisible && focusOutlineStyle,
-                isLoading && 'overflow-hidden indent-[200%]',
+                isLoading && 'text-transparent',
                 className,
               ]);
             },
@@ -164,7 +164,9 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
           <>
             {isLoading ? (
               <div className="absolute flex h-full items-center justify-center">
-                <Icon icon={<Loader2Icon className="animate-spin" />} />
+                <Icon
+                  icon={<Loader2Icon className="animate-spin text-white" />}
+                />
               </div>
             ) : null}
             {children}

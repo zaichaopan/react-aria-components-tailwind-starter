@@ -92,17 +92,11 @@ export const WithDescription = () => {
         <RadioGroupContent className="gap-6 pt-4">
           <RadioField>
             <Radio value="all">All your contacts</Radio>
-            <Description>
-              Customers can resell or transfer their tickets if they can’t make
-              it to the event.
-            </Description>
+            <Description>Includes people from any external people</Description>
           </RadioField>
 
           <RadioField>
             <Radio value="only_at_my_company">Only people at my company</Radio>
-            <Description>
-              Tickets cannot be resold or transferred to another person.
-            </Description>
           </RadioField>
 
           <Radio value="no_none">No one</Radio>

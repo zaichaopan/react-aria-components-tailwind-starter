@@ -30,7 +30,7 @@ export function Tabs({
       keyboardActivation="manual"
       className={composeTailwindRenderProps(
         props.className,
-        'group flex overflow-hidden p-1 orientation-horizontal:flex-col orientation-vertical:flex-row',
+        'group flex orientation-horizontal:flex-col orientation-vertical:flex-row',
       )}
     />
   );
@@ -40,40 +40,39 @@ export function TabList<T extends object & { title: string; id: string }>(
   props: TabListProps<T>,
 ) {
   return (
-    <div className="flex overflow-auto p-1">
-      <RACTabList
-        {...props}
-        className={composeTailwindRenderProps(props.className, [
-          'flex',
-          'text-base/6 sm:text-sm/6',
-          // horizontal
-          'orientation-horizontal:whitespace-nowrap',
+    <RACTabList
+      {...props}
+      className={composeTailwindRenderProps(props.className, [
+        'flex',
+        'text-base/6 sm:text-sm/6',
+        // horizontal
+        'orientation-horizontal:whitespace-nowrap',
 
-          // vertical
-          'orientation-vertical:flex-col',
+        // vertical
+        'orientation-vertical:flex-col',
 
-          // underline horizontal
-          'group-data-[variant=underline]:orientation-horizontal:gap-4',
-          'group-data-[variant=underline]:orientation-horizontal:border-b',
-          'group-data-[variant=underline]:orientation-horizontal:w-full',
+        // underline horizontal
+        'group-data-[variant=underline]:orientation-horizontal:gap-4',
+        'group-data-[variant=underline]:orientation-horizontal:border-b',
+        'group-data-[variant=underline]:orientation-horizontal:w-full',
 
-          // underline vertical
-          'group-data-[variant=underline]:orientation-vertical:border-l',
-          'group-data-[variant=underline]:orientation-vertical:self-start',
+        // underline vertical
+        'group-data-[variant=underline]:orientation-vertical:border-l',
+        'group-data-[variant=underline]:orientation-vertical:self-start',
 
-          // pills horizontal
-          'group-data-[variant=pills]:orientation-horizontal:gap-4',
+        // pills horizontal
+        'group-data-[variant=pills]:orientation-horizontal:gap-4',
 
-          // segment
-          'group-data-[variant=segment]:gap-1',
-          'group-data-[variant=segment]:rounded-xl',
-          'group-data-[variant=segment]:bg-zinc-100/75',
-          'group-data-[variant=segment]:p-1',
-          'group-data-[variant=segment]:dark:border-border',
-          'group-data-[variant=segment]:dark:bg-popover',
-        ])}
-      />
-    </div>
+        // segment
+        'group-data-[variant=segment]:gap-1',
+        'group-data-[variant=segment]:rounded-xl',
+        'group-data-[variant=segment]:bg-zinc-100/75',
+        'group-data-[variant=segment]:p-1',
+        'group-data-[variant=segment]:dark:border-border',
+        'group-data-[variant=segment]:dark:bg-popover',
+      ])}
+    />
+    // </div>
   );
 }
 
