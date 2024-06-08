@@ -1,4 +1,4 @@
-import '../src/index.css';
+import '../src/themes/index.css';
 import '../src/themes/themes.css';
 import '../src/themes/avatarColorPalette.css';
 import type { Preview } from '@storybook/react';
