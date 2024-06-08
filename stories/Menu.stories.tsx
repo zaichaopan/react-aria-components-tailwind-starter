@@ -66,7 +66,7 @@ export const Example = (args: any) => {
 export const MenuButtons = () => {
   return (
     <MenuTrigger>
-      <MenuButton color="accent">Options</MenuButton>
+      <MenuButton color="success">Options</MenuButton>
       <MenuPopover>
         <Menu>
           <MenuItem>Account</MenuItem>
@@ -83,7 +83,7 @@ MenuButtons.parameters = {
   docs: {
     description: {
       story:
-        'Menu Button is renderer as **Button**. Use **variant** and **color** to config button style:',
+        'Menu Button is renderer as **Button**. Use **color** to config button style:',
     },
   },
 };

@@ -3,9 +3,10 @@ import type { Meta } from '@storybook/react';
 import { DialogTrigger } from 'react-aria-components';
 import { AlertDialog } from '../src/AlertDialog';
 import { Button } from '../src/Button';
-import { AlertModal } from '../src/Modal';
+import { AlertModal, Modal } from '../src/Modal';
 import { docs } from '../.storybook/docs';
 import { Text, TextLink } from '../src/Text';
+import { Dialog, DialogBody, DialogFooter, DialogHeader } from '../src/Dialog';
 
 const meta: Meta = {
   title: 'AlertDialog',
@@ -69,8 +70,8 @@ export const Example = () => {
     <DialogTrigger>
       <Button>Update</Button>
       <AlertModal>
-        <AlertDialog title="App is out of date" primaryActionLabel="Download">
-          Download the newest version to keep listening.
+        <AlertDialog title="Update Available" primaryActionLabel="Install now">
+          A new version is ready to be installed.
         </AlertDialog>
       </AlertModal>
     </DialogTrigger>
@@ -98,33 +99,34 @@ export const DestructiveAlertDialogs = () => {
 DestructiveAlertDialogs.parameters = {
   docs: {
     description: {
-      story: 'Use the **destructive** prop of the **AlertDialog** component to render destructive alert dialogs:',
-    },
-  },
-};
-
-export const CancelActions = () => {
-  return (
-    <DialogTrigger>
-      <Button outline>OK</Button>
-      <AlertModal>
-        <AlertDialog title="File Rename" cancelLabel="OK">
-          Can't rename "Photos" because a file with that name already exists.
-          Please choose a different name.
-        </AlertDialog>
-      </AlertModal>
-    </DialogTrigger>
-  );
-};
-
-CancelActions.parameters = {
-  docs: {
-    description: {
       story:
-        'Use the **cancelLabel** and **onCancelAction** of the **AlertDialog** component to configure cancel actions:',
+        'Use the **destructive** prop of the **AlertDialog** component to render destructive alert dialogs:',
     },
   },
 };
+
+// export const CancelActions = () => {
+//   return (
+//     <DialogTrigger>
+//       <Button outline>OK</Button>
+//       <AlertModal>
+//         <AlertDialog title="File Rename" cancelLabel="OK">
+//           Can't rename "Photos" because a file with that name already exists.
+//           Please choose a different name.
+//         </AlertDialog>
+//       </AlertModal>
+//     </DialogTrigger>
+//   );
+// };
+
+// CancelActions.parameters = {
+//   docs: {
+//     description: {
+//       story:
+//         'Use the **cancelLabel** and **onCancelAction** of the **AlertDialog** component to configure cancel actions:',
+//     },
+//   },
+// };
 
 export const SecondaryActions = () => {
   return (
@@ -184,6 +186,45 @@ ControlledOpenState.parameters = {
     description: {
       story:
         'Use the **isOpen** and **onOpenChange**  prop of **AlertModal** component to control alert dialog open state:',
+    },
+  },
+};
+
+export const AlertDialogsVsDialogs = () => {
+  return (
+    <DialogTrigger>
+      <Button>Check new version</Button>
+      <Modal size="md">
+        <Dialog>
+          {({ close }) => {
+            return (
+              <>
+                <DialogHeader displayLevel={3}>
+                  Not Update Available
+                </DialogHeader>
+                <DialogBody>
+                  <Text>You are already using the latest version.</Text>
+                </DialogBody>
+                <DialogFooter>
+                  <Button text onPress={close}>
+                    OK
+                  </Button>
+                </DialogFooter>
+              </>
+            );
+          }}
+        </Dialog>
+      </Modal>
+    </DialogTrigger>
+  );
+};
+
+AlertDialogsVsDialogs.parameters = {
+  docs: {
+    description: {
+      story:
+        `**Use alert dialogs sparingly**
+        \nAlert dialogs are interruptive, so they're best for displaying important information that users need to acknowledge before moving forward with a task or workflow. Use them only when absolutely necessary, not for low-signal notifications or excessive confirmations.`,
     },
   },
 };

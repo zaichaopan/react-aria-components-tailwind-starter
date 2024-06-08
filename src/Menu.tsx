@@ -20,17 +20,15 @@ import { composeTailwindRenderProps } from './utils';
 export { MenuTrigger, SubmenuTrigger } from 'react-aria-components';
 
 export function MenuButton({
-  variant,
   className,
   ...props
 }: RACButtonProps & BasicButtonProps) {
   return (
     <Button
       {...props}
-      variant={variant}
       className={composeTailwindRenderProps(className, [
         'gap-1',
-        variant === 'unstyled' ? '' : 'px-2.5',
+        props.unstyle ? '' : 'px-2.5',
       ])}
     />
   );
