@@ -25,13 +25,7 @@ type DialogHeaderProps = HeadingProps & {
   noCloseButton?: true;
 };
 
-export function DialogHeader({
-  className,
-  noCloseButton,
-  level = 2,
-  children,
-  ...props
-}: DialogHeaderProps) {
+export function DialogHeader(props: DialogHeaderProps) {
   const headerRef = React.useRef<HTMLHeadingElement>(null);
 
   React.useEffect(() => {
@@ -55,27 +49,16 @@ export function DialogHeader({
     };
   }, []);
 
+
   return (
-    <div ref={headerRef} className="relative flex">
-      {typeof children === 'string' ? (
-        <Heading
-          level={level}
-          className={twMerge(
-            'flex flex-1 items-center px-6 pb-2 pt-6',
-            !noCloseButton && 'pr-14',
-            className,
-          )}
-          {...props}
-        >
-          {children}
-        </Heading>
+    <div ref={headerRef} className="relative flex px-6 pb-2 pt-6">
+      {typeof props.children === 'string' ? (
+        <DialogTitle {...props} />
       ) : (
-        <div className="flex flex-1 items-center px-6 pb-2 pt-6">
-          {children}
-        </div>
+        props.children
       )}
 
-      {!noCloseButton && <DialogCloseButton />}
+      {!props.noCloseButton && <DialogCloseButton />}
     </div>
   );
 }
@@ -145,7 +128,6 @@ export function DialogCloseButton() {
   );
 }
 
-// not slot?
 export function DialogTitle({
   className,
   noCloseButton,
@@ -155,9 +137,10 @@ export function DialogTitle({
 }: DialogHeaderProps) {
   return (
     <Heading
+      slot="title"
       level={level}
       className={twMerge(
-        'flex flex-1 items-center px-6 pb-2 pt-6',
+        'flex flex-1 items-center',
         !noCloseButton && 'pr-14',
         className,
       )}

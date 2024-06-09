@@ -1,7 +1,13 @@
 import React from 'react';
 import type { Meta } from '@storybook/react';
 import { Modal } from '../src/Modal';
-import { Dialog, DialogBody, DialogHeader, DialogFooter } from '../src/Dialog';
+import {
+  Dialog,
+  DialogBody,
+  DialogHeader,
+  DialogFooter,
+  DialogTitle,
+} from '../src/Dialog';
 import { Button } from '../src/Button';
 import { DialogTrigger, TooltipTrigger } from 'react-aria-components';
 import { Form } from '../src/Form';
@@ -661,9 +667,7 @@ export const CustomDialogHeader = () => {
               <>
                 <DialogHeader>
                   <div className="flex flex-col">
-                    <Heading level={2} slot="title">
-                      Channel settings
-                    </Heading>
+                    <DialogTitle>Channel settings</DialogTitle>
                     <div className="flex flex-col gap-6">
                       <div className="flex flex-wrap gap-2 pt-2">
                         <MenuTrigger>
@@ -785,7 +789,7 @@ CustomDialogHeader.parameters = {
   docs: {
     description: {
       story:
-        'For none string dialog header, please include **\\<Heading level={2} slot="title"\\>***\\</Heading\\>** for accessibility:',
+        'The **DialogTitle** component can be used to compose custom dialog header:',
     },
   },
 };
@@ -886,10 +890,11 @@ export const WithMinHeight = () => {
                 <DialogBody className="overflow-hidden px-0">
                   <Tabs className="overflow-auto p-0 pb-0 text-base/6 sm:text-sm/6">
                     <div className="sticky top-0 bg-secondary">
-                      <TabList aria-label="History of Ancient Rome" className="px-6">
-                        <Tab id="about">
-                          About
-                        </Tab>
+                      <TabList
+                        aria-label="History of Ancient Rome"
+                        className="px-6"
+                      >
+                        <Tab id="about">About</Tab>
                         <Tab id="members">
                           Members <span className="pl-2">24</span>
                         </Tab>

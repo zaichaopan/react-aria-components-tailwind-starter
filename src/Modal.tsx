@@ -58,12 +58,12 @@ function getModalAnimateStyle(props: ModalRenderProps & DrawerProps) {
 
   if (props.isEntering) {
     return [
-      'slide-in-from-bottom sm:slide-in-from-bottom-0 sm:zoom-in-105 animate-in  ease-out duration-200',
+      'slide-in-from-bottom sm:slide-in-from-bottom-0 sm:zoom-in-105 animate-in ease-out duration-300 sm:duration-200',
     ];
   }
 
   if (props.isExiting) {
-    return 'slide-out-to-bottom sm:slide-out-to-bottom-0 animate-out sm:zoom-out-95 ease-in duration-200';
+    return 'slide-out-to-bottom sm:slide-out-to-bottom-0 animate-out sm:zoom-out-95 ease-in duration-300 sm:duration-200';
   }
 }
 
@@ -82,10 +82,14 @@ export function Modal({
         (className, renderProps) => {
           return twMerge(
             'fixed left-0 top-0 isolate z-20 flex h-[--visual-viewport-height] w-full items-end bg-zinc-950/15 text-center dark:bg-zinc-950/50 sm:items-center',
-            renderProps.isEntering &&
-              'duration-200 ease-out animate-in fade-in',
-            renderProps.isExiting &&
-              'duration-200 ease-in animate-out fade-out',
+            renderProps.isEntering && [
+              props.drawer ? 'duration-200' : 'duration-300 sm:duration-200',
+              'ease-out animate-in fade-in',
+            ],
+            renderProps.isExiting && [
+              props.drawer ? 'duration-200' : 'duration-300 sm:duration-200',
+              'ease-in animate-out fade-out',
+            ],
             getModalOverlayStyle(props),
             className,
           );
