@@ -52,7 +52,7 @@ function ToastRegion({ state, ...props }: ToastRegionProps) {
       {...regionProps}
       ref={ref}
       className={twMerge(
-        'toast-region fixed isolate z-20 flex flex-col gap-4 outline-none',
+        'toast-region fixed isolate z-20 flex flex-col gap-4 outline-none -space-y-4',
         className,
       )}
     >
@@ -110,7 +110,7 @@ function Toast({ state, ...props }: ToastProps) {
       {...toastProps}
       ref={ref}
       className={twMerge(
-        'toast flex w-[min(85vw,360px)] gap-1 rounded-md border border-border/50 px-3 py-2 shadow-sm transition dark:border-border dark:bg-popover',
+        'toast flex w-[min(85vw,360px)] gap-1 bg-background bg-popover rounded-md border border-border/50 px-3 py-2 shadow-sm transition dark:border-border dark:bg-popover',
         enteringClassName,
       )}
     >
