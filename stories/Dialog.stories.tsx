@@ -661,7 +661,6 @@ export const CustomDialogHeader = () => {
               <>
                 <DialogHeader>
                   <div className="flex flex-col">
-                   
                     <Heading level={2} slot="title">
                       Channel settings
                     </Heading>
@@ -887,11 +886,8 @@ export const WithMinHeight = () => {
                 <DialogBody className="overflow-hidden px-0">
                   <Tabs className="overflow-auto p-0 pb-0 text-base/6 sm:text-sm/6">
                     <div className="sticky top-0 bg-secondary">
-                      <TabList
-                        aria-label="History of Ancient Rome"
-                        className="px-6"
-                      >
-                        <Tab id="about" className="px-0">
+                      <TabList aria-label="History of Ancient Rome" className="px-6">
+                        <Tab id="about">
                           About
                         </Tab>
                         <Tab id="members">

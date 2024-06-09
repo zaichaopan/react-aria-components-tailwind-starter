@@ -30,7 +30,7 @@ export function Tabs({
       keyboardActivation="manual"
       className={composeTailwindRenderProps(
         props.className,
-        'group flex overflow-hidden orientation-horizontal:flex-col orientation-vertical:flex-row',
+        'group flex orientation-horizontal:flex-col orientation-vertical:flex-row',
       )}
     />
   );
@@ -40,7 +40,7 @@ export function TabList<T extends object & { title: string; id: string }>(
   props: TabListProps<T>,
 ) {
   return (
-    <div className="flex overflow-auto p-1">
+    <div className="flex overflow-auto pt-1">
       <RACTabList
         {...props}
         className={composeTailwindRenderProps(props.className, [
