@@ -168,7 +168,6 @@ export function DialogTitle({
   );
 }
 
-// To do dialog small small slide from bottom, no padding
 // Tabs overflow, better example
 // Toast animation + style
 // Better text area

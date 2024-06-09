@@ -17,7 +17,7 @@ const displayLevels: Record<Level, string> = {
   4: 'font-medium text-base/6 sm:text-sm/6',
   3: 'font-semibold text-base/6 sm:text-sm/6 ',
   2: 'font-semibold text-base/6 ',
-  1: 'font-bold text-lg ',
+  1: 'font-bold text-lg',
 };
 
 export const Heading = React.forwardRef<HTMLHeadingElement, HeadingProps>(

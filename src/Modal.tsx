@@ -57,11 +57,13 @@ function getModalAnimateStyle(props: ModalRenderProps & DrawerProps) {
   }
 
   if (props.isEntering) {
-    return 'animate-in zoom-in-105 ease-out duration-200';
+    return [
+      'slide-in-from-bottom sm:slide-in-from-bottom-0 sm:zoom-in-105 animate-in  ease-out duration-200',
+    ];
   }
 
   if (props.isExiting) {
-    return 'animate-out zoom-out-95 ease-in duration-200';
+    return 'slide-out-to-bottom sm:slide-out-to-bottom-0 animate-out sm:zoom-out-95 ease-in duration-200';
   }
 }
 
