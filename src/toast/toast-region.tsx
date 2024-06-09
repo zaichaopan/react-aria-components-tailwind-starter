@@ -23,7 +23,9 @@ function ToastRegion({ state, ...props }: ToastRegionProps) {
   const ref = React.useRef(null);
   const { regionProps } = useToastRegion(props, state, ref);
 
-  const position = state.visibleToasts[0].content.position ?? 'bottom-right';
+  const position =
+    state.visibleToasts[state.visibleToasts.length - 1].content.position ??
+    'bottom-right';
 
   let className = 'bottom-6 right-6 anim ';
   switch (position) {
@@ -52,7 +54,7 @@ function ToastRegion({ state, ...props }: ToastRegionProps) {
       {...regionProps}
       ref={ref}
       className={twMerge(
-        'toast-region fixed isolate z-20 flex flex-col gap-4 outline-none -space-y-4',
+        'toast-region fixed isolate z-20 flex flex-col gap-4 -space-y-4 outline-none',
         className,
       )}
     >
@@ -110,7 +112,7 @@ function Toast({ state, ...props }: ToastProps) {
       {...toastProps}
       ref={ref}
       className={twMerge(
-        'toast flex w-[min(85vw,360px)] gap-1 bg-background bg-popover rounded-md border border-border/50 px-3 py-2 shadow-sm transition dark:border-border dark:bg-popover',
+        'toast flex w-[min(85vw,360px)] gap-1 rounded-md border border-border/50 bg-background bg-popover px-3 py-2 shadow-sm transition dark:border-border dark:bg-popover',
         enteringClassName,
       )}
     >

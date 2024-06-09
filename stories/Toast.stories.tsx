@@ -35,11 +35,11 @@ export const Example = () => {
               description: 'This is a toast description',
                type: 'error'
             },
-            // { timeout: 5000 },
+            { timeout: 5000 },
           );
         }}
       >
-        Show toast
+        Bottom right
       </Button>
 
       <Button
@@ -52,11 +52,11 @@ export const Example = () => {
               description: 'This is a toast description',
                type: 'error'
             },
-            // { timeout: 5000 },
+            { timeout: 5000 },
           );
         }}
       >
-        Show toast
+        Top Right
       </Button>
 
       <GlobalToastRegion aria-label="notification" />
