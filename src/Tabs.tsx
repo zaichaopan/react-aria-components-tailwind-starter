@@ -40,7 +40,7 @@ export function TabList<T extends object & { title: string; id: string }>(
   props: TabListProps<T>,
 ) {
   return (
-    <div className="flex overflow-auto pt-1">
+    <div className="flex overflow-auto p-1">
       <RACTabList
         {...props}
         className={composeTailwindRenderProps(props.className, [

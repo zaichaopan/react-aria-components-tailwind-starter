@@ -167,8 +167,3 @@ export function DialogTitle({
     </Heading>
   );
 }
-
-// Tabs overflow, better example
-// Toast animation + style
-// Better text area
-// FileTrigger

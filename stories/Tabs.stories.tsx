@@ -42,29 +42,29 @@ export const Example = () => {
           <TabList aria-label="History of Ancient Rome" items={tabs}>
             {(item) => {
               return (
-                <Tab id={item.id} className="">
+                <Tab id={item.id} className="px-4">
                   {item.title}
                 </Tab>
               );
             }}
           </TabList>
 
-          <TabPanel id="dashboard">
+          <TabPanel id="dashboard" className="px-4 py-6">
             <Heading level={2} displayLevel={3}>
               Dashboard
             </Heading>
           </TabPanel>
-          <TabPanel id="members">
+          <TabPanel id="members" className="px-4 py-6">
             <Heading level={2} displayLevel={3}>
               Members
             </Heading>
           </TabPanel>
-          <TabPanel id="billing">
+          <TabPanel id="billing" className="px-4 py-6">
             <Heading level={2} displayLevel={3}>
               Billings
             </Heading>
           </TabPanel>
-          <TabPanel id="settings">
+          <TabPanel id="settings" className="px-4 py-6">
             <Heading level={2} displayLevel={3}>
               Settings
             </Heading>
@@ -95,22 +95,22 @@ export const VerticalTabs = () => {
           }}
         </TabList>
 
-        <TabPanel id="dashboard" className="px-4 py-2">
+        <TabPanel id="dashboard" className="px-6 py-2">
           <Heading level={2} displayLevel={3}>
             Dashboard
           </Heading>
         </TabPanel>
-        <TabPanel id="members" className="px-4 py-2">
+        <TabPanel id="members" className="px-6 py-2">
           <Heading level={2} displayLevel={3}>
             Members
           </Heading>
         </TabPanel>
-        <TabPanel id="billing" className="px-4 py-2">
+        <TabPanel id="billing" className="px-6 py-2">
           <Heading level={2} displayLevel={3}>
             Billings
           </Heading>
         </TabPanel>
-        <TabPanel id="settings" className="px-4 py-2">
+        <TabPanel id="settings" className="px-6 py-2">
           <Heading level={2} displayLevel={3}>
             Settings
           </Heading>
@@ -127,7 +127,7 @@ export const PillsTab = () => {
     <div className="mt-6 w-full px-6">
       <Tabs variant="pills" selectedKey={tab} onSelectionChange={setTab}>
         <TabList
-          className="gap-3"
+          className="mb-4 gap-3"
           aria-label="History of Ancient Rome"
           items={tabs}
         >
@@ -177,7 +177,7 @@ export const VerticalPillsTab = () => {
         orientation="vertical"
       >
         <TabList
-          className="gap-3"
+          className="mr-2 gap-3"
           aria-label="History of Ancient Rome"
           items={tabs}
         >
@@ -231,22 +231,22 @@ export const SegmentsTab = () => {
           }}
         </TabList>
 
-        <TabPanel id="dashboard" className="px-4 py-2">
+        <TabPanel id="dashboard" className="px-6 py-2">
           <Heading level={2} displayLevel={3}>
             Dashboard
           </Heading>
         </TabPanel>
-        <TabPanel id="members" className="px-4 py-2">
+        <TabPanel id="members" className="px-6 py-2">
           <Heading level={2} displayLevel={3}>
             Members
           </Heading>
         </TabPanel>
-        <TabPanel id="billing" className="px-4 py-2">
+        <TabPanel id="billing" className="px-6 py-2">
           <Heading level={2} displayLevel={3}>
             Billings
           </Heading>
         </TabPanel>
-        <TabPanel id="settings" className="px-4 py-2">
+        <TabPanel id="settings" className="px-6 py-2">
           <Heading level={2} displayLevel={3}>
             Settings
           </Heading>
@@ -282,31 +282,27 @@ export const TabsOnMobile = () => {
             items={tabs}
           >
             {(item) => {
-              return (
-                <Tab id={item.id} className="">
-                  {item.title}
-                </Tab>
-              );
+              return <Tab id={item.id}>{item.title}</Tab>;
             }}
           </TabList>
 
-          <TabPanel id="dashboard" className="px-4">
+          <TabPanel id="dashboard" className="px-6 py-4">
             <Heading level={2} displayLevel={3}>
               Dashboard
             </Heading>
           </TabPanel>
           <TabPanel id="members">
-            <Heading level={2} displayLevel={3}>
+            <Heading level={2} displayLevel={3} className="px-6 py-4">
               Members
             </Heading>
           </TabPanel>
           <TabPanel id="billing">
-            <Heading level={2} displayLevel={3}>
+            <Heading level={2} displayLevel={3} className="px-6 py-4">
               Billings
             </Heading>
           </TabPanel>
           <TabPanel id="settings">
-            <Heading level={2} displayLevel={3}>
+            <Heading level={2} displayLevel={3} className="px-6 py-4">
               Settings
             </Heading>
           </TabPanel>
