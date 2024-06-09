@@ -21,15 +21,17 @@ export function Dialog({ role, ...props }: DialogProps) {
   );
 }
 
+type DialogHeaderProps = HeadingProps & {
+  noCloseButton?: true;
+};
+
 export function DialogHeader({
   className,
   noCloseButton,
   level = 2,
   children,
   ...props
-}: HeadingProps & {
-  noCloseButton?: true;
-}) {
+}: DialogHeaderProps) {
   const headerRef = React.useRef<HTMLHeadingElement>(null);
 
   React.useEffect(() => {
@@ -83,7 +85,7 @@ export function DialogBody(props: JSX.IntrinsicElements['div']) {
   return (
     <div
       className={twMerge(
-        'flex max-h-[calc(var(--visual-viewport-height)-var(--visual-viewport-padding)-var(--dialog-header-height,0px)-var(--dialog-footer-height,0px))] flex-1 flex-col gap-2 overflow-auto px-6',
+        'flex max-h-[calc(var(--visual-viewport-height)-var(--visual-viewport-vertical-padding)-var(--dialog-header-height,0px)-var(--dialog-footer-height,0px))] flex-1 flex-col gap-2 overflow-auto px-6',
         className,
       )}
       {...otherProps}
@@ -142,3 +144,32 @@ export function DialogCloseButton() {
     />
   );
 }
+
+// not slot?
+export function DialogTitle({
+  className,
+  noCloseButton,
+  level = 2,
+  children,
+  ...props
+}: DialogHeaderProps) {
+  return (
+    <Heading
+      level={level}
+      className={twMerge(
+        'flex flex-1 items-center px-6 pb-2 pt-6',
+        !noCloseButton && 'pr-14',
+        className,
+      )}
+      {...props}
+    >
+      {children}
+    </Heading>
+  );
+}
+
+// To do dialog small small slide from bottom, no padding
+// Tabs overflow, better example
+// Toast animation + style
+// Better text area
+// FileTrigger

@@ -124,9 +124,9 @@ export function Checkbox({
                   ])}
                 >
                   {isIndeterminate ? (
-                    <Minus aria-hidden className="h-4 w-4 text-white" />
+                    <Minus aria-hidden className="size-4 text-white" />
                   ) : isSelected ? (
-                    <Check aria-hidden className="h-4 w-4 text-white" />
+                    <Check aria-hidden className="size-4 text-white" />
                   ) : null}
                 </div>
 

@@ -31,12 +31,12 @@ function getModalOverlayStyle(props: DrawerProps) {
   if (props.drawer) {
     return [
       props.drawPlacement === 'right'
-        ? 'p-2 [--visual-viewport-padding:16px] justify-end'
-        : 'p-2 [--visual-viewport-padding:16px] justify-start',
+        ? 'p-2 [--visual-viewport-vertical-padding:16px] justify-end'
+        : 'p-2 [--visual-viewport-vertical-padding:16px] justify-start',
     ];
   }
 
-  return 'justify-center p-4 [--visual-viewport-padding:32px]';
+  return 'justify-center pt-4 [--visual-viewport-vertical-padding:16px] sm:p-4 sm:[--visual-viewport-vertical-padding:32px]';
 }
 
 function getModalAnimateStyle(props: ModalRenderProps & DrawerProps) {
@@ -96,9 +96,9 @@ export function Modal({
           props.className,
           (className, renderProps) => {
             return twMerge(
-              'max-h-full w-full overflow-hidden rounded-xl bg-background dark:bg-secondary text-left align-middle shadow-lg ring-1 ring-zinc-950/5 dark:ring-white/10',
+              'max-h-full w-full overflow-hidden bg-background text-left align-middle shadow-lg ring-1 ring-zinc-950/5 dark:bg-secondary dark:ring-white/10',
               sizes[props.size ?? 'lg'],
-              props.drawer && 'h-full',
+              props.drawer ? 'h-full rounded-xl' : 'rounded-t-xl sm:rounded-xl',
               getModalAnimateStyle({ ...renderProps, ...props }),
               className,
             );
