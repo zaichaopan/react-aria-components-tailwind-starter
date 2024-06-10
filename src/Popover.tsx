@@ -36,7 +36,7 @@ export function Popover({
       {...props}
       className={composeRenderProps(className, (className, renderProps) => {
         return twMerge(
-          'max-w-[250px] rounded-md bg-background bg-popover shadow-lg ring-1 ring-border',
+          'max-w-[250px] rounded-xl bg-background bg-popover shadow-lg ring-1 ring-border/75 dark:ring-border',
           renderProps.isEntering &&
             'duration-50 ease-out animate-in fade-in placement-left:slide-in-from-right-1 placement-right:slide-in-from-left-1 placement-top:slide-in-from-bottom-1 placement-bottom:slide-in-from-top-1',
           renderProps.isExiting &&
