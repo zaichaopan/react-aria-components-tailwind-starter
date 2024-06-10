@@ -110,61 +110,64 @@ function Toast({ state, ...props }: ToastProps) {
   const type = props.toast.content.type;
 
   return (
-    <div
-      {...toastProps}
-      ref={ref}
-      className={twMerge(
-        'toast flex w-[min(85vw,360px)] gap-1 rounded-md border px-3 py-2 shadow-sm transition',
-        type === undefined &&
-          !props.toast.content.render &&
-          'border-border/50 bg-popover dark:border-border',
-        type === 'error' &&
-          'border-destructive/25 bg-destructive/20 text-destructive',
-        type === 'success' && 'border-success/25 bg-success/20 text-success',
-        type === 'warning' &&
-          'border-amber-600/25 bg-amber-600/20 text-amber-600',
-        enteringClassName,
-      )}
-    >
-      {props.toast.content.render ? (
-        props.toast.content.render()
-      ) : (
-        <>
-          <div className="flex flex-1 items-center gap-2 self-center">
-            {type === 'error' && (
-              <AlertCircle className="mt-1 flex size-5 self-start text-destructive" />
-            )}
+    <div {...toastProps} ref={ref} className="flex flex-1 bg-background">
+      <div
+        className={twMerge(
+          'toast flex w-[min(85vw,360px)] gap-1 rounded-md border px-3 py-2 shadow-sm transition',
+          type === undefined &&
+            !props.toast.content.render &&
+            'border-border/50 bg-popover dark:border-border',
+          type === 'error' &&
+            'border-destructive/25 bg-destructive/20 text-destructive',
+          type === 'success' && 'border-success/25 bg-success/20 text-success',
+          type === 'warning' &&
+            'border-amber-600/25 bg-amber-600/20 text-amber-600',
+          enteringClassName,
+        )}
+      >
+        {props.toast.content.render ? (
+          props.toast.content.render()
+        ) : (
+          <>
+            <div className="flex flex-1 items-center gap-2 self-center">
+              {type === 'error' && (
+                <AlertCircle className="mt-1 flex size-5 self-start text-destructive" />
+              )}
 
-            {type === 'warning' && (
-              <AlertTriangle className="mt-1 flex size-5 self-start text-amber-600" />
-            )}
+              {type === 'warning' && (
+                <AlertTriangle className="mt-1 flex size-5 self-start text-amber-600" />
+              )}
 
-            {type === 'success' && (
-              <CheckCircle2 className="mt-1 flex size-5 self-start text-success" />
-            )}
+              {type === 'success' && (
+                <CheckCircle2 className="mt-1 flex size-5 self-start text-success" />
+              )}
 
-            <div className="flex flex-1 flex-col gap-1">
-              <div
-                {...titleProps}
-                className={twMerge(
-                  'text-base/6 sm:text-sm/6',
-                  props.toast.content.description && 'font-medium',
-                )}
-              >
-                {props.toast.content.title}
-              </div>
-
-              {props.toast.content.description ? (
-                <div {...descriptionProps} className="text-base/4 sm:text-sm/4">
-                  {props.toast.content.description}
+              <div className="flex flex-1 flex-col gap-1">
+                <div
+                  {...titleProps}
+                  className={twMerge(
+                    'text-base/6 sm:text-sm/6',
+                    props.toast.content.description && 'font-medium',
+                  )}
+                >
+                  {props.toast.content.title}
                 </div>
-              ) : null}
-            </div>
-          </div>
-        </>
-      )}
 
-      <CloseButton size="sm" text {...closeButtonProps} className="rounded"  />
+                {props.toast.content.description ? (
+                  <div
+                    {...descriptionProps}
+                    className="text-base/4 sm:text-sm/4"
+                  >
+                    {props.toast.content.description}
+                  </div>
+                ) : null}
+              </div>
+            </div>
+          </>
+        )}
+
+        <CloseButton size="sm" text {...closeButtonProps} className="rounded" />
+      </div>
     </div>
   );
 }
