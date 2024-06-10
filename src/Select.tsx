@@ -61,7 +61,7 @@ export function SelectItem(props: ListBoxItemProps & { destructive?: true }) {
 export function SelectSection<T extends object>(
   props: DropdownSectionProps<T>,
 ) {
-  return <DropdownSection {...props} />;
+  return <DropdownSection {...props}/>;
 }
 
 function SelectButton(props: { icon?: React.ReactNode; className?: string }) {
@@ -99,9 +99,10 @@ export function SelectPopover<T extends object>({
 }: Pick<SelectProps<T>, 'items' | 'children'>) {
   return (
     <Popover className="min-w-[--trigger-width]">
+      {/* same as menu */}
       <ListBox
         items={items}
-        className="flex max-h-[inherit] flex-col gap-1.5 overflow-auto p-1.5 outline-none has-[header]:pt-0 sm:gap-0"
+        className="flex max-h-[inherit] flex-col gap-1.5 overflow-auto p-1 outline-none has-[header]:p-2 has-[header]:pt-0 sm:gap-0"
       >
         {children}
       </ListBox>

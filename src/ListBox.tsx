@@ -25,7 +25,7 @@ export function ListBox<T extends object>({
       {...props}
       className={composeTailwindRenderProps(
         props.className,
-        'rounded-md outline-0',
+        'rounded-lg outline-0',
       )}
     >
       {children}
@@ -112,7 +112,7 @@ export function DropdownSection<T extends object>(
       className={twMerge(
         '[&:not(:first-child)]:mt-0.5',
         '[&:not(:first-child)]:border-t [&:not(:first-child)]:border-t-border/75 dark:[&:not(:first-child)]:border-t-border',
-        '[&_header]:has-[[role=option]]:pl-7',
+        '[&_header]:has-[[role=option]]:pl-6',
       )}
     >
       <Header
