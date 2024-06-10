@@ -107,12 +107,22 @@ function Toast({ state, ...props }: ToastProps) {
       break;
   }
 
+  const type = props.toast.content.type;
+
   return (
     <div
       {...toastProps}
       ref={ref}
       className={twMerge(
-        'toast flex w-[min(85vw,360px)] gap-1 rounded-md border border-border/50 bg-background bg-popover px-3 py-2 shadow-sm transition dark:border-border dark:bg-popover',
+        'toast flex w-[min(85vw,360px)] gap-1 rounded-md border px-3 py-2 shadow-sm transition',
+        type === undefined &&
+          !props.toast.content.render &&
+          'border-border/50 bg-popover dark:border-border',
+        type === 'error' &&
+          'border-destructive/30 bg-destructive/15 text-destructive',
+        type === 'success' && 'border-success/30 bg-success/15 text-success',
+        type === 'warning' &&
+          'border-amber-600/30 bg-amber-600/15 text-amber-600',
         enteringClassName,
       )}
     >
@@ -121,28 +131,31 @@ function Toast({ state, ...props }: ToastProps) {
       ) : (
         <>
           <div className="flex flex-1 items-center gap-2 self-center">
-            {props.toast.content.type === 'error' && (
+            {type === 'error' && (
               <AlertCircle className="mt-1 flex size-5 self-start text-destructive" />
             )}
 
-            {props.toast.content.type === 'warning' && (
+            {type === 'warning' && (
               <AlertTriangle className="mt-1 flex size-5 self-start text-yellow-600" />
             )}
 
-            {props.toast.content.type === 'success' && (
+            {type === 'success' && (
               <CheckCircle2 className="mt-1 flex size-5 self-start text-success" />
             )}
 
             <div className="flex flex-1 flex-col gap-1">
-              <div {...titleProps} className="text-base/6 sm:text-sm/6">
+              <div
+                {...titleProps}
+                className={twMerge(
+                  'text-base/6 sm:text-sm/6',
+                  props.toast.content.description && 'font-medium',
+                )}
+              >
                 {props.toast.content.title}
               </div>
 
               {props.toast.content.description ? (
-                <div
-                  {...descriptionProps}
-                  className="text-base/4 text-muted sm:text-sm/4"
-                >
+                <div {...descriptionProps} className="text-base/4 sm:text-sm/4">
                   {props.toast.content.description}
                 </div>
               ) : null}
@@ -151,7 +164,7 @@ function Toast({ state, ...props }: ToastProps) {
         </>
       )}
 
-      <CloseButton size="sm" text {...closeButtonProps} className="rounded" />
+      <CloseButton size="sm" text {...closeButtonProps} className="rounded"  />
     </div>
   );
 }

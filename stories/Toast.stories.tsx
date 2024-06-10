@@ -10,7 +10,8 @@ const meta: Meta = {
     layout: 'center',
     docs: {
       description: {
-        component: '<a href="https://react-spectrum.adobe.com/react-aria/useToast.html#usetoast" target="_blank">**Toasts**</a> display brief, temporary notifications of actions, errors, or other events in an application.',
+        component:
+          '<a href="https://react-spectrum.adobe.com/react-aria/useToast.html#usetoast" target="_blank">**Toasts**</a> display brief, temporary notifications of actions, errors, or other events in an application.',
       },
       ...docs,
       controls: {
@@ -25,38 +26,55 @@ export default meta;
 
 export const Example = () => {
   return (
-    <div className="p-12 flex gap-6">
+    <div className="flex gap-4 p-12">
       <Button
         outline
         onPress={() => {
-          toast.add(
-            {
-              title: 'Toast',
-              description: 'This is a toast description',
-               type: 'error'
-            },
-            { timeout: 5000 },
-          );
+          toast.add({
+            title: 'Toast',
+            description: 'This is a toast description',
+          });
         }}
       >
-        Bottom right
+        Default
+      </Button>
+      <Button
+        outline
+        onPress={() => {
+          toast.add({
+            title: 'Toast',
+            description: 'This is a toast description',
+            type: 'warning',
+          });
+        }}
+      >
+        Warning
       </Button>
 
       <Button
         outline
         onPress={() => {
-          toast.add(
-            {
-              title: 'Toast',
-              position: 'top-right',
-              description: 'This is a toast description',
-               type: 'error'
-            },
-            { timeout: 5000 },
-          );
+          toast.add({
+            title: 'Toast',
+            description: 'This is a toast description',
+            type: 'error',
+          });
         }}
       >
-        Top Right
+        Error
+      </Button>
+
+      <Button
+        outline
+        onPress={() => {
+          toast.add({
+            title: 'Toast',
+            description: 'This is a toast description',
+            type: 'success',
+          });
+        }}
+      >
+        Success
       </Button>
 
       <GlobalToastRegion aria-label="notification" />
