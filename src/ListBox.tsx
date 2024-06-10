@@ -112,12 +112,13 @@ export function DropdownSection<T extends object>(
       className={twMerge(
         '[&:not(:first-child)]:mt-0.5',
         '[&:not(:first-child)]:border-t [&:not(:first-child)]:border-t-border/75 dark:[&:not(:first-child)]:border-t-border',
-        '[&_header]:has-[[role=option]]:pl-6',
+        '[&_header]:has-[[role=option]]:pl-7',
       )}
     >
       <Header
         className={twMerge(
-          'dark:bg-popover sticky top-0 z-10 truncate bg-background px-2.5 pt-2 text-xs/6 text-muted',
+          'sticky  z-10 truncate bg-background px-2 pt-2 text-xs/6 text-muted dark:bg-popover',
+          '-top-[1px] -mx-[1px] -mt-[1px]',
           props.className,
         )}
       >

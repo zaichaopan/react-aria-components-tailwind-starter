@@ -102,7 +102,7 @@ export function SelectPopover<T extends object>({
       {/* same as menu */}
       <ListBox
         items={items}
-        className="flex max-h-[inherit] flex-col gap-1.5 overflow-auto p-1 outline-none has-[header]:p-2 has-[header]:pt-0 sm:gap-0"
+        className="flex max-h-[inherit] flex-col gap-1.5 overflow-auto p-1 outline-none has-[header]:px-3 has-[header]:pt-0 sm:gap-0"
       >
         {children}
       </ListBox>
