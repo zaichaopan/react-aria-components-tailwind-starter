@@ -18,9 +18,11 @@ const meta: Meta<typeof SplitButtonGroup> = {
           '<a href="https://web.dev/articles/building/a-split-button-component" target="_blank">**Split buttons**</a> are buttons that conceal a primary button and a list of additional buttons.',
       },
       ...docs,
+      controls: {
+        exclude: /.*/g,
+      },
     },
   },
-  args: {},
   tags: ['autodocs'],
 };
 

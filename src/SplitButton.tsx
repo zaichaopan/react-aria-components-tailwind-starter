@@ -67,7 +67,7 @@ export function SplitButtonMenuTriggerButton({
     <Button
       aria-label={ariaLabel}
       color={context.color}
-      className={twMerge('min-w-fit rounded-l-none border-l-0 px-1')}
+      className={twMerge('min-w-fit rounded-l-none border-l-0 px-1.5')}
       {...props}
       {...(context as RACButtonProps)}
     ></Button>
