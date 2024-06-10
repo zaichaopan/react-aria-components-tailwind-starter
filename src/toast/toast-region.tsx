@@ -119,10 +119,10 @@ function Toast({ state, ...props }: ToastProps) {
           !props.toast.content.render &&
           'border-border/50 bg-popover dark:border-border',
         type === 'error' &&
-          'border-destructive/30 bg-destructive/15 text-destructive',
-        type === 'success' && 'border-success/30 bg-success/15 text-success',
+          'border-destructive/25 bg-destructive/20 text-destructive',
+        type === 'success' && 'border-success/25 bg-success/20 text-success',
         type === 'warning' &&
-          'border-amber-600/30 bg-amber-600/15 text-amber-600',
+          'border-amber-600/25 bg-amber-600/20 text-amber-600',
         enteringClassName,
       )}
     >
@@ -136,7 +136,7 @@ function Toast({ state, ...props }: ToastProps) {
             )}
 
             {type === 'warning' && (
-              <AlertTriangle className="mt-1 flex size-5 self-start text-yellow-600" />
+              <AlertTriangle className="mt-1 flex size-5 self-start text-amber-600" />
             )}
 
             {type === 'success' && (
