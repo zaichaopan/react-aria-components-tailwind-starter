@@ -25,7 +25,7 @@ export function ListBox<T extends object>({
       {...props}
       className={composeTailwindRenderProps(
         props.className,
-        'outline-0',
+        'outline-none',
       )}
     >
       {children}
