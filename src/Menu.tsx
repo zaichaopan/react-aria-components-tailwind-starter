@@ -53,9 +53,8 @@ export function Menu<T extends object>({ className, ...props }: MenuProps<T>) {
     <RACMenu
       {...props}
       className={twMerge(
-        'flex max-h-[inherit] flex-col gap-1.5 overflow-auto outline-none sm:gap-0',
-        // When no header
-        'p-1 has-[header]:p-3 has-[header]:pt-0',
+        'flex max-h-[inherit] flex-col gap-1.5 overflow-auto outline-none',
+        'p-1 has-[header]:px-2.5 has-[header]:pt-0',
         className,
       )}
     />

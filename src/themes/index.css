@@ -46,31 +46,5 @@
     font-feature-settings: 'cv11';
   }
 
-  /* === Scroll bars === */
-  ::-webkit-scrollbar {
-    @apply w-2;
-  }
 
-  ::-webkit-scrollbar-track {
-    @apply bg-transparent;
-  }
-  ::-webkit-scrollbar-thumb {
-    @apply rounded-sm bg-zinc-300;
-  }
-
-  .dark {
-    ::-webkit-scrollbar-thumb {
-      @apply bg-zinc-700;
-    }
-  }
-
-  /* scrollbar on firefox */
-  /* https://developer.mozilla.org/en-US/docs/Web/CSS/scrollbar-color#browser_compatibility */
-  html {
-    scrollbar-color: #d4d4d8 transparent;
-  }
-
-  html[class~='dark'] {
-    scrollbar-color: #3f3f46 transparent;
-  }
 }

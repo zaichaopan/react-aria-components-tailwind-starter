@@ -4,12 +4,16 @@ import {
   Select as RACSelect,
   SelectProps as RACSelectProps,
   Button,
-  ListBox,
   ListBoxItemProps,
   SelectValue,
   composeRenderProps,
 } from 'react-aria-components';
-import { DropdownItem, DropdownSection, DropdownSectionProps } from './ListBox';
+import {
+  DropdownItem,
+  DropdownSection,
+  DropdownSectionProps,
+  ListBox,
+} from './ListBox';
 import { Popover } from './Popover';
 import { composeTailwindRenderProps, inputRingStyle } from './utils';
 import { twMerge } from 'tailwind-merge';
@@ -50,18 +54,13 @@ export function Select<T extends object>({
 }
 
 export function SelectItem(props: ListBoxItemProps & { destructive?: true }) {
-  return (
-    <DropdownItem
-      {...props}
-      className="shrink-0 rounded-lg pr-5"
-    />
-  );
+  return <DropdownItem {...props} className="shrink-0 rounded-lg pr-5" />;
 }
 
 export function SelectSection<T extends object>(
   props: DropdownSectionProps<T>,
 ) {
-  return <DropdownSection {...props}/>;
+  return <DropdownSection {...props} />;
 }
 
 function SelectButton(props: { icon?: React.ReactNode; className?: string }) {
@@ -99,10 +98,9 @@ export function SelectPopover<T extends object>({
 }: Pick<SelectProps<T>, 'items' | 'children'>) {
   return (
     <Popover className="min-w-[--trigger-width]">
-      {/* same as menu */}
       <ListBox
         items={items}
-        className="flex max-h-[inherit] flex-col gap-1.5 overflow-auto p-1 outline-none has-[header]:px-3 has-[header]:pt-0 sm:gap-0"
+        className="flex max-h-[inherit] flex-col gap-1.5 overflow-auto p-1 has-[header]:px-2.5 has-[header]:pt-0"
       >
         {children}
       </ListBox>

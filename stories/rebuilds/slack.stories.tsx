@@ -164,13 +164,10 @@ function NavLinks() {
 function CompanyMenu() {
   return (
     <MenuTrigger>
-      <MenuButton
-        text
-        className="text-base text-white hover:bg-fuchsia-900"
-      >
+      <MenuButton text className="text-base text-white hover:bg-fuchsia-900">
         ACME
       </MenuButton>
-      <MenuPopover className="min-w-[300px]">
+      <MenuPopover className="min-w-[300px] rounded-md">
         <div className="flex items-center gap-4 border-b p-4">
           <Avatar alt="A C" />
           <div className="flex flex-col">
@@ -199,7 +196,7 @@ function CompanyMenu() {
           <MenuItem shortcut="⌘,">Preferences</MenuItem>
           <SubmenuTrigger>
             <MenuItem>Tools & settings</MenuItem>
-            <MenuPopover className="min-w-[250px]">
+            <MenuPopover className="min-w-[250px] rounded-md">
               <SubMenu aria-label="Tools & settings">
                 <MenuSection title="Tools">
                   <MenuItem>Customize workspace</MenuItem>
@@ -241,7 +238,7 @@ function FilterMessagesMenu() {
       >
         <Icon icon={<ListFilter />} aria-label="Filter Convestation"></Icon>
       </MenuButton>
-      <MenuPopover className="min-w-[250px]">
+      <MenuPopover className="min-w-[250px] rounded-md">
         <Menu
           selectionMode="multiple"
           defaultSelectedKeys={['all_activity', 'everyone']}
@@ -364,7 +361,7 @@ function ProfileMenu() {
           />
         </Avatar>
       </MenuButton>
-      <MenuPopover className="min-w-[300px] bg-white" placement="right bottom">
+      <MenuPopover className="min-w-[300px] bg-white rounded-md" placement="right bottom">
         <div className="flex items-center gap-2 px-6 pb-2 pt-6">
           <Avatar
             className="size-10"
@@ -383,7 +380,7 @@ function ProfileMenu() {
         </div>
         <Menu>
           <MenuItem
-            className="mx-6 mb-2 rounded-md border"
+            className="mx-4 mb-2 rounded-md border"
             aria-label="Update your status"
           >
             <div className="flex items-center gap-2">
@@ -392,11 +389,13 @@ function ProfileMenu() {
               <div>Update your status</div>
             </div>
           </MenuItem>
-          <MenuItem className="px-6">Set yourself as away</MenuItem>
+          <MenuItem className="px-4">
+            Set yourself as&nbsp;<span className="font-semibold">away</span>
+          </MenuItem>
 
           <SubmenuTrigger>
-            <MenuItem className="px-6">Pause notifications</MenuItem>
-            <MenuPopover>
+            <MenuItem className="px-4">Pause notifications</MenuItem>
+            <MenuPopover className="rounded-lg">
               <SubMenu aria-label="Pause notifications">
                 <MenuSection title="Pause notifications ...">
                   <MenuItem>For 30 minutes</MenuItem>
@@ -409,14 +408,16 @@ function ProfileMenu() {
           </SubmenuTrigger>
 
           <MenuSeparator />
-          <MenuItem className="px-6">Profile</MenuItem>
-          <MenuItem className="px-6" shortcut="⌘,">
+          <MenuItem className="px-4">Profile</MenuItem>
+          <MenuItem className="px-4" shortcut="⌘,">
             Preferences
           </MenuItem>
           <MenuSeparator />
-          <MenuItem className="px-6">Download</MenuItem>
+          <MenuItem className="px-4" shortcut="⌘⇧J">
+            Download
+          </MenuItem>
           <MenuSeparator />
-          <MenuItem className="px-6">Sign out of ACME</MenuItem>
+          <MenuItem className="px-4">Sign out of ACME</MenuItem>
         </Menu>
       </MenuPopover>
     </MenuTrigger>
