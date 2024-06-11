@@ -1,3 +1,4 @@
+import React from 'react';
 import { Check } from 'lucide-react';
 import {
   ListBox as RACListBox,
@@ -20,13 +21,32 @@ export function ListBox<T extends object>({
   children,
   ...props
 }: ListBoxProps<T>) {
+  const ref = React.useRef<HTMLDivElement>(null);
+
+  // Fix not auto scroll to selected item
+  React.useEffect(() => {
+    if (ref.current) {
+      const selectedItem = ref.current.querySelector('[aria-selected=true]');
+      if (selectedItem) {
+        const timer = setTimeout(() => {
+          selectedItem.scrollIntoView({
+            block: 'nearest',
+            behavior: 'smooth',
+          });
+        }, 50);
+
+        return () => {
+          clearTimeout(timer);
+        };
+      }
+    }
+  }, []);
+
   return (
     <RACListBox
       {...props}
-      className={composeTailwindRenderProps(
-        props.className,
-        'outline-none',
-      )}
+      className={composeTailwindRenderProps(props.className, 'outline-none')}
+      ref={ref}
     >
       {children}
     </RACListBox>
