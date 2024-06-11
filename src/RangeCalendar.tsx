@@ -17,7 +17,7 @@ export interface RangeCalendarProps<T extends DateValue>
 }
 
 const selectionStateStyle = {
-  none: 'group-hover:bg-accent/15 group-pressed:bg-accent/90 dark:group-hover:bg-accent/50',
+  none: 'group-hover:bg-accent/15 group-pressed:bg-accent/90 dark:group-hover:bg-accent/50 group-hover:rounded-lg',
   middle: [
     'group-hover:bg-accent/20 dark:group-hover:bg-accent/50',
     'group-invalid:group-hover:bg-destructive/50',
@@ -40,7 +40,7 @@ export function RangeCalendar<T extends DateValue>({
           {(date) => (
             <CalendarCell
               date={date}
-              className="group h-9 w-9 cursor-default text-sm outline outline-0 selected:bg-accent/15 invalid:selected:bg-destructive/15 selection-start:rounded-s-lg selection-end:rounded-e-lg dark:selected:bg-accent/40 [td:first-child_&]:rounded-s-lg [td:last-child_&]:rounded-e-lg"
+              className="group h-9 w-9 cursor-default text-sm outline outline-0 selected:bg-accent/15 invalid:selected:bg-destructive/15 selection-start:rounded-s-lg selection-end:rounded-e-lg dark:selected:bg-accent/40"
             >
               {({
                 formattedDate,
@@ -52,7 +52,9 @@ export function RangeCalendar<T extends DateValue>({
               }) => (
                 <span
                   className={twMerge(
-                    'flex h-full w-full items-center justify-center rounded-lg',
+                    'flex h-full w-full items-center justify-center',
+                    isSelectionStart && 'rounded-l-lg',
+                    isSelectionEnd && 'rounded-r-lg',
                     selectionStateStyle[
                       isSelected && (isSelectionStart || isSelectionEnd)
                         ? 'cap'
