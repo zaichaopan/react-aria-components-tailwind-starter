@@ -100,7 +100,7 @@ export function SelectPopover<T extends object>({
     <Popover className="min-w-[--trigger-width]">
       <ListBox
         items={items}
-        className="flex max-h-[inherit] flex-col gap-1.5 overflow-auto p-1 has-[header]:px-2.5 has-[header]:pt-0"
+        className="flex max-h-[inherit] flex-col overflow-auto p-1 has-[header]:px-2.5 has-[header]:pt-0"
       >
         {children}
       </ListBox>
