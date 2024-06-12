@@ -43,7 +43,7 @@ export function DateInput({
           'disabled:opacity-50',
           renderProps.isFocusWithin && inputRingStyle,
           'ring-offset-0',
-          'block min-w-[150px] px-3 py-1.5 text-sm',
+          'block min-w-[150px] px-2 py-1.5 text-sm',
           // When it is inside role=presentation | group parent and it has border
           '[[role=presentation]_&.border]:h-fit [[role=presentation]_&.border]:border-none [[role=presentation]_&.border]:pr-0 [[role=presentation]_&.border]:shadow-none [[role=presentation]_&.border]:ring-0',
           '[[role=group]_&.border]:h-fit [[role=group]_&.border]:border-none [[role=group]_&.border]:pr-0 [[role=group]_&.border]:shadow-none [[role=group]_&.border]:ring-0 [[role=group]_&.border]:invalid:ring-0',

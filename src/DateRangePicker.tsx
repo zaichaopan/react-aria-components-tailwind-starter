@@ -32,16 +32,16 @@ export function DateRangePickerInput() {
   return (
     <>
       <InputFieldGroup className="w-auto min-w-[208px]">
-        <DateInput slot="start" className="min-w-fit px-2 py-1.5 text-sm" />
+        <DateInput slot="start" className="min-w-fit text-sm" />
         <span
           aria-hidden="true"
-          className="text-gray-800 group-disabled:text-gray-200 dark:text-zinc-200 group-disabled:dark:text-zinc-600"
+          className="ml-2 text-gray-800 group-disabled:text-gray-200 dark:text-zinc-200 group-disabled:dark:text-zinc-600"
         >
           –
         </span>
         <DateInput
           slot="end"
-          className="min-w-fit flex-1 px-2 py-1.5 text-sm"
+          className="min-w-fit flex-1 text-sm"
         />
         <IconButton
           text
