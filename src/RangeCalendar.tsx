@@ -36,7 +36,7 @@ export function RangeCalendar<T extends DateValue>({
       <CalendarHeader />
       <CalendarGrid className="[&_td]:px-0" weekdayStyle="short">
         <CalendarGridHeader />
-        <CalendarGridBody className="before:block before:w-full before:leading-[0.25rem] before:content-['.']">
+        <CalendarGridBody className="before:block before:w-full before:leading-[0.25rem] before:content-['.'] before:opacity-0">
           {(date) => (
             <CalendarCell
               date={date}

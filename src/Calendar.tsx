@@ -31,7 +31,7 @@ export function Calendar<T extends DateValue>({
       <CalendarHeader />
       <CalendarGrid weekdayStyle="short">
         <CalendarGridHeader />
-        <CalendarGridBody className="before:block before:w-full before:leading-[0.25rem] before:content-['.']">
+        <CalendarGridBody className="before:block before:w-full before:leading-[0.25rem] before:content-['.'] before:opacity-0">
           {(date) => (
             <CalendarCell
               date={date}
