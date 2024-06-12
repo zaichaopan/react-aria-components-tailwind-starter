@@ -54,7 +54,7 @@ export function Select<T extends object>({
 }
 
 export function SelectItem(props: ListBoxItemProps & { destructive?: true }) {
-  return <DropdownItem {...props} className="shrink-0 rounded-lg pr-5" />;
+  return <DropdownItem {...props} className="shrink-0 pr-5" />;
 }
 
 export function SelectSection<T extends object>(
@@ -100,7 +100,7 @@ export function SelectPopover<T extends object>({
     <Popover className="min-w-[--trigger-width]">
       <ListBox
         items={items}
-        className="flex max-h-[inherit] flex-col overflow-auto p-1 has-[header]:px-2.5 has-[header]:pt-0"
+        className="flex max-h-[inherit] flex-col overflow-auto p-1 has-[header]:px-2 has-[header]:pt-0"
       >
         {children}
       </ListBox>
