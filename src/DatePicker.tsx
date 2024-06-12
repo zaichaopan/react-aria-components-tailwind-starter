@@ -34,8 +34,8 @@ export function DatePickerInput() {
         <IconButton
           text
           size="sm"
-          className="mr-1 p-0.5 outline-offset-0"
-          icon={<CalendarIcon />}
+          className="mx-1.5 size-auto rounded p-0.5 outline-offset-0"
+          icon={<CalendarIcon className="size-4" />}
         />
       </InputFieldGroup>
 

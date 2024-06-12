@@ -46,8 +46,8 @@ export function DateRangePickerInput() {
         <IconButton
           text
           size="sm"
-          className="ml-1.5 mr-1 p-0.5 outline-offset-0"
-          icon={<CalendarIcon />}
+          className="mx-1.5 p-0.5 size-auto outline-offset-0 rounded"
+          icon={<CalendarIcon className='size-4' />}
         />
       </InputFieldGroup>
       <Popover className="max-w-none" placement="bottom">

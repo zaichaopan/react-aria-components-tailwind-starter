@@ -22,9 +22,9 @@ export function PasswordInput(props: InputProps) {
         className="absolute right-1 top-1/2 -translate-x-1/4 -translate-y-1/2 rounded p-0.5 text-muted opacity-75 hover:opacity-100 focus:opacity-100 peer-disabled:pointer-events-none"
       >
         {isPasswordVisible ? (
-          <EyeOffIcon className="h-4 w-4" />
+          <EyeOffIcon className="size-4" />
         ) : (
-          <Eye className="h-4 w-4" />
+          <Eye className="size-4" />
         )}
       </ToggleButton>
     </div>
