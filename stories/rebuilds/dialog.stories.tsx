@@ -1,5 +1,5 @@
 import type { Meta } from '@storybook/react';
-import { Text } from '../../src/Text';
+import { Small, Text } from '../../src/Text';
 import { DialogTrigger } from 'react-aria-components';
 import {
   Dialog,
@@ -93,7 +93,7 @@ export function Dialogs() {
                               <Text className="text-foreground">
                                 Basic performance
                               </Text>
-                              <Text>1/8 vCPU, 1GB RAM</Text>
+                              <Small>1/8 vCPU, 1GB RAM</Small>
                             </div>
                           </Radio>
                           <Radio
@@ -104,7 +104,7 @@ export function Dialogs() {
                               <Text className="text-foreground">
                                 Advanced performance
                               </Text>
-                              <Text>1/8 vCPU, 1GB RAM</Text>
+                              <Small>1/8 vCPU, 1GB RAM</Small>
                             </div>
                           </Radio>
                           <Radio
@@ -115,7 +115,7 @@ export function Dialogs() {
                               <Text className="text-foreground">
                                 Turbo performance
                               </Text>
-                              <Text>1/8 vCPU, 1GB RAM</Text>
+                              <Small>1/8 vCPU, 1GB RAM</Small>
                             </div>
                           </Radio>
                         </RadioGroupContent>
