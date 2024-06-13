@@ -84,10 +84,10 @@ export function Dialogs() {
                         className="flex-1"
                       >
                         <Label>Database configuration</Label>
-                        <RadioGroupContent className="grid flex-1 grid-cols-1 sm:grid-cols-2 [&_[slot=radio]]:mt-1.5">
+                        <RadioGroupContent className="grid flex-1 grid-cols-1 gap-4 sm:grid-cols-2 [&_[slot=radio]]:mt-1.5">
                           <Radio
                             value="basic"
-                            className="items-start rounded-md border p-3 shadow-sm data-[selected=true]:border-accent data-[selected=true]:ring-1 data-[selected=true]:ring-accent/45"
+                            className="items-start rounded-md border p-3 shadow-sm data-[selected=true]:border-accent data-[selected=true]:ring-1 data-[selected=true]:ring-accent/15"
                           >
                             <div className="flex flex-col ">
                               <Text className="text-foreground">
@@ -98,7 +98,7 @@ export function Dialogs() {
                           </Radio>
                           <Radio
                             value="advanced"
-                            className="items-start rounded-md border p-3 shadow-sm data-[selected=true]:border-accent data-[selected=true]:ring-1 data-[selected=true]:ring-accent/45"
+                            className="items-start rounded-md border p-3 shadow-sm data-[selected=true]:border-accent data-[selected=true]:ring-1 data-[selected=true]:ring-accent/15"
                           >
                             <div className="flex flex-col">
                               <Text className="text-foreground">
@@ -109,7 +109,7 @@ export function Dialogs() {
                           </Radio>
                           <Radio
                             value="turbo"
-                            className="items-start rounded-md border p-3 shadow-sm data-[selected=true]:border-accent data-[selected=true]:ring-1 data-[selected=true]:ring-accent/45"
+                            className="items-start rounded-md border p-3 shadow-sm data-[selected=true]:border-accent data-[selected=true]:ring-1 data-[selected=true]:ring-accent/15"
                           >
                             <div className="flex flex-col">
                               <Text className="text-foreground">

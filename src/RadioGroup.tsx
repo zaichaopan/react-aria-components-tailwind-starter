@@ -53,7 +53,7 @@ export function RadioGroupContent({
   return (
     <div
       className={twMerge(
-        'flex flex-col gap-4 group-orientation-horizontal:flex-row group-orientation-horizontal:flex-wrap',
+        'flex flex-col gap-2 group-orientation-horizontal:flex-row group-orientation-horizontal:flex-wrap',
         className,
       )}
       {...props}
