@@ -53,7 +53,7 @@ export function RadioGroupContent({
   return (
     <div
       className={twMerge(
-        'flex flex-col gap-3 group-orientation-horizontal:flex-row group-orientation-horizontal:flex-wrap',
+        'flex flex-col gap-4 group-orientation-horizontal:flex-row group-orientation-horizontal:flex-wrap',
         className,
       )}
       {...props}
@@ -95,6 +95,7 @@ export function Radio({
                     : children)}
 
                 <div
+                  slot="radio"
                   className={twMerge(
                     'h-4 w-4 shrink-0 rounded-full border border-zinc-400/75 shadow-sm transition-all disabled:opacity-75 dark:border-zinc-600',
                     'invalid:border-destructive invalid:dark:border-destructive',

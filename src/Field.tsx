@@ -169,7 +169,7 @@ export function Input(props: InputProps) {
         props.className,
         (className, renderProps) => {
           return twMerge(
-            'placeholder:text-muted-foreground flex flex h-9 w-full rounded-md border bg-background px-2 py-1 text-base/6 shadow-sm outline-none sm:text-sm/6',
+            'placeholder:text-muted-foreground flex flex h-9 w-full rounded-md border bg-inherit px-2 py-1 text-base/6 shadow-sm outline-none sm:text-sm/6',
             renderProps.isInvalid && 'border-destructive',
             renderProps.isDisabled && 'disabled:opacity-50',
             renderProps.isFocused && inputRingStyle,
@@ -192,7 +192,7 @@ export function TextArea(props: RACTextAreaProps) {
         props.className,
         (className, renderProps) => {
           return twMerge(
-            'w-full rounded-md border bg-background p-2 text-base/6 text-foreground outline-none sm:text-sm/6',
+            'w-full rounded-md border bg-inherit p-2 text-base/6 text-foreground outline-none sm:text-sm/6',
             renderProps.isInvalid && 'border-destructive',
             renderProps.isDisabled && 'disabled:opacity-50',
             renderProps.isFocused && inputRingStyle,
@@ -214,7 +214,7 @@ export const InputFieldGroup = React.forwardRef<HTMLDivElement, GroupProps>(
           props.className,
           (className, renderProps) =>
             twMerge(
-              'group flex w-full items-center overflow-hidden rounded-md border bg-background shadow-sm',
+              'group flex w-full items-center overflow-hidden rounded-md border bg-inherit shadow-sm',
               'invalid:border-destructive group-invalid:border-destructive',
               renderProps.isFocusWithin && inputRingStyle,
               className,

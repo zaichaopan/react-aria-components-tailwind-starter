@@ -66,11 +66,12 @@ export function TabList<T extends object & { title: string; id: string }>(
 
           // segment
           'group-data-[variant=segment]:gap-1',
-          'group-data-[variant=segment]:rounded-xl',
-          'group-data-[variant=segment]:bg-zinc-100/75',
+          'group-data-[variant=segment]:rounded-lg',
+          'group-data-[variant=segment]:bg-zinc-100',
           'group-data-[variant=segment]:p-1',
-          'group-data-[variant=segment]:dark:border-border',
-          'group-data-[variant=segment]:dark:bg-popover',
+          'group-data-[variant=segment]:dark:border',
+          // 'group-data-[variant=segment]:dark:border-border',
+          'group-data-[variant=segment]:dark:bg-secondary',
         ])}
       />
     </div>
@@ -138,9 +139,9 @@ export function Tab(props: TabProps) {
           'group-data-[variant=segment]:font-medium',
           'group-data-[variant=segment]:selected:text-foreground',
           'group-data-[variant=segment]:selected:shadow-sm',
-          'group-data-[variant=segment]:selected:border-border/65',
+          'group-data-[variant=segment]:selected:border-border/45',
           'dark:group-data-[variant=segment]:selected:border-border',
-          'group-data-[variant=segment]:selected:rounded-[calc(theme(borderRadius.xl)-4px)]',
+          'group-data-[variant=segment]:selected:rounded-[calc(theme(borderRadius.lg)-4px)]',
           renderProps.isFocusVisible && focusOutlineStyle,
           className,
         ),

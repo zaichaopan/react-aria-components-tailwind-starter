@@ -104,7 +104,7 @@ export function Modal({
             return twMerge(
               'max-h-full w-full overflow-hidden bg-background text-left align-middle shadow-lg ring-1 ring-zinc-950/5 dark:bg-secondary dark:ring-white/10',
               sizes[props.size ?? 'lg'],
-              props.drawer ? 'h-full rounded-xl' : 'rounded-t-xl sm:rounded-xl',
+              props.drawer ? 'h-full rounded-lg' : 'rounded-t-lg sm:rounded-lg',
               getModalAnimateStyle({ ...renderProps, ...props }),
               className,
             );
