@@ -122,7 +122,7 @@ export function CommandField({ close }: { close: () => void }) {
   }
 
   function shift(toward: 1 | -1) {
-    if (!list.items) {
+    if (!list.items || list.items.length === 0) {
       return;
     }
 
@@ -132,7 +132,7 @@ export function CommandField({ close }: { close: () => void }) {
       );
 
       if (currentIndex === -1) {
-        return list.items[0].id;
+        return list.items[0]?.id;
       }
 
       const newIndex =
