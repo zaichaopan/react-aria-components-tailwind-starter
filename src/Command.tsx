@@ -31,20 +31,23 @@ export function Command() {
 
   return (
     <DialogTrigger>
-      <Button
-        className="w-1/3 justify-start"
-        outline
-        onPress={() => setIsModalOpen(true)}
-      >
-        <Icon
-          icon={<Search />}
-          aria-label="Search"
-          className="self-start"
-        ></Icon>
-        <span className="flex-1">⌘ +K</span>
-      </Button>
+      <div className="flex w-full p-1 sm:w-1/3">
+        <Button
+          className="flex-1 justify-start"
+          outline
+          onPress={() => setIsModalOpen(true)}
+        >
+          <Icon
+            icon={<Search />}
+            aria-label="Search"
+            className="self-start"
+          ></Icon>
+          <span className="flex-1">⌘ +K</span>
+        </Button>
+      </div>
+
       <CommandModal
-        className="w-1/3"
+        className="w-full p-1 sm:w-1/3"
         isOpen={isModalOpen}
         onOpenChange={setIsModalOpen}
       >
