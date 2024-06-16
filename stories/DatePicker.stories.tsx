@@ -1,9 +1,23 @@
 import type { Meta } from '@storybook/react';
 import { Form } from 'react-aria-components';
 import { Button } from '../src/Button';
-import { DatePicker, DatePickerInput } from '../src/DatePicker';
+import {
+  DatePicker,
+  DatePickerButton,
+  DatePickerInput,
+} from '../src/DatePicker';
 import { docs } from '../.storybook/docs';
 import { Description, FieldError, Label } from '../src/Field';
+import {
+  today,
+  getLocalTimeZone,
+  now,
+  toCalendarDateTime,
+} from '@internationalized/date';
+
+const t = now(getLocalTimeZone());
+
+toCalendarDateTime(t);
 
 const meta: Meta<typeof DatePicker> = {
   title: 'DatePicker',
@@ -49,3 +63,14 @@ export const Validation = () => (
     </Button>
   </Form>
 );
+
+export const DatePickerButtons = () => {
+  return (
+    <DatePicker defaultValue={today(getLocalTimeZone())}>
+      <Label>Birth date</Label>
+      <Description>Please pick your birth date</Description>
+      <DatePickerButton />
+      <FieldError />
+    </DatePicker>
+  );
+};

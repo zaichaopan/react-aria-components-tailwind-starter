@@ -1,4 +1,4 @@
-import { CalendarIcon } from 'lucide-react';
+import { CalendarDays } from 'lucide-react';
 import {
   DateRangePicker as AriaDateRangePicker,
   DateRangePickerProps as AriaDateRangePickerProps,
@@ -47,7 +47,7 @@ export function DateRangePickerInput() {
           text
           size="sm"
           className="mx-1.5 p-0.5 size-auto outline-offset-0 rounded"
-          icon={<CalendarIcon className='size-4' />}
+          icon={<CalendarDays className='size-4' />}
         />
       </InputFieldGroup>
       <Popover className="max-w-none" placement="bottom">

@@ -6,6 +6,8 @@ import {
   FieldError,
   Input,
   InputFieldGroup,
+  SearchField,
+  SearchInput,
 } from '../src/Field';
 import { docs } from '../.storybook/docs';
 import { Form } from '../src/Form';
@@ -68,6 +70,15 @@ export const WithIcon = () => {
         <Input placeholder="Search..." />
       </InputFieldGroup>
     </TextField>
+  );
+};
+
+export const SearchInputs = () => {
+  return (
+    <SearchField>
+      <Label>Search</Label>
+      <SearchInput />
+    </SearchField>
   );
 };
 

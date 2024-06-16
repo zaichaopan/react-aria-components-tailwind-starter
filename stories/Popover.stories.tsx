@@ -62,7 +62,7 @@ export const Example = () => (
           <Separator className="mt-2 bg-border/5" />
 
           <MenuTrigger>
-            <MenuButton variant='text'>
+            <MenuButton text>
               Language <span className="ml-auto">English (US)</span>
             </MenuButton>
             <MenuPopover placement="end top">

@@ -77,24 +77,20 @@ export function Modal({
       isDismissable={isDismissable}
       isKeyboardDismissDisabled={isKeyboardDismissDisabled}
       {...props}
-      className={composeRenderProps(
-        props.className,
-        (className, renderProps) => {
-          return twMerge(
-            'fixed left-0 top-0 isolate z-20 flex h-[--visual-viewport-height] w-full items-end bg-zinc-950/15 text-center dark:bg-zinc-950/50 sm:items-center',
-            renderProps.isEntering && [
-              props.drawer ? 'duration-200' : 'duration-300 sm:duration-200',
-              'ease-out animate-in fade-in',
-            ],
-            renderProps.isExiting && [
-              props.drawer ? 'duration-200' : 'duration-300 sm:duration-200',
-              'ease-in animate-out fade-out',
-            ],
-            getModalOverlayStyle(props),
-            className,
-          );
-        },
-      )}
+      className={composeRenderProps(props.className, (_, renderProps) => {
+        return twMerge(
+          'fixed left-0 top-0 isolate z-20 flex h-[--visual-viewport-height] w-full items-end bg-zinc-950/15 text-center dark:bg-zinc-950/50 sm:items-center',
+          renderProps.isEntering && [
+            props.drawer ? 'duration-200' : 'duration-300 sm:duration-200',
+            'ease-out animate-in fade-in',
+          ],
+          renderProps.isExiting && [
+            props.drawer ? 'duration-200' : 'duration-300 sm:duration-200',
+            'ease-in animate-out fade-out',
+          ],
+          getModalOverlayStyle(props),
+        );
+      })}
     >
       <RACModal
         {...props}
@@ -128,5 +124,25 @@ export function AlertModal({
       isDismissable={isDismissable}
       isKeyboardDismissDisabled={isKeyboardDismissDisabled}
     />
+  );
+}
+
+export function CommandModal({ ...props }: ModalOverlayProps) {
+  return (
+    <ModalOverlay
+      isDismissable
+      {...props}
+      className="fixed left-0 top-0 isolate z-20 flex h-[--visual-viewport-height] w-full items-start justify-center bg-transparent text-center"
+    >
+      <RACModal
+        {...props}
+        className={composeRenderProps(props.className, (className) => {
+          return twMerge(
+            'max-h-full overflow-hidden text-left align-middle',
+            className,
+          );
+        })}
+      />
+    </ModalOverlay>
   );
 }

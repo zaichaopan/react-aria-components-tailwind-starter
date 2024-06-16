@@ -39,7 +39,7 @@ export function Calendar<T extends DateValue>({
                 return twMerge(
                   'flex h-9 w-9 cursor-default items-center justify-center rounded-lg text-sm outline-none',
                   renderProps.isSelected
-                    ? 'bg-accent text-white invalid:bg-destructive'
+                    ? 'bg-accent text-white invalid:bg-destructive invalid:text-white'
                     : 'hover:bg-accent/15 pressed:bg-accent/90 pressed:text-white dark:hover:bg-accent/30',
                   renderProps.isDisabled && 'text-muted',
                   renderProps.isFocusVisible && focusOutlineStyle,

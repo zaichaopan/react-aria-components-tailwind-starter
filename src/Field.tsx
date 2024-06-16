@@ -17,10 +17,15 @@ import {
   TextArea as RACTextArea,
   TextAreaProps as RACTextAreaProps,
   Text as RACText,
+  SearchField as RACSearchField,
+  SearchFieldProps as RACSearchFieldProps,
 } from 'react-aria-components';
 import { twMerge } from 'tailwind-merge';
 import { composeTailwindRenderProps, inputRingStyle } from './utils';
 import { Text } from './Text';
+import { CloseButton } from './Button';
+import { Search, SearchIcon } from 'lucide-react';
+import { Icon } from './Icon';
 
 export function Group(props: GroupProps) {
   const labelId = React.useId();
@@ -176,6 +181,9 @@ export function Input(props: InputProps) {
             // When it is inside role=presentation | group parent and it has border
             '[[role=presentation]_&.border]:h-fit [[role=presentation]_&.border]:border-none [[role=presentation]_&.border]:shadow-none [[role=presentation]_&.border]:ring-0',
             '[[role=group]_&.border]:h-fit [[role=group]_&.border]:border-none [[role=group]_&.border]:shadow-none [[role=group]_&.border]:ring-0 [[role=group]_&.border]:invalid:ring-0',
+
+            // search filed
+            '[[slot=search-field]_&.border]:h-fit [[slot=search-field]_&.border]:border-none [[slot=search-field]_&.border]:shadow-none [[slot=search-field]_&.border]:ring-0',
             className,
           );
         },
@@ -224,3 +232,36 @@ export const InputFieldGroup = React.forwardRef<HTMLDivElement, GroupProps>(
     );
   },
 );
+
+export interface SearchFieldProps extends RACSearchFieldProps {}
+
+export function SearchField(props: SearchFieldProps) {
+  return (
+    <RACSearchField
+      {...props}
+      className={composeTailwindRenderProps(
+        props.className,
+        'group flex flex-col',
+      )}
+    ></RACSearchField>
+  );
+}
+
+export function SearchInput({
+  className,
+  ...props
+}: InputProps & { className?: GroupProps['className'] }) {
+  return (
+    <InputFieldGroup
+      slot="search-field"
+      className={composeTailwindRenderProps(
+        className,
+        '[&_input::-webkit-search-cancel-button]:hidden',
+      )}
+    >
+      <Icon icon={<Search className="ml-2 size-5" strokeWidth={1.5} />} />
+      <Input {...props} />
+      <CloseButton text size="sm" className="mr-1 group-empty:invisible" />
+    </InputFieldGroup>
+  );
+}

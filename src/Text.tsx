@@ -38,23 +38,15 @@ export function Strong({
   );
 }
 
-
-export function Small({
-  className,
-  ...props
-}: JSX.IntrinsicElements['small']) {
+export function Small({ className, ...props }: JSX.IntrinsicElements['small']) {
   return (
     <Text
       elementType="small"
-      className={twMerge(
-        'text-sm/6/ sm:text-xs/6 text-muted',
-        className,
-      )}
+      className={twMerge('text-sm/6/ text-muted sm:text-xs/6', className)}
       {...props}
     />
   );
 }
-
 
 export function TextLink(props: LinkProps) {
   return <Link {...props} className="underline" />;

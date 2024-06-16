@@ -13,7 +13,6 @@ import {
 import { useListData, ListData } from 'react-stately';
 import { useFilter } from 'react-aria';
 import {
-  DescriptionContext,
   DescriptionProvider,
   Group,
   Input,
