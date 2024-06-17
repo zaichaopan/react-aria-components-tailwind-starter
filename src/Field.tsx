@@ -24,8 +24,6 @@ import { twMerge } from 'tailwind-merge';
 import { composeTailwindRenderProps, inputRingStyle } from './utils';
 import { Text } from './Text';
 import { CloseButton } from './Button';
-import { Search, SearchIcon } from 'lucide-react';
-import { Icon } from './Icon';
 
 export function Group(props: GroupProps) {
   const labelId = React.useId();
@@ -259,7 +257,7 @@ export function SearchInput({
         '[&_input::-webkit-search-cancel-button]:hidden',
       )}
     >
-      <Icon icon={<Search className="ml-2 size-5" strokeWidth={1.5} />} />
+      {/* <Icon icon={<Search className="ml-2 size-5" strokeWidth={1.5} />} /> */}
       <Input {...props} />
       <CloseButton text size="sm" className="mr-1 group-empty:invisible" />
     </InputFieldGroup>

@@ -1,247 +1,233 @@
 import React from 'react';
 import { SearchField, SearchInput } from './Field';
-import { useAsyncList } from 'react-stately';
+import { AsyncListData } from 'react-stately';
 import { twMerge } from 'tailwind-merge';
-import { DialogTrigger } from 'react-aria-components';
-import { Button } from './Button';
-import { CommandModal } from './Modal';
-import { Dialog, DialogBody } from './Dialog';
-import { Icon } from './Icon';
-import { Search } from 'lucide-react';
+import { SearchFieldProps } from 'react-aria-components';
 import { Text } from './Text';
 import { ScrollIntoView } from './ScrollIntoView';
 
-export function Command() {
-  const [isModalOpen, setIsModalOpen] = React.useState(false);
+const CommandContext = React.createContext<{
+  list: AsyncListData<object & { id: string }>;
+  listId: string;
+  handleKeyDown: (e: React.KeyboardEvent) => void;
+} | null>(null);
 
-  React.useEffect(() => {
-    const down = (e: KeyboardEvent) => {
-      if (e.key === 'k' && (e.metaKey || e.ctrlKey)) {
-        e.preventDefault();
-        setIsModalOpen(true);
+function useCommandContext() {
+  const context = React.useContext(CommandContext);
+
+  if (!context) {
+    throw new Error('CommandContext is required');
+  }
+  return context;
+}
+
+export function Command({
+  list,
+  children,
+  ...props
+}: {
+  children: React.ReactNode;
+  list: AsyncListData<{ id: string }>;
+} & JSX.IntrinsicElements['div']) {
+  const listId = React.useId();
+  const selectedKey = [...list.selectedKeys][0];
+  const handleKeyDown = React.useCallback(
+    (e: React.KeyboardEvent) => {
+      function shift(toward: 1 | -1) {
+        if (!list.items || list.items.length === 0) {
+          return;
+        }
+
+        const currentIndex = list.items.findIndex(
+          (item) => item.id === selectedKey,
+        );
+
+        if (currentIndex === -1) {
+          list.removeSelectedItems();
+          return;
+        }
+
+        const newIndex =
+          (currentIndex + toward + list.items.length) % list.items.length;
+
+        list.setSelectedKeys(new Set([list.items[newIndex].id]));
       }
-    };
 
-    document.addEventListener('keydown', down);
+      if (e.code === 'ArrowDown') {
+        shift(1);
+        return;
+      }
 
-    return () => {
-      document.removeEventListener('keydown', down);
-    };
-  }, []);
+      if (e.code === 'ArrowUp') {
+        e.preventDefault();
+        shift(-1);
+        return;
+      }
+
+      if (e.code === 'Enter') {
+        if (selectedKey) {
+          alert('selected: ' + [...list.selectedKeys][0]);
+        }
+      }
+      return;
+    },
+    [list, selectedKey],
+  );
 
   return (
-    <DialogTrigger>
-      <div className="flex w-full p-1 sm:w-1/3">
-        <Button
-          className="flex-1 justify-start"
-          outline
-          onPress={() => setIsModalOpen(true)}
-        >
-          <Icon
-            icon={<Search />}
-            aria-label="Search"
-            className="self-start"
-          ></Icon>
-          <span className="flex-1">⌘ +K</span>
-        </Button>
+    <CommandContext.Provider value={{ list, listId, handleKeyDown }}>
+      <div className="flex flex-col" {...props}>
+        {children}
       </div>
-
-      <CommandModal
-        className="w-full p-1 sm:w-1/3"
-        isOpen={isModalOpen}
-        onOpenChange={setIsModalOpen}
-      >
-        <Dialog>
-          <DialogBody className="gap-0 px-0">
-            <CommandField close={() => setIsModalOpen(false)} />
-          </DialogBody>
-        </Dialog>
-      </CommandModal>
-    </DialogTrigger>
+    </CommandContext.Provider>
   );
 }
 
-export function CommandField({ close }: { close: () => void }) {
-  const [searchText, setSearchText] = React.useState('');
-  const [selectedKey, setSelectedKey] = React.useState<string | null>(null);
-  const listId = React.useId();
-
-  const list = useAsyncList<{
-    name: string;
-    url: string;
-    id: string;
-  }>({
-    async load({ signal, filterText }) {
-      if (filterText === '' || !filterText) {
-        setSelectedKey(null);
-        return { items: [] };
-      }
-      const res = await fetch('https://pokeapi.co/api/v2/pokemon', { signal });
-
-      const json = (await res.json()) as {
-        results: Array<{ name: string; url: string }>;
-      };
-
-      const items = json.results
-        .filter((item) => {
-          return item.name
-            .toLocaleLowerCase()
-            .includes(filterText?.toLocaleLowerCase());
-        })
-        .map((item) => {
-          return {
-            ...item,
-            id: item.name,
-          };
-        });
-
-      setSelectedKey(items[0]?.id);
-
-      return {
-        items,
-      };
-    },
-  });
-
-  function handleKeyDown(e: React.KeyboardEvent) {
-    if (e.code === 'ArrowDown') {
-      shift(1);
-      return;
-    }
-
-    if (e.code === 'ArrowUp') {
-      e.preventDefault();
-      shift(-1);
-      return;
-    }
-
-    if (e.code === 'Enter') {
-      alert('selected: ' + selectedKey);
-    }
-    return;
-  }
-
-  function shift(toward: 1 | -1) {
-    if (!list.items || list.items.length === 0) {
-      return;
-    }
-
-    setSelectedKey((currentSelected) => {
-      const currentIndex = list.items.findIndex(
-        (item) => item.id === currentSelected,
-      );
-
-      if (currentIndex === -1) {
-        return list.items[0]?.id;
-      }
-
-      const newIndex =
-        (currentIndex + toward + list.items.length) % list.items.length;
-
-      return list.items[newIndex].id;
-    });
-  }
+export function CommandInput({
+  onClear,
+  onChange,
+  ...props
+}: SearchFieldProps) {
+  const { list, listId, handleKeyDown } = useCommandContext();
+  const selectedKey = [...list.selectedKeys][0];
 
   return (
-    <div className="flex w-full flex-col bg-background p-1">
-      <SearchField
-        value={searchText}
-        onChange={(value) => {
-          setSearchText(value);
-          list.setFilterText(value);
-        }}
-        onClear={() => {
-          setSearchText('');
-          list.setFilterText('');
-          close();
-        }}
-        onKeyDown={handleKeyDown}
-        aria-label="Search"
-      >
-        <SearchInput
-          className="rounded-b-none border-b-0 border-border ring-0"
-          placeholder="Search"
-          aria-haspopup="listbox"
-          role="combobox"
-          aria-expanded
-          aria-autocomplete="list"
-          {...(selectedKey && {
-            ['aria-activedescendant']: `${listId}-${selectedKey}`,
-          })}
-          aria-controls={listId}
-          autoComplete="off"
-          autoFocus
-        />
-      </SearchField>
+    <SearchField
+      value={list.filterText}
+      onChange={(value) => {
+        list.setFilterText(value);
+        onChange?.(value);
+      }}
+      onClear={() => {
+        list.setFilterText('');
+        onClear?.();
+      }}
+      onKeyDown={handleKeyDown}
+      aria-label="Search"
+      {...props}
+    >
+      <SearchInput
+        className="rounded-b-none border-b-0 border-border ring-0"
+        placeholder="Search"
+        aria-haspopup="listbox"
+        role="combobox"
+        aria-expanded
+        aria-autocomplete="list"
+        {...(selectedKey && {
+          ['aria-activedescendant']: `${selectedKey}`,
+        })}
+        aria-controls={listId}
+        autoComplete="off"
+        autoFocus
+      />
+    </SearchField>
+  );
+}
 
-      <div role="presentation" className="w-full">
-        <div
-          id={listId}
-          role="listbox"
-          tabIndex={-1}
-          className="max-h-[50vh] overflow-y-auto rounded-b-md border p-1 shadow "
-          aria-label="Suggestions"
-        >
-          {list.filterText === '' ? (
-            <div className="px-3 text-center">
-              <Text>Type something</Text>
-            </div>
-          ) : list.isLoading ? (
-            <div className="flex justify-center py-4">Loading...</div>
-          ) : list.items.length > 0 ? (
-            list.items.map((item) => {
-              const isSelected = selectedKey === item.id;
-              return (
-                <CommandItem
-                  key={item.id}
-                  onMouseEnter={() => setSelectedKey(item.id)}
-                  isSelected={isSelected}
-                  id={`${listId}-${item.id}`}
-                >
-                  {item.name}
-                </CommandItem>
-              );
-            })
-          ) : (
-            <div className="px-3">Not result</div>
-          )}
-        </div>
+export function CommandList({ children }: { children: React.ReactNode }) {
+  const { listId } = useCommandContext();
+  return (
+    <div role="presentation" className="w-full bg-background">
+      <div
+        id={listId}
+        role="listbox"
+        tabIndex={-1}
+        className="max-h-[50vh] overflow-y-auto rounded-b-md border p-1 shadow "
+        aria-label="Suggestions"
+      >
+        {children}
       </div>
     </div>
   );
 }
 
-export function CommandItem({
-  isSelected,
-  id,
+export function CommandGroup<T>({
   children,
-  onMouseEnter,
 }: {
-  isSelected: boolean;
-  id: string;
-  children: React.ReactNode;
-  onMouseEnter: () => void;
+  children: (item: T) => React.ReactNode;
 }) {
+  const { list } = useCommandContext();
+  const selectedKey = [...list.selectedKeys][0];
+
   return (
-    <ScrollIntoView<HTMLDivElement> active={isSelected}>
-      {(ref) => {
-        return (
-          <div
-            onMouseEnter={onMouseEnter}
-            id={id}
-            role="option"
-            ref={ref}
-            tabIndex={-1}
-            aria-selected={isSelected}
-            className={twMerge(
-              'rounded p-2 text-sm',
-              isSelected && 'bg-accent text-white',
-            )}
-          >
-            {children}
-          </div>
-        );
+    <QueryResult
+      list={list}
+      Uninitialized={
+        <div className="px-3 text-center">
+          <Text>Type something</Text>
+        </div>
+      }
+      Loading={<div className="flex justify-center py-4">Loading...</div>}
+      Failure={
+        <div className="flex justify-center py-4">Something went gong</div>
+      }
+      Success={(items) => {
+        return items.map((item) => {
+          const isSelected = selectedKey === item.id;
+          return (
+            <ScrollIntoView<HTMLDivElement> active={isSelected}>
+              {(ref) => {
+                return (
+                  <div
+                    key={item.id}
+                    onMouseEnter={() => {
+                      list.setSelectedKeys(new Set([item.id]));
+                    }}
+                    id={`${item.id}`}
+                    role="option"
+                    ref={ref}
+                    tabIndex={-1}
+                    aria-selected={isSelected}
+                    className={twMerge(
+                      'rounded p-2 text-sm',
+                      isSelected && 'bg-accent text-white',
+                    )}
+                  >
+                    {children(item as T)}
+                  </div>
+                );
+              }}
+            </ScrollIntoView>
+          );
+        });
       }}
-    </ScrollIntoView>
+      Empty={(filterText) => {
+        return <div className="px-3">Not result for {filterText}</div>;
+      }}
+    ></QueryResult>
   );
+}
+
+function QueryResult<T extends object & { id: string }>({
+  Uninitialized,
+  Empty,
+  Loading,
+  Failure,
+  Success,
+  list,
+}: {
+  Uninitialized: React.ReactNode;
+  Empty: (filterText: string) => React.ReactNode;
+  Loading: React.ReactNode;
+  Failure: React.ReactNode;
+  Success: (item: Array<T>) => React.ReactNode;
+  list: AsyncListData<T>;
+}) {
+  if (list.filterText === '' && list.loadingState === 'idle') {
+    return Uninitialized;
+  }
+
+  if (list.loadingState === 'loading') {
+    return Loading;
+  }
+
+  if (list.loadingState === 'error') {
+    return Failure;
+  }
+
+  if (list.loadingState === 'idle' && list.items.length === 0) {
+    return Empty(list.filterText);
+  }
+
+  return Success(list.items);
 }
