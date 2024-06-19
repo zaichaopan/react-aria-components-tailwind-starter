@@ -74,7 +74,7 @@ export function Modal({
           props.className,
           (className, renderProps) => {
             return twMerge(
-              'max-h-full w-full overflow-hidden bg-background text-left align-middle shadow-lg ring-1 ring-zinc-950/5 dark:bg-secondary dark:ring-white/10',
+              'max-h-full w-full overflow-hidden bg-background text-left align-middle align-middle shadow-lg ring-1 ring-zinc-950/5 dark:bg-secondary  dark:ring-white/10',
               sizes[props.size ?? 'lg'],
 
               drawer
@@ -92,7 +92,7 @@ export function Modal({
                     ],
                   ]
                 : [
-                    'rounded-t-lg sm:rounded-lg',
+                    'rounded-t-2xl sm:rounded-lg',
                     renderProps.isEntering &&
                       'duration-300 ease-out animate-in slide-in-from-bottom sm:duration-200 sm:zoom-in-105 sm:slide-in-from-bottom-0',
 
@@ -135,7 +135,7 @@ export function CommandModal({ ...props }: ModalOverlayProps) {
         {...props}
         className={composeRenderProps(props.className, (className) => {
           return twMerge(
-            'max-h-full overflow-hidden bg-background text-left align-middle  dark:bg-secondary',
+            'max-h-full overflow-hidden bg-background text-left align-middle dark:bg-secondary',
             className,
           );
         })}
