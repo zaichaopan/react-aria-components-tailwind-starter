@@ -60,7 +60,7 @@ export function NativeSelect({
                     aria-describedby={descriptionContext?.['aria-describedby']}
                     className={twMerge(
                       'appearance-none bg-transparent py-1.5 pl-3 pr-8 text-base/6 outline-none sm:text-sm/6',
-                      'min-h-9 w-full cursor-default items-center rounded-md border shadow-sm outline-none',
+                      'w-full cursor-default items-center rounded-md border shadow-sm outline-none',
                       isFocusVisible && inputRingStyle,
                     )}
                     {...props}
