@@ -70,7 +70,7 @@ function SelectButton(props: { icon?: React.ReactNode; className?: string }) {
         props.className,
         (className, { isFocusVisible }) =>
           twMerge(
-            'flex min-h-9 w-full cursor-default items-center gap-4 rounded-md border py-1.5 pl-3 pr-2 shadow-sm outline-none transition',
+            'flex w-full cursor-default items-center gap-4 rounded-md border py-1.5 pl-3 pr-2 shadow-sm outline-none transition',
             'group-invalid:border-destructive',
             'group:disabled:cursor-not-allowed group-disabled:opacity-50',
             isFocusVisible && inputRingStyle,

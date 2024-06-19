@@ -175,7 +175,7 @@ export const CustomSelectionItem = () => {
       <Select>
         <SelectItem id="1" textValue="Lesly Juarez">
           <Avatar
-            className="size-6 rounded-full"
+            className="size-5 rounded-full"
             src="https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?q=80&w=3220&auto=format&fit=facearea&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
             alt="Lesly Juarez"
           />
@@ -183,18 +183,18 @@ export const CustomSelectionItem = () => {
         </SelectItem>
         <SelectItem id="2" textValue="Christopher Campbell">
           <Avatar
-            className="size-6 rounded-full"
+            className="size-5 rounded-full"
             src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
             alt="Christopher Campbell"
           />
           Christopher Campbell
         </SelectItem>
         <SelectItem id="3" textValue="Jake Nackos">
-          <Avatar className="size-6 rounded-full" alt=" Jake Nackos" />
+          <Avatar className="size-5 rounded-full" alt=" Jake Nackos" />
           Jake Nackos
         </SelectItem>
         <SelectItem id="4" textValue="Aiony Haust">
-          <Avatar className="size-6 rounded-full" alt="Aiony Haust" />
+          <Avatar className="size-5 rounded-full" alt="Aiony Haust" />
           Aiony Haust
         </SelectItem>
       </Select>

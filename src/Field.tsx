@@ -178,7 +178,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
           props.className,
           (className, renderProps) => {
             return twMerge(
-              'placeholder:text-muted-foreground flex flex h-9 w-full rounded-md border bg-inherit px-2 py-1 text-base/6 shadow-sm outline-none sm:text-sm/6',
+              'placeholder:text-muted-foreground flex flex w-full rounded-md border bg-inherit px-2 py-1 text-base/6 shadow-sm outline-none sm:text-sm/6',
               renderProps.isInvalid && 'border-destructive',
               renderProps.isDisabled && 'disabled:opacity-50',
               renderProps.isFocused && inputRingStyle,
