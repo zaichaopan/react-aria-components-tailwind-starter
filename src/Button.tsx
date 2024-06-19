@@ -40,6 +40,8 @@ export type BasicButtonProps = {
 
 export type ButtonProps = AsChildProps<RACButtonProps> & BasicButtonProps;
 
+export type ButtonPropsWithoutAsChild = RACButtonProps & BasicButtonProps;
+
 function buttonStyle({
   size,
   color,
@@ -109,7 +111,7 @@ function buttonStyle({
 }
 
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  function Button(props, ref) {  
+  function Button(props, ref) {
     const {
       children,
       isLoading,

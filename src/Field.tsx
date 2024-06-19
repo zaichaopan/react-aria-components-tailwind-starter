@@ -24,6 +24,8 @@ import { twMerge } from 'tailwind-merge';
 import { composeTailwindRenderProps, inputRingStyle } from './utils';
 import { Text } from './Text';
 import { CloseButton } from './Button';
+import { Icon } from './Icon';
+import { Search } from 'lucide-react';
 
 export function Group(props: GroupProps) {
   const labelId = React.useId();
@@ -164,31 +166,37 @@ export function FieldError(props: FieldErrorProps) {
   );
 }
 
-export function Input(props: InputProps) {
-  return (
-    <RACInput
-      {...props}
-      className={composeRenderProps(
-        props.className,
-        (className, renderProps) => {
-          return twMerge(
-            'placeholder:text-muted-foreground flex flex h-9 w-full rounded-md border bg-inherit px-2 py-1 text-base/6 shadow-sm outline-none sm:text-sm/6',
-            renderProps.isInvalid && 'border-destructive',
-            renderProps.isDisabled && 'disabled:opacity-50',
-            renderProps.isFocused && inputRingStyle,
-            // When it is inside role=presentation | group parent and it has border
-            '[[role=presentation]_&.border]:h-fit [[role=presentation]_&.border]:border-none [[role=presentation]_&.border]:shadow-none [[role=presentation]_&.border]:ring-0',
-            '[[role=group]_&.border]:h-fit [[role=group]_&.border]:border-none [[role=group]_&.border]:shadow-none [[role=group]_&.border]:ring-0 [[role=group]_&.border]:invalid:ring-0',
+export const Input = React.forwardRef<HTMLInputElement, InputProps>(
 
-            // search filed
-            '[[slot=search-field]_&.border]:h-fit [[slot=search-field]_&.border]:border-none [[slot=search-field]_&.border]:shadow-none [[slot=search-field]_&.border]:ring-0',
-            className,
-          );
-        },
-      )}
-    />
-  );
-}
+  function Input(props, ref) {
+  
+    return (
+      <RACInput
+        {...props}
+        ref={ref}
+        className={composeRenderProps(
+          props.className,
+          (className, renderProps) => {
+            return twMerge(
+              'placeholder:text-muted-foreground flex flex h-9 w-full rounded-md border bg-inherit px-2 py-1 text-base/6 shadow-sm outline-none sm:text-sm/6',
+              renderProps.isInvalid && 'border-destructive',
+              renderProps.isDisabled && 'disabled:opacity-50',
+              renderProps.isFocused && inputRingStyle,
+              // When it is inside role=presentation | group parent and it has border
+              '[[role=presentation]_&.border]:h-fit [[role=presentation]_&.border]:border-none [[role=presentation]_&.border]:shadow-none [[role=presentation]_&.border]:ring-0',
+              '[[role=group]_&.border]:h-fit [[role=group]_&.border]:border-none [[role=group]_&.border]:shadow-none [[role=group]_&.border]:ring-0 [[role=group]_&.border]:invalid:ring-0',
+
+              // search filed
+              '[[slot=search-field]_&.border]:h-fit [[slot=search-field]_&.border]:border-none [[slot=search-field]_&.border]:shadow-none [[slot=search-field]_&.border]:ring-0',
+              className,
+            );
+          },
+        )}
+      />
+    );
+  },
+);
+
 
 export function TextArea(props: RACTextAreaProps) {
   return (
@@ -218,13 +226,15 @@ export const InputFieldGroup = React.forwardRef<HTMLDivElement, GroupProps>(
         {...props}
         className={composeRenderProps(
           props.className,
-          (className, renderProps) =>
-            twMerge(
-              'group flex w-full items-center overflow-hidden rounded-md border bg-inherit shadow-sm',
+          (className, renderProps) =>{
+            return twMerge(
+              'relative group flex w-full items-center overflow-hidden rounded-md border bg-inherit shadow-sm',
               'invalid:border-destructive group-invalid:border-destructive',
               renderProps.isFocusWithin && inputRingStyle,
               className,
-            ),
+            )
+          }
+            
         )}
       />
     );
@@ -257,7 +267,7 @@ export function SearchInput({
         '[&_input::-webkit-search-cancel-button]:hidden',
       )}
     >
-      {/* <Icon icon={<Search className="ml-2 size-5" strokeWidth={1.5} />} /> */}
+      <Icon icon={<Search className="ml-2 size-5" strokeWidth={1.5} />} />
       <Input {...props} />
       <CloseButton text size="sm" className="mr-1 group-empty:invisible" />
     </InputFieldGroup>

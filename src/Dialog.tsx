@@ -14,7 +14,7 @@ export function Dialog({ role, ...props }: DialogProps) {
       {...props}
       role={role ?? 'dialog'}
       className={twMerge(
-        'relative flex max-h-[inherit] flex-col overflow-hidden outline-0',
+        'relative flex max-h-[inherit] flex-col overflow-hidden outline-none',
         props.className,
       )}
     />

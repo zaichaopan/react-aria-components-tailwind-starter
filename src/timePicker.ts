@@ -1,5 +1,4 @@
 import React from 'react';
-import { Time } from '@internationalized/date';
 
 export type TimeOption = {
   hour: number;

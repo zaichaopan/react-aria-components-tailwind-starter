@@ -134,7 +134,7 @@ export function DropdownSection<T extends object>(
         '[&:first-child]:-mt-[1px]',
         '[&:not(:first-child)]:mt-0.5',
         '[&:not(:first-child)]:border-t [&:not(:first-child)]:border-t-border/75 dark:[&:not(:first-child)]:border-t-border',
-        '[&_header]:has-[[role=option]]:pl-7',
+        '[&_header]:has-[[role=option]]:pl-6',
         '[&_header]:has-[[role=menuitem]]:pl-3',
       )}
     >

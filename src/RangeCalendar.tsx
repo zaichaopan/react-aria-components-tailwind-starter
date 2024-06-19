@@ -36,7 +36,7 @@ export function RangeCalendar<T extends DateValue>({
       <CalendarHeader />
       <CalendarGrid className="[&_td]:px-0" weekdayStyle="short">
         <CalendarGridHeader />
-        <CalendarGridBody className="before:block before:w-full before:leading-[0.25rem] before:content-['.'] before:opacity-0">
+        <CalendarGridBody className="before:block before:w-full before:leading-[0.25rem] before:opacity-0 before:content-['.']">
           {(date) => (
             <CalendarCell
               date={date}
@@ -62,7 +62,7 @@ export function RangeCalendar<T extends DateValue>({
                           ? 'middle'
                           : 'none'
                     ],
-                    isFocusVisible && focusOutlineStyle,
+                    isFocusVisible && [focusOutlineStyle, 'rounded'],
                     isDisabled && 'text-muted',
                   )}
                 >

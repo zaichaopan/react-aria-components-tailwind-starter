@@ -105,29 +105,6 @@ DestructiveAlertDialogs.parameters = {
   },
 };
 
-// export const CancelActions = () => {
-//   return (
-//     <DialogTrigger>
-//       <Button outline>OK</Button>
-//       <AlertModal>
-//         <AlertDialog title="File Rename" cancelLabel="OK">
-//           Can't rename "Photos" because a file with that name already exists.
-//           Please choose a different name.
-//         </AlertDialog>
-//       </AlertModal>
-//     </DialogTrigger>
-//   );
-// };
-
-// CancelActions.parameters = {
-//   docs: {
-//     description: {
-//       story:
-//         'Use the **cancelLabel** and **onCancelAction** of the **AlertDialog** component to configure cancel actions:',
-//     },
-//   },
-// };
-
 export const SecondaryActions = () => {
   return (
     <DialogTrigger>

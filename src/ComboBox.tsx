@@ -1,23 +1,21 @@
 import React from 'react';
 import {
+  ListBoxProps,
   ComboBox as RACComboBox,
   ComboBoxProps as RACComboBoxProps,
+  ComboBoxStateContext,
 } from 'react-aria-components';
-import { Button } from './Button';
-import { Input, InputFieldGroup } from './Field';
-import { DropdownSection } from './ListBox';
+import { Button, ButtonPropsWithoutAsChild, CloseButton } from './Button';
+import { DropdownItem, DropdownSection, ListBox } from './ListBox';
 import { composeTailwindRenderProps } from './utils';
-import { SelectItem, SelectPopover } from './Select';
+import { Popover, PopoverProps } from './Popover';
 
-export interface ComboBoxFieldProps<T extends object>
+export interface ComboBoxProps<T extends object>
   extends Omit<RACComboBoxProps<T>, 'children' | 'items'> {
   children: React.ReactNode;
 }
 
-export function ComboBoxFiled({
-  children,
-  ...props
-}: ComboBoxFieldProps<object>) {
+export function ComboBox({ children, ...props }: ComboBoxProps<object>) {
   return (
     <RACComboBox
       {...props}
@@ -31,27 +29,64 @@ export function ComboBoxFiled({
   );
 }
 
-export interface ComboBoxProps<T extends object> {
-  items?: Iterable<T>;
-  children: React.ReactNode | ((item: T) => React.ReactNode);
-}
-
-export function ComboBox<T extends object>({
-  children,
-  items,
-}: Pick<ComboBoxProps<T>, 'children' | 'items'>) {
+export function ComboBoxPopover({ className, ...props }: PopoverProps) {
   return (
-    <>
-      <InputFieldGroup>
-        <Input />
-        <Button text className="rounded-md"></Button>
-      </InputFieldGroup>
-
-      <SelectPopover items={items}>{children}</SelectPopover>
-    </>
+    <Popover
+      className={composeTailwindRenderProps(
+        className,
+        'min-w-[--trigger-width] overflow-auto',
+      )}
+      {...props}
+    />
   );
 }
 
-export const ComboBoxItem = SelectItem;
+export function ComboBoxListBox<T extends object>({
+  className,
+  ...props
+}: ListBoxProps<T>) {
+  return (
+    <ListBox
+      className={composeTailwindRenderProps(
+        className,
+        'flex max-h-[inherit] flex-col overflow-auto p-1 has-[header]:px-2 has-[header]:pt-0',
+      )}
+      {...props}
+    />
+  );
+}
 
-export const ComboBoxSection = DropdownSection;
+export function ClearButton({
+  onPress,
+}: {
+  onPress?: ButtonPropsWithoutAsChild['onPress'];
+}) {
+  const state = React.useContext(ComboBoxStateContext);
+
+  if (!state?.inputValue) {
+    return null;
+  }
+
+  return (
+    <CloseButton
+      slot={null}
+      className="absolute right-1 top-1/2 -translate-y-1/2"
+      size="sm"
+      text
+      onPress={(e) => {
+        state?.setSelectedKey(null);
+
+        onPress?.(e);
+      }}
+    ></CloseButton>
+  );
+}
+
+export function TriggerButton() {
+  return (
+    <Button
+      className="absolute right-1 top-1/2 -translate-y-1/2 rounded"
+      text
+    />
+  );
+}
