@@ -6,7 +6,7 @@ import {
   ComboBoxStateContext,
 } from 'react-aria-components';
 import { Button, ButtonPropsWithoutAsChild, CloseButton } from './Button';
-import { DropdownItem, DropdownSection, ListBox } from './ListBox';
+import { ListBox } from './ListBox';
 import { composeTailwindRenderProps } from './utils';
 import { Popover, PopoverProps } from './Popover';
 
