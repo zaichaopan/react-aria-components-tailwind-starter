@@ -78,7 +78,7 @@ export function CommandK() {
           return true;
         }}
       >
-        <Dialog aria-label="Command K">
+        <Dialog aria-label="Search for apps and commands&hellip;">
           <ComboBox
             allowsCustomValue
             onSelectionChange={() => {
@@ -102,7 +102,7 @@ export function CommandK() {
               ></Icon>
 
               <Input
-                placeholder="Search&hellip;"
+                placeholder="Search for apps and commands&hellip;"
                 className="rounded-b-none border-border pl-7 ring-0"
               />
 
