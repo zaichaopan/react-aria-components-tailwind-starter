@@ -53,7 +53,7 @@ export function CommandK() {
   return (
     <div className="h-min-screen flex w-full flex-col">
       <div className="flex flex-1 py-2">
-        <div className="m-auto flex px-3 sm:w-1/3">
+        <div className="m-auto flex px-3 w-full sm:w-1/3">
           <Button
             outline
             onPress={() => setIsModalOpen(true)}
@@ -72,13 +72,13 @@ export function CommandK() {
       <CommandModal
         isOpen={isModalOpen}
         onOpenChange={setIsModalOpen}
-        className="px-3 py-2 sm:w-1/3"
+        className="px-3 pt-2 w-full sm:w-1/3"
         shouldCloseOnInteractOutside={() => {
           setIsModalOpen(false);
           return true;
         }}
       >
-        <Dialog aria-label='Command K'>
+        <Dialog aria-label="Command K">
           <ComboBox
             allowsCustomValue
             onSelectionChange={() => {
@@ -117,7 +117,13 @@ export function CommandK() {
               className="rounded-t-none border border-t-0 ring-0"
               offset={0}
             >
-              <ComboBoxListBox>
+              <ComboBoxListBox
+                renderEmptyState={() => (
+                  <div className="text-center">
+                    <Text>Not result found </Text>
+                  </div>
+                )}
+              >
                 <DropdownSection title="Suggestion">
                   <DropdownItem textValue="linear">
                     <Icon icon={<Linear />}></Icon>
@@ -127,21 +133,21 @@ export function CommandK() {
                     <Icon icon={<Slack />} />
                     Slack
                   </DropdownItem>
-                  <DropdownItem textValue='youtube'>
+                  <DropdownItem textValue="youtube">
                     <Icon icon={<Youtube />}></Icon>
                     Youtube
                   </DropdownItem>
-                  <DropdownItem textValue='raycast'>
+                  <DropdownItem textValue="raycast">
                     <Icon icon={<Raycast />}></Icon>
                     Raycast
                   </DropdownItem>
                 </DropdownSection>
                 <DropdownSection title="Commands">
-                  <DropdownItem textValue='clipboard history'>
+                  <DropdownItem textValue="clipboard history">
                     <Icon icon={<Clipboard />}></Icon>
                     Clipboard history
                   </DropdownItem>
-                  <DropdownItem textValue='import extension'>
+                  <DropdownItem textValue="import extension">
                     <Icon icon={<Extension />}></Icon>
                     Import Extension
                   </DropdownItem>

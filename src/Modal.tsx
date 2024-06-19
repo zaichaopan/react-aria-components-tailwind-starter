@@ -135,7 +135,7 @@ export function CommandModal({ ...props }: ModalOverlayProps) {
         {...props}
         className={composeRenderProps(props.className, (className) => {
           return twMerge(
-            'max-h-full overflow-hidden bg-background text-left align-middle dark:bg-secondary',
+            'max-h-full overflow-hidden bg-background text-left align-middle',
             className,
           );
         })}

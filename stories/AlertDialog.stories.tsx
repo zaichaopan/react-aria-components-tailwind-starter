@@ -147,7 +147,7 @@ export const ControlledOpenState = () => {
           destructive
           primaryActionLabel="Try Again"
         >
-          <Text>
+          <Text className='py-1'>
             Your changes were saved, but we could not connect your account due
             to a technical issue on our end. Please try connecting again. If the
             issue keeps happening, contact <TextLink>Customer Care.</TextLink>
