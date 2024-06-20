@@ -11,10 +11,11 @@ export interface ModalOverlayProps extends RACModalOverlayProps {
 }
 
 export type DrawerProps =
-  | { drawer?: never }
+  | { drawer?: never; animated?: boolean }
   | {
       drawer: true;
       drawerPlacement?: 'left' | 'right';
+      animated?: boolean;
     };
 
 const sizes = {
@@ -29,6 +30,7 @@ const sizes = {
 export function Modal({
   isDismissable = true,
   isKeyboardDismissDisabled = false,
+  animated = true,
   ...props
 }: ModalOverlayProps & DrawerProps) {
   const drawer = props.drawer;
@@ -39,12 +41,14 @@ export function Modal({
 
   return (
     <RACModalOverlay
+      {...props}
       isDismissable={isDismissable}
       isKeyboardDismissDisabled={isKeyboardDismissDisabled}
-      {...props}
       className={composeRenderProps(props.className, (_, renderProps) => {
         return twMerge(
-          'fixed left-0 top-0 isolate z-20 flex h-[--visual-viewport-height] w-full items-end bg-zinc-950/15 text-center dark:bg-zinc-950/50 sm:items-center',
+          'h-[--visual-viewport-height] w-full bg-zinc-950/15 dark:bg-zinc-950/50',
+          'fixed left-0 top-0 isolate z-20 flex text-center',
+          'items-end sm:items-center',
           drawer
             ? [
                 'p-2 [--visual-viewport-vertical-padding:16px]',
@@ -53,17 +57,20 @@ export function Modal({
 
                 renderProps.isEntering &&
                   'duration-200 ease-out animate-in fade-in',
+
                 renderProps.isExiting &&
                   'duration-200 ease-in animate-out fade-out',
               ]
             : [
-                'justify-center pt-4 [--visual-viewport-vertical-padding:16px]',
+                'justify-center',
+                'pt-4 [--visual-viewport-vertical-padding:16px]',
                 'sm:p-4 sm:[--visual-viewport-vertical-padding:32px]',
 
                 renderProps.isEntering &&
-                  'duration-300 ease-out animate-in fade-in sm:duration-200',
+                  'duration-200 ease-out animate-in fade-in',
+
                 renderProps.isExiting &&
-                  'duration-300 ease-in animate-out fade-out sm:duration-200',
+                  'duration-200 ease-in animate-out fade-out',
               ],
         );
       })}
@@ -74,30 +81,36 @@ export function Modal({
           props.className,
           (className, renderProps) => {
             return twMerge(
-              'max-h-full w-full overflow-hidden bg-background text-left align-middle align-middle shadow-lg ring-1 ring-zinc-950/5 dark:bg-secondary  dark:ring-white/10',
+              'max-h-full w-full overflow-hidden text-left align-middle shadow-lg',
+              'bg-background ring-1 ring-zinc-950/5 dark:bg-secondary dark:ring-white/10',
+
               sizes[props.size ?? 'lg'],
 
               drawer
                 ? [
                     'h-full rounded-lg',
-                    renderProps.isEntering && [
-                      drawerPlacement === 'right'
-                        ? 'duration-200 ease-out animate-in slide-in-from-right'
-                        : 'duration-200 ease-out animate-in slide-in-from-left',
-                    ],
-                    renderProps.isExiting && [
-                      drawerPlacement === 'right'
-                        ? 'duration-200 ease-in animate-out slide-out-to-right'
-                        : 'duration-200 ease-in animate-out slide-out-to-left',
-                    ],
+                    animated &&
+                      renderProps.isEntering && [
+                        drawerPlacement === 'right'
+                          ? 'duration-200 ease-out animate-in slide-in-from-right'
+                          : 'duration-200 ease-out animate-in slide-in-from-left',
+                      ],
+                    animated &&
+                      renderProps.isExiting && [
+                        drawerPlacement === 'right'
+                          ? 'duration-200 ease-in animate-out slide-out-to-right'
+                          : 'duration-200 ease-in animate-out slide-out-to-left',
+                      ],
                   ]
                 : [
                     'rounded-t-2xl sm:rounded-lg',
-                    renderProps.isEntering &&
-                      'duration-300 ease-out animate-in slide-in-from-bottom sm:duration-200 sm:zoom-in-105 sm:slide-in-from-bottom-0',
+                    animated &&
+                      renderProps.isEntering &&
+                      'duration-200 ease-out animate-in slide-in-from-bottom sm:zoom-in-105 sm:slide-in-from-bottom-0',
 
-                    renderProps.isExiting &&
-                      'duration-300 ease-in animate-out slide-out-to-bottom sm:duration-200 sm:zoom-out-95 sm:slide-out-to-bottom-0',
+                    animated &&
+                      renderProps.isExiting &&
+                      'duration-200 ease-in animate-out slide-out-to-bottom sm:zoom-out-95 sm:slide-out-to-bottom-0',
                   ],
               className,
             );
@@ -111,7 +124,7 @@ export function Modal({
 export function AlertModal({
   size,
   isDismissable = false,
-  isKeyboardDismissDisabled = true,
+  isKeyboardDismissDisabled,
   ...props
 }: ModalOverlayProps) {
   return (
@@ -121,25 +134,5 @@ export function AlertModal({
       isDismissable={isDismissable}
       isKeyboardDismissDisabled={isKeyboardDismissDisabled}
     />
-  );
-}
-
-export function CommandModal({ ...props }: ModalOverlayProps) {
-  return (
-    <RACModalOverlay
-      isDismissable
-      {...props}
-      className="fixed left-0 top-0 isolate z-20 flex h-[--visual-viewport-height] w-full items-start justify-center bg-transparent text-center"
-    >
-      <RACModal
-        {...props}
-        className={composeRenderProps(props.className, (className) => {
-          return twMerge(
-            'max-h-full overflow-hidden bg-background text-left align-middle',
-            className,
-          );
-        })}
-      />
-    </RACModalOverlay>
   );
 }

@@ -1,12 +1,17 @@
 import React from 'react';
 import type { Meta } from '@storybook/react';
-import { DialogTrigger } from 'react-aria-components';
+import { docs } from '../.storybook/docs';
 import { AlertDialog } from '../src/AlertDialog';
 import { Button } from '../src/Button';
 import { AlertModal, Modal } from '../src/Modal';
-import { docs } from '../.storybook/docs';
 import { Text, TextLink } from '../src/Text';
-import { Dialog, DialogBody, DialogFooter, DialogHeader } from '../src/Dialog';
+import {
+  DialogTrigger,
+  Dialog,
+  DialogBody,
+  DialogFooter,
+  DialogHeader,
+} from '../src/Dialog';
 
 const meta: Meta = {
   title: 'AlertDialog',
@@ -105,6 +110,29 @@ DestructiveAlertDialogs.parameters = {
   },
 };
 
+export const TitleOnlyAlertDialogs = () => {
+  return (
+    <DialogTrigger>
+      <Button color="destructive">Remove</Button>
+      <AlertModal>
+        <AlertDialog
+          title="Remove preview?"
+          destructive
+          primaryActionLabel="Remove"
+        ></AlertDialog>
+      </AlertModal>
+    </DialogTrigger>
+  );
+};
+
+TitleOnlyAlertDialogs.parameters = {
+  docs: {
+    description: {
+      story: 'Dialog body is not required',
+    },
+  },
+};
+
 export const SecondaryActions = () => {
   return (
     <DialogTrigger>
@@ -147,7 +175,7 @@ export const ControlledOpenState = () => {
           destructive
           primaryActionLabel="Try Again"
         >
-          <Text className='py-1'>
+          <Text className="py-1">
             Your changes were saved, but we could not connect your account due
             to a technical issue on our end. Please try connecting again. If the
             issue keeps happening, contact <TextLink>Customer Care.</TextLink>
@@ -199,8 +227,7 @@ export const AlertDialogsVsDialogs = () => {
 AlertDialogsVsDialogs.parameters = {
   docs: {
     description: {
-      story:
-        `**Use alert dialogs sparingly**
+      story: `**Use alert dialogs sparingly**
         \nAlert dialogs are interruptive, so they're best for displaying important information that users need to acknowledge before moving forward with a task or workflow. Use them only when absolutely necessary, not for low-signal notifications or excessive confirmations.`,
     },
   },

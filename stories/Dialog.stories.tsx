@@ -2,6 +2,7 @@ import React from 'react';
 import type { Meta } from '@storybook/react';
 import { Modal } from '../src/Modal';
 import {
+  DialogTrigger,
   Dialog,
   DialogBody,
   DialogHeader,
@@ -9,7 +10,7 @@ import {
   DialogTitle,
 } from '../src/Dialog';
 import { Button } from '../src/Button';
-import { DialogTrigger, TooltipTrigger } from 'react-aria-components';
+import {TooltipTrigger } from 'react-aria-components';
 import { Form } from '../src/Form';
 import {
   Description,

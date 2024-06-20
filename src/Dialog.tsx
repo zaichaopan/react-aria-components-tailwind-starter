@@ -8,6 +8,8 @@ import React from 'react';
 import { Heading, HeadingProps } from './Heading';
 import { CloseButton } from './Button';
 
+export { DialogTrigger } from 'react-aria-components';
+
 export function Dialog({ role, ...props }: DialogProps) {
   return (
     <RACDialog
@@ -48,7 +50,6 @@ export function DialogHeader(props: DialogHeaderProps) {
       observer.unobserve(header);
     };
   }, []);
-
 
   return (
     <div ref={headerRef} className="relative flex px-6 pb-2 pt-6">

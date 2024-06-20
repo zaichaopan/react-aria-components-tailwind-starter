@@ -8,7 +8,6 @@ const meta: Meta<typeof Avatar> = {
   component: Avatar,
   parameters: {
     layout: 'centered',
-
     docs: {
       description: {
         component:

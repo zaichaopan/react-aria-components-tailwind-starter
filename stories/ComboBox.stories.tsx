@@ -254,8 +254,7 @@ export function SearchBox() {
       if (e.key === 'k' && (e.metaKey || e.ctrlKey)) {
         e.preventDefault();
 
-        if (ref.current) {
-          console.log('calling', ref.current);
+        if (ref.current) { 
           ref.current.focus();
         }
       }

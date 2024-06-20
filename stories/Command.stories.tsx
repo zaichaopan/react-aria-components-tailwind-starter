@@ -11,10 +11,11 @@ import { Input } from '../src/Field';
 import { docs } from '../.storybook/docs';
 import { Search } from 'lucide-react';
 import { Icon } from '../src/Icon';
-import { CommandModal } from '../src/Modal';
+import { Modal } from '../src/Modal';
 import { Dialog } from '../src/Dialog';
 import { Text } from '../src/Text';
 import { DropdownItem, DropdownSection } from '../src/ListBox';
+import { Keyboard } from 'react-aria-components';
 
 const meta: Meta<typeof Button> = {
   title: 'CommandK',
@@ -22,6 +23,9 @@ const meta: Meta<typeof Button> = {
   parameters: {
     layout: 'fullscreen',
     docs: {
+      description: {
+        component: 'Combobox can be used as a **Command Menu**',
+      },
       ...docs,
       controls: {
         exclude: /.*/g,
@@ -34,6 +38,91 @@ const meta: Meta<typeof Button> = {
 export default meta;
 
 export function CommandK() {
+  const ref = React.useRef<HTMLInputElement>(null);
+
+  React.useEffect(() => {
+    const down = (e: KeyboardEvent) => {
+      if (e.key === 'k' && (e.metaKey || e.ctrlKey)) {
+        e.preventDefault();
+        ref.current?.focus();
+      }
+    };
+    document.addEventListener('keydown', down);
+
+    return () => {
+      document.removeEventListener('keydown', down);
+    };
+  }, []);
+
+  return (
+    <div className="h-min-screen flex w-full flex-col items-center">
+      <ComboBox
+        allowsCustomValue
+        menuTrigger="focus"
+        aria-label="Search"
+        className="w-96 p-4"
+      >
+        <div className="relative">
+          <Icon
+            icon={
+              <Search className="absolute left-2 top-1/2 w-4 -translate-y-1/2 text-muted" />
+            }
+          ></Icon>
+
+          <Input
+            ref={ref}
+            placeholder="Search for apps and commands&hellip;"
+            className="pl-7"
+          />
+          <Keyboard className="absolute right-2 top-1/2 -translate-y-1/2 font-sans text-sm/6 text-muted">
+            ⌘K
+          </Keyboard>
+        </div>
+
+        <ComboBoxPopover>
+          <ComboBoxListBox
+            renderEmptyState={() => (
+              <div className="text-center">
+                <Text>Not result found </Text>
+              </div>
+            )}
+          >
+            <DropdownSection title="Suggestion">
+              <DropdownItem textValue="linear">
+                <Icon icon={<Linear />}></Icon>
+                Linear
+              </DropdownItem>
+              <DropdownItem textValue="slack">
+                <Icon icon={<Slack />} />
+                Slack
+              </DropdownItem>
+              <DropdownItem textValue="youtube">
+                <Icon icon={<Youtube />}></Icon>
+                Youtube
+              </DropdownItem>
+              <DropdownItem textValue="raycast">
+                <Icon icon={<Raycast />}></Icon>
+                Raycast
+              </DropdownItem>
+            </DropdownSection>
+            <DropdownSection title="Commands">
+              <DropdownItem textValue="clipboard history">
+                <Icon icon={<Clipboard />}></Icon>
+                Clipboard history
+              </DropdownItem>
+              <DropdownItem textValue="import extension">
+                <Icon icon={<Extension />}></Icon>
+                Import Extension
+              </DropdownItem>
+            </DropdownSection>
+          </ComboBoxListBox>
+        </ComboBoxPopover>
+      </ComboBox>
+    </div>
+  );
+}
+
+export function OpenInDialog() {
   const [isModalOpen, setIsModalOpen] = React.useState(false);
 
   React.useEffect(() => {
@@ -52,33 +141,22 @@ export function CommandK() {
 
   return (
     <div className="h-min-screen flex w-full flex-col">
-      <div className="flex flex-1 py-2">
-        <div className="m-auto flex px-3 w-full sm:w-1/3">
-          <Button
-            outline
-            onPress={() => setIsModalOpen(true)}
-            className="flex-1"
-          >
-            <Icon icon={<Search />}></Icon>
-            <span className="flex-1">⌘k</span>
-          </Button>
-        </div>
+      <div className="flex flex-1 justify-center p-6">
+        <Button outline onPress={() => setIsModalOpen(true)}>
+          Try it out ⌘ K
+        </Button>
       </div>
 
-      <div className="flex flex-1 flex-col items-center px-6">
-        <Text>Combobox can be used as a command menu</Text>
-      </div>
-
-      <CommandModal
+      <Modal
+        animated={false}
         isOpen={isModalOpen}
         onOpenChange={setIsModalOpen}
-        className="px-3 pt-2 w-full sm:w-1/3"
-        shouldCloseOnInteractOutside={() => {
-          setIsModalOpen(false);
-          return true;
-        }}
+        className="self-start bg-transparent shadow-none ring-0 sm:self-start"
       >
-        <Dialog aria-label="Search for apps and commands&hellip;">
+        <Dialog
+          aria-label="Search for apps and commands&hellip;"
+          className="px-3"
+        >
           <ComboBox
             allowsCustomValue
             onSelectionChange={() => {
@@ -88,13 +166,8 @@ export function CommandK() {
             aria-label="Search"
             autoFocus
             allowsEmptyCollection
-            onKeyDown={(e) => {
-              if (e.key === 'Escape') {
-                setIsModalOpen(false);
-              }
-            }}
           >
-            <div className="relative">
+            <div className="relative rounded-md bg-background">
               <Icon
                 icon={
                   <Search className="absolute left-2 top-1/2 w-4 -translate-y-1/2 text-muted" />
@@ -116,6 +189,7 @@ export function CommandK() {
             <ComboBoxPopover
               className="rounded-t-none border border-t-0 ring-0"
               offset={0}
+              isOpen
             >
               <ComboBoxListBox
                 renderEmptyState={() => (
@@ -156,7 +230,7 @@ export function CommandK() {
             </ComboBoxPopover>
           </ComboBox>
         </Dialog>
-      </CommandModal>
+      </Modal>
     </div>
   );
 }

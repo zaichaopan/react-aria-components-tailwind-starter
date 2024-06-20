@@ -36,7 +36,7 @@ export function Group(props: GroupProps) {
         <RACGroup
           {...props}
           className={composeRenderProps(props.className, (className) => {
-            return twMerge('flex flex-col gap-1', className);
+            return twMerge('relative flex flex-col gap-1', className);
           })}
         />
       </GroupContext.Provider>
@@ -181,11 +181,11 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
               renderProps.isDisabled && 'disabled:opacity-50',
               renderProps.isFocused && inputRingStyle,
               // When it is inside role=presentation | group parent and it has border
-              '[[role=presentation]_&.border]:h-fit [[role=presentation]_&.border]:border-none [[role=presentation]_&.border]:shadow-none [[role=presentation]_&.border]:ring-0',
-              '[[role=group]_&.border]:h-fit [[role=group]_&.border]:border-none [[role=group]_&.border]:shadow-none [[role=group]_&.border]:ring-0 [[role=group]_&.border]:invalid:ring-0',
+            //  '[[role=presentation]_&.border]:h-fit [[role=presentation]_&.border]:border-none [[role=presentation]_&.border]:shadow-none [[role=presentation]_&.border]:ring-0',
+              // '[[role=group]_&.border]:h-fit [[role=group]_&.border]:border-none [[role=group]_&.border]:shadow-none [[role=group]_&.border]:ring-0 [[role=group]_&.border]:invalid:ring-0',
 
               // search filed
-              '[[slot=search-field]_&.border]:h-fit [[slot=search-field]_&.border]:border-none [[slot=search-field]_&.border]:shadow-none [[slot=search-field]_&.border]:ring-0',
+              //  '[[slot=search-field]_&.border]:h-fit [[slot=search-field]_&.border]:border-none [[slot=search-field]_&.border]:shadow-none [[slot=search-field]_&.border]:ring-0',
               className,
             );
           },
@@ -228,6 +228,8 @@ export const InputFieldGroup = React.forwardRef<HTMLDivElement, GroupProps>(
               'group relative flex w-full items-center overflow-hidden rounded-md border bg-inherit shadow-sm',
               'invalid:border-destructive group-invalid:border-destructive',
               renderProps.isFocusWithin && inputRingStyle,
+              // Remove inside input border
+              '[&_input.border]:h-fit [&_input.border]:border-0 [&_input.border]:shadow-none [&_input.border]:ring-0 [&_input.border]:invalid:ring-0',
               className,
             );
           },
