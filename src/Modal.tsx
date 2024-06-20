@@ -6,18 +6,6 @@ import {
 } from 'react-aria-components';
 import { twMerge } from 'tailwind-merge';
 
-export interface ModalOverlayProps extends RACModalOverlayProps {
-  size?: 'sm' | 'md' | 'lg' | 'xl' | '2xl';
-  animate?: boolean;
-}
-
-export type DrawerProps =
-  | { drawer?: never }
-  | {
-      drawer: true;
-      drawerPlacement?: 'left' | 'right';
-    };
-
 const sizes = {
   sm: 'max-w-sm',
   md: 'max-w-md',
@@ -26,12 +14,25 @@ const sizes = {
   '2xl': 'max-w-2xl',
 };
 
+type Size = keyof typeof sizes;
+
+type DrawerProps =
+  | { drawer?: never }
+  | {
+      drawer: true;
+      drawerPlacement?: 'left' | 'right';
+    };
+
+type ModalProps = RACModalOverlayProps & {
+  size?: Size;
+  animate?: boolean;
+} & DrawerProps;
+
 export function Modal({
   isDismissable = true,
-  isKeyboardDismissDisabled = false,
   animate = true,
   ...props
-}: ModalOverlayProps & DrawerProps) {
+}: ModalProps) {
   const drawer = props.drawer;
 
   const drawerPlacement = props.drawer
@@ -42,7 +43,6 @@ export function Modal({
     <RACModalOverlay
       {...props}
       isDismissable={isDismissable}
-      isKeyboardDismissDisabled={isKeyboardDismissDisabled}
       className={composeRenderProps(props.className, (_, renderProps) => {
         return twMerge(
           'h-[--visual-viewport-height] w-full bg-zinc-950/15 dark:bg-zinc-950/50',
@@ -124,6 +124,6 @@ export function AlertModal({
   size = 'md',
   isDismissable = false,
   ...props
-}: ModalOverlayProps) {
+}: ModalProps) {
   return <Modal {...props} size={size} isDismissable={isDismissable} />;
 }
