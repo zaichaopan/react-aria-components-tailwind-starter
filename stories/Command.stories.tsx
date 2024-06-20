@@ -60,7 +60,7 @@ export function CommandK() {
         allowsCustomValue
         menuTrigger="focus"
         aria-label="Search"
-        className="w-96 p-4"
+        className="w-full p-4 sm:w-96"
       >
         <div className="relative">
           <Icon
@@ -74,7 +74,7 @@ export function CommandK() {
             placeholder="Search for apps and commands&hellip;"
             className="pl-7"
           />
-          <Keyboard className="absolute right-2 top-1/2 -translate-y-1/2 font-sans text-sm/6 text-muted">
+          <Keyboard className="absolute right-2 top-1/2 hidden -translate-y-1/2 font-sans text-sm/6 text-muted sm:flex">
             ⌘K
           </Keyboard>
         </div>
