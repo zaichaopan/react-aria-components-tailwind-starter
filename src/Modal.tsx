@@ -7,19 +7,18 @@ import {
 import { twMerge } from 'tailwind-merge';
 
 export interface ModalOverlayProps extends RACModalOverlayProps {
-  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl';
+  size?: 'sm' | 'md' | 'lg' | 'xl' | '2xl';
+  animate?: boolean;
 }
 
 export type DrawerProps =
-  | { drawer?: never; animated?: boolean }
+  | { drawer?: never }
   | {
       drawer: true;
       drawerPlacement?: 'left' | 'right';
-      animated?: boolean;
     };
 
 const sizes = {
-  xs: 'max-w-xs',
   sm: 'max-w-sm',
   md: 'max-w-md',
   lg: 'max-w-lg',
@@ -30,7 +29,7 @@ const sizes = {
 export function Modal({
   isDismissable = true,
   isKeyboardDismissDisabled = false,
-  animated = true,
+  animate = true,
   ...props
 }: ModalOverlayProps & DrawerProps) {
   const drawer = props.drawer;
@@ -53,7 +52,7 @@ export function Modal({
             ? [
                 'p-2 [--visual-viewport-vertical-padding:16px]',
 
-                drawerPlacement === 'right' ? 'justify-end ' : 'justify-start',
+                drawerPlacement === 'left' ? 'justify-start ' : 'justify-end',
 
                 renderProps.isEntering &&
                   'duration-200 ease-out animate-in fade-in',
@@ -89,26 +88,26 @@ export function Modal({
               drawer
                 ? [
                     'h-full rounded-lg',
-                    animated &&
+                    animate &&
                       renderProps.isEntering && [
-                        drawerPlacement === 'right'
-                          ? 'duration-200 ease-out animate-in slide-in-from-right'
-                          : 'duration-200 ease-out animate-in slide-in-from-left',
+                        drawerPlacement === 'left'
+                          ? 'duration-200 ease-out animate-in slide-in-from-left'
+                          : 'duration-200 ease-out animate-in slide-in-from-right',
                       ],
-                    animated &&
+                    animate &&
                       renderProps.isExiting && [
-                        drawerPlacement === 'right'
-                          ? 'duration-200 ease-in animate-out slide-out-to-right'
-                          : 'duration-200 ease-in animate-out slide-out-to-left',
+                        drawerPlacement === 'left'
+                          ? 'duration-200 ease-in animate-out slide-out-to-left'
+                          : 'duration-200 ease-in animate-out slide-out-to-right',
                       ],
                   ]
                 : [
                     'rounded-t-2xl sm:rounded-lg',
-                    animated &&
+                    animate &&
                       renderProps.isEntering &&
                       'duration-200 ease-out animate-in slide-in-from-bottom sm:zoom-in-105 sm:slide-in-from-bottom-0',
 
-                    animated &&
+                    animate &&
                       renderProps.isExiting &&
                       'duration-200 ease-in animate-out slide-out-to-bottom sm:zoom-out-95 sm:slide-out-to-bottom-0',
                   ],
@@ -122,17 +121,9 @@ export function Modal({
 }
 
 export function AlertModal({
-  size,
+  size = 'md',
   isDismissable = false,
-  isKeyboardDismissDisabled,
   ...props
 }: ModalOverlayProps) {
-  return (
-    <Modal
-      size={size ?? 'md'}
-      {...props}
-      isDismissable={isDismissable}
-      isKeyboardDismissDisabled={isKeyboardDismissDisabled}
-    />
-  );
+  return <Modal {...props} size={size} isDismissable={isDismissable} />;
 }

@@ -151,7 +151,7 @@ export function OpenInDialog() {
       </div>
 
       <Modal
-        animated={false}
+        animate={false}
         isOpen={isModalOpen}
         onOpenChange={setIsModalOpen}
         className="self-start bg-transparent shadow-none ring-0 sm:self-start"
