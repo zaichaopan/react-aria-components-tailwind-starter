@@ -168,7 +168,7 @@ export function OpenInDialog() {
       >
         <Dialog
           aria-label="Search for apps and commands&hellip;"
-          className="bg-background  px-3"
+          className="bg-zinc-950/15 dark:bg-background px-3"
         >
           <ComboBox
             allowsCustomValue
@@ -187,7 +187,7 @@ export function OpenInDialog() {
 
               <Input
                 placeholder="Search for apps and commands&hellip;"
-                className="rounded-b-none border-border pl-7 ring-0"
+                className="bg-background rounded-b-none border-border pl-7 ring-0"
               />
 
               <ClearButton
