@@ -26,6 +26,7 @@ import { Button } from './Button';
 import { twMerge } from 'tailwind-merge';
 import { ChevronDown, X } from 'lucide-react';
 import { Icon } from './Icon';
+import { inputRingStyle } from './utils';
 
 export interface ComboBoxFiledProps<T extends object>
   extends Omit<
@@ -294,7 +295,13 @@ export function MultiSelect<
                 <>
                   <InputFieldGroup
                     defaultValue={inputValue}
-                    className={twMerge('h-fit w-[350px]', className)}
+                    className={({ isFocusVisible }) => {
+                      return twMerge(
+                        'h-fit w-[350px]',
+                        isFocusVisible && inputRingStyle,
+                        className,
+                      );
+                    }}
                     ref={triggerRef}
                     onBlur={() => {
                       setFieldState({

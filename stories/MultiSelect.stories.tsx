@@ -170,6 +170,7 @@ export const ExampleOne = () => {
   return (
     <MultiSelectField<{ id: string; textValue: string }>
       isDisabled
+      isRequired
       selectedList={selectedList}
       items={[
         {

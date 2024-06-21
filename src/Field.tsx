@@ -181,8 +181,8 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
               renderProps.isDisabled && 'disabled:opacity-50',
               renderProps.isFocused && inputRingStyle,
               // When it is inside input group with role=presentation|group and it has border
-              '[[role=presentation]_&.border]:h-fit [[role=presentation]_&.border]:border-none [[role=presentation]_&.border]:shadow-none [[role=presentation]_&.border]:ring-0',
-              '[[role=group]_&.border]:h-fit [[role=group]_&.border]:border-none [[role=group]_&.border]:shadow-none [[role=group]_&.border]:ring-0 [[role=group]_&.border]:invalid:ring-0',
+              '[[role=presentation]_&.border]:h-fit [[role=presentation]_&.border]:border-none [[role=presentation]_&.border]:shadow-none [[role=presentation]_&.border]:ring-0 [[role=presentation]_&.border]:disabled:opacity-100',
+              '[[role=group]_&.border]:h-fit [[role=group]_&.border]:border-none [[role=group]_&.border]:shadow-none [[role=group]_&.border]:ring-0 [[role=group]_&.border]:invalid:ring-0 [[role=group]_&.border]:disabled:opacity-100',
               className,
             );
           },
@@ -221,8 +221,11 @@ export const InputFieldGroup = React.forwardRef<HTMLDivElement, GroupProps>(
         className={composeRenderProps(
           props.className,
           (className, renderProps) => {
+            console.log('is disabled', renderProps.isDisabled);
             return twMerge(
-              'group relative flex w-full items-center overflow-hidden rounded-md border bg-inherit shadow-sm',
+              'group relative flex w-full items-center overflow-hidden rounded-md border bg-inherit shadow-sm group-disabled:opacity-50',
+              renderProps.isInvalid && 'border-destructive',
+              //renderProps.isDisabled && 'disabled:opacity-50',
               renderProps.isFocusWithin && inputRingStyle,
               className,
             );
