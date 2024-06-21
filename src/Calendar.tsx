@@ -65,13 +65,13 @@ export function CalendarHeader() {
 
   return (
     <header className="flex w-full items-center gap-1">
-      <Button plain className="size-8 p-0.5" slot="previous">
+      <Button slot="previous" plain isIconOnly>
         {
           <Icon aria-label="Previous">
             {direction === 'rtl' ? (
-              <ChevronRight strokeWidth={1.5} className="size-5 opacity-50" />
+              <ChevronRight strokeWidth={1.5} className="opacity-60" />
             ) : (
-              <ChevronLeft strokeWidth={1.5} className="size-5 opacity-50" />
+              <ChevronLeft strokeWidth={1.5} className="opacity-60" />
             )}
           </Icon>
         }
@@ -83,13 +83,13 @@ export function CalendarHeader() {
         aria-hidden
       />
 
-      <Button plain className="size-8 p-0.5" slot="next">
+      <Button slot="next" plain isIconOnly>
         {
           <Icon aria-label="Next">
             {direction === 'rtl' ? (
-              <ChevronLeft strokeWidth={1.5} className="size-5 opacity-50" />
+              <ChevronLeft strokeWidth={1.5} className="opacity-60" />
             ) : (
-              <ChevronRight strokeWidth={1.5} className="size-5 opacity-50" />
+              <ChevronRight strokeWidth={1.5} className="opacity-60" />
             )}
           </Icon>
         }

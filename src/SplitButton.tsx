@@ -80,11 +80,12 @@ export function SplitButtonMenuTrigger({
       color={context.color}
       className={composeTailwindRenderProps(
         props.className,
-        'px-1.5 min-w-fit rounded-l-none border-l-0',
+        'w-8 rounded-l-none border-l-0',
       )}
+      isIconOnly
     >
       <Icon aria-label={ariaLabel}>
-        <ChevronDown />
+        <ChevronDown className="opacity-60" />
       </Icon>
     </Button>
   );

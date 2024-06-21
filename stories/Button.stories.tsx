@@ -128,7 +128,7 @@ export const IconButtons = () => {
         <Icon aria-label="Create New Folder">
           <FolderPlus strokeWidth={1.5} />
         </Icon>
-      </Button>
+      </Button> 
     </div>
   );
 };
