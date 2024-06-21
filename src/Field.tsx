@@ -180,6 +180,9 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
               renderProps.isInvalid && 'border-destructive',
               renderProps.isDisabled && 'disabled:opacity-50',
               renderProps.isFocused && inputRingStyle,
+              // When it is inside input group with role=presentation|group and it has border
+              '[[role=presentation]_&.border]:h-fit [[role=presentation]_&.border]:border-none [[role=presentation]_&.border]:shadow-none [[role=presentation]_&.border]:ring-0',
+              '[[role=group]_&.border]:h-fit [[role=group]_&.border]:border-none [[role=group]_&.border]:shadow-none [[role=group]_&.border]:ring-0 [[role=group]_&.border]:invalid:ring-0',
               className,
             );
           },
@@ -220,10 +223,7 @@ export const InputFieldGroup = React.forwardRef<HTMLDivElement, GroupProps>(
           (className, renderProps) => {
             return twMerge(
               'group relative flex w-full items-center overflow-hidden rounded-md border bg-inherit shadow-sm',
-              'invalid:border-destructive group-invalid:border-destructive',
               renderProps.isFocusWithin && inputRingStyle,
-              // Remove inside input border
-              '[&_input.border:invalid]:ring-0 [&_input.border]:h-fit [&_input.border]:border-0 [&_input.border]:shadow-none [&_input.border]:ring-0',
               className,
             );
           },

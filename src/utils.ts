@@ -9,7 +9,6 @@ export const focusOutlineStyle = [
 export const inputRingStyle = [
   'ring-1 ring-blue-500 border-blue-500',
   'invalid:border-destructive invalid:ring-destructive ',
-  // When using ina InputGroup
   'group-invalid:border-destructive group-invalid:ring-1 group-invalid:ring-destructive',
 ];
 
