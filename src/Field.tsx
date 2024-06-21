@@ -223,7 +223,7 @@ export const InputFieldGroup = React.forwardRef<HTMLDivElement, GroupProps>(
               'invalid:border-destructive group-invalid:border-destructive',
               renderProps.isFocusWithin && inputRingStyle,
               // Remove inside input border
-              '[&_input.border]:h-fit [&_input.border]:border-0 [&_input.border]:shadow-none [&_input.border]:ring-0 [&_input.border]:invalid:ring-0',
+              '[&_input.border:invalid]:ring-0 [&_input.border]:h-fit [&_input.border]:border-0 [&_input.border]:shadow-none [&_input.border]:ring-0',
               className,
             );
           },
