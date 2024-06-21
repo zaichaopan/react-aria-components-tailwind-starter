@@ -61,12 +61,11 @@ export function ComboBoxListBox<T extends object>({
 export function TriggerButton() {
   return (
     <Button
-      size="sm"
-      className="absolute right-1 top-1/2 -translate-y-1/2"
+      className="absolute right-1 top-1/2 size-7 -translate-y-1/2 p-0.5 rounded-md"
       plain
     >
       <Icon>
-        <ChevronDown />
+        <ChevronDown className='opacity-50' />
       </Icon>
     </Button>
   );
