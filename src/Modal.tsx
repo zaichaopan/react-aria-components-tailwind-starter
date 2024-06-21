@@ -12,6 +12,9 @@ const sizes = {
   lg: 'max-w-lg',
   xl: 'max-w-xl',
   '2xl': 'max-w-2xl',
+  '3xl': 'max-w-3xl',
+  '4xl': 'max-w-4xl',
+  '5xl': 'max-w-5xl',
 };
 
 type Size = keyof typeof sizes;
@@ -20,69 +23,77 @@ type DrawerProps =
   | { drawer?: never }
   | {
       drawer: true;
-      drawerPlacement?: 'left' | 'right';
+      placement?: 'left' | 'right';
     };
 
-type ModalProps = RACModalOverlayProps & {
+type ClassNames = {
+  modalOverlay?: RACModalOverlayProps['className'];
+  modal?: RACModalOverlayProps['className'];
+};
+
+type ModalProps = Omit<RACModalOverlayProps, 'className'> & {
   size?: Size;
   animate?: boolean;
+  classNames?: ClassNames;
 } & DrawerProps;
 
 export function Modal({
   isDismissable = true,
   animate = true,
+  classNames,
   ...props
 }: ModalProps) {
   const drawer = props.drawer;
 
-  const drawerPlacement = props.drawer
-    ? props.drawerPlacement ?? 'left'
-    : undefined;
+  const placement = props.drawer ? props.placement ?? 'left' : undefined;
 
   return (
     <RACModalOverlay
       {...props}
       isDismissable={isDismissable}
-      className={composeRenderProps(props.className, (_, renderProps) => {
-        return twMerge(
-          'h-[--visual-viewport-height] w-full bg-zinc-950/15 dark:bg-zinc-950/50',
-          'fixed left-0 top-0 isolate z-20 flex text-center',
-          'items-end sm:items-center',
-          drawer
-            ? [
-                'p-2 [--visual-viewport-vertical-padding:16px]',
+      className={composeRenderProps(
+        classNames?.modalOverlay,
+        (_, renderProps) => {
+          return twMerge(
+            'fixed left-0 top-0 isolate z-20',
+            'h-[--visual-viewport-height] w-full',
+            'bg-zinc-950/15 dark:bg-zinc-950/50',
+            'flex items-end text-center sm:items-center',
+            drawer
+              ? [
+                  'p-2 [--visual-viewport-vertical-padding:16px]',
 
-                drawerPlacement === 'left' ? 'justify-start ' : 'justify-end',
+                  placement === 'left' ? 'justify-start ' : 'justify-end',
 
-                renderProps.isEntering &&
-                  'duration-200 ease-out animate-in fade-in',
+                  renderProps.isEntering &&
+                    'duration-200 ease-out animate-in fade-in',
 
-                renderProps.isExiting &&
-                  'duration-200 ease-in animate-out fade-out',
-              ]
-            : [
-                'justify-center',
-                'pt-4 [--visual-viewport-vertical-padding:16px]',
-                'sm:p-4 sm:[--visual-viewport-vertical-padding:32px]',
+                  renderProps.isExiting &&
+                    'duration-200 ease-in animate-out fade-out',
+                ]
+              : [
+                  'justify-center',
+                  'pt-4 [--visual-viewport-vertical-padding:16px] sm:p-4 sm:[--visual-viewport-vertical-padding:32px]',
 
-                renderProps.isEntering &&
-                  'duration-200 ease-out animate-in fade-in',
+                  renderProps.isEntering &&
+                    'duration-200 ease-out animate-in fade-in',
 
-                renderProps.isExiting &&
-                  'duration-200 ease-in animate-out fade-out',
-              ],
-        );
-      })}
+                  renderProps.isExiting &&
+                    'duration-200 ease-in animate-out fade-out',
+                ],
+          );
+        },
+      )}
     >
       <RACModal
         {...props}
         className={composeRenderProps(
-          props.className,
+          classNames?.modal,
           (className, renderProps) => {
             return twMerge(
               'max-h-full w-full overflow-hidden text-left align-middle shadow-lg',
-              'bg-background ring-1 ring-zinc-950/5 dark:bg-secondary dark:ring-white/10',
-
+              'bg-background dark:bg-secondary',
+              'ring-1 ring-zinc-950/5  dark:ring-white/10',
               sizes[props.size ?? 'lg'],
 
               drawer
@@ -90,13 +101,13 @@ export function Modal({
                     'h-full rounded-lg',
                     animate &&
                       renderProps.isEntering && [
-                        drawerPlacement === 'left'
+                        placement === 'left'
                           ? 'duration-200 ease-out animate-in slide-in-from-left'
                           : 'duration-200 ease-out animate-in slide-in-from-right',
                       ],
                     animate &&
                       renderProps.isExiting && [
-                        drawerPlacement === 'left'
+                        placement === 'left'
                           ? 'duration-200 ease-in animate-out slide-out-to-left'
                           : 'duration-200 ease-in animate-out slide-out-to-right',
                       ],

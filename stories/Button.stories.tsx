@@ -83,7 +83,7 @@ ButtonVariants.parameters = {
   docs: {
     description: {
       story:
-        'Use prop **outline | plain | unstyled**" to render buttons with different variants:',
+        'Use prop **outline | plain | unstyle**" to render buttons with different variants:',
     },
   },
 };
@@ -198,7 +198,7 @@ ImageButtons.parameters = {
   docs: {
     description: {
       story:
-        'Add the **Avatar** component to **unstyled** buttons to render image buttons:',
+        'Add the **Avatar** component to **unstyle** buttons to render image buttons:',
     },
   },
 };

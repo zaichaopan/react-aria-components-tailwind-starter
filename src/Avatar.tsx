@@ -48,7 +48,7 @@ export function Avatar({
         role="img"
         className={twMerge([
           'group relative flex size-12 items-center justify-center rounded-lg @container',
-          'outline outline-1 -outline-offset-1 outline-black/10 dark:outline-white/10',
+          'outline outline-1 -outline-offset-1 outline-black/20 dark:outline-white/10',
           className,
         ])}
         aria-labelledby={ariaLabelledby}
@@ -164,7 +164,7 @@ export function AvatarGroup({ avatars, ...props }: AvatarGroupProps) {
               {...item}
               key={index}
               className={twMerge(
-                'ring ring-1 ring-background ring-offset-1',
+                'ring-2 ring-background',
                 className,
               )}
             />

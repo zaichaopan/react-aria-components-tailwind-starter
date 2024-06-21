@@ -156,7 +156,7 @@ export function OpenInDialog() {
     <div className="h-min-screen flex w-full flex-col">
       <div className="flex flex-1 justify-center p-6">
         <Button outline onPress={() => setIsModalOpen(true)}>
-          Try it out ⌘ K
+          ⌘ K
         </Button>
       </div>
 
@@ -164,11 +164,14 @@ export function OpenInDialog() {
         animate={false}
         isOpen={isModalOpen}
         onOpenChange={setIsModalOpen}
-        className="self-start shadow-none ring-0 sm:self-start"
+        classNames={{
+          modal:
+            'self-start shadow-none ring-0 sm:self-start bg-transparent dark:bg-transparent',
+        }}
       >
         <Dialog
           aria-label="Search for apps and commands&hellip;"
-          className="bg-zinc-950/15 dark:bg-background px-3"
+          className="px-3"
         >
           <ComboBox
             allowsCustomValue
@@ -187,7 +190,7 @@ export function OpenInDialog() {
 
               <Input
                 placeholder="Search for apps and commands&hellip;"
-                className="bg-background rounded-b-none border-border pl-7 ring-0"
+                className="rounded-b-none border-border bg-background pl-7 ring-0"
               />
 
               <ClearButton

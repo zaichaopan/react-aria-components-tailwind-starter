@@ -1,7 +1,10 @@
 import type { Meta } from '@storybook/react';
 import { Form } from 'react-aria-components';
 import { Button } from '../src/Button';
-import { DateRangePickerInput, DateRangePicker } from '../src/DateRangePicker';
+import {
+  DateRangePickerInput,
+  DateRangePicker,
+} from '../src/DateRangePicker';
 import { Description, FieldError, Label } from '../src/Field';
 import { docs } from '../.storybook/docs';
 

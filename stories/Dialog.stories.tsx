@@ -1031,7 +1031,7 @@ Drawers.parameters = {
   docs: {
     description: {
       story:
-        'Add the **drawer** props and **drawerPlacement="left | right"** props to render dialogs out from the edge of the screen',
+        'Add the **drawer** props and **placement="left | right"** props to render dialogs out from the edge of the screen',
     },
   },
 };

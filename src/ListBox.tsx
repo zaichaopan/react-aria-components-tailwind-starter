@@ -86,6 +86,7 @@ export function DropdownItem({
   const textValue =
     props.textValue ||
     (typeof props.children === 'string' ? props.children : undefined);
+
   return (
     <RACListBoxItem
       {...props}
