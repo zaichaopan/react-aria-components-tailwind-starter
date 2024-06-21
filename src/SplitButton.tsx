@@ -80,7 +80,7 @@ export function SplitButtonMenuTrigger({
       color={context.color}
       className={composeTailwindRenderProps(
         props.className,
-        'w-7 min-w-fit rounded-l-none border-l-0',
+        'px-1.5 min-w-fit rounded-l-none border-l-0',
       )}
     >
       <Icon aria-label={ariaLabel}>
