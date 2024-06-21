@@ -200,16 +200,40 @@ export const WithIcons = () => {
       <MenuButton outline>Options</MenuButton>
       <MenuPopover>
         <Menu>
-          <MenuItem icon={<Icon icon={<UserCircle className="h-4 w-4" />} />}>
+          <MenuItem
+            icon={
+              <Icon>
+                <UserCircle className="h-4 w-4" />
+              </Icon>
+            }
+          >
             Account
           </MenuItem>
-          <MenuItem icon={<Icon icon={<Settings className="h-4 w-4" />} />}>
+          <MenuItem
+            icon={
+              <Icon>
+                <Settings className="h-4 w-4" />
+              </Icon>
+            }
+          >
             Settings
           </MenuItem>
-          <MenuItem icon={<Icon icon={<BadgeInfo className="h-4 w-4" />} />}>
+          <MenuItem
+            icon={
+              <Icon>
+                <BadgeInfo className="h-4 w-4"></BadgeInfo>
+              </Icon>
+            }
+          >
             Support
           </MenuItem>
-          <MenuItem icon={<Icon icon={<LogOut className="h-4 w-4" />} />}>
+          <MenuItem
+            icon={
+              <Icon>
+                <LogOut className="h-4 w-4" />
+              </Icon>
+            }
+          >
             Sign out
           </MenuItem>
         </Menu>
@@ -281,7 +305,9 @@ export const WithIconTrigger = () => {
   return (
     <MenuTrigger>
       <MenuButton noArrow outline>
-        <Icon icon={<MoreHorizontal />} aria-label="More" />
+        <Icon aria-label="More">
+          <MoreHorizontal />
+        </Icon>
       </MenuButton>
       <MenuPopover>
         <Menu>
@@ -339,6 +365,7 @@ export const WithCustomTrigger = () => {
     <MenuTrigger>
       <MenuButton
         unstyle
+        noArrow
         className="flex items-center gap-2 border border-transparent p-2 hover:border hover:border-border"
         aria-label="Jane"
       >
@@ -351,11 +378,9 @@ export const WithCustomTrigger = () => {
           <span className="text-sm/5 font-medium">Taylor</span>
           <span className="text-xs/5 text-muted">Manager</span>
         </div>
-        <Icon
-          icon={
-            <ChevronsUpDown className="size-4 text-muted" strokeWidth={1.5} />
-          }
-        />
+        <Icon>
+          <ChevronsUpDown className="size-4 text-muted" strokeWidth={1.5} />
+        </Icon>
       </MenuButton>
       <MenuPopover className="min-w-56">
         <Menu>
@@ -404,7 +429,9 @@ export const WithLink = () => {
           <MenuSeparator />
           <MenuItem>
             Workflow Analytics
-            <Icon icon={<ExternalLink className="ml-auto h-4" />}></Icon>
+            <Icon>
+              <ExternalLink className="ml-auto h-4" />
+            </Icon>
           </MenuItem>
         </Menu>
       </MenuPopover>

@@ -1,12 +1,9 @@
 import React from 'react';
 import { twMerge } from 'tailwind-merge';
 
-const AccordionContext = React.createContext<
-  | {
-      name?: string;
-    }
-  | undefined
->(undefined);
+const AccordionContext = React.createContext<{
+  name?: string;
+} | null>(null);
 
 const useAccordionContext = () => {
   const context = React.useContext(AccordionContext);
@@ -56,11 +53,11 @@ export function DisclosureControl({
     <summary
       {...props}
       className={twMerge(
-        '[&::-webkit-details-marker]:hidden flex w-full cursor-pointer select-none justify-between rounded text-left text-base/6 font-medium outline-none group-open:mb-2 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-1 focus-visible:ring-offset-background',
+        'flex w-full cursor-pointer select-none justify-between rounded text-left text-base/6 font-medium outline-none group-open:mb-2 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-1 focus-visible:ring-offset-background [&::-webkit-details-marker]:hidden',
         className,
       )}
     >
-      <>{children}</>
+      {children}
     </summary>
   );
 }

@@ -22,15 +22,12 @@ const tokens = [
   'rose',
 ];
 
-export function getDefaultInitials(
-  name: string,
-  { maxInitials }: { maxInitials: number },
-) {
+export function getDefaultInitials(name: string) {
   return name
     .split(/\s/)
-    .map((part) => part.substring(0, 1).toUpperCase())
+    .map((part) => part.substring(0, 1))
     .filter((v) => !!v)
-    .slice(0, maxInitials)
+    .slice(0, 2)
     .join('')
     .toUpperCase();
 }
@@ -92,7 +89,7 @@ function drawOverlayIcon({
 }
 
 export function generateInitialAvatarDataUrl(alt: string, colorless: boolean) {
-  const initials = getDefaultInitials(alt, { maxInitials: 2 });
+  const initials = getDefaultInitials(alt);
 
   const token = getRandomToken(alt, colorless);
 

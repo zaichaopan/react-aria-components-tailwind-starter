@@ -66,7 +66,9 @@ export const WithIcon = () => {
       </Description>
 
       <InputFieldGroup role="presentation">
-        <Icon icon={<Search className="ml-2 size-4" strokeWidth={1.5} />} />
+        <Icon>
+          <Search className="ml-2 size-4" strokeWidth={1.5} />
+        </Icon>
         <Input placeholder="Search..." />
       </InputFieldGroup>
     </TextField>
@@ -92,7 +94,9 @@ export const WithValidation = () => {
         </Description>
 
         <InputFieldGroup role="presentation">
-          <Icon icon={<Search className="ml-2 size-4" strokeWidth={1.5} />} />
+          <Icon>
+            <Search className="ml-2 size-4" strokeWidth={1.5} />
+          </Icon>
           <Input placeholder="Search..." />
         </InputFieldGroup>
 

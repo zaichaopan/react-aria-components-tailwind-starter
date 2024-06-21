@@ -166,7 +166,12 @@ function Toast({ state, ...props }: ToastProps) {
           </>
         )}
 
-        <CloseButton size="sm" text {...closeButtonProps} className="rounded" />
+        <CloseButton
+          plain
+          size="sm"
+          {...closeButtonProps}
+          className="rounded"
+        />
       </div>
     </div>
   );

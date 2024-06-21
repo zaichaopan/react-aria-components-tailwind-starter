@@ -13,9 +13,10 @@ import {
   useLocale,
   composeRenderProps,
 } from 'react-aria-components';
-import { IconButton } from './Button';
+import { Button} from './Button';
 import { focusOutlineStyle } from './utils';
 import { twMerge } from 'tailwind-merge';
+import { Icon } from './Icon';
 
 export interface CalendarProps<T extends DateValue>
   extends Omit<RACCalendarProps<T>, 'visibleDuration'> {
@@ -31,7 +32,7 @@ export function Calendar<T extends DateValue>({
       <CalendarHeader />
       <CalendarGrid weekdayStyle="short">
         <CalendarGridHeader />
-        <CalendarGridBody className="before:block before:w-full before:leading-[0.25rem] before:content-['.'] before:opacity-0">
+        <CalendarGridBody className="before:block before:w-full before:leading-[0.25rem] before:opacity-0 before:content-['.']">
           {(date) => (
             <CalendarCell
               date={date}
@@ -64,19 +65,17 @@ export function CalendarHeader() {
 
   return (
     <header className="flex w-full items-center gap-1">
-      <IconButton
-        text
-        className="text-muted"
-        slot="previous"
-        aria-label="Previous"
-        icon={
-          direction === 'rtl' ? (
-            <ChevronRight strokeWidth={1.5} />
-          ) : (
-            <ChevronLeft strokeWidth={1.5} />
-          )
+      <Button plain className="text-muted" slot="previous">
+        {
+          <Icon aria-label="Previous">
+            {direction === 'rtl' ? (
+              <ChevronRight strokeWidth={1.5} />
+            ) : (
+              <ChevronLeft strokeWidth={1.5} />
+            )}
+          </Icon>
         }
-      />
+      </Button>
 
       <Heading
         className="mx-2 flex-1 text-center font-medium"
@@ -84,19 +83,17 @@ export function CalendarHeader() {
         aria-hidden
       />
 
-      <IconButton
-        text
-        className="text-muted"
-        slot="next"
-        aria-label="Next"
-        icon={
-          direction === 'rtl' ? (
-            <ChevronLeft strokeWidth={1.5} />
-          ) : (
-            <ChevronRight strokeWidth={1.5} />
-          )
+      <Button plain className="text-muted" slot="next">
+        {
+          <Icon aria-label="Next">
+            {direction === 'rtl' ? (
+              <ChevronLeft strokeWidth={1.5} />
+            ) : (
+              <ChevronRight strokeWidth={1.5} />
+            )}
+          </Icon>
         }
-      />
+      </Button>
     </header>
   );
 }

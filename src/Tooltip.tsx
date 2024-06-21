@@ -5,8 +5,9 @@ import {
   OverlayArrow,
 } from 'react-aria-components';
 import { composeTailwindRenderProps } from './utils';
-export {TooltipTrigger} from 'react-aria-components'
 import { mergeProps, useFocusable } from 'react-aria';
+
+export {TooltipTrigger} from 'react-aria-components'
 
 export interface TooltipProps extends Omit<RACTooltipProps, 'children'> {
   children: React.ReactNode;
@@ -19,7 +20,7 @@ export function Tooltip({ children, ...props }: TooltipProps) {
       offset={10}
       className={composeTailwindRenderProps(
         props.className,
-        'shadow-xs group max-w-56 text-wrap rounded-lg bg-zinc-950 text-zinc-200 p-2 text-center text-xs dark:shadow-none',
+        'shadow-xs group max-w-56 text-wrap rounded-lg bg-zinc-950 text-white p-2 text-center text-sm dark:shadow-none',
       )}
     >
       <OverlayArrow>

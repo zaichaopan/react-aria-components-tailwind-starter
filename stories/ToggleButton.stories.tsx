@@ -2,8 +2,7 @@ import React from 'react';
 import type { Meta } from '@storybook/react';
 import { ToggleButton } from '../src/Button';
 import { Mic, MicOff } from 'lucide-react';
-import { TooltipTrigger } from 'react-aria-components';
-import { Tooltip } from '../src/Tooltip';
+import { TooltipTrigger, Tooltip } from '../src/Tooltip';
 import { docs } from '../.storybook/docs';
 import { Icon } from '../src/Icon';
 
@@ -50,21 +49,18 @@ export const WithIconAndTooltips = () => {
   return (
     <TooltipTrigger>
       <ToggleButton
+        plain
         isSelected={isMicMuted}
         onChange={setIsMicMuted}
-        text
         className="h-16 w-16 flex-col gap-0 p-2 text-xs/6"
       >
-        <Icon
-          aria-label="Mute mic"
-          icon={
-            isMicMuted ? (
-              <MicOff className="h-6 w-6" strokeWidth="1.5px" />
-            ) : (
-              <Mic className="h-6 w-6" strokeWidth="1.5px" />
-            )
-          }
-        ></Icon>
+        <Icon aria-label="Mute mic">
+          {isMicMuted ? (
+            <MicOff className="h-6 w-6" strokeWidth="1.5px" />
+          ) : (
+            <Mic className="h-6 w-6" strokeWidth="1.5px" />
+          )}
+        </Icon>
         Mic
       </ToggleButton>
       <Tooltip>{isMicMuted ? 'Un-mute Microphone' : 'Mute Microphone'}</Tooltip>

@@ -2,7 +2,7 @@ import type { Meta } from '@storybook/react';
 import {
   SplitButtonGroup,
   SplitButton,
-  SplitButtonMenuTriggerButton,
+  SplitButtonMenuTrigger,
 } from '../src/SplitButton';
 import { Menu, MenuItem, MenuPopover, MenuTrigger } from '../src/Menu';
 import { docs } from '../.storybook/docs';
@@ -32,7 +32,7 @@ export const Example = () => (
   <SplitButtonGroup>
     <SplitButton>Save</SplitButton>
     <MenuTrigger>
-      <SplitButtonMenuTriggerButton aria-label="Save options" />
+      <SplitButtonMenuTrigger aria-label="Save options" />
       <MenuPopover placement="bottom end">
         <Menu>
           <MenuItem>Save Draft </MenuItem>
@@ -48,7 +48,7 @@ export const Outline = () => (
   <SplitButtonGroup outline>
     <SplitButton>Save</SplitButton>
     <MenuTrigger>
-      <SplitButtonMenuTriggerButton aria-label="Save options" />
+      <SplitButtonMenuTrigger aria-label="Save options" />
       <MenuPopover>
         <Menu>
           <MenuItem>Save Draft </MenuItem>
@@ -64,7 +64,7 @@ export const Destructive = (args: any) => (
   <SplitButtonGroup {...args} color="destructive">
     <SplitButton>Save</SplitButton>
     <MenuTrigger>
-      <SplitButtonMenuTriggerButton />
+      <SplitButtonMenuTrigger />
       <MenuPopover>
         <Menu>
           <MenuItem>Save Draft </MenuItem>

@@ -24,8 +24,8 @@ export const Heading = React.forwardRef<HTMLHeadingElement, HeadingProps>(
   function Heading({ displayLevel, className, level = 1, ...props }, ref) {
     return (
       <RACHeading
-        ref={ref}
         {...props}
+        ref={ref}
         level={level}
         className={twMerge(
           displayLevels[displayLevel ? displayLevel : level],

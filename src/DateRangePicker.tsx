@@ -4,13 +4,14 @@ import {
   DateRangePickerProps as AriaDateRangePickerProps,
   DateValue,
 } from 'react-aria-components';
-import { IconButton } from './Button';
+import { Button } from './Button';
 import { DateInput } from './DateField';
 import { Dialog } from './Dialog';
 import { InputFieldGroup } from './Field';
 import { Popover } from './Popover';
 import { RangeCalendar } from './RangeCalendar';
 import { composeTailwindRenderProps } from './utils';
+import { Icon } from './Icon';
 
 export interface DateRangePickerProps<T extends DateValue>
   extends AriaDateRangePickerProps<T> {}
@@ -39,16 +40,16 @@ export function DateRangePickerInput() {
         >
           –
         </span>
-        <DateInput
-          slot="end"
-          className="min-w-fit flex-1 text-sm"
-        />
-        <IconButton
-          text
+        <DateInput slot="end" className="min-w-fit flex-1 text-sm" />
+        <Button
+          plain
           size="sm"
-          className="mx-1.5 p-0.5 size-auto outline-offset-0 rounded"
-          icon={<CalendarDays className='size-4' />}
-        />
+          className="mx-1.5 size-auto rounded p-0.5 outline-offset-0"
+        >
+          <Icon>
+            <CalendarDays className="size-4 opacity-50 group-hover:opacity-100" />
+          </Icon>
+        </Button>
       </InputFieldGroup>
       <Popover className="max-w-none" placement="bottom">
         <Dialog className="overflow-auto px-3 py-2">

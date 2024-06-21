@@ -63,18 +63,16 @@ export function CommandK() {
         className="w-full p-4 sm:w-96"
       >
         <div className="relative">
-          <Icon
-            icon={
-              <Search className="absolute left-2 top-1/2 w-4 -translate-y-1/2 text-muted" />
-            }
-          ></Icon>
+          <Icon>
+            <Search className="absolute left-2 top-1/2 w-4 -translate-y-1/2 text-muted" />
+          </Icon>
 
           <Input
             ref={ref}
             placeholder="Search for apps and commands&hellip;"
             className="peer pl-7"
           />
-          <Keyboard className="absolute right-2 top-1/2 hidden -translate-y-1/2 px-2 font-sans text-sm/6 text-muted sm:flex sm:peer-data-[focused=true]:hidden">
+          <Keyboard className="absolute right-2 top-1/2 hidden -translate-y-1/2 px-2 font-sans text-[0.6rem] text-sm/6 text-muted sm:flex sm:peer-data-[focused=true]:hidden">
             ⌘K
           </Keyboard>
           <Keyboard className="absolute right-2 top-1/2 hidden -translate-y-1/2 rounded-md border px-2 py-0.5 text-[0.6rem] text-muted sm:peer-data-[focused=true]:flex">
@@ -92,29 +90,41 @@ export function CommandK() {
           >
             <DropdownSection title="Suggestion">
               <DropdownItem textValue="linear">
-                <Icon icon={<Linear />}></Icon>
+                <Icon>
+                  <Linear />
+                </Icon>
                 Linear
               </DropdownItem>
               <DropdownItem textValue="slack">
-                <Icon icon={<Slack />} />
+                <Icon>
+                  <Slack />
+                </Icon>
                 Slack
               </DropdownItem>
               <DropdownItem textValue="youtube">
-                <Icon icon={<Youtube />}></Icon>
+                <Icon>
+                  <Youtube />
+                </Icon>
                 Youtube
               </DropdownItem>
               <DropdownItem textValue="raycast">
-                <Icon icon={<Raycast />}></Icon>
+                <Icon>
+                  <Raycast />
+                </Icon>
                 Raycast
               </DropdownItem>
             </DropdownSection>
             <DropdownSection title="Commands">
               <DropdownItem textValue="clipboard history">
-                <Icon icon={<Clipboard />}></Icon>
+                <Icon>
+                  <Clipboard />
+                </Icon>
                 Clipboard history
               </DropdownItem>
               <DropdownItem textValue="import extension">
-                <Icon icon={<Extension />}></Icon>
+                <Icon>
+                  <Extension />
+                </Icon>
                 Import Extension
               </DropdownItem>
             </DropdownSection>
@@ -154,11 +164,11 @@ export function OpenInDialog() {
         animate={false}
         isOpen={isModalOpen}
         onOpenChange={setIsModalOpen}
-        className="self-start bg-transparent shadow-none ring-0 sm:self-start"
+        className="self-start shadow-none ring-0 sm:self-start"
       >
         <Dialog
           aria-label="Search for apps and commands&hellip;"
-          className="px-3"
+          className="bg-background  px-3"
         >
           <ComboBox
             allowsCustomValue
@@ -170,12 +180,10 @@ export function OpenInDialog() {
             autoFocus
             allowsEmptyCollection
           >
-            <div className="relative rounded-md bg-background">
-              <Icon
-                icon={
-                  <Search className="absolute left-2 top-1/2 w-4 -translate-y-1/2 text-muted" />
-                }
-              ></Icon>
+            <div className="relative rounded-md">
+              <Icon>
+                <Search className="absolute left-2 top-1/2 w-4 -translate-y-1/2 text-muted" />
+              </Icon>
 
               <Input
                 placeholder="Search for apps and commands&hellip;"
@@ -203,29 +211,41 @@ export function OpenInDialog() {
               >
                 <DropdownSection title="Suggestion">
                   <DropdownItem textValue="linear">
-                    <Icon icon={<Linear />}></Icon>
+                    <Icon>
+                      <Linear />
+                    </Icon>
                     Linear
                   </DropdownItem>
                   <DropdownItem textValue="slack">
-                    <Icon icon={<Slack />} />
+                    <Icon>
+                      <Slack />
+                    </Icon>
                     Slack
                   </DropdownItem>
                   <DropdownItem textValue="youtube">
-                    <Icon icon={<Youtube />}></Icon>
+                    <Icon>
+                      <Youtube />
+                    </Icon>
                     Youtube
                   </DropdownItem>
                   <DropdownItem textValue="raycast">
-                    <Icon icon={<Raycast />}></Icon>
+                    <Icon>
+                      <Raycast />
+                    </Icon>
                     Raycast
                   </DropdownItem>
                 </DropdownSection>
                 <DropdownSection title="Commands">
                   <DropdownItem textValue="clipboard history">
-                    <Icon icon={<Clipboard />}></Icon>
+                    <Icon>
+                      <Clipboard />
+                    </Icon>
                     Clipboard history
                   </DropdownItem>
                   <DropdownItem textValue="import extension">
-                    <Icon icon={<Extension />}></Icon>
+                    <Icon>
+                      <Extension />
+                    </Icon>
                     Import Extension
                   </DropdownItem>
                 </DropdownSection>

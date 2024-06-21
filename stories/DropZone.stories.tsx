@@ -59,7 +59,9 @@ export const Example = () => {
       ) : (
         <div className="flex flex-1 flex-col gap-2 pt-6">
           <div className="flex flex-1 justify-center">
-            <Icon icon={<Image />}></Icon>
+            <Icon>
+              <Image />
+            </Icon>
           </div>
           <div className="flex flex-1">
             <FileTrigger

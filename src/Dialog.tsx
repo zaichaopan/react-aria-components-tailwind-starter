@@ -107,12 +107,12 @@ export function DialogFooter({
 
   return (
     <div
+      {...props}
       ref={footerRef}
       className={twMerge(
         'mt-auto flex flex-col flex-col-reverse justify-end gap-3 px-6 pb-6 pt-4 sm:flex-row',
         className,
       )}
-      {...props}
     />
   );
 }
@@ -122,7 +122,7 @@ export function DialogCloseButton() {
 
   return (
     <CloseButton
-      text
+      plain
       className="absolute right-4 top-4 p-1.5 text-muted"
       onPress={() => state.close()}
     />
@@ -138,6 +138,7 @@ export function DialogTitle({
 }: DialogHeaderProps) {
   return (
     <Heading
+      {...props}
       slot="title"
       level={level}
       className={twMerge(
@@ -145,7 +146,6 @@ export function DialogTitle({
         !noCloseButton && 'pr-14',
         className,
       )}
-      {...props}
     >
       {children}
     </Heading>

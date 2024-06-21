@@ -28,22 +28,28 @@ export default meta;
 export const Example = () => {
   return (
     <div className="flex gap-4">
-      <Icon
-        icon={<Available className="size-4" />}
-        aria-label="Available"
-      ></Icon>
-      <Icon icon={<Away className="size-4" />} aria-label="Away"></Icon>
-      <Icon
-        icon={<DoNotDisturb className="size-4" />}
-        aria-label="Do not disturb"
-      ></Icon>
-      <Icon icon={<Busy className="size-4" />} aria-label="Busy"></Icon>
+      <Icon aria-label="Available">
+        <Available className="size-4" />
+      </Icon>
+      <Icon aria-label="Away">
+        <Away className="size-4" />
+      </Icon>
+      <Icon aria-label="Do not disturb">
+        <DoNotDisturb className="size-4" />
+      </Icon>
+      <Icon aria-label="Busy">
+        <Busy className="size-4" />
+      </Icon>
     </div>
   );
 };
 
 export const DecorationIcons = () => {
-  return <Icon icon={<Mail />} />;
+  return (
+    <Icon>
+      <Mail aria-label="test"/>
+    </Icon>
+  );
 };
 
 DecorationIcons.parameters = {

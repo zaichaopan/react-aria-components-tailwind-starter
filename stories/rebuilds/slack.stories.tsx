@@ -1,4 +1,5 @@
 import type { Meta } from '@storybook/react';
+import React from 'react';
 import { Avatar, AvatarBadge } from '../../src/Avatar';
 import { Icon } from '../../src/Icon';
 import { Available } from '../../src/Status';
@@ -20,6 +21,7 @@ import {
   FilePlus,
   HashIcon,
   Headphones,
+  HelpCircle,
   Home,
   Laugh,
   ListFilter,
@@ -27,12 +29,19 @@ import {
   MoreHorizontal,
   PenBoxIcon,
   Plus,
+  Search,
   Smile,
   UserPlus2,
 } from 'lucide-react';
 import { Link } from '../../src/Link';
 import { Strong } from '../../src/Text';
 import { NotificationBadge } from '../../src/NotificationBadge';
+import { ComboBox, ComboBoxListBox, ComboBoxPopover } from '../../src/ComboBox';
+import { Input } from '../../src/Field';
+import { Keyboard } from 'react-aria-components';
+import { DropdownItem, DropdownSection } from '../../src/ListBox';
+import { Button } from '../../src/Button';
+import { TooltipTrigger, Tooltip } from '../../src/Tooltip';
 
 const meta: Meta = {
   title: 'Layouts/slack',
@@ -45,7 +54,21 @@ const meta: Meta = {
 export function Slack() {
   return (
     <div className="flex min-h-screen flex-col bg-gradient-to-r from-fuchsia-950 via-fuchsia-900 to-fuchsia-950">
-      <div className="h-10"></div>
+      <div className="flex h-10 items-center px-4">
+        <div className="ml-auto w-2/5">
+          <SearchBox />
+        </div>
+        <TooltipTrigger>
+          <Button unstyle className="ml-auto p-2 text-white" aria-label="help">
+            <Icon>
+              <HelpCircle className="size-5" />
+            </Icon>
+
+            <NotificationBadge show className="bg-white" />
+          </Button>
+          <Tooltip>Help</Tooltip>
+        </TooltipTrigger>
+      </div>
       <div className="flex flex-1">
         <div className="flex flex w-16 flex-col items-center pb-6">
           <NavLinks />
@@ -55,11 +78,71 @@ export function Slack() {
             <ProfileMenu />
           </div>
         </div>
-        <div className="mb-1 mr-1 flex flex-1 overflow-hidden rounded-md border border-fuchsia-900 bg-background">
+        <div className="mb-1 mr-1 flex flex-1 rounded-md border border-fuchsia-900 bg-background">
           <Sidebar />
         </div>
       </div>
     </div>
+  );
+}
+
+function SearchBox() {
+  const ref = React.useRef<HTMLInputElement>(null);
+
+  React.useEffect(() => {
+    const down = (e: KeyboardEvent) => {
+      if (e.key === 'k' && (e.metaKey || e.ctrlKey)) {
+        e.preventDefault();
+        ref.current?.focus();
+      }
+    };
+    document.addEventListener('keydown', down);
+
+    return () => {
+      document.removeEventListener('keydown', down);
+    };
+  }, []);
+
+  return (
+    <ComboBox allowsCustomValue menuTrigger="focus" aria-label="Search">
+      <div className="relative">
+        <Icon>
+          <Search className="absolute left-2 top-1/2 w-4 -translate-y-1/2 text-muted" />
+        </Icon>
+
+        <Input
+          ref={ref}
+          placeholder="Search"
+          className="peer h-8 bg-background pl-7 focus:border-border focus:ring-0"
+        />
+
+        <Keyboard className="absolute right-2 top-1/2 hidden -translate-y-1/2 px-2 font-sans text-sm/6 text-muted sm:flex sm:peer-data-[focused=true]:hidden">
+          ⌘K
+        </Keyboard>
+        <Keyboard className="absolute right-2 top-1/2 hidden -translate-y-1/2 rounded-md border px-2 py-0.5 text-[0.6rem] text-muted sm:peer-data-[focused=true]:flex">
+          ESC
+        </Keyboard>
+      </div>
+
+      <ComboBoxPopover>
+        <ComboBoxListBox>
+          <DropdownSection title="Suggestion">
+            <DropdownItem textValue="linear">Linear</DropdownItem>
+            <DropdownItem textValue="slack">Slack</DropdownItem>
+            <DropdownItem textValue="youtube">Youtube</DropdownItem>
+            <DropdownItem textValue="raycast">Raycast</DropdownItem>
+          </DropdownSection>
+          <DropdownSection title="Commands">
+            <DropdownItem textValue="clipboard history">
+              Clipboard history
+            </DropdownItem>
+            <DropdownItem textValue="import extension">
+              Import Extension
+            </DropdownItem>
+          </DropdownSection>
+        </ComboBoxListBox>
+      </ComboBoxPopover>
+    </ComboBox>
   );
 }
 
@@ -79,15 +162,13 @@ function NavLinks() {
     <nav className="mt-6 flex w-16 flex-col gap-4 px-2">
       <Link className="group flex-col text-white hover:text-white hover:no-underline sm:text-xs">
         <div className="relative rounded-lg p-2 group-hover:bg-fuchsia-300/45">
-          <Icon
-            icon={
-              <Home
-                size={20}
-                strokeWidth={1.5}
-                className="transition group-hover:scale-110"
-              />
-            }
-          />
+          <Icon>
+            <Home
+              size={20}
+              strokeWidth={1.5}
+              className="transition group-hover:scale-110"
+            />
+          </Icon>
         </div>
         Home
       </Link>
@@ -97,15 +178,13 @@ function NavLinks() {
         className="group flex-col text-white hover:text-white hover:no-underline sm:text-xs"
       >
         <div className="relative rounded-lg p-2 group-hover:bg-fuchsia-300/45">
-          <Icon
-            icon={
-              <MessageCircle
-                size={20}
-                strokeWidth={1.5}
-                className="transition group-hover:scale-110"
-              />
-            }
-          />
+          <Icon>
+            <MessageCircle
+              size={20}
+              strokeWidth={1.5}
+              className="transition group-hover:scale-110"
+            />
+          </Icon>
           <NotificationBadge count={6} />
         </div>
         DMs
@@ -115,45 +194,39 @@ function NavLinks() {
         className="group flex-col text-white hover:text-white hover:no-underline sm:text-xs"
       >
         <div className="relative rounded-lg p-2 group-hover:bg-fuchsia-300/45">
-          <Icon
-            icon={
-              <Bell
-                size={20}
-                strokeWidth={1.5}
-                className="transition group-hover:scale-110"
-              />
-            }
-          />
+          <Icon>
+            <Bell
+              size={20}
+              strokeWidth={1.5}
+              className="transition group-hover:scale-110"
+            />
+          </Icon>
           <NotificationBadge show />
         </div>
         Activity
       </Link>
       <Link className="group flex-col text-white hover:text-white hover:no-underline sm:text-xs">
         <div className="relative rounded-lg p-2 group-hover:bg-fuchsia-300/45">
-          <Icon
-            icon={
-              <Bookmark
-                strokeWidth={1.5}
-                size={20}
-                className="transition group-hover:scale-110"
-              />
-            }
-          />
+          <Icon>
+            <Bookmark
+              strokeWidth={1.5}
+              size={20}
+              className="transition group-hover:scale-110"
+            />
+          </Icon>
         </div>
         Later
       </Link>
 
       <Link className="group flex-col text-white hover:text-white hover:no-underline sm:text-xs">
         <div className="relative rounded-lg p-2 group-hover:bg-fuchsia-300/45">
-          <Icon
-            icon={
-              <MoreHorizontal
-                strokeWidth={1.5}
-                size={20}
-                className="transition group-hover:scale-110"
-              />
-            }
-          />
+          <Icon>
+            <MoreHorizontal
+              strokeWidth={1.5}
+              size={20}
+              className="transition group-hover:scale-110"
+            />
+          </Icon>
         </div>
         More
       </Link>
@@ -164,7 +237,7 @@ function NavLinks() {
 function CompanyMenu() {
   return (
     <MenuTrigger>
-      <MenuButton text className="text-base text-white hover:bg-fuchsia-900">
+      <MenuButton plain className="text-base text-white hover:bg-fuchsia-900">
         ACME
       </MenuButton>
       <MenuPopover className="min-w-[300px] rounded-md">
@@ -202,15 +275,15 @@ function CompanyMenu() {
                   <MenuItem>Customize workspace</MenuItem>
                   <MenuItem textValue="workflow builder">
                     <span>Workflow Builder</span>
-                    <Icon
-                      icon={<ExternalLink className="ml-auto h-4" />}
-                    ></Icon>
+                    <Icon>
+                      <ExternalLink className="ml-auto h-4" />
+                    </Icon>
                   </MenuItem>
                   <MenuItem textValue="Workflow analytics">
                     <span>Workflow Analytics</span>
-                    <Icon
-                      icon={<ExternalLink className="ml-auto h-4" />}
-                    ></Icon>
+                    <Icon>
+                      <ExternalLink className="ml-auto h-4" />
+                    </Icon>
                   </MenuItem>
                 </MenuSection>
                 <MenuSection title="Administration">
@@ -232,11 +305,13 @@ function FilterMessagesMenu() {
   return (
     <MenuTrigger>
       <MenuButton
-        text
+        plain
         className="ml-auto text-white hover:bg-fuchsia-900"
         noArrow
       >
-        <Icon icon={<ListFilter />} aria-label="Filter Convestation"></Icon>
+        <Icon aria-label="Filter Conversation">
+          <ListFilter />
+        </Icon>
       </MenuButton>
       <MenuPopover className="min-w-[250px] rounded-md">
         <Menu
@@ -266,11 +341,13 @@ function CreateMenu() {
     <MenuTrigger>
       <MenuButton
         noArrow
-        text
+        plain
         size="lg"
         className="rounded-full bg-fuchsia-300/45 text-white aria-[expanded=true]:rotate-45 hover:bg-fuchsia-900"
       >
-        <Icon icon={<Plus strokeWidth={1.5} />} aria-label="Create new"></Icon>
+        <Icon aria-label="Create new">
+          <Plus strokeWidth={1.5} />
+        </Icon>
       </MenuButton>
       <MenuPopover placement="right" className="min-w-[350px]">
         <Menu>
@@ -283,7 +360,9 @@ function CreateMenu() {
               shortcut="⌘N"
               icon={
                 <div className="my-1 rounded-full bg-purple-200 p-2 text-purple-900">
-                  <Icon icon={<PenBoxIcon className="size-5" />} />
+                  <Icon>
+                    <PenBoxIcon className="size-5" />
+                  </Icon>
                 </div>
               }
             >
@@ -293,10 +372,9 @@ function CreateMenu() {
               description="Star a video or audio chat"
               icon={
                 <div className="my-1 rounded-full bg-teal-200 p-2 text-teal-900">
-                  <Icon
-                    className="my-1 rounded-full bg-teal-200 text-teal-900"
-                    icon={<Headphones className="size-5" />}
-                  />
+                  <Icon>
+                    <Headphones className="size-5" />
+                  </Icon>
                 </div>
               }
             >
@@ -307,7 +385,9 @@ function CreateMenu() {
               shortcut="⌘⇧N"
               icon={
                 <div className="my-1 rounded-full bg-cyan-200 p-2 text-cyan-900">
-                  <Icon icon={<FilePlus className="size-5" />} />
+                  <Icon>
+                    <FilePlus className="size-5" />
+                  </Icon>
                 </div>
               }
             >
@@ -317,7 +397,9 @@ function CreateMenu() {
               description="Start a group convention by topic"
               icon={
                 <div className="rounded-full bg-slate-200 p-2 text-slate-900">
-                  <Icon icon={<HashIcon className="size-5" />} />
+                  <Icon>
+                    <HashIcon className="size-5" />
+                  </Icon>
                 </div>
               }
             >
@@ -330,10 +412,9 @@ function CreateMenu() {
             className="font-medium"
             icon={
               <div className="my-1 rounded-full p-2">
-                <Icon
-                  className="rounded-full"
-                  icon={<UserPlus2 strokeWidth={1.5} className="size-5" />}
-                />
+                <Icon>
+                  <UserPlus2 strokeWidth={1.5} className="size-5" />
+                </Icon>
               </div>
             }
           >
@@ -348,7 +429,7 @@ function CreateMenu() {
 function ProfileMenu() {
   return (
     <MenuTrigger>
-      <MenuButton unstyle>
+      <MenuButton unstyle noArrow>
         <Avatar
           className="size-10"
           src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=facearea&facepad=3&w=256&h=256&q=80"
@@ -361,7 +442,10 @@ function ProfileMenu() {
           />
         </Avatar>
       </MenuButton>
-      <MenuPopover className="min-w-[300px] bg-white rounded-md" placement="right bottom">
+      <MenuPopover
+        className="min-w-[300px] rounded-md bg-white"
+        placement="right bottom"
+      >
         <div className="flex items-center gap-2 px-6 pb-2 pt-6">
           <Avatar
             className="size-10"
@@ -371,9 +455,9 @@ function ProfileMenu() {
           <div className="flex flex-col">
             <span className="text-sm font-semibold">Zai Pan</span>
             <span className="flex items-center gap-1 text-sm">
-              <Icon
-                icon={<Available className="h-2.5 w-2.5"></Available>}
-              ></Icon>
+              <Icon>
+                <Available className="h-2.5 w-2.5"></Available>
+              </Icon>
               <span className="text-xs text-muted">Active</span>
             </span>
           </div>

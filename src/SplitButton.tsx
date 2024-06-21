@@ -2,19 +2,23 @@ import React from 'react';
 import { Button, BasicButtonProps, Variant } from './Button';
 import { ButtonProps as RACButtonProps } from 'react-aria-components';
 import { twMerge } from 'tailwind-merge';
+import { composeTailwindRenderProps } from './utils';
+import { ChevronDown } from 'lucide-react';
+import { Icon } from './Icon';
 
 export type SplitButtonGroupProps = JSX.IntrinsicElements['div'] & {
   color?: BasicButtonProps['color'];
 } & Variant;
 
-const SplitButtonGroupContext =
-  React.createContext<SplitButtonGroupProps | null>(null);
+const SplitButtonContext = React.createContext<SplitButtonGroupProps | null>(
+  null,
+);
 
-function useSplitButtonGroupContext() {
-  const context = React.useContext(SplitButtonGroupContext);
+function useSplitButtonContext() {
+  const context = React.useContext(SplitButtonContext);
 
   if (!context) {
-    throw Error('SplitButtonGroupContext is required');
+    throw Error('<SplitButtonContext.Provider> is required');
   }
 
   return context;
@@ -24,52 +28,64 @@ export function SplitButtonGroup({
   className,
   color,
   children,
-  text,
+  plain,
   unstyle,
   outline,
   ...props
 }: SplitButtonGroupProps) {
   return (
-    <SplitButtonGroupContext.Provider
-      value={{ ...({ text, outline, unstyle } as Variant), color }}
+    <SplitButtonContext.Provider
+      value={{ ...({ plain, outline, unstyle } as Variant), color }}
     >
       <div {...props} className={twMerge('flex gap-0', className)}>
         <>{children}</>
       </div>
-    </SplitButtonGroupContext.Provider>
+    </SplitButtonContext.Provider>
   );
 }
 
 export function SplitButton(props: RACButtonProps) {
-  const context = useSplitButtonGroupContext();
+  const context = useSplitButtonContext();
   return (
     <Button
-      className={twMerge(
-        '-mr-[0.5px] rounded-r-none',
-        "after:absolute after:right-0 after:top-0 after:h-full after:border-l-[1.5px] after:border-l-border after:content-['']",
-        'border-r-0',
-        !context.outline &&
-          'after:border-l-2 after:border-l-white/20 dark:after:border-black/20',
-      )}
       {...props}
       {...(context as RACButtonProps)}
+      className={composeTailwindRenderProps(
+        props.className,
+
+        [
+          'rounded-r-none',
+          '-mr-[0.5px] rounded-r-none',
+          "after:absolute after:right-0 after:top-0 after:h-full after:border-l-[1.5px] after:border-l-border after:content-['']",
+          'border-r-0',
+          context.outline
+            ? 'after:border-l'
+            : 'after:border-l-2 after:border-l-white/20 dark:after:border-black/20',
+        ],
+      )}
     />
   );
 }
 
-export function SplitButtonMenuTriggerButton({
+export function SplitButtonMenuTrigger({
   'aria-label': ariaLabel,
   ...props
 }: RACButtonProps) {
-  const context = useSplitButtonGroupContext();
+  const context = useSplitButtonContext();
 
   return (
     <Button
-      aria-label={ariaLabel}
-      color={context.color}
-      className={twMerge('min-w-fit rounded-l-none border-l-0 px-1.5')}
       {...props}
       {...(context as RACButtonProps)}
-    ></Button>
+      color={context.color}
+      className={composeTailwindRenderProps(
+        props.className,
+        'w-7 min-w-fit rounded-l-none border-l-0',
+      )}
+    >
+      <Icon aria-label={ariaLabel}>
+        <ChevronDown />
+      </Icon>
+    </Button>
   );
 }

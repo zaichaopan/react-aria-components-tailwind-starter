@@ -13,7 +13,7 @@ interface AlertDialogProps extends Omit<DialogProps, 'children'> {
   primaryActionLabel?: React.ReactNode;
   secondaryActionLabel?: React.ReactNode;
   onCancelAction?: () => void;
-  onPrimaryAction?: () => void; 
+  onPrimaryAction?: () => void;
   onSecondaryAction?: () => void;
 }
 
@@ -47,7 +47,7 @@ export function AlertDialog({
           ) : null}
 
           <DialogFooter className={secondaryActionLabel ? 'justify-start' : ''}>
-            <Button text onPress={chain(onCancelAction, close)}>
+            <Button plain onPress={chain(onCancelAction, close)}>
               {cancelLabel || 'Cancel'}
             </Button>
             {secondaryActionLabel ? (

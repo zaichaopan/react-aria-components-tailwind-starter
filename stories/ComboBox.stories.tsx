@@ -254,7 +254,7 @@ export function SearchBox() {
       if (e.key === 'k' && (e.metaKey || e.ctrlKey)) {
         e.preventDefault();
 
-        if (ref.current) { 
+        if (ref.current) {
           ref.current.focus();
         }
       }
@@ -270,11 +270,9 @@ export function SearchBox() {
     <ComboBox menuTrigger="focus" aria-label="Search">
       <Description>Open the combobox using ⌘K</Description>
       <div className="relative">
-        <Icon
-          icon={
-            <Search className="absolute left-2 top-1/2 w-4 -translate-y-1/2 text-muted" />
-          }
-        ></Icon>
+        <Icon>
+          <Search className="absolute left-2 top-1/2 w-4 -translate-y-1/2 text-muted" />
+        </Icon>
 
         <Input placeholder="Search&hellip;" ref={ref} className="px-7" />
 

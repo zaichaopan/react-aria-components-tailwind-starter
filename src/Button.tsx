@@ -7,7 +7,7 @@ import {
   composeRenderProps,
 } from 'react-aria-components';
 import { focusOutlineStyle } from './utils';
-import { ChevronDown, Loader2Icon, X } from 'lucide-react';
+import { Loader2Icon, X } from 'lucide-react';
 import { twMerge } from 'tailwind-merge';
 import { VisuallyHidden } from './VisuallyHidden';
 import { Icon } from './Icon';
@@ -21,13 +21,13 @@ type NeverExcept<T, K extends keyof T> = {
 
 type Variants = {
   outline: true;
-  text: true;
+  plain: true;
   unstyle: true;
 };
 
 export type Variant =
   | NeverExcept<Variants, 'outline'>
-  | NeverExcept<Variants, 'text'>
+  | NeverExcept<Variants, 'plain'>
   | NeverExcept<Variants, 'unstyle'>;
 
 export type BasicButtonProps = {
@@ -35,39 +35,32 @@ export type BasicButtonProps = {
   size?: 'sm' | 'lg';
   isLoading?: boolean;
   loadingLabel?: string;
-  noArrow?: boolean;
+  isIconOnly?: boolean;
 } & Variant;
 
 export type ButtonProps = AsChildProps<RACButtonProps> & BasicButtonProps;
 
 export type ButtonPropsWithoutAsChild = RACButtonProps & BasicButtonProps;
 
-function buttonStyle({
-  size,
-  color,
-  iconButton,
-  ...props
-}: BasicButtonProps & {
-  iconButton?: boolean;
-}) {
+function buttonStyle({ size, color, isIconOnly, ...props }: BasicButtonProps) {
   if (props.unstyle) {
-    return ['outline-none', 'rounded-lg'];
+    return 'relative outline-none rounded-lg';
   }
 
   return [
     // Base
-    'group relative inline-flex items-center justify-center whitespace-nowrap border rounded-lg transition outline-none',
+    'group relative inline-flex justify-center items-center whitespace-nowrap rounded-lg outline-none',
 
     // Disabled
     'disabled:opacity-50',
 
     // Size
-    iconButton
+    isIconOnly
       ? [
           // default size
           'p-1.5 size-9',
-          size === 'sm' && 'p-1 size-7',
-          size === 'lg' && 'p-1.5 size-10',
+          size === 'sm' && 'p-1 size-7 rounded-md',
+          size === 'lg' && 'size-10',
         ]
       : [
           // default size
@@ -84,13 +77,14 @@ function buttonStyle({
     color === 'destructive' && 'text-destructive',
 
     // Variant
-    props.outline && ['bg-background shadow-sm hover:bg-hover'],
+    props.outline && ['border bg-transparent shadow-sm hover:bg-hover'],
 
-    props.text && ['border-0 bg-transparent hover:bg-hover'],
+    props.plain && ['bg-transparent hover:bg-hover'],
 
     props.outline === undefined &&
-      props.text === undefined && [
-        'shadow-[inset_0_1px_0_0_rgba(255,255,255,0.1)] dark:border-0',
+      props.plain === undefined && [
+        'border dark:border-0',
+        'shadow-[inset_0_1px_0_0_rgba(255,255,255,0.1)]',
         'border-accent bg-accent/95 text-white hover:bg-accent/85',
         color === 'success' &&
           'border-success/95 bg-success hover:bg-success/85',
@@ -99,14 +93,9 @@ function buttonStyle({
       ],
 
     // Svg
-    !iconButton && '[&_svg]:opacity-75',
-    !iconButton && '[&.bg-background_svg]:opacity-60',
     '[&.h-7_svg]:size-3 [&.size-7_svg]:size-4',
     '[&.h-9_svg]:size-4 [&.size-9_svg]:size-5',
     '[&.h-10_svg]:size-5 [&.size-10_svg]:size-6',
-
-    // listbox button - select, combobox
-    'aria-[haspopup=listbox]:h-7 aria-[haspopup=listbox]:mr-1 aria-[haspopup=listbox]:px-1',
   ];
 }
 
@@ -117,12 +106,12 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       isLoading,
       loadingLabel,
       asChild,
-      noArrow,
       size,
       color,
-      text,
+      plain,
       unstyle,
       outline,
+      isIconOnly,
       ...restProps
     } = props;
 
@@ -134,7 +123,8 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
             buttonStyle({
               size,
               color,
-              ...({ unstyle, outline, text } as Variant),
+              isIconOnly,
+              ...({ unstyle, outline, plain } as Variant),
             }),
           )}
         />
@@ -144,45 +134,41 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     return (
       <>
         <RACButton
-          ref={ref}
           {...restProps}
+          ref={ref}
           className={composeRenderProps(
             props.className,
             (className, renderProps) => {
-              return twMerge([
-                ...buttonStyle({
+              return twMerge(
+                buttonStyle({
                   size,
                   color,
-                  ...({ unstyle, outline, text } as Variant),
+                  isIconOnly,
+                  ...({ unstyle, outline, plain } as Variant),
                 }),
                 renderProps.isFocusVisible && focusOutlineStyle,
                 isLoading && 'text-transparent',
                 className,
-              ]);
+              );
             },
           )}
         >
-          <>
-            {isLoading ? (
-              <div className="absolute flex h-full items-center justify-center">
-                <Icon
-                  icon={<Loader2Icon className="animate-spin text-white" />}
-                />
-              </div>
-            ) : null}
-            {children}
-
-            {!noArrow && (
-              <Icon
-                icon={
-                  <ChevronDown
-                    className="hidden group-aria-[haspopup]:block"
-                    strokeWidth={1.5}
-                  />
-                }
-              />
-            )}
-          </>
+          {(renderProps) => {
+            return (
+              <>
+                {isLoading ? (
+                  <div className="absolute flex h-full items-center justify-center">
+                    <Icon>
+                      <Loader2Icon className="animate-spin text-white" />
+                    </Icon>
+                  </div>
+                ) : null}
+                {typeof children === 'function'
+                  ? children(renderProps)
+                  : children}
+              </>
+            );
+          }}
         </RACButton>
         <VisuallyHidden>
           <span aria-live="polite">{isLoading ? loadingLabel : ''}</span>
@@ -193,64 +179,31 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 );
 
 export type ToggleButtonProps = RACToggleButtonProps &
-  Exclude<BasicButtonProps, 'isLoading' | 'loadingLabel' | 'noArrow'>;
+  Exclude<BasicButtonProps, 'isLoading' | 'loadingLabel'>;
 
 export function ToggleButton(props: ToggleButtonProps) {
   return (
     <RACToggleButton
       {...props}
       className={composeRenderProps(props.className, (className, renderProps) =>
-        twMerge([
-          ...buttonStyle(props),
+        twMerge(
+          buttonStyle(props),
           renderProps.isFocusVisible && focusOutlineStyle,
           className,
-        ]),
+        ),
       )}
     />
   );
 }
 
-export type IconButtonProps = Omit<RACButtonProps, 'children'> &
-  BasicButtonProps & {
-    icon: React.ReactNode;
-    'aria-label'?: string;
-  };
-
-export const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
-  function Button({ icon, 'aria-label': ariaLabel, ...props }, ref) {
-    return (
-      <RACButton
-        ref={ref}
-        {...props}
-        className={composeRenderProps(
-          props.className,
-          (className, renderProps) => {
-            return twMerge([
-              ...buttonStyle({
-                iconButton: true,
-                ...props,
-              }),
-              renderProps.isFocusVisible && focusOutlineStyle,
-              className,
-            ]);
-          },
-        )}
-      >
-        <Icon icon={icon} aria-label={ariaLabel}></Icon>
-      </RACButton>
-    );
-  },
-);
-
-export function CloseButton({
-  'aria-label': ariaLabel,
-  ...props
-}: Omit<IconButtonProps, 'icon'>) {
+export function CloseButton(
+  props: ButtonPropsWithoutAsChild & { isIconOnly?: never },
+) {
   return (
-    <IconButton
-      {...(props as IconButtonProps)}
-      icon={<X strokeWidth={1.5} />}
-      aria-label={ariaLabel ?? 'Close'}
-    />
+    <Button isIconOnly {...props}>
+      <Icon aria-label="Close">
+        <X strokeWidth={1.5} />
+      </Icon>
+    </Button>
   );
 }

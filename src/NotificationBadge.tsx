@@ -9,12 +9,19 @@ export type NotificationBadgeProps =
       show?: never;
     };
 
-export function NotificationBadge(props: NotificationBadgeProps) {
+export function NotificationBadge({
+  className,
+  ...props
+}: NotificationBadgeProps & JSX.IntrinsicElements['span']) {
   if (props.show) {
     return (
       <span
         aria-hidden
-        className="absolute right-1 top-1 flex h-2 w-2 rounded-full bg-red-600"
+        className={twMerge(
+          'absolute right-1 top-1 flex h-2 w-2 rounded-full bg-red-600',
+          className,
+        )}
+        {...props}
       />
     );
   }
@@ -26,6 +33,7 @@ export function NotificationBadge(props: NotificationBadgeProps) {
         className={twMerge([
           'text-whit absolute right-0 top-0 flex h-4 -translate-y-1.5 translate-x-1 items-center justify-center rounded-full bg-red-600 text-[0.65rem] text-white',
           props.count > 9 ? ' w-5' : 'w-4',
+          className,
         ])}
       >
         {Math.min(props.count, 9)}{' '}
@@ -36,5 +44,3 @@ export function NotificationBadge(props: NotificationBadgeProps) {
 
   return null;
 }
-
-

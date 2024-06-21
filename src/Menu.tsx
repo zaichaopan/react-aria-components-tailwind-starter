@@ -1,4 +1,4 @@
-import { Check, ChevronRight } from 'lucide-react';
+import { Check, ChevronDown, ChevronRight } from 'lucide-react';
 import {
   Menu as RACMenu,
   MenuItem as RACMenuItem,
@@ -8,21 +8,26 @@ import {
   Text,
   Keyboard,
   Separator,
-  ButtonProps as RACButtonProps,
 } from 'react-aria-components';
 import { DropdownSection, DropdownSectionProps } from './ListBox';
 import { Popover, PopoverProps } from './Popover';
-import { BasicButtonProps, Button } from './Button';
+import { Button, ButtonPropsWithoutAsChild } from './Button';
 import { twMerge } from 'tailwind-merge';
 import { Icon } from './Icon';
 import { composeTailwindRenderProps } from './utils';
 
 export { MenuTrigger, SubmenuTrigger } from 'react-aria-components';
 
+type MenuButtonProps = ButtonPropsWithoutAsChild & {
+  noArrow?: boolean;
+};
+
 export function MenuButton({
   className,
+  noArrow,
+  children,
   ...props
-}: RACButtonProps & BasicButtonProps) {
+}: MenuButtonProps) {
   return (
     <Button
       {...props}
@@ -30,7 +35,20 @@ export function MenuButton({
         'gap-1',
         props.unstyle ? '' : 'px-2.5',
       ])}
-    />
+    >
+      {(renderProps) => {
+        return (
+          <>
+            {typeof children === 'function' ? children(renderProps) : children}
+            {!noArrow && (
+              <Icon>
+                <ChevronDown className="opacity-50" />
+              </Icon>
+            )}
+          </>
+        );
+      }}
+    </Button>
   );
 }
 
@@ -161,17 +179,15 @@ export function MenuItem({
               )}
             </div>
 
-            <Icon
-              icon={
-                <ChevronRight
-                  strokeWidth="1.5"
-                  className={twMerge([
-                    'hidden h-4 w-4 text-muted group-data-[has-submenu]:inline-block',
-                    isFocused && 'text-white',
-                  ])}
-                />
-              }
-            ></Icon>
+            <Icon>
+              <ChevronRight
+                strokeWidth="1.5"
+                className={twMerge([
+                  'hidden h-4 w-4 text-muted group-data-[has-submenu]:inline-block',
+                  isFocused && 'text-white',
+                ])}
+              />
+            </Icon>
           </>
         ),
       )}

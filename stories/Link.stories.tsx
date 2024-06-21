@@ -39,7 +39,9 @@ export const WithIcons = () => {
       target="_blank"
     >
       React Aria Component Link
-      <Icon icon={<ExternalLink className="size-5" strokeWidth={1.5} />}></Icon>
+      <Icon>
+        <ExternalLink className="size-5" strokeWidth={1.5} />
+      </Icon>
     </Link>
   );
 };
@@ -60,14 +62,12 @@ export function NavLinks() {
         className="flex-col p-2 hover:no-underline"
         aria-label="Chat - 6 new messages"
       >
-        <Icon
-          icon={
-            <MessageCircle
-              size={20}
-              className="transition group-hover:scale-110"
-            />
-          }
-        />
+        <Icon>
+          <MessageCircle
+            size={20}
+            className="transition group-hover:scale-110"
+          />
+        </Icon>
         <NotificationBadge count={6} />
         <span className="text-xs" aria-hidden="true">
           Chat
@@ -77,11 +77,9 @@ export function NavLinks() {
         aria-label="Calls - new calls"
         className="flex-col p-2 hover:no-underline"
       >
-        <Icon
-          icon={
-            <Phone size={20} className="transition group-hover:scale-110" />
-          }
-        />
+        <Icon>
+          <Phone size={20} className="transition group-hover:scale-110" />
+        </Icon>
 
         <NotificationBadge show />
         <span className="text-xs" aria-hidden="true">
@@ -92,11 +90,9 @@ export function NavLinks() {
         aria-label="Meet - 9 new meet alerts"
         className="flex-col p-2 hover:no-underline"
       >
-        <Icon
-          icon={
-            <Video size={20} className="transition group-hover:scale-110" />
-          }
-        />
+        <Icon>
+          <Video size={20} className="transition group-hover:scale-110" />
+        </Icon>
 
         <NotificationBadge count={20} />
         <span className="text-xs" aria-hidden="true">
@@ -118,8 +114,7 @@ export const AvatarLinks = () => {
 AvatarLinks.parameters = {
   docs: {
     description: {
-      story:
-        'Use the **Avatar** component to render avatar inside a link:',
+      story: 'Use the **Avatar** component to render avatar inside a link:',
     },
   },
 };

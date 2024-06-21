@@ -24,8 +24,8 @@ export const Link = React.forwardRef<HTMLAnchorElement, LinkProps>(
 
     return (
       <RACLink
-        ref={ref}
         {...props}
+        ref={ref}
         className={composeRenderProps(
           props.className,
           (className, renderProps) => {

@@ -22,9 +22,10 @@ import {
 } from './Field';
 import { Popover } from './Popover';
 import { ListBox, ListBoxItem } from './ListBox';
-import { Button, IconButton } from './Button';
+import { Button } from './Button';
 import { twMerge } from 'tailwind-merge';
-import { X } from 'lucide-react';
+import { ChevronDown, X } from 'lucide-react';
+import { Icon } from './Icon';
 
 export interface ComboBoxFiledProps<T extends object>
   extends Omit<
@@ -210,7 +211,10 @@ export function MultiSelectField<
         >
           <DescriptionProvider>
             <ComboBox
-              className={twMerge('group flex min-w-[150px] flex-col gap-1', className)}
+              className={twMerge(
+                'group flex min-w-[150px] flex-col gap-1',
+                className,
+              )}
               items={availableList.items}
               selectedKey={fieldState.selectedKey}
               inputValue={fieldState.inputValue}
@@ -323,7 +327,11 @@ export function MultiSelect<
                       </div>
                     </div>
 
-                    <Button text className="p-1.5"></Button>
+                    <Button plain className="mr-1" size="sm">
+                      <Icon>
+                        <ChevronDown />
+                      </Icon>
+                    </Button>
                   </InputFieldGroup>
 
                   <Popover
@@ -366,13 +374,15 @@ export function SelectionTag({ children, ...props }: TagProps) {
         <>
           {children}
           {allowsRemoving && (
-            <IconButton
+            <Button
+              plain
               slot="remove"
               className="m-auto size-5 h-fit rounded p-0 px-0.5"
-              text
-              aria-label="Remove"
-              icon={<X strokeWidth={1.5} />}
-            ></IconButton>
+            >
+              <Icon aria-label="Remove">
+                <X strokeWidth={1.5} />
+              </Icon>
+            </Button>
           )}
         </>
       )}

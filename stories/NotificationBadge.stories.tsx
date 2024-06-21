@@ -31,12 +31,16 @@ export const WithDotNotifications = () => {
   return (
     <div className="flex gap-4">
       <Link className="p-2" aria-label="Chat - 6 new messages">
-        <Icon icon={<MessageCircle />} />
+        <Icon>
+          <MessageCircle />
+        </Icon>
         <NotificationBadge show />
       </Link>
 
       <Button aria-label="Chat - 6 new messages">
-        <Icon icon={<MessageCircle />} />
+        <Icon>
+          <MessageCircle />
+        </Icon>
         <NotificationBadge count={10} />
       </Button>
     </div>
@@ -46,7 +50,9 @@ export const WithDotNotifications = () => {
 export const WithNumberNotifications = () => {
   return (
     <Link className="relative p-2" aria-label="New message">
-      <Icon icon={<MessageCircle />} />
+      <Icon>
+        <MessageCircle />
+      </Icon>
       <NotificationBadge count={10} />
     </Link>
   );

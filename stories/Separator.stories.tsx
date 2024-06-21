@@ -31,7 +31,7 @@ export const Example = () => {
       <div>
         A separator consists of a single element that represents the divider
       </div>
-      <Separator className='my-4'/>
+      <Separator className="my-4" />
     </div>
   );
 };
@@ -49,8 +49,7 @@ export const VerticalSeparators = () => {
 VerticalSeparators.parameters = {
   docs: {
     description: {
-      story:
-        'Use **orientation="vertical"** to render vertical separators:',
+      story: 'Use **orientation="vertical"** to render vertical separators:',
     },
   },
 };
@@ -66,9 +65,9 @@ export const WithTextsOrIcons = () => {
 
       <div className="flex flex-col items-center p-8">
         <Separator>
-          <Icon
-            icon={<Mail className="size-5 text-muted" strokeWidth={1.5} />}
-          />
+          <Icon>
+            <Mail className="size-5 text-muted" strokeWidth={1.5} />
+          </Icon>
         </Separator>
       </div>
 

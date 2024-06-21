@@ -2,22 +2,21 @@ import React from 'react';
 import { VisuallyHidden } from './VisuallyHidden';
 
 interface IconProps {
-  icon?: React.ReactNode;
+  children: React.ReactNode;
   'aria-label'?: string;
-  className?: string;
 }
 
-export function Icon(props: IconProps) {
-  const child = React.Children.only(props.icon);
+export function Icon({ children, 'aria-label': ariaLabel }: IconProps) {
+  const child = React.Children.only(children);
+  
   return (
     <>
       {React.cloneElement(child as React.ReactElement, {
         'aria-hidden': 'true',
+        'aria-label': undefined,
         focusable: 'false',
       })}
-      {props['aria-label'] ? (
-        <VisuallyHidden>{props['aria-label']}</VisuallyHidden>
-      ) : null}
+      {ariaLabel ? <VisuallyHidden>{ariaLabel}</VisuallyHidden> : null}
     </>
   );
 }

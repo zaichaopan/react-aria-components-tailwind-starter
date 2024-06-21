@@ -10,7 +10,6 @@ import {
   DialogTitle,
 } from '../src/Dialog';
 import { Button } from '../src/Button';
-import {TooltipTrigger } from 'react-aria-components';
 import { Form } from '../src/Form';
 import {
   Description,
@@ -32,7 +31,7 @@ import {
 } from '../src/Menu';
 import { Bell, Star } from 'lucide-react';
 import { Tab, TabList, TabPanel, Tabs } from '../src/Tabs';
-import { Tooltip } from '../src/Tooltip';
+import { TooltipTrigger, Tooltip } from '../src/Tooltip';
 import { Text } from '../src/Text';
 import { docs } from '../.storybook/docs';
 import { Heading } from '../src/Heading';
@@ -83,7 +82,7 @@ export const Example = () => {
                   </Form>
                 </DialogBody>
                 <DialogFooter>
-                  <Button text onPress={close}>
+                  <Button plain onPress={close}>
                     Cancel
                   </Button>
                   <Button form="edit-profile-form" type="submit">
@@ -128,7 +127,7 @@ export const DialogSizes = () => {
                   </Form>
                 </DialogBody>
                 <DialogFooter>
-                  <Button text onPress={close}>
+                  <Button plain onPress={close}>
                     Cancel
                   </Button>
                   <Button form="edit-profile-form" type="submit">
@@ -182,7 +181,7 @@ export const NoCloseButton = () => {
                   </Form>
                 </DialogBody>
                 <DialogFooter>
-                  <Button text onPress={close}>
+                  <Button plain onPress={close}>
                     Cancel
                   </Button>
                   <Button form="edit-profile-form" type="submit">
@@ -235,7 +234,7 @@ export const NoHeader = () => {
                   </Form>
                 </DialogBody>
                 <DialogFooter>
-                  <Button text onPress={close}>
+                  <Button plain onPress={close}>
                     Cancel
                   </Button>
                   <Button form="edit-profile-form" type="submit">
@@ -293,7 +292,7 @@ export const AutoFocusElements = (args: any) => {
                   </Form>
                 </DialogBody>
                 <DialogFooter>
-                  <Button text onPress={close}>
+                  <Button plain onPress={close}>
                     Cancel
                   </Button>
                   <Button form="edit-profile-form" type="submit">
@@ -353,7 +352,7 @@ export const WithIsDismissableAndKeyboardDismissDisabled = () => {
                   </Form>
                 </DialogBody>
                 <DialogFooter>
-                  <Button text onPress={close}>
+                  <Button plain onPress={close}>
                     Cancel
                   </Button>
                   <Button form="edit-profile-form" type="submit">
@@ -491,7 +490,7 @@ export const WithScrollingContent = () => {
                 </DialogBody>
 
                 <DialogFooter>
-                  <Button text onPress={close}>
+                  <Button plain onPress={close}>
                     Cancel
                   </Button>
                   <Button>I agree</Button>
@@ -554,7 +553,7 @@ export const WithControlledOpenState = () => {
             </Form>
           </DialogBody>
           <DialogFooter>
-            <Button text onPress={() => setOpen(false)}>
+            <Button plain onPress={() => setOpen(false)}>
               Cancel
             </Button>
             <Button form="edit-profile-form" type="submit">
@@ -1012,7 +1011,7 @@ export const Drawers = () => {
                   </Form>
                 </DialogBody>
                 <DialogFooter>
-                  <Button text onPress={close}>
+                  <Button plain onPress={close}>
                     Cancel
                   </Button>
                   <Button form="edit-profile-form" type="submit">

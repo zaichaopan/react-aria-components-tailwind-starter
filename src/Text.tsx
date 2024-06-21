@@ -2,6 +2,7 @@ import { LinkProps, TextProps } from 'react-aria-components';
 import { Link } from './Link';
 import { twMerge } from 'tailwind-merge';
 import React from 'react';
+import { composeTailwindRenderProps } from './utils';
 
 export function Text({
   className,
@@ -28,12 +29,12 @@ export function Strong({
 }: JSX.IntrinsicElements['strong']) {
   return (
     <Text
+      {...props}
       elementType="strong"
       className={twMerge(
         'text-base/6 font-medium text-foreground sm:text-sm/6',
         className,
       )}
-      {...props}
     />
   );
 }
@@ -41,13 +42,18 @@ export function Strong({
 export function Small({ className, ...props }: JSX.IntrinsicElements['small']) {
   return (
     <Text
+      {...props}
       elementType="small"
       className={twMerge('text-sm/6/ text-muted sm:text-xs/6', className)}
-      {...props}
     />
   );
 }
 
 export function TextLink(props: LinkProps) {
-  return <Link {...props} className="underline" />;
+  return (
+    <Link
+      {...props}
+      className={composeTailwindRenderProps(props.className, 'underline')}
+    />
+  );
 }

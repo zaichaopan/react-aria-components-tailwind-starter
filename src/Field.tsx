@@ -180,12 +180,6 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
               renderProps.isInvalid && 'border-destructive',
               renderProps.isDisabled && 'disabled:opacity-50',
               renderProps.isFocused && inputRingStyle,
-              // When it is inside role=presentation | group parent and it has border
-            //  '[[role=presentation]_&.border]:h-fit [[role=presentation]_&.border]:border-none [[role=presentation]_&.border]:shadow-none [[role=presentation]_&.border]:ring-0',
-              // '[[role=group]_&.border]:h-fit [[role=group]_&.border]:border-none [[role=group]_&.border]:shadow-none [[role=group]_&.border]:ring-0 [[role=group]_&.border]:invalid:ring-0',
-
-              // search filed
-              //  '[[slot=search-field]_&.border]:h-fit [[slot=search-field]_&.border]:border-none [[slot=search-field]_&.border]:shadow-none [[slot=search-field]_&.border]:ring-0',
               className,
             );
           },
@@ -219,8 +213,8 @@ export const InputFieldGroup = React.forwardRef<HTMLDivElement, GroupProps>(
   function InputFieldGroup(props, ref) {
     return (
       <RACGroup
-        ref={ref}
         {...props}
+        ref={ref}
         className={composeRenderProps(
           props.className,
           (className, renderProps) => {
@@ -259,15 +253,16 @@ export function SearchInput({
 }: InputProps & { className?: GroupProps['className'] }) {
   return (
     <InputFieldGroup
-      slot="search-field"
       className={composeTailwindRenderProps(
         className,
         '[&_input::-webkit-search-cancel-button]:hidden',
       )}
     >
-      <Icon icon={<Search className="ml-2 size-5" strokeWidth={1.5} />} />
+      <Icon>
+        <Search className="ml-2 size-5" strokeWidth={1.5} />
+      </Icon>
       <Input {...props} />
-      <CloseButton text size="sm" className="mr-1 group-empty:invisible" />
+      <CloseButton plain size="sm" className="mr-1 group-empty:invisible" />
     </InputFieldGroup>
   );
 }

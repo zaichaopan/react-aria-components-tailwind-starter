@@ -5,10 +5,12 @@ import {
   ComboBoxProps as RACComboBoxProps,
   ComboBoxStateContext,
 } from 'react-aria-components';
-import { Button, ButtonPropsWithoutAsChild, CloseButton } from './Button';
+import { ButtonPropsWithoutAsChild, CloseButton, Button } from './Button';
 import { ListBox } from './ListBox';
 import { composeTailwindRenderProps } from './utils';
 import { Popover, PopoverProps } from './Popover';
+import { ChevronDown } from 'lucide-react';
+import { Icon } from './Icon';
 
 export interface ComboBoxProps<T extends object>
   extends Omit<RACComboBoxProps<T>, 'children' | 'items'> {
@@ -56,6 +58,20 @@ export function ComboBoxListBox<T extends object>({
   );
 }
 
+export function TriggerButton() {
+  return (
+    <Button
+      size="sm"
+      className="absolute right-1 top-1/2 -translate-y-1/2"
+      plain
+    >
+      <Icon>
+        <ChevronDown />
+      </Icon>
+    </Button>
+  );
+}
+
 export function ClearButton({
   onPress,
 }: {
@@ -72,21 +88,12 @@ export function ClearButton({
       slot={null}
       className="absolute right-1 top-1/2 -translate-y-1/2"
       size="sm"
-      text
+      plain
       onPress={(e) => {
         state?.setSelectedKey(null);
 
         onPress?.(e);
       }}
     ></CloseButton>
-  );
-}
-
-export function TriggerButton() {
-  return (
-    <Button
-      className="absolute right-1 top-1/2 -translate-y-1/2 rounded"
-      text
-    />
   );
 }

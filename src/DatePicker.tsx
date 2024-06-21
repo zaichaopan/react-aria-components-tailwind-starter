@@ -7,7 +7,7 @@ import {
   DatePickerStateContext,
   GroupProps,
 } from 'react-aria-components';
-import { Button, IconButton } from './Button';
+import { Button } from './Button';
 import { Calendar } from './Calendar';
 import { DateInput } from './DateField';
 import { Dialog } from './Dialog';
@@ -41,12 +41,16 @@ export function DatePickerInput({ className, ...props }: GroupProps) {
         )}
       >
         <DateInput className="min-w-[150px] flex-1 px-2 py-1.5 text-sm shadow-sm" />
-        <IconButton
-          text
+
+        <Button
+          plain
           size="sm"
           className="mx-1.5 size-auto rounded p-0.5 outline-offset-0"
-          icon={<CalendarDays className="size-4" />}
-        />
+        >
+          <Icon>
+            <CalendarDays className="size-4 opacity-50 group-hover:opacity-100" />
+          </Icon>
+        </Button>
       </InputFieldGroup>
 
       <Popover className="max-w-none" placement="bottom">
@@ -70,12 +74,11 @@ export function DatePickerButton({ className, ...props }: GroupProps) {
           'h-9 w-auto min-w-[130px]',
         )}
       >
-        <Button className="flex-1 font-normal" text noArrow>
+        <Button className="flex-1 font-normal" plain>
           {state.formatValue('en-US', {})}
-          <Icon
-            aria-label="Calendar"
-            icon={<CalendarDays className="ml-auto size-4" />}
-          ></Icon>
+          <Icon aria-label="Calendar">
+            <CalendarDays className="ml-auto size-4 opacity-50 group-hover:opacity-100" />
+          </Icon>
         </Button>
 
         <DateInput className="hidden" aria-hidden />

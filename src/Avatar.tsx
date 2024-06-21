@@ -15,7 +15,7 @@ function useAvatarContext() {
   const context = React.useContext(AvatarContext);
 
   if (!context) {
-    throw Error('AvatarContext is required');
+    throw Error('<AvatarContext.Provider> is required');
   }
 
   return context;
@@ -24,8 +24,6 @@ function useAvatarContext() {
 type AvatarProps = {
   src?: string;
   alt: string;
-  className?: string;
-  children?: React.ReactNode;
   colorless?: boolean;
 } & JSX.IntrinsicElements['div'];
 
@@ -81,15 +79,15 @@ function InitialAvatar({
   id: string;
   colorless: boolean;
 }) {
-  const initials = getDefaultInitials(alt, { maxInitials: 2 });
+  const initials = getDefaultInitials(alt);
   const token = getRandomToken(alt, colorless);
 
   return (
     <svg
+      aria-hidden
       viewBox="0 0 24 24"
       className={avatarStyle}
       id={id}
-      aria-hidden
       aria-label={alt}
       style={{
         background: `var(--${token})`,
@@ -139,7 +137,7 @@ export const AvatarBadge = ({
         props.className,
       ])}
     >
-      <Icon icon={badge} aria-label={ariaLabel} />
+      <Icon aria-label={ariaLabel}>{badge}</Icon>
     </span>
   );
 };

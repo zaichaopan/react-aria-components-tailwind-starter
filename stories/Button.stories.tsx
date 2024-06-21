@@ -1,6 +1,6 @@
 import type { Meta } from '@storybook/react';
 import { FolderPlus, Mail, MicIcon } from 'lucide-react';
-import { Button, CloseButton, IconButton } from '../src/Button';
+import { Button, CloseButton } from '../src/Button';
 import { docs } from '../.storybook/docs';
 import { Icon } from '../src/Icon';
 import { Avatar } from '../src/Avatar';
@@ -73,7 +73,7 @@ export const ButtonVariants = () => {
     <div className="flex flex-col gap-4">
       <Button>Press me</Button>
       <Button outline>Press me</Button>
-      <Button text>Press me</Button>
+      <Button plain>Press me</Button>
       <Button unstyle>Press me</Button>
     </div>
   );
@@ -83,7 +83,7 @@ ButtonVariants.parameters = {
   docs: {
     description: {
       story:
-        'Use prop **outline | text | unstyled**" to render buttons with different variants:',
+        'Use prop **outline | plain | unstyled**" to render buttons with different variants:',
     },
   },
 };
@@ -92,11 +92,15 @@ export const WithIcons = () => {
   return (
     <div className="flex gap-4">
       <Button>
-        <Icon icon={<Mail />} />
+        <Icon>
+          <Mail />
+        </Icon>
         Subscribe
       </Button>
       <Button outline>
-        <Icon icon={<FolderPlus />} />
+        <Icon>
+          <FolderPlus />
+        </Icon>
         Create New Folder
       </Button>
     </div>
@@ -115,12 +119,16 @@ WithIcons.parameters = {
 export const IconButtons = () => {
   return (
     <div className="flex gap-4">
-      <IconButton aria-label="Mic" icon={<MicIcon />}></IconButton>
-      <IconButton
-        outline
-        aria-label="Create New Folder"
-        icon={<FolderPlus strokeWidth={1.5} />}
-      ></IconButton>
+      <Button isIconOnly>
+        <Icon>
+          <MicIcon/>
+        </Icon>
+      </Button>
+      <Button isIconOnly>
+        <Icon aria-label="Create New Folder">
+          <FolderPlus strokeWidth={1.5} />
+        </Icon>
+      </Button>
     </div>
   );
 };
@@ -129,13 +137,13 @@ IconButtons.parameters = {
   docs: {
     description: {
       story:
-        'Use the **IconButton** component to render a icon only button. Use **aria-label** for none decorative buttons. Icon size is auto scaled based on button sizes:',
+        'Use the **isIconOnly** prop to render a icon only button. Use **aria-label** for none decorative buttons. Icon size is auto scaled based on button sizes:',
     },
   },
 };
 
 export const CloseButtons = () => {
-  return <CloseButton text/>;
+  return <CloseButton plain />;
 };
 
 CloseButtons.parameters = {
@@ -197,8 +205,10 @@ ImageButtons.parameters = {
 
 export const CustomStyles = () => {
   return (
-    <Button className="size-16 flex-col gap-0 px-4 text-xs/6" text>
-      <Icon icon={<MicIcon className="h-8" strokeWidth={1.5} />} />
+    <Button className="size-16 flex-col gap-0 px-4 text-xs/6" plain>
+      <Icon>
+        <MicIcon className="h-8" strokeWidth={1.5} />
+      </Icon>
       Mic
     </Button>
   );

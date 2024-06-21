@@ -1,7 +1,10 @@
 import type { Meta } from '@storybook/react';
-import { TooltipTrigger } from 'react-aria-components';
 import { Button } from '../src/Button';
-import { NonFousableTooltipTarget, Tooltip } from '../src/Tooltip';
+import {
+  NonFousableTooltipTarget,
+  TooltipTrigger,
+  Tooltip,
+} from '../src/Tooltip';
 import { docs } from '../.storybook/docs';
 
 const meta: Meta<typeof Tooltip> = {

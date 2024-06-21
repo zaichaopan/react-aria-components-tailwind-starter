@@ -211,7 +211,7 @@ export const AlertDialogsVsDialogs = () => {
                   <Text>You are already using the latest version.</Text>
                 </DialogBody>
                 <DialogFooter>
-                  <Button text onPress={close}>
+                  <Button plain onPress={close}>
                     OK
                   </Button>
                 </DialogFooter>

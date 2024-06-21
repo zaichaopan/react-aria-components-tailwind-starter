@@ -124,7 +124,7 @@ export function Dialogs() {
                   </Form>
                 </DialogBody>
                 <DialogFooter>
-                  <Button text onPress={close}>
+                  <Button plain onPress={close}>
                     Go back
                   </Button>
                   <Button form="edit-profile-form" type="submit">

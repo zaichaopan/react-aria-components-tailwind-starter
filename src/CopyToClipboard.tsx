@@ -1,9 +1,9 @@
 import React from 'react';
-import { IconButtonProps } from './Button';
+import { Button, ButtonPropsWithoutAsChild } from './Button';
 import { useCopyToClipboard } from './hooks/use-clipboard';
-import { IconButton } from './Button';
 import { TooltipTrigger, Tooltip } from './Tooltip';
 import { Copy } from 'lucide-react';
+import { Icon } from './Icon';
 
 export interface CopyToClipboardProps {
   timeout?: number;
@@ -20,7 +20,6 @@ export function CopyToClipboard({ timeout, children }: CopyToClipboardProps) {
 
 export function CopyButton({
   copyText,
-  variant,
   labelBefore = 'Copy',
   labelAfter = 'Copied',
   ...props
@@ -28,7 +27,7 @@ export function CopyButton({
   copyText: string;
   labelBefore?: string;
   labelAfter?: string;
-} & Omit<IconButtonProps, 'icon'>) {
+} & Omit<ButtonPropsWithoutAsChild, 'outline' | 'unstyle'>) {
   const [showTooltip, setShowTooltip] = React.useState(false);
 
   return (
@@ -36,17 +35,19 @@ export function CopyButton({
       {({ copied, copy }) => {
         return (
           <TooltipTrigger isOpen={copied || showTooltip}>
-            <IconButton
+            <Button
+              {...props}
+              plain
               onHoverChange={setShowTooltip}
               onPress={() => {
                 copy(copyText);
                 setShowTooltip(false);
               }}
-              variant={variant ?? 'text'}
-              aria-label={labelBefore}
-              icon={<Copy strokeWidth="1.5px" />}
-              {...props}
-            ></IconButton>
+            >
+              <Icon>
+                <Copy strokeWidth="1.5px" aria-label={labelBefore} />
+              </Icon>
+            </Button>
             <Tooltip>{copied ? labelAfter : labelBefore}</Tooltip>
           </TooltipTrigger>
         );
