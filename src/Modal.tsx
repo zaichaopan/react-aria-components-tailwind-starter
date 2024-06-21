@@ -53,7 +53,7 @@ export function Modal({
       isDismissable={isDismissable}
       className={composeRenderProps(
         classNames?.modalOverlay,
-        (_, renderProps) => {
+        (className, renderProps) => {
           return twMerge(
             'fixed left-0 top-0 isolate z-20',
             'h-[--visual-viewport-height] w-full',
@@ -81,6 +81,7 @@ export function Modal({
                   renderProps.isExiting &&
                     'duration-200 ease-in animate-out fade-out',
                 ],
+            className,
           );
         },
       )}
