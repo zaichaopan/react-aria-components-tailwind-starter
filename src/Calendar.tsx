@@ -52,7 +52,7 @@ export function Calendar<T extends DateValue>({
         </CalendarGridBody>
       </CalendarGrid>
       {errorMessage && (
-        <Text slot="errorMessage" className="text-sm text-red-600">
+        <Text slot="errorMessage" className="text-sm text-destructive">
           {errorMessage}
         </Text>
       )}
@@ -69,9 +69,9 @@ export function CalendarHeader() {
         {
           <Icon aria-label="Previous">
             {direction === 'rtl' ? (
-              <ChevronRight strokeWidth={1.5} className="opacity-60" />
+              <ChevronRight strokeWidth={1.5} className="opacity-75" />
             ) : (
-              <ChevronLeft strokeWidth={1.5} className="opacity-60" />
+              <ChevronLeft strokeWidth={1.5} className="opacity-75" />
             )}
           </Icon>
         }
@@ -87,9 +87,9 @@ export function CalendarHeader() {
         {
           <Icon aria-label="Next">
             {direction === 'rtl' ? (
-              <ChevronLeft strokeWidth={1.5} className="opacity-60" />
+              <ChevronLeft strokeWidth={1.5} className="opacity-75" />
             ) : (
-              <ChevronRight strokeWidth={1.5} className="opacity-60" />
+              <ChevronRight strokeWidth={1.5} className="opacity-75" />
             )}
           </Icon>
         }

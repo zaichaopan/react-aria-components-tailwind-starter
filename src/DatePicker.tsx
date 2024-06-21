@@ -48,7 +48,7 @@ export function DatePickerInput({ className, ...props }: GroupProps) {
           className="mx-1.5 size-auto rounded p-0.5 outline-offset-0"
         >
           <Icon>
-            <CalendarDays className="size-4 opacity-60 group-hover:opacity-75" />
+            <CalendarDays className="size-4 opacity-75" />
           </Icon>
         </Button>
       </InputFieldGroup>
@@ -77,7 +77,7 @@ export function DatePickerButton({ className, ...props }: GroupProps) {
         <Button className="flex-1 font-normal" plain>
           {state.formatValue('en-US', {})}
           <Icon aria-label="Calendar">
-            <CalendarDays className="ml-auto size-4 opacity-60 group-hover:opacity-75" />
+            <CalendarDays className="ml-auto size-4 opacity-75" />
           </Icon>
         </Button>
 

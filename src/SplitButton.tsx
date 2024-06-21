@@ -85,7 +85,7 @@ export function SplitButtonMenuTrigger({
       isIconOnly
     >
       <Icon aria-label={ariaLabel}>
-        <ChevronDown className="opacity-60" />
+        <ChevronDown className="opacity-50" />
       </Icon>
     </Button>
   );
