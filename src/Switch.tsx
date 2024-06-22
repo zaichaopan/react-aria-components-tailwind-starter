@@ -16,7 +16,6 @@ export function SwitchField({
         {...props}
         className={twMerge(
           'group flex flex-col gap-y-1',
-          '[&_[slot=description]]:has-[label[data-disabled]]:opacity-50',
           'sm:[&_[slot=description]]:has-[label[data-label-position=left]]:pr-[4rem]',
           'sm:[&_[slot=description]]:has-[label[data-label-position=right]]:pl-[3rem]',
           '[&_label]:has-[[data-label-position=left]]:justify-between',

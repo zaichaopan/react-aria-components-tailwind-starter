@@ -41,6 +41,8 @@ export function CheckboxGroupContent({
       {...props}
       className={twMerge(
         'flex gap-3 group-orientation-vertical:flex-col ',
+        // When a checkbox has description, make the label font-medium if it is not
+        '[&_label:not(.font-medium)]:has-[[slot=description]]:font-medium',
         className,
       )}
     />
@@ -57,12 +59,11 @@ export function CheckboxField({
         {...props}
         className={twMerge(
           'group flex flex-col gap-y-1',
-          '[&_[slot=description]]',
           'sm:[&_[slot=description]]:has-[label[data-label-position=left]]:pr-7',
           'sm:[&_[slot=description]]:has-[label[data-label-position=right]]:pl-7',
           '[&_label]:has-[[data-label-position=left]]:justify-between',
+          // When a checkbox has description, make the label font-medium
           '[&_label]:has-[[slot=description]]:font-medium',
-          'has-[label[data-disabled]]:opacity-50',
           className,
         )}
       />
@@ -89,7 +90,7 @@ export function Checkbox({
             data-label-position={labelPosition}
             className={composeTailwindRenderProps(
               props.className,
-              'group flex items-center gap-3 text-base/6 transition sm:text-sm/6',
+              'group flex items-center gap-3 text-base/6 transition disabled:opacity-50 sm:text-sm/6',
             )}
           >
             {(renderProps) => (
