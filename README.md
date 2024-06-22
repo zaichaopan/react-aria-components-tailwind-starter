@@ -23,6 +23,10 @@ npm i tailwindcss-react-aria-components
 npm i @tailwindcss/container-queries
 # if you want to use the HoverCard component
 npm i @floating-ui/react
+# If you want to use the Multi-Select component
+npm i react-stately
+# If you want to use the AlertDialog, Separator or VisuallyHidden component
+npm i react-aria
 ```
 
 3. Edit your tailwind.config.js file using [./tailwind.config.js](./tailwind.config.js)
