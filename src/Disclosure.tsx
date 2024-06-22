@@ -45,7 +45,6 @@ export function Disclosure({
 }
 
 export function DisclosureControl({
-  children,
   className,
   ...props
 }: JSX.IntrinsicElements['summary']) {
@@ -56,8 +55,6 @@ export function DisclosureControl({
         'flex w-full cursor-pointer select-none justify-between rounded text-left text-base/6 font-medium outline-none group-open:mb-2 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-1 focus-visible:ring-offset-background [&::-webkit-details-marker]:hidden',
         className,
       )}
-    >
-      {children}
-    </summary>
+    />
   );
 }

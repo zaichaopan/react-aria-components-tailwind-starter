@@ -32,7 +32,7 @@ export function Strong({
       {...props}
       elementType="strong"
       className={twMerge(
-        'text-base/6 font-medium text-foreground sm:text-sm/6',
+        'text-base/6 font-medium sm:text-sm/6',
         className,
       )}
     />

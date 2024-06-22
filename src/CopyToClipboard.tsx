@@ -15,7 +15,7 @@ export interface CopyToClipboardProps {
 
 export function CopyToClipboard({ timeout, children }: CopyToClipboardProps) {
   const { copied, copy } = useCopyToClipboard({ timeout });
-  return <>{children({ copied, copy })}</>;
+  return children({ copied, copy });
 }
 
 export function CopyButton({
@@ -45,7 +45,7 @@ export function CopyButton({
               }}
             >
               <Icon>
-                <Copy strokeWidth="1.5px" aria-label={labelBefore} />
+                <Copy strokeWidth={1.5} aria-label={labelBefore} />
               </Icon>
             </Button>
             <Tooltip>{copied ? labelAfter : labelBefore}</Tooltip>

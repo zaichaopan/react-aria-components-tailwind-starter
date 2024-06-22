@@ -2,7 +2,7 @@ import React from 'react';
 import {
   getDefaultInitials,
   getRandomToken,
-} from './generateInitialAvatarDataUrl';
+} from './generateInitialAvatar';
 import { twMerge } from 'tailwind-merge';
 import { Icon } from './Icon';
 import { useImageLoadingStatus } from './hooks/use-image-loading-status';
