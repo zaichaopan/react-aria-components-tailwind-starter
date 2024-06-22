@@ -1,4 +1,3 @@
-import React from 'react';
 import { Check, Minus } from 'lucide-react';
 import { ReactNode } from 'react';
 import {
@@ -6,14 +5,10 @@ import {
   CheckboxGroup as RACCheckboxGroup,
   CheckboxGroupProps as RACCheckboxGroupProps,
   CheckboxProps as RACCheckboxProps,
-  CheckboxRenderProps,
 } from 'react-aria-components';
 import { composeTailwindRenderProps, focusOutlineStyle } from './utils';
 import { twMerge } from 'tailwind-merge';
-import {
-  DescriptionProvider,
-  WithDescriptionContext,
-} from './Field';
+import { DescriptionProvider, WithDescriptionContext } from './Field';
 
 export interface CheckboxGroupProps
   extends Omit<RACCheckboxGroupProps, 'children'> {
@@ -33,9 +28,7 @@ export function CheckboxGroup({
         props.className,
         'group flex flex-col gap-1',
       )}
-    >
-      {props.children}
-    </RACCheckboxGroup>
+    />
   );
 }
 
@@ -45,11 +38,11 @@ export function CheckboxGroupContent({
 }: JSX.IntrinsicElements['div']) {
   return (
     <div
+      {...props}
       className={twMerge(
         'flex gap-3 group-orientation-vertical:flex-col ',
         className,
       )}
-      {...props}
     />
   );
 }
@@ -61,6 +54,7 @@ export function CheckboxField({
   return (
     <DescriptionProvider>
       <div
+        {...props}
         className={twMerge(
           'group flex flex-col gap-y-1',
           '[&_[slot=description]]',
@@ -71,16 +65,12 @@ export function CheckboxField({
           'has-[label[data-disabled]]:opacity-50',
           className,
         )}
-        {...props}
       />
     </DescriptionProvider>
   );
 }
 
-interface CheckboxProps extends Omit<RACCheckboxProps, 'children'> {
-  children:
-    | React.ReactNode
-    | ((renderProps: CheckboxRenderProps) => React.ReactNode);
+interface CheckboxProps extends RACCheckboxProps {
   labelPosition?: 'left' | 'right';
 }
 
@@ -94,23 +84,19 @@ export function Checkbox({
       {(context) => {
         return (
           <RACCheckbox
-            aria-describedby={context?.['aria-describedby']}
             {...props}
+            aria-describedby={context?.['aria-describedby']}
             data-label-position={labelPosition}
             className={composeTailwindRenderProps(
               props.className,
               'group flex items-center gap-3 text-base/6 transition sm:text-sm/6',
             )}
           >
-            {({ isSelected, isIndeterminate, ...renderProps }) => (
+            {(renderProps) => (
               <>
                 {labelPosition === 'left' &&
                   (typeof children === 'function'
-                    ? children({
-                        isSelected,
-                        isIndeterminate,
-                        ...renderProps,
-                      })
+                    ? children(renderProps)
                     : children)}
                 <div
                   className={twMerge([
@@ -118,25 +104,21 @@ export function Checkbox({
                     'size-4 rounded border border-zinc-400/75 shadow-sm transition',
                     'dark:border-[1.5px] dark:border-zinc-600',
                     'invalid:border-destructive',
-                    (isSelected || isIndeterminate) &&
+                    (renderProps.isSelected || renderProps.isIndeterminate) &&
                       'border-accent bg-accent/95 dark:border-accent',
                     renderProps.isFocusVisible && focusOutlineStyle,
                   ])}
                 >
-                  {isIndeterminate ? (
+                  {renderProps.isIndeterminate ? (
                     <Minus aria-hidden className="size-4 text-white" />
-                  ) : isSelected ? (
+                  ) : renderProps.isSelected ? (
                     <Check aria-hidden className="size-4 text-white" />
                   ) : null}
                 </div>
 
                 {labelPosition === 'right' &&
                   (typeof children === 'function'
-                    ? children({
-                        isSelected,
-                        isIndeterminate,
-                        ...renderProps,
-                      })
+                    ? children(renderProps)
                     : children)}
               </>
             )}

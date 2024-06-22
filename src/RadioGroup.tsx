@@ -1,10 +1,8 @@
-import React from 'react';
 import {
   Radio as RACRadio,
   RadioGroup as RACRadioGroup,
   RadioGroupProps as RACRadioGroupProps,
   RadioProps as RACRadioProps,
-  RadioRenderProps,
 } from 'react-aria-components';
 import { DescriptionProvider, WithDescriptionContext } from './Field';
 import { composeTailwindRenderProps, focusOutlineStyle } from './utils';
@@ -18,9 +16,7 @@ export function RadioGroup(props: RACRadioGroupProps) {
         props.className,
         'group flex flex-col gap-1',
       )}
-    >
-      {props.children}
-    </RACRadioGroup>
+    />
   );
 }
 
@@ -31,6 +27,7 @@ export function RadioField({
   return (
     <DescriptionProvider>
       <div
+        {...props}
         className={twMerge(
           'group flex flex-col gap-y-1',
           '[&_[slot=description]]:has-[label[data-disabled]]:opacity-50',
@@ -40,7 +37,6 @@ export function RadioField({
           '[&_label]:has-[[slot=description]]:font-medium',
           className,
         )}
-        {...props}
       />
     </DescriptionProvider>
   );
@@ -52,19 +48,16 @@ export function RadioGroupContent({
 }: JSX.IntrinsicElements['div']) {
   return (
     <div
+      {...props}
       className={twMerge(
         'flex flex-col gap-2 group-orientation-horizontal:flex-row group-orientation-horizontal:flex-wrap',
         className,
       )}
-      {...props}
     />
   );
 }
 
-export interface RadioProps extends Omit<RACRadioProps, 'children'> {
-  children:
-    | React.ReactNode
-    | ((renderProps: RadioRenderProps) => React.ReactNode);
+export interface RadioProps extends RACRadioProps {
   labelPosition?: 'left' | 'right';
 }
 

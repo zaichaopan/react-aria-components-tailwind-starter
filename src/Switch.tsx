@@ -1,15 +1,10 @@
-import React from 'react';
 import {
   Switch as RACSwitch,
   SwitchProps as RACSwitchProps,
-  SwitchRenderProps,
 } from 'react-aria-components';
 import { composeTailwindRenderProps, focusOutlineStyle } from './utils';
 import { twMerge } from 'tailwind-merge';
-import {
-  DescriptionProvider,
-  WithDescriptionContext,
-} from './Field';
+import { DescriptionProvider, WithDescriptionContext } from './Field';
 
 export function SwitchField({
   className,
@@ -18,6 +13,7 @@ export function SwitchField({
   return (
     <DescriptionProvider>
       <div
+        {...props}
         className={twMerge(
           'group flex flex-col gap-y-1',
           '[&_[slot=description]]:has-[label[data-disabled]]:opacity-50',
@@ -27,16 +23,12 @@ export function SwitchField({
           '[&_label]:has-[[slot=description]]:font-medium',
           className,
         )}
-        {...props}
       />
     </DescriptionProvider>
   );
 }
 
-interface SwitchProps extends Omit<RACSwitchProps, 'children'> {
-  children:
-    | React.ReactNode
-    | ((renderProps: SwitchRenderProps) => React.ReactNode);
+interface SwitchProps extends RACSwitchProps {
   labelPosition?: 'left' | 'right';
 }
 
