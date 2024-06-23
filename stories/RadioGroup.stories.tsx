@@ -11,6 +11,8 @@ import { Small, Text, TextLink } from '../src/Text';
 import { docs } from '../.storybook/docs';
 import { FieldError, Label, Description } from '../src/Field';
 import { twMerge } from 'tailwind-merge';
+import { CheckCircle } from 'lucide-react';
+import { focusOutlineStyle } from '../src/utils';
 
 const meta: Meta<typeof RadioGroup> = {
   title: 'RadioGroup',
@@ -128,7 +130,7 @@ export const WithValidation = (args: any) => {
   return (
     <Form>
       <div className="w-full max-w-sm p-3">
-        <RadioGroup {...args}>
+        <RadioGroup {...args} isRequired>
           <Label>Notify me about...</Label>
           <RadioGroupContent>
             <Radio value="all">All new message</Radio>
@@ -143,10 +145,6 @@ export const WithValidation = (args: any) => {
       </Button>
     </Form>
   );
-};
-
-WithValidation.args = {
-  isRequired: true,
 };
 
 export const RadioCardGroups = () => {
@@ -205,4 +203,89 @@ export const RadioCardGroups = () => {
       </RadioGroup>
     </div>
   );
+};
+
+export const CustomRadioGroups = () => {
+  const options = [
+    { name: 'Standard', description: ' 4-6 business days', price: ' $4.99' },
+    { name: 'Express', description: ' 2-5 business days', price: ' $15.99' },
+    { name: 'Lightning', description: ' 1 business day1', price: ' $24.99' },
+  ];
+
+  return (
+    <div className="flex flex-1">
+      <RadioGroup
+        orientation="horizontal"
+        defaultValue={options[0].name}
+        className="flex-1"
+      >
+        <Label>Shipping</Label>
+        <RadioGroupContent className="grid flex-1 grid-cols-1 gap-4 sm:grid-cols-2">
+          {options.map((option) => {
+            return (
+              <Radio
+                value={option.name}
+                className={({ isSelected, isFocusVisible }) => {
+                  return twMerge(
+                    'items-start rounded-md border p-3 shadow-sm',
+                    isSelected && 'bg-accent text-white',
+                    isFocusVisible && focusOutlineStyle,
+                  );
+                }}
+                customRender={({ isSelected }) => {
+                  return (
+                    <div className="flex w-full items-center justify-between gap-3">
+                      <div
+                        className={twMerge(
+                          'flex shrink-0 items-center text-blue-100',
+                          isSelected && ' text-white',
+                        )}
+                      >
+                        <CheckCircle />
+                      </div>
+                      <div className="flex flex-1 flex-col">
+                        <div
+                          className={twMerge(
+                            'font-semibold text-gray-900',
+                            isSelected && 'text-white',
+                          )}
+                        >
+                          {option.name}
+                        </div>
+                        <div
+                          className={twMerge(
+                            'inline text-gray-500',
+                            isSelected && 'text-sky-100',
+                          )}
+                        >
+                          {option.description}
+                        </div>
+                      </div>
+                      <div
+                        className={twMerge(
+                          'font-medium text-muted',
+                          isSelected && 'text-white',
+                        )}
+                      >
+                        {option.price}
+                      </div>
+                    </div>
+                  );
+                }}
+              />
+            );
+          })}
+        </RadioGroupContent>
+      </RadioGroup>
+    </div>
+  );
+};
+
+CustomRadioGroups.parameters = {
+  docs: {
+    description: {
+      story:
+        'Use the **customRender** prop of **Radio** to render completely custom radio groups:',
+    },
+  },
 };
