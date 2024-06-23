@@ -64,7 +64,7 @@ export function DatePickerInput({ className, ...props }: GroupProps) {
 }
 
 export function DatePickerButton({ className, ...props }: GroupProps) {
-  const {locale} = useLocale()
+  const { locale } = useLocale();
   const state = React.useContext(DatePickerStateContext);
   const formattedDate = state.formatValue(locale, {});
 
@@ -74,11 +74,11 @@ export function DatePickerButton({ className, ...props }: GroupProps) {
         {...props}
         className={composeTailwindRenderProps(className, 'h-9')}
       >
-        <Button className="flex-1 px-2 font-normal" plain>
+        <Button className="text flex-1 px-2 font-normal" plain>
           {formattedDate === '' ? (
             <span className="text-muted">Select date</span>
           ) : (
-            formattedDate
+            <span className="text-sm">{formattedDate}</span>
           )}
           <Icon aria-label="Calendar">
             <CalendarDays className="ml-auto size-4 opacity-75" />
