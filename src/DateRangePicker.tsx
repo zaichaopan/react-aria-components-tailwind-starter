@@ -5,6 +5,7 @@ import {
   DateRangePickerProps as AriaDateRangePickerProps,
   DateRangePickerStateContext,
   DateValue,
+  useLocale,
 } from 'react-aria-components';
 import { Button } from './Button';
 import { DateInput } from './DateField';
@@ -64,8 +65,9 @@ export function DateRangePickerInput() {
 }
 
 export function DateRangePickerButton() {
+  const { locale } = useLocale();
   const state = React.useContext(DateRangePickerStateContext);
-  const formattedValue = state.formatValue('en-US', {});
+  const formattedValue = state.formatValue(locale, {});
 
   return (
     <>
@@ -80,16 +82,20 @@ export function DateRangePickerButton() {
           }}
         >
           {formattedValue ? (
-            <span className="flex flex-1 items-center">
-              <span className="min-w-fit">{formattedValue.start}</span>
+            <>
+              <span className="min-w-fit">
+                {formattedValue.start}
+              </span>
               <span
                 aria-hidden="true"
-                className="flex-1 text-gray-800 group-disabled:text-gray-200 dark:text-zinc-200 group-disabled:dark:text-zinc-600"
+                className="ml-2 text-gray-800 group-disabled:text-gray-200 dark:text-zinc-200 group-disabled:dark:text-zinc-600"
               >
                 –
               </span>
-              <span className="min-w-fit flex-1">{formattedValue.end}</span>
-            </span>
+              <span className="min-w-fit flex-1">
+                {formattedValue.end}
+              </span>
+            </>
           ) : (
             <span className="flex flex-1 items-center text-muted">
               Select date range
@@ -100,11 +106,7 @@ export function DateRangePickerButton() {
           </Icon>
         </Button>
 
-        <DateInput
-          slot="start"
-          aria-hidden
-          className="hidden"
-        />
+        <DateInput slot="start" aria-hidden className="hidden" />
         <DateInput slot="end" aria-hidden className="hidden" />
       </InputFieldGroup>
       <Popover className="max-w-none" placement="bottom">

@@ -6,6 +6,7 @@ import {
   DateValue,
   DatePickerStateContext,
   GroupProps,
+  useLocale,
 } from 'react-aria-components';
 import { Button } from './Button';
 import { Calendar } from './Calendar';
@@ -63,8 +64,9 @@ export function DatePickerInput({ className, ...props }: GroupProps) {
 }
 
 export function DatePickerButton({ className, ...props }: GroupProps) {
-  const state = React.useContext(DatePickerStateContext)!;
-  const formattedDate = state.formatValue('en-US', {});
+  const {locale} = useLocale()
+  const state = React.useContext(DatePickerStateContext);
+  const formattedDate = state.formatValue(locale, {});
 
   return (
     <>
