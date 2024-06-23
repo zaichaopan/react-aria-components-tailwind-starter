@@ -35,15 +35,15 @@ export function DateRangePicker<T extends DateValue>({
 export function DateRangePickerInput() {
   return (
     <>
-      <InputFieldGroup className="w-auto min-w-[208px]">
-        <DateInput slot="start" className="min-w-fit text-sm" />
+      <InputFieldGroup>
+        <DateInput slot="start" className="min-w-fit" />
         <span
           aria-hidden="true"
           className="ml-2 text-gray-800 group-disabled:text-gray-200 dark:text-zinc-200 group-disabled:dark:text-zinc-600"
         >
           –
         </span>
-        <DateInput slot="end" className="min-w-fit flex-1 text-sm" />
+        <DateInput slot="end" className="min-w-fit flex-1" />
         <Button
           plain
           size="sm"
@@ -69,7 +69,7 @@ export function DateRangePickerButton() {
 
   return (
     <>
-      <InputFieldGroup className="flex w-auto min-w-[208px]">
+      <InputFieldGroup>
         <Button
           plain
           className={(renderProps) => {
@@ -81,16 +81,14 @@ export function DateRangePickerButton() {
         >
           {formattedValue ? (
             <span className="flex flex-1 items-center">
-              <span className="min-w-fit text-sm">{formattedValue.start}</span>
+              <span className="min-w-fit">{formattedValue.start}</span>
               <span
                 aria-hidden="true"
                 className="flex-1 text-gray-800 group-disabled:text-gray-200 dark:text-zinc-200 group-disabled:dark:text-zinc-600"
               >
                 –
               </span>
-              <span className="min-w-fit flex-1 text-sm">
-                {formattedValue.end}
-              </span>
+              <span className="min-w-fit flex-1">{formattedValue.end}</span>
             </span>
           ) : (
             <span className="flex flex-1 items-center text-muted">
@@ -105,7 +103,7 @@ export function DateRangePickerButton() {
         <DateInput
           slot="start"
           aria-hidden
-          className="hidden min-w-fit text-sm"
+          className="hidden"
         />
         <DateInput slot="end" aria-hidden className="hidden" />
       </InputFieldGroup>

@@ -40,7 +40,7 @@ export function DatePickerInput({ className, ...props }: GroupProps) {
           'h-9 w-auto min-w-[208px]',
         )}
       >
-        <DateInput className="min-w-[150px] flex-1 px-2 py-1.5 text-sm shadow-sm" />
+        <DateInput />
 
         <Button
           plain
@@ -70,10 +70,7 @@ export function DatePickerButton({ className, ...props }: GroupProps) {
     <>
       <InputFieldGroup
         {...props}
-        className={composeTailwindRenderProps(
-          className,
-          'h-9 w-auto min-w-[130px]',
-        )}
+        className={composeTailwindRenderProps(className, 'h-9')}
       >
         <Button className="flex-1 px-2 font-normal" plain>
           {formattedDate === '' ? (

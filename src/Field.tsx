@@ -221,7 +221,6 @@ export const InputFieldGroup = React.forwardRef<HTMLDivElement, GroupProps>(
         className={composeRenderProps(
           props.className,
           (className, renderProps) => {
-            console.log('is disabled', renderProps.isDisabled);
             return twMerge(
               'group relative flex w-full items-center overflow-hidden rounded-md border bg-inherit shadow-sm group-disabled:opacity-50',
               renderProps.isInvalid && 'border-destructive',
