@@ -209,7 +209,7 @@ export const CustomRadioGroups = () => {
   const options = [
     { name: 'Standard', description: ' 4-6 business days', price: ' $4.99' },
     { name: 'Express', description: ' 2-5 business days', price: ' $15.99' },
-    { name: 'Lightning', description: ' 1 business day1', price: ' $24.99' },
+    { name: 'Lightning', description: ' 1 business day', price: ' $24.99' },
   ];
 
   return (
