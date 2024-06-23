@@ -64,6 +64,7 @@ export function DatePickerInput({ className, ...props }: GroupProps) {
 
 export function DatePickerButton({ className, ...props }: GroupProps) {
   const state = React.useContext(DatePickerStateContext)!;
+  const formattedDate = state.formatValue('en-US', {});
 
   return (
     <>
@@ -74,8 +75,12 @@ export function DatePickerButton({ className, ...props }: GroupProps) {
           'h-9 w-auto min-w-[130px]',
         )}
       >
-        <Button className="flex-1 font-normal" plain>
-          {state.formatValue('en-US', {})}
+        <Button className="flex-1 px-2 font-normal" plain>
+          {formattedDate === '' ? (
+            <span className="text-muted">Select date</span>
+          ) : (
+            formattedDate
+          )}
           <Icon aria-label="Calendar">
             <CalendarDays className="ml-auto size-4 opacity-75" />
           </Icon>

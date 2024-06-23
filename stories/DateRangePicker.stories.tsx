@@ -4,6 +4,7 @@ import { Button } from '../src/Button';
 import {
   DateRangePickerInput,
   DateRangePicker,
+  DateRangePickerButton,
 } from '../src/DateRangePicker';
 import { Description, FieldError, Label } from '../src/Field';
 import { docs } from '../.storybook/docs';
@@ -46,6 +47,20 @@ export const Validation = () => {
         <Label>Stay duration</Label>
         <Description>Please enter your stay duration</Description>
         <DateRangePickerInput />
+        <FieldError />
+      </DateRangePicker>
+      <Button type="submit">Submit</Button>
+    </Form>
+  );
+};
+
+export const DateRangePickerButtons = () => {
+  return (
+    <Form className="flex flex-col items-start gap-2">
+      <DateRangePicker isRequired>
+        <Label>Stay duration</Label>
+        <Description>Please select your stay duration</Description>
+        <DateRangePickerButton />
         <FieldError />
       </DateRangePicker>
       <Button type="submit">Submit</Button>
