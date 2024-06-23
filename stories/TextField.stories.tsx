@@ -12,7 +12,7 @@ import {
 import { docs } from '../.storybook/docs';
 import { Form } from '../src/Form';
 import { Button } from '../src/Button';
-import { Search } from 'lucide-react';
+import { Mail } from 'lucide-react';
 import { Icon } from '../src/Icon';
 
 const meta: Meta<typeof TextField> = {
@@ -67,9 +67,9 @@ export const WithIcon = () => {
 
       <InputFieldGroup role="presentation">
         <Icon>
-          <Search className="ml-2 size-4" strokeWidth={1.5} />
+          <Mail className="ml-2 size-4" strokeWidth={1.5} />
         </Icon>
-        <Input placeholder="Search..." />
+        <Input />
       </InputFieldGroup>
     </TextField>
   );
@@ -79,7 +79,7 @@ export const SearchInputs = () => {
   return (
     <SearchField>
       <Label>Search</Label>
-      <SearchInput />
+      <SearchInput placeholder="Search&hellip;" />
     </SearchField>
   );
 };
@@ -95,9 +95,9 @@ export const WithValidation = () => {
 
         <InputFieldGroup role="presentation">
           <Icon>
-            <Search className="ml-2 size-4" strokeWidth={1.5} />
+            <Mail className="ml-2 size-4" strokeWidth={1.5} />
           </Icon>
-          <Input placeholder="Search..." />
+          <Input />
         </InputFieldGroup>
 
         <FieldError></FieldError>
