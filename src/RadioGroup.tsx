@@ -62,12 +62,12 @@ export function RadioField({
 
 export interface RadioProps extends RACRadioProps {
   labelPosition?: 'left' | 'right';
-  customRender?: never;
+  render?: never;
 }
 
 export interface CustomRenderRadioProps
   extends Omit<RACRadioProps, 'children'> {
-  customRender: (props: RadioRenderProps) => React.ReactNode;
+  render: (props: RadioRenderProps) => React.ReactNode;
   children?: never;
 }
 
@@ -78,7 +78,7 @@ export function Radio({
   return (
     <WithDescriptionContext>
       {(context) => {
-        if (props.customRender) {
+        if (props.render) {
           return (
             <RACRadio
               {...props}
@@ -88,7 +88,7 @@ export function Radio({
                 'group flex items-center gap-3 text-base/6 group-orientation-horizontal:text-nowrap disabled:opacity-50 sm:text-sm/6',
               )}
             >
-              {props.customRender}
+              {props.render}
             </RACRadio>
           );
         }
