@@ -63,7 +63,7 @@ export function DatePickerInput({ className, ...props }: GroupProps) {
   );
 }
 
-export function DatePickerButton({ className, ...props }: GroupProps) {
+export function DatePickerButton(props: GroupProps) {
   const { locale } = useLocale();
   const state = React.useContext(DatePickerStateContext);
   const formattedDate = state.formatValue(locale, {});
@@ -72,7 +72,6 @@ export function DatePickerButton({ className, ...props }: GroupProps) {
     <>
       <InputFieldGroup
         {...props}
-        className={composeTailwindRenderProps(className, 'h-9')}
       >
         <Button className="text flex-1 px-2 font-normal" plain>
           {formattedDate === '' ? (
@@ -80,7 +79,7 @@ export function DatePickerButton({ className, ...props }: GroupProps) {
           ) : (
             <span className="text-sm">{formattedDate}</span>
           )}
-          <Icon aria-label="Calendar">
+          <Icon>
             <CalendarDays className="ml-auto size-4 opacity-75" />
           </Icon>
         </Button>

@@ -8,16 +8,7 @@ import {
 } from '../src/DatePicker';
 import { docs } from '../.storybook/docs';
 import { Description, FieldError, Label } from '../src/Field';
-import {
-  today,
-  getLocalTimeZone,
-  now,
-  toCalendarDateTime,
-} from '@internationalized/date';
-
-const t = now(getLocalTimeZone());
-
-toCalendarDateTime(t);
+import { today, getLocalTimeZone } from '@internationalized/date';
 
 const meta: Meta<typeof DatePicker> = {
   title: 'DatePicker',
