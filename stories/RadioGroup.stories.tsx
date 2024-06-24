@@ -8,7 +8,6 @@ import {
 } from '../src/RadioGroup';
 import { Form } from '../src/Form';
 import { Button } from '../src/Button';
-import { Small, Text, TextLink } from '../src/Text';
 import { docs } from '../.storybook/docs';
 import { FieldError, Label, Description } from '../src/Field';
 import { twMerge } from 'tailwind-merge';
