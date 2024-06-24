@@ -9,7 +9,7 @@ import { useToast } from '@react-aria/toast';
 import { CloseButton } from '../Button';
 import { twMerge } from 'tailwind-merge';
 import { toast, ToastConfig } from './toast-queue';
-import { AlertCircle, AlertTriangle, CheckCircle2 } from 'lucide-react';
+import { AlertOctagon, AlertTriangle, CheckCircle2 } from 'lucide-react';
 
 interface ToastRegionProps extends AriaToastRegionProps {
   state: ToastState<ToastConfig>;
@@ -110,18 +110,16 @@ function Toast({ state, ...props }: ToastProps) {
   const type = props.toast.content.type;
 
   return (
-    <div {...toastProps} ref={ref} className="flex flex-1 bg-background">
+    <div {...toastProps} ref={ref} className="flex flex-1 bg-background rounded-md">
       <div
         className={twMerge(
           'toast flex w-[min(85vw,360px)] gap-1 rounded-md border px-3 py-2 shadow-sm transition',
           type === undefined &&
             !props.toast.content.render &&
-            'border-border/50 bg-popover dark:border-border',
-          type === 'error' &&
-            'border-destructive/25 bg-destructive/20 text-destructive',
-          type === 'success' && 'border-success/25 bg-success/20 text-success',
-          type === 'warning' &&
-            'border-amber-600/25 bg-amber-600/20 text-amber-600',
+            'border-border/75 bg-popover dark:border-border',
+          type === 'error' && 'border-destructive/20 bg-destructive/10',
+          type === 'warning' && 'border-yellow-400 bg-yellow-100 dark:bg-yellow-800 dark:border-yellow-900',
+          type === 'success' && 'border-green-300 bg-green-100 dark:bg-green-800 dark:border-green-900',
           enteringClassName,
         )}
       >
@@ -131,33 +129,31 @@ function Toast({ state, ...props }: ToastProps) {
           <>
             <div className="flex flex-1 items-center gap-2 self-center">
               {type === 'error' && (
-                <AlertCircle className="mt-1 flex size-5 self-start text-destructive" />
+                <AlertOctagon className="mt-1 flex size-5 self-start text-destructive" />
               )}
 
               {type === 'warning' && (
-                <AlertTriangle className="mt-1 flex size-5 self-start text-amber-600" />
+                <AlertTriangle className="mt-1 flex size-5 self-start text-yellow-700 dark:text-yellow-200" />
               )}
 
               {type === 'success' && (
-                <CheckCircle2 className="mt-1 flex size-5 self-start text-success" />
+                <CheckCircle2 className="mt-1 flex size-5 self-start text-green-700 dark:text-green-200" />
               )}
 
-              <div className="flex flex-1 flex-col gap-1">
-                <div
-                  {...titleProps}
-                  className={twMerge(
-                    'text-base/6 sm:text-sm/6',
-                    props.toast.content.description && 'font-medium',
-                  )}
-                >
-                  {props.toast.content.title}
-                </div>
+              <div className="flex flex-1 flex-col gap-1 text-sm/6">
+                {props.toast.content.title ? (
+                  <div
+                    {...titleProps}
+                    className={twMerge(
+                      props.toast.content.description && 'font-medium',
+                    )}
+                  >
+                    {props.toast.content.title}
+                  </div>
+                ) : null}
 
                 {props.toast.content.description ? (
-                  <div
-                    {...descriptionProps}
-                    className="text-base/4 sm:text-sm/4"
-                  >
+                  <div {...descriptionProps}>
                     {props.toast.content.description}
                   </div>
                 ) : null}
@@ -170,7 +166,13 @@ function Toast({ state, ...props }: ToastProps) {
           plain
           size="sm"
           {...closeButtonProps}
-          className="rounded"
+          className={twMerge(
+            'rounded',
+            'hover:bg-transparent',
+            type === 'warning' && 'text-yellow-700 dark:text-yellow-200',
+            type === 'error' && 'text-destructive',
+            type === 'success' && 'text-green-700 dark:text-green-200',
+          )}
         />
       </div>
     </div>

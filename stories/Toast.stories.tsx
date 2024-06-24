@@ -26,38 +26,40 @@ export default meta;
 
 export const Example = () => {
   return (
-    <div className="flex gap-4 p-12">
+    <div className="flex flex-col items-center gap-4 p-12">
       <Button
         outline
         onPress={() => {
           toast.add({
-            title: 'Toast',
-            description: 'This is a toast description',
+            title: 'Templates unavailable',
+            description:
+              'Issue template and forms are current unavailable. Please try again later.',
           });
         }}
       >
         Default
-      </Button>
-      <Button
-        outline
-        onPress={() => {
-          toast.add({
-            title: 'Toast',
-            description: 'This is a toast description',
-            type: 'warning',
-          });
-        }}
-      >
-        Warning
       </Button>
 
       <Button
         outline
         onPress={() => {
           toast.add({
-            title: 'Toast',
-            description: 'This is a toast description',
+            description:
+              'Issue template and forms are current unavailable. Please try again later.',
+          });
+        }}
+      >
+        Description only
+      </Button>
+
+      <Button
+        outline
+        onPress={() => {
+          toast.add({
             type: 'error',
+            title: 'Templates unavailable',
+            description:
+              'Issue template and forms are current unavailable. Please try again later.',
           });
         }}
       >
@@ -68,8 +70,22 @@ export const Example = () => {
         outline
         onPress={() => {
           toast.add({
-            title: 'Toast',
-            description: 'This is a toast description',
+            type: 'warning',
+            title: 'Templates unavailable',
+            description:
+              'Issue template and forms are current unavailable. Please try again later.',
+          });
+        }}
+      >
+        Warning
+      </Button>
+
+      <Button
+        outline
+        onPress={() => {
+          toast.add({
+            title: 'Payment details saved',
+            description: 'Your payment details have been save successfully.',
             type: 'success',
           });
         }}

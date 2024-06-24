@@ -119,7 +119,7 @@ export function MenuItem({
             renderProps.isDisabled && 'opacity-50',
             renderProps.isFocused && 'rounded-md bg-accent/85 text-white',
             destructive && 'text-destructive',
-            destructive && renderProps.isFocused && 'bg-destructive/85',
+            destructive && renderProps.isFocused && 'bg-destructive/10',
             className,
           ]);
         },

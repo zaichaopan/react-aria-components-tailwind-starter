@@ -12,8 +12,8 @@ type Type = 'error' | 'success' | 'warning';
 
 export type ToastConfig =
   | {
-      title: string;
-      description?: string;
+      title?: string;
+      description: string;
       position?: Position;
       render?: never;
       type?: Type;
