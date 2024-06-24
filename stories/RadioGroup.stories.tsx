@@ -40,11 +40,11 @@ export const Example = () => {
   return (
     <div className="w-full max-w-sm p-3">
       <RadioGroup>
-        <Label>Notify me about...</Label>
+        <Label>Show scrollbars</Label>
         <RadioGroupContent>
-          <Radio value="all">All new message</Radio>
-          <Radio value="direct">Direct messages, mentions & keywords</Radio>
-          <Radio value="nothing">Nothing</Radio>
+          <Radio value="automatic">Automatic</Radio>
+          <Radio value="scrolling">While scrolling</Radio>
+          <Radio value="always">Always</Radio>
         </RadioGroupContent>
       </RadioGroup>
     </div>
@@ -55,13 +55,13 @@ export const DisabledRadioItems = () => {
   return (
     <div className="w-full max-w-sm p-3">
       <RadioGroup>
-        <Label>Notify me about...</Label>
+        <Label>Show scrollbars</Label>
         <RadioGroupContent>
-          <Radio value="all">All new message</Radio>
-          <Radio value="direct" isDisabled>
-            Direct messages, mentions & keywords
+          <Radio value="automatic">Automatic</Radio>
+          <Radio value="scrolling" isDisabled>
+            While scrolling
           </Radio>
-          <Radio value="nothing">Nothing</Radio>
+          <Radio value="always">Always</Radio>
         </RadioGroupContent>
       </RadioGroup>
     </div>
@@ -72,11 +72,11 @@ export const DisabledRadioGroup = () => {
   return (
     <div className="w-full max-w-sm p-3">
       <RadioGroup isDisabled>
-        <Label>Notify me about...</Label>
+        <Label>Show scrollbars</Label>
         <RadioGroupContent>
-          <Radio value="all">All new message</Radio>
-          <Radio value="direct">Direct messages, mentions & keywords</Radio>
-          <Radio value="nothing">Nothing</Radio>
+          <Radio value="automatic">Automatic</Radio>
+          <Radio value="scrolling">While scrolling</Radio>
+          <Radio value="always">Always</Radio>
         </RadioGroupContent>
       </RadioGroup>
     </div>
@@ -87,33 +87,58 @@ export const WithDescription = () => {
   return (
     <div className="w-full p-3">
       <RadioGroup>
-        <Label>Contact sharing</Label>
-        <Text>
-          Choose who’s allowed to share your contact info — so they can
-          introduce you to people outside.{' '}
-          <TextLink href="#">Learn more</TextLink>
-        </Text>
-        <RadioGroupContent className="gap-6 pt-4">
+        <Label>Show scrollbars</Label>
+        <RadioGroupContent className="gap-3 pt-2">
           <RadioField>
-            <Radio value="all">All your contacts</Radio>
-            <Description>Includes people from any external people</Description>
+            <Radio value="automatic">Automatic</Radio>
+            <Description>
+              Scrollbars will always be visible when using a mouse, and only
+              while scrolling when using a trackpad.
+            </Description>
           </RadioField>
 
           <RadioField>
-            <Radio value="only_at_my_company">Only people at my company</Radio>
+            <Radio value="while_scrolling">While scrolling</Radio>
+            <Description>
+              Scrollbars will appear only while you are scrolling.
+            </Description>
           </RadioField>
 
-          <Radio value="no_none">No one</Radio>
+          <RadioField>
+            <Radio value="always">Always</Radio>
+            <Description>Scrollbars will always be visible.</Description>
+          </RadioField>
         </RadioGroupContent>
       </RadioGroup>
     </div>
   );
 };
 
-export function HorizontalRadioGroup(args: any) {
+export const WithValidation = () => {
+  return (
+    <Form>
+      <div className="w-full max-w-sm p-3">
+        <RadioGroup isRequired>
+          <Label>Show scrollbars</Label>
+          <RadioGroupContent>
+            <Radio value="automatic">Automatic</Radio>
+            <Radio value="scrolling">While scrolling</Radio>
+            <Radio value="always">Always</Radio>
+          </RadioGroupContent>
+          <FieldError />
+        </RadioGroup>
+      </div>
+      <Button type="submit" className="self-start">
+        Save
+      </Button>
+    </Form>
+  );
+};
+
+export function HorizontalRadioGroup() {
   return (
     <div className="w-full p-3">
-      <RadioGroup {...args} orientation="horizontal" name="rate">
+      <RadioGroup orientation="horizontal" name="rate">
         <Label>How do you rate your experience?</Label>
         <RadioGroupContent>
           <Radio value="1">1</Radio>
@@ -127,79 +152,43 @@ export function HorizontalRadioGroup(args: any) {
   );
 }
 
-export const WithValidation = (args: any) => {
-  return (
-    <Form>
-      <div className="w-full max-w-sm p-3">
-        <RadioGroup {...args} isRequired>
-          <Label>Notify me about...</Label>
-          <RadioGroupContent>
-            <Radio value="all">All new message</Radio>
-            <Radio value="direct">Direct messages, mentions & keywords</Radio>
-            <Radio value="nothing">Nothing</Radio>
-          </RadioGroupContent>
-          <FieldError />
-        </RadioGroup>
-      </div>
-      <Button type="submit" className="self-start">
-        Save
-      </Button>
-    </Form>
-  );
-};
-
 export const RadioCardGroups = () => {
+  const options = [
+    { name: 'Standard', description: ' 4-6 business days', price: ' $4.99' },
+    { name: 'Express', description: ' 2-5 business days', price: ' $15.99' },
+    { name: 'Lightning', description: ' 1 business day', price: ' $24.99' },
+  ];
+
   return (
     <div className="flex flex-1">
       <RadioGroup
         orientation="horizontal"
-        defaultValue="basic"
+        defaultValue={options[0].name}
         className="flex-1"
       >
-        <Label>Database configuration</Label>
-        <RadioGroupContent className="grid flex-1 grid-cols-1 gap-4 sm:grid-cols-2 [&_[slot=radio]]:mt-1.5">
-          <Radio
-            value="basic"
-            className={({ isSelected }) => {
-              return twMerge(
-                'items-start rounded-md border p-3 shadow-sm',
-                isSelected && 'border-accent ring-2 ring-accent/25',
-              );
-            }}
-          >
-            <div className="flex flex-col ">
-              <Text className="text-foreground">Basic performance</Text>
-              <Small>1/8 vCPU, 1GB RAM</Small>
-            </div>
-          </Radio>
-          <Radio
-            value="advanced"
-            className={({ isSelected }) => {
-              return twMerge(
-                'items-start rounded-md border p-3 shadow-sm',
-                isSelected && 'border-accent ring-2 ring-accent/15',
-              );
-            }}
-          >
-            <div className="flex flex-col">
-              <Text className="text-foreground">Advanced performance</Text>
-              <Small>1/8 vCPU, 1GB RAM</Small>
-            </div>
-          </Radio>
-          <Radio
-            value="turbo"
-            className={({ isSelected }) => {
-              return twMerge(
-                'items-start rounded-md border p-3 shadow-sm',
-                isSelected && 'border-accent ring-2 ring-accent/15',
-              );
-            }}
-          >
-            <div className="flex flex-col">
-              <Text className="text-foreground">Turbo performance</Text>
-              <Small>1/8 vCPU, 1GB RAM</Small>
-            </div>
-          </Radio>
+        <Label>Shipping</Label>
+        <RadioGroupContent className="grid flex-1 grid-cols-1 gap-4 sm:grid-cols-2">
+          {options.map((option) => {
+            return (
+              <Radio
+                value={option.name}
+                className={({ isSelected }) => {
+                  return twMerge(
+                    'items-start rounded-md border p-3 shadow-sm [&_[slot=radio]]:mt-1.5',
+                    isSelected && 'border-accent ring-2 ring-accent/25',
+                  );
+                }}
+              >
+                <div className="flex w-full items-center justify-between gap-3">
+                  <div className="flex flex-1 flex-col">
+                    <div className="font-semibold">{option.name}</div>
+                    <div className="text-gray-500">{option.description}</div>
+                  </div>
+                  <div className="font-medium text-muted">{option.price}</div>
+                </div>
+              </Radio>
+            );
+          })}
         </RadioGroupContent>
       </RadioGroup>
     </div>
@@ -229,7 +218,7 @@ export const CustomRadioGroups = () => {
                 className={({ isSelected, isFocusVisible }) => {
                   return twMerge(
                     'items-start rounded-md border p-3 shadow-sm',
-                    isSelected && 'bg-accent text-white',
+                    isSelected && 'border-accent bg-accent text-white',
                     isFocusVisible && focusOutlineStyle,
                   );
                 }}
@@ -247,7 +236,7 @@ export const CustomRadioGroups = () => {
                       <div className="flex flex-1 flex-col">
                         <div
                           className={twMerge(
-                            'font-semibold text-gray-900',
+                            'font-semibold',
                             isSelected && 'text-white',
                           )}
                         >
@@ -315,20 +304,23 @@ export const StarRatings = () => {
         <Label>Rating</Label>
         <RadioGroupContent className="">
           {options.map((option) => {
+            const shouldLHighlight = Number(rating) > Number(option.value);
             return (
               <Radio
                 value={option.value}
                 className={({ isSelected, isFocusVisible }) => {
                   return twMerge(
                     'items-start rounded-md',
-                    isSelected && 'peer',
+                    isSelected || shouldLHighlight
+                      ? 'text-accent'
+                      : 'text-muted',
                     isFocusVisible && focusOutlineStyle,
                   );
                 }}
                 render={({ isSelected }) => {
                   return (
-                    <div className="flex w-full items-center justify-between gap-3">
-                      {isSelected || Number(rating) > Number(option.value) ? (
+                    <div className="flex w-full items-center justify-between gap-3 ">
+                      {isSelected || shouldLHighlight ? (
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           viewBox="0 0 24 24"

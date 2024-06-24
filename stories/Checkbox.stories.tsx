@@ -33,14 +33,14 @@ const meta: Meta<typeof Checkbox> = {
 export default meta;
 
 export const Example = () => {
-  return <Checkbox>I have read and agree to the terms and conditions</Checkbox>;
+  return <Checkbox>I accept the terms and conditions</Checkbox>;
 };
 
 export const CheckboxDescription = () => {
   return (
     <CheckboxField>
-      <Checkbox>Newsletter</Checkbox>
-      <Description>Receive our newsletter once per week</Description>
+      <Checkbox>Subscribe</Checkbox>
+      <Description>You will receive our newsletter once per week. Unsubscribe at any time.</Description>
     </CheckboxField>
   );
 };
@@ -57,8 +57,8 @@ CheckboxDescription.parameters = {
 export const CheckboxDisabled = () => {
   return (
     <CheckboxField>
-      <Checkbox isDisabled>Newsletter</Checkbox>
-      <Description>Receive our newsletter once per week</Description>
+      <Checkbox isDisabled>Subscribe</Checkbox>
+      <Description>You will receive our newsletter once per week. Unsubscribe at any time.</Description>
     </CheckboxField>
   );
 };
