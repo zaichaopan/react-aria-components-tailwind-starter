@@ -118,8 +118,8 @@ function Toast({ state, ...props }: ToastProps) {
             !props.toast.content.render &&
             'border-border/75 bg-popover dark:border-border',
           type === 'error' && 'border-destructive/20 bg-destructive/10',
-          type === 'warning' && 'border-yellow-400 bg-yellow-100 dark:bg-yellow-800 dark:border-yellow-900',
-          type === 'success' && 'border-green-300 bg-green-100 dark:bg-green-800 dark:border-green-900',
+          type === 'warning' && 'border-yellow-700/20 bg-yellow-700/10',
+          type === 'success' && 'border-success/20 bg-success/10',
           enteringClassName,
         )}
       >
@@ -133,11 +133,11 @@ function Toast({ state, ...props }: ToastProps) {
               )}
 
               {type === 'warning' && (
-                <AlertTriangle className="mt-1 flex size-5 self-start text-yellow-700 dark:text-yellow-200" />
+                <AlertTriangle className="mt-1 flex size-5 self-start text-yellow-700" />
               )}
 
               {type === 'success' && (
-                <CheckCircle2 className="mt-1 flex size-5 self-start text-green-700 dark:text-green-200" />
+                <CheckCircle2 className="mt-1 flex size-5 self-start text-success" />
               )}
 
               <div className="flex flex-1 flex-col gap-1 text-sm/6">
@@ -169,9 +169,9 @@ function Toast({ state, ...props }: ToastProps) {
           className={twMerge(
             'rounded',
             'hover:bg-transparent',
-            type === 'warning' && 'text-yellow-700 dark:text-yellow-200',
+            type === 'warning' && 'text-yellow-700',
             type === 'error' && 'text-destructive',
-            type === 'success' && 'text-green-700 dark:text-green-200',
+            type === 'success' && 'text-success',
           )}
         />
       </div>
