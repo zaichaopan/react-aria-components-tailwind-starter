@@ -76,7 +76,7 @@ export const CheckboxGroups = () => {
   return (
     <CheckboxGroup>
       <Label>Email settings</Label>
-      <Text>
+      <Text className="pb-4">
         Personalize your email experience according to your preferences and
         needs
       </Text>
@@ -217,3 +217,4 @@ CheckboxGroupValidation.parameters = {
     },
   },
 };
+
