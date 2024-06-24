@@ -166,13 +166,12 @@ export const ControlledOpenState = () => {
 
   return (
     <div>
-      <Button onPress={() => setOpen(true)} text>
+      <Button onPress={() => setOpen(true)} plain>
         Try Again
       </Button>
       <AlertModal isOpen={isOpen} onOpenChange={setOpen}>
         <AlertDialog
           title="Unable to connect your account"
-          destructive
           primaryActionLabel="Try Again"
         >
           <Text className="py-1">

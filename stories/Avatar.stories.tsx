@@ -250,6 +250,34 @@ export const AvatarGroups = () => {
           ],
         }}
       />
+        <AvatarGroup
+        avatars={{
+          className: 'size-8 rounded-full',
+          items: [
+            {
+              alt: 'Taylor Harber',
+            },
+            {
+              alt: 'Taylor Harber',
+              src: 'https://images.unsplash.com/photo-1554151228-14d9def656e4?q=80&w=3386&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+            },
+            {
+              alt: 'M H',
+            },
+
+            {
+              alt: 'Taylor Harber',
+
+              src: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=facearea&facepad=3&w=256&h=256&q=80',
+            },
+            {
+              alt: 'Taylor Harber',
+              src: 'https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8aGVhZHNob3R8ZW58MHx8MHx8fDA%3D',
+            },
+          ],
+        }}
+      >
+      </AvatarGroup>
       <AvatarGroup
         avatars={{
           className: 'size-8 rounded-full',
@@ -276,7 +304,11 @@ export const AvatarGroups = () => {
             },
           ],
         }}
-      />
+      >
+        <div className="relative flex size-8 items-center justify-center rounded-full border bg-background text-xs text-muted shadow-sm p-1 bg-accent">
+          +5
+        </div>
+      </AvatarGroup>
     </div>
   );
 };

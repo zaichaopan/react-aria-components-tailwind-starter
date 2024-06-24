@@ -1,8 +1,5 @@
 import React from 'react';
-import {
-  getDefaultInitials,
-  getRandomToken,
-} from './generateInitialAvatar';
+import { getDefaultInitials, getRandomToken } from './generateInitialAvatar';
 import { twMerge } from 'tailwind-merge';
 import { Icon } from './Icon';
 import { useImageLoadingStatus } from './hooks/use-image-loading-status';
@@ -143,6 +140,7 @@ export const AvatarBadge = ({
 };
 
 type AvatarGroupProps = {
+  children?: React.ReactNode,
   avatars: {
     items: Array<Pick<AvatarProps, 'src' | 'alt'>>;
     maxDisplays?: number;
@@ -150,7 +148,7 @@ type AvatarGroupProps = {
     JSX.IntrinsicElements['div'];
 };
 
-export function AvatarGroup({ avatars, ...props }: AvatarGroupProps) {
+export function AvatarGroup({ avatars, children, ...props }: AvatarGroupProps) {
   const { maxDisplays, items, className, ...avatarProps } = avatars;
   const displayItems = items.slice(0, Math.min(maxDisplays ?? 4, items.length));
 
@@ -163,13 +161,11 @@ export function AvatarGroup({ avatars, ...props }: AvatarGroupProps) {
               {...avatarProps}
               {...item}
               key={index}
-              className={twMerge(
-                'ring-2 ring-background',
-                className,
-              )}
+              className={twMerge('ring-2 ring-background', className)}
             />
           );
         })}
+        {children}
       </div>
     </div>
   );
