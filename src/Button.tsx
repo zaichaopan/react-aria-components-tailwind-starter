@@ -7,11 +7,12 @@ import {
   composeRenderProps,
 } from 'react-aria-components';
 import { focusOutlineStyle } from './utils';
-import { Loader2Icon, X } from 'lucide-react';
+import { X } from 'lucide-react';
 import { twMerge } from 'tailwind-merge';
 import { VisuallyHidden } from './VisuallyHidden';
 import { Icon } from './Icon';
 import { AsChildProps, Slot } from './slot';
+import { Spinner } from './Spinner';
 
 type NeverExcept<T, K extends keyof T> = {
   [N in keyof Omit<T, K>]?: never;
@@ -158,9 +159,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
               <>
                 {isLoading ? (
                   <div className="absolute flex h-full items-center justify-center">
-                    <Icon>
-                      <Loader2Icon className="animate-spin text-white" />
-                    </Icon>
+                    <Spinner className="text-white" />
                   </div>
                 ) : null}
                 {typeof children === 'function'
