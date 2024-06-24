@@ -8,10 +8,6 @@ const meta: Meta = {
   parameters: {
     layout: 'centered',
     docs: {
-      description: {
-        component:
-          'A <a href="https://react-spectrum.adobe.com/react-aria/Button.html" target="_blank">**button**</a> allows a user to perform an action, with mouse, touch, and keyboard interactions.',
-      },
       ...docs,
       controls: {
         exclude: /.*/g,
