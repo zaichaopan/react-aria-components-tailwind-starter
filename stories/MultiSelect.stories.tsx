@@ -10,8 +10,8 @@ import {
   MultiSelectField,
   MultiSelect,
   MultiSelectItem,
-  SelectionTag,
 } from '../src/MultiSelect';
+import {Tag} from '../src/TagGroup'
 import { Description, FieldError, Label } from '../src/Field';
 
 const meta: Meta<typeof MultiSelect> = {
@@ -21,7 +21,7 @@ const meta: Meta<typeof MultiSelect> = {
     layout: 'centered',
     docs: {
       description: {
-        component: `Use the **MultiSelectField**, **MultiSelect**, **SelectionTag**, **MultiSelectItem** to build multi select components.
+        component: `Use the **MultiSelectField**, **MultiSelect**, **Tag**, **MultiSelectItem** to build multi select components.
           `,
       },
       ...docs,
@@ -134,10 +134,10 @@ export const Example = () => {
           }}
           tag={(item) => {
             return (
-              <SelectionTag textValue={item.textValue}>
-                <Avatar src={item.src} alt={item.userName} className="size-6" />
+              <Tag textValue={item.textValue}>
+                <Avatar src={item.src} alt={item.userName} className="size-6 rounded-full" />
                 {item.textValue}
-              </SelectionTag>
+              </Tag>
             );
           }}
         >
@@ -147,7 +147,7 @@ export const Example = () => {
                 className="gap-2 px-4"
                 textValue={item.textValue}
               >
-                <Avatar alt={item.userName} src={item.src} className="size-6" />
+                <Avatar alt={item.userName} src={item.src} className="size-6 rounded-full" />
                 <span>{item.userName}</span>
               </MultiSelectItem>
             );
@@ -211,9 +211,9 @@ export const ExampleOne = () => {
         }}
         tag={(item) => {
           return (
-            <SelectionTag textValue={item.textValue} className="pl-3">
+            <Tag textValue={item.textValue}>
               {item.textValue}
-            </SelectionTag>
+            </Tag>
           );
         }}
       >

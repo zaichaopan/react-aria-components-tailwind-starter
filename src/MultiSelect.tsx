@@ -1,9 +1,5 @@
 import React, { useState } from 'react';
 import {
-  TagGroup,
-  Tag,
-  TagList,
-  TagProps,
   ComboBox,
   ComboBoxProps as RACComboBoxProps,
   Key,
@@ -24,9 +20,10 @@ import { Popover } from './Popover';
 import { ListBox, ListBoxItem } from './ListBox';
 import { Button } from './Button';
 import { twMerge } from 'tailwind-merge';
-import { ChevronDown, X } from 'lucide-react';
+import { ChevronDown } from 'lucide-react';
 import { Icon } from './Icon';
 import { inputRingStyle } from './utils';
+import { TagGroup, TagList} from './TagGroup';
 
 export interface ComboBoxFiledProps<T extends object>
   extends Omit<
@@ -311,7 +308,7 @@ export function MultiSelect<
                       setFilterText('');
                     }}
                   >
-                    <div className="inline-flex flex-1 flex-wrap gap-x-0.5 px-1 py-0.5">
+                    <div className="inline-flex flex-1 flex-wrap items-center gap-1 p-1">
                       <TagGroup
                         onRemove={onRemove}
                         aria-labelledby={labelContext?.['aria-labelledBy']}
@@ -364,38 +361,6 @@ export function MultiSelect<
   );
 }
 
-export function SelectionTag({ children, ...props }: TagProps) {
-  const textValue = typeof children === 'string' ? children : undefined;
-  return (
-    <Tag
-      textValue={textValue}
-      {...props}
-      className={composeRenderProps(props.className, (className) => {
-        return twMerge(
-          'my-auto flex h-fit items-center gap-1 rounded border p-0.5 text-xs',
-          className,
-        );
-      })}
-    >
-      {({ allowsRemoving }) => (
-        <>
-          {children}
-          {allowsRemoving && (
-            <Button
-              plain
-              slot="remove"
-              className="m-auto size-5 h-fit rounded p-0 px-0.5"
-            >
-              <Icon aria-label="Remove">
-                <X strokeWidth={1.5} />
-              </Icon>
-            </Button>
-          )}
-        </>
-      )}
-    </Tag>
-  );
-}
 
 export function MultiSelectItem(props: ListBoxItemProps) {
   const textValue =

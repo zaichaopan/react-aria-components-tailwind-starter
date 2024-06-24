@@ -6,14 +6,12 @@ import {
   TagGroupProps as AriaTagGroupProps,
   TagProps as AriaTagProps,
   Button,
-  TagList,
+  TagList as RACTagList,
   TagListProps,
-  Text,
   composeRenderProps,
 } from 'react-aria-components';
 import { twMerge } from 'tailwind-merge';
-import { Description, Label } from './Field';
-import { focusOutlineStyle } from './utils';
+import { composeTailwindRenderProps, focusOutlineStyle } from './utils';
 
 const colors = {
   gray: 'bg-gray-100 text-gray-600 border-gray-200 hover:border-gray-300 dark:bg-zinc-700 dark:text-zinc-300 dark:border-zinc-600 dark:hover:border-zinc-500',
@@ -28,12 +26,8 @@ type Color = keyof typeof colors;
 
 const ColorContext = React.createContext<Color>('gray');
 
-export interface TagGroupProps<T>
-  extends Omit<AriaTagGroupProps, 'children'>,
-    Pick<TagListProps<T>, 'items' | 'children' | 'renderEmptyState'> {
+export interface TagGroupProps extends AriaTagGroupProps {
   color?: Color;
-  label?: string;
-  description?: string;
   errorMessage?: string;
 }
 
@@ -41,38 +35,27 @@ export interface TagProps extends AriaTagProps {
   color?: Color;
 }
 
-export function TagGroup<T extends object>({
-  label,
-  description,
-  errorMessage,
-  items,
-  children,
-  renderEmptyState,
-  ...props
-}: TagGroupProps<T>) {
+export function TagGroup({ children, ...props }: TagGroupProps) {
   return (
     <AriaTagGroup
       {...props}
       className={twMerge('flex flex-col gap-1', props.className)}
     >
-      <Label>{label}</Label>
       <ColorContext.Provider value={props.color || 'gray'}>
-        <TagList
-          items={items}
-          renderEmptyState={renderEmptyState}
-          className="flex flex-wrap gap-1"
-        >
-          {children}
-        </TagList>
+        {children}
       </ColorContext.Provider>
-      {description && <Description>{description}</Description>}
-      {errorMessage && (
-        <Text slot="errorMessage" className="text-sm text-red-600">
-          {errorMessage}
-        </Text>
-      )}
     </AriaTagGroup>
   );
+}
+
+export function TagList<T extends object>(props: TagListProps<T>) {
+  return <RACTagList
+    {...props}
+    className={composeTailwindRenderProps(
+      props.className,
+      'flex flex-wrap gap-1',
+    )}
+  />;
 }
 
 export function Tag({ children, color, ...props }: TagProps) {
@@ -87,13 +70,13 @@ export function Tag({ children, color, ...props }: TagProps) {
         props.className,
         (className, renderProps) => {
           return twMerge(
-            'flex max-w-fit cursor-default items-center gap-1 rounded-full border px-3 py-0.5 text-xs transition',
+            'flex max-w-fit cursor-default items-center gap-1 rounded-full border px-2 py-0.5 text-xs transition',
             renderProps.allowsRemoving && 'pr-1',
             colors[color || groupColor],
-          
+
             renderProps.isSelected &&
-              'outline-0 border-blue-600 hover:border-blue-600 dark:hover:border-blue-600 bg-blue-600 text-white dark:bg-blue-600 dark:text-white dark:border-blue-600',
-              renderProps.isFocusVisible && focusOutlineStyle,
+              'border-blue-600 bg-blue-600 text-white outline-0 hover:border-blue-600 dark:border-blue-600 dark:bg-blue-600 dark:text-white dark:hover:border-blue-600',
+            renderProps.isFocusVisible && focusOutlineStyle,
             renderProps.isDisabled && 'opacity-50',
             className,
           );
@@ -109,7 +92,7 @@ export function Tag({ children, color, ...props }: TagProps) {
                 slot="remove"
                 className={composeRenderProps('', (className, renderProps) => {
                   return twMerge(
-                    'outline-0 flex cursor-default items-center justify-center rounded-full p-0.5 transition-[background-color] hover:bg-black/10 pressed:bg-black/20 dark:hover:bg-white/10 dark:pressed:bg-white/20',
+                    'flex cursor-default items-center justify-center rounded-full p-0.5 outline-0 transition-[background-color] hover:bg-black/10 pressed:bg-black/20 dark:hover:bg-white/10 dark:pressed:bg-white/20',
                     renderProps.isFocusVisible && focusOutlineStyle,
                     className,
                   );

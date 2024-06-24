@@ -1,5 +1,5 @@
 import type { Meta } from '@storybook/react';
-import { Tag, TagGroup } from '../src/TagGroup';
+import { Tag, TagGroup, TagList } from '../src/TagGroup';
 
 const meta: Meta<typeof Example> = {
   component: TagGroup,
@@ -19,10 +19,12 @@ export const Example = (args: any) => (
       //
     }}
   >
-    <Tag isDisabled>Chocolate</Tag>
-    <Tag>Mint</Tag>
-    <Tag>Strawberry</Tag>
-    <Tag>Vanilla</Tag>
+    <TagList>
+      <Tag isDisabled>Chocolate</Tag>
+      <Tag>Mint</Tag>
+      <Tag>Strawberry</Tag>
+      <Tag>Vanilla</Tag>
+    </TagList>
   </TagGroup>
 );
 
