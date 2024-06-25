@@ -259,6 +259,8 @@ export function MultiSelect<
     inputValue,
   } = useMultiSelectContext<T>();
 
+  const input = React.useRef<HTMLInputElement>(null);
+
   const triggerRef = React.useRef<HTMLDivElement | null>(null);
   const [width, setWidth] = React.useState(0);
 
@@ -310,7 +312,10 @@ export function MultiSelect<
                   >
                     <div className="inline-flex flex-1 flex-wrap items-center gap-1 p-1">
                       <TagGroup
-                        onRemove={onRemove}
+                        onRemove={(keys) => {
+                          onRemove(keys);
+                          input.current?.focus();
+                        }}
                         selectedKeys={items.map((i) => i.id)}
                         aria-labelledby={labelContext?.['aria-labelledBy']}
                         className="contents"
@@ -324,6 +329,7 @@ export function MultiSelect<
 
                       <div className="flex flex-1">
                         <Input
+                          ref={input}
                           aria-describedby={[
                             tagGroupId,
                             descriptionContext?.['aria-describedby'] ?? '',
