@@ -388,7 +388,7 @@ export function MultiSelectItem(props: ListBoxItemProps) {
         props.className,
         (className, { isDisabled, isFocused }) => {
           return twMerge([
-            'group flex flex-1 cursor-default select-none items-center gap-1 text-nowrap rounded p-1.5 text-base/6 outline-0 sm:text-sm/6',
+            'group flex flex-1 cursor-default select-none items-center gap-1 text-nowrap rounded-md p-1.5 text-base/6 outline-0 sm:text-sm/6',
             isDisabled && 'opacity-50',
             isFocused && 'bg-accent text-white',
             className,
