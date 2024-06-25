@@ -1,5 +1,6 @@
 import type { Meta } from '@storybook/react';
 import { Tag, TagGroup, TagList } from '../src/TagGroup';
+import { Label } from '../src/Field';
 
 const meta: Meta<typeof Example> = {
   component: TagGroup,
@@ -11,24 +12,24 @@ const meta: Meta<typeof Example> = {
 
 export default meta;
 
-export const Example = (args: any) => (
-  <TagGroup
-    {...args}
-    selectionMode="single"
-    onRemove={() => {
-      //
-    }}
-  >
-    <TagList>
-      <Tag isDisabled>Chocolate</Tag>
-      <Tag>Mint</Tag>
-      <Tag>Strawberry</Tag>
-      <Tag>Vanilla</Tag>
-    </TagList>
-  </TagGroup>
-);
-
-Example.args = {
-  label: 'Ice cream flavor',
-  selectionMode: 'single',
+export const Example = (args: any) => {
+  return (
+    <TagGroup
+      {...args}
+      selectionMode="single"
+      onRemove={() => {
+        //
+      }}
+    >
+      <Label>Ice cream flavor</Label>
+      <TagList>
+        <Tag isDisabled>Chocolate</Tag>
+        <Tag id="Mint">Mint</Tag>
+        <Tag>Strawberry</Tag>
+        <Tag>Vanilla</Tag>
+      </TagList>
+    </TagGroup>
+  );
 };
+
+
