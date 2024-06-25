@@ -22,7 +22,6 @@ import { Button } from './Button';
 import { twMerge } from 'tailwind-merge';
 import { ChevronDown } from 'lucide-react';
 import { Icon } from './Icon';
-import { inputRingStyle } from './utils';
 import { TagGroup, TagList } from './TagGroup';
 
 export interface ComboBoxFiledProps<T extends object>
@@ -259,8 +258,6 @@ export function MultiSelect<
     inputValue,
   } = useMultiSelectContext<T>();
 
-  const input = React.useRef<HTMLInputElement>(null);
-
   const triggerRef = React.useRef<HTMLDivElement | null>(null);
   const [width, setWidth] = React.useState(0);
 
@@ -284,6 +281,8 @@ export function MultiSelect<
     };
   }, []);
 
+  const [inputFocus, setInputFocus] = React.useState(false);
+
   return (
     <WithLabelContext>
       {(labelContext) => {
@@ -294,10 +293,10 @@ export function MultiSelect<
                 <>
                   <InputFieldGroup
                     defaultValue={inputValue}
-                    className={({ isFocusVisible }) => {
+                    className={() => {
                       return twMerge(
                         'h-fit w-[350px]',
-                        isFocusVisible && inputRingStyle,
+                        !inputFocus && 'border-border ring-0',
                         className,
                       );
                     }}
@@ -312,10 +311,7 @@ export function MultiSelect<
                   >
                     <div className="inline-flex flex-1 flex-wrap items-center gap-1 p-1">
                       <TagGroup
-                        onRemove={(keys) => {
-                          onRemove(keys);
-                          input.current?.focus();
-                        }}
+                        onRemove={onRemove}
                         selectedKeys={items.map((i) => i.id)}
                         aria-labelledby={labelContext?.['aria-labelledBy']}
                         className="contents"
@@ -329,7 +325,8 @@ export function MultiSelect<
 
                       <div className="flex flex-1">
                         <Input
-                          ref={input}
+                          onFocus={() => setInputFocus(true)}
+                          onBlur={() => setInputFocus(false)}
                           aria-describedby={[
                             tagGroupId,
                             descriptionContext?.['aria-describedby'] ?? '',
