@@ -293,10 +293,10 @@ export function MultiSelect<
                 <>
                   <InputFieldGroup
                     defaultValue={inputValue}
-                    className={() => {
+                    className={({ isInvalid }) => {
                       return twMerge(
                         'h-fit w-[350px]',
-                        !inputFocus && 'border-border ring-0',
+                        !inputFocus && !isInvalid && 'border-border ring-0',
                         className,
                       );
                     }}
