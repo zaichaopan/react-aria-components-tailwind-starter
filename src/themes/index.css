@@ -10,6 +10,7 @@
     --popover: 0 0% 100%;
     --success: 142 72% 29%;
     --destructive: 0 72% 51%;
+    --warning: 41 96% 40%;
     --hover: 60 4.8% 95.9%;
 
     /* Text colors */
@@ -25,6 +26,7 @@
     --popover: 240 4% 16%;
     --success: 142 72% 29%;
     --destructive: 0 72% 51%;
+    --warning: 41 96% 40%;
     --hover: 240 5% 26%;
 
     --muted: 240 5% 65%;

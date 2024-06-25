@@ -23,7 +23,7 @@ import { twMerge } from 'tailwind-merge';
 import { ChevronDown } from 'lucide-react';
 import { Icon } from './Icon';
 import { inputRingStyle } from './utils';
-import { TagGroup, TagList} from './TagGroup';
+import { TagGroup, TagList } from './TagGroup';
 
 export interface ComboBoxFiledProps<T extends object>
   extends Omit<
@@ -311,9 +311,11 @@ export function MultiSelect<
                     <div className="inline-flex flex-1 flex-wrap items-center gap-1 p-1">
                       <TagGroup
                         onRemove={onRemove}
+                        selectedKeys={items.map((i) => i.id)}
                         aria-labelledby={labelContext?.['aria-labelledBy']}
                         className="contents"
                         id={tagGroupId}
+                        selectionMode="multiple"
                       >
                         <TagList items={items} className="contents">
                           {props.tag}
@@ -360,7 +362,6 @@ export function MultiSelect<
     </WithLabelContext>
   );
 }
-
 
 export function MultiSelectItem(props: ListBoxItemProps) {
   const textValue =

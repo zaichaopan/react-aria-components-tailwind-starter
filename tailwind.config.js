@@ -21,6 +21,7 @@ export default {
         accent: 'hsl(var(--accent))',
         success: 'hsl(var(--success))',
         destructive: 'hsl(var(--destructive))',
+        warning: 'hsl(var(--warning))',
         hover: 'hsl(var(--hover))',
         foreground: 'hsl(var(--foreground))',
         muted: 'hsl(var(--muted))',
