@@ -309,7 +309,7 @@ export function MultiSelect<
                       setFilterText('');
                     }}
                   >
-                    <div className="inline-flex flex-1 flex-wrap items-center gap-1 px-2 py-[5px]">
+                    <div className="inline-flex min-h-9 flex-1 flex-wrap items-center gap-1 px-1.5 py-[5px]">
                       <TagGroup
                         id={tagGroupId}
                         aria-labelledby={labelContext?.['aria-labelledBy']}
@@ -323,7 +323,7 @@ export function MultiSelect<
 
                       <div className="flex flex-1">
                         <Input
-                          className="p-0"
+                          className="p-0.5"
                           onFocus={() => setInputFocus(true)}
                           onBlur={() => setInputFocus(false)}
                           aria-describedby={[
