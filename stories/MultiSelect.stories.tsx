@@ -1,4 +1,3 @@
-import React from 'react';
 import type { Meta } from '@storybook/react';
 import { docs } from '../.storybook/docs';
 import { Form } from '../src/Form';
@@ -11,7 +10,7 @@ import {
   MultiSelect,
   MultiSelectItem,
 } from '../src/MultiSelect';
-import {Tag} from '../src/TagGroup'
+import { Tag } from '../src/TagGroup';
 import { Description, FieldError, Label } from '../src/Field';
 
 const meta: Meta<typeof MultiSelect> = {
@@ -46,70 +45,51 @@ export const Example = () => {
     initialItems: [],
   });
 
-  const [isInvalid, setIsInvalid] = React.useState(false);
-  const [errorMessage, setErrorMessage] = React.useState<string | undefined>(
-    undefined,
-  );
-
   return (
-    <Form
-      onSubmit={(e) => {
-        e.preventDefault();
-
-        if (selectedList.items.length === 0) {
-          setIsInvalid(true);
-          setErrorMessage('Please select at least one item.');
-          return;
-        }
-
-        alert('submitting');
-      }}
-    >
+    <Form>
       <MultiSelectField<User>
-        isInvalid={isInvalid}
+        isRequired
         selectedList={selectedList}
         name="member"
         onItemAdd={(key) => {
           console.log('item add', key);
-          setIsInvalid(false);
-          setErrorMessage(undefined);
         }}
         onItemRemove={(key) => {
           console.log('item remove', key);
         }}
         items={[
           {
-            id: "1",
+            id: '1',
             textValue: 'Cameron',
             userName: 'Cameron',
             src: 'https://images.unsplash.com/photo-1566492031773-4f4e44671857?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60',
           },
           {
-            id: "2",
+            id: '2',
             textValue: 'Jane Cooper',
             userName: 'Jane Cooper',
             src: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60',
           },
           {
-            id: "3",
+            id: '3',
             textValue: 'Kristin Watson',
             userName: 'Kristin Watson',
             src: 'https://images.unsplash.com/photo-1532417344469-368f9ae6d187?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60',
           },
           {
-            id: "4",
+            id: '4',
             textValue: 'Courtney Henry',
             userName: 'Courtney Henry',
             src: 'https://images.unsplash.com/photo-1534751516642-a1af1ef26a56?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60',
           },
           {
-            id: "5",
+            id: '5',
             textValue: 'Theresa Webb',
             userName: 'Theresa Webb',
             src: 'https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60',
           },
           {
-            id: "6",
+            id: '6',
             textValue: 'Jenny Wilson',
             userName: 'Jenny Wilson',
             src: 'https://images.unsplash.com/photo-1498551172505-8ee7ad69f235?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60',
@@ -135,7 +115,11 @@ export const Example = () => {
           tag={(item) => {
             return (
               <Tag textValue={item.textValue}>
-                <Avatar src={item.src} alt={item.userName} className="size-6 rounded-full" />
+                <Avatar
+                  src={item.src}
+                  alt={item.userName}
+                  className="size-6 rounded-full"
+                />
                 {item.textValue}
               </Tag>
             );
@@ -148,13 +132,17 @@ export const Example = () => {
                 id={item.id}
                 textValue={item.textValue}
               >
-                <Avatar alt={item.userName} src={item.src} className="size-6 rounded-full" />
+                <Avatar
+                  alt={item.userName}
+                  src={item.src}
+                  className="size-6 rounded-full"
+                />
                 <span>{item.userName}</span>
               </MultiSelectItem>
             );
           }}
         </MultiSelect>
-        <FieldError>{errorMessage}</FieldError>
+        <FieldError></FieldError>
       </MultiSelectField>
       <Button type="submit" className="self-start">
         Submit
@@ -211,11 +199,7 @@ export const ExampleOne = () => {
           );
         }}
         tag={(item) => {
-          return (
-            <Tag textValue={item.textValue}>
-              {item.textValue}
-            </Tag>
-          );
+          return <Tag textValue={item.textValue}>{item.textValue}</Tag>;
         }}
       >
         {(item) => {

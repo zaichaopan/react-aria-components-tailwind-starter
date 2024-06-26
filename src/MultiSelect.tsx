@@ -311,21 +311,10 @@ export function MultiSelect<
                   >
                     <div className="inline-flex flex-1 flex-wrap items-center gap-1 p-1">
                       <TagGroup
-                        onRemove={onRemove}
-                        selectedKeys={new Set(items.map((i) => i.id))}
-                        onSelectionChange={(keys) => {
-                          const removeKeys = items
-                            .filter((item) => {
-                              return ![...keys].includes(item.id);
-                            })
-                            .map((item) => item.id);
-
-                          onRemove(new Set(removeKeys));
-                        }}
+                        id={tagGroupId}
                         aria-labelledby={labelContext?.['aria-labelledBy']}
                         className="contents"
-                        id={tagGroupId}
-                        selectionMode="multiple"
+                        onRemove={onRemove}
                       >
                         <TagList items={items} className="contents">
                           {props.tag}
