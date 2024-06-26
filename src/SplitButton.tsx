@@ -18,7 +18,7 @@ function useSplitButtonContext() {
   const context = React.useContext(SplitButtonContext);
 
   if (!context) {
-    throw Error('<SplitButtonContext.Provider> is required');
+    throw new Error('<SplitButtonContext.Provider> is required');
   }
 
   return context;

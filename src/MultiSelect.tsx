@@ -72,7 +72,7 @@ function useMultiSelectContext<T>() {
   const context = React.useContext(MultiSelectContext);
 
   if (!context) {
-    throw Error;
+    throw new Error("<MultiSelectContext.Provider> is required");
   }
 
   return context as ContextType<T>;

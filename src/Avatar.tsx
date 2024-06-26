@@ -12,7 +12,7 @@ function useAvatarContext() {
   const context = React.useContext(AvatarContext);
 
   if (!context) {
-    throw Error('<AvatarContext.Provider> is required');
+    throw new Error('<AvatarContext.Provider> is required');
   }
 
   return context;
