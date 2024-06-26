@@ -11,6 +11,8 @@ import { Icon } from '../src/Icon';
 import { ChevronDown } from 'lucide-react';
 import { Selection } from 'react-aria-components';
 import { Separator } from '../src/Separator';
+import { SearchField, SearchInput } from '../src/Field';
+import { useFilter } from 'react-aria';
 
 const meta: Meta = {
   title: 'MultiSelectPanel',
@@ -43,6 +45,16 @@ export const Example = () => {
     { id: 'front_end', name: 'Front end' },
   ];
 
+  const [searchText, SetSearchText] = React.useState('');
+
+  const { contains } = useFilter({
+    sensitivity: 'base',
+  });
+
+  const matchedOptions = options.filter((option) => {
+    return contains(option.name, searchText);
+  });
+
   const [selectedKeys, setSelectedKeys] = React.useState<Selection | undefined>(
     undefined,
   );
@@ -68,18 +80,28 @@ export const Example = () => {
       </Button>
       <Popover className=" max-w-[auto]">
         <Dialog className="flex flex-col p-2">
-          <div className="px-3 pb-2">
+          <div className="flex flex-col gap-1 px-3 pb-2">
             <Heading level={2} displayLevel={4}>
               Select labels
             </Heading>
             <Text>Use labels to organize issues and pull requests</Text>
+            <SearchField
+              aria-label="Filter labels"
+              autoFocus
+              value={searchText}
+              onChange={(value) => {
+                SetSearchText(value);
+              }}
+            >
+              <SearchInput placeholder="Filter labels" />
+            </SearchField>
           </div>
-          <Separator/>
+          <Separator />
           <GridList
             aria-label="Select labels"
             selectedKeys={selectedKeys}
             onSelectionChange={setSelectedKeys}
-            items={new Set(options)}
+            items={new Set(matchedOptions)}
             selectionMode="multiple"
             className="border-0"
           >
