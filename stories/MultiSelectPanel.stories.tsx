@@ -21,7 +21,7 @@ const meta: Meta = {
     docs: {
       description: {
         component:
-          '<a href="https://primer.style/components/selectpanel/react/alpha" target="_blank">Select pane</a> is a semantic dialog that allows for complex selection options within an overlay.',
+          '<a href="https://primer.style/components/selectpanel/react/alpha" target="_blank">Select panel</a> is a semantic dialog that allows for complex selection options within an overlay.',
       },
       ...docs,
       controls: {
