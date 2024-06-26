@@ -67,7 +67,7 @@ export const Example = () => {
               <Separator className="mt-2 bg-border/5" />
 
               <MenuTrigger>
-                <MenuButton text>
+                <MenuButton plain>
                   Language <span className="ml-auto">English (US)</span>
                 </MenuButton>
                 <MenuPopover placement="end top">
@@ -131,7 +131,7 @@ export const ControlledOpen = () => {
             <Separator className="mt-2 bg-border/5" />
 
             <MenuTrigger>
-              <MenuButton text>
+              <MenuButton plain>
                 Language <span className="ml-auto">English (US)</span>
               </MenuButton>
               <MenuPopover placement="end top">
