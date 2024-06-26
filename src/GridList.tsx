@@ -6,10 +6,7 @@ import {
   GridListProps,
 } from 'react-aria-components';
 import { Checkbox } from './Checkbox';
-import {
-  composeTailwindRenderProps,
-  focusOutlineStyle,
-} from './utils';
+import { composeTailwindRenderProps, focusOutlineStyle } from './utils';
 import { twMerge } from 'tailwind-merge';
 
 export function GridList<T extends object>({
@@ -37,8 +34,12 @@ export function GridListItem({ children, ...props }: GridListItemProps) {
       {...props}
       className={(renderProps) => {
         return twMerge(
-          'relative -mb-px flex cursor-default select-none gap-3 px-2 py-2 text-sm rounded-md outline-none',
-          renderProps.isFocusVisible && [focusOutlineStyle, '-outline-offset-2'],
+          'relative -mb-px flex cursor-default select-none gap-3 rounded-md px-2 py-1.5 text-sm outline-none',
+          '[&:not(:last-child)]:mb-0.5',
+          renderProps.isFocusVisible && [
+            focusOutlineStyle,
+            '-outline-offset-2',
+          ],
           renderProps.isSelected ? 'z-20 hover:bg-hover' : 'hover:bg-hover',
           renderProps.isDisabled && 'opacity-50',
         );
