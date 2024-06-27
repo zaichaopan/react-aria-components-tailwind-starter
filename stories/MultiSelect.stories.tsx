@@ -34,6 +34,75 @@ const meta: Meta<typeof MultiSelect> = {
 
 export default meta;
 
+export const Example = () => {
+  const selectedList = useListData<{ id: string; textValue: string }>({
+    initialItems: [],
+  });
+
+  return (
+    <MultiSelectField<{ id: string; textValue: string }>
+      isRequired
+      selectedList={selectedList}
+      items={[
+        {
+          id: 'react',
+          textValue: 'React',
+        },
+        {
+          id: 'vue',
+          textValue: 'Vue',
+        },
+        {
+          id: 'solid',
+          textValue: 'Solid',
+        },
+        {
+          id: 'svelte',
+          textValue: 'Svelte',
+        },
+        {
+          id: 'qwik',
+          textValue: 'Qwik',
+        },
+      ]}
+    >
+      <Label>Your favorite libraries</Label>
+      <MultiSelect<{ id: string; textValue: string }>
+        renderEmptyState={(inputValue) => {
+          return (
+            <Text className="p-2">
+              {inputValue ? (
+                <>
+                  No results found for: <Strong>{inputValue}</Strong>
+                </>
+              ) : (
+                `No options`
+              )}
+            </Text>
+          );
+        }}
+        tag={(item) => {
+          return (
+            <Tag className="py-1" textValue={item.textValue}>
+              {item.textValue}
+            </Tag>
+          );
+        }}
+      >
+        {(item) => {
+          return (
+            <MultiSelectItem textValue={item.textValue}>
+              {item.textValue}
+            </MultiSelectItem>
+          );
+        }}
+      </MultiSelect>
+      <FieldError></FieldError>
+    </MultiSelectField>
+  );
+};
+
+
 type User = {
   id: string;
   src: string;
@@ -41,7 +110,7 @@ type User = {
   textValue: string;
   disabled?: boolean;
 };
-export const Example = () => {
+export const WithAvatars = () => {
   const selectedList = useListData<User>({
     initialItems: [],
   });
@@ -132,7 +201,7 @@ export const Example = () => {
               <MultiSelectItem
                 isDisabled={item.disabled}
                 id={item.id}
-                className="gap-2 px-4"
+                className="gap-2"
                 textValue={item.textValue}
               >
                 <Avatar
@@ -151,73 +220,5 @@ export const Example = () => {
         Submit
       </Button>
     </Form>
-  );
-};
-
-export const ExampleOne = () => {
-  const selectedList = useListData<{ id: string; textValue: string }>({
-    initialItems: [],
-  });
-
-  return (
-    <MultiSelectField<{ id: string; textValue: string }>
-      isRequired
-      selectedList={selectedList}
-      items={[
-        {
-          id: 'react',
-          textValue: 'React',
-        },
-        {
-          id: 'vue',
-          textValue: 'Vue',
-        },
-        {
-          id: 'solid',
-          textValue: 'Solid',
-        },
-        {
-          id: 'svelte',
-          textValue: 'Svelte',
-        },
-        {
-          id: 'qwik',
-          textValue: 'Qwik',
-        },
-      ]}
-    >
-      <Label>Your favorite libraries</Label>
-      <MultiSelect<{ id: string; textValue: string }>
-        renderEmptyState={(inputValue) => {
-          return (
-            <Text className="p-2">
-              {inputValue ? (
-                <>
-                  No results found for: <Strong>{inputValue}</Strong>
-                </>
-              ) : (
-                `No options`
-              )}
-            </Text>
-          );
-        }}
-        tag={(item) => {
-          return (
-            <Tag className="py-1" textValue={item.textValue}>
-              {item.textValue}
-            </Tag>
-          );
-        }}
-      >
-        {(item) => {
-          return (
-            <MultiSelectItem className="gap-2 px-4" textValue={item.textValue}>
-              {item.textValue}
-            </MultiSelectItem>
-          );
-        }}
-      </MultiSelect>
-      <FieldError></FieldError>
-    </MultiSelectField>
   );
 };

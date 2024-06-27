@@ -87,7 +87,10 @@ export function Tag({ children, color, ...props }: TagProps) {
             renderProps.allowsRemoving && 'pr-1',
             colors[color || groupColor].base,
             renderProps.isSelected && colors[color || groupColor].selected,
-            renderProps.isFocusVisible && focusOutlineStyle,
+            renderProps.isFocusVisible && [
+              focusOutlineStyle,
+              'outline-offset-1',
+            ],
             renderProps.isDisabled && 'opacity-50',
             className,
           );
