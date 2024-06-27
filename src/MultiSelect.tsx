@@ -61,7 +61,7 @@ type ContextType<T> = {
   setFilterText: (text: string) => void;
   onKeyDownCapture: (e: React.KeyboardEvent<HTMLInputElement>) => void;
   inputValue: string;
-  items: Array<T>;
+  selectedList: ListData<T>;
 };
 
 const MultiSelectContext = React.createContext<ContextType<unknown> | null>(
@@ -72,7 +72,7 @@ function useMultiSelectContext<T>() {
   const context = React.useContext(MultiSelectContext);
 
   if (!context) {
-    throw new Error("<MultiSelectContext.Provider> is required");
+    throw new Error('<MultiSelectContext.Provider> is required');
   }
 
   return context as ContextType<T>;
@@ -96,15 +96,16 @@ export function MultiSelectField<
   ...props
 }: ComboBoxFiledProps<T>) {
   const { contains } = useFilter({ sensitivity: 'base' });
-  const list = selectedList;
-  const listKeys = list.items.map((i) => i.id);
+
+  const selectedKeys = selectedList.items.map((i) => i.id);
+
   const filter = React.useCallback(
     (item: T, filterText: string) => {
       return (
-        !listKeys.includes(item.id) && contains(item.textValue, filterText)
+        !selectedKeys.includes(item.id) && contains(item.textValue, filterText)
       );
     },
-    [contains, listKeys],
+    [contains, selectedKeys],
   );
 
   const availableList = useListData({
@@ -123,14 +124,14 @@ export function MultiSelectField<
   const onRemove = React.useCallback(
     (keys: Set<Key>) => {
       const key = keys.values().next().value;
-      list.remove(key);
+      selectedList.remove(key);
       setFieldState({
         inputValue: '',
         selectedKey: null,
       });
       onItemRemove?.(key);
     },
-    [list, onItemRemove],
+    [selectedList, onItemRemove],
   );
 
   const onSelectionChange = (id: Key | null) => {
@@ -144,8 +145,8 @@ export function MultiSelectField<
       return;
     }
 
-    if (!listKeys.includes(id)) {
-      list.append(item);
+    if (!selectedKeys.includes(id)) {
+      selectedList.append(item);
       setFieldState({
         inputValue: '',
         selectedKey: id,
@@ -166,14 +167,14 @@ export function MultiSelectField<
   };
 
   const deleteLast = React.useCallback(() => {
-    if (list.items.length == 0) {
+    if (selectedList.items.length == 0) {
       return;
     }
 
-    const lastKey = list.items[list.items.length - 1];
+    const lastKey = selectedList.items[selectedList.items.length - 1];
 
     if (lastKey !== null) {
-      list.remove(lastKey.id);
+      selectedList.remove(lastKey.id);
       onItemRemove?.(lastKey.id);
     }
 
@@ -181,7 +182,7 @@ export function MultiSelectField<
       inputValue: '',
       selectedKey: null,
     });
-  }, [list, onItemRemove]);
+  }, [selectedList, onItemRemove]);
 
   const onKeyDownCapture = React.useCallback(
     (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -202,7 +203,7 @@ export function MultiSelectField<
             setFieldState,
             setFilterText: availableList.setFilterText,
             onKeyDownCapture,
-            items: list.items,
+            selectedList,
             inputValue: fieldState.inputValue,
           }}
         >
@@ -221,15 +222,15 @@ export function MultiSelectField<
               validate={() => {
                 if (isRequired) {
                   if (validate) {
-                    return validate(listKeys);
+                    return validate(selectedKeys);
                   }
 
-                  return listKeys.length == 0
+                  return selectedKeys.length == 0
                     ? 'Please select an item in the list.'
                     : null;
                 }
 
-                validate?.(listKeys);
+                validate?.(selectedKeys);
               }}
               {...props}
             >
@@ -238,7 +239,9 @@ export function MultiSelectField<
           </DescriptionProvider>
         </MultiSelectContext.Provider>
       </Group>
-      {name && <input hidden name={name} value={listKeys.join(',')} readOnly />}
+      {name && (
+        <input hidden name={name} value={selectedKeys.join(',')} readOnly />
+      )}
     </>
   );
 }
@@ -250,7 +253,7 @@ export function MultiSelect<
   },
 >({ className, renderEmptyState, ...props }: ComboBoxProps<T>) {
   const {
-    items,
+    selectedList,
     setFieldState,
     setFilterText,
     onRemove,
@@ -316,7 +319,10 @@ export function MultiSelect<
                         className="contents"
                         onRemove={onRemove}
                       >
-                        <TagList items={items} className="contents">
+                        <TagList
+                          items={selectedList.items}
+                          className="contents"
+                        >
                           {props.tag}
                         </TagList>
                       </TagGroup>
