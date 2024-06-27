@@ -1,6 +1,6 @@
 import { useVisuallyHidden } from 'react-aria';
 
-export function VisuallyHidden({ children }: { children: React.ReactNode }) {
+export function VisuallyHidden(props: JSX.IntrinsicElements['div']) {
   const { visuallyHiddenProps } = useVisuallyHidden();
-  return <div {...visuallyHiddenProps}>{children}</div>;
+  return <div {...props} {...visuallyHiddenProps} />;
 }
