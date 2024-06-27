@@ -20,13 +20,13 @@ export function CopyToClipboard({ timeout, children }: CopyToClipboardProps) {
 
 export function CopyButton({
   copyText,
-  labelBefore = 'Copy',
-  labelAfter = 'Copied',
+  labelBeforeCopy = 'Copy',
+  labelAfterCopy = 'Copied',
   ...props
 }: {
   copyText: string;
-  labelBefore?: string;
-  labelAfter?: string;
+  labelBeforeCopy?: string;
+  labelAfterCopy?: string;
 } & Omit<ButtonPropsWithoutAsChild, 'outline' | 'unstyle'>) {
   const [showTooltip, setShowTooltip] = React.useState(false);
 
@@ -44,11 +44,11 @@ export function CopyButton({
                 setShowTooltip(false);
               }}
             >
-              <Icon>
-                <Copy strokeWidth={1.5} aria-label={labelBefore} />
+              <Icon aria-label={labelBeforeCopy}>
+                <Copy strokeWidth={1.5} />
               </Icon>
             </Button>
-            <Tooltip>{copied ? labelAfter : labelBefore}</Tooltip>
+            <Tooltip>{copied ? labelAfterCopy : labelBeforeCopy}</Tooltip>
           </TooltipTrigger>
         );
       }}

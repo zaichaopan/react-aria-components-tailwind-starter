@@ -25,11 +25,11 @@ export default meta;
 
 export const Example = () => {
   return (
-    <CopyButton 
+    <CopyButton
+      plain
       copyText="http://example.com"
-      labelBefore="Copy link"
-      labelAfter="Link is copied"
-      text
+      labelBeforeCopy="Copy link"
+      labelAfterCopy="Link is copied"
     ></CopyButton>
   );
 };
@@ -54,7 +54,8 @@ export const CopyToClipboardCustomUI = () => {
 CopyToClipboardCustomUI.parameters = {
   docs: {
     description: {
-      story: 'Use **CopyToClipboard** component to build your own copy to clipboard UI:',
+      story:
+        'Use **CopyToClipboard** component to build your own copy to clipboard UI:',
     },
   },
 };

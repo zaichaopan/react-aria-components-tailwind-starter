@@ -6,19 +6,20 @@ import {
 import { twMerge } from 'tailwind-merge';
 
 const displayLevels = {
-  4: 'font-medium text-base/6 sm:text-sm/6',
-  3: 'font-semibold text-base/6 sm:text-sm/6 ',
-  2: 'font-semibold text-base/6 ',
   1: 'font-bold text-lg',
+  2: 'font-semibold text-base/6 ',
+  3: 'font-semibold text-base/6 sm:text-sm/6',
+  4: 'font-medium text-base/6 sm:text-sm/6',
 };
 
 type Level = keyof typeof displayLevels;
 
-export type HeadingProps = RACHeadingProps &
-  React.RefAttributes<HTMLHeadingElement> & {
-    displayLevel?: Level;
-    level?: Level;
-  };
+export interface HeadingProps
+  extends RACHeadingProps,
+    React.RefAttributes<HTMLHeadingElement> {
+  displayLevel?: Level;
+  level?: Level;
+}
 
 export const Heading = React.forwardRef<HTMLHeadingElement, HeadingProps>(
   function Heading({ displayLevel, className, level = 1, ...props }, ref) {

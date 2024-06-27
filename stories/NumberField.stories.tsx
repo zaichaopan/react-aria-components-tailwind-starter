@@ -36,18 +36,24 @@ export const Example = () => {
   );
 };
 
+export const Disabled = () => {
+  return (
+    <NumberField isDisabled>
+      <Label>Viewer(s)</Label>
+
+      <NumberInput />
+    </NumberField>
+  );
+};
+
 export const Validation = () => (
   <Form className="flex flex-col items-start gap-2">
     <NumberField maxValue={7} isRequired>
       <Label>Viewer(s)</Label>
       <Description>Maximum of 7</Description>
-      <NumberInput placeholder="Type a number&hellip;"/>
+      <NumberInput placeholder="Type a number&hellip;" />
       <FieldError />
     </NumberField>
     <Button type="submit">Submit</Button>
   </Form>
 );
-
-Validation.args = {
-  isRequired: true,
-};

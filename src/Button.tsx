@@ -195,12 +195,13 @@ export function ToggleButton(props: ToggleButtonProps) {
   );
 }
 
-export function CloseButton(
-  props: ButtonPropsWithoutAsChild & { isIconOnly?: never },
-) {
+export function CloseButton({
+  'aria-label': ariaLabel = 'Close',
+  ...props
+}: ButtonPropsWithoutAsChild & { isIconOnly?: never }) {
   return (
     <Button isIconOnly {...props}>
-      <Icon aria-label="Close">
+      <Icon aria-label={ariaLabel}>
         <X strokeWidth={1.5} />
       </Icon>
     </Button>

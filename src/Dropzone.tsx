@@ -12,7 +12,7 @@ export function DropZone(props: DropZoneProps) {
       {...props}
       className={composeRenderProps(
         props.className,
-        (className, { ...renderProps }) => {
+        (className, renderProps) => {
           return twMerge(
             'sm:w-96',
             'flex flex-shrink-0 flex-col items-center justify-center rounded-xl',
