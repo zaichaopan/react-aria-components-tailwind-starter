@@ -102,7 +102,6 @@ export const Example = () => {
   );
 };
 
-
 type User = {
   id: string;
   src: string;
@@ -165,6 +164,40 @@ export const WithAvatars = () => {
             userName: 'Jenny Wilson',
             src: 'https://images.unsplash.com/photo-1498551172505-8ee7ad69f235?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60',
           },
+          {
+            id: '7',
+            textValue: 'Gilberto Miguel',
+            userName: 'Gilberto Miguel',
+            src: 'https://images.unsplash.com/photo-1599566150163-29194dcaad36?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;ixlib=rb-1.2.1auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80',
+          },
+          {
+            id: '8',
+            textValue: 'Wade Redington',
+            userName: 'Wade Redington',
+            src:"https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+          },
+          {
+            id: '9',
+            textValue: 'Kurtis Gurrado',
+            userName: 'Kurtis Gurrado',
+            src:"https://images.unsplash.com/photo-1528763380143-65b3ac89a3ff?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+          },
+          {
+            id: '10',
+            textValue: 'Sonja Balmann',
+            userName: 'Sonja Balmann',
+            src:"https://images.unsplash.com/photo-1569913486515-b74bf7751574?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+          }, {
+            id: '11',
+            textValue: 'Brent Mickelwright',
+            userName: 'Brent Mickelwright',
+            src: 'https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80'
+          }, {
+            id: '12',
+            textValue: 'Charles Webb',
+            userName: 'Charles Webb',
+            src: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2.25&w=256&h=256&q=80'
+          }
         ]}
       >
         <Label>Assignee</Label>
