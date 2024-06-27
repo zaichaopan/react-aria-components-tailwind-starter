@@ -96,7 +96,7 @@ export function DropdownItem({
 
         (className, { isDisabled, isFocused }) => {
           return twMerge([
-            'group flex cursor-default select-none items-center gap-0.5 outline-none outline-0',
+            'group flex cursor-default select-none items-center gap-1 outline-none outline-0',
             'text-base/6 sm:text-sm/6 rounded-md',
             'p-1.5 has-submenu:pr-0',
             isDisabled && 'opacity-50',
