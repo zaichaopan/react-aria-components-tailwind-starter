@@ -372,20 +372,14 @@ export function MultiSelect<
 }
 
 export function MultiSelectItem(props: ListBoxItemProps) {
-  const textValue =
-    props.textValue ||
-    (typeof props.children === 'string' ? props.children : undefined);
-
   return (
     <ListBoxItem
       {...props}
-      textValue={textValue}
       className={composeRenderProps(
         props.className,
-        (className, { isDisabled, isFocused }) => {
+        (className, { isFocused }) => {
           return twMerge([
-            'group flex flex-1 cursor-default select-none items-center gap-1 text-nowrap rounded-md p-1.5 text-base/6 outline-0 sm:text-sm/6',
-            isDisabled && 'opacity-50',
+            'rounded-md p-1.5 text-base/6 outline-0 sm:text-sm/6',
             isFocused && 'bg-accent text-white',
             className,
           ]);

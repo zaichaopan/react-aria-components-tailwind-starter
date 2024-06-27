@@ -39,6 +39,7 @@ type User = {
   src: string;
   userName: string;
   textValue: string;
+  disabled?: boolean;
 };
 export const Example = () => {
   const selectedList = useListData<User>({
@@ -69,6 +70,7 @@ export const Example = () => {
             textValue: 'Jane Cooper',
             userName: 'Jane Cooper',
             src: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60',
+            disabled: true,
           },
           {
             id: '3',
@@ -128,8 +130,9 @@ export const Example = () => {
           {(item) => {
             return (
               <MultiSelectItem
-                className="gap-2 px-4"
+                isDisabled={item.disabled}
                 id={item.id}
+                className="gap-2 px-4"
                 textValue={item.textValue}
               >
                 <Avatar
@@ -199,7 +202,11 @@ export const ExampleOne = () => {
           );
         }}
         tag={(item) => {
-          return <Tag textValue={item.textValue}>{item.textValue}</Tag>;
+          return (
+            <Tag className="py-1" textValue={item.textValue}>
+              {item.textValue}
+            </Tag>
+          );
         }}
       >
         {(item) => {
