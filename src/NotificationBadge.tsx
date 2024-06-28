@@ -18,7 +18,7 @@ export function NotificationBadge({
       <span
         aria-hidden
         className={twMerge(
-          'absolute right-1 top-1 flex h-2 w-2 rounded-full bg-red-600',
+          'absolute right-1 top-1 flex size-2 rounded-full bg-red-600',
           className,
         )}
         {...props}

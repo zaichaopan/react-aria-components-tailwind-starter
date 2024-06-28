@@ -9,6 +9,7 @@ import {
 import { composeTailwindRenderProps, focusOutlineStyle } from './utils';
 import { twMerge } from 'tailwind-merge';
 import { DescriptionProvider, WithDescriptionContext } from './Field';
+import { Icon } from './Icon';
 
 export interface CheckboxGroupProps
   extends Omit<RACCheckboxGroupProps, 'children'> {
@@ -111,9 +112,13 @@ export function Checkbox({
                   ])}
                 >
                   {renderProps.isIndeterminate ? (
-                    <Minus aria-hidden className="size-4 text-white" />
+                    <Icon>
+                      <Minus className="size-4 text-white" />
+                    </Icon>
                   ) : renderProps.isSelected ? (
-                    <Check aria-hidden className="size-4 text-white" />
+                    <Icon>
+                      <Check className="size-4 text-white" />
+                    </Icon>
                   ) : null}
                 </div>
 

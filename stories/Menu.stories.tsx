@@ -332,22 +332,36 @@ WithIconTrigger.parameters = {
 
 export const WithAvatarTrigger = () => {
   return (
-    <MenuTrigger>
-      <MenuButton noArrow unstyle>
-        <Avatar
-          src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=facearea&facepad=3&w=256&h=256&q=80"
-          alt="Jane"
-        />
-      </MenuButton>
-      <MenuPopover placement="bottom">
-        <Menu>
-          <MenuItem>Account</MenuItem>
-          <MenuItem>Settings</MenuItem>
-          <MenuItem>Support</MenuItem>
-          <MenuItem>Sign out</MenuItem>
-        </Menu>
-      </MenuPopover>
-    </MenuTrigger>
+    <div className="flex gap-2">
+      <MenuTrigger>
+        <MenuButton outline>Options</MenuButton>
+        <MenuPopover placement="bottom">
+          <Menu>
+            <MenuItem>Account</MenuItem>
+            <MenuItem>Settings</MenuItem>
+            <MenuItem>Support</MenuItem>
+            <MenuItem>Sign out</MenuItem>
+          </Menu>
+        </MenuPopover>
+      </MenuTrigger>
+      <MenuTrigger>
+        <MenuButton noArrow unstyle>
+          <Avatar
+            className="size-10 rounded-full"
+            src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=facearea&facepad=3&w=256&h=256&q=80"
+            alt="Jane"
+          />
+        </MenuButton>
+        <MenuPopover placement="bottom">
+          <Menu>
+            <MenuItem>Account</MenuItem>
+            <MenuItem>Settings</MenuItem>
+            <MenuItem>Support</MenuItem>
+            <MenuItem>Sign out</MenuItem>
+          </Menu>
+        </MenuPopover>
+      </MenuTrigger>
+    </div>
   );
 };
 

@@ -12,8 +12,8 @@ export type LinkProps = AsChildProps<RACLinkProps>;
 
 const linkStyle = [
   'relative inline-flex cursor-pointer items-center gap-1 rounded outline-none hover:underline',
-  'text-base sm:text-sm/6 text-foreground',
-  'disabled:no-underline disabled:opacity-50',
+  'text-base/6 sm:text-sm/6',
+  'disabled:no-underline disabled:opacity-50 disabled:cursor-default',
 ];
 
 export const Link = React.forwardRef<HTMLAnchorElement, LinkProps>(
@@ -30,7 +30,7 @@ export const Link = React.forwardRef<HTMLAnchorElement, LinkProps>(
           props.className,
           (className, renderProps) => {
             return twMerge([
-              ...linkStyle,
+              linkStyle,
               renderProps.isFocusVisible && focusOutlineStyle,
               className,
             ]);

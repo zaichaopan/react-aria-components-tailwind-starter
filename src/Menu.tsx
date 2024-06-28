@@ -62,11 +62,10 @@ export function MenuPopover({ className, ...props }: PopoverProps) {
   );
 }
 
-interface MenuProps<T> extends RACMenuProps<T> {
-  placement?: PopoverProps['placement'];
-}
-
-export function Menu<T extends object>({ className, ...props }: MenuProps<T>) {
+export function Menu<T extends object>({
+  className,
+  ...props
+}: RACMenuProps<T>) {
   return (
     <RACMenu
       {...props}
@@ -80,7 +79,7 @@ export function Menu<T extends object>({ className, ...props }: MenuProps<T>) {
 }
 
 export function SubMenu<T extends object>(
-  props: MenuProps<T> & { 'aria-label': string },
+  props: RACMenuProps<T> & { 'aria-label': string },
 ) {
   return <Menu {...props} />;
 }
@@ -131,7 +130,11 @@ export function MenuItem({
           <>
             {selectionMode !== 'none' && (
               <span className="flex w-4 items-center">
-                {isSelected && <Check aria-hidden className="h-4 w-4" />}
+                {isSelected && (
+                  <Icon>
+                    <Check className="size-4" />
+                  </Icon>
+                )}
               </span>
             )}
 
@@ -183,7 +186,7 @@ export function MenuItem({
               <ChevronRight
                 strokeWidth="1.5"
                 className={twMerge([
-                  'hidden h-4 w-4 text-muted group-data-[has-submenu]:inline-block',
+                  'hidden size-4 text-muted group-data-[has-submenu]:inline-block',
                   isFocused && 'text-white',
                 ])}
               />

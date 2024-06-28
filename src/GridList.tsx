@@ -30,17 +30,17 @@ export function GridListItem({ children, ...props }: GridListItemProps) {
   const textValue = typeof children === 'string' ? children : undefined;
   return (
     <AriaGridListItem
-      textValue={textValue}
       {...props}
+      textValue={textValue}
       className={(renderProps) => {
         return twMerge(
           'relative -mb-px flex cursor-default select-none gap-3 rounded-md px-2 py-1.5 text-sm outline-none',
-          '[&:not(:last-child)]:mb-0.5',
+          'hover:bg-hover [&:not(:last-child)]:mb-0.5',
           renderProps.isFocusVisible && [
             focusOutlineStyle,
             '-outline-offset-2',
           ],
-          renderProps.isSelected ? 'z-20 hover:bg-hover' : 'hover:bg-hover',
+          renderProps.isSelected && 'z-20',
           renderProps.isDisabled && 'opacity-50',
         );
       }}

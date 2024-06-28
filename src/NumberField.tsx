@@ -31,14 +31,14 @@ export function NumberInput(
     <InputFieldGroup className="fist:border-r">
       <StepperButton slot="increment">
         <Icon>
-          <Plus className="h-4 w-4" />
+          <Plus className="size-4" />
         </Icon>
       </StepperButton>
       <Input {...props} />
 
       <StepperButton slot="decrement">
         <Icon>
-          <Minus className="h-4 w-4" />
+          <Minus className="size-4" />
         </Icon>
       </StepperButton>
     </InputFieldGroup>

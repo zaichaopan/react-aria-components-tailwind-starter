@@ -119,6 +119,21 @@ AvatarLinks.parameters = {
   },
 };
 
+export const DisabledLinks = () => {
+  return (
+    <Link
+      isDisabled
+      href="https://react-spectrum.adobe.com/react-aria/routing.html"
+      target="_blank"
+    >
+      React Aria Component Link
+      <Icon>
+        <ExternalLink className="size-5" strokeWidth={1.5} />
+      </Icon>
+    </Link>
+  );
+};
+
 export const AsChild = () => {
   return (
     <Link>

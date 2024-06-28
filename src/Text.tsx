@@ -31,10 +31,7 @@ export function Strong({
     <Text
       {...props}
       elementType="strong"
-      className={twMerge(
-        'text-base/6 font-medium sm:text-sm/6 text-foreground',
-        className,
-      )}
+      className={twMerge('font-medium text-foreground', className)}
     />
   );
 }
@@ -44,7 +41,7 @@ export function Small({ className, ...props }: JSX.IntrinsicElements['small']) {
     <Text
       {...props}
       elementType="small"
-      className={twMerge('text-sm/6/ text-muted sm:text-xs/6', className)}
+      className={twMerge('text-sm/6 sm:text-xs/6', className)}
     />
   );
 }

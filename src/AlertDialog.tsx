@@ -20,7 +20,7 @@ interface AlertDialogProps extends Omit<DialogProps, 'children'> {
 export function AlertDialog({
   title,
   destructive = false,
-  cancelLabel,
+  cancelLabel = 'Cancel',
   primaryActionLabel,
   secondaryActionLabel,
   onPrimaryAction,
@@ -30,7 +30,7 @@ export function AlertDialog({
   ...props
 }: AlertDialogProps) {
   return (
-    <Dialog role="alertdialog" {...props}>
+    <Dialog {...props} role="alertdialog">
       {({ close }) => (
         <>
           <DialogHeader level={2} noCloseButton>
@@ -48,7 +48,7 @@ export function AlertDialog({
 
           <DialogFooter className={secondaryActionLabel ? 'justify-start' : ''}>
             <Button plain onPress={chain(onCancelAction, close)}>
-              {cancelLabel || 'Cancel'}
+              {cancelLabel}
             </Button>
             {secondaryActionLabel ? (
               <Button

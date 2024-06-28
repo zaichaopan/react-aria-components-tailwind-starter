@@ -93,7 +93,6 @@ export function DropdownItem({
       textValue={textValue}
       className={composeRenderProps(
         props.className,
-
         (className, { isDisabled, isFocused }) => {
           return twMerge([
             'group flex cursor-default select-none items-center gap-1 outline-none outline-0',
