@@ -332,7 +332,7 @@ WithIconTrigger.parameters = {
 
 export const WithAvatarTrigger = () => {
   return (
-    <div className="flex gap-2">
+    <div className="flex gap-2 items-center">
       <MenuTrigger>
         <MenuButton outline>Options</MenuButton>
         <MenuPopover placement="bottom">
