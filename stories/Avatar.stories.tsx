@@ -62,7 +62,6 @@ export const AvatarSizes = () => {
         src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=facearea&facepad=3&w=256&h=256&q=80"
       />
       <Avatar
-        className="size-10"
         alt="Taylor Harber"
         src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=facearea&facepad=3&w=256&h=256&q=80"
       />
@@ -83,7 +82,7 @@ AvatarSizes.parameters = {
   docs: {
     description: {
       story:
-        'Default avatar size is **size-12**. Use **size-\\*** utility to render avatars with different sizes:',
+        'Default avatar size is **size-10**. Use **size-\\*** utility to render avatars with different sizes:',
     },
   },
 };

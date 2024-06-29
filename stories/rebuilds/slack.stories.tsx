@@ -431,7 +431,6 @@ function ProfileMenu() {
     <MenuTrigger>
       <MenuButton unstyle noArrow>
         <Avatar
-          className="size-10"
           src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=facearea&facepad=3&w=256&h=256&q=80"
           alt="Steve"
         >
@@ -448,7 +447,6 @@ function ProfileMenu() {
       >
         <div className="flex items-center gap-2 px-6 pb-2 pt-6">
           <Avatar
-            className="size-10"
             src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=facearea&facepad=3&w=256&h=256&q=80"
             alt="Steve"
           />

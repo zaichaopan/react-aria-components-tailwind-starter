@@ -44,7 +44,7 @@ export function Avatar({
       <div
         role="img"
         className={twMerge([
-          'group relative flex size-12 items-center justify-center rounded-lg @container',
+          'group relative flex size-10 items-center justify-center rounded-lg @container',
           'outline outline-1 -outline-offset-1 outline-black/20 dark:outline-white/10',
           className,
         ])}

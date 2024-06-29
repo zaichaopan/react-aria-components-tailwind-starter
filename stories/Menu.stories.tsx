@@ -335,7 +335,7 @@ export const WithAvatarTrigger = () => {
     <MenuTrigger>
       <MenuButton noArrow unstyle>
         <Avatar
-          className="size-10 rounded-full"
+          className="rounded-full"
           src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=facearea&facepad=3&w=256&h=256&q=80"
           alt="Jane"
         />
@@ -372,7 +372,6 @@ export const WithCustomTrigger = () => {
       >
         <Avatar
           alt="Jane"
-          className="size-10"
           src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=facearea&facepad=3&w=256&h=256&q=80"
         ></Avatar>
         <div className="mr-16 flex w-16 flex-col justify-center">
@@ -587,7 +586,7 @@ export const MenuHeaders = () => {
         <div className="flex items-center gap-4 border-b p-4">
           <Avatar
             alt="Jane"
-            className="size-10 rounded-full"
+            className="rounded-full"
             src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=facearea&facepad=3&w=256&h=256&q=80"
           ></Avatar>
           <div className="text-xs text-muted">jane@example.com</div>
