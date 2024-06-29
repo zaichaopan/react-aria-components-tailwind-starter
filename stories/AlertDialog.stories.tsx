@@ -3,7 +3,7 @@ import type { Meta } from '@storybook/react';
 import { docs } from '../.storybook/docs';
 import { AlertDialog } from '../src/AlertDialog';
 import { Button } from '../src/Button';
-import { AlertModal, Modal } from '../src/Modal';
+import { Modal } from '../src/Modal';
 import { Text, TextLink } from '../src/Text';
 import {
   DialogTrigger,
@@ -74,11 +74,11 @@ export const Example = () => {
   return (
     <DialogTrigger>
       <Button>Update</Button>
-      <AlertModal>
+      <Modal>
         <AlertDialog title="Update Available" primaryActionLabel="Install now">
           A new version is ready to be installed.
         </AlertDialog>
-      </AlertModal>
+      </Modal>
     </DialogTrigger>
   );
 };
@@ -87,7 +87,7 @@ export const DestructiveAlertDialogs = () => {
   return (
     <DialogTrigger>
       <Button color="destructive">Delete&hellip;</Button>
-      <AlertModal>
+      <Modal>
         <AlertDialog
           title="Delete folder"
           destructive
@@ -96,7 +96,7 @@ export const DestructiveAlertDialogs = () => {
           Are you sure you want to delete "Documents"? All contents will be
           permanently destroyed.
         </AlertDialog>
-      </AlertModal>
+      </Modal>
     </DialogTrigger>
   );
 };
@@ -114,13 +114,13 @@ export const TitleOnlyAlertDialogs = () => {
   return (
     <DialogTrigger>
       <Button color="destructive">Remove</Button>
-      <AlertModal>
+      <Modal>
         <AlertDialog
           title="Remove preview?"
           destructive
           primaryActionLabel="Remove"
         ></AlertDialog>
-      </AlertModal>
+      </Modal>
     </DialogTrigger>
   );
 };
@@ -137,7 +137,7 @@ export const SecondaryActions = () => {
   return (
     <DialogTrigger>
       <Button outline>Secondary</Button>
-      <AlertModal size="lg">
+      <Modal size="lg">
         <AlertDialog
           title="Rate this app"
           cancelLabel="No, thanks"
@@ -147,7 +147,7 @@ export const SecondaryActions = () => {
           If you enjoy the app, would you mind taking a moment to rate it? It
           will take a few minutes.
         </AlertDialog>
-      </AlertModal>
+      </Modal>
     </DialogTrigger>
   );
 };
@@ -169,7 +169,7 @@ export const ControlledOpenState = () => {
       <Button onPress={() => setOpen(true)} plain>
         Try Again
       </Button>
-      <AlertModal isOpen={isOpen} onOpenChange={setOpen}>
+      <Modal isOpen={isOpen} onOpenChange={setOpen}>
         <AlertDialog
           title="Unable to connect your account"
           primaryActionLabel="Try Again"
@@ -180,7 +180,7 @@ export const ControlledOpenState = () => {
             issue keeps happening, contact <TextLink>Customer Care.</TextLink>
           </Text>
         </AlertDialog>
-      </AlertModal>
+      </Modal>
     </div>
   );
 };
@@ -189,7 +189,7 @@ ControlledOpenState.parameters = {
   docs: {
     description: {
       story:
-        'Use the **isOpen** and **onOpenChange**  prop of **AlertModal** component to control alert dialog open state:',
+        'Use the **isOpen** and **onOpenChange**  prop of **Modal** component to control alert dialog open state:',
     },
   },
 };

@@ -323,7 +323,7 @@ export const WithIsDismissableAndKeyboardDismissDisabled = () => {
   return (
     <DialogTrigger>
       <Button>Edit profile</Button>
-      <Modal isDismissable={false} isKeyboardDismissDisabled size="md">
+      <Modal isDismissable isKeyboardDismissDisabled size="md">
         <Dialog>
           {({ close }) => {
             return (
@@ -371,7 +371,7 @@ export const WithIsDismissableAndKeyboardDismissDisabled = () => {
 WithIsDismissableAndKeyboardDismissDisabled.parameters = {
   docs: {
     description: {
-      story: `Use the **isDismissable** prop of the **Modal** component to control whether the dialog can be closed by clicking outside. Default **true**. 
+      story: `Use the **isDismissable** prop of the **Modal** component to control whether the dialog can be closed by clicking outside. Default **false**. 
         \n\nUse the **isKeyboardDismissDisabled** pros to control whether the dialog can be closed by **ESC** key. Default **false**:`,
     },
   },

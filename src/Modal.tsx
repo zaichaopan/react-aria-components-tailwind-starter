@@ -37,12 +37,7 @@ type ModalProps = Omit<RACModalOverlayProps, 'className'> & {
   classNames?: ClassNames;
 } & DrawerProps;
 
-export function Modal({
-  isDismissable = true,
-  animate = true,
-  classNames,
-  ...props
-}: ModalProps) {
+export function Modal({ animate = true, classNames, ...props }: ModalProps) {
   const drawer = props.drawer;
 
   const placement = props.drawer ? props.placement ?? 'left' : undefined;
@@ -50,7 +45,6 @@ export function Modal({
   return (
     <RACModalOverlay
       {...props}
-      isDismissable={isDismissable}
       className={composeRenderProps(
         classNames?.modalOverlay,
         (className, renderProps) => {
@@ -95,8 +89,9 @@ export function Modal({
               'max-h-full w-full overflow-hidden text-left align-middle shadow-lg',
               'bg-background dark:bg-secondary',
               'ring-1 ring-zinc-950/5  dark:ring-white/10',
-              sizes[props.size ?? 'lg'],
-
+              props.size
+                ? sizes[props.size]
+                : 'has-[[role=alertdialog]]:max-w-md has-[[role=dialog]]:max-w-lg',
               drawer
                 ? [
                     'h-full rounded-lg',
@@ -130,12 +125,4 @@ export function Modal({
       />
     </RACModalOverlay>
   );
-}
-
-export function AlertModal({
-  size = 'md',
-  isDismissable = false,
-  ...props
-}: ModalProps) {
-  return <Modal {...props} size={size} isDismissable={isDismissable} />;
 }
