@@ -42,7 +42,7 @@ export function CheckboxGroupContent({
       {...props}
       className={twMerge(
         'flex gap-3 group-orientation-vertical:flex-col ',
-        // When a checkbox has description, make the label font-medium if it is not
+        // When a checkbox of the group has description, make all labels font-medium inside the group if it is not
         '[&_label:not(.font-medium)]:has-[[slot=description]]:font-medium',
         className,
       )}
@@ -63,8 +63,10 @@ export function CheckboxField({
           'sm:[&_[slot=description]]:has-[label[data-label-position=left]]:pr-7',
           'sm:[&_[slot=description]]:has-[label[data-label-position=right]]:pl-7',
           '[&_label]:has-[[data-label-position=left]]:justify-between',
-          // When a checkbox has description, make the label font-medium
+          // When the checkbox has description, make the label font-medium
           '[&_label]:has-[[slot=description]]:font-medium',
+          // When the checkbox is disabled
+          '[&_[slot=description]]:has-[label[data-disabled]]:opacity-50',
           className,
         )}
       />

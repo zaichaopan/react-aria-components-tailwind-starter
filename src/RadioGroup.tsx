@@ -30,7 +30,7 @@ export function RadioGroupContent({
       {...props}
       className={twMerge(
         'flex flex-col gap-2 group-orientation-horizontal:flex-row group-orientation-horizontal:flex-wrap',
-        // When a radio has description, make the label font-medium if it is not
+        // When a radio of the group has description, make all labels font-medium if it is not
         '[&_label:not(.font-medium)]:has-[[slot=description]]:font-medium',
         className,
       )}
@@ -51,8 +51,10 @@ export function RadioField({
           'sm:[&_[slot=description]]:has-[label[data-label-position=left]]:pr-7',
           'sm:[&_[slot=description]]:has-[label[data-label-position=right]]:pl-7',
           '[&_label]:has-[[data-label-position=left]]:justify-between',
-          // When a radio has description, make the label font-medium
+          // When the radio has description, make the label font-medium
           '[&_label]:has-[[slot=description]]:font-medium',
+          // When the radio is disabled
+          '[&_[slot=description]]:has-[label[data-disabled]]:opacity-50',
           className,
         )}
       />

@@ -132,7 +132,7 @@ export function Description({ className, ...props }: TextProps) {
             {...props}
             slot="description"
             className={twMerge(
-              'mb-1 text-pretty text-base/6 text-muted group-disabled:opacity-50 sm:text-sm/6',
+              'mb-1 text-pretty text-base/6 text-muted sm:text-sm/6',
               className,
             )}
           />
@@ -258,7 +258,7 @@ export function SearchInput({
         className,
         '[&_input::-webkit-search-cancel-button]:hidden',
       )}
-    > 
+    >
       <Icon>
         <Search className="ml-2 size-5 text-muted" />
       </Icon>
