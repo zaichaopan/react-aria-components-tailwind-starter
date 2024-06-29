@@ -110,6 +110,26 @@ export const DisabledSelection = () => {
   );
 };
 
+export const DisabledWholeSelect = () => {
+  return (
+    <SelectField isDisabled placeholder="Pick sound" selectedKey="ding">
+      <Label>Notification sound</Label>
+      <Description>Select a sound for incoming notifications</Description>
+      <Select>
+        <SelectItem id="none">None</SelectItem>
+        <SelectItem id="ding">Ding</SelectItem>
+        <SelectItem id="boring">Boring</SelectItem>
+        <SelectItem>Drop</SelectItem>
+        <SelectItem>Ta-da</SelectItem>
+        <SelectItem>Plink</SelectItem>
+        <SelectItem>Wow</SelectItem>
+        <SelectItem>Here you go</SelectItem>
+        <SelectItem>Hi</SelectItem>
+      </Select>
+    </SelectField>
+  );
+};
+
 export const Sections = () => {
   return (
     <SelectField>
@@ -170,7 +190,11 @@ CustomWidth.parameters = {
 
 export const CustomSelectionItem = () => {
   return (
-    <SelectField placeholder="Assign to" defaultSelectedKey="1" className="min-w-[250px]">
+    <SelectField
+      placeholder="Assign to"
+      defaultSelectedKey="1"
+      className="min-w-[250px]"
+    >
       <Label>Assignee</Label>
       <Select>
         <SelectItem id="1" textValue="Lesly Juarez">

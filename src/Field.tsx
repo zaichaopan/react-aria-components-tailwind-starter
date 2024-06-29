@@ -49,7 +49,9 @@ export function Label(props: LabelProps) {
     <RACLabel
       {...props}
       className={twMerge(
-        'w-fit cursor-default text-pretty text-base/6 font-medium group-disabled:opacity-50 sm:text-sm/6',
+        'w-fit cursor-default text-pretty text-base/6 font-medium sm:text-sm/6',
+        // When it is inside disabled group
+        ' group-disabled:opacity-50',
         props.className,
       )}
     />
@@ -125,7 +127,12 @@ export function Description({ className, ...props }: TextProps) {
             {...props}
             id={describedby}
             slot="description"
-            className={twMerge('mb-1', className)}
+            className={twMerge(
+              'mb-1',
+              // When it is inside disabled group
+              'group-disabled:opacity-50',
+              className,
+            )}
           />
         ) : (
           <RACText
@@ -133,6 +140,8 @@ export function Description({ className, ...props }: TextProps) {
             slot="description"
             className={twMerge(
               'mb-1 text-pretty text-base/6 text-muted sm:text-sm/6',
+              // When it is inside disabled group
+              'group-disabled:opacity-50',
               className,
             )}
           />

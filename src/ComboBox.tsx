@@ -34,11 +34,11 @@ export function ComboBox({ children, ...props }: ComboBoxProps<object>) {
 export function ComboBoxPopover({ className, ...props }: PopoverProps) {
   return (
     <Popover
+      {...props}
       className={composeTailwindRenderProps(
         className,
         'min-w-[--trigger-width] overflow-auto',
       )}
-      {...props}
     />
   );
 }
@@ -49,11 +49,11 @@ export function ComboBoxListBox<T extends object>({
 }: ListBoxProps<T>) {
   return (
     <ListBox
+      {...props}
       className={composeTailwindRenderProps(
         className,
         'flex max-h-[inherit] flex-col overflow-auto p-1 has-[header]:px-2 has-[header]:pt-0',
       )}
-      {...props}
     />
   );
 }
@@ -61,11 +61,11 @@ export function ComboBoxListBox<T extends object>({
 export function TriggerButton() {
   return (
     <Button
-      className="absolute right-1 top-1/2 size-7 -translate-y-1/2 p-0.5 rounded-md"
+      className="absolute right-1 top-1/2 size-7 -translate-y-1/2 rounded-md p-0.5"
       plain
     >
       <Icon>
-        <ChevronDown className='opacity-50' />
+        <ChevronDown className="opacity-50" />
       </Icon>
     </Button>
   );

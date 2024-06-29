@@ -57,6 +57,18 @@ export const WithDescription = () => {
   );
 };
 
+export const WithDisabled = () => {
+  return (
+    <TextField className="w-full sm:w-96" name="email" type="email" isDisabled>
+      <Label>Email address</Label>
+      <Description>
+        Enter an email for us to contact you about your order.
+      </Description>
+      <Input />
+    </TextField>
+  );
+};
+
 export const WithIcon = () => {
   return (
     <TextField className="w-full sm:w-96" name="email" type="email">
