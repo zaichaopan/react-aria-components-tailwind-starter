@@ -34,8 +34,8 @@ export default meta;
 export const Example = () => {
   return (
     <DatePicker>
-      <Label>Birth date</Label>
-      <Description>Please enter your birth date</Description>
+      <Label>Event date</Label>
+      <Description>Please enter the event date</Description>
       <DatePickerInput></DatePickerInput>
     </DatePicker>
   );
@@ -44,8 +44,8 @@ export const Example = () => {
 export const Validation = () => (
   <Form className="flex flex-col items-start gap-2">
     <DatePicker isRequired>
-      <Label>Birth date</Label>
-      <Description>Please enter your birth date</Description>
+      <Label>Event date</Label>
+      <Description>Please enter the event date</Description>
       <DatePickerInput></DatePickerInput>
       <FieldError />
     </DatePicker>
@@ -58,8 +58,8 @@ export const Validation = () => (
 export const DatePickerButtons = () => {
   return (
     <DatePicker defaultValue={today(getLocalTimeZone())}>
-      <Label>Birth date</Label>
-      <Description>Please pick your birth date</Description>
+      <Label>Event date</Label>
+      <Description>Please pick the event date</Description>
       <DatePickerButton />
       <FieldError />
     </DatePicker>
