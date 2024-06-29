@@ -83,20 +83,18 @@ export function PaginationNext({
 
 export function PaginationPage({
   className,
-  current = false,
-  'aria-label': arialLabel = 'Page',
+  current,
+  'aria-label': arialLabel,
   ...props
 }: LinkProps & { className?: string; current?: boolean; children: string }) {
   return (
-    <Button asChild plain>
+    <Button asChild {...(!current && { plain: true })}>
       <Link
         {...props}
-        aria-label={`${arialLabel} ${props.children}`}
+        aria-label={arialLabel ?? `Page ${props.children}`}
         className={twMerge(
           'min-w-9 outline-offset-1 hover:no-underline',
           className,
-          current &&
-            'bg-zinc-200/75 hover:bg-zinc-200 dark:border dark:bg-zinc-700/75 hover:dark:bg-zinc-700',
         )}
       />
     </Button>
