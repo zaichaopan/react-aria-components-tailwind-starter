@@ -131,7 +131,7 @@ CheckboxGroupHorizontal.parameters = {
   },
 };
 
-export const CheckboxLabelPosition = () => {
+export const CheckboxLabelPlacement = () => {
   return (
     <CheckboxGroup>
       <Label>Email settings</Label>
@@ -141,21 +141,21 @@ export const CheckboxLabelPosition = () => {
       </Text>
       <CheckboxGroupContent>
         <CheckboxField>
-          <Checkbox value="newsletter" labelPosition="left">
+          <Checkbox value="newsletter" labelPlacement="left">
             Newsletter
           </Checkbox>
           <Description>Receive our newsletter once per week</Description>
         </CheckboxField>
 
         <CheckboxField>
-          <Checkbox value="deals" labelPosition="left">
+          <Checkbox value="deals" labelPlacement="left">
             Deals
           </Checkbox>
           <Description>The best deals and sales for members</Description>
         </CheckboxField>
 
         <CheckboxField>
-          <Checkbox value="notification" labelPosition="left">
+          <Checkbox value="notification" labelPlacement="left">
             Notifications
           </Checkbox>
           <Description>Notifications about your orders</Description>
@@ -165,11 +165,11 @@ export const CheckboxLabelPosition = () => {
   );
 };
 
-CheckboxLabelPosition.parameters = {
+CheckboxLabelPlacement.parameters = {
   docs: {
     description: {
       story:
-        'Use **labelPosition="left"** to position label to the left size of the checkbox:',
+        'Use **labelPlacement="left"** to position label to the left size of the checkbox:',
     },
   },
 };

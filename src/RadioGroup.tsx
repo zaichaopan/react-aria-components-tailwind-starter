@@ -63,7 +63,7 @@ export function RadioField({
 }
 
 export interface RadioProps extends RACRadioProps {
-  labelPosition?: 'left' | 'right';
+  labelPlacement?: 'left' | 'right';
   render?: never;
 }
 
@@ -95,13 +95,13 @@ export function Radio({
           );
         }
 
-        const { labelPosition = 'right', ...restProps } = props;
+        const { labelPlacement = 'right', ...restProps } = props;
 
         return (
           <RACRadio
             {...restProps}
             aria-describedby={context?.['aria-describedby']}
-            data-label-position={labelPosition}
+            data-label-position={labelPlacement}
             className={composeTailwindRenderProps(
               className,
               'group flex items-center gap-3 text-base/6 group-orientation-horizontal:text-nowrap disabled:opacity-50 sm:text-sm/6',
@@ -110,7 +110,7 @@ export function Radio({
             {(renderProps) => {
               return (
                 <>
-                  {labelPosition === 'left' &&
+                  {labelPlacement === 'left' &&
                     (typeof props.children === 'function'
                       ? props.children(renderProps)
                       : props.children)}
@@ -132,7 +132,7 @@ export function Radio({
                     )}
                   />
 
-                  {labelPosition === 'right' &&
+                  {labelPlacement === 'right' &&
                     (typeof props.children === 'function'
                       ? props.children(renderProps)
                       : props.children)}
