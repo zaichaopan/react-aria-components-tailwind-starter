@@ -71,6 +71,7 @@ export const AvatarSizes = () => {
         src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=facearea&facepad=3&w=256&h=256&q=80"
       />
       <Avatar
+        className="size-12"
         alt="Taylor Harber"
         src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=facearea&facepad=3&w=256&h=256&q=80"
       />
@@ -249,7 +250,7 @@ export const AvatarGroups = () => {
           ],
         }}
       />
-        <AvatarGroup
+      <AvatarGroup
         avatars={{
           className: 'size-8 rounded-full',
           items: [
@@ -275,8 +276,7 @@ export const AvatarGroups = () => {
             },
           ],
         }}
-      >
-      </AvatarGroup>
+      ></AvatarGroup>
       <AvatarGroup
         avatars={{
           className: 'size-8 rounded-full',
@@ -304,7 +304,7 @@ export const AvatarGroups = () => {
           ],
         }}
       >
-        <div className="relative flex size-8 items-center justify-center rounded-full border bg-background text-xs text-muted shadow-sm p-1 bg-accent">
+        <div className="relative flex size-8 items-center justify-center rounded-full border bg-accent bg-background p-1 text-xs text-muted shadow-sm">
           +5
         </div>
       </AvatarGroup>
