@@ -147,7 +147,7 @@ DialogSizes.parameters = {
   docs: {
     description: {
       story:
-        'Use the **size="md | lg | xl | 2xl"** prop of the **Modal** component change the side of dialog. Default size is **lg**:',
+        'Use the **size="sm | md | lg | xl | 2xl | 3xl | 4xl | 5xl"** prop of the **Modal** component change the side of dialog. Default size is **lg**:',
     },
   },
 };
