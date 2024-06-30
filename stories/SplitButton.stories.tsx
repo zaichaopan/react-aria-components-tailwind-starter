@@ -28,50 +28,56 @@ const meta: Meta<typeof SplitButtonGroup> = {
 
 export default meta;
 
-export const Example = () => (
-  <SplitButtonGroup>
-    <SplitButton>Save</SplitButton>
-    <MenuTrigger>
-      <SplitButtonMenuTrigger aria-label="Save options" />
-      <MenuPopover placement="bottom end">
-        <Menu>
-          <MenuItem>Save Draft </MenuItem>
-          <MenuItem>Delete</MenuItem>
-          <MenuItem>Schedule for later</MenuItem>
-        </Menu>
-      </MenuPopover>
-    </MenuTrigger>
-  </SplitButtonGroup>
-);
+export const Example = () => {
+  return (
+    <SplitButtonGroup>
+      <SplitButton>Save</SplitButton>
+      <MenuTrigger>
+        <SplitButtonMenuTrigger aria-label="Save options" />
+        <MenuPopover placement="bottom end">
+          <Menu>
+            <MenuItem>Save Draft </MenuItem>
+            <MenuItem>Delete</MenuItem>
+            <MenuItem>Schedule for later</MenuItem>
+          </Menu>
+        </MenuPopover>
+      </MenuTrigger>
+    </SplitButtonGroup>
+  );
+};
 
-export const Outline = () => (
-  <SplitButtonGroup outline>
-    <SplitButton>Save</SplitButton>
-    <MenuTrigger>
-      <SplitButtonMenuTrigger aria-label="Save options" />
-      <MenuPopover>
-        <Menu>
-          <MenuItem>Save Draft </MenuItem>
-          <MenuItem>Delete</MenuItem>
-          <MenuItem>Schedule for later</MenuItem>
-        </Menu>
-      </MenuPopover>
-    </MenuTrigger>
-  </SplitButtonGroup>
-);
+export const Outline = () => {
+  return (
+    <SplitButtonGroup outline>
+      <SplitButton>Save</SplitButton>
+      <MenuTrigger>
+        <SplitButtonMenuTrigger aria-label="Save options" />
+        <MenuPopover>
+          <Menu>
+            <MenuItem>Save Draft </MenuItem>
+            <MenuItem>Delete</MenuItem>
+            <MenuItem>Schedule for later</MenuItem>
+          </Menu>
+        </MenuPopover>
+      </MenuTrigger>
+    </SplitButtonGroup>
+  );
+};
 
-export const Destructive = (args: any) => (
-  <SplitButtonGroup {...args} color="destructive">
-    <SplitButton>Save</SplitButton>
-    <MenuTrigger>
-      <SplitButtonMenuTrigger />
-      <MenuPopover>
-        <Menu>
-          <MenuItem>Save Draft </MenuItem>
-          <MenuItem>Delete</MenuItem>
-          <MenuItem>Schedule for later</MenuItem>
-        </Menu>
-      </MenuPopover>
-    </MenuTrigger>
-  </SplitButtonGroup>
-);
+export const Destructive = () => {
+  return (
+    <SplitButtonGroup color="destructive">
+      <SplitButton>Save</SplitButton>
+      <MenuTrigger>
+        <SplitButtonMenuTrigger />
+        <MenuPopover>
+          <Menu>
+            <MenuItem>Save Draft </MenuItem>
+            <MenuItem>Delete</MenuItem>
+            <MenuItem>Schedule for later</MenuItem>
+          </Menu>
+        </MenuPopover>
+      </MenuTrigger>
+    </SplitButtonGroup>
+  );
+};

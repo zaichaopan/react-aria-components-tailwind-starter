@@ -172,18 +172,20 @@ MenuSections.parameters = {
   },
 };
 
-export const MenuDescriptions = () => (
-  <MenuTrigger>
-    <MenuButton outline>Options</MenuButton>
-    <MenuPopover>
-      <Menu>
-        <MenuItem description="Copy the selected text">Copy</MenuItem>
-        <MenuItem description="Cut the selected text">Cut</MenuItem>
-        <MenuItem description="Paste the copied text">Paste</MenuItem>
-      </Menu>
-    </MenuPopover>
-  </MenuTrigger>
-);
+export const MenuDescriptions = () => {
+  return (
+    <MenuTrigger>
+      <MenuButton outline>Options</MenuButton>
+      <MenuPopover>
+        <Menu>
+          <MenuItem description="Copy the selected text">Copy</MenuItem>
+          <MenuItem description="Cut the selected text">Cut</MenuItem>
+          <MenuItem description="Paste the copied text">Paste</MenuItem>
+        </Menu>
+      </MenuPopover>
+    </MenuTrigger>
+  );
+};
 
 MenuDescriptions.parameters = {
   docs: {
@@ -447,31 +449,33 @@ WithLink.parameters = {
   },
 };
 
-export const SubMenus = () => (
-  <MenuTrigger>
-    <MenuButton outline>Options</MenuButton>
-    <MenuPopover>
-      <Menu>
-        <MenuItem id="new">New…</MenuItem>
-        <MenuItem id="open">Open…</MenuItem>
-        <MenuSeparator />
-        <MenuItem id="save">Save</MenuItem>
-        <MenuItem id="saveAs">Save as…</MenuItem>
-        <MenuSeparator />
-        <MenuItem id="print">Print…</MenuItem>
-        <SubmenuTrigger>
-          <MenuItem>Email</MenuItem>
-          <MenuPopover>
-            <SubMenu aria-label="Email">
-              <MenuItem>Work</MenuItem>
-              <MenuItem>Personal</MenuItem>
-            </SubMenu>
-          </MenuPopover>
-        </SubmenuTrigger>
-      </Menu>
-    </MenuPopover>
-  </MenuTrigger>
-);
+export const SubMenus = () => {
+  return (
+    <MenuTrigger>
+      <MenuButton outline>Options</MenuButton>
+      <MenuPopover>
+        <Menu>
+          <MenuItem id="new">New…</MenuItem>
+          <MenuItem id="open">Open…</MenuItem>
+          <MenuSeparator />
+          <MenuItem id="save">Save</MenuItem>
+          <MenuItem id="saveAs">Save as…</MenuItem>
+          <MenuSeparator />
+          <MenuItem id="print">Print…</MenuItem>
+          <SubmenuTrigger>
+            <MenuItem>Email</MenuItem>
+            <MenuPopover>
+              <SubMenu aria-label="Email">
+                <MenuItem>Work</MenuItem>
+                <MenuItem>Personal</MenuItem>
+              </SubMenu>
+            </MenuPopover>
+          </SubmenuTrigger>
+        </Menu>
+      </MenuPopover>
+    </MenuTrigger>
+  );
+};
 
 SubMenus.parameters = {
   docs: {
@@ -481,40 +485,42 @@ SubMenus.parameters = {
   },
 };
 
-export const SubMenuOnMobile = () => (
-  <MenuTrigger>
-    <MenuButton outline>Options</MenuButton>
-    <MenuPopover>
-      <Menu>
-        <MenuItem id="new">New…</MenuItem>
-        <MenuItem id="open">Open…</MenuItem>
-        <MenuSeparator />
-        <MenuItem id="save">Save</MenuItem>
-        <MenuItem id="saveAs">Save as…</MenuItem>
-        <MenuSeparator />
-        <MenuItem id="print">Print…</MenuItem>
-        <SubmenuTrigger>
-          <MenuItem className="sm:hidden">Email</MenuItem>
-          <MenuPopover className="sm:hidden" placement="bottom">
-            <SubMenu aria-label="Email">
-              <MenuItem>Work</MenuItem>
-              <MenuItem>Personal</MenuItem>
-            </SubMenu>
-          </MenuPopover>
-        </SubmenuTrigger>
-        <SubmenuTrigger>
-          <MenuItem className="hidden sm:flex">Email</MenuItem>
-          <MenuPopover className="hidden sm:block">
-            <SubMenu aria-label="Email">
-              <MenuItem>Work</MenuItem>
-              <MenuItem>Personal</MenuItem>
-            </SubMenu>
-          </MenuPopover>
-        </SubmenuTrigger>
-      </Menu>
-    </MenuPopover>
-  </MenuTrigger>
-);
+export const SubMenuOnMobile = () => {
+  return (
+    <MenuTrigger>
+      <MenuButton outline>Options</MenuButton>
+      <MenuPopover>
+        <Menu>
+          <MenuItem id="new">New…</MenuItem>
+          <MenuItem id="open">Open…</MenuItem>
+          <MenuSeparator />
+          <MenuItem id="save">Save</MenuItem>
+          <MenuItem id="saveAs">Save as…</MenuItem>
+          <MenuSeparator />
+          <MenuItem id="print">Print…</MenuItem>
+          <SubmenuTrigger>
+            <MenuItem className="sm:hidden">Email</MenuItem>
+            <MenuPopover className="sm:hidden" placement="bottom">
+              <SubMenu aria-label="Email">
+                <MenuItem>Work</MenuItem>
+                <MenuItem>Personal</MenuItem>
+              </SubMenu>
+            </MenuPopover>
+          </SubmenuTrigger>
+          <SubmenuTrigger>
+            <MenuItem className="hidden sm:flex">Email</MenuItem>
+            <MenuPopover className="hidden sm:block">
+              <SubMenu aria-label="Email">
+                <MenuItem>Work</MenuItem>
+                <MenuItem>Personal</MenuItem>
+              </SubMenu>
+            </MenuPopover>
+          </SubmenuTrigger>
+        </Menu>
+      </MenuPopover>
+    </MenuTrigger>
+  );
+};
 
 SubMenuOnMobile.parameters = {
   docs: {

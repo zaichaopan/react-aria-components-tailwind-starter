@@ -7,7 +7,7 @@ import {
 } from '../src/Checkbox';
 import { Form } from '../src/Form';
 import { Button } from '../src/Button';
-import { Text } from '../src/Text';
+import { Strong, Text } from '../src/Text';
 import { Label, Description, FieldError } from '../src/Field';
 import { docs } from '../.storybook/docs';
 
@@ -40,7 +40,9 @@ export const CheckboxDescription = () => {
   return (
     <CheckboxField>
       <Checkbox>Subscribe</Checkbox>
-      <Description>You will receive our newsletter once per week. Unsubscribe at any time.</Description>
+      <Description>
+        You will receive our newsletter once per week. Unsubscribe at any time.
+      </Description>
     </CheckboxField>
   );
 };
@@ -58,7 +60,9 @@ export const CheckboxDisabled = () => {
   return (
     <CheckboxField>
       <Checkbox isDisabled>Subscribe</Checkbox>
-      <Description>You will receive our newsletter once per week. Unsubscribe at any time.</Description>
+      <Description>
+        You will receive our newsletter once per week. Unsubscribe at any time.
+      </Description>
     </CheckboxField>
   );
 };
@@ -218,3 +222,41 @@ CheckboxGroupValidation.parameters = {
   },
 };
 
+export const CheckboxCards = () => {
+  return (
+    <div className="flex flex-1 flex-wrap gap-4">
+      <Checkbox
+        labelPlacement="left"
+        className="w-56 justify-between rounded-md border px-4 py-2"
+        value="A1 keyboard"
+      >
+        <div>
+          <Strong>A1 keyboard</Strong>
+          <Text>Us Layout</Text>
+        </div>
+      </Checkbox>
+
+      <Checkbox
+        labelPlacement="left"
+        value="Pro mouse"
+        className="w-56 justify-between rounded-md border px-4 py-2"
+      >
+        <div>
+          <Strong>Pro mouse</Strong>
+          <Text>Zero-lag wireless</Text>
+        </div>
+      </Checkbox>
+
+      <Checkbox
+        labelPlacement="left"
+        value="lightning mat"
+        className="w-56 justify-between  rounded-md border px-4 py-2"
+      >
+        <div>
+          <Strong>Lightning Mat</Strong>
+          <Text>Wireless charging</Text>
+        </div>
+      </Checkbox>
+    </div>
+  );
+};

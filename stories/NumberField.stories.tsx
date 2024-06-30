@@ -46,14 +46,16 @@ export const Disabled = () => {
   );
 };
 
-export const Validation = () => (
-  <Form className="flex flex-col items-start gap-2">
-    <NumberField maxValue={7} isRequired>
-      <Label>Viewer(s)</Label>
-      <Description>Maximum of 7</Description>
-      <NumberInput placeholder="Type a number&hellip;" />
-      <FieldError />
-    </NumberField>
-    <Button type="submit">Submit</Button>
-  </Form>
-);
+export const Validation = () => {
+  return (
+    <Form className="flex flex-col items-start gap-2">
+      <NumberField maxValue={7} isRequired>
+        <Label>Viewer(s)</Label>
+        <Description>Maximum of 7</Description>
+        <NumberInput placeholder="Type a number&hellip;" />
+        <FieldError />
+      </NumberField>
+      <Button type="submit">Submit</Button>
+    </Form>
+  );
+};

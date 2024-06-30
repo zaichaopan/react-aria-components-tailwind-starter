@@ -162,64 +162,68 @@ export const DisabledComboBox = () => {
   );
 };
 
-export const Sections = () => (
-  <ComboBox>
-    <Label>Preferred fruit or vegetable</Label>
-    <div className="relative">
-      <Input />
-      <TriggerButton />
-    </div>
-    <ComboBoxPopover>
-      <ComboBoxListBox>
-        <DropdownSection title="Fruit">
-          <DropdownItem id="Apple">Apple</DropdownItem>
-          <DropdownItem id="Banana">Banana</DropdownItem>
-          <DropdownItem id="Orange">Orange</DropdownItem>
-          <DropdownItem id="Honeydew">Honeydew</DropdownItem>
-          <DropdownItem id="Grapes">Grapes</DropdownItem>
-          <DropdownItem id="Watermelon">Watermelon</DropdownItem>
-          <DropdownItem id="Cantaloupe">Cantaloupe</DropdownItem>
-          <DropdownItem id="Pear">Pear</DropdownItem>
-        </DropdownSection>
-        <DropdownSection title="Vegetable">
-          <DropdownItem id="Cabbage">Cabbage</DropdownItem>
-          <DropdownItem id="Broccoli">Broccoli</DropdownItem>
-          <DropdownItem id="Carrots">Carrots</DropdownItem>
-          <DropdownItem id="Lettuce">Lettuce</DropdownItem>
-          <DropdownItem id="Spinach">Spinach</DropdownItem>
-          <DropdownItem id="Bok Choy">Bok Choy</DropdownItem>
-          <DropdownItem id="Cauliflower">Cauliflower</DropdownItem>
-          <DropdownItem id="Potatoes">Potatoes</DropdownItem>
-        </DropdownSection>
-      </ComboBoxListBox>
-    </ComboBoxPopover>
-  </ComboBox>
-);
-
-export const Validation = () => (
-  <Form className="flex flex-col items-start gap-2">
-    <ComboBox isRequired>
-      <Label>Favorite Animal</Label>
-      <Description>Choose your favorite animal</Description>
+export const Sections = () =>  {
+  return (
+    <ComboBox>
+      <Label>Preferred fruit or vegetable</Label>
       <div className="relative">
         <Input />
         <TriggerButton />
       </div>
       <ComboBoxPopover>
         <ComboBoxListBox>
-          <DropdownItem>Aardvark</DropdownItem>
-          <DropdownItem>Cat</DropdownItem>
-          <DropdownItem>Dog</DropdownItem>
-          <DropdownItem>Kangaroo</DropdownItem>
-          <DropdownItem>Panda</DropdownItem>
-          <DropdownItem id="snake">Snake</DropdownItem>
+          <DropdownSection title="Fruit">
+            <DropdownItem id="Apple">Apple</DropdownItem>
+            <DropdownItem id="Banana">Banana</DropdownItem>
+            <DropdownItem id="Orange">Orange</DropdownItem>
+            <DropdownItem id="Honeydew">Honeydew</DropdownItem>
+            <DropdownItem id="Grapes">Grapes</DropdownItem>
+            <DropdownItem id="Watermelon">Watermelon</DropdownItem>
+            <DropdownItem id="Cantaloupe">Cantaloupe</DropdownItem>
+            <DropdownItem id="Pear">Pear</DropdownItem>
+          </DropdownSection>
+          <DropdownSection title="Vegetable">
+            <DropdownItem id="Cabbage">Cabbage</DropdownItem>
+            <DropdownItem id="Broccoli">Broccoli</DropdownItem>
+            <DropdownItem id="Carrots">Carrots</DropdownItem>
+            <DropdownItem id="Lettuce">Lettuce</DropdownItem>
+            <DropdownItem id="Spinach">Spinach</DropdownItem>
+            <DropdownItem id="Bok Choy">Bok Choy</DropdownItem>
+            <DropdownItem id="Cauliflower">Cauliflower</DropdownItem>
+            <DropdownItem id="Potatoes">Potatoes</DropdownItem>
+          </DropdownSection>
         </ComboBoxListBox>
       </ComboBoxPopover>
-      <FieldError />
     </ComboBox>
-    <Button type="submit">Submit</Button>
-  </Form>
-);
+  );
+}
+
+export const Validation = () =>  {
+  return (
+    <Form className="flex flex-col items-start gap-2">
+      <ComboBox isRequired>
+        <Label>Favorite Animal</Label>
+        <Description>Choose your favorite animal</Description>
+        <div className="relative">
+          <Input />
+          <TriggerButton />
+        </div>
+        <ComboBoxPopover>
+          <ComboBoxListBox>
+            <DropdownItem>Aardvark</DropdownItem>
+            <DropdownItem>Cat</DropdownItem>
+            <DropdownItem>Dog</DropdownItem>
+            <DropdownItem>Kangaroo</DropdownItem>
+            <DropdownItem>Panda</DropdownItem>
+            <DropdownItem id="snake">Snake</DropdownItem>
+          </ComboBoxListBox>
+        </ComboBoxPopover>
+        <FieldError />
+      </ComboBox>
+      <Button type="submit">Submit</Button>
+    </Form>
+  );
+}
 
 export function ClearButtons() {
   return (
