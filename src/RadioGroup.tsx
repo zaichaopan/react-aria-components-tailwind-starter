@@ -119,8 +119,8 @@ export function Radio({
                     slot="radio"
                     className={twMerge(
                       'h-4 w-4 shrink-0 rounded-full border border-zinc-400/75 shadow-sm transition-all disabled:opacity-75 dark:border-zinc-600',
-                      'invalid:border-destructive invalid:dark:border-destructive',
-
+                      renderProps.isInvalid &&
+                        'border-destructive dark:border-destructive',
                       renderProps.isSelected &&
                         'border-[5px] border-accent bg-white dark:border-accent',
 

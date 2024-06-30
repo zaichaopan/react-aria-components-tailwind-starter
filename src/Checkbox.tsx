@@ -107,7 +107,8 @@ export function Checkbox({
                     'flex flex-shrink-0 items-center justify-center',
                     'size-4 rounded border border-zinc-400/75 shadow-sm transition',
                     'dark:border-[1.5px] dark:border-zinc-600',
-                    'invalid:border-destructive',
+                    renderProps.isInvalid &&
+                      'border-destructive dark:border-destructive',
                     (renderProps.isSelected || renderProps.isIndeterminate) &&
                       'border-accent bg-accent/95 dark:border-accent',
                     renderProps.isFocusVisible && focusOutlineStyle,
