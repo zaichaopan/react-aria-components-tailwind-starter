@@ -83,7 +83,7 @@ export const Example = () => {
   );
 };
 
-export const DestructiveAlertDialogs = () => {
+export const DestructiveAlerts = () => {
   return (
     <DialogTrigger>
       <Button color="destructive">Delete&hellip;</Button>
@@ -101,16 +101,15 @@ export const DestructiveAlertDialogs = () => {
   );
 };
 
-DestructiveAlertDialogs.parameters = {
+DestructiveAlerts.parameters = {
   docs: {
     description: {
-      story:
-        'Use the **destructive** prop of the **AlertDialog** component to render destructive alert dialogs:',
+      story: 'Use the **destructive** prop to render destructive alerts',
     },
   },
 };
 
-export const TitleOnlyAlertDialogs = () => {
+export const TitleOnlyAlerts = () => {
   return (
     <DialogTrigger>
       <Button color="destructive">Remove</Button>
@@ -125,7 +124,7 @@ export const TitleOnlyAlertDialogs = () => {
   );
 };
 
-TitleOnlyAlertDialogs.parameters = {
+TitleOnlyAlerts.parameters = {
   docs: {
     description: {
       story: 'Dialog body is not required',
@@ -133,7 +132,7 @@ TitleOnlyAlertDialogs.parameters = {
   },
 };
 
-export const SecondaryActions = () => {
+export const WithSecondaryActions = () => {
   return (
     <DialogTrigger>
       <Button outline>Secondary</Button>
@@ -152,7 +151,7 @@ export const SecondaryActions = () => {
   );
 };
 
-SecondaryActions.parameters = {
+WithSecondaryActions.parameters = {
   docs: {
     description: {
       story:
@@ -161,7 +160,7 @@ SecondaryActions.parameters = {
   },
 };
 
-export const ControlledOpenState = () => {
+export const WithControlledOpenState = () => {
   const [isOpen, setOpen] = React.useState(false);
 
   return (
@@ -185,7 +184,7 @@ export const ControlledOpenState = () => {
   );
 };
 
-ControlledOpenState.parameters = {
+WithControlledOpenState.parameters = {
   docs: {
     description: {
       story:

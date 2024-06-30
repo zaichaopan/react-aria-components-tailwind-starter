@@ -45,7 +45,8 @@ export function Avatar({
         role="img"
         className={twMerge([
           'group relative flex size-10 items-center justify-center rounded-lg @container',
-          'outline outline-1 -outline-offset-1 outline-black/20 dark:outline-white/10',
+          'has-[img]:outline has-[img]:outline-black/20 dark:outline dark:outline-white/10',
+          'outline-1 -outline-offset-1',
           className,
         ])}
         aria-labelledby={ariaLabelledby}
@@ -140,7 +141,7 @@ export const AvatarBadge = ({
 };
 
 type AvatarGroupProps = {
-  children?: React.ReactNode,
+  children?: React.ReactNode;
   avatars: {
     items: Array<Pick<AvatarProps, 'src' | 'alt'>>;
     maxDisplays?: number;
