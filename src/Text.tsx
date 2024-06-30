@@ -50,7 +50,7 @@ export function TextLink(props: LinkProps) {
   return (
     <Link
       {...props}
-      className={composeTailwindRenderProps(props.className, 'underline')}
+      className={composeTailwindRenderProps(props.className, 'underline underline-offset-4')}
     />
   );
 }
