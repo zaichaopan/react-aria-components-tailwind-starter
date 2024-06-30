@@ -3,13 +3,11 @@ import { twMerge } from 'tailwind-merge';
 
 export const focusOutlineStyle = [
   'outline outline-2 outline-blue-500 outline-offset-2',
-  'invalid:outline-destructive group-invalid:outline-destructive',
 ].join(' ');
 
 export const inputRingStyle = [
   'ring-1 ring-blue-500 border-blue-500',
-  'invalid:border-destructive invalid:ring-destructive ',
-  'group-invalid:border-destructive group-invalid:ring-1 group-invalid:ring-destructive',
+  'invalid:border-blue-500 group-invalid:border-blue-500',
 ];
 
 export function composeTailwindRenderProps<T>(
