@@ -232,7 +232,7 @@ export const CheckboxCards = () => {
       >
         <div>
           <Strong>A1 keyboard</Strong>
-          <Text>Us Layout</Text>
+          <Text>US Layout</Text>
         </div>
       </Checkbox>
 

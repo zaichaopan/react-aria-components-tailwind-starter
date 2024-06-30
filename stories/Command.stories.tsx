@@ -161,6 +161,7 @@ export function OpenInDialog() {
       </div>
 
       <Modal
+        isDismissable
         animate={false}
         isOpen={isModalOpen}
         onOpenChange={setIsModalOpen}
