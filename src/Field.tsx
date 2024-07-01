@@ -233,6 +233,7 @@ export const InputFieldGroup = React.forwardRef<HTMLDivElement, GroupProps>(
             return twMerge(
               'group relative flex w-full items-center overflow-hidden rounded-md border bg-inherit shadow-sm',
               'group-invalid:border-destructive group-disabled:opacity-50',
+              '[&_svg]:text-muted',
               renderProps.isFocusWithin && inputRingStyle,
               className,
             );
@@ -269,7 +270,7 @@ export function SearchInput({
       )}
     >
       <Icon>
-        <Search className="ml-2 size-5 text-muted" />
+        <Search className="ml-2 size-5" />
       </Icon>
       <Input {...props} />
       <CloseButton plain size="sm" className="mr-1 group-empty:invisible" />

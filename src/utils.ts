@@ -3,7 +3,7 @@ import { twMerge } from 'tailwind-merge';
 
 export const focusOutlineStyle = [
   'outline outline-2 outline-blue-500 outline-offset-2',
-].join(' ');
+];
 
 export const inputRingStyle = [
   'ring-1 ring-blue-500 border-blue-500',

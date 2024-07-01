@@ -49,7 +49,7 @@ function StepperButton(props: ButtonProps) {
   return (
     <Button
       {...props}
-      className="h-9 cursor-default px-2 text-muted first:border-r last:border-l pressed:bg-hover"
+      className="h-9 cursor-default px-2 first:border-r last:border-l pressed:bg-hover"
     />
   );
 }
