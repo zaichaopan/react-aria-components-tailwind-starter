@@ -341,9 +341,9 @@ export function MultiSelect<
                       </div>
                     </div>
 
-                    <Button plain className="mr-1 size-7 rounded-md p-0.5">
+                    <Button plain className="mr-1 size-6 rounded p-0.5">
                       <Icon>
-                        <ChevronDown />
+                        <ChevronDown  className='size-4'/>
                       </Icon>
                     </Button>
                   </InputFieldGroup>
