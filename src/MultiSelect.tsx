@@ -298,7 +298,7 @@ export function MultiSelect<
                     defaultValue={inputValue}
                     className={({ isInvalid }) => {
                       return twMerge(
-                        'h-fit w-[350px]',
+                        'min-h-9 w-[350px]',
                         !inputFocus && !isInvalid && 'border-border ring-0',
                         className,
                       );
@@ -312,7 +312,7 @@ export function MultiSelect<
                       setFilterText('');
                     }}
                   >
-                    <div className="inline-flex min-h-9 flex-1 flex-wrap items-center gap-1 px-1.5 py-[5px]">
+                    <div className="inline-flex flex-1 flex-wrap items-center gap-1 px-1.5 py-[5px]">
                       <TagGroup
                         id={tagGroupId}
                         aria-labelledby={labelContext?.['aria-labelledBy']}
@@ -329,7 +329,7 @@ export function MultiSelect<
 
                       <div className="flex flex-1">
                         <Input
-                          className="p-0.5"
+                          className="px-0.5 py-0"
                           onFocus={() => setInputFocus(true)}
                           onBlur={() => setInputFocus(false)}
                           aria-describedby={[
@@ -343,7 +343,7 @@ export function MultiSelect<
 
                     <Button plain className="mr-1 size-6 rounded p-0.5">
                       <Icon>
-                        <ChevronDown  className='size-4'/>
+                        <ChevronDown className="size-4" />
                       </Icon>
                     </Button>
                   </InputFieldGroup>

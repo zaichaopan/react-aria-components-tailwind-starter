@@ -83,7 +83,7 @@ export const Example = () => {
         }}
         tag={(item) => {
           return (
-            <Tag className="py-1" textValue={item.textValue}>
+            <Tag textValue={item.textValue}>
               {item.textValue}
             </Tag>
           );
@@ -190,7 +190,6 @@ export const WithAvatars = () => {
   const selectedList = useListData<User>({
     initialItems: [],
   });
-  
 
   return (
     <Form>
@@ -228,7 +227,7 @@ export const WithAvatars = () => {
                 <Avatar
                   src={item.src}
                   alt={item.userName}
-                  className="size-6 rounded-full"
+                  className="size-4 rounded-full"
                 />
                 {item.textValue}
               </Tag>
