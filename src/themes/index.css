@@ -4,34 +4,26 @@
 
 @layer base {
   :root {
-    /* background colors */
     --background: 0 0% 100%;
-    --secondary: 0 0% 100%;
-    --popover: 0 0% 100%;
-    --success: 142 72% 29%;
-    --destructive: 0 72% 51%;
-    --warning: 41 96% 40%;
+    --foreground: 20 14.3% 4.1%;
     --hover: 60 4.8% 95.9%;
 
-    /* Text colors */
-    --foreground: 20 14.3% 4.1%;
+    --success: 142 72% 29%;
+    --destructive: 0 72% 51%;
+    --warning: 41 96% 40%;  
     --muted: 240 4% 46%;
-
     --border: 20 6% 85%;
   }
 
   .dark {
     --background: 240 10% 4%;
-    --secondary: 240 6% 10%;
-    --popover: 240 4% 16%;
+    --foreground: 0 0% 98%;
+    --hover: 240 5% 26%;
+
     --success: 142 72% 29%;
     --destructive: 0 72% 51%;
     --warning: 41 96% 40%;
-    --hover: 240 5% 26%;
-
     --muted: 240 5% 65%;
-    --foreground: 0 0% 98%;
-
     --border: 240 5% 26%;
   }
 }

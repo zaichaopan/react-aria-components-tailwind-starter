@@ -70,8 +70,7 @@ export function TabList<T extends object & { title: string; id: string }>(
           'group-data-[variant=segment]:bg-zinc-100',
           'group-data-[variant=segment]:p-1',
           'group-data-[variant=segment]:dark:border',
-          // 'group-data-[variant=segment]:dark:border-border',
-          'group-data-[variant=segment]:dark:bg-secondary',
+          'group-data-[variant=segment]:dark:bg-zinc-800',
         ])}
       />
     </div>

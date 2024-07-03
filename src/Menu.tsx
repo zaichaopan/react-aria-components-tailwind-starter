@@ -56,7 +56,6 @@ export function MenuPopover({ className, ...props }: PopoverProps) {
   return (
     <Popover
       {...props}
-      showArrow={false}
       className={composeTailwindRenderProps(className, 'min-w-44')}
     />
   );

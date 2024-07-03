@@ -116,7 +116,7 @@ function Toast({ state, ...props }: ToastProps) {
           'toast flex w-[min(85vw,360px)] gap-1 rounded-md border px-3 py-2 shadow-sm transition',
           type === undefined &&
             !props.toast.content.render &&
-            'border-border/75 bg-popover dark:border-border',
+            'border-border/75 bg-background dark:border-border',
           type === 'error' && 'border-destructive/20 bg-destructive/10',
           type === 'warning' && 'border-yellow-700/20 bg-yellow-700/10',
           type === 'success' && 'border-success/20 bg-success/10',

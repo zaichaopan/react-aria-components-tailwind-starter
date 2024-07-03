@@ -16,8 +16,6 @@ export default {
       },
       colors: {
         background: 'hsl(var(--background))',
-        secondary: 'hsl(var(--secondary))',
-        popover: 'hsl(var(--popover))',
         accent: 'hsl(var(--accent))',
         success: 'hsl(var(--success))',
         destructive: 'hsl(var(--destructive))',

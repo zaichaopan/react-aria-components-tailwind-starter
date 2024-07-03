@@ -96,7 +96,7 @@ export function DropdownItem({
         (className, { isDisabled, isFocused }) => {
           return twMerge([
             'group flex cursor-default select-none items-center gap-1 outline-none outline-0',
-            'text-base/6 sm:text-sm/6 rounded-md',
+            'rounded-md text-base/6 sm:text-sm/6',
             'p-1.5 has-submenu:pr-0',
             isDisabled && 'opacity-50',
             isFocused && 'bg-accent/85 text-white',
@@ -140,7 +140,7 @@ export function DropdownSection<T extends object>(
     >
       <Header
         className={twMerge(
-          'sticky z-10 truncate bg-background px-2 pt-2 text-xs/6 text-muted dark:bg-popover',
+          'sticky z-10 truncate bg-background px-2 pt-2 text-xs/6 text-muted',
           '-top-[1px] -mx-[1px]',
           props.className,
         )}
