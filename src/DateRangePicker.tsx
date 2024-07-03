@@ -51,7 +51,7 @@ export function DateRangePickerInput() {
           className="mx-1.5 size-auto rounded p-0.5 outline-offset-0"
         >
           <Icon>
-            <CalendarDays className="size-4 opacity-75" />
+            <CalendarDays className="size-4" />
           </Icon>
         </Button>
       </InputFieldGroup>
@@ -100,7 +100,7 @@ export function DateRangePickerButton() {
             </span>
           )}
           <Icon>
-            <CalendarDays className="size-4 opacity-75" />
+            <CalendarDays className="size-4" />
           </Icon>
         </Button>
 

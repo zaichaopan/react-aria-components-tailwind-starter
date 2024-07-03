@@ -42,7 +42,7 @@ export function MenuButton({
             {typeof children === 'function' ? children(renderProps) : children}
             {!noArrow && (
               <Icon>
-                <ChevronDown className="opacity-50" />
+                <ChevronDown className="text-muted" />
               </Icon>
             )}
           </>

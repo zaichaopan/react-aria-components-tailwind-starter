@@ -303,6 +303,23 @@ DisabledMenuItems.parameters = {
   },
 };
 
+export const DisabledMenu = () => {
+  return (
+    <MenuTrigger>
+      <MenuButton outline isDisabled>Options</MenuButton>
+      <MenuPopover>
+        <Menu>
+          <MenuItem>Account</MenuItem>
+          <MenuItem>Settings</MenuItem>
+          <MenuItem>Support</MenuItem>
+          <MenuItem>Sign out</MenuItem>
+        </Menu>
+      </MenuPopover>
+    </MenuTrigger>
+  );
+};
+
+
 export const WithIconTrigger = () => {
   return (
     <MenuTrigger>
