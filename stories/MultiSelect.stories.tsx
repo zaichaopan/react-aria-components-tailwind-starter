@@ -12,6 +12,7 @@ import {
 } from '../src/MultiSelect';
 import { Tag } from '../src/TagGroup';
 import { Description, FieldError, Label } from '../src/Field';
+import React from 'react';
 
 const meta: Meta<typeof MultiSelect> = {
   title: 'MultiSelect',
@@ -82,11 +83,7 @@ export const Example = () => {
           );
         }}
         tag={(item) => {
-          return (
-            <Tag textValue={item.textValue}>
-              {item.textValue}
-            </Tag>
-          );
+          return <Tag textValue={item.textValue}>{item.textValue}</Tag>;
         }}
       >
         {(item) => {
@@ -191,14 +188,28 @@ export const WithAvatars = () => {
     initialItems: [],
   });
 
+  const [isInvalid, setIsInvalid] = React.useState(false);
+
   return (
-    <Form>
+    <Form
+      onSubmit={(e) => {
+        if (selectedList.items.length === 0) {
+          setIsInvalid(true);
+
+          e.preventDefault();
+          return;
+        }
+
+        setIsInvalid(false);
+      }}
+    >
       <MultiSelectField<User>
-        isRequired
+        isInvalid={isInvalid}
         selectedList={selectedList}
         name="member"
         onItemAdd={(key) => {
           console.log('item add', key);
+          setIsInvalid(false);
         }}
         onItemRemove={(key) => {
           console.log('item remove', key);
@@ -252,7 +263,7 @@ export const WithAvatars = () => {
             );
           }}
         </MultiSelect>
-        <FieldError></FieldError>
+        <FieldError>Please select an item in the list.</FieldError>
       </MultiSelectField>
       <Button type="submit" className="self-start">
         Submit

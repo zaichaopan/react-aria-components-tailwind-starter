@@ -35,11 +35,12 @@ export interface ComboBoxFiledProps<T extends object>
     | 'inputValue'
     | 'className'
     | 'value'
+    | 'onSelectionChange'
+    | 'onInputChange'
   > {
   children: React.ReactNode;
   items: Array<T>;
   selectedList: ListData<T>;
-  validate?: (key: Array<Key>) => string | string[] | true | null | undefined;
   className?: string;
   onItemAdd?: (key: Key) => void;
   onItemRemove?: (key: Key) => void;
@@ -87,8 +88,6 @@ export function MultiSelectField<
   children,
   items,
   selectedList,
-  isRequired,
-  validate,
   onItemRemove,
   onItemAdd,
   className,
@@ -209,6 +208,7 @@ export function MultiSelectField<
         >
           <DescriptionProvider>
             <ComboBox
+              {...props}
               className={twMerge(
                 'group flex min-w-[150px] flex-col gap-1',
                 className,
@@ -219,20 +219,6 @@ export function MultiSelectField<
               onSelectionChange={onSelectionChange}
               onInputChange={onInputChange}
               allowsEmptyCollection
-              validate={() => {
-                if (isRequired) {
-                  if (validate) {
-                    return validate(selectedKeys);
-                  }
-
-                  return selectedKeys.length == 0
-                    ? 'Please select an item in the list.'
-                    : null;
-                }
-
-                validate?.(selectedKeys);
-              }}
-              {...props}
             >
               {children}
             </ComboBox>
