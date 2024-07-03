@@ -889,7 +889,7 @@ export const WithMinHeight = () => {
                 </DialogHeader>
                 <DialogBody className="overflow-hidden px-0">
                   <Tabs className="overflow-auto p-0 pb-0 text-base/6 sm:text-sm/6">
-                    <div className="sticky top-0 bg-secondary">
+                    <div className="sticky top-0 bg-background">
                       <TabList
                         aria-label="History of Ancient Rome"
                         className="px-6"
