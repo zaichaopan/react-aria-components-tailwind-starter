@@ -271,7 +271,7 @@ export function MultiSelect<
     <Group
       ref={triggerRef}
       className={twMerge(
-        'min-h-9 w-[350px] flex-row items-center rounded-md',
+        'min-h-9 w-[350px] flex-row items-center rounded-md shadow-sm',
         'border has-[input[data-focused=true]]:border-blue-500',
         'has-[input[data-invalid=true][data-focused=true]]:border-blue-500 has-[input[data-invalid=true]]:border-destructive',
         'has-[input[data-focused=true]]:ring-1 has-[input[data-focused=true]]:ring-blue-500',
