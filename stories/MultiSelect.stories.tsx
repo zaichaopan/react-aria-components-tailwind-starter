@@ -42,7 +42,6 @@ export const Example = () => {
 
   return (
     <MultiSelectField<{ id: string; textValue: string }>
-      isRequired
       selectedList={selectedList}
       items={[
         {

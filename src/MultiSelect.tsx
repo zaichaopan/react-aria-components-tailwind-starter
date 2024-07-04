@@ -12,7 +12,6 @@ import {
   DescriptionProvider,
   Group,
   Input,
-  InputFieldGroup,
   WithDescriptionContext,
   WithLabelContext,
 } from './Field';
@@ -194,37 +193,35 @@ export function MultiSelectField<
 
   return (
     <>
-      <Group>
-        <MultiSelectContext.Provider
-          value={{
-            deleteLast,
-            onRemove,
-            setFieldState,
-            setFilterText: availableList.setFilterText,
-            onKeyDownCapture,
-            selectedList,
-            inputValue: fieldState.inputValue,
-          }}
-        >
-          <DescriptionProvider>
-            <ComboBox
-              {...props}
-              className={twMerge(
-                'group flex min-w-[150px] flex-col gap-1',
-                className,
-              )}
-              items={availableList.items}
-              selectedKey={fieldState.selectedKey}
-              inputValue={fieldState.inputValue}
-              onSelectionChange={onSelectionChange}
-              onInputChange={onInputChange}
-              allowsEmptyCollection
-            >
-              {children}
-            </ComboBox>
-          </DescriptionProvider>
-        </MultiSelectContext.Provider>
-      </Group>
+      <MultiSelectContext.Provider
+        value={{
+          deleteLast,
+          onRemove,
+          setFieldState,
+          setFilterText: availableList.setFilterText,
+          onKeyDownCapture,
+          selectedList,
+          inputValue: fieldState.inputValue,
+        }}
+      >
+        <DescriptionProvider>
+          <ComboBox
+            {...props}
+            className={twMerge(
+              'group flex min-w-[150px] flex-col gap-1',
+              className,
+            )}
+            items={availableList.items}
+            selectedKey={fieldState.selectedKey}
+            inputValue={fieldState.inputValue}
+            onSelectionChange={onSelectionChange}
+            onInputChange={onInputChange}
+            allowsEmptyCollection
+          >
+            {children}
+          </ComboBox>
+        </DescriptionProvider>
+      </MultiSelectContext.Provider>
       {name && (
         <input hidden name={name} value={selectedKeys.join(',')} readOnly />
       )}
@@ -270,34 +267,24 @@ export function MultiSelect<
     };
   }, []);
 
-  const [inputFocus, setInputFocus] = React.useState(false);
-
   return (
-    <WithLabelContext>
-      {(labelContext) => {
-        return (
-          <WithDescriptionContext>
-            {(descriptionContext) => {
-              return (
-                <>
-                  <InputFieldGroup
-                    defaultValue={inputValue}
-                    className={({ isInvalid }) => {
-                      return twMerge(
-                        'min-h-9 w-[350px]',
-                        !inputFocus && !isInvalid && 'border-border ring-0',
-                        className,
-                      );
-                    }}
-                    ref={triggerRef}
-                    onBlur={() => {
-                      setFieldState({
-                        inputValue: '',
-                        selectedKey: null,
-                      });
-                      setFilterText('');
-                    }}
-                  >
+    <Group
+      ref={triggerRef}
+      className={twMerge(
+        'min-h-9 w-[350px] flex-row items-center rounded-md',
+        'border has-[input[data-focused=true]]:border-blue-500',
+        'has-[input[data-invalid=true][data-focused=true]]:border-blue-500 has-[input[data-invalid=true]]:border-destructive',
+        'has-[input[data-focused=true]]:ring-1 has-[input[data-focused=true]]:ring-blue-500',
+        className,
+      )}
+    >
+      <WithLabelContext>
+        {(labelContext) => {
+          return (
+            <WithDescriptionContext>
+              {(descriptionContext) => {
+                return (
+                  <>
                     <div className="inline-flex flex-1 flex-wrap items-center gap-1 px-1.5 py-[5px]">
                       <TagGroup
                         id={tagGroupId}
@@ -315,9 +302,14 @@ export function MultiSelect<
 
                       <div className="flex flex-1">
                         <Input
-                          className="px-0.5 py-0"
-                          onFocus={() => setInputFocus(true)}
-                          onBlur={() => setInputFocus(false)}
+                          className="border-0 px-0.5 py-0 shadow-none ring-0"
+                          onBlur={() => {
+                            setFieldState({
+                              inputValue: '',
+                              selectedKey: null,
+                            });
+                            setFilterText('');
+                          }}
                           aria-describedby={[
                             tagGroupId,
                             descriptionContext?.['aria-describedby'] ?? '',
@@ -332,28 +324,27 @@ export function MultiSelect<
                         <ChevronDown className="size-4" />
                       </Icon>
                     </Button>
-                  </InputFieldGroup>
-
-                  <Popover
-                    style={{ width: `${width}px` }}
-                    triggerRef={triggerRef}
-                    className="max-w-none duration-0"
-                  >
-                    <ListBox<T>
-                      renderEmptyState={() => renderEmptyState(inputValue)}
-                      selectionMode="multiple"
-                      className="flex max-h-[inherit] flex-col gap-1.5 overflow-auto p-1.5 outline-none has-[header]:pt-0 sm:gap-0"
-                    >
-                      {props.children}
-                    </ListBox>
-                  </Popover>
-                </>
-              );
-            }}
-          </WithDescriptionContext>
-        );
-      }}
-    </WithLabelContext>
+                  </>
+                );
+              }}
+            </WithDescriptionContext>
+          );
+        }}
+      </WithLabelContext>
+      <Popover
+        style={{ width: `${width}px` }}
+        triggerRef={triggerRef}
+        className="max-w-none duration-0"
+      >
+        <ListBox<T>
+          renderEmptyState={() => renderEmptyState(inputValue)}
+          selectionMode="multiple"
+          className="flex max-h-[inherit] flex-col gap-1.5 overflow-auto p-1.5 outline-none has-[header]:pt-0 sm:gap-0"
+        >
+          {props.children}
+        </ListBox>
+      </Popover>
+    </Group>
   );
 }
 

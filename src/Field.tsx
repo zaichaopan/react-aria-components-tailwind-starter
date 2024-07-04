@@ -21,28 +21,51 @@ import {
   SearchFieldProps as RACSearchFieldProps,
 } from 'react-aria-components';
 import { twMerge } from 'tailwind-merge';
-import { composeTailwindRenderProps, inputRingStyle } from './utils';
+import {
+  composeTailwindRenderProps,
+  inputRingStyle,
+} from './utils';
 import { Text } from './Text';
 import { CloseButton } from './Button';
 import { Icon } from './Icon';
 import { Search } from 'lucide-react';
 
-export function Group(props: GroupProps) {
-  const labelId = React.useId();
+export const Group = React.forwardRef<HTMLDivElement, GroupProps>(
+  function (props, ref) {
+    const labelId = React.useId();
 
-  return (
-    <LabelContext.Provider value={{ id: labelId, elementType: 'span' }}>
-      <GroupContext.Provider value={{ 'aria-labelledby': labelId }}>
-        <RACGroup
-          {...props}
-          className={composeRenderProps(props.className, (className) => {
-            return twMerge('relative flex flex-col gap-1', className);
-          })}
-        />
-      </GroupContext.Provider>
-    </LabelContext.Provider>
-  );
-}
+    const { id } = (React.useContext(LabelContext) ?? {}) as { id?: string };
+
+    // When label id is already provided
+    if (id) {
+      return (
+        <GroupContext.Provider value={{ 'aria-labelledby': id }}>
+          <RACGroup
+            {...props}
+            ref={ref}
+            className={composeRenderProps(props.className, (className) => {
+              return twMerge('relative flex flex-col gap-1', className);
+            })}
+          />
+        </GroupContext.Provider>
+      );
+    }
+
+    return (
+      <LabelContext.Provider value={{ id: labelId, elementType: 'span' }}>
+        <GroupContext.Provider value={{ 'aria-labelledby': labelId }}>
+          <RACGroup
+            {...props}
+            ref={ref}
+            className={composeRenderProps(props.className, (className) => {
+              return twMerge('relative flex flex-col gap-1', className);
+            })}
+          />
+        </GroupContext.Provider>
+      </LabelContext.Provider>
+    );
+  },
+);
 
 export function Label(props: LabelProps) {
   return (
@@ -185,7 +208,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
           props.className,
           (className, renderProps) => {
             return twMerge(
-              'placeholder:text-muted flex flex w-full rounded-md border bg-inherit px-2 py-[5px] text-base/6 shadow-sm outline-none sm:text-sm/6',
+              'flex flex w-full rounded-md border bg-inherit px-2 py-[5px] text-base/6 shadow-sm outline-none placeholder:text-muted sm:text-sm/6',
               renderProps.isInvalid && 'border-destructive',
               renderProps.isDisabled && 'disabled:opacity-50',
               renderProps.isFocused && inputRingStyle,
