@@ -35,39 +35,40 @@ const meta: Meta<typeof MultiSelect> = {
 
 export default meta;
 
+type Framework = { id: string; textValue: string };
+
+const frameworks = [
+  {
+    id: 'react',
+    textValue: 'React',
+  },
+  {
+    id: 'vue',
+    textValue: 'Vue',
+  },
+  {
+    id: 'solid',
+    textValue: 'Solid',
+  },
+  {
+    id: 'svelte',
+    textValue: 'Svelte',
+  },
+  {
+    id: 'qwik',
+    textValue: 'Qwik',
+  },
+];
+
 export const Example = () => {
-  const selectedList = useListData<{ id: string; textValue: string }>({
+  const selectedList = useListData<Framework>({
     initialItems: [],
   });
 
   return (
-    <MultiSelectField<{ id: string; textValue: string }>
-      selectedList={selectedList}
-      items={[
-        {
-          id: 'react',
-          textValue: 'React',
-        },
-        {
-          id: 'vue',
-          textValue: 'Vue',
-        },
-        {
-          id: 'solid',
-          textValue: 'Solid',
-        },
-        {
-          id: 'svelte',
-          textValue: 'Svelte',
-        },
-        {
-          id: 'qwik',
-          textValue: 'Qwik',
-        },
-      ]}
-    >
+    <MultiSelectField selectedList={selectedList} items={frameworks}>
       <Label>Your favorite libraries</Label>
-      <MultiSelect<{ id: string; textValue: string }>
+      <MultiSelect
         renderEmptyState={(inputValue) => {
           return (
             <Text className="p-2">
@@ -106,7 +107,7 @@ type User = {
   disabled?: boolean;
 };
 
-const items = [
+const users = [
   {
     id: '1',
     textValue: 'Cameron',
@@ -202,7 +203,7 @@ export const WithAvatars = () => {
         setIsInvalid(false);
       }}
     >
-      <MultiSelectField<User>
+      <MultiSelectField
         isInvalid={isInvalid}
         selectedList={selectedList}
         name="member"
@@ -213,7 +214,7 @@ export const WithAvatars = () => {
         onItemRemove={(key) => {
           console.log('item remove', key);
         }}
-        items={items}
+        items={users}
       >
         <Label>Assignee</Label>
         <Description>The assignee will be notified once assigned.</Description>

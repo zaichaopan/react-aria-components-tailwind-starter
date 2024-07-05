@@ -21,10 +21,7 @@ import {
   SearchFieldProps as RACSearchFieldProps,
 } from 'react-aria-components';
 import { twMerge } from 'tailwind-merge';
-import {
-  composeTailwindRenderProps,
-  inputRingStyle,
-} from './utils';
+import { composeTailwindRenderProps, inputRingStyle } from './utils';
 import { Text } from './Text';
 import { CloseButton } from './Button';
 import { Icon } from './Icon';
