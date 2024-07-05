@@ -10,7 +10,7 @@ interface AlertDialogProps extends Omit<DialogProps, 'children'> {
   children?: ReactNode;
   destructive?: boolean;
   cancelLabel?: React.ReactNode;
-  primaryActionLabel?: React.ReactNode;
+  primaryActionLabel: React.ReactNode;
   secondaryActionLabel?: React.ReactNode;
   onCancelAction?: () => void;
   onPrimaryAction?: () => void;
@@ -33,7 +33,7 @@ export function AlertDialog({
     <Dialog {...props} role="alertdialog">
       {({ close }) => (
         <>
-          <DialogHeader level={2} noCloseButton>
+          <DialogHeader level={2}>
             {title}
           </DialogHeader>
           {children ? (
@@ -60,14 +60,12 @@ export function AlertDialog({
               </Button>
             ) : null}
 
-            {primaryActionLabel ? (
-              <Button
-                color={destructive ? 'destructive' : 'accent'}
-                onPress={chain(onPrimaryAction, close)}
-              >
-                {primaryActionLabel}
-              </Button>
-            ) : null}
+            <Button
+              color={destructive ? 'destructive' : 'accent'}
+              onPress={chain(onPrimaryAction, close)}
+            >
+              {primaryActionLabel}
+            </Button>
           </DialogFooter>
         </>
       )}

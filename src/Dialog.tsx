@@ -23,9 +23,7 @@ export function Dialog({ role, ...props }: DialogProps) {
   );
 }
 
-type DialogHeaderProps = HeadingProps & {
-  noCloseButton?: true;
-};
+type DialogHeaderProps = HeadingProps;
 
 export function DialogHeader(props: DialogHeaderProps) {
   const headerRef = React.useRef<HTMLHeadingElement>(null);
@@ -58,8 +56,6 @@ export function DialogHeader(props: DialogHeaderProps) {
       ) : (
         props.children
       )}
-
-      {!props.noCloseButton && <DialogCloseButton />}
     </div>
   );
 }
@@ -131,7 +127,6 @@ export function DialogCloseButton() {
 
 export function DialogTitle({
   className,
-  noCloseButton,
   level = 2,
   children,
   ...props
@@ -141,11 +136,7 @@ export function DialogTitle({
       {...props}
       slot="title"
       level={level}
-      className={twMerge(
-        'flex flex-1 items-center',
-        !noCloseButton && 'pr-14',
-        className,
-      )}
+      className={twMerge('flex flex-1 items-center', className)}
     >
       {children}
     </Heading>

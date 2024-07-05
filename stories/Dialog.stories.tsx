@@ -8,6 +8,7 @@ import {
   DialogHeader,
   DialogFooter,
   DialogTitle,
+  DialogCloseButton,
 } from '../src/Dialog';
 import { Button } from '../src/Button';
 import { Form } from '../src/Form';
@@ -63,6 +64,7 @@ export const Example = () => {
             return (
               <>
                 <DialogHeader>Edit profile</DialogHeader>
+                <DialogCloseButton />
                 <DialogBody>
                   <Text>
                     Make changes to your profile here. Click save when you're
@@ -108,6 +110,7 @@ export const DialogSizes = () => {
             return (
               <>
                 <DialogHeader>Edit profile</DialogHeader>
+                <DialogCloseButton />
                 <DialogBody>
                   <Text>
                     Make changes to your profile here. Click save when you're
@@ -148,60 +151,6 @@ DialogSizes.parameters = {
     description: {
       story:
         'Use the **size="sm | md | lg | xl | 2xl | 3xl | 4xl | 5xl"** prop of the **Modal** component change the side of dialog. Default size is **lg**:',
-    },
-  },
-};
-
-export const NoCloseButton = () => {
-  return (
-    <DialogTrigger>
-      <Button>Edit profile</Button>
-      <Modal size="md">
-        <Dialog>
-          {({ close }) => {
-            return (
-              <>
-                <DialogHeader noCloseButton>Edit profile</DialogHeader>
-                <DialogBody>
-                  <Text>
-                    Make changes to your profile here. Click save when you're
-                    done.
-                  </Text>
-                  <Form className="py-4" id="edit-profile-form">
-                    <TextField isRequired className="grid grid-cols-4 gap-x-4">
-                      <Label className="ml-auto">Name</Label>
-                      <Input className="col-span-3"></Input>
-                      <FieldError className="col-span-3 col-start-2" />
-                    </TextField>
-                    <TextField isRequired className="grid grid-cols-4 gap-4">
-                      <Label className="ml-auto">Username</Label>
-                      <Input className="col-span-3"></Input>
-                      <FieldError className="col-span-3 col-start-2" />
-                    </TextField>
-                  </Form>
-                </DialogBody>
-                <DialogFooter>
-                  <Button plain onPress={close}>
-                    Cancel
-                  </Button>
-                  <Button form="edit-profile-form" type="submit">
-                    Save changes
-                  </Button>
-                </DialogFooter>
-              </>
-            );
-          }}
-        </Dialog>
-      </Modal>
-    </DialogTrigger>
-  );
-};
-
-NoCloseButton.parameters = {
-  docs: {
-    description: {
-      story:
-        'Use the **noCloseButton** prop of the **DialogHeader** component to remove close button:',
     },
   },
 };
@@ -269,6 +218,7 @@ export const AutoFocusElements = (args: any) => {
             return (
               <>
                 <DialogHeader>Edit profile</DialogHeader>
+                <DialogCloseButton />
                 <DialogBody>
                   <Text>
                     Make changes to your profile here. Click save when you're
@@ -329,6 +279,7 @@ export const WithIsDismissableAndKeyboardDismissDisabled = () => {
             return (
               <>
                 <DialogHeader>Edit profile</DialogHeader>
+                <DialogCloseButton />
                 <DialogBody>
                   <Text>
                     Make changes to your profile here. Click save when you're
@@ -386,7 +337,7 @@ export const WithScrollingContent = () => {
           {({ close }) => {
             return (
               <>
-                <DialogHeader noCloseButton>
+                <DialogHeader>
                   Sample free terms of service template
                 </DialogHeader>
                 <DialogBody>
@@ -531,6 +482,7 @@ export const WithControlledOpenState = () => {
       <Modal isOpen={isOpen} onOpenChange={setOpen}>
         <Dialog>
           <DialogHeader>Edit profile</DialogHeader>
+          <DialogCloseButton />
           <DialogBody>
             <Text>
               Make changes to your profile here. Click save when you're done.
@@ -668,6 +620,7 @@ export const CustomDialogHeader = () => {
                 <DialogHeader>
                   <div className="flex flex-col">
                     <DialogTitle>Channel settings</DialogTitle>
+                    <DialogCloseButton />
                     <div className="flex flex-col gap-6">
                       <div className="flex flex-wrap gap-2 pt-2">
                         <MenuTrigger>
@@ -887,6 +840,7 @@ export const WithMinHeight = () => {
                     </div>
                   </div>
                 </DialogHeader>
+                <DialogCloseButton />
                 <DialogBody className="overflow-hidden px-0">
                   <Tabs className="overflow-auto p-0 pb-0 text-base/6 sm:text-sm/6">
                     <div className="sticky top-0 bg-background">
@@ -992,6 +946,7 @@ export const Drawers = () => {
             return (
               <>
                 <DialogHeader>Edit profile</DialogHeader>
+                <DialogCloseButton />
                 <DialogBody>
                   <Text>
                     Make changes to your profile here. Click save when you're
