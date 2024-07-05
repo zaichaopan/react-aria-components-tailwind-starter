@@ -8,7 +8,7 @@ import { Form } from '../src/Form';
 import { Button } from '../src/Button';
 
 const meta: Meta = {
-  title: 'TagInput',
+  title: 'TagsInput',
   parameters: {
     layout: 'centered',
     docs: {
@@ -44,16 +44,18 @@ export const Example = () => {
       }}
     >
       <TagsInputField
+        className="w-full sm:w-72"
+        name="framework"
         list={list}
         onTagAdd={() => {
           setIsInvalid(false);
         }}
         isInvalid={isInvalid}
       >
-        <Label>Tags</Label>
-        <Description>Press enter to add new tag</Description>
+        <Label>Frameworks</Label>
+        <Description>Add Framework</Description>
         <TagsInput />
-        <FieldError>Please enter a tag</FieldError>
+        <FieldError>Please fill out this field.</FieldError>
       </TagsInputField>
       <Button className="self-start" type="submit">
         Save

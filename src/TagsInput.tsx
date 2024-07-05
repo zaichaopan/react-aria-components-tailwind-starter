@@ -37,6 +37,7 @@ export interface TagInputProps
 
 export function TagsInputField({
   list,
+  name,
   onTagRemove,
   onTagAdd,
   ...props
@@ -44,6 +45,14 @@ export function TagsInputField({
   return (
     <TagInputContext.Provider value={{ list, onTagAdd, onTagRemove }}>
       <TextField {...props} />
+      {name && (
+        <input
+          name={name}
+          hidden
+          readOnly
+          value={list.items.map(({ name }) => name).join(',')}
+        />
+      )}
     </TagInputContext.Provider>
   );
 }
