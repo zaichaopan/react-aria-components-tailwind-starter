@@ -69,9 +69,9 @@ export function CalendarHeader() {
         {
           <Icon aria-label="Previous">
             {direction === 'rtl' ? (
-              <ChevronRight strokeWidth={1.5} className="opacity-75" />
+              <ChevronRight strokeWidth={1.5} className="text-muted" />
             ) : (
-              <ChevronLeft strokeWidth={1.5} className="opacity-75" />
+              <ChevronLeft strokeWidth={1.5} className="text-muted" />
             )}
           </Icon>
         }
@@ -87,9 +87,9 @@ export function CalendarHeader() {
         {
           <Icon aria-label="Next">
             {direction === 'rtl' ? (
-              <ChevronLeft strokeWidth={1.5} className="opacity-75" />
+              <ChevronLeft strokeWidth={1.5} className="text-muted" />
             ) : (
-              <ChevronRight strokeWidth={1.5} className="opacity-75" />
+              <ChevronRight strokeWidth={1.5} className="text-muted" />
             )}
           </Icon>
         }

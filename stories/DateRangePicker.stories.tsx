@@ -54,6 +54,16 @@ export const Validation = () => {
   );
 };
 
+export const DisabledState = () => {
+  return (
+    <DateRangePicker isDisabled>
+      <Label>Stay duration</Label>
+      <DateRangePickerInput />
+      <Description>Please enter your stay duration</Description>
+    </DateRangePicker>
+  );
+};
+
 export const DateRangePickerButtons = () => {
   return (
     <Form className="flex flex-col items-start gap-2">

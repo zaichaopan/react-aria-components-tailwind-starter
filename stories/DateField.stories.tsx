@@ -36,6 +36,16 @@ export const Example = () => {
   );
 };
 
+export const DisabledState = () => {
+  return (
+    <DateField isDisabled>
+      <Label>Birth date</Label>
+      <Description>Please enter your birth date</Description>
+      <DateInput />
+    </DateField>
+  );
+};
+
 export const Validation = () => (
   <Form className="flex flex-col items-start gap-2">
     <DateField isRequired>

@@ -5,25 +5,27 @@ import {
   DateInputProps,
   DateSegment,
   DateValue,
-  ValidationResult,
+  composeRenderProps,
 } from 'react-aria-components';
-import { composeTailwindRenderProps, inputRingStyle } from './utils';
+import { inputRingStyle } from './utils';
 import { twMerge } from 'tailwind-merge';
 
 export interface DateFieldProps<T extends DateValue>
-  extends RACDateFieldProps<T> {
-  label?: string;
-  description?: string;
-  errorMessage?: string | ((validation: ValidationResult) => string);
-}
+  extends RACDateFieldProps<T> {}
 
 export function DateField<T extends DateValue>(props: DateFieldProps<T>) {
   return (
     <RACDateField
       {...props}
-      className={composeTailwindRenderProps(
+      className={composeRenderProps(
         props.className,
-        'flex flex-col gap-1',
+        (className, renderProps) => {
+          return twMerge(
+            'flex flex-col gap-1',
+            renderProps.isDisabled && '[&>*]:opacity-50',
+            className,
+          );
+        },
       )}
     />
   );
@@ -39,8 +41,8 @@ export function DateInput({
       className={(renderProps) => {
         return twMerge(
           'group flex h-9 w-full items-center overflow-hidden rounded-md border bg-background shadow-sm',
-          'invalid:border-destructive',
-          'disabled:opacity-50',
+          renderProps.isInvalid && 'border-destructive',
+          renderProps.isDisabled && 'opacity-50',
           renderProps.isFocusWithin && inputRingStyle,
           'ring-offset-0',
           'block min-w-[150px] px-2 py-1.5 text-sm',
@@ -56,7 +58,7 @@ export function DateInput({
           segment={segment}
           className={(renderProps) => {
             return twMerge(
-              'inline rounded p-0.5 caret-transparent outline outline-0 type-literal:px-0',
+              'inline rounded p-0.5 caret-transparent outline-0 type-literal:px-0',
               'data-[placeholder]:italic data-[placeholder]:text-muted',
               'disabled:opacity-50',
               renderProps.isFocused &&

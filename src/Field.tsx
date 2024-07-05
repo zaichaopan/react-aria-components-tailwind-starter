@@ -252,7 +252,7 @@ export const InputFieldGroup = React.forwardRef<HTMLDivElement, GroupProps>(
           (className, renderProps) => {
             return twMerge(
               'group relative flex w-full items-center overflow-hidden rounded-md border bg-inherit shadow-sm',
-              'group-invalid:border-destructive group-disabled:opacity-50',
+              'group-invalid:border-destructive',
               '[&_svg]:text-muted',
               renderProps.isFocusWithin && inputRingStyle,
               className,

@@ -55,6 +55,16 @@ export const Validation = () => (
   </Form>
 );
 
+export const DisabledState = () => {
+  return (
+    <DatePicker isDisabled>
+      <Label>Event date</Label>
+      <Description>Please enter the event date</Description>
+      <DatePickerInput></DatePickerInput>
+    </DatePicker>
+  );
+};
+
 export const DatePickerButtons = () => {
   return (
     <DatePicker defaultValue={today(getLocalTimeZone())}>

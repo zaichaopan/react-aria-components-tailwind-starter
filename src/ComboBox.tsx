@@ -90,7 +90,6 @@ export function ClearButton({
       plain
       onPress={(e) => {
         state?.setSelectedKey(null);
-
         onPress?.(e);
       }}
     ></CloseButton>
