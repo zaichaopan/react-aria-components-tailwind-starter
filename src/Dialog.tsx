@@ -6,7 +6,13 @@ import {
 import { twMerge } from 'tailwind-merge';
 import React from 'react';
 import { Heading, HeadingProps } from './Heading';
-import { CloseButton } from './Button';
+import {
+  Button,
+  ButtonWithoutAsChildProps,
+  CloseButton,
+  CloseButtonProps,
+} from './Button';
+import { composeTailwindRenderProps } from './utils';
 
 export { DialogTrigger } from 'react-aria-components';
 
@@ -113,14 +119,46 @@ export function DialogFooter({
   );
 }
 
-export function DialogCloseButton() {
+type DialogCloseButtonProps =
+  | Omit<CloseButtonProps, 'outline' | 'unstyle' | 'plain'>
+  | (ButtonWithoutAsChildProps & {
+      children: Exclude<React.ReactNode, null | undefined>;
+    });
+
+export function DialogCloseButton(props: DialogCloseButtonProps) {
   const state = React.useContext(OverlayTriggerStateContext)!;
 
+  if (props.children === undefined) {
+    const { onPress, className, ...restProps } = props;
+
+    return (
+      <CloseButton
+        {...restProps}
+        plain
+        className={composeTailwindRenderProps(
+          className,
+          'absolute right-4 top-4 p-1.5 text-muted',
+        )}
+        onPress={(e) => {
+          state.close();
+          onPress?.(e);
+        }}
+      />
+    );
+  }
+
+  const { onPress, ...restProps } = props;
+
+  if (!restProps.unstyle && !restProps.outline) {
+    restProps.plain = true;
+  }
   return (
-    <CloseButton
-      plain
-      className="absolute right-4 top-4 p-1.5 text-muted"
-      onPress={() => state.close()}
+    <Button
+      {...restProps}
+      onPress={(e) => {
+        state.close();
+        onPress?.(e);
+      }}
     />
   );
 }

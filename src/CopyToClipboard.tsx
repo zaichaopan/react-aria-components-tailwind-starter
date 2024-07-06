@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, ButtonPropsWithoutAsChild } from './Button';
+import { Button, ButtonWithoutAsChildProps } from './Button';
 import { useCopyToClipboard } from './hooks/use-clipboard';
 import { TooltipTrigger, Tooltip } from './Tooltip';
 import { Copy } from 'lucide-react';
@@ -27,7 +27,7 @@ export function CopyButton({
   copyText: string;
   labelBeforeCopy?: string;
   labelAfterCopy?: string;
-} & Omit<ButtonPropsWithoutAsChild, 'outline' | 'unstyle'>) {
+} & Omit<ButtonWithoutAsChildProps, 'outline' | 'unstyle'>) {
   const [showTooltip, setShowTooltip] = React.useState(false);
 
   return (

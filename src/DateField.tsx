@@ -40,7 +40,7 @@ export function DateInput({
       {...props}
       className={(renderProps) => {
         return twMerge(
-          'group flex h-9 w-full items-center overflow-hidden rounded-md border bg-background shadow-sm',
+          'group flex h-9 w-full items-center rounded-md border bg-inherit shadow-sm',
           renderProps.isInvalid && 'border-destructive',
           renderProps.isDisabled && 'opacity-50',
           renderProps.isFocusWithin && inputRingStyle,

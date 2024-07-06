@@ -41,7 +41,7 @@ export type BasicButtonProps = {
 
 export type ButtonProps = AsChildProps<RACButtonProps> & BasicButtonProps;
 
-export type ButtonPropsWithoutAsChild = RACButtonProps & BasicButtonProps;
+export type ButtonWithoutAsChildProps = RACButtonProps & BasicButtonProps;
 
 function buttonStyle({ size, color, isIconOnly, ...props }: BasicButtonProps) {
   if (props.unstyle) {
@@ -195,10 +195,15 @@ export function ToggleButton(props: ToggleButtonProps) {
   );
 }
 
+export type CloseButtonProps = ButtonWithoutAsChildProps & {
+  isIconOnly?: never;
+  asChild?: never;
+  children?: never;
+};
 export function CloseButton({
   'aria-label': ariaLabel = 'Close',
   ...props
-}: ButtonPropsWithoutAsChild & { isIconOnly?: never }) {
+}: CloseButtonProps) {
   return (
     <Button isIconOnly {...props}>
       <Icon aria-label={ariaLabel}>

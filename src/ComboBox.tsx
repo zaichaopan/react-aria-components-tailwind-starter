@@ -5,7 +5,7 @@ import {
   ComboBoxProps as RACComboBoxProps,
   ComboBoxStateContext,
 } from 'react-aria-components';
-import { ButtonPropsWithoutAsChild, CloseButton, Button } from './Button';
+import { ButtonWithoutAsChildProps, CloseButton, Button } from './Button';
 import { ListBox } from './ListBox';
 import { composeTailwindRenderProps } from './utils';
 import { Popover, PopoverProps } from './Popover';
@@ -74,7 +74,7 @@ export function TriggerButton() {
 export function ClearButton({
   onPress,
 }: {
-  onPress?: ButtonPropsWithoutAsChild['onPress'];
+  onPress?: ButtonWithoutAsChildProps['onPress'];
 }) {
   const state = React.useContext(ComboBoxStateContext);
 

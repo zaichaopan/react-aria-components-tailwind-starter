@@ -11,14 +11,14 @@ import {
 } from 'react-aria-components';
 import { DropdownSection, DropdownSectionProps } from './ListBox';
 import { Popover, PopoverProps } from './Popover';
-import { Button, ButtonPropsWithoutAsChild } from './Button';
+import { Button, ButtonWithoutAsChildProps } from './Button';
 import { twMerge } from 'tailwind-merge';
 import { Icon } from './Icon';
 import { composeTailwindRenderProps } from './utils';
 
 export { MenuTrigger, SubmenuTrigger } from 'react-aria-components';
 
-type MenuButtonProps = ButtonPropsWithoutAsChild & {
+type MenuButtonProps = ButtonWithoutAsChildProps & {
   noArrow?: boolean;
 };
 
