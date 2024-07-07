@@ -44,7 +44,7 @@ export function Avatar({
       <div
         role="img"
         className={twMerge([
-          'group relative flex size-10 items-center justify-center rounded-lg @container',
+          'group relative flex size-10 shrink-0 items-center justify-center rounded-lg @container',
           className,
         ])}
         aria-labelledby={ariaLabelledby}

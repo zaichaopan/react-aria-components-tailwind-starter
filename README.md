@@ -1,5 +1,8 @@
 # Tailwind React Aria Components Starter kits
 
+![hero](./screenshots/overview.png)
+
+
 This project is heavily inspired by below amazing projects:
 
 - [react-aria-tailwind-starter](https://react-spectrum.adobe.com/react-aria-tailwind-starter/?path=/docs/alertdialog--docs)
@@ -34,21 +37,3 @@ npm i react-aria
 4. Copy components from **`src`** to your project
 
 Visit the storybook page - https://zaichaopan.github.io/tailwind-react-aria-components-starter-kits to explore all available components.
-
-![avatar](./screenshots/avatar.png)
-
-![menu](./screenshots/menu.png)
-
-![dialog1](./screenshots/dialog1.png)
-
-![dialog2](./screenshots/dialog2.png)
-
-![dialog3](./screenshots/dialog3.png)
-
-![dialog4](./screenshots/dialog4.png)
-
-![dialog5](./screenshots/dialog5.png)
-
-![calendar](./screenshots/calendar.png)
-
-![multiselect](./screenshots/multiselect.png)

@@ -66,7 +66,7 @@ function buttonStyle({ size, color, isIconOnly, ...props }: BasicButtonProps) {
       : [
           // default size
           'h-9 px-3 gap-2 text-base/6 sm:text-sm/6 font-semibold',
-          size === 'sm' && 'h-7 px-2 gap-1 text-sm/6 sm:text-xs/6',
+          size === 'sm' && 'h-7 px-2 gap-1 text-sm/6 sm:text-xs/6 font-normal',
           size === 'lg' && 'h-10 px-4 gap-2 font-semibold',
         ],
 

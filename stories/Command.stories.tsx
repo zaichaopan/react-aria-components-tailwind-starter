@@ -72,7 +72,7 @@ export function CommandK() {
             placeholder="Search for apps and commands&hellip;"
             className="peer pl-7"
           />
-          <Keyboard className="absolute right-2 top-1/2 hidden -translate-y-1/2 px-2 font-sans text-[0.6rem] text-sm/6 text-muted sm:flex sm:peer-data-[focused=true]:hidden">
+          <Keyboard className="absolute right-2 top-1/2 hidden -translate-y-1/2 px-2 py-0.5 font-sans text-[0.6rem] text-muted sm:flex sm:peer-data-[focused=true]:hidden border rounded-md">
             ⌘K
           </Keyboard>
           <Keyboard className="absolute right-2 top-1/2 hidden -translate-y-1/2 rounded-md border px-2 py-0.5 text-[0.6rem] text-muted sm:peer-data-[focused=true]:flex">
