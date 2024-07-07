@@ -16,9 +16,6 @@ const meta: Meta<typeof TextField> = {
   parameters: {
     layout: 'fullscreen',
     docs: {
-      description: {
-        component: 'Authentication',
-      },
       ...docs,
       controls: {
         exclude: /.*/g,
@@ -203,7 +200,7 @@ export const SignUp01 = () => {
             </Button>
           </div>
 
-          <Text>
+          <Text className="text-center sm:text-left">
             By signing up, you agree to our <Link>Terms of Service</Link> and{' '}
             <Link>Privacy Policy</Link>.
           </Text>
@@ -273,7 +270,7 @@ export const SignUp02 = () => {
             Sign up with Google
           </Button>
 
-          <Text>
+          <Text  className="text-center sm:text-left">
             By signing up, you agree to our{' '}
             <Link>
               <Strong>Terms of Service</Strong>
