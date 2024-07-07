@@ -14,7 +14,7 @@ import { Button, ToggleButton } from '../src/Button';
 import { Strong, Text, TextLink } from '../src/Text';
 import { Link } from '../src/Link';
 import { Icon } from '../src/Icon';
-import { Moon } from 'lucide-react';
+import { Moon, Sun } from 'lucide-react';
 import { Avatar } from '../src/Avatar';
 import { DateRangePicker, DateRangePickerInput } from '../src/DateRangePicker';
 import { Heading } from '../src/Heading';
@@ -61,8 +61,8 @@ export const Example = () => {
           </Heading>
           <Form>
             <TextField>
-              <Label>Username</Label>
-              <Input />
+              <Label>Email address</Label>
+              <Input type="email" name="email" />
             </TextField>
             <TextField>
               <Label>Password</Label>
@@ -80,8 +80,10 @@ export const Example = () => {
             </Button>
 
             <div className="flex justify-center">
-              <Text>Not account?</Text>&nbsp;
-              <Link className="font-semibold">Create an account</Link>
+              <Text>Don’t have an account?</Text>&nbsp;
+              <Link>
+                <Strong>Create an account</Strong>
+              </Link>
             </div>
           </Form>
         </div>
@@ -114,7 +116,7 @@ export const Example = () => {
               </div>
             </Radio>
             <Radio
-              value="IAM User"
+              value="IAM user"
               className={({ isSelected }) => {
                 return twMerge(
                   'items-start rounded-md border p-3 shadow-sm [&_[slot=radio]]:mt-1.5',
@@ -171,7 +173,8 @@ export const Example = () => {
 
           <ToggleButton isIconOnly outline className="text-muted">
             <Icon aria-label="Change theme">
-              <Moon strokeWidth={1.5} />
+              <Sun strokeWidth={1.5} />
+              {/* <Moon strokeWidth={1.5} /> */}
             </Icon>
           </ToggleButton>
 
@@ -383,7 +386,7 @@ export const Example = () => {
                 <Link
                   href="https://react-spectrum.adobe.com/react-aria/components.html"
                   target="_blank"
-                  className="flex-1  hover:no-underline"
+                  className="flex-1"
                 >
                   <img
                     aria-hidden
@@ -399,7 +402,7 @@ export const Example = () => {
                 <Link
                   href="https://tailwindcss.com"
                   target="_blank"
-                  className="flex-1 hover:no-underline"
+                  className="flex-1"
                 >
                   <img
                     aria-hidden
@@ -422,6 +425,14 @@ export const Example = () => {
               <Tab>Billing</Tab>
             </TabList>
           </Tabs>
+          <Tabs variant="pills">
+            <TabList>
+              <Tab>Overview</Tab>
+              <Tab>Analytics</Tab>
+              <Tab>Reports</Tab>
+              <Tab>Notifications</Tab>
+            </TabList>
+          </Tabs>
           <Tabs variant="segment">
             <TabList>
               <Tab>Overview</Tab>
@@ -439,7 +450,7 @@ export const Example = () => {
             </TabList>
           </Tabs>
         </div>
-        <div className='mt-4'>
+        <div className="mt-4">
           <WithAvatars />
         </div>
       </div>

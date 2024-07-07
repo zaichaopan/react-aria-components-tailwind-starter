@@ -97,6 +97,11 @@ const preview: Preview = {
     controls: {
       matchers: {},
     },
+    options: {
+      storySort: {
+        order: ['Overview','*'],
+      },
+    },
   },
 };
 

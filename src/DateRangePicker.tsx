@@ -27,7 +27,7 @@ export function DateRangePicker<T extends DateValue>({
     <AriaDateRangePicker
       {...props}
       className={composeTailwindRenderProps(props.className, [
-        'group flex flex-col gap-1',
+        'group flex flex-col gap-1 shrink-0',
       ])}
     />
   );

@@ -227,7 +227,6 @@ export const AsChild = () => {
     <Button asChild>
       <Link
         href="https://example.com"
-        className="hover:no-underline"
         target="_blank"
       >
         Login
