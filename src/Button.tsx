@@ -45,7 +45,7 @@ export type ButtonWithoutAsChildProps = RACButtonProps & BasicButtonProps;
 
 function buttonStyle({ size, color, isIconOnly, ...props }: BasicButtonProps) {
   if (props.unstyle) {
-    return 'relative outline-none rounded-lg';
+    return 'flex relative outline-none rounded-lg';
   }
 
   return [
@@ -93,10 +93,10 @@ function buttonStyle({ size, color, isIconOnly, ...props }: BasicButtonProps) {
           'border-destructive/95 bg-destructive hover:bg-destructive/85',
       ],
 
-    // Svg
-    '[&.h-7_svg]:size-3 [&.size-7_svg]:size-4',
-    '[&.h-9_svg]:size-4 [&.size-9_svg]:size-5',
-    '[&.h-10_svg]:size-5 [&.size-10_svg]:size-6',
+    // Add svg size when itself does not have a size
+    '[&.h-7_svg:not([class^=size-])]:size-3 [&.size-7_svg:not([class^=size-])]:size-4',
+    '[&.h-9_svg:not([class^=size-])]:size-4 [&.size-9_svg:not([class^=size-])]:size-5',
+    '[&.h-10_svg:not([class^=size-])]:size-5 [&.size-10_svg::not([class^=size-])]:size-6',
   ];
 }
 
