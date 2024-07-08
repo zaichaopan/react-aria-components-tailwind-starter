@@ -10,9 +10,10 @@
 
     --success: 142 72% 29%;
     --destructive: 0 72% 51%;
-    --warning: 41 96% 40%;  
+    --warning: 41 96% 40%;
     --muted: 240 4% 46%;
     --border: 20 6% 85%;
+    --soft: 20 6% 90%;
   }
 
   .dark {
@@ -25,6 +26,7 @@
     --warning: 41 96% 40%;
     --muted: 240 5% 65%;
     --border: 240 5% 26%;
+    --soft: 240 5% 18%;
   }
 }
 

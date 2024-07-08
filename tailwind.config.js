@@ -24,6 +24,7 @@ export default {
         foreground: 'hsl(var(--foreground))',
         muted: 'hsl(var(--muted))',
         border: 'hsl(var(--border))',
+        soft: 'hsl(var(--soft))',
       },
     },
   },

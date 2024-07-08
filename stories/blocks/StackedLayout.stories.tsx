@@ -70,10 +70,10 @@ export const StackedLayout01 = () => {
                 <Link
                   href="/"
                   className={[
-                    'px-2 font-semibold text-muted hover:bg-zinc-200 hover:no-underline',
+                    'p-2 font-semibold text-muted hover:bg-zinc-200 hover:no-underline dark:hover:bg-zinc-800',
                     'before:absolute',
                     'before:left-0',
-                    'before:-bottom-4',
+                    'before:-bottom-2',
                     "before:content-['']",
                     'before:w-full',
                     'before:border-b-2',
@@ -86,7 +86,7 @@ export const StackedLayout01 = () => {
               <li className="flex">
                 <Link
                   href="/events"
-                  className="px-2 font-semibold text-muted hover:bg-zinc-200 hover:no-underline"
+                  className="p-2 font-semibold text-muted hover:bg-zinc-200 hover:no-underline dark:hover:bg-zinc-800"
                 >
                   Events
                 </Link>
@@ -94,7 +94,7 @@ export const StackedLayout01 = () => {
               <li className="flex">
                 <Link
                   href="/orders"
-                  className="px-2 font-semibold text-muted hover:bg-zinc-200 hover:no-underline"
+                  className="p-2 font-semibold text-muted hover:bg-zinc-200 hover:no-underline dark:hover:bg-zinc-800"
                 >
                   Orders
                 </Link>
@@ -102,7 +102,7 @@ export const StackedLayout01 = () => {
               <li className="flex">
                 <Link
                   href="/broadcasts"
-                  className="px-2 font-semibold text-muted hover:bg-zinc-200 hover:no-underline"
+                  className="p-2 font-semibold text-muted hover:bg-zinc-200 hover:no-underline dark:hover:bg-zinc-800"
                 >
                   Broadcasts
                 </Link>
@@ -110,7 +110,7 @@ export const StackedLayout01 = () => {
               <li className="flex">
                 <Link
                   href="/broadcasts"
-                  className="px-2 font-semibold text-muted hover:bg-zinc-200 hover:no-underline"
+                  className="p-2 font-semibold text-muted hover:bg-zinc-200 hover:no-underline dark:hover:bg-zinc-800"
                 >
                   Settings
                 </Link>
@@ -160,7 +160,7 @@ export const StackedLayout01 = () => {
           </MenuTrigger>
         </div>
       </header>
-      <main className="mx-2 mb-2 flex-1 rounded-xl border bg-background p-6 dark:bg-zinc-900">
+      <main className="border border-soft mx-2 mb-2 flex-1 rounded-xl border bg-background p-6 dark:bg-zinc-900">
         <div className="mx-auto max-w-6xl">
           <Heading>Home</Heading>
           <Separator className="my-4" />
@@ -209,7 +209,7 @@ function HamburgerMenu() {
                   <Link
                     href="/"
                     className={[
-                      'flex-1 px-2 py-1 font-semibold text-muted hover:bg-zinc-100 hover:no-underline',
+                      'flex-1 px-2 py-1 font-semibold text-muted hover:bg-zinc-100 hover:no-underline dark:hover:bg-zinc-800',
                       'before:absolute',
                       'before:top-0',
                       'before:-left-2',
@@ -225,7 +225,7 @@ function HamburgerMenu() {
                 <li className="flex flex-1 px-2">
                   <Link
                     href="/events"
-                    className="flex-1 px-2 py-1 font-semibold text-muted hover:bg-zinc-100 hover:no-underline"
+                    className="flex-1 px-2 py-1 font-semibold text-muted hover:bg-zinc-100 hover:no-underline dark:hover:bg-zinc-800"
                   >
                     Events
                   </Link>
@@ -233,7 +233,7 @@ function HamburgerMenu() {
                 <li className="flex flex-1 px-2">
                   <Link
                     href="/orders"
-                    className="flex-1 px-2  py-1 font-semibold text-muted hover:bg-zinc-100 hover:no-underline"
+                    className="flex-1 px-2  py-1 font-semibold text-muted hover:bg-zinc-100 hover:no-underline dark:hover:bg-zinc-800"
                   >
                     Orders
                   </Link>
@@ -241,7 +241,7 @@ function HamburgerMenu() {
                 <li className="flex flex-1 px-2">
                   <Link
                     href="/broadcasts"
-                    className="flex-1 px-2  py-1 font-semibold text-muted hover:bg-zinc-100 hover:no-underline"
+                    className="flex-1 px-2  py-1 font-semibold text-muted hover:bg-zinc-100 hover:no-underline dark:hover:bg-zinc-800"
                   >
                     Broadcasts
                   </Link>
@@ -249,7 +249,7 @@ function HamburgerMenu() {
                 <li className="flex flex-1 px-2">
                   <Link
                     href="/broadcasts"
-                    className="flex-1 px-2  py-1 font-semibold text-muted hover:bg-zinc-100 hover:no-underline"
+                    className="flex-1 px-2  py-1 font-semibold text-muted hover:bg-zinc-100 hover:no-underline dark:hover:bg-zinc-800"
                   >
                     Settings
                   </Link>

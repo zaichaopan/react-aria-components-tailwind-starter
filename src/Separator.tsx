@@ -20,33 +20,39 @@ export function Separator({
       className={twMerge(
         'text-sm/6',
         children
-          ? orientation === 'vertical'
-            ? [
-                'flex flex-col items-center mx-2',
-                "before:content-['']",
-                'before:border-l',
-                'before:flex-1',
-                'before:mb-2',
-                "after:content-['']",
-                'after:border-r',
-                'after:flex-1',
-                'after:mt-2',
-              ]
-            : [
-                'self-stretch',
-                'flex items-center my-2',
-                "before:content-['']",
-                'before:border-t',
-                'before:flex-1',
-                'before:mr-2',
-                "after:content-['']",
-                'after:border-t',
-                'after:flex-1',
-                'after:ml-2',
-              ]
-          : orientation === 'vertical'
-            ? 'mx-1 h-auto self-stretch border-l'
-            : 'my-0.5 h-px w-full self-stretch border-b',
+          ? [
+              'after:border-soft before:border-soft',
+              orientation === 'vertical'
+                ? [
+                    'mx-2 flex flex-col items-center',
+                    "before:content-['']",
+                    'before:border-l',
+                    'before:flex-1',
+                    'before:mb-2',
+                    "after:content-['']",
+                    'after:border-r',
+                    'after:flex-1',
+                    'after:mt-2',
+                  ]
+                : [
+                    'self-stretch',
+                    'my-2 flex items-center',
+                    "before:content-['']",
+                    'before:border-t',
+                    'before:flex-1',
+                    'before:mr-2',
+                    "after:content-['']",
+                    'after:border-t',
+                    'after:flex-1',
+                    'after:ml-2',
+                  ],
+            ]
+          : [
+              'border-soft',
+              orientation === 'vertical'
+                ? 'mx-1 h-auto self-stretch border-l'
+                : 'my-0.5 h-px w-full self-stretch border-b',
+            ],
         className,
       )}
       {...props}
