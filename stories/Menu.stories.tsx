@@ -205,7 +205,7 @@ export const WithIcons = () => {
           <MenuItem
             icon={
               <Icon>
-                <UserCircle className="h-4 w-4" />
+                <UserCircle />
               </Icon>
             }
           >
@@ -214,7 +214,7 @@ export const WithIcons = () => {
           <MenuItem
             icon={
               <Icon>
-                <Settings className="h-4 w-4" />
+                <Settings />
               </Icon>
             }
           >
@@ -223,7 +223,7 @@ export const WithIcons = () => {
           <MenuItem
             icon={
               <Icon>
-                <BadgeInfo className="h-4 w-4"></BadgeInfo>
+                <BadgeInfo></BadgeInfo>
               </Icon>
             }
           >
@@ -232,7 +232,7 @@ export const WithIcons = () => {
           <MenuItem
             icon={
               <Icon>
-                <LogOut className="h-4 w-4" />
+                <LogOut />
               </Icon>
             }
           >
@@ -306,7 +306,9 @@ DisabledMenuItems.parameters = {
 export const DisabledMenu = () => {
   return (
     <MenuTrigger>
-      <MenuButton outline isDisabled>Options</MenuButton>
+      <MenuButton outline isDisabled>
+        Options
+      </MenuButton>
       <MenuPopover>
         <Menu>
           <MenuItem>Account</MenuItem>
@@ -318,7 +320,6 @@ export const DisabledMenu = () => {
     </MenuTrigger>
   );
 };
-
 
 export const WithIconTrigger = () => {
   return (

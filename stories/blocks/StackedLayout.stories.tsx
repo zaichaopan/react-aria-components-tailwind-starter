@@ -138,21 +138,51 @@ export const StackedLayout01 = () => {
             </MenuButton>
             <MenuPopover placement="bottom">
               <Menu>
-                <MenuItem icon={<UserCircle className="size-4" />}>
+                <MenuItem
+                  icon={
+                    <Icon>
+                      <UserCircle />
+                    </Icon>
+                  }
+                >
                   My profile
                 </MenuItem>
-                <MenuItem icon={<Settings className="size-4" />}>
+                <MenuItem
+                  icon={
+                    <Icon>
+                      <Settings />
+                    </Icon>
+                  }
+                >
                   Settings
                 </MenuItem>
                 <MenuSeparator />
-                <MenuItem icon={<ShieldCheck className="size-4" />}>
+                <MenuItem
+                  icon={
+                    <Icon>
+                      <ShieldCheck />
+                    </Icon>
+                  }
+                >
                   Privacy policy
                 </MenuItem>
-                <MenuItem icon={<Lightbulb className="size-4" />}>
+                <MenuItem
+                  icon={
+                    <Icon>
+                      <Lightbulb />
+                    </Icon>
+                  }
+                >
                   Share feedback
                 </MenuItem>
                 <MenuSeparator />
-                <MenuItem icon={<LogOut className="size-4" />}>
+                <MenuItem
+                  icon={
+                    <Icon>
+                      <LogOut />
+                    </Icon>
+                  }
+                >
                   Sign out
                 </MenuItem>
               </Menu>
@@ -160,7 +190,7 @@ export const StackedLayout01 = () => {
           </MenuTrigger>
         </div>
       </header>
-      <main className="border border-soft mx-2 mb-2 flex-1 rounded-xl border bg-background p-6 dark:bg-zinc-900">
+      <main className="border-soft mx-2 mb-2 flex-1 rounded-xl border border bg-background p-6 dark:bg-zinc-900">
         <div className="mx-auto max-w-6xl">
           <Heading>Home</Heading>
           <Separator className="my-4" />

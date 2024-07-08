@@ -137,7 +137,11 @@ export function MenuItem({
             <div className="flex flex-1 items-center gap-2 truncate">
               {icon && (
                 <span
-                  className={twMerge(['text-muted', isFocused && 'text-white'])}
+                  className={twMerge([
+                    'text-muted',
+                    '[&>svg:not([class^=size-])]:size-4',
+                    isFocused && 'text-white',
+                  ])}
                 >
                   {icon}
                 </span>
