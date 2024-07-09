@@ -67,7 +67,7 @@ export const SidebarLayout01 = () => {
           </SearchField>
           <Button isIconOnly plain className="text-muted">
             <Icon aria-label="Notification">
-              <Inbox/>
+              <Inbox />
             </Icon>
           </Button>
           <MenuTrigger>
@@ -222,7 +222,7 @@ export const SidebarLayout01 = () => {
             <MenuButton
               noArrow
               unstyle
-              className="mt-auto items-center p-2 hover:bg-zinc-200 dark:hover:bg-zinc-800"
+              className="flex mt-auto items-center p-2 hover:bg-zinc-200 dark:hover:bg-zinc-800"
             >
               <Avatar
                 src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=facearea&facepad=3&w=256&h=256&q=80"
@@ -292,7 +292,7 @@ export const SidebarLayout01 = () => {
         </div>
       </div>
 
-      <main className="border-soft mb-2 md:mr-2 flex-1 rounded-xl border border bg-background p-6 lg:p-10 dark:bg-zinc-900 md:mt-2">
+      <main className="border-soft mb-2 flex-1 rounded-xl border border bg-background p-6 dark:bg-zinc-900 md:mr-2 md:mt-2 lg:p-10">
         <div className="max-w-6xl">
           <Heading>Home</Heading>
           <Separator className="my-4" />

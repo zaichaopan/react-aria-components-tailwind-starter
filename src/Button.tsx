@@ -45,7 +45,7 @@ export type ButtonWithoutAsChildProps = RACButtonProps & BasicButtonProps;
 
 function buttonStyle({ size, color, isIconOnly, ...props }: BasicButtonProps) {
   if (props.unstyle) {
-    return 'flex relative outline-none rounded-lg';
+    return 'relative outline-none rounded-lg';
   }
 
   return [

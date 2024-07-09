@@ -20,7 +20,7 @@ import { DateRangePicker, DateRangePickerInput } from '../src/DateRangePicker';
 import { Heading } from '../src/Heading';
 import { Tab, TabList, Tabs } from '../src/Tabs';
 import { Switch } from '../src/Switch';
-import { Radio, RadioGroup, RadioGroupContent } from '../src/RadioGroup';
+import { Radio, RadioField, RadioGroup, RadioGroupContent } from '../src/RadioGroup';
 import { twMerge } from 'tailwind-merge';
 import { Slider, SliderOutput, SliderTack } from '../src/Slider';
 import {
@@ -93,6 +93,7 @@ export const Example = () => {
           aria-label="Choose user type"
         >
           <RadioGroupContent className="gap-3">
+            <RadioField>
             <Radio
               value="Root user"
               className={({ isSelected }) => {
@@ -115,6 +116,7 @@ export const Example = () => {
                 </div>
               </div>
             </Radio>
+            </RadioField>
             <Radio
               value="IAM user"
               className={({ isSelected }) => {
@@ -126,7 +128,7 @@ export const Example = () => {
             >
               <div className="flex w-full items-center justify-between gap-3">
                 <div className="flex flex-1 flex-col">
-                  <div className="font-semibold">IAM User</div>
+                  <div className="font-semibold">IAM user</div>
                   <Text>
                     User within an account that performs daily tasks.{' '}
                     <TextLink href="https://www.example.com" target="_blank">
@@ -368,7 +370,7 @@ export const Example = () => {
         <div>
           <ChangeProfile />
         </div>
-        <div className="w-fit">
+        <div>
           <DateRangePicker>
             <Label>Stay duration</Label>
             <DateRangePickerInput></DateRangePickerInput>
