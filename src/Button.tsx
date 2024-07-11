@@ -45,12 +45,12 @@ export type ButtonWithoutAsChildProps = RACButtonProps & BasicButtonProps;
 
 function buttonStyle({ size, color, isIconOnly, ...props }: BasicButtonProps) {
   if (props.unstyle) {
-    return 'relative outline-none rounded-lg';
+    return 'relative outline-none rounded-md';
   }
 
   return [
     // Base
-    'group relative inline-flex justify-center items-center whitespace-nowrap rounded-lg outline-none',
+    'group relative inline-flex justify-center items-center whitespace-nowrap rounded-md outline-none',
 
     // Disabled
     'disabled:opacity-50',
@@ -60,7 +60,7 @@ function buttonStyle({ size, color, isIconOnly, ...props }: BasicButtonProps) {
       ? [
           // default size
           'p-1.5 size-9',
-          size === 'sm' && 'p-1 size-7 rounded-md',
+          size === 'sm' && 'p-1 size-7',
           size === 'lg' && 'size-10',
         ]
       : [

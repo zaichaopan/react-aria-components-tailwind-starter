@@ -70,12 +70,12 @@ export const StackedLayout01 = () => {
                 <Link
                   href="/"
                   className={[
-                    'p-2 font-semibold text-muted hover:bg-zinc-200 hover:no-underline dark:hover:bg-zinc-800',
+                    'p-2 font-semibold hover:bg-zinc-200 hover:no-underline dark:hover:bg-zinc-800',
                     'before:absolute',
-                    'before:left-0',
+                    'before:left-[8px]',
                     'before:-bottom-2',
                     "before:content-['']",
-                    'before:w-full',
+                    'before:w-[calc(100%-16px)]',
                     'before:border-b-2',
                     'before:border-accent',
                   ].join(' ')}
@@ -136,7 +136,7 @@ export const StackedLayout01 = () => {
                 alt="Jane"
               />
             </MenuButton>
-            <MenuPopover placement="bottom">
+            <MenuPopover placement="bottom end" className="min-w-64">
               <Menu>
                 <MenuItem
                   icon={
@@ -190,7 +190,7 @@ export const StackedLayout01 = () => {
           </MenuTrigger>
         </div>
       </header>
-      <main className="border-soft mx-2 mb-2 flex-1 rounded-xl border border bg-background p-6 dark:bg-zinc-900">
+      <main className="mx-2 mb-2 flex-1 rounded-xl border border-border/75 bg-background p-6 dark:bg-zinc-900">
         <div className="mx-auto max-w-6xl">
           <Heading>Home</Heading>
           <Separator className="my-4" />
@@ -234,17 +234,17 @@ function HamburgerMenu() {
             </div>
             <Separator />
             <nav className="mt-4 flex">
-              <ul className="flex flex-1 flex-col gap-2">
+              <ul className="flex flex-1 flex-col gap-1">
                 <li className="flex flex-1 px-2">
                   <Link
                     href="/"
                     className={[
-                      'flex-1 px-2 py-1 font-semibold text-muted hover:bg-zinc-100 hover:no-underline dark:hover:bg-zinc-800',
+                      'flex-1 p-2 font-semibold hover:bg-zinc-100 hover:no-underline dark:hover:bg-zinc-800',
                       'before:absolute',
-                      'before:top-0',
+                      'before:top-[8px]',
                       'before:-left-2',
                       "before:content-['']",
-                      'before:h-full',
+                      'before:h-[calc(100%-16px)]',
                       'before:border-l-2',
                       'before:border-accent',
                     ].join(' ')}
@@ -255,7 +255,7 @@ function HamburgerMenu() {
                 <li className="flex flex-1 px-2">
                   <Link
                     href="/events"
-                    className="flex-1 px-2 py-1 font-semibold text-muted hover:bg-zinc-100 hover:no-underline dark:hover:bg-zinc-800"
+                    className="flex-1 p-2 font-semibold text-muted hover:bg-zinc-100 hover:no-underline dark:hover:bg-zinc-800"
                   >
                     Events
                   </Link>
@@ -263,7 +263,7 @@ function HamburgerMenu() {
                 <li className="flex flex-1 px-2">
                   <Link
                     href="/orders"
-                    className="flex-1 px-2  py-1 font-semibold text-muted hover:bg-zinc-100 hover:no-underline dark:hover:bg-zinc-800"
+                    className="flex-1 p-2 font-semibold text-muted hover:bg-zinc-100 hover:no-underline dark:hover:bg-zinc-800"
                   >
                     Orders
                   </Link>
@@ -271,7 +271,7 @@ function HamburgerMenu() {
                 <li className="flex flex-1 px-2">
                   <Link
                     href="/broadcasts"
-                    className="flex-1 px-2  py-1 font-semibold text-muted hover:bg-zinc-100 hover:no-underline dark:hover:bg-zinc-800"
+                    className="flex-1 p-2 font-semibold text-muted hover:bg-zinc-100 hover:no-underline dark:hover:bg-zinc-800"
                   >
                     Broadcasts
                   </Link>
@@ -279,7 +279,7 @@ function HamburgerMenu() {
                 <li className="flex flex-1 px-2">
                   <Link
                     href="/broadcasts"
-                    className="flex-1 px-2  py-1 font-semibold text-muted hover:bg-zinc-100 hover:no-underline dark:hover:bg-zinc-800"
+                    className="flex-1 p-2 font-semibold text-muted hover:bg-zinc-100 hover:no-underline dark:hover:bg-zinc-800"
                   >
                     Settings
                   </Link>

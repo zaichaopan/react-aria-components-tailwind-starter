@@ -11,7 +11,7 @@ import { AsChildProps, Slot } from './slot';
 export type LinkProps = AsChildProps<RACLinkProps>;
 
 const linkStyle = [
-  'relative inline-flex cursor-pointer items-center gap-1 rounded outline-none hover:underline',
+  'relative inline-flex cursor-pointer items-center gap-1 rounded-md outline-none hover:underline',
   'text-base/6 sm:text-sm/6',
   'disabled:no-underline disabled:opacity-50 disabled:cursor-default',
   '[&.border]:hover:no-underline',

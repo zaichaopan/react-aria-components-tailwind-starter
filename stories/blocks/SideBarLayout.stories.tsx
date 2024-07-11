@@ -237,7 +237,7 @@ export const SidebarLayout01 = () => {
                 <ChevronUp className="size-4 text-muted" />
               </Icon>
             </MenuButton>
-            <MenuPopover placement="top" className="min-w-64">
+            <MenuPopover placement="top left" className="min-w-64">
               <Menu>
                 <MenuItem
                   icon={
@@ -292,7 +292,7 @@ export const SidebarLayout01 = () => {
         </div>
       </div>
 
-      <main className="border-soft mb-2 flex-1 rounded-xl border border bg-background p-6 dark:bg-zinc-900 md:mr-2 md:mt-2 lg:p-10">
+      <main className="border-border/75 mb-2 flex-1 rounded-xl border border bg-background p-6 dark:bg-zinc-900 md:mr-2 md:mt-2 lg:p-10">
         <div className="max-w-6xl">
           <Heading>Home</Heading>
           <Separator className="my-4" />
@@ -336,17 +336,17 @@ function HamburgerMenu() {
             </div>
             <Separator />
             <nav className="mt-4 flex">
-              <ul className="flex flex-1 flex-col gap-2">
+              <ul className="flex flex-1 flex-col gap-1">
                 <li className="flex flex-1 px-2">
                   <Link
                     href="/"
                     className={[
-                      'flex-1 px-2 py-1 font-semibold text-muted hover:bg-zinc-100 hover:no-underline dark:hover:bg-zinc-800',
+                      'flex-1 p-2 font-semibold hover:bg-zinc-100 hover:no-underline dark:hover:bg-zinc-800',
                       'before:absolute',
-                      'before:top-0',
+                      'before:top-[8px]',
                       'before:-left-2',
                       "before:content-['']",
-                      'before:h-full',
+                      'before:h-[calc(100%-16px)]',
                       'before:border-l-2',
                       'before:border-accent',
                     ].join(' ')}
@@ -357,7 +357,7 @@ function HamburgerMenu() {
                 <li className="flex flex-1 px-2">
                   <Link
                     href="/events"
-                    className="flex-1 px-2 py-1 font-semibold text-muted hover:bg-zinc-100 hover:no-underline dark:hover:bg-zinc-800"
+                    className="flex-1 p-2 font-semibold text-muted hover:bg-zinc-100 hover:no-underline dark:hover:bg-zinc-800"
                   >
                     Events
                   </Link>
@@ -365,7 +365,7 @@ function HamburgerMenu() {
                 <li className="flex flex-1 px-2">
                   <Link
                     href="/orders"
-                    className="flex-1 px-2  py-1 font-semibold text-muted hover:bg-zinc-100 hover:no-underline dark:hover:bg-zinc-800"
+                    className="flex-1 p-2 font-semibold text-muted hover:bg-zinc-100 hover:no-underline dark:hover:bg-zinc-800"
                   >
                     Orders
                   </Link>
@@ -373,7 +373,7 @@ function HamburgerMenu() {
                 <li className="flex flex-1 px-2">
                   <Link
                     href="/broadcasts"
-                    className="flex-1 px-2  py-1 font-semibold text-muted hover:bg-zinc-100 hover:no-underline dark:hover:bg-zinc-800"
+                    className="flex-1 p-2 font-semibold text-muted hover:bg-zinc-100 hover:no-underline dark:hover:bg-zinc-800"
                   >
                     Broadcasts
                   </Link>
@@ -381,7 +381,7 @@ function HamburgerMenu() {
                 <li className="flex flex-1 px-2">
                   <Link
                     href="/broadcasts"
-                    className="flex-1 px-2  py-1 font-semibold text-muted hover:bg-zinc-100 hover:no-underline dark:hover:bg-zinc-800"
+                    className="flex-1 p-2 font-semibold text-muted hover:bg-zinc-100 hover:no-underline dark:hover:bg-zinc-800"
                   >
                     Settings
                   </Link>
