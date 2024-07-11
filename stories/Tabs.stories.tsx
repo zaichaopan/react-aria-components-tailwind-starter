@@ -4,6 +4,7 @@ import { Tab, TabList, TabPanel, Tabs } from '../src/Tabs';
 import { Key } from 'react-aria-components';
 import { NativeSelect } from '../src/NativeSelect';
 import { Heading } from '../src/Heading';
+import { docs } from '../.storybook/docs';
 
 const meta: Meta<typeof Tabs> = {
   title: 'Tabs',
@@ -11,6 +12,7 @@ const meta: Meta<typeof Tabs> = {
   parameters: {
     layout: 'fullscreen',
     docs: {
+      ...docs,
       description: {
         component:
           '<a href="https://react-spectrum.adobe.com/react-aria/Tabs.html#tabs" target="_blank">**Tabs**</a> organize content into multiple sections and allow users to navigate between them.',
@@ -42,7 +44,7 @@ export const Example = () => {
           <TabList aria-label="History of Ancient Rome" items={tabs}>
             {(item) => {
               return (
-                <Tab id={item.id} className="px-4">
+                <Tab id={item.id} className="px-2">
                   {item.title}
                 </Tab>
               );
@@ -133,7 +135,7 @@ export const PillsTab = () => {
         >
           {(item) => {
             return (
-              <Tab id={item.id} className="">
+              <Tab id={item.id} className="px-4">
                 {item.title}
               </Tab>
             );
@@ -183,7 +185,7 @@ export const VerticalPillsTab = () => {
         >
           {(item) => {
             return (
-              <Tab id={item.id} className="">
+              <Tab id={item.id} className="px-4">
                 {item.title}
               </Tab>
             );
@@ -227,7 +229,7 @@ export const SegmentsTab = () => {
           items={tabs}
         >
           {(item) => {
-            return <Tab id={item.id}>{item.title}</Tab>;
+            return <Tab id={item.id} className="px-4">{item.title}</Tab>;
           }}
         </TabList>
 
@@ -277,12 +279,12 @@ export const TabsOnMobile = () => {
 
         <Tabs selectedKey={tab} onSelectionChange={setTab}>
           <TabList
-            className="hidden px-4 sm:flex"
+            className="hidden px-2 sm:flex"
             aria-label="History of Ancient Rome"
             items={tabs}
           >
             {(item) => {
-              return <Tab id={item.id}>{item.title}</Tab>;
+              return <Tab id={item.id} className="px-2">{item.title}</Tab>;
             }}
           </TabList>
 

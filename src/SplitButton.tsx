@@ -80,7 +80,7 @@ export function SplitButtonMenuTrigger({
       color={context.color}
       className={composeTailwindRenderProps(
         props.className,
-        'w-8 rounded-l-none border-l-0',
+        'w-7 rounded-l-none border-l-0',
       )}
       isIconOnly
     >

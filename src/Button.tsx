@@ -159,7 +159,13 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
               <>
                 {isLoading ? (
                   <div className="absolute flex h-full items-center justify-center">
-                    <Spinner className="text-white" />
+                    <Spinner
+                      className={twMerge(
+                        'size-4 text-white',
+                        size == 'lg' && 'size-5',
+                        size == 'sm' && 'size-3',
+                      )}
+                    />
                   </div>
                 ) : null}
                 {typeof children === 'function'

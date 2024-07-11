@@ -14,13 +14,18 @@ import { Button, ToggleButton } from '../src/Button';
 import { Strong, Text, TextLink } from '../src/Text';
 import { Link } from '../src/Link';
 import { Icon } from '../src/Icon';
-import { Moon, Sun } from 'lucide-react';
+import { Sun } from 'lucide-react';
 import { Avatar } from '../src/Avatar';
 import { DateRangePicker, DateRangePickerInput } from '../src/DateRangePicker';
 import { Heading } from '../src/Heading';
 import { Tab, TabList, Tabs } from '../src/Tabs';
 import { Switch } from '../src/Switch';
-import { Radio, RadioField, RadioGroup, RadioGroupContent } from '../src/RadioGroup';
+import {
+  Radio,
+  RadioField,
+  RadioGroup,
+  RadioGroupContent,
+} from '../src/RadioGroup';
 import { twMerge } from 'tailwind-merge';
 import { Slider, SliderOutput, SliderTack } from '../src/Slider';
 import {
@@ -94,28 +99,28 @@ export const Example = () => {
         >
           <RadioGroupContent className="gap-3">
             <RadioField>
-            <Radio
-              value="Root user"
-              className={({ isSelected }) => {
-                return twMerge(
-                  'items-start rounded-md border p-3 shadow-sm [&_[slot=radio]]:mt-1.5',
-                  isSelected && 'border-accent/45 ring-2 ring-accent/25',
-                );
-              }}
-            >
-              <div className="flex w-full items-center justify-between gap-3">
-                <div className="flex flex-1 flex-col">
-                  <div className="font-semibold"> Root user</div>
-                  <Text>
-                    Account owner that performs tasks requiring unrestricted
-                    access.{' '}
-                    <TextLink href="https://www.example.com" target="_blank">
-                      Learn more
-                    </TextLink>
-                  </Text>
+              <Radio
+                value="Root user"
+                className={({ isSelected }) => {
+                  return twMerge(
+                    'items-start rounded-md border p-3 shadow-sm [&_[slot=radio]]:mt-1.5',
+                    isSelected && 'border-accent/45 ring-2 ring-accent/25',
+                  );
+                }}
+              >
+                <div className="flex w-full items-center justify-between gap-3">
+                  <div className="flex flex-1 flex-col">
+                    <div className="font-semibold"> Root user</div>
+                    <Text>
+                      Account owner that performs tasks requiring unrestricted
+                      access.{' '}
+                      <TextLink href="https://www.example.com" target="_blank">
+                        Learn more
+                      </TextLink>
+                    </Text>
+                  </div>
                 </div>
-              </div>
-            </Radio>
+              </Radio>
             </RadioField>
             <Radio
               value="IAM user"
@@ -421,26 +426,26 @@ export const Example = () => {
         <div className="flex flex-col gap-4">
           <Tabs>
             <TabList>
-              <Tab>My Account</Tab>
-              <Tab>Company</Tab>
-              <Tab>Team Members</Tab>
-              <Tab>Billing</Tab>
+              <Tab className="px-2">My Account</Tab>
+              <Tab className="px-2">Company</Tab>
+              <Tab className="px-2">Team Members</Tab>
+              <Tab className="px-2">Billing</Tab>
             </TabList>
           </Tabs>
           <Tabs variant="pills">
             <TabList>
-              <Tab>Overview</Tab>
-              <Tab>Analytics</Tab>
-              <Tab>Reports</Tab>
-              <Tab>Notifications</Tab>
+              <Tab className="px-4">Overview</Tab>
+              <Tab className="px-4">Analytics</Tab>
+              <Tab className="px-4">Reports</Tab>
+              <Tab className="px-4">Notifications</Tab>
             </TabList>
           </Tabs>
           <Tabs variant="segment">
             <TabList>
-              <Tab>Overview</Tab>
-              <Tab>Analytics</Tab>
-              <Tab>Reports</Tab>
-              <Tab>Notifications</Tab>
+              <Tab className="px-4">Overview</Tab>
+              <Tab className="px-4">Analytics</Tab>
+              <Tab className="px-4">Reports</Tab>
+              <Tab className="px-4">Notifications</Tab>
             </TabList>
           </Tabs>
           <Tabs orientation="vertical">
