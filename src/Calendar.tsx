@@ -38,7 +38,7 @@ export function Calendar<T extends DateValue>({
               date={date}
               className={composeRenderProps('', (className, renderProps) => {
                 return twMerge(
-                  'flex h-9 w-9 cursor-default items-center justify-center rounded-lg text-sm outline-none',
+                  'flex size-9 cursor-default items-center justify-center rounded-md text-sm outline-none',
                   renderProps.isSelected
                     ? 'bg-accent text-white invalid:bg-destructive invalid:text-white'
                     : 'hover:bg-accent/15 pressed:bg-accent/90 pressed:text-white dark:hover:bg-accent/30',
@@ -69,9 +69,9 @@ export function CalendarHeader() {
         {
           <Icon aria-label="Previous">
             {direction === 'rtl' ? (
-              <ChevronRight strokeWidth={1.5} className="text-muted" />
+              <ChevronRight className="text-muted" />
             ) : (
-              <ChevronLeft strokeWidth={1.5} className="text-muted" />
+              <ChevronLeft className="text-muted" />
             )}
           </Icon>
         }
@@ -87,9 +87,9 @@ export function CalendarHeader() {
         {
           <Icon aria-label="Next">
             {direction === 'rtl' ? (
-              <ChevronLeft strokeWidth={1.5} className="text-muted" />
+              <ChevronLeft className="text-muted" />
             ) : (
-              <ChevronRight strokeWidth={1.5} className="text-muted" />
+              <ChevronRight className="text-muted" />
             )}
           </Icon>
         }
@@ -100,7 +100,7 @@ export function CalendarHeader() {
 
 export function CalendarGridHeader() {
   return (
-    <RACCalendarGridHeader className="border-b">
+    <RACCalendarGridHeader>
       {(day) => (
         <CalendarHeaderCell className="size-9 text-sm/6 font-normal text-muted">
           {day}
