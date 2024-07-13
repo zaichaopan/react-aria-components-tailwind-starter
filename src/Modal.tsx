@@ -7,15 +7,15 @@ import {
 import { twMerge } from 'tailwind-merge';
 
 const sizes = {
-  xs: 'max-w-xs',
-  sm: 'max-w-sm',
-  md: 'max-w-md',
-  lg: 'max-w-lg',
-  xl: 'max-w-xl',
-  '2xl': 'max-w-2xl',
-  '3xl': 'max-w-3xl',
-  '4xl': 'max-w-4xl',
-  '5xl': 'max-w-5xl',
+  xs: 'sm:max-w-xs',
+  sm: 'sm:max-w-sm',
+  md: 'sm:max-w-md',
+  lg: 'sm:max-w-lg',
+  xl: 'sm:max-w-xl',
+  '2xl': 'sm:max-w-2xl',
+  '3xl': 'sm:max-w-3xl',
+  '4xl': 'sm:max-w-4xl',
+  '5xl': 'sm:max-w-5xl',
 };
 
 type Size = keyof typeof sizes;
@@ -89,9 +89,10 @@ export function Modal({ animate = true, classNames, ...props }: ModalProps) {
             return twMerge(
               'max-h-full w-full overflow-hidden bg-background text-left align-middle shadow-lg',
               'ring-1 ring-zinc-950/5 dark:ring-white/15',
+              'w-full',
               props.size
                 ? sizes[props.size]
-                : 'has-[[role=alertdialog]]:max-w-md has-[[role=dialog]]:max-w-lg',
+                : 'sm:has-[[role=alertdialog]]:max-w-md sm:has-[[role=dialog]]:max-w-lg',
               drawer
                 ? [
                     'h-full rounded-lg',
