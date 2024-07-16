@@ -174,7 +174,7 @@ export const RadioCardGroups = () => {
                 className={({ isSelected }) => {
                   return twMerge(
                     'items-start rounded-md border p-3 shadow-sm [&_[slot=radio]]:mt-1.5',
-                    isSelected && 'border-accent ring-2 ring-accent/25',
+                    isSelected && 'border-accent ring-1 ring-accent',
                   );
                 }}
               >
@@ -217,8 +217,8 @@ export const CustomRadioGroups = () => {
                 className={({ isSelected, isFocusVisible }) => {
                   return twMerge(
                     'items-start rounded-md border p-3 shadow-sm',
-                    isSelected && 'border-accent bg-accent text-white',
-                    isFocusVisible && focusOutlineStyle,
+                    isSelected && 'border-accent ring-1 ring-accent',
+                    // isFocusVisible && focusOutlineStyle,
                   );
                 }}
                 render={({ isSelected }) => {
@@ -227,7 +227,7 @@ export const CustomRadioGroups = () => {
                       <div
                         className={twMerge(
                           'flex shrink-0 items-center text-blue-100',
-                          isSelected && ' text-white',
+                          // isSelected && ' text-white',
                         )}
                       >
                         <CheckCircle />
@@ -236,7 +236,7 @@ export const CustomRadioGroups = () => {
                         <div
                           className={twMerge(
                             'font-semibold',
-                            isSelected && 'text-white',
+                            // isSelected && 'text-white',
                           )}
                         >
                           {option.name}
@@ -244,7 +244,7 @@ export const CustomRadioGroups = () => {
                         <div
                           className={twMerge(
                             'inline text-gray-500',
-                            isSelected && 'text-sky-100',
+                            // isSelected && 'text-sky-100',
                           )}
                         >
                           {option.description}
@@ -253,7 +253,7 @@ export const CustomRadioGroups = () => {
                       <div
                         className={twMerge(
                           'font-medium text-muted',
-                          isSelected && 'text-white',
+                          // isSelected && 'text-white',
                         )}
                       >
                         {option.price}

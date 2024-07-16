@@ -3,7 +3,6 @@ import {
   Checkbox,
   CheckboxField,
   CheckboxGroup,
-  CheckboxGroupContent,
 } from '../src/Checkbox';
 import { Form } from '../src/Form';
 import { Button } from '../src/Button';
@@ -84,22 +83,20 @@ export const CheckboxGroups = () => {
         Personalize your email experience according to your preferences and
         needs
       </Text>
-      <CheckboxGroupContent>
-        <CheckboxField>
-          <Checkbox value="newsletter">Newsletter</Checkbox>
-          <Description>Receive our newsletter once per week</Description>
-        </CheckboxField>
+      <CheckboxField>
+        <Checkbox value="newsletter">Newsletter</Checkbox>
+        <Description>Receive our newsletter once per week</Description>
+      </CheckboxField>
 
-        <CheckboxField>
-          <Checkbox value="deals">Deals</Checkbox>
-          <Description>The best deals and sales for members</Description>
-        </CheckboxField>
+      <CheckboxField>
+        <Checkbox value="deals">Deals</Checkbox>
+        <Description>The best deals and sales for members</Description>
+      </CheckboxField>
 
-        <CheckboxField>
-          <Checkbox value="notification">Notifications</Checkbox>
-          <Description>Notifications about your orders</Description>
-        </CheckboxField>
-      </CheckboxGroupContent>
+      <CheckboxField>
+        <Checkbox value="notification">Notifications</Checkbox>
+        <Description>Notifications about your orders</Description>
+      </CheckboxField>
     </CheckboxGroup>
   );
 };
@@ -117,22 +114,13 @@ export const CheckboxGroupHorizontal = () => {
   return (
     <CheckboxGroup orientation="horizontal">
       <Label>Favorite sports</Label>
-      <CheckboxGroupContent>
+      <div className="flex gap-3 ">
         <Checkbox value="soccer">Soccer</Checkbox>
         <Checkbox value="baseball">Baseball</Checkbox>
         <Checkbox value="basketball">Basketball</Checkbox>
-      </CheckboxGroupContent>
+      </div>
     </CheckboxGroup>
   );
-};
-
-CheckboxGroupHorizontal.parameters = {
-  docs: {
-    description: {
-      story:
-        'Use **orientation="horizontal"** to build horizontal checkbox group:',
-    },
-  },
 };
 
 export const CheckboxLabelPlacement = () => {
@@ -143,28 +131,26 @@ export const CheckboxLabelPlacement = () => {
         Personalize your email experience according to your preferences and
         needs
       </Text>
-      <CheckboxGroupContent>
-        <CheckboxField>
-          <Checkbox value="newsletter" labelPlacement="left">
-            Newsletter
-          </Checkbox>
-          <Description>Receive our newsletter once per week</Description>
-        </CheckboxField>
+      <CheckboxField>
+        <Checkbox value="newsletter" labelPlacement="left">
+          Newsletter
+        </Checkbox>
+        <Description>Receive our newsletter once per week</Description>
+      </CheckboxField>
 
-        <CheckboxField>
-          <Checkbox value="deals" labelPlacement="left">
-            Deals
-          </Checkbox>
-          <Description>The best deals and sales for members</Description>
-        </CheckboxField>
+      <CheckboxField>
+        <Checkbox value="deals" labelPlacement="left">
+          Deals
+        </Checkbox>
+        <Description>The best deals and sales for members</Description>
+      </CheckboxField>
 
-        <CheckboxField>
-          <Checkbox value="notification" labelPlacement="left">
-            Notifications
-          </Checkbox>
-          <Description>Notifications about your orders</Description>
-        </CheckboxField>
-      </CheckboxGroupContent>
+      <CheckboxField>
+        <Checkbox value="notification" labelPlacement="left">
+          Notifications
+        </Checkbox>
+        <Description>Notifications about your orders</Description>
+      </CheckboxField>
     </CheckboxGroup>
   );
 };
@@ -187,23 +173,20 @@ export const CheckboxGroupValidation = () => {
           Personalize your email experience according to your preferences and
           needs
         </Text>
-        <CheckboxGroupContent>
-          <CheckboxField>
-            <Checkbox value="newsletter">Newsletter</Checkbox>
-            <Description>Receive our newsletter once per week</Description>
-          </CheckboxField>
+        <CheckboxField>
+          <Checkbox value="newsletter">Newsletter</Checkbox>
+          <Description>Receive our newsletter once per week</Description>
+        </CheckboxField>
 
-          <CheckboxField>
-            <Checkbox value="deals">Deals</Checkbox>
-            <Description>The best deals and sales for members</Description>
-          </CheckboxField>
+        <CheckboxField>
+          <Checkbox value="deals">Deals</Checkbox>
+          <Description>The best deals and sales for members</Description>
+        </CheckboxField>
 
-          <CheckboxField>
-            <Checkbox value="notification">Notifications</Checkbox>
-            <Description>Notifications about your orders</Description>
-          </CheckboxField>
-        </CheckboxGroupContent>
-
+        <CheckboxField>
+          <Checkbox value="notification">Notifications</Checkbox>
+          <Description>Notifications about your orders</Description>
+        </CheckboxField>
         <FieldError />
       </CheckboxGroup>
       <Button className="self-start" type="submit">

@@ -32,7 +32,6 @@ import {
   Checkbox,
   CheckboxField,
   CheckboxGroup,
-  CheckboxGroupContent,
 } from '../src/Checkbox';
 import { NumberField, NumberInput } from '../src/NumberField';
 import { Select, SelectField, SelectItem } from '../src/Select';
@@ -104,7 +103,7 @@ export const Example = () => {
                 className={({ isSelected }) => {
                   return twMerge(
                     'items-start rounded-md border p-3 shadow-sm [&_[slot=radio]]:mt-1.5',
-                    isSelected && 'border-accent/45 ring-2 ring-accent/25',
+                    isSelected && 'border-accent ring-1 ring-accent',
                   );
                 }}
               >
@@ -127,7 +126,7 @@ export const Example = () => {
               className={({ isSelected }) => {
                 return twMerge(
                   'items-start rounded-md border p-3 shadow-sm [&_[slot=radio]]:mt-1.5',
-                  isSelected && 'border-accent/45 ring-2 ring-accent/25',
+                  isSelected && 'border-accent ring-1 ring-accent',
                 );
               }}
             >
@@ -351,23 +350,22 @@ export const Example = () => {
           <Text className="pb-4">
             Manage what information you allow other people to see.
           </Text>
-          <CheckboxGroupContent>
-            <CheckboxField>
-              <Checkbox value="Post">Protect your post</Checkbox>
-              <Description>
-                Your posts and other account information are only visible to
-                people who follow you.
-              </Description>
-            </CheckboxField>
 
-            <CheckboxField>
-              <Checkbox value="Video">Protect your videos</Checkbox>
-              <Description>
-                your posts and other account information are only visible to
-                people who follow you.
-              </Description>
-            </CheckboxField>
-          </CheckboxGroupContent>
+          <CheckboxField>
+            <Checkbox value="Post">Protect your post</Checkbox>
+            <Description>
+              Your posts and other account information are only visible to
+              people who follow you.
+            </Description>
+          </CheckboxField>
+
+          <CheckboxField>
+            <Checkbox value="Video">Protect your videos</Checkbox>
+            <Description>
+              your posts and other account information are only visible to
+              people who follow you.
+            </Description>
+          </CheckboxField>
         </CheckboxGroup>
       </div>
 

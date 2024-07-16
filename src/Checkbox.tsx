@@ -25,27 +25,11 @@ export function CheckboxGroup({
     <RACCheckboxGroup
       {...props}
       data-orientation={orientation}
-      className={composeTailwindRenderProps(
-        props.className,
+      className={composeTailwindRenderProps(props.className, [
         'group flex flex-col gap-1',
-      )}
-    />
-  );
-}
-
-export function CheckboxGroupContent({
-  className,
-  ...props
-}: JSX.IntrinsicElements['div']) {
-  return (
-    <div
-      {...props}
-      className={twMerge(
-        'flex gap-3 group-orientation-vertical:flex-col ',
         // When a checkbox of the group has description, make all labels font-medium inside the group if it is not
         '[&_label:not(.font-medium)]:has-[[slot=description]]:font-medium',
-        className,
-      )}
+      ])}
     />
   );
 }
