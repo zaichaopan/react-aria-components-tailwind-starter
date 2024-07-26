@@ -59,11 +59,11 @@ export function CheckboxField({
 }
 
 interface CheckboxProps extends RACCheckboxProps {
-  labelPlacement?: 'left' | 'right';
+  labelPosition?: 'left' | 'right';
 }
 
 export function Checkbox({
-  labelPlacement = 'right',
+  labelPosition = 'right',
   children,
   ...props
 }: CheckboxProps) {
@@ -74,7 +74,7 @@ export function Checkbox({
           <RACCheckbox
             {...props}
             aria-describedby={context?.['aria-describedby']}
-            data-label-position={labelPlacement}
+            data-label-position={labelPosition}
             className={composeTailwindRenderProps(
               props.className,
               'group flex items-center gap-3 text-base/6 transition disabled:opacity-50 sm:text-sm/6',
@@ -82,7 +82,7 @@ export function Checkbox({
           >
             {(renderProps) => (
               <>
-                {labelPlacement === 'left' &&
+                {labelPosition === 'left' &&
                   (typeof children === 'function'
                     ? children(renderProps)
                     : children)}
@@ -109,7 +109,7 @@ export function Checkbox({
                   ) : null}
                 </div>
 
-                {labelPlacement === 'right' &&
+                {labelPosition === 'right' &&
                   (typeof children === 'function'
                     ? children(renderProps)
                     : children)}

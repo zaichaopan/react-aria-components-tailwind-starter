@@ -83,7 +83,7 @@ export const SignIn02 = () => {
             <PasswordInput />
           </TextField>
           <div className="flex justify-between">
-            <Switch labelPlacement="right">Remember me</Switch>
+            <Switch labelPosition="right">Remember me</Switch>
             <Link>
               <Strong>Forgot password?</Strong>
             </Link>

@@ -40,9 +40,9 @@ export const WithDescription = (args: any) => (
   </SwitchField>
 );
 
-export const LabelPlacement = (args: any) => (
+export const LabelPosition = (args: any) => (
   <SwitchField>
-    <Switch labelPlacement="right" {...args}>
+    <Switch labelPosition="right" {...args}>
       Email notifications
     </Switch>
     <Description>

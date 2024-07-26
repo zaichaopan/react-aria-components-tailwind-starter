@@ -123,7 +123,7 @@ export const CheckboxGroupHorizontal = () => {
   );
 };
 
-export const CheckboxLabelPlacement = () => {
+export const CheckboxLabelPosition = () => {
   return (
     <CheckboxGroup>
       <Label>Email settings</Label>
@@ -132,21 +132,21 @@ export const CheckboxLabelPlacement = () => {
         needs
       </Text>
       <CheckboxField>
-        <Checkbox value="newsletter" labelPlacement="left">
+        <Checkbox value="newsletter" labelPosition="left">
           Newsletter
         </Checkbox>
         <Description>Receive our newsletter once per week</Description>
       </CheckboxField>
 
       <CheckboxField>
-        <Checkbox value="deals" labelPlacement="left">
+        <Checkbox value="deals" labelPosition="left">
           Deals
         </Checkbox>
         <Description>The best deals and sales for members</Description>
       </CheckboxField>
 
       <CheckboxField>
-        <Checkbox value="notification" labelPlacement="left">
+        <Checkbox value="notification" labelPosition="left">
           Notifications
         </Checkbox>
         <Description>Notifications about your orders</Description>
@@ -155,11 +155,11 @@ export const CheckboxLabelPlacement = () => {
   );
 };
 
-CheckboxLabelPlacement.parameters = {
+CheckboxLabelPosition.parameters = {
   docs: {
     description: {
       story:
-        'Use **labelPlacement="left"** to position label to the left size of the checkbox:',
+        'Use **labelPosition="left"** to position label to the left size of the checkbox:',
     },
   },
 };
@@ -209,7 +209,7 @@ export const CheckboxCards = () => {
   return (
     <div className="flex flex-1 flex-wrap gap-4">
       <Checkbox
-        labelPlacement="left"
+        labelPosition="left"
         className="w-56 justify-between rounded-md border px-4 py-2"
         value="A1 keyboard"
       >
@@ -220,7 +220,7 @@ export const CheckboxCards = () => {
       </Checkbox>
 
       <Checkbox
-        labelPlacement="left"
+        labelPosition="left"
         value="Pro mouse"
         className="w-56 justify-between rounded-md border px-4 py-2"
       >
@@ -231,7 +231,7 @@ export const CheckboxCards = () => {
       </Checkbox>
 
       <Checkbox
-        labelPlacement="left"
+        labelPosition="left"
         value="lightning mat"
         className="w-56 justify-between  rounded-md border px-4 py-2"
       >

@@ -31,11 +31,11 @@ export function SwitchField({
 }
 
 interface SwitchProps extends RACSwitchProps {
-  labelPlacement?: 'left' | 'right';
+  labelPosition?: 'left' | 'right';
 }
 
 export function Switch({
-  labelPlacement = 'left',
+  labelPosition = 'left',
   children,
   ...props
 }: SwitchProps) {
@@ -46,7 +46,7 @@ export function Switch({
           <RACSwitch
             {...props}
             aria-describedby={context?.['aria-describedby']}
-            data-label-position={labelPlacement}
+            data-label-position={labelPosition}
             className={composeTailwindRenderProps(
               props.className,
               'group flex items-center gap-4 text-base/6 transition disabled:opacity-50 sm:text-sm/6',
@@ -54,7 +54,7 @@ export function Switch({
           >
             {(renderProps) => (
               <>
-                {labelPlacement === 'left' &&
+                {labelPosition === 'left' &&
                   (typeof children === 'function'
                     ? children(renderProps)
                     : children)}
@@ -74,7 +74,7 @@ export function Switch({
                   <span className="h-[0.85rem] w-[0.85rem] translate-x-0 transform rounded-full bg-white shadow-sm transition duration-200 ease-in-out group-selected:translate-x-[90%]" />
                 </div>
 
-                {labelPlacement === 'right' &&
+                {labelPosition === 'right' &&
                   (typeof children === 'function'
                     ? children(renderProps)
                     : children)}
