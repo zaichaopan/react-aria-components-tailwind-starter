@@ -1,11 +1,12 @@
 import React from 'react';
 import { createPortal } from 'react-dom';
 import { useToastQueue } from '@react-stately/toast';
-import type { AriaToastRegionProps } from '@react-aria/toast';
+import type { AriaToastRegionProps, ToastAria } from '@react-aria/toast';
 import type { ToastState } from '@react-stately/toast';
 import { useToastRegion } from '@react-aria/toast';
 import type { AriaToastProps } from '@react-aria/toast';
 import { useToast } from '@react-aria/toast';
+import { ButtonProps as AriaButtonProps } from 'react-aria-components';
 import { CloseButton } from '../Button';
 import { twMerge } from 'tailwind-merge';
 import { toast, ToastConfig } from './toast-queue';
@@ -75,7 +76,9 @@ export function GlobalToastRegion(props: AriaToastRegionProps) {
 
 function Toast({ state, ...props }: ToastProps) {
   const ref = React.useRef(null);
-  const { toastProps, titleProps, closeButtonProps, descriptionProps } =
+  const { toastProps, titleProps, closeButtonProps, descriptionProps }: Omit<ToastAria, 'closeButtonProps'> & {
+    closeButtonProps: Omit<AriaButtonProps, 'children'>;
+  } =
     useToast(props, state, ref);
 
   let enteringClassName = '';
