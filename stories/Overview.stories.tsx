@@ -44,7 +44,6 @@ import {
   DialogFooter,
   DialogHeader,
 } from '../src/Dialog';
-import { WithAvatars } from './MultiSelect.stories';
 
 const meta: Meta<typeof Button> = {
   title: 'Overview',
@@ -454,9 +453,6 @@ export const Example = () => {
               <Tab className="p-2">Notifications</Tab>
             </TabList>
           </Tabs>
-        </div>
-        <div className="mt-4">
-          <WithAvatars />
         </div>
       </div>
       <div></div>
