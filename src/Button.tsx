@@ -66,8 +66,8 @@ function buttonStyle({ size, color, isIconOnly, ...props }: BasicButtonProps) {
       : [
           // default size
           'h-9 px-3 gap-2 text-base/6 sm:text-sm/6 font-semibold',
-          size === 'sm' && 'h-7 px-2 gap-1 text-sm/6 sm:text-xs/6 font-normal',
-          size === 'lg' && 'h-10 px-4 gap-2 font-semibold',
+          size === 'sm' && 'h-7 px-2 gap-1 text-sm/6 sm:text-xs/6',
+          size === 'lg' && 'h-10 px-4 gap-2',
         ],
 
     // Color
@@ -97,6 +97,9 @@ function buttonStyle({ size, color, isIconOnly, ...props }: BasicButtonProps) {
     '[&.h-7_svg:not([class^=size-])]:size-3 [&.size-7_svg:not([class^=size-])]:size-4',
     '[&.h-9_svg:not([class^=size-])]:size-4 [&.size-9_svg:not([class^=size-])]:size-5',
     '[&.h-10_svg:not([class^=size-])]:size-5 [&.size-10_svg::not([class^=size-])]:size-6',
+
+    // When not icon only button is hot hover and the svg has not color set
+    !isIconOnly && ['[&:not(:hover)_svg:not([class^=text-])]:opacity-75'],
   ];
 }
 

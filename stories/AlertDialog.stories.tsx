@@ -11,6 +11,7 @@ import {
   DialogBody,
   DialogFooter,
   DialogHeader,
+  DialogCloseButton,
 } from '../src/Dialog';
 
 const meta: Meta = {
@@ -199,23 +200,13 @@ export const AlertDialogsVsDialogs = () => {
       <Button>Check new version</Button>
       <Modal size="md">
         <Dialog>
-          {({ close }) => {
-            return (
-              <>
-                <DialogHeader displayLevel={3}>
-                  Not Update Available
-                </DialogHeader>
-                <DialogBody>
-                  <Text>You are already using the latest version.</Text>
-                </DialogBody>
-                <DialogFooter>
-                  <Button plain onPress={close}>
-                    OK
-                  </Button>
-                </DialogFooter>
-              </>
-            );
-          }}
+          <DialogHeader displayLevel={3}>Not Update Available</DialogHeader>
+          <DialogBody>
+            <Text>You are already using the latest version.</Text>
+          </DialogBody>
+          <DialogFooter>
+            <DialogCloseButton>OK</DialogCloseButton>
+          </DialogFooter>
         </Dialog>
       </Modal>
     </DialogTrigger>

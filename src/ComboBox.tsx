@@ -65,7 +65,7 @@ export function TriggerButton() {
       plain
     >
       <Icon>
-        <ChevronDown className="size-4 text-muted" />
+        <ChevronDown className="size-4 opacity-75" />
       </Icon>
     </Button>
   );

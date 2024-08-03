@@ -85,7 +85,7 @@ function SelectButton(props: { icon?: React.ReactNode; className?: string }) {
       ) : (
         <ChevronsUpDown
           aria-hidden
-          className="h-3.5 w-3.5 text-muted group-disabled:opacity-50"
+          className="h-3.5 w-3.5 opacity-75 group-disabled:opacity-50"
         />
       )}
     </Button>

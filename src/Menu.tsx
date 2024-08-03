@@ -42,7 +42,7 @@ export function MenuButton({
             {typeof children === 'function' ? children(renderProps) : children}
             {!noArrow && (
               <Icon>
-                <ChevronDown className="opacity-75" />
+                <ChevronDown />
               </Icon>
             )}
           </>
@@ -86,7 +86,7 @@ export function SubMenu<T extends object>(
 export function MenuSeparator({ className }: { className?: string }) {
   return (
     <Separator
-      className={twMerge('border-border/50 my-0.5 w-full border-t', className)}
+      className={twMerge('my-0.5 w-full border-t border-border/50', className)}
     />
   );
 }
