@@ -14,17 +14,14 @@ import { Icon } from './Icon';
 export interface CheckboxGroupProps
   extends Omit<RACCheckboxGroupProps, 'children'> {
   children?: ReactNode;
-  orientation?: 'horizontal' | 'vertical';
 }
 
 export function CheckboxGroup({
-  orientation = 'vertical',
   ...props
 }: CheckboxGroupProps) {
   return (
     <RACCheckboxGroup
       {...props}
-      data-orientation={orientation}
       className={composeTailwindRenderProps(props.className, [
         'group flex flex-col gap-1',
         // When a checkbox of the group has description, make all labels font-medium inside the group if it is not

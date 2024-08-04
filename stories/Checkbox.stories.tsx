@@ -112,7 +112,7 @@ CheckboxGroups.parameters = {
 
 export const CheckboxGroupHorizontal = () => {
   return (
-    <CheckboxGroup orientation="horizontal">
+    <CheckboxGroup>
       <Label>Favorite sports</Label>
       <div className="flex gap-3 ">
         <Checkbox value="soccer">Soccer</Checkbox>
