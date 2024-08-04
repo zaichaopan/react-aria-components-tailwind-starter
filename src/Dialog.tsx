@@ -137,7 +137,7 @@ export function DialogCloseButton(props: DialogCloseButtonProps) {
         plain
         className={composeTailwindRenderProps(
           className,
-          'absolute right-4 top-4 p-1.5 text-muted',
+          'absolute right-4 top-4 p-1.5',
         )}
         onPress={(e) => {
           state.close();

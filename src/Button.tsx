@@ -86,11 +86,11 @@ function buttonStyle({ size, color, isIconOnly, ...props }: BasicButtonProps) {
       props.plain === undefined && [
         'border dark:border-0',
         'shadow-[inset_0_1px_0_0_rgba(255,255,255,0.1)]',
-        'border-accent bg-accent/95 text-white hover:bg-accent/85',
+        'border-accent bg-accent text-white hover:bg-accent/90',
         color === 'success' &&
-          'border-success/95 bg-success hover:bg-success/85',
+          'border-success bg-success hover:bg-success/90',
         color === 'destructive' &&
-          'border-destructive/95 bg-destructive hover:bg-destructive/85',
+          'border-destructive bg-destructive hover:bg-destructive/90',
       ],
 
     // Add svg size when itself does not have a size
@@ -98,8 +98,9 @@ function buttonStyle({ size, color, isIconOnly, ...props }: BasicButtonProps) {
     '[&.h-9_svg:not([class^=size-])]:size-4 [&.size-9_svg:not([class^=size-])]:size-5',
     '[&.h-10_svg:not([class^=size-])]:size-5 [&.size-10_svg::not([class^=size-])]:size-6',
 
-    // When not icon only button is hot hover and the svg has not color set
-    !isIconOnly && ['[&:not(:hover)_svg:not([class^=text-])]:opacity-75'],
+    (!isIconOnly || props.outline || props.plain) && [
+      '[&:not(:hover)_svg:not([class^=text-])]:opacity-75',
+    ],
   ];
 }
 
