@@ -113,7 +113,7 @@ function Toast({ state, ...props }: ToastProps) {
   const type = props.toast.content.type;
 
   return (
-    <div {...toastProps} ref={ref} className="flex flex-1 bg-background rounded-md">
+    <div {...toastProps} ref={ref} className="flex flex-1 bg-background rounded-md outline-none">
       <div
         className={twMerge(
           'toast flex w-[min(85vw,360px)] gap-1 rounded-md border px-3 py-2 shadow-sm transition',

@@ -9,30 +9,13 @@ import { DescriptionProvider, WithDescriptionContext } from './Field';
 import { composeTailwindRenderProps, focusOutlineStyle } from './utils';
 import { twMerge } from 'tailwind-merge';
 
-export function RadioGroup(props: RACRadioGroupProps) {
+export function RadioGroup(props: Omit<RACRadioGroupProps, 'orientation'>) {
   return (
     <RACRadioGroup
       {...props}
       className={composeTailwindRenderProps(
         props.className,
-        'group flex flex-col gap-1',
-      )}
-    />
-  );
-}
-
-export function RadioGroupContent({
-  className,
-  ...props
-}: JSX.IntrinsicElements['div']) {
-  return (
-    <div
-      {...props}
-      className={twMerge(
-        'flex flex-col gap-2 group-orientation-horizontal:flex-row group-orientation-horizontal:flex-wrap',
-        // When a radio of the group has description, make all labels font-medium if it is not
-        '[&_label:not(.font-medium)]:has-[[slot=description]]:font-medium',
-        className,
+        'group flex flex-col gap-2',
       )}
     />
   );
@@ -87,7 +70,7 @@ export function Radio({
               aria-describedby={context?.['aria-describedby']}
               className={composeTailwindRenderProps(
                 className,
-                'group flex items-center gap-3 text-base/6 group-orientation-horizontal:text-nowrap disabled:opacity-50 sm:text-sm/6',
+                'group flex items-center gap-3 text-base/6 disabled:opacity-50 sm:text-sm/6',
               )}
             >
               {props.render}
@@ -104,7 +87,7 @@ export function Radio({
             data-label-position={labelPosition}
             className={composeTailwindRenderProps(
               className,
-              'group flex items-center gap-3 text-base/6 group-orientation-horizontal:text-nowrap disabled:opacity-50 sm:text-sm/6',
+              'group flex items-center gap-3 text-base/6 disabled:opacity-50 sm:text-sm/6',
             )}
           >
             {(renderProps) => {

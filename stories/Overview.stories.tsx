@@ -24,15 +24,10 @@ import {
   Radio,
   RadioField,
   RadioGroup,
-  RadioGroupContent,
 } from '../src/RadioGroup';
 import { twMerge } from 'tailwind-merge';
 import { Slider, SliderOutput, SliderTack } from '../src/Slider';
-import {
-  Checkbox,
-  CheckboxField,
-  CheckboxGroup,
-} from '../src/Checkbox';
+import { Checkbox, CheckboxField, CheckboxGroup } from '../src/Checkbox';
 import { NumberField, NumberInput } from '../src/NumberField';
 import { Select, SelectField, SelectItem } from '../src/Select';
 import { DialogTrigger, FileTrigger } from 'react-aria-components';
@@ -91,11 +86,10 @@ export const Example = () => {
           </Form>
         </div>
         <RadioGroup
-          className="flex-1"
+          className="flex-1 gap-3"
           defaultValue="Root user"
           aria-label="Choose user type"
         >
-          <RadioGroupContent className="gap-3">
             <RadioField>
               <Radio
                 value="Root user"
@@ -141,7 +135,6 @@ export const Example = () => {
                 </div>
               </div>
             </Radio>
-          </RadioGroupContent>
         </RadioGroup>
 
         <Slider

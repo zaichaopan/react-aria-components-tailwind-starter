@@ -1,9 +1,5 @@
 import type { Meta } from '@storybook/react';
-import {
-  Checkbox,
-  CheckboxField,
-  CheckboxGroup,
-} from '../src/Checkbox';
+import { Checkbox, CheckboxField, CheckboxGroup } from '../src/Checkbox';
 import { Form } from '../src/Form';
 import { Button } from '../src/Button';
 import { Strong, Text } from '../src/Text';
@@ -83,6 +79,29 @@ export const CheckboxGroups = () => {
         Personalize your email experience according to your preferences and
         needs
       </Text>
+      <Checkbox value="newsletter">Newsletter</Checkbox>
+      <Checkbox value="deals">Deals</Checkbox>
+      <Checkbox value="notification">Notifications</Checkbox>
+    </CheckboxGroup>
+  );
+};
+
+CheckboxGroups.parameters = {
+  docs: {
+    description: {
+      story: 'Use **CheckboxGroup**, **Label** to build your checkbox group:',
+    },
+  },
+};
+
+export const CheckboxGroupsWithDescription = () => {
+  return (
+    <CheckboxGroup>
+      <Label>Email settings</Label>
+      <Text className="pb-4">
+        Personalize your email experience according to your preferences and
+        needs
+      </Text>
       <CheckboxField>
         <Checkbox value="newsletter">Newsletter</Checkbox>
         <Description>Receive our newsletter once per week</Description>
@@ -99,15 +118,6 @@ export const CheckboxGroups = () => {
       </CheckboxField>
     </CheckboxGroup>
   );
-};
-
-CheckboxGroups.parameters = {
-  docs: {
-    description: {
-      story:
-        'Use **CheckboxGroup**, **Label**, **CheckboxGroupContent** to build your checkbox group:',
-    },
-  },
 };
 
 export const CheckboxGroupHorizontal = () => {

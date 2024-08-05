@@ -16,14 +16,12 @@ export interface CheckboxGroupProps
   children?: ReactNode;
 }
 
-export function CheckboxGroup({
-  ...props
-}: CheckboxGroupProps) {
+export function CheckboxGroup({ ...props }: CheckboxGroupProps) {
   return (
     <RACCheckboxGroup
       {...props}
       className={composeTailwindRenderProps(props.className, [
-        'group flex flex-col gap-1',
+        'group flex flex-col gap-2',
         // When a checkbox of the group has description, make all labels font-medium inside the group if it is not
         '[&_label:not(.font-medium)]:has-[[slot=description]]:font-medium',
       ])}

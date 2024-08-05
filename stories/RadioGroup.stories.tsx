@@ -1,11 +1,6 @@
 import React from 'react';
 import type { Meta } from '@storybook/react';
-import {
-  RadioField,
-  RadioGroup,
-  RadioGroupContent,
-  Radio,
-} from '../src/RadioGroup';
+import { RadioField, RadioGroup, Radio } from '../src/RadioGroup';
 import { Form } from '../src/Form';
 import { Button } from '../src/Button';
 import { docs } from '../.storybook/docs';
@@ -40,11 +35,9 @@ export const Example = () => {
     <div className="w-full max-w-sm p-3">
       <RadioGroup>
         <Label>Show scrollbars</Label>
-        <RadioGroupContent>
-          <Radio value="automatic">Automatic</Radio>
-          <Radio value="scrolling">While scrolling</Radio>
-          <Radio value="always">Always</Radio>
-        </RadioGroupContent>
+        <Radio value="automatic">Automatic</Radio>
+        <Radio value="scrolling">While scrolling</Radio>
+        <Radio value="always">Always</Radio>
       </RadioGroup>
     </div>
   );
@@ -55,13 +48,11 @@ export const DisabledRadioItems = () => {
     <div className="w-full max-w-sm p-3">
       <RadioGroup>
         <Label>Show scrollbars</Label>
-        <RadioGroupContent>
-          <Radio value="automatic">Automatic</Radio>
-          <Radio value="scrolling" isDisabled>
-            While scrolling
-          </Radio>
-          <Radio value="always">Always</Radio>
-        </RadioGroupContent>
+        <Radio value="automatic">Automatic</Radio>
+        <Radio value="scrolling" isDisabled>
+          While scrolling
+        </Radio>
+        <Radio value="always">Always</Radio>
       </RadioGroup>
     </div>
   );
@@ -72,11 +63,9 @@ export const DisabledRadioGroup = () => {
     <div className="w-full max-w-sm p-3">
       <RadioGroup isDisabled>
         <Label>Show scrollbars</Label>
-        <RadioGroupContent>
-          <Radio value="automatic">Automatic</Radio>
-          <Radio value="scrolling">While scrolling</Radio>
-          <Radio value="always">Always</Radio>
-        </RadioGroupContent>
+        <Radio value="automatic">Automatic</Radio>
+        <Radio value="scrolling">While scrolling</Radio>
+        <Radio value="always">Always</Radio>
       </RadioGroup>
     </div>
   );
@@ -87,27 +76,25 @@ export const WithDescription = () => {
     <div className="w-full p-3">
       <RadioGroup>
         <Label>Show scrollbars</Label>
-        <RadioGroupContent className="gap-3 pt-2">
-          <RadioField>
-            <Radio value="automatic">Automatic</Radio>
-            <Description>
-              Scrollbars will always be visible when using a mouse, and only
-              while scrolling when using a trackpad.
-            </Description>
-          </RadioField>
+        <RadioField>
+          <Radio value="automatic">Automatic</Radio>
+          <Description>
+            Scrollbars will always be visible when using a mouse, and only while
+            scrolling when using a trackpad.
+          </Description>
+        </RadioField>
 
-          <RadioField>
-            <Radio value="while_scrolling">While scrolling</Radio>
-            <Description>
-              Scrollbars will appear only while you are scrolling.
-            </Description>
-          </RadioField>
+        <RadioField>
+          <Radio value="while_scrolling">While scrolling</Radio>
+          <Description>
+            Scrollbars will appear only while you are scrolling.
+          </Description>
+        </RadioField>
 
-          <RadioField>
-            <Radio value="always">Always</Radio>
-            <Description>Scrollbars will always be visible.</Description>
-          </RadioField>
-        </RadioGroupContent>
+        <RadioField>
+          <Radio value="always">Always</Radio>
+          <Description>Scrollbars will always be visible.</Description>
+        </RadioField>
       </RadioGroup>
     </div>
   );
@@ -119,11 +106,9 @@ export const WithValidation = () => {
       <div className="w-full max-w-sm p-3">
         <RadioGroup isRequired>
           <Label>Show scrollbars</Label>
-          <RadioGroupContent>
-            <Radio value="automatic">Automatic</Radio>
-            <Radio value="scrolling">While scrolling</Radio>
-            <Radio value="always">Always</Radio>
-          </RadioGroupContent>
+          <Radio value="automatic">Automatic</Radio>
+          <Radio value="scrolling">While scrolling</Radio>
+          <Radio value="always">Always</Radio>
           <FieldError />
         </RadioGroup>
       </div>
@@ -137,15 +122,15 @@ export const WithValidation = () => {
 export function HorizontalRadioGroup() {
   return (
     <div className="w-full p-3">
-      <RadioGroup orientation="horizontal" name="rate">
+      <RadioGroup name="rate">
         <Label>How do you rate your experience?</Label>
-        <RadioGroupContent>
+        <div className="flex gap-4">
           <Radio value="1">1</Radio>
           <Radio value="2">2</Radio>
           <Radio value="3">3</Radio>
           <Radio value="4">4</Radio>
           <Radio value="5">5</Radio>
-        </RadioGroupContent>
+        </div>
       </RadioGroup>
     </div>
   );
@@ -161,12 +146,11 @@ export const RadioCardGroups = () => {
   return (
     <div className="flex flex-1">
       <RadioGroup
-        orientation="horizontal"
         defaultValue={options[0].name}
         className="flex-1"
       >
         <Label>Shipping</Label>
-        <RadioGroupContent className="grid flex-1 grid-cols-1 gap-4 sm:grid-cols-2">
+        <div className="grid flex-1 grid-cols-1 gap-4 sm:grid-cols-2">
           {options.map((option) => {
             return (
               <Radio
@@ -188,7 +172,7 @@ export const RadioCardGroups = () => {
               </Radio>
             );
           })}
-        </RadioGroupContent>
+        </div>
       </RadioGroup>
     </div>
   );
@@ -204,12 +188,11 @@ export const CustomRadioGroups = () => {
   return (
     <div className="flex flex-1">
       <RadioGroup
-        orientation="horizontal"
         defaultValue={options[0].name}
         className="flex-1"
       >
         <Label>Shipping</Label>
-        <RadioGroupContent className="grid flex-1 grid-cols-1 gap-4 sm:grid-cols-2">
+        <div className="grid flex-1 grid-cols-1 gap-4 sm:grid-cols-2">
           {options.map((option) => {
             return (
               <Radio
@@ -218,7 +201,7 @@ export const CustomRadioGroups = () => {
                   return twMerge(
                     'items-start rounded-md border p-3 shadow-sm',
                     isSelected && 'border-accent ring-1 ring-accent',
-                    // isFocusVisible && focusOutlineStyle,
+                    isFocusVisible && focusOutlineStyle,
                   );
                 }}
                 render={({ isSelected }) => {
@@ -226,36 +209,21 @@ export const CustomRadioGroups = () => {
                     <div className="flex w-full items-center justify-between gap-3">
                       <div
                         className={twMerge(
-                          'flex shrink-0 items-center text-blue-100',
-                          // isSelected && ' text-white',
+                          'flex shrink-0 items-center text-accent/25',
+                          isSelected && ' text-accent',
                         )}
                       >
                         <CheckCircle />
                       </div>
                       <div className="flex flex-1 flex-col">
-                        <div
-                          className={twMerge(
-                            'font-semibold',
-                            // isSelected && 'text-white',
-                          )}
-                        >
+                        <div className='font-semibold'>
                           {option.name}
                         </div>
-                        <div
-                          className={twMerge(
-                            'inline text-gray-500',
-                            // isSelected && 'text-sky-100',
-                          )}
-                        >
+                        <div className='inline text-gray-500'>
                           {option.description}
                         </div>
                       </div>
-                      <div
-                        className={twMerge(
-                          'font-medium text-muted',
-                          // isSelected && 'text-white',
-                        )}
-                      >
+                      <div className='font-medium text-muted'>
                         {option.price}
                       </div>
                     </div>
@@ -264,7 +232,7 @@ export const CustomRadioGroups = () => {
               />
             );
           })}
-        </RadioGroupContent>
+        </div>
       </RadioGroup>
     </div>
   );
@@ -293,7 +261,6 @@ export const StarRatings = () => {
   return (
     <div className="flex flex-1">
       <RadioGroup
-        orientation="horizontal"
         className="flex-1"
         value={rating}
         onChange={(value) => {
@@ -301,7 +268,7 @@ export const StarRatings = () => {
         }}
       >
         <Label>Rating</Label>
-        <RadioGroupContent className="">
+        <div className="flex gap-2">
           {options.map((option) => {
             const shouldLHighlight = Number(rating) > Number(option.value);
             return (
@@ -354,7 +321,7 @@ export const StarRatings = () => {
               />
             );
           })}
-        </RadioGroupContent>
+        </div>
       </RadioGroup>
     </div>
   );
