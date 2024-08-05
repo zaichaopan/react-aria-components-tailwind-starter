@@ -28,8 +28,8 @@ export const Example = () => {
     <CopyButton
       plain
       copyText="http://example.com"
-      labelBeforeCopy="Copy link"
-      labelAfterCopy="Link is copied"
+      label="Copy link"
+      labelCopied="Link is copied"
     ></CopyButton>
   );
 };
