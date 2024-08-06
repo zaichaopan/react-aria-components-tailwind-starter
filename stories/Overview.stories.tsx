@@ -10,21 +10,17 @@ import {
   TextField,
 } from '../src/Field';
 import { PasswordInput } from '../src/PasswordInput';
-import { Button, ToggleButton } from '../src/Button';
+import { Button } from '../src/Button';
 import { Strong, Text, TextLink } from '../src/Text';
 import { Link } from '../src/Link';
 import { Icon } from '../src/Icon';
-import { Sun } from 'lucide-react';
+import { Moon, Sun } from 'lucide-react';
 import { Avatar } from '../src/Avatar';
 import { DateRangePicker, DateRangePickerInput } from '../src/DateRangePicker';
 import { Heading } from '../src/Heading';
 import { Tab, TabList, Tabs } from '../src/Tabs';
 import { Switch } from '../src/Switch';
-import {
-  Radio,
-  RadioField,
-  RadioGroup,
-} from '../src/RadioGroup';
+import { Radio, RadioField, RadioGroup } from '../src/RadioGroup';
 import { twMerge } from 'tailwind-merge';
 import { Slider, SliderOutput, SliderTack } from '../src/Slider';
 import { Checkbox, CheckboxField, CheckboxGroup } from '../src/Checkbox';
@@ -50,6 +46,8 @@ const meta: Meta<typeof Button> = {
 export default meta;
 
 export const Example = () => {
+  const [theme, setTheme] = React.useState<'light' | 'dark'>('light');
+
   return (
     <div className="flex gap-12 p-8">
       <div className="flex w-96 flex-col items-stretch gap-12">
@@ -90,32 +88,9 @@ export const Example = () => {
           defaultValue="Root user"
           aria-label="Choose user type"
         >
-            <RadioField>
-              <Radio
-                value="Root user"
-                className={({ isSelected }) => {
-                  return twMerge(
-                    'items-start rounded-md border p-3 shadow-sm [&_[slot=radio]]:mt-1.5',
-                    isSelected && 'border-accent ring-1 ring-accent',
-                  );
-                }}
-              >
-                <div className="flex w-full items-center justify-between gap-3">
-                  <div className="flex flex-1 flex-col">
-                    <div className="font-semibold"> Root user</div>
-                    <Text>
-                      Account owner that performs tasks requiring unrestricted
-                      access.{' '}
-                      <TextLink href="https://www.example.com" target="_blank">
-                        Learn more
-                      </TextLink>
-                    </Text>
-                  </div>
-                </div>
-              </Radio>
-            </RadioField>
+          <RadioField>
             <Radio
-              value="IAM user"
+              value="Root user"
               className={({ isSelected }) => {
                 return twMerge(
                   'items-start rounded-md border p-3 shadow-sm [&_[slot=radio]]:mt-1.5',
@@ -125,9 +100,10 @@ export const Example = () => {
             >
               <div className="flex w-full items-center justify-between gap-3">
                 <div className="flex flex-1 flex-col">
-                  <div className="font-semibold">IAM user</div>
+                  <div className="font-semibold"> Root user</div>
                   <Text>
-                    User within an account that performs daily tasks.{' '}
+                    Account owner that performs tasks requiring unrestricted
+                    access.{' '}
                     <TextLink href="https://www.example.com" target="_blank">
                       Learn more
                     </TextLink>
@@ -135,6 +111,28 @@ export const Example = () => {
                 </div>
               </div>
             </Radio>
+          </RadioField>
+          <Radio
+            value="IAM user"
+            className={({ isSelected }) => {
+              return twMerge(
+                'items-start rounded-md border p-3 shadow-sm [&_[slot=radio]]:mt-1.5',
+                isSelected && 'border-accent ring-1 ring-accent',
+              );
+            }}
+          >
+            <div className="flex w-full items-center justify-between gap-3">
+              <div className="flex flex-1 flex-col">
+                <div className="font-semibold">IAM user</div>
+                <Text>
+                  User within an account that performs daily tasks.{' '}
+                  <TextLink href="https://www.example.com" target="_blank">
+                    Learn more
+                  </TextLink>
+                </Text>
+              </div>
+            </div>
+          </Radio>
         </RadioGroup>
 
         <Slider
@@ -169,12 +167,23 @@ export const Example = () => {
           <Button>Submit</Button>
           <Button outline>Submit</Button>
 
-          <ToggleButton isIconOnly outline className="text-muted">
-            <Icon aria-label="Change theme">
-              <Sun strokeWidth={1.5} />
-              {/* <Moon strokeWidth={1.5} /> */}
+          <Button
+            isIconOnly
+            outline
+            onPress={() =>
+              setTheme((theme) => (theme === 'light' ? 'dark' : 'light'))
+            }
+          >
+            <Icon
+              aria-label={
+                theme === 'light'
+                  ? 'Switch to dark theme'
+                  : 'Switch to light theme'
+              }
+            >
+              {theme === 'light' ? <Moon /> : <Sun />}
             </Icon>
-          </ToggleButton>
+          </Button>
 
           <DialogExample />
         </div>
