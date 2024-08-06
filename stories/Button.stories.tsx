@@ -121,14 +121,14 @@ export const IconButtons = () => {
     <div className="flex gap-4">
       <Button isIconOnly>
         <Icon>
-          <MicIcon/>
+          <MicIcon />
         </Icon>
       </Button>
       <Button isIconOnly>
         <Icon aria-label="Create New Folder">
           <FolderPlus strokeWidth={1.5} />
         </Icon>
-      </Button> 
+      </Button>
     </div>
   );
 };
@@ -168,9 +168,23 @@ DisabledButtons.parameters = {
 
 export const LoadingState = () => {
   return (
-    <Button isDisabled isLoading loadingLabel="Searching">
-      Search
-    </Button>
+    <div className="flex gap-2">
+      <Button isDisabled isLoading loadingLabel="Searching">
+        Search
+      </Button>
+
+      <Button color="success" isDisabled isLoading loadingLabel="Saving">
+        Save
+      </Button>
+
+      <Button color="destructive" isDisabled isLoading loadingLabel="Deleting">
+        Delete
+      </Button>
+
+      <Button outline isDisabled isLoading loadingLabel="Searching">
+        Search
+      </Button>
+    </div>
   );
 };
 
@@ -225,10 +239,7 @@ CustomStyles.parameters = {
 export const AsChild = () => {
   return (
     <Button asChild>
-      <Link
-        href="https://example.com"
-        target="_blank"
-      >
+      <Link href="https://example.com" target="_blank">
         Login
       </Link>
     </Button>

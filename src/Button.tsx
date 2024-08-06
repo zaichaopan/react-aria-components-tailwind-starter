@@ -87,8 +87,7 @@ function buttonStyle({ size, color, isIconOnly, ...props }: BasicButtonProps) {
         'border dark:border-0',
         'shadow-[inset_0_1px_0_0_rgba(255,255,255,0.1)]',
         'border-accent bg-accent text-white hover:bg-accent/90',
-        color === 'success' &&
-          'border-success bg-success hover:bg-success/90',
+        color === 'success' && 'border-success bg-success hover:bg-success/90',
         color === 'destructive' &&
           'border-destructive bg-destructive hover:bg-destructive/90',
       ],
@@ -168,6 +167,8 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
                         'size-4 text-white',
                         size == 'lg' && 'size-5',
                         size == 'sm' && 'size-3',
+                        'stroke-white dark:stroke-white',
+                        '[.bg-transparent_&]:stroke-zinc-900 dark:[.bg-transparent_&]:stroke-white'
                       )}
                     />
                   </div>
