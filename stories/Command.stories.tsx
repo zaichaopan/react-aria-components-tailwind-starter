@@ -6,6 +6,7 @@ import {
   ComboBoxListBox,
   ComboBoxPopover,
   ClearButton,
+  ComboBoxControl,
 } from '../src/ComboBox';
 import { Input } from '../src/Field';
 import { docs } from '../.storybook/docs';
@@ -62,7 +63,7 @@ export function CommandK() {
         aria-label="Search"
         className="w-full p-4 sm:w-96"
       >
-        <div className="relative">
+        <ComboBoxControl>
           <Icon>
             <Search className="absolute left-2 top-1/2 w-4 -translate-y-1/2 text-muted" />
           </Icon>
@@ -72,13 +73,18 @@ export function CommandK() {
             placeholder="Search for apps and commands&hellip;"
             className="peer pl-7"
           />
-          <Keyboard className="absolute right-2 top-1/2 hidden -translate-y-1/2 px-2 py-0.5 font-sans text-[0.6rem] text-muted sm:flex sm:peer-data-[focused=true]:hidden border rounded-md">
-            ⌘K
-          </Keyboard>
+          <Button
+            unstyle
+            size="sm"
+            className="absolute right-2 top-1/2 hidden -translate-y-1/2 rounded-md border px-2 py-0.5 text-[0.6rem] text-muted sm:flex sm:peer-data-[focused=true]:hidden"
+          >
+            <Keyboard className="font-sans">⌘K</Keyboard>
+          </Button>
+
           <Keyboard className="absolute right-2 top-1/2 hidden -translate-y-1/2 rounded-md border px-2 py-0.5 text-[0.6rem] text-muted sm:peer-data-[focused=true]:flex">
             ESC
           </Keyboard>
-        </div>
+        </ComboBoxControl>
 
         <ComboBoxPopover>
           <ComboBoxListBox
@@ -184,7 +190,7 @@ export function OpenInDialog() {
             autoFocus
             allowsEmptyCollection
           >
-            <div className="relative rounded-md">
+            <ComboBoxControl>
               <Icon>
                 <Search className="absolute left-2 top-1/2 w-4 -translate-y-1/2 text-muted" />
               </Icon>
@@ -199,7 +205,7 @@ export function OpenInDialog() {
                   setIsModalOpen(false);
                 }}
               />
-            </div>
+            </ComboBoxControl>
 
             <ComboBoxPopover
               className="rounded-t-none border border-t-0 ring-0"

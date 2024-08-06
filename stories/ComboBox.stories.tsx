@@ -8,6 +8,7 @@ import {
   ComboBoxPopover,
   ClearButton,
   TriggerButton,
+  ComboBoxControl,
 } from '../src/ComboBox';
 import { DropdownItem, DropdownSection } from '../src/ListBox';
 import { Description, FieldError, Input, Label } from '../src/Field';
@@ -43,10 +44,10 @@ export const Example = () => {
       <Label>Favorite Animal</Label>
       <Description>Choose your favorite animal</Description>
 
-      <div className="relative">
+      <ComboBoxControl>
         <Input />
         <TriggerButton />
-      </div>
+      </ComboBoxControl>
 
       <ComboBoxPopover>
         <ComboBoxListBox>
@@ -68,10 +69,10 @@ export const OpenOnInputFocus = () => {
       <Label>Favorite Animal</Label>
       <Description>Choose your favorite animal</Description>
 
-      <div className="relative">
+      <ComboBoxControl>
         <Input />
         <TriggerButton />
-      </div>
+      </ComboBoxControl>
 
       <ComboBoxPopover>
         <ComboBoxListBox>
@@ -93,10 +94,10 @@ export const AllowsEmptyCollection = () => {
       <Label>Favorite Animal</Label>
       <Description>Choose your favorite animal</Description>
 
-      <div className="relative">
+      <ComboBoxControl>
         <Input />
         <TriggerButton />
-      </div>
+      </ComboBoxControl>
 
       <ComboBoxPopover>
         <ComboBoxListBox
@@ -121,10 +122,10 @@ export const DisabledItems = () => {
     <ComboBox disabledKeys={['snake']}>
       <Label>Favorite Animal</Label>
       <Description>Choose your favorite animal</Description>
-      <div className="relative">
+      <ComboBoxControl>
         <Input />
         <TriggerButton />
-      </div>
+      </ComboBoxControl>
       <ComboBoxPopover>
         <ComboBoxListBox>
           <DropdownItem>Aardvark</DropdownItem>
@@ -144,10 +145,10 @@ export const DisabledComboBox = () => {
     <ComboBox isDisabled>
       <Label>Favorite Animal</Label>
       <Description>Choose your favorite animal</Description>
-      <div className="relative">
+      <ComboBoxControl>
         <Input />
         <TriggerButton />
-      </div>
+      </ComboBoxControl>
       <ComboBoxPopover>
         <ComboBoxListBox>
           <DropdownItem>Aardvark</DropdownItem>
@@ -162,14 +163,15 @@ export const DisabledComboBox = () => {
   );
 };
 
-export const Sections = () =>  {
+export const Sections = () => {
   return (
     <ComboBox>
       <Label>Preferred fruit or vegetable</Label>
-      <div className="relative">
+      <ComboBoxControl>
         <Input />
         <TriggerButton />
-      </div>
+      </ComboBoxControl>
+
       <ComboBoxPopover>
         <ComboBoxListBox>
           <DropdownSection title="Fruit">
@@ -196,18 +198,18 @@ export const Sections = () =>  {
       </ComboBoxPopover>
     </ComboBox>
   );
-}
+};
 
-export const Validation = () =>  {
+export const Validation = () => {
   return (
     <Form className="flex flex-col items-start gap-2">
       <ComboBox isRequired>
         <Label>Favorite Animal</Label>
         <Description>Choose your favorite animal</Description>
-        <div className="relative">
+        <ComboBoxControl>
           <Input />
           <TriggerButton />
-        </div>
+        </ComboBoxControl>
         <ComboBoxPopover>
           <ComboBoxListBox>
             <DropdownItem>Aardvark</DropdownItem>
@@ -223,17 +225,17 @@ export const Validation = () =>  {
       <Button type="submit">Submit</Button>
     </Form>
   );
-}
+};
 
 export function ClearButtons() {
   return (
     <ComboBox>
       <Label>Favorite Animal</Label>
       <Description>Choose your favorite animal</Description>
-      <div className="relative">
+      <ComboBoxControl>
         <Input />
         <ClearButton />
-      </div>
+      </ComboBoxControl>
 
       <ComboBoxPopover>
         <ComboBoxListBox>
@@ -273,7 +275,7 @@ export function SearchBox() {
   return (
     <ComboBox menuTrigger="focus" aria-label="Search">
       <Description>Open the combobox using ⌘K</Description>
-      <div className="relative">
+      <ComboBoxControl>
         <Icon>
           <Search className="absolute left-2 top-1/2 w-4 -translate-y-1/2 text-muted" />
         </Icon>
@@ -281,7 +283,7 @@ export function SearchBox() {
         <Input placeholder="Search&hellip;" ref={ref} className="px-7" />
 
         <ClearButton />
-      </div>
+      </ComboBoxControl>
 
       <ComboBoxPopover>
         <ComboBoxListBox>

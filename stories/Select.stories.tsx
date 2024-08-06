@@ -226,30 +226,28 @@ export const CustomSelectionItem = () => {
   );
 };
 
-export const Validation = () => (
-  <Form className="flex flex-col items-start gap-2">
-    <SelectField isRequired placeholder="Pick sound">
-      <Label>Notification sound</Label>
-      <Description>Select a sound for incoming notifications</Description>
-      <Select>
-        <SelectItem id="none">None</SelectItem>
-        <SelectItem id="ding">Ding</SelectItem>
-        <SelectItem id="boring">Boring</SelectItem>
-        <SelectItem>Drop</SelectItem>
-        <SelectItem>Ta-da</SelectItem>
-        <SelectItem>Plink</SelectItem>
-        <SelectItem>Wow</SelectItem>
-        <SelectItem>Here you go</SelectItem>
-        <SelectItem>Hi</SelectItem>
-      </Select>
-      <FieldError></FieldError>
-    </SelectField>
-    <Button type="submit">Submit</Button>
-  </Form>
-);
-
-Validation.args = {
-  isRequired: true,
+export const Validation = () => {
+  return (
+    <Form className="flex flex-col items-start gap-2">
+      <SelectField isRequired placeholder="Pick sound">
+        <Label>Notification sound</Label>
+        <Description>Select a sound for incoming notifications</Description>
+        <Select>
+          <SelectItem id="none">None</SelectItem>
+          <SelectItem id="ding">Ding</SelectItem>
+          <SelectItem id="boring">Boring</SelectItem>
+          <SelectItem>Drop</SelectItem>
+          <SelectItem>Ta-da</SelectItem>
+          <SelectItem>Plink</SelectItem>
+          <SelectItem>Wow</SelectItem>
+          <SelectItem>Here you go</SelectItem>
+          <SelectItem>Hi</SelectItem>
+        </Select>
+        <FieldError></FieldError>
+      </SelectField>
+      <Button type="submit">Submit</Button>
+    </Form>
+  );
 };
 
 export const CustomLayout = () => {

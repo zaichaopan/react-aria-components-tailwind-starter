@@ -11,6 +11,7 @@ import { composeTailwindRenderProps } from './utils';
 import { Popover, PopoverProps } from './Popover';
 import { ChevronDown } from 'lucide-react';
 import { Icon } from './Icon';
+import { twMerge } from 'tailwind-merge';
 
 export interface ComboBoxProps<T extends object>
   extends Omit<RACComboBoxProps<T>, 'children' | 'items'> {
@@ -30,6 +31,14 @@ export function ComboBox({ children, ...props }: ComboBoxProps<object>) {
     </RACComboBox>
   );
 }
+
+export function ComboBoxControl({
+  className,
+  ...props
+}: JSX.IntrinsicElements['div']) {
+  return <div className={twMerge('relative', className)} {...props} />;
+}
+
 
 export function ComboBoxPopover({ className, ...props }: PopoverProps) {
   return (
