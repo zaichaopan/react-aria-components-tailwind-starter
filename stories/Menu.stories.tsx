@@ -65,17 +65,30 @@ export const Example = (args: any) => {
 
 export const MenuButtons = () => {
   return (
-    <MenuTrigger>
-      <MenuButton color="success">Options</MenuButton>
-      <MenuPopover>
-        <Menu>
-          <MenuItem>Account</MenuItem>
-          <MenuItem>Settings</MenuItem>
-          <MenuItem>Support</MenuItem>
-          <MenuItem>Sign out</MenuItem>
-        </Menu>
-      </MenuPopover>
-    </MenuTrigger>
+    <div className="flex flex-col gap-2">
+      <MenuTrigger>
+        <MenuButton color="accent">Options</MenuButton>
+        <MenuPopover>
+          <Menu>
+            <MenuItem>Account</MenuItem>
+            <MenuItem>Settings</MenuItem>
+            <MenuItem>Support</MenuItem>
+            <MenuItem>Sign out</MenuItem>
+          </Menu>
+        </MenuPopover>
+      </MenuTrigger>
+      <MenuTrigger>
+        <MenuButton color="success">Options</MenuButton>
+        <MenuPopover>
+          <Menu>
+            <MenuItem>Account</MenuItem>
+            <MenuItem>Settings</MenuItem>
+            <MenuItem>Support</MenuItem>
+            <MenuItem>Sign out</MenuItem>
+          </Menu>
+        </MenuPopover>
+      </MenuTrigger>
+    </div>
   );
 };
 
@@ -319,6 +332,34 @@ export const DisabledMenu = () => {
       </MenuPopover>
     </MenuTrigger>
   );
+};
+
+export const DestructiveMenuItems = () => {
+  return (
+    <MenuTrigger>
+      <MenuButton outline>Options</MenuButton>
+      <MenuPopover>
+        <Menu>
+          <MenuItem shortcut="⌘C">Copy link</MenuItem>
+          <MenuItem shortcut="⌘Q">Quote reply</MenuItem>
+          <MenuItem shortcut="⌘E">Edit comment</MenuItem>
+          <MenuSeparator />
+          <MenuItem shortcut="⌘D" destructive>
+            Delete file
+          </MenuItem>
+        </Menu>
+      </MenuPopover>
+    </MenuTrigger>
+  );
+};
+
+DestructiveMenuItems.parameters = {
+  docs: {
+    description: {
+      story:
+        'Use the **destructive** prop for destructive **MenuItem**:',
+    },
+  },
 };
 
 export const WithIconTrigger = () => {

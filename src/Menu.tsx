@@ -42,7 +42,7 @@ export function MenuButton({
             {typeof children === 'function' ? children(renderProps) : children}
             {!noArrow && (
               <Icon>
-                <ChevronDown />
+                <ChevronDown className="ml-0.5 mt-0.5" />
               </Icon>
             )}
           </>
@@ -114,7 +114,9 @@ export function MenuItem({
             renderProps.isDisabled && 'opacity-50',
             renderProps.isFocused && 'rounded-md bg-accent/85 text-white',
             destructive && 'text-destructive',
-            destructive && renderProps.isFocused && 'bg-destructive/10',
+            destructive &&
+              renderProps.isFocused &&
+              'bg-destructive/15 dark:bg-destructive/10',
             className,
           ]);
         },
@@ -174,7 +176,9 @@ export function MenuItem({
                 <Keyboard
                   className={twMerge([
                     'font-sans text-sm/6 text-muted',
-                    isFocused && 'text-white',
+                    isFocused && [
+                      destructive ? 'text-destructive' : 'text-white',
+                    ],
                   ])}
                 >
                   {shortcut}
