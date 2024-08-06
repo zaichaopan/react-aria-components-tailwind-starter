@@ -14,18 +14,34 @@
   --accent: 211 83% 53%;
 }
 
-.pink-theme {
-  --accent: 330 81% 60%;
+.indigo-theme {
+  --accent: 243 75% 59%;
 }
 
-.dark .pink-theme {
-  --accent: 330 81% 60%;
+.dark .indigo-theme {
+  --accent: 243 75% 59%;
+}
+
+.violet-theme {
+  --accent: 262 83% 58%;
+}
+
+.dark .violet-theme {
+  --accent: 262 83% 58%;
 }
 
 .purple-theme {
-  --accent: 243 75% 59%
+  --accent: 271 81% 56%;
 }
 
 .dark .purple-theme {
-  --accent: 243 75% 59%
+  --accent: 271 81% 56%;
+}
+
+.fuchsia-theme {
+  --accent: 293 69% 49%;
+}
+
+.dark .fuchsia-theme {
+  --accent: 293 69% 49%;
 }

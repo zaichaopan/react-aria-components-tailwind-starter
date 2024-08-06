@@ -42,12 +42,19 @@ const preview: Preview = {
             title: 'Blue',
           },
           {
-            value: 'pink-theme',
-            title: 'Pink',
+            value: 'indigo-theme',
+            title: 'Indigo'
+          },
+          {
+            value: 'violet-theme',
+            title: 'Violet',
           },
           {
             value: 'purple-theme',
             title: 'Purple',
+          }, {
+            value: 'fuchsia-theme',
+            title: 'Fuchsia'
           }
         ],
       },
