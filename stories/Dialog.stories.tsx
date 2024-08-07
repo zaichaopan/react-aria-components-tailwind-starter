@@ -132,7 +132,7 @@ DialogSizes.parameters = {
   docs: {
     description: {
       story:
-        'Use the **size="sm | md | lg | xl | 2xl | 3xl | 4xl | 5xl"** prop of the **Modal** component change the side of dialog. Default size is **lg**:',
+        'Use **size** prop of the **Modal** component change the side of dialog. \n\nAvailable size option includes **"sm"**, **"md"**, **"lg"**, **"xl"**, **"2xl"**, **"3xl"**, **"4xl"**, **"5xl"**. Default size is **lg**.'
     },
   },
 };
@@ -176,7 +176,7 @@ NoHeader.parameters = {
   docs: {
     description: {
       story:
-        'Without **DialogHeader**, dialog trigger button text will be used as dialog header:',
+        'Without **DialogHeader**, dialog trigger button text will be used as dialog header.',
     },
   },
 };
@@ -226,7 +226,7 @@ AutoFocusElements.parameters = {
   docs: {
     description: {
       story:
-        'Add the **autoFocus** prop to any focusable element in the dialog to automatically focus it when the dialog opens. Use <a href="https://react-spectrum.adobe.com/react-aria/FocusScope.html#focusscope" target="_blank">**FocusScope**</a> if autofocus not working properly in some edge cases:',
+        'Add the **autoFocus** prop to any focusable element in the dialog to automatically focus it when the dialog opens. Use <a href="https://react-spectrum.adobe.com/react-aria/FocusScope.html#focusscope" target="_blank">**FocusScope**</a> if autofocus not working properly in some edge cases.',
     },
   },
 };
@@ -277,8 +277,8 @@ export const WithIsDismissableAndKeyboardDismissDisabled = () => {
 WithIsDismissableAndKeyboardDismissDisabled.parameters = {
   docs: {
     description: {
-      story: `Use the **isDismissable** prop of the **Modal** component to control whether the dialog can be closed by clicking outside. Default **false**. 
-        \n\nUse the **isKeyboardDismissDisabled** pros to control whether the dialog can be closed by **ESC** key. Default **false**:`,
+      story: `Use **isDismissable** prop of the **Modal** component to control whether the dialog can be closed by clicking outside. Default **false**. 
+        \n\nUse **isKeyboardDismissDisabled** pros to control whether the dialog can be closed by **ESC** key. Default **false**.`,
     },
   },
 };
@@ -400,7 +400,7 @@ WithScrollingContent.parameters = {
   docs: {
     description: {
       story:
-        'Long content within **DialogBody** automatically becomes scrollable:',
+        'Long content within **DialogBody** automatically becomes scrollable.',
     },
   },
 };
@@ -461,7 +461,7 @@ WithControlledOpenState.parameters = {
   docs: {
     description: {
       story:
-        'Use **isOpen** and **onOpenChange**  prop of the **Modal** component to control dialog open state:',
+        'Use **isOpen** and **onOpenChange**  prop of the **Modal** component to control dialog open state.',
     },
   },
 };
@@ -542,7 +542,7 @@ NestedDialogs.parameters = {
   docs: {
     description: {
       story:
-        'Preventing users from accidentally closing a modal Dialog component with unsaved changes by displaying a **nested** confirmation dialog:',
+        'Preventing users from accidentally closing a modal Dialog component with unsaved changes by displaying a **nested** confirmation dialog.',
     },
   },
 };
@@ -669,7 +669,7 @@ CustomDialogHeader.parameters = {
   docs: {
     description: {
       story:
-        'The **DialogTitle** component can be used to compose custom dialog header:',
+        'Use **DialogTitle** component to compose complex dialog header.',
     },
   },
 };
@@ -840,16 +840,16 @@ WithMinHeight.parameters = {
   docs: {
     description: {
       story:
-        'Add the **className="h-[min(**, **)]** to the **Dialog** component to set dialog min-height:',
+        'Use **className="h-[min(**, **)]** to set **min-height** of the **Dialog** component.',
     },
   },
 };
 
-export const Drawers = () => {
+export const Drawers = (args: any) => {
   return (
     <DialogTrigger>
       <Button>Edit profile</Button>
-      <Modal drawer size="sm">
+      <Modal drawer size="sm" {...args}>
         <Dialog>
           <DialogHeader>Edit profile</DialogHeader>
           <DialogCloseButton />
@@ -886,7 +886,7 @@ Drawers.parameters = {
   docs: {
     description: {
       story:
-        'Add the **drawer** props and **placement="left | right"** props to render dialogs out from the edge of the screen',
+        'Use the **drawer** and **placement** prop to render dialogs out from the edge of the screen. \n\nAvailable **placement** option includes **left** and **right**. Default placement is **left**.',
     },
   },
 };

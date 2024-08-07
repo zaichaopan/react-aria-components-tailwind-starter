@@ -45,7 +45,7 @@ ButtonColors.parameters = {
   docs: {
     description: {
       story:
-        'Use **color="accent | success | destructive"** to set the button color:',
+        'Use **color** props to set the button color. \n\nAvailable **color** option includes **accent**, **success**, **destructive**. Default color value is **accent**.',
     },
   },
 };
@@ -63,7 +63,7 @@ export const ButtonSizes = () => {
 ButtonSizes.parameters = {
   docs: {
     description: {
-      story: 'Use **size="sm | lg"** prop to set the button size:',
+      story: 'Use **size** prop to set the button size. Default size is **size-9**. Available size option includes **sm** and **lg**.',
     },
   },
 };
@@ -83,7 +83,7 @@ ButtonVariants.parameters = {
   docs: {
     description: {
       story:
-        'Use prop **outline | plain | unstyle**" to render buttons with different variants:',
+        'Use prop **outline**, **plain** or **unstyle** to render buttons with different variants.',
     },
   },
 };
@@ -111,7 +111,7 @@ WithIcons.parameters = {
   docs: {
     description: {
       story:
-        'Use the **Icon** component to place a decorative icon at the start or end of a button. Icon size is auto scaled based on button sizes:',
+        'Use **Icon** component to place a decorative icon at the start or end of a button. Icon size is auto scaled based on button sizes.',
     },
   },
 };
@@ -137,7 +137,7 @@ IconButtons.parameters = {
   docs: {
     description: {
       story:
-        'Use the **isIconOnly** prop to render a icon only button. Use **aria-label** for none decorative buttons. Icon size is auto scaled based on button sizes:',
+        'Use **isIconOnly** prop to render a icon only button. Use **aria-label** for none decorative buttons. Icon size is auto scaled based on button sizes.',
     },
   },
 };
@@ -149,7 +149,7 @@ export const CloseButtons = () => {
 CloseButtons.parameters = {
   docs: {
     description: {
-      story: 'Use the **CloseButton** component to render close button:',
+      story: 'Use **CloseButton** component to render close button.',
     },
   },
 };
@@ -161,7 +161,7 @@ export const DisabledButtons = () => {
 DisabledButtons.parameters = {
   docs: {
     description: {
-      story: 'Use **isDisabled** prop to disable buttons:',
+      story: 'Use **isDisabled** prop to disable buttons.',
     },
   },
 };
@@ -192,7 +192,7 @@ LoadingState.parameters = {
   docs: {
     description: {
       story:
-        'Use **isLoading** prop to render a loading spinner. Use **loadingLabel** for accessibility:',
+        'Use **isLoading** prop to render a loading spinner. Use **loadingLabel** for accessibility.',
     },
   },
 };
@@ -212,7 +212,7 @@ ImageButtons.parameters = {
   docs: {
     description: {
       story:
-        'Add the **Avatar** component to **unstyle** buttons to render image buttons:',
+        'Use **Avatar** component and **unstyle** button to render image buttons.',
     },
   },
 };
@@ -231,7 +231,7 @@ export const CustomStyles = () => {
 CustomStyles.parameters = {
   docs: {
     description: {
-      story: 'Use **className=\\*** prop to customize button style:',
+      story: 'Use **className=\\*** prop to customize button style.',
     },
   },
 };
@@ -250,7 +250,7 @@ AsChild.parameters = {
   docs: {
     description: {
       story:
-        'Use the **asChild** prop to render another react components, e.g., render **Link** component with button styles:',
+        'Use **asChild** prop to render another react components, e.g., render **Link** component with button styles.',
     },
   },
 };

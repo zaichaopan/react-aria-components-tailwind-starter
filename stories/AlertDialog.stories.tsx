@@ -91,8 +91,8 @@ export const DestructiveAlerts = () => {
       <Modal>
         <AlertDialog
           title="Delete folder"
-          destructive
           primaryActionLabel="Delete"
+          destructive
         >
           Are you sure you want to delete "Documents"? All contents will be
           permanently destroyed.
@@ -105,7 +105,7 @@ export const DestructiveAlerts = () => {
 DestructiveAlerts.parameters = {
   docs: {
     description: {
-      story: 'Use the **destructive** prop to render destructive alerts',
+      story: 'Use **destructive** prop to render destructive alerts.',
     },
   },
 };
@@ -128,7 +128,7 @@ export const TitleOnlyAlerts = () => {
 TitleOnlyAlerts.parameters = {
   docs: {
     description: {
-      story: 'Dialog body is not required',
+      story: 'Dialog body is not required.',
     },
   },
 };
@@ -156,7 +156,7 @@ WithSecondaryActions.parameters = {
   docs: {
     description: {
       story:
-        'Use the **secondaryActionLabel** and **onSecondaryAction** prop of the **AlertDialog** component to add a secondary action button:',
+        'Use **secondaryActionLabel** and **onSecondaryAction** prop of the **AlertDialog** component to add a secondary action button.',
     },
   },
 };
@@ -189,7 +189,7 @@ WithControlledOpenState.parameters = {
   docs: {
     description: {
       story:
-        'Use the **isOpen** and **onOpenChange**  prop of **Modal** component to control alert dialog open state:',
+        'Use **isOpen** and **onOpenChange**  prop of the **Modal** component to control alert dialog open state.',
     },
   },
 };
@@ -217,7 +217,7 @@ AlertDialogsVsDialogs.parameters = {
   docs: {
     description: {
       story: `**Use alert dialogs sparingly**
-        \nAlert dialogs are interruptive, so they're best for displaying important information that users need to acknowledge before moving forward with a task or workflow. Use them only when absolutely necessary, not for low-signal notifications or excessive confirmations.`,
+        \nAlert dialogs are interruptive, so they're best for displaying important information that users need to acknowledge before moving forward with a task or workflow. Use them only when absolutely necessary. Use <a href="./?path=/docs/dialog--docs" target="_blank">**Dialog**</a> for low-signal notifications or excessive confirmations.`,
     },
   },
 };

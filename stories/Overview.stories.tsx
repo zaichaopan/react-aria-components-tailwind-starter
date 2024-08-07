@@ -14,7 +14,6 @@ import { Button } from '../src/Button';
 import { Strong, Text, TextLink } from '../src/Text';
 import { Link } from '../src/Link';
 import { Icon } from '../src/Icon';
-import { Moon, Sun } from 'lucide-react';
 import { Avatar } from '../src/Avatar';
 import { DateRangePicker, DateRangePickerInput } from '../src/DateRangePicker';
 import { Heading } from '../src/Heading';
@@ -35,6 +34,7 @@ import {
   DialogFooter,
   DialogHeader,
 } from '../src/Dialog';
+import { NativeTooltips } from './Tooltip.stories';
 
 const meta: Meta<typeof Button> = {
   title: 'Overview',
@@ -167,32 +167,7 @@ export const Example = () => {
           <Button>Submit</Button>
           <Button outline>Submit</Button>
 
-          <div
-            role="presentation"
-            title={
-              theme === 'light'
-                ? 'Switch to dark theme'
-                : 'Switch to light theme'
-            }
-          >
-            <Button
-              isIconOnly
-              outline
-              onPress={() =>
-                setTheme((theme) => (theme === 'light' ? 'dark' : 'light'))
-              }
-            >
-              <Icon
-                aria-label={
-                  theme === 'light'
-                    ? 'Switch to dark theme'
-                    : 'Switch to light theme'
-                }
-              >
-                {theme === 'light' ? <Moon /> : <Sun />}
-              </Icon>
-            </Button>
-          </div>
+          <NativeTooltips />
 
           <DialogExample />
         </div>
