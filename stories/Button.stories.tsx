@@ -1,10 +1,15 @@
 import type { Meta } from '@storybook/react';
-import { FolderPlus, Mail, MicIcon } from 'lucide-react';
+import {
+  FolderPlus,
+  Mail,
+  MicIcon,
+} from 'lucide-react';
 import { Button, CloseButton } from '../src/Button';
 import { docs } from '../.storybook/docs';
 import { Icon } from '../src/Icon';
 import { Avatar } from '../src/Avatar';
 import { Link } from '../src/Link';
+
 
 const meta: Meta<typeof Button> = {
   title: 'Button',
@@ -63,7 +68,8 @@ export const ButtonSizes = () => {
 ButtonSizes.parameters = {
   docs: {
     description: {
-      story: 'Use **size** prop to set the button size. Default size is **size-9**. Available size option includes **sm** and **lg**.',
+      story:
+        'Use **size** prop to set the button size. Default size is **size-9**. Available size option includes **sm** and **lg**.',
     },
   },
 };

@@ -168,7 +168,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
                         size == 'lg' && 'size-5',
                         size == 'sm' && 'size-3',
                         'stroke-white dark:stroke-white',
-                        '[.bg-transparent_&]:stroke-zinc-900 dark:[.bg-transparent_&]:stroke-white'
+                        '[.bg-transparent_&]:stroke-zinc-900 dark:[.bg-transparent_&]:stroke-white',
                       )}
                     />
                   </div>
@@ -221,5 +221,26 @@ export function CloseButton({
         <X strokeWidth={1.5} />
       </Icon>
     </Button>
+  );
+}
+
+export function ButtonGroup({
+  className,
+  ...props
+}: JSX.IntrinsicElements['div']) {
+  return (
+    <div
+      className={twMerge(
+        'flex items-center',
+        '[&>button:first-of-type]:rounded-r-none',
+        '[&>button:last-of-type]:rounded-l-none',
+        '[&>button:not(:first-of-type):not(:last-of-type)]:rounded-none',
+        '[&>button:not(:last-of-type)]:border-r-0',
+        'dark:[&>button:not(.bg-transparent)]:border',
+        '[&>button:not(.bg-transparent):not(:first-of-type)]:border-l-[var(--separator-color,theme(colors.black/0.15))]',
+        className,
+      )}
+      {...props}
+    />
   );
 }

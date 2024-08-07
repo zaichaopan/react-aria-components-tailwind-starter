@@ -1,21 +1,25 @@
 import type { Meta } from '@storybook/react';
 import {
-  SplitButtonGroup,
-  SplitButton,
-  SplitButtonMenuTrigger,
-} from '../src/SplitButton';
-import { Menu, MenuItem, MenuPopover, MenuTrigger } from '../src/Menu';
+  Menu,
+  MenuItem,
+  MenuPopover,
+  MenuTrigger,
+  MenuButton,
+  MenuSeparator
+} from '../src/Menu';
 import { docs } from '../.storybook/docs';
+import { Button, ButtonGroup } from '../src/Button';
+import { Icon } from '../src/Icon';
+import { ChevronDown } from 'lucide-react';
 
-const meta: Meta<typeof SplitButtonGroup> = {
+const meta: Meta = {
   title: 'SplitButtonGroup',
-  component: SplitButtonGroup,
   parameters: {
     layout: 'centered',
     docs: {
       description: {
         component:
-          '<a href="https://web.dev/articles/building/a-split-button-component" target="_blank">**Split buttons**</a> are buttons that conceal a primary button and a list of additional buttons.',
+          'Use <a href="./?path=/docs/buttongroup--docs" target="_blank">**ButtonGroup**</a> and <a href="./?path=/docs/menu--docs" target="_blank">**Menu**</a> component to compose <a href="https://web.dev/articles/building/a-split-button-component" target="_blank">**split buttons**</a> which conceal a primary button and a list of additional buttons.',
       },
       ...docs,
       controls: {
@@ -30,54 +34,27 @@ export default meta;
 
 export const Example = () => {
   return (
-    <SplitButtonGroup>
-      <SplitButton>Save</SplitButton>
+    <ButtonGroup>
+      <Button color="success">Merge pull request</Button>
       <MenuTrigger>
-        <SplitButtonMenuTrigger aria-label="Save options" />
+        <MenuButton noArrow color="success">
+          <Icon aria-label="More options">
+            <ChevronDown></ChevronDown>
+          </Icon>
+        </MenuButton>
         <MenuPopover placement="bottom end">
           <Menu>
-            <MenuItem>Save Draft </MenuItem>
-            <MenuItem>Delete</MenuItem>
-            <MenuItem>Schedule for later</MenuItem>
+            <MenuItem description="All commits from this branch will be added to the base branch via a merge commit.">
+              Create a merge commit
+            </MenuItem>
+            <MenuSeparator />
+            <MenuItem description="The 1 commit from this branch will be rebased and added to the base branch.">
+              Rebase and merge
+            </MenuItem>
           </Menu>
         </MenuPopover>
       </MenuTrigger>
-    </SplitButtonGroup>
+    </ButtonGroup>
   );
 };
 
-export const Outline = () => {
-  return (
-    <SplitButtonGroup outline>
-      <SplitButton>Save</SplitButton>
-      <MenuTrigger>
-        <SplitButtonMenuTrigger aria-label="Save options" />
-        <MenuPopover>
-          <Menu>
-            <MenuItem>Save Draft </MenuItem>
-            <MenuItem>Delete</MenuItem>
-            <MenuItem>Schedule for later</MenuItem>
-          </Menu>
-        </MenuPopover>
-      </MenuTrigger>
-    </SplitButtonGroup>
-  );
-};
-
-export const Destructive = () => {
-  return (
-    <SplitButtonGroup color="destructive">
-      <SplitButton>Save</SplitButton>
-      <MenuTrigger>
-        <SplitButtonMenuTrigger />
-        <MenuPopover>
-          <Menu>
-            <MenuItem>Save Draft </MenuItem>
-            <MenuItem>Delete</MenuItem>
-            <MenuItem>Schedule for later</MenuItem>
-          </Menu>
-        </MenuPopover>
-      </MenuTrigger>
-    </SplitButtonGroup>
-  );
-};
