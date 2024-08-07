@@ -7,7 +7,7 @@ import {
 import { composeTailwindRenderProps } from './utils';
 import { mergeProps, useFocusable } from 'react-aria';
 
-export {TooltipTrigger} from 'react-aria-components'
+export { TooltipTrigger } from 'react-aria-components';
 
 export interface TooltipProps extends Omit<RACTooltipProps, 'children'> {
   children: React.ReactNode;
@@ -20,7 +20,7 @@ export function Tooltip({ children, ...props }: TooltipProps) {
       offset={10}
       className={composeTailwindRenderProps(
         props.className,
-        'shadow-xs group max-w-56 text-wrap rounded-md bg-zinc-950 text-white p-2 text-center text-sm dark:shadow-none',
+        'shadow-xs group max-w-56 text-wrap rounded-md bg-zinc-950 p-2 text-center text-sm text-white dark:shadow-none',
       )}
     >
       <OverlayArrow>
@@ -39,7 +39,9 @@ export function Tooltip({ children, ...props }: TooltipProps) {
 }
 
 // https://argos-ci.com/blog/react-aria-migration
-export function NonFousableTooltipTarget(props: { children: React.ReactElement }) {
+export function NonFousableTooltipTarget(props: {
+  children: React.ReactElement;
+}) {
   const triggerRef = React.useRef(null);
   const { focusableProps } = useFocusable(props.children.props, triggerRef);
 
@@ -49,4 +51,11 @@ export function NonFousableTooltipTarget(props: { children: React.ReactElement }
       ref: triggerRef,
     }),
   );
+}
+
+export function NativeTooltip({
+  title,
+  ...props
+}: JSX.IntrinsicElements['div'] & { title: string }) {
+  return <div title={title} role="presentation" {...props} />;
 }

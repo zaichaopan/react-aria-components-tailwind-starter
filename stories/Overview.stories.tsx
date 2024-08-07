@@ -167,23 +167,32 @@ export const Example = () => {
           <Button>Submit</Button>
           <Button outline>Submit</Button>
 
-          <Button
-            isIconOnly
-            outline
-            onPress={() =>
-              setTheme((theme) => (theme === 'light' ? 'dark' : 'light'))
+          <div
+            role="presentation"
+            title={
+              theme === 'light'
+                ? 'Switch to dark theme'
+                : 'Switch to light theme'
             }
           >
-            <Icon
-              aria-label={
-                theme === 'light'
-                  ? 'Switch to dark theme'
-                  : 'Switch to light theme'
+            <Button
+              isIconOnly
+              outline
+              onPress={() =>
+                setTheme((theme) => (theme === 'light' ? 'dark' : 'light'))
               }
             >
-              {theme === 'light' ? <Moon /> : <Sun />}
-            </Icon>
-          </Button>
+              <Icon
+                aria-label={
+                  theme === 'light'
+                    ? 'Switch to dark theme'
+                    : 'Switch to light theme'
+                }
+              >
+                {theme === 'light' ? <Moon /> : <Sun />}
+              </Icon>
+            </Button>
+          </div>
 
           <DialogExample />
         </div>
