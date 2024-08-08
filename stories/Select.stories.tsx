@@ -1,5 +1,6 @@
+import React from 'react';
 import type { Meta } from '@storybook/react';
-import { Form } from 'react-aria-components';
+import { Form, Key } from 'react-aria-components';
 import { Button } from '../src/Button';
 import { SelectField, Select, SelectItem, SelectSection } from '../src/Select';
 import { Avatar } from '../src/Avatar';
@@ -67,20 +68,26 @@ export const SectionDescription = () => {
 };
 
 export const ControlledSection = () => {
+  const [sound, setSound] = React.useState<Key>('ding');
+
   return (
-    <SelectField placeholder="Pick sound">
+    <SelectField
+      placeholder="Pick sound"
+      selectedKey={sound}
+      onSelectionChange={(selected) => setSound(selected)}
+    >
       <Label>Notification sound</Label>
       <Description>Select a sound for incoming notifications</Description>
       <Select>
         <SelectItem id="none">None</SelectItem>
         <SelectItem id="ding">Ding</SelectItem>
         <SelectItem id="boring">Boring</SelectItem>
-        <SelectItem>Drop</SelectItem>
-        <SelectItem>Ta-da</SelectItem>
-        <SelectItem>Plink</SelectItem>
-        <SelectItem>Wow</SelectItem>
-        <SelectItem>Here you go</SelectItem>
-        <SelectItem>Hi</SelectItem>
+        <SelectItem id="drop">Drop</SelectItem>
+        <SelectItem id="tata">Ta-da</SelectItem>
+        <SelectItem id="plink">Plink</SelectItem>
+        <SelectItem id="wow">Wow</SelectItem>
+        <SelectItem id="here_you_go">Here you go</SelectItem>
+        <SelectItem id="hi">Hi</SelectItem>
       </Select>
     </SelectField>
   );

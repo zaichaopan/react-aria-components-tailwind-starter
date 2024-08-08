@@ -117,6 +117,15 @@ export const AllowsEmptyCollection = () => {
   );
 };
 
+AllowsEmptyCollection.parameters = {
+  docs: {
+    description: {
+      story:
+        'Whether the combo box allows the menu to be open when the collection is empty.',
+    },
+  },
+};
+
 export const DisabledItems = () => {
   return (
     <ComboBox disabledKeys={['snake']}>
