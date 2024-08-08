@@ -6,7 +6,7 @@
   :root {
     --background: 0 0% 100%;
     --foreground: 20 14.3% 4.1%;
-    --hover: 60 4.8% 95.9%;
+    --hover: 0 0% 96%;
 
     --success: 142 72% 29%;
     --destructive: 0 72% 51%;
@@ -18,7 +18,7 @@
   .dark {
     --background: 240 10% 4%;
     --foreground: 0 0% 98%;
-    --hover: 240 5% 26%;
+    --hover: 0 0% 22%;
 
     --success: 142 72% 29%;
     --destructive: 0 72% 51%;

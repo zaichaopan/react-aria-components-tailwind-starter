@@ -101,7 +101,9 @@ export function DropdownItem({
             isDisabled && 'opacity-50',
             isFocused && 'bg-accent/85 text-white',
             destructive && 'text-destructive ',
-            isFocused && destructive && 'bg-destructive/85 text-white',
+            isFocused &&
+              destructive &&
+              'bg-destructive/15 dark:bg-destructive/10',
             className,
           ]);
         },
