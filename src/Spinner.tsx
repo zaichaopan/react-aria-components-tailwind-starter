@@ -17,7 +17,7 @@ export function Spinner({
         className={twMerge('size-6 stroke-zinc-400', className)}
         {...props}
       >
-        <g stroke-width="200" stroke-linecap="round" fill="none">
+        <g strokeWidth="200" strokeLinecap="round" fill="none">
           <line x1="1200" y1="600" x2="1200" y2="100" />
           <line opacity="0.5" x1="1200" y1="2300" x2="1200" y2="1800" />
           <line opacity="0.917" x1="900" y1="680.4" x2="650" y2="247.4" />

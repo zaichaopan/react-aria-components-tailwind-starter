@@ -35,6 +35,7 @@ import {
   DialogHeader,
 } from '../src/Dialog';
 import { NativeTooltips } from './Tooltip.stories';
+import { WithAvatars } from './MultiSelect.stories';
 
 const meta: Meta<typeof Button> = {
   title: 'Overview',
@@ -46,8 +47,6 @@ const meta: Meta<typeof Button> = {
 export default meta;
 
 export const Example = () => {
-  const [theme, setTheme] = React.useState<'light' | 'dark'>('light');
-
   return (
     <div className="flex gap-12 p-8">
       <div className="flex w-96 flex-col items-stretch gap-12">
@@ -440,8 +439,10 @@ export const Example = () => {
             </TabList>
           </Tabs>
         </div>
+        <div>
+          <WithAvatars />
+        </div>
       </div>
-      <div></div>
     </div>
   );
 };

@@ -105,24 +105,21 @@ function buttonStyle({ size, color, isIconOnly, ...props }: BasicButtonProps) {
 
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   function Button(props, ref) {
-    const {
-      children,
-      isLoading,
-      loadingLabel,
-      asChild,
-      size,
-      color,
-      plain,
-      unstyle,
-      outline,
-      isIconOnly,
-      ...restProps
-    } = props;
+    if (props.asChild) {
+      const {
+        asChild,
+        size,
+        color,
+        plain,
+        unstyle,
+        outline,
+        isIconOnly,
+        ...slotProps
+      } = props;
 
-    if (asChild) {
       return (
         <Slot
-          {...props}
+          {...slotProps}
           className={twMerge(
             buttonStyle({
               size,
@@ -135,10 +132,24 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       );
     }
 
+    const {
+      asChild,
+      children,
+      isLoading,
+      loadingLabel,
+      size,
+      color,
+      plain,
+      unstyle,
+      outline,
+      isIconOnly,
+      ...buttonProps
+    } = props;
+
     return (
       <>
         <RACButton
-          {...restProps}
+          {...buttonProps}
           ref={ref}
           className={composeRenderProps(
             props.className,
