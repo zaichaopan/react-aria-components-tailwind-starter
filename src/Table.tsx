@@ -20,7 +20,11 @@ import {
 } from 'react-aria-components';
 import { twMerge } from 'tailwind-merge';
 import { Checkbox } from './Checkbox';
-import { composeTailwindRenderProps, focusOutlineStyle, inputRingStyle } from './utils';
+import {
+  composeTailwindRenderProps,
+  focusOutlineStyle,
+  inputRingStyle,
+} from './utils';
 
 export function Table(props: TableProps) {
   return (
@@ -36,7 +40,7 @@ export function Column(props: ColumnProps) {
       {...props}
       className={composeTailwindRenderProps(
         props.className,
-        'cursor-default text-start text-sm font-semibold [&:focus-within]:z-20 [&:hover]:z-20 border-b',
+        'cursor-default border-b text-start text-sm font-semibold [&:focus-within]:z-20 [&:hover]:z-20',
       )}
     >
       {composeRenderProps(
@@ -101,12 +105,12 @@ export function TableHeader<T extends object>(props: TableHeaderProps<T>) {
       ])}
     >
       {/* Add extra columns for drag and drop and selection. */}
-      {allowsDragging && <Column/>}
+      {allowsDragging && <Column />}
       {selectionBehavior === 'toggle' && (
         <AriaColumn
           width={36}
           minWidth={36}
-          className="cursor-default p-2 text-start text-sm font-semibold border-b"
+          className="cursor-default border-b p-2 text-start text-sm font-semibold"
         >
           {selectionMode === 'multiple' && <Checkbox slot="selection" />}
         </AriaColumn>
@@ -132,8 +136,8 @@ export function Row<T extends object>({
         return twMerge(
           isFocusVisible ? focusOutlineStyle : 'outline-none',
           'group/row relative cursor-default select-none text-sm -outline-offset-2  disabled:text-muted',
-          'hover:bg-accent/10 dark:hover:bg-accent/40 ',
-          'selected:bg-accent/5 hover:selected:bg-accent/10 dark:selected:bg-accent/35 dark:hover:selected:bg-accent/40',
+          'hover:bg-hover',
+          'selected:bg-accent/5 hover:selected:bg-hover dark:selected:bg-accent/35 dark:hover:selected:bg-hover',
         );
       }}
     >

@@ -86,7 +86,7 @@ export function SubMenu<T extends object>(
 export function MenuSeparator({ className }: { className?: string }) {
   return (
     <Separator
-      className={twMerge('my-0.5 w-full border-t border-border/50', className)}
+      className={twMerge('my-1.5 w-full border-t border-border/50', className)}
     />
   );
 }
@@ -112,7 +112,7 @@ export function MenuItem({
           return twMerge([
             'group flex cursor-default select-none items-center gap-1 px-2.5 py-1.5 text-base/6 outline-none sm:text-sm/6',
             renderProps.isDisabled && 'opacity-50',
-            renderProps.isFocused && 'rounded-md bg-accent/85 text-white',
+            renderProps.isFocused && 'rounded-md bg-hover',
             destructive && 'text-destructive',
             destructive &&
               renderProps.isFocused &&
@@ -127,7 +127,7 @@ export function MenuItem({
         (children, { selectionMode, isSelected, isFocused }) => (
           <>
             {selectionMode !== 'none' && (
-              <span className="flex w-4 items-center">
+              <span className="flex w-4 mr-0.5 items-center">
                 {isSelected && (
                   <Icon>
                     <Check className="size-4" />
@@ -142,7 +142,6 @@ export function MenuItem({
                   className={twMerge([
                     'text-muted',
                     '[&>svg:not([class^=size-])]:size-4',
-                    isFocused && 'text-white',
                   ])}
                 >
                   {icon}
@@ -163,10 +162,7 @@ export function MenuItem({
                 {description && (
                   <Text
                     slot="description"
-                    className={twMerge([
-                      'text-wrap text-xs/5 text-muted',
-                      isFocused && 'text-white',
-                    ])}
+                    className={twMerge(['text-wrap text-xs/5 text-muted'])}
                   >
                     {description}
                   </Text>
@@ -176,9 +172,7 @@ export function MenuItem({
                 <Keyboard
                   className={twMerge([
                     'font-sans text-sm/6 text-muted',
-                    isFocused && [
-                      destructive ? 'text-destructive' : 'text-white',
-                    ],
+                    isFocused && destructive && 'text-destructive',
                   ])}
                 >
                   {shortcut}
@@ -191,7 +185,6 @@ export function MenuItem({
                 strokeWidth="1.5"
                 className={twMerge([
                   'hidden size-4 text-muted group-data-[has-submenu]:inline-block',
-                  isFocused && 'text-white',
                 ])}
               />
             </Icon>

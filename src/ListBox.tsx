@@ -99,7 +99,7 @@ export function DropdownItem({
             'rounded-md text-base/6 sm:text-sm/6',
             'p-1.5 has-submenu:pr-0',
             isDisabled && 'opacity-50',
-            isFocused && 'bg-accent/85 text-white',
+            isFocused && 'bg-hover',
             destructive && 'text-destructive ',
             isFocused &&
               destructive &&
@@ -111,7 +111,7 @@ export function DropdownItem({
     >
       {composeRenderProps(props.children, (children, { isSelected }) => (
         <>
-          <span className="flex w-4 items-center">
+          <span className="flex w-4 items-center mr-0.5">
             {isSelected && <Check className="h-4 w-4" />}
           </span>
           <span className="flex flex-1 items-center gap-2 text-nowrap">
@@ -134,9 +134,9 @@ export function DropdownSection<T extends object>(
     <Section
       className={twMerge(
         '[&:first-child]:-mt-[1px]',
-        '[&:not(:first-child)]:mt-0.5',
+        '[&:not(:first-child)]:my-1.5',
         '[&:not(:first-child)]:border-t [&:not(:first-child)]:border-t-border/50',
-        '[&_header]:has-[[role=option]]:pl-6',
+        '[&_header]:has-[[role=option]]:pl-7',
         '[&_header]:has-[[role=menuitem]]:pl-3',
       )}
     >

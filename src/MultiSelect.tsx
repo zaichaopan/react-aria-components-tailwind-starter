@@ -332,7 +332,7 @@ export function MultiSelectItem(props: ListBoxItemProps) {
         (className, { isFocused }) => {
           return twMerge([
             'rounded-md p-1.5 text-base/6 outline-0 sm:text-sm/6',
-            isFocused && 'bg-accent text-white',
+            isFocused && 'bg-hover',
             className,
           ]);
         },
