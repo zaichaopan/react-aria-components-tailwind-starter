@@ -116,9 +116,7 @@ export function MenuItem({
             renderProps.isDisabled && 'opacity-50',
             renderProps.isFocused && 'rounded-md bg-hover',
             destructive && 'text-destructive',
-            destructive &&
-              renderProps.isFocused &&
-              'bg-destructive/15 dark:bg-destructive/10',
+            destructive && renderProps.isFocused && 'bg-destructive/10',
             className,
           ]);
         },

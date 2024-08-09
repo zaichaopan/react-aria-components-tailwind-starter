@@ -101,9 +101,7 @@ export function DropdownItem({
             isDisabled && 'opacity-50',
             isFocused && 'bg-hover',
             destructive && 'text-destructive ',
-            isFocused &&
-              destructive &&
-              'bg-destructive/15 dark:bg-destructive/10',
+            isFocused && destructive && 'bg-destructive/10',
             className,
           ]);
         },
@@ -111,7 +109,7 @@ export function DropdownItem({
     >
       {composeRenderProps(props.children, (children, { isSelected }) => (
         <>
-          <span className="flex w-4 items-center mr-0.5">
+          <span className="mr-0.5 flex w-4 items-center">
             {isSelected && <Check className="h-4 w-4" />}
           </span>
           <span className="flex flex-1 items-center gap-2 text-nowrap">

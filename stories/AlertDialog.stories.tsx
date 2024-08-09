@@ -1,11 +1,11 @@
 import React from 'react';
 import type { Meta } from '@storybook/react';
 import { docs } from '../.storybook/docs';
-import { AlertDialog } from '../src/AlertDialog';
 import { Button } from '../src/Button';
 import { Modal } from '../src/Modal';
 import { Text, TextLink } from '../src/Text';
 import {
+  AlertDialog,
   DialogTrigger,
   Dialog,
   DialogBody,
@@ -13,6 +13,7 @@ import {
   DialogHeader,
   DialogCloseButton,
 } from '../src/Dialog';
+import { Checkbox } from '../src/Checkbox';
 
 const meta: Meta = {
   title: 'AlertDialog',
@@ -22,48 +23,9 @@ const meta: Meta = {
     docs: {
       description: {
         component:
-          '<a href="https://react-spectrum.adobe.com/react-aria/Dialog.html#alert-dialog" target="_blank">**Alert dialogs**</a> are a special type of dialog meant to present a prompt that the user must confirm before an action proceeds.',
+          '**Alert dialogs** are a special type of <a href="./?path=/docs/dialog--docs" target="_blank">**dialog**</a> meant to present a prompt that the user must confirm before an action proceeds.',
       },
       ...docs,
-    },
-  },
-  argTypes: {
-    title: {
-      description: 'Alert dialog title',
-      control: false,
-    },
-    destructive: {
-      description: 'Whether the primary action is destructive',
-      control: false,
-    },
-    cancelLabel: {
-      description: 'Cancel action button label',
-      control: false,
-      table: {
-        defaultValue: {
-          summary: 'Cancel',
-        },
-      },
-    },
-    onCancelAction: {
-      description: 'What action to execute after cancel button is clicked',
-      control: false,
-    },
-    primaryActionLabel: {
-      description: 'Primary action button label',
-      control: false,
-    },
-    onPrimaryAction: {
-      description: 'What action to execute after primary button is clicked',
-      control: false,
-    },
-    secondaryActionLabel: {
-      description: 'Secondary action button label',
-      control: false,
-    },
-    onSecondaryAction: {
-      description: 'What action to execute after secondary button is clicked',
-      control: false,
     },
   },
   tags: ['autodocs'],
@@ -72,126 +34,132 @@ const meta: Meta = {
 export default meta;
 
 export const Example = () => {
+  const [isOpen, setIsOpen] = React.useState(false);
+
   return (
-    <DialogTrigger>
-      <Button>Update</Button>
-      <Modal>
-        <AlertDialog title="Update Available" primaryActionLabel="Install now">
-          A new version is ready to be installed.
+    <>
+      <Button onPress={() => setIsOpen(true)}>Update</Button>
+      <Modal isOpen={isOpen} onOpenChange={setIsOpen}>
+        <AlertDialog>
+          <DialogHeader>Update Available</DialogHeader>
+          <DialogBody>A new version is ready to be installed.</DialogBody>
+          <DialogFooter>
+            <DialogCloseButton>Cancel</DialogCloseButton>
+            <Button onPress={() => setIsOpen(false)}>Install now</Button>
+          </DialogFooter>
         </AlertDialog>
       </Modal>
-    </DialogTrigger>
+    </>
   );
 };
 
 export const DestructiveAlerts = () => {
+  const [isOpen, setIsOpen] = React.useState(false);
+
   return (
-    <DialogTrigger>
-      <Button color="destructive">Delete&hellip;</Button>
-      <Modal>
-        <AlertDialog
-          title="Delete folder"
-          primaryActionLabel="Delete"
-          destructive
-        >
-          Are you sure you want to delete "Documents"? All contents will be
-          permanently destroyed.
+    <>
+      <Button color="destructive" onPress={() => setIsOpen(true)}>
+        Delete&hellip;
+      </Button>
+      <Modal isOpen={isOpen} onOpenChange={setIsOpen}>
+        <AlertDialog>
+          <DialogHeader>Delete folder</DialogHeader>
+          <DialogBody>
+            Are you sure you want to delete "Documents"? All contents will be
+            permanently destroyed.
+          </DialogBody>
+          <DialogFooter>
+            <DialogCloseButton>Cancel</DialogCloseButton>
+            <Button color="destructive" onPress={() => setIsOpen(false)}>
+              Delete
+            </Button>
+          </DialogFooter>
         </AlertDialog>
       </Modal>
-    </DialogTrigger>
+    </>
   );
-};
-
-DestructiveAlerts.parameters = {
-  docs: {
-    description: {
-      story: 'Use the **destructive** prop to render destructive alerts.',
-    },
-  },
-};
-
-export const TitleOnlyAlerts = () => {
-  return (
-    <DialogTrigger>
-      <Button color="destructive">Remove</Button>
-      <Modal>
-        <AlertDialog
-          title="Remove preview?"
-          destructive
-          primaryActionLabel="Remove"
-        ></AlertDialog>
-      </Modal>
-    </DialogTrigger>
-  );
-};
-
-TitleOnlyAlerts.parameters = {
-  docs: {
-    description: {
-      story: 'Dialog body is not required.',
-    },
-  },
 };
 
 export const WithSecondaryActions = () => {
+  const [isOpen, setIsOpen] = React.useState(false);
+
+  return (
+    <>
+      <Button outline onPress={() => setIsOpen(true)}>
+        Secondary
+      </Button>
+      <Modal size="lg" isOpen={isOpen} onOpenChange={setIsOpen}>
+        <AlertDialog>
+          <DialogHeader>Rate this app</DialogHeader>
+          <DialogBody>
+            If you enjoy the app, would you mind taking a moment to rate it? It
+            will take a few minutes.
+          </DialogBody>
+          <DialogFooter>
+            <DialogCloseButton className="sm:mr-auto">
+              No, thanks
+            </DialogCloseButton>
+            <Button onPress={() => setIsOpen(false)} outline>
+              Remind me later
+            </Button>
+            <Button onPress={() => setIsOpen(false)}>Rate now</Button>
+          </DialogFooter>
+        </AlertDialog>
+      </Modal>
+    </>
+  );
+};
+
+export const DoNotAskAgain = () => {
+  const [isOpen, setIsOpen] = React.useState(false);
+
+  return (
+    <>
+      <Button plain onPress={() => setIsOpen(true)}>
+        Do not ask again
+      </Button>
+      <Modal size="lg" isOpen={isOpen} onOpenChange={setIsOpen}>
+        <AlertDialog>
+          <DialogHeader>Rate this app</DialogHeader>
+          <DialogBody>
+            If you enjoy the app, would you mind taking a moment to rate it? It
+            will take a few minutes.
+          </DialogBody>
+          <DialogFooter>
+            <Checkbox defaultSelected className="sm:mr-auto">
+              Do not ask me again
+            </Checkbox>
+            <DialogCloseButton>Cancel</DialogCloseButton>
+            <Button onPress={() => setIsOpen(false)}>Rate now</Button>
+          </DialogFooter>
+        </AlertDialog>
+      </Modal>
+    </>
+  );
+};
+
+export const UncontrolledAlertDialogs = () => {
   return (
     <DialogTrigger>
-      <Button outline>Secondary</Button>
-      <Modal size="lg">
-        <AlertDialog
-          title="Rate this app"
-          cancelLabel="No, thanks"
-          primaryActionLabel="Rate now"
-          secondaryActionLabel="Remind me later"
-        >
-          If you enjoy the app, would you mind taking a moment to rate it? It
-          will take a few minutes.
+      <Button>Open Dialog</Button>
+      <Modal>
+        <AlertDialog>
+          <DialogHeader>Unable to connect your account</DialogHeader>
+          <DialogBody>
+            <Text>
+              Your changes were saved, but we could not connect your account due
+              to a technical issue on our end. Please try connecting again. If
+              the issue keeps happening, contact{' '}
+              <TextLink>Customer Care.</TextLink>
+            </Text>
+          </DialogBody>
+          <DialogFooter>
+            <DialogCloseButton>OK</DialogCloseButton>
+          </DialogFooter>
         </AlertDialog>
       </Modal>
     </DialogTrigger>
   );
-};
-
-WithSecondaryActions.parameters = {
-  docs: {
-    description: {
-      story:
-        'Use the **secondaryActionLabel** and **onSecondaryAction** prop of the **AlertDialog** component to add a secondary action button.',
-    },
-  },
-};
-
-export const WithControlledOpenState = () => {
-  const [isOpen, setOpen] = React.useState(false);
-
-  return (
-    <div>
-      <Button onPress={() => setOpen(true)} plain>
-        Try Again
-      </Button>
-      <Modal isOpen={isOpen} onOpenChange={setOpen}>
-        <AlertDialog
-          title="Unable to connect your account"
-          primaryActionLabel="Try Again"
-        >
-          <Text className="py-1">
-            Your changes were saved, but we could not connect your account due
-            to a technical issue on our end. Please try connecting again. If the
-            issue keeps happening, contact <TextLink>Customer Care.</TextLink>
-          </Text>
-        </AlertDialog>
-      </Modal>
-    </div>
-  );
-};
-
-WithControlledOpenState.parameters = {
-  docs: {
-    description: {
-      story:
-        'Use the **isOpen** and **onOpenChange**  prop of the **Modal** component to control alert dialog open state.',
-    },
-  },
 };
 
 export const AlertDialogsVsDialogs = () => {

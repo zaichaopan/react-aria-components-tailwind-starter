@@ -13,8 +13,18 @@ import {
   CloseButtonProps,
 } from './Button';
 import { composeTailwindRenderProps } from './utils';
+import { chain } from 'react-aria';
+import { Text } from './Text';
 
 export { DialogTrigger } from 'react-aria-components';
+
+export function AlertDialog({ children, ...props }: DialogProps) {
+  return (
+    <Dialog {...props} role="alertdialog">
+      {children}
+    </Dialog>
+  );
+}
 
 export function Dialog({ role, ...props }: DialogProps) {
   return (
@@ -67,15 +77,17 @@ export function DialogHeader(props: DialogHeaderProps) {
 }
 
 export function DialogBody(props: JSX.IntrinsicElements['div']) {
-  const { className, ...otherProps } = props;
+  const { className, children, ...rest } = props;
   return (
     <div
       className={twMerge(
         'flex max-h-[calc(var(--visual-viewport-height)-var(--visual-viewport-vertical-padding)-var(--dialog-header-height,0px)-var(--dialog-footer-height,0px))] flex-1 flex-col gap-2 overflow-auto px-6',
         className,
       )}
-      {...otherProps}
-    />
+      {...rest}
+    >
+      {typeof children === 'string' ? <Text>{children}</Text> : children}
+    </div>
   );
 }
 
@@ -152,15 +164,7 @@ export function DialogCloseButton(props: DialogCloseButtonProps) {
   if (!restProps.unstyle && !restProps.outline) {
     restProps.plain = true;
   }
-  return (
-    <Button
-      {...restProps}
-      onPress={(e) => {
-        state.close();
-        onPress?.(e);
-      }}
-    />
-  );
+  return <Button {...restProps} onPress={chain(state.close, onPress)} />;
 }
 
 export function DialogTitle({

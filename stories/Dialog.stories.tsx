@@ -3,6 +3,7 @@ import type { Meta } from '@storybook/react';
 import { Modal } from '../src/Modal';
 import {
   DialogTrigger,
+  AlertDialog,
   Dialog,
   DialogBody,
   DialogHeader,
@@ -20,7 +21,6 @@ import {
   TextArea,
   TextField,
 } from '../src/Field';
-import { AlertDialog } from '../src/AlertDialog';
 import {
   MenuButton,
   MenuTrigger,
@@ -132,7 +132,7 @@ DialogSizes.parameters = {
   docs: {
     description: {
       story:
-        'Use **size** prop of the **Modal** component change the side of dialog. \n\nAvailable size option includes **"sm"**, **"md"**, **"lg"**, **"xl"**, **"2xl"**, **"3xl"**, **"4xl"**, **"5xl"**. Default size is **lg**.'
+        'Use **size** prop of the **Modal** component change the side of dialog. \n\nAvailable size option includes **"sm"**, **"md"**, **"lg"**, **"xl"**, **"2xl"**, **"3xl"**, **"4xl"**, **"5xl"**. Default size is **lg**.',
     },
   },
 };
@@ -522,17 +522,24 @@ export const NestedDialogs = () => {
           setIsEditDialogOpen(false);
         }}
       >
-        <AlertDialog
-          title="Save changes?"
-          primaryActionLabel="Save"
-          cancelLabel="No, thanks"
-          children="You can save this to publish later from your drafts."
-          onPrimaryAction={() => {
-            alert('Your changes are saved');
-            setIsConfirmationDialogOpen(false);
-            setIsEditDialogOpen(false);
-          }}
-        />
+        <AlertDialog>
+          <DialogHeader>Save changes?</DialogHeader>
+          <DialogBody>
+            You can save this to publish later from your drafts.
+          </DialogBody>
+          <DialogFooter>
+            <DialogCloseButton>No, thanks</DialogCloseButton>
+            <Button
+              onPress={() => {
+                alert('Your changes are saved');
+                setIsConfirmationDialogOpen(false);
+                setIsEditDialogOpen(false);
+              }}
+            >
+              Save
+            </Button>
+          </DialogFooter>
+        </AlertDialog>
       </Modal>
     </div>
   );
@@ -668,8 +675,7 @@ export const CustomDialogHeader = () => {
 CustomDialogHeader.parameters = {
   docs: {
     description: {
-      story:
-        'Use **DialogTitle** component to compose complex dialog header.',
+      story: 'Use **DialogTitle** component to compose complex dialog header.',
     },
   },
 };
