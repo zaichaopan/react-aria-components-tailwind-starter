@@ -40,7 +40,7 @@ export function RangeCalendar<T extends DateValue>({
           {(date) => (
             <CalendarCell
               date={date}
-              className="group size-9 cursor-default text-sm outline outline-0 selected:bg-accent/10 invalid:selected:bg-destructive/15 selection-start:rounded-s-md selection-end:rounded-e-md dark:selected:bg-accent/40"
+              className="group size-9 cursor-default text-sm outline outline-0 selected:bg-hover invalid:selected:bg-destructive/15 selection-start:rounded-s-md selection-end:rounded-e-md"
             >
               {({
                 formattedDate,

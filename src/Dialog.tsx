@@ -13,7 +13,6 @@ import {
   CloseButtonProps,
 } from './Button';
 import { composeTailwindRenderProps } from './utils';
-import { chain } from 'react-aria';
 import { Text } from './Text';
 
 export { DialogTrigger } from 'react-aria-components';
@@ -164,7 +163,16 @@ export function DialogCloseButton(props: DialogCloseButtonProps) {
   if (!restProps.unstyle && !restProps.outline) {
     restProps.plain = true;
   }
-  return <Button {...restProps} onPress={chain(state.close, onPress)} />;
+
+  return (
+    <Button
+      {...restProps}
+      onPress={(e) => {
+        state.close();
+        onPress?.(e);
+      }}
+    />
+  );
 }
 
 export function DialogTitle({
