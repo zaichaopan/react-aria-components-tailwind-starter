@@ -42,7 +42,9 @@ export function MenuButton({
             {typeof children === 'function' ? children(renderProps) : children}
             {!noArrow && (
               <Icon>
-                <ChevronDown className="ml-0.5 mt-0.5" />
+                <ChevronDown
+                  className={twMerge(!!children && 'ml-0.5 mt-0.5')}
+                />
               </Icon>
             )}
           </>
@@ -127,7 +129,7 @@ export function MenuItem({
         (children, { selectionMode, isSelected, isFocused }) => (
           <>
             {selectionMode !== 'none' && (
-              <span className="flex w-4 mr-0.5 items-center">
+              <span className="mr-0.5 flex w-4 items-center">
                 {isSelected && (
                   <Icon>
                     <Check className="size-4" />

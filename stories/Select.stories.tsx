@@ -15,7 +15,7 @@ const meta: Meta<typeof Select> = {
     docs: {
       description: {
         component:
-          'A <a href="https://react-spectrum.adobe.com/react-aria/Select.html#select" target="_blank">**select**</a> displays a collapsible list of options and allows a user to select one of them..',
+          'A <a href="https://react-spectrum.adobe.com/react-aria/Select.html#select" target="_blank">**select**</a> displays a collapsible list of options and allows a user to select one of them.',
       },
       ...docs,
       controls: {
@@ -190,7 +190,7 @@ export const CustomWidth = () => {
 CustomWidth.parameters = {
   docs: {
     description: {
-      story: 'Use **min-w-\\*** to set **SelectField** width:',
+      story: 'Use **min-w-\\*** to set **SelectField** width.',
     },
   },
 };

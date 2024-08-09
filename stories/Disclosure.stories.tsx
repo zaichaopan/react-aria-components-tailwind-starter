@@ -59,7 +59,7 @@ export const DefaultOpen = () => {
 DefaultOpen.parameters = {
   docs: {
     description: {
-      story: 'Use **open** prop to expand the content by default:',
+      story: 'Use **open** prop to expand the content by default.',
     },
   },
 };
@@ -88,7 +88,7 @@ export const WithToggleIcon = () => {
 WithToggleIcon.parameters = {
   docs: {
     description: {
-      story: 'Use **group-open:** modifier to style the toggle icon:',
+      story: 'Use **group-open:** modifier to style the toggle icon.',
     },
   },
 };
@@ -159,7 +159,7 @@ export const UsingAsAccordion = () => {
 UsingAsAccordion.parameters = {
   docs: {
     description: {
-      story: `An **accordion** can be thought of as a collection of 2 or more disclosures one after the other. Use the **name** prop to only expand one disclosure at one time:`,
+      story: `An **accordion** can be thought of as a collection of 2 or more disclosures one after the other. Use the **name** prop to only expand one disclosure at one time.`,
     },
   },
 };

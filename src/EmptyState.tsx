@@ -4,7 +4,7 @@ import { Text } from './Text';
 import { Heading, HeadingProps } from './Heading';
 import { Icon } from './Icon';
 
-export function BlankSlate({
+export function EmptyState({
   className,
   ...props
 }: JSX.IntrinsicElements['div']) {
@@ -19,7 +19,7 @@ export function BlankSlate({
   );
 }
 
-export function BlankSlateIcon({
+export function EmptyStateIcon({
   className,
   children,
   ...props
@@ -28,7 +28,8 @@ export function BlankSlateIcon({
     <div
       {...props}
       className={twMerge(
-        'flex max-w-32 items-center justify-center @md:max-w-40 [&>svg]:h-auto [&>svg]:max-w-full',
+        'mb-2 flex max-w-32 items-center justify-center @md:max-w-40',
+        '[&>svg:not([class*=text-])]:text-muted [&>svg]:h-auto [&>svg]:min-w-12 [&>svg]:max-w-full',
         className,
       )}
     >
@@ -37,7 +38,7 @@ export function BlankSlateIcon({
   );
 }
 
-export function BlankSlateHeading({
+export function EmptyStateHeading({
   className,
   level = 2,
   ...props
@@ -46,21 +47,21 @@ export function BlankSlateHeading({
     <Heading
       {...props}
       level={level}
-      className={twMerge('mt-1 text-balance', className)}
+      className={twMerge('text-balance', className)}
     />
   );
 }
 
-export function BlankSlateDescription({ className, ...props }: TextProps) {
+export function EmptyStateDescription({ className, ...props }: TextProps) {
   return (
     <Text
       {...props}
-      className={twMerge('m-1 max-w-prose text-balance', className)}
+      className={twMerge('max-w-prose text-balance', className)}
     />
   );
 }
 
-export function BlankSlateActions({
+export function EmptyStateActions({
   className,
   ...props
 }: JSX.IntrinsicElements['div']) {
@@ -68,7 +69,7 @@ export function BlankSlateActions({
     <div
       {...props}
       className={twMerge(
-        'mt-3 flex flex-1 flex-col items-center justify-center gap-4 p-2',
+        'mt-3 flex flex-col items-center justify-center gap-4 p-2',
         className,
       )}
     />

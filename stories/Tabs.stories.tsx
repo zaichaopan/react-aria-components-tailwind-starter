@@ -318,7 +318,7 @@ TabsOnMobile.parameters = {
   docs: {
     description: {
       story:
-        'You can scroll tablist on mobile. If this is not what you want, you can show a selector on mobile. Please resize the screen to test:',
+        'You can scroll tablist on mobile. If this is not what you want, you can show a selector on mobile. Please resize the screen to test.',
     },
   },
 };

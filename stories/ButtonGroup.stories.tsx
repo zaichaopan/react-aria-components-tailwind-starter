@@ -1,10 +1,11 @@
 import type { Meta } from '@storybook/react';
 import {
-  BookMarked,
+
   ChevronLeft,
   ChevronRight,
   Minus,
   Plus,
+  Star,
 } from 'lucide-react';
 import { Button, ButtonGroup } from '../src/Button';
 import { docs } from '../.storybook/docs';
@@ -41,11 +42,11 @@ export const Example = () => {
       <ButtonGroup>
         <Button outline>
           <Icon>
-            <BookMarked />
+            <Star />
           </Icon>
-          Bookmark
+          Star
         </Button>
-        <Button outline>12K</Button>
+        <Button outline>1K</Button>
       </ButtonGroup>
       <ButtonGroup>
         <Button isIconOnly>
@@ -54,6 +55,18 @@ export const Example = () => {
           </Icon>
         </Button>
         <Button isIconOnly>
+          <Icon aria-label="Zoom Out">
+            <Minus />
+          </Icon>
+        </Button>
+      </ButtonGroup>
+      <ButtonGroup>
+        <Button isIconOnly color='success'>
+          <Icon aria-label="Zoom In">
+            <Plus></Plus>
+          </Icon>
+        </Button>
+        <Button isIconOnly color='success'>
           <Icon aria-label="Zoom Out">
             <Minus />
           </Icon>

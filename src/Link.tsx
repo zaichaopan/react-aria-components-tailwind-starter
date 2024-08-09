@@ -20,12 +20,15 @@ const linkStyle = [
 export const Link = React.forwardRef<HTMLAnchorElement, LinkProps>(
   function Link(props, ref) {
     if (props.asChild) {
-      return <Slot {...props} className={twMerge(linkStyle)} />;
+      const { asChild, ...rest } = props;
+      return <Slot {...rest} className={twMerge(linkStyle)} />;
     }
+
+    const { asChild, ...rest } = props;
 
     return (
       <RACLink
-        {...props}
+        {...rest}
         ref={ref}
         className={composeRenderProps(
           props.className,

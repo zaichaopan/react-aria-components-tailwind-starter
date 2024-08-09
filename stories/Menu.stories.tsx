@@ -47,11 +47,11 @@ const meta: Meta = {
 
 export default meta;
 
-export const Example = (args: any) => {
+export const Example = () => {
   return (
     <MenuTrigger>
       <MenuButton outline>Options</MenuButton>
-      <MenuPopover {...args}>
+      <MenuPopover>
         <Menu>
           <MenuItem>Account</MenuItem>
           <MenuItem>Settings</MenuItem>
@@ -96,7 +96,7 @@ MenuButtons.parameters = {
   docs: {
     description: {
       story:
-        'Menu Button is renderer as **Button**. Use **color** to config button style:',
+        'Menu Buttons are <a href="./?path=/docs/button--docs" target="_blank">**Buttons**</a>. Use the **color** prop to config button style.',
     },
   },
 };
@@ -121,7 +121,7 @@ MenuPopoverPlacements.parameters = {
   docs: {
     description: {
       story:
-        'Use the [**placement**](https://react-spectrum.adobe.com/react-aria/Popover.html#placement) prop on the **MenuPopover** to position the menu relative to the trigger:',
+        'Use [**placement**](https://react-spectrum.adobe.com/react-aria/Popover.html#placement) prop on **MenuPopover** component to position the menu relative to the trigger.',
     },
   },
 };
@@ -147,7 +147,7 @@ MenuSeparators.parameters = {
   docs: {
     description: {
       story:
-        'Use the **MenuSeparator** components to a separator between menu items:',
+        'Use **MenuSeparator** component to render a separator between menu items.',
     },
   },
 };
@@ -180,7 +180,7 @@ MenuSections.parameters = {
   docs: {
     description: {
       story:
-        'Use **MenuSection** component with **title** props, and **Separator** component to group menu items into sections:',
+        'Use **MenuSection** component with the **title** prop, and **Separator** component to group menu items into sections.',
     },
   },
 };
@@ -204,7 +204,7 @@ MenuDescriptions.parameters = {
   docs: {
     description: {
       story:
-        'Add **description** prop to **MenuItem** component to add a description:',
+        'Use the **description** prop to add a description to a **MenItem**.',
     },
   },
 };
@@ -261,7 +261,7 @@ WithIcons.parameters = {
   docs: {
     description: {
       story:
-        'Add **icon** props to a **MenuItem** to render a **decorative icon** next to the menu text:',
+        'Use the **icon** prop to add a **decorative icon** to a **MenuItem**.',
     },
   },
 };
@@ -286,7 +286,7 @@ WithKeyboardShortcut.parameters = {
   docs: {
     description: {
       story:
-        "Add **shortcut** props to a **MenuItem** to render a **keyboard shortcut** you've implemented in your application:",
+        "Use the **shortcut** prop to show a **keyboard shortcut** in a **MenuItem**.",
     },
   },
 };
@@ -311,12 +311,12 @@ DisabledMenuItems.parameters = {
   docs: {
     description: {
       story:
-        'Use the **isDisabled** prop on a **MenuItem** to disable that item and prevent it from being selected:',
+        'Use the **isDisabled** prop on a **MenuItem** to disable that item and prevent it from being selected.',
     },
   },
 };
 
-export const DisabledMenu = () => {
+export const DisabledMenus = () => {
   return (
     <MenuTrigger>
       <MenuButton outline isDisabled>
@@ -333,6 +333,16 @@ export const DisabledMenu = () => {
     </MenuTrigger>
   );
 };
+
+DisabledMenus.parameters = {
+  docs: {
+    description: {
+      story:
+        'Use the **isDisabled** prop on **MenuButton** to disable a **Menu**.',
+    },
+  },
+};
+
 
 export const DestructiveMenuItems = () => {
   return (
@@ -357,7 +367,7 @@ DestructiveMenuItems.parameters = {
   docs: {
     description: {
       story:
-        'Use the **destructive** prop for destructive **MenuItem**:',
+        'Use the **destructive** prop to show a destructive **MenuItem**.',
     },
   },
 };
@@ -386,7 +396,7 @@ WithIconTrigger.parameters = {
   docs: {
     description: {
       story:
-        'Add **Icon** to **MenuButton**, **aria-label** and **noArrow** to make an icon-only menu trigger',
+        'Add **Icon** to **MenuButton** with the **aria-label** and **noArrow** prop to make an icon-only menu trigger.',
     },
   },
 };
@@ -417,7 +427,7 @@ WithAvatarTrigger.parameters = {
   docs: {
     description: {
       story:
-        "Add **Avatar** component to **MenuButton** with **variant='unstyled'** to use an avatar as the menu trigger:",
+        "Add **Avatar** component to **MenuButton** with **variant='unstyled'** to use an avatar as the menu trigger.",
     },
   },
 };
@@ -459,7 +469,7 @@ WithCustomTrigger.parameters = {
   docs: {
     description: {
       story:
-        'Add **unstyle** to **MenuButton** to render your own custom menu trigger:',
+        'Add **unstyle** prop to **MenuButton** to render your own custom menu trigger.',
     },
   },
 };
@@ -503,7 +513,7 @@ export const WithLink = () => {
 WithLink.parameters = {
   docs: {
     description: {
-      story: 'Add **href=`** to **MenuItem** to render a menu item as a link::',
+      story: 'Add **href=\\*** to **MenuItem** to render a menu item as a link.',
     },
   },
 };
@@ -539,7 +549,7 @@ export const SubMenus = () => {
 SubMenus.parameters = {
   docs: {
     description: {
-      story: 'Use **SubmenuTrigger** and **SubMenu** to a sub menu:',
+      story: 'Use **SubmenuTrigger** and **SubMenu** to render a sub menu.',
     },
   },
 };
@@ -585,7 +595,7 @@ SubMenuOnMobile.parameters = {
   docs: {
     description: {
       story:
-        'To show submenu properly small screen, duplicate your **Submenu** with **placement="bottom"** and show it on small screens:',
+        'To show submenu properly small screen, duplicate your **Submenu** with **placement="bottom"**.',
     },
   },
 };
@@ -610,7 +620,7 @@ SingleSelection.parameters = {
   docs: {
     description: {
       story:
-        'Add **sectionMode="single"** and **defaultSelectedKey** to **Menu** to make menu supports single selection:',
+        'Add **sectionMode="single"** and **defaultSelectedKey** to **Menu** to make menu supports single selection.',
     },
   },
 };
@@ -638,7 +648,7 @@ MultiSelections.parameters = {
   docs: {
     description: {
       story:
-        'Add **sectionMode="multiple"** and **defaultSelectedKey** to **Menu** to make menu supports multi selections:',
+        'Use **sectionMode="multiple"** and **defaultSelectedKey** to make menu supports multi selections.',
     },
   },
 };
@@ -671,7 +681,7 @@ MenuHeaders.parameters = {
   docs: {
     description: {
       story:
-        'Add your custom header component as the first child of **MenPopover** to a menu header:',
+        'Add your custom header component as the first child of **MenPopover** component.',
     },
   },
 };
@@ -743,7 +753,7 @@ ControlledMenuOpenState.parameters = {
   docs: {
     description: {
       story:
-        'Use **isOpen** and **onOpenChange** of **MenuPopover** component to control menu open state:',
+        'Use the **isOpen** and **onOpenChange** prop to control menu popover open state.',
     },
   },
 };

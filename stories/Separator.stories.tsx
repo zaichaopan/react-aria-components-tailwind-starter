@@ -49,7 +49,7 @@ export const VerticalSeparators = () => {
 VerticalSeparators.parameters = {
   docs: {
     description: {
-      story: 'Use **orientation="vertical"** to render vertical separators:',
+      story: 'Use **orientation="vertical"** to render vertical separators.',
     },
   },
 };
@@ -84,7 +84,7 @@ WithTextsOrIcons.parameters = {
   docs: {
     description: {
       story:
-        'Add **text** or **icon** inside to render text or icons inside your separator:',
+        'Add **text** or **icon** inside to render text or icons inside your separator.',
     },
   },
 };

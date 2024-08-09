@@ -61,7 +61,7 @@ export const WithNumberNotifications = () => {
 WithNumberNotifications.parameters = {
   docs: {
     description: {
-      story: 'Use the **\\`count\\`** prop to render counts:',
+      story: 'Use the **\\`count\\`** prop to render counts.',
     },
   },
 };

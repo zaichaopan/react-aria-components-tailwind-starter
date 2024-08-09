@@ -25,7 +25,7 @@ const meta: Meta<typeof Button> = {
     layout: 'fullscreen',
     docs: {
       description: {
-        component: 'Combobox can be used as a **Command Menu**',
+        component: 'Combobox can be used as a **Command Menu**.',
       },
       ...docs,
       controls: {

@@ -5,15 +5,13 @@ import {
   MenuPopover,
   MenuTrigger,
   MenuButton,
-  MenuSeparator
+  MenuSeparator,
 } from '../src/Menu';
 import { docs } from '../.storybook/docs';
 import { Button, ButtonGroup } from '../src/Button';
-import { Icon } from '../src/Icon';
-import { ChevronDown } from 'lucide-react';
 
 const meta: Meta = {
-  title: 'SplitButtonGroup',
+  title: 'SplitButton',
   parameters: {
     layout: 'centered',
     docs: {
@@ -37,11 +35,7 @@ export const Example = () => {
     <ButtonGroup>
       <Button color="success">Merge pull request</Button>
       <MenuTrigger>
-        <MenuButton noArrow color="success">
-          <Icon aria-label="More options">
-            <ChevronDown></ChevronDown>
-          </Icon>
-        </MenuButton>
+        <MenuButton color="success" aria-label="More merge options" />
         <MenuPopover placement="bottom end">
           <Menu>
             <MenuItem description="All commits from this branch will be added to the base branch via a merge commit.">
@@ -57,4 +51,3 @@ export const Example = () => {
     </ButtonGroup>
   );
 };
-

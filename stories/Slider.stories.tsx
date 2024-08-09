@@ -12,7 +12,7 @@ const meta: Meta<typeof Slider> = {
     docs: {
       description: {
         component:
-          ' A <a href="https://react-spectrum.adobe.com/react-aria/Slider.html#slider" target="_blank">**slider**</a> allows a user to select one or more values within a range..',
+          ' A <a href="https://react-spectrum.adobe.com/react-aria/Slider.html#slider" target="_blank">**slider**</a> allows a user to select one or more values within a range.',
       },
       ...docs,
       controls: {

@@ -103,7 +103,7 @@ InitialFallbacks.parameters = {
   docs: {
     description: {
       story: `The **alt** prop is used to generate initial avatar when image is loading or **src** is unavailable.
-        \n\n Use **colorless** props render initial avatars with a single background.   
+        \n\n Use **colorless** prop render initial avatars with a single background.   
         `,
     },
   },

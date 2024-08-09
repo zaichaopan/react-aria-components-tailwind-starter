@@ -55,7 +55,7 @@ CopyToClipboardCustomUI.parameters = {
   docs: {
     description: {
       story:
-        'Use **CopyToClipboard** component to build your own copy to clipboard UI:',
+        'Use **CopyToClipboard** component to build your own copy to clipboard UI.',
     },
   },
 };

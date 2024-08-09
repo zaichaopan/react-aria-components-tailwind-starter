@@ -83,7 +83,7 @@ export function Tag({ children, color, ...props }: TagProps) {
         props.className,
         (className, renderProps) => {
           return twMerge(
-            'flex max-w-fit cursor-default items-center gap-1 rounded-full border px-2 py-0.5 text-xs transition',
+            'flex max-w-fit cursor-default items-center gap-1 rounded-md border px-1 py-0.5 text-xs transition',
             renderProps.allowsRemoving && 'pr-1',
             colors[color || groupColor].base,
             renderProps.isSelected && colors[color || groupColor].selected,

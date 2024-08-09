@@ -41,7 +41,7 @@ export function Calendar<T extends DateValue>({
                   'flex size-9 cursor-default items-center justify-center rounded-md text-sm outline-none',
                   renderProps.isSelected
                     ? 'bg-accent text-white invalid:bg-destructive invalid:text-white'
-                    : 'hover:bg-accent/15 pressed:bg-accent/90 pressed:text-white dark:hover:bg-accent/30',
+                    : 'hover:bg-hover pressed:bg-accent/90 pressed:text-white',
                   renderProps.isDisabled && 'text-muted',
                   renderProps.isFocusVisible && focusOutlineStyle,
                   className,

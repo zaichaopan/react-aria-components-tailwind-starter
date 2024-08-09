@@ -1,13 +1,14 @@
 import { twMerge } from 'tailwind-merge';
 import { Icon } from './Icon';
 
+// https://github.com/nickbruun/svg-loaders
 export function Spinner({
   className,
   'aria-label': ariaLabel,
   ...props
 }: JSX.IntrinsicElements['svg']) {
   return (
-    <Icon aria-label={ariaLabel}>
+    <Icon aria-label={ariaLabel ?? 'Loading'}>
       <svg
         version="1.1"
         xmlns="http://www.w3.org/2000/svg"

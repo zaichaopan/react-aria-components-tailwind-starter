@@ -242,7 +242,7 @@ CustomRadioGroups.parameters = {
   docs: {
     description: {
       story:
-        'Use the **render** prop of **Radio** to render completely custom radio groups:',
+        'Use the **render** prop of **Radio** to render completely custom radio groups.',
     },
   },
 };

@@ -46,7 +46,7 @@ CheckboxDescription.parameters = {
   docs: {
     description: {
       story:
-        'Use **CheckboxField** and **Description** component to add checkbox description:',
+        'Use **CheckboxField** and **Description** component to add checkbox description.',
     },
   },
 };
@@ -66,7 +66,7 @@ CheckboxDisabled.parameters = {
   docs: {
     description: {
       story:
-        'Use **isDisabled** prop of **Checkbox** component to disable checkbox:',
+        'Use the **isDisabled** prop of **Checkbox** component to disable checkbox.',
     },
   },
 };
@@ -89,7 +89,7 @@ export const CheckboxGroups = () => {
 CheckboxGroups.parameters = {
   docs: {
     description: {
-      story: 'Use **CheckboxGroup**, **Label** to build your checkbox group:',
+      story: 'Use **CheckboxGroup** and **Label** component to build your checkbox group.',
     },
   },
 };
@@ -169,7 +169,7 @@ CheckboxLabelPosition.parameters = {
   docs: {
     description: {
       story:
-        'Use **labelPosition="left"** to position label to the left size of the checkbox:',
+        'Use **labelPosition="left"** to position label to the left size of the checkbox.',
     },
   },
 };
@@ -210,7 +210,7 @@ CheckboxGroupValidation.parameters = {
   docs: {
     description: {
       story:
-        'Combine **Form**, **FieldError** with **CheckboxGroup** to add validation when submitting form:',
+        'Combine **Form**, **FieldError** with **CheckboxGroup** component to add validation when submitting form.',
     },
   },
 };

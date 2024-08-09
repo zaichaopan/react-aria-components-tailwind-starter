@@ -105,7 +105,7 @@ export const DestructiveAlerts = () => {
 DestructiveAlerts.parameters = {
   docs: {
     description: {
-      story: 'Use **destructive** prop to render destructive alerts.',
+      story: 'Use the **destructive** prop to render destructive alerts.',
     },
   },
 };
@@ -156,7 +156,7 @@ WithSecondaryActions.parameters = {
   docs: {
     description: {
       story:
-        'Use **secondaryActionLabel** and **onSecondaryAction** prop of the **AlertDialog** component to add a secondary action button.',
+        'Use the **secondaryActionLabel** and **onSecondaryAction** prop of the **AlertDialog** component to add a secondary action button.',
     },
   },
 };
@@ -189,7 +189,7 @@ WithControlledOpenState.parameters = {
   docs: {
     description: {
       story:
-        'Use **isOpen** and **onOpenChange**  prop of the **Modal** component to control alert dialog open state.',
+        'Use the **isOpen** and **onOpenChange**  prop of the **Modal** component to control alert dialog open state.',
     },
   },
 };

@@ -17,7 +17,7 @@ export interface RangeCalendarProps<T extends DateValue>
 }
 
 const selectionStateStyle = {
-  none: 'group-hover:bg-accent/15 group-pressed:bg-accent/90 dark:group-hover:bg-accent/50 group-hover:rounded-md',
+  none: 'group-hover:bg-hover group-pressed:bg-accent/90 group-hover:rounded-md',
   middle: [
     'group-hover:bg-accent/20 dark:group-hover:bg-accent/50',
     'group-invalid:group-hover:bg-destructive/50',

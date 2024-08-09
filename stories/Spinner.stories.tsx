@@ -25,7 +25,7 @@ export const Example = () => {
       <Spinner />
       <Spinner className="size-8" />
       <Spinner className="size-12" />
-      <Spinner className="size-16" strokeWidth="1" aria-label='loading' />
+      <Spinner className="size-16"/>
     </div>
   );
 };

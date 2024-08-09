@@ -17,7 +17,7 @@ export function TimeField<T extends TimeValue>(props: RACTimeFieldProps<T>) {
         props.className,
         (className, { isDisabled }) => {
           return twMerge(
-            'flex flex-col',
+            'flex flex-col items-start',
             isDisabled && 'opacity-50',
             className,
           );
