@@ -19,15 +19,15 @@ const colors = {
     selected: 'border-accent bg-accent text-white outline-0',
   },
   success: {
-    base: 'bg-success/25 border-success/25 dark:bg-success/25 dark:border-success/25',
+    base: 'bg-success/5 border-success/15 dark:bg-success/25 dark:border-success/25',
     selected: 'bg-success text-white border-success dark:bg-success outline-0',
   },
   warning: {
-    base: 'bg-warning/15 border-warning/15 dark:bg-warning/25 dark:border-warning/25',
+    base: 'bg-warning/5 border-warning/15 dark:bg-warning/25 dark:border-warning/25',
     selected: 'bg-warning text-white border-warning dark:bg-warning outline-0',
   },
   destructive: {
-    base: 'bg-destructive/15 border-destructive/15 dark:bg-destructive/25 dark:border-destructive/25',
+    base: 'bg-destructive/5 border-destructive/15 dark:bg-destructive/25 dark:border-destructive/25',
     selected:
       'bg-destructive text-white border-destructive dark:bg-destructive outline-0',
   },
@@ -39,7 +39,6 @@ const ColorContext = React.createContext<Color>('default');
 
 export interface TagGroupProps extends AriaTagGroupProps {
   color?: Color;
-  errorMessage?: string;
 }
 
 export interface TagProps extends AriaTagProps {
