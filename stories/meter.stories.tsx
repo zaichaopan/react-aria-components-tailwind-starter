@@ -4,6 +4,7 @@ import { docs } from '../.storybook/docs';
 
 const meta: Meta<typeof Meter> = {
   component: Meter,
+  title: 'Meter',
   parameters: {
     layout: 'centered',
     docs: {

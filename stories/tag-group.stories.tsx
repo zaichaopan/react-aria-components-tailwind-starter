@@ -4,6 +4,7 @@ import { Label } from '../src/field';
 
 const meta: Meta<typeof Example> = {
   component: TagGroup,
+  title: 'TagGroup',
   parameters: {
     layout: 'centered',
   },

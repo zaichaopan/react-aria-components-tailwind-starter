@@ -1,11 +1,11 @@
 import React from 'react';
 import type { Meta } from '@storybook/react';
 import { Settings } from 'lucide-react';
-import { Button } from '../src/button';
-import { Popover} from '../src/popover';
-import { docs } from '../.storybook/docs';
-import { Avatar, AvatarBadge } from '../src/avatar';
-import { Separator } from '../src/separator.ts';
+import { Button } from '../src/button.tsx';
+import { Popover} from '../src/popover.tsx';
+import { docs } from '../.storybook/docs.ts';
+import { Avatar, AvatarBadge } from '../src/avatar.tsx';
+import { Separator } from '../src/separator.tsx';
 import { Switch } from '../src/switch.tsx';
 import { Text } from '../src/text.tsx';
 import {
@@ -14,9 +14,9 @@ import {
   MenuPopover,
   MenuTrigger,
   MenuButton,
-} from '../src/menu';
+} from '../src/menu.tsx';
 import { Available } from '../src/status.tsx';
-import { Dialog } from '../src/dialog';
+import { Dialog } from '../src/dialog.tsx';
 import { DialogTrigger } from 'react-aria-components';
 
 const meta: Meta<typeof Popover> = {

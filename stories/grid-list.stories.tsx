@@ -4,6 +4,7 @@ import { docs } from '../.storybook/docs';
 
 const meta: Meta<typeof GridList> = {
   component: GridList,
+  title: 'GridList',
   parameters: {
     layout: 'centered',
     docs: {

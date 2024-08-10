@@ -5,6 +5,7 @@ import type { Meta } from '@storybook/react';
 
 const meta: Meta<typeof Breadcrumbs> = {
   component: Breadcrumbs,
+  title: 'Breadcrumbs',
   parameters: {
     layout: 'centered',
     docs: {

@@ -1,8 +1,8 @@
 import type { Meta } from '@storybook/react';
-import { Separator } from '../src/separator.ts';
-import { docs } from '../.storybook/docs';
+import { Separator } from '../src/separator.tsx';
+import { docs } from '../.storybook/docs.ts';
 import { Mail } from 'lucide-react';
-import { Icon } from '../src/icon';
+import { Icon } from '../src/icon.tsx';
 
 const meta: Meta<typeof Separator> = {
   title: 'Separator',

@@ -1,13 +1,13 @@
 import React from 'react';
 import type { Meta } from '@storybook/react';
-import { ListBox, ListBoxItem } from '../src/list-box';
+import { ListBox, ListBoxItem } from '../src/list-box.tsx';
 import { Available, Away, Busy, DoNotDisturb } from '../src/status.tsx';
 import { Check } from 'lucide-react';
-import { docs } from '../.storybook/docs';
+import { docs } from '../.storybook/docs.ts';
 import { Selection } from 'react-aria-components';
 import { twMerge } from 'tailwind-merge';
 import { Text } from '../src/text.tsx';
-import { Separator } from '../src/separator.ts';
+import { Separator } from '../src/separator.tsx';
 
 const meta: Meta<typeof ListBox> = {
   title: 'ListBox',

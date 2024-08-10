@@ -8,7 +8,7 @@ import { PasswordInput } from '../../src/password-input';
 import { Link } from '../../src/link';
 import { Strong, Text } from '../../src/text.tsx';
 import { Switch } from '../../src/switch.tsx';
-import { Separator } from '../../src/separator.ts';
+import { Separator } from '../../src/separator.tsx';
 import { Icon } from '../../src/icon';
 
 const meta: Meta<typeof TextField> = {

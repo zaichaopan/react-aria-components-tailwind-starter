@@ -6,6 +6,7 @@ import { docs } from '../.storybook/docs';
 
 const meta: Meta<typeof Table> = {
   component: Table,
+  title: 'Table',
   parameters: {
     layout: 'centered',
     docs: {

@@ -34,8 +34,8 @@ import {
   DialogFooter,
   DialogHeader,
 } from '../src/dialog';
-import { NativeTooltips } from './Tooltip.stories';
-import { WithAvatars } from './MultiSelect.stories';
+import { NativeTooltips } from './tooltip.stories';
+import { WithAvatars } from './multi-select.stories';
 
 const meta: Meta<typeof Button> = {
   title: 'Overview',
