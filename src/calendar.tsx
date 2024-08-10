@@ -13,8 +13,9 @@ import {
   composeRenderProps,
 } from 'react-aria-components';
 import { Button } from './button';
-import { focusOutlineStyle } from './utils';
+import { focusVisibleOutline } from './utils';
 import { twMerge } from 'tailwind-merge';
+import { ChevronLeftIcon, ChevronRightIcon } from './icons';
 
 export interface CalendarProps<T extends DateValue>
   extends Omit<RACCalendarProps<T>, 'visibleDuration'> {
@@ -26,25 +27,35 @@ export function Calendar<T extends DateValue>({
   ...props
 }: CalendarProps<T>) {
   return (
-    <RACCalendar {...props}>
+    <RACCalendar
+      {...props}
+      className={composeRenderProps(props.className, (className) => {
+        return twMerge('px-1.5 py-2.5', className);
+      })}
+    >
       <CalendarHeader />
-      <CalendarGrid weekdayStyle="short">
+      <CalendarGrid
+        weekdayStyle="short"
+        className="mx-3 border-separate border-spacing-y-1 sm:mx-2"
+      >
         <CalendarGridHeader />
-        <CalendarGridBody className="before:block before:w-full before:leading-[0.25rem] before:opacity-0 before:content-['.']">
+        <CalendarGridBody>
           {(date) => (
             <CalendarCell
               date={date}
-              className={composeRenderProps('', (className, renderProps) => {
-                return twMerge(
-                  'flex size-9 cursor-default items-center justify-center rounded-md text-sm outline-none',
-                  renderProps.isSelected
-                    ? 'bg-accent text-white invalid:bg-destructive invalid:text-white'
-                    : 'hover:bg-hover pressed:bg-accent/90 pressed:text-white',
-                  renderProps.isDisabled && 'text-muted',
-                  renderProps.isFocusVisible && focusOutlineStyle,
-                  className,
-                );
-              })}
+              className={twMerge(
+                'flex size-9 cursor-default items-center justify-center rounded-lg  text-[0.85rem] outline-none',
+                'hover:bg-zinc-100 dark:hover:bg-zinc-700',
+                'pressed:bg-accent/90 pressed:text-white',
+                'disabled:opacity-50',
+
+                'selected:border selected:border-accent selected:text-sm selected:dark:border-0',
+                'selected:bg-accent selected:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.1)]',
+                'selected:text-white',
+                'selected:invalid:border-destructive selected:invalid:bg-destructive selected:invalid:text-white',
+                'unavailable:text-destructive unavailable:line-through unavailable:decoration-destructive',
+                focusVisibleOutline,
+              )}
             />
           )}
         </CalendarGridBody>
@@ -63,81 +74,37 @@ export function CalendarHeader() {
 
   return (
     <header className="flex w-full items-center gap-1">
-      <Button slot="previous" plain iconOnly aria-label="Previous">
+      <Button
+        slot="previous"
+        variant="plain"
+        isIconOnly
+        aria-label="Previous"
+        className="focus-visible:-outline-offset-2 [&:not(:hover)]:text-muted"
+      >
         {direction === 'rtl' ? (
-          <svg
-            aria-hidden
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className="text-muted"
-          >
-            <path d="m9 18 6-6-6-6" />
-          </svg>
+          <ChevronRightIcon className="sm:size-5" strokeWidth="1.5" />
         ) : (
-          <svg
-            aria-hidden
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className="text-muted"
-          >
-            <path d="m15 18-6-6 6-6" />
-          </svg>
+          <ChevronLeftIcon className="sm:size-5" strokeWidth="1.5" />
         )}
       </Button>
 
       <Heading
-        className="mx-2 flex-1 text-center font-medium"
+        className="mx-2 flex-1 text-center text-sm/6 font-medium"
         level={2}
         aria-hidden
       />
 
-      <Button slot="next" plain iconOnly aria-label="Next">
+      <Button
+        slot="next"
+        variant="plain"
+        isIconOnly
+        aria-label="Next"
+        className="focus-visible:-outline-offset-2 [&:not(:hover)]:text-muted"
+      >
         {direction === 'rtl' ? (
-          <svg
-            aria-hidden
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className="text-muted"
-          >
-            <path d="m15 18-6-6 6-6" />
-          </svg>
+          <ChevronLeftIcon className="sm:size-5" strokeWidth="1.5" />
         ) : (
-          <svg
-            aria-hidden
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className="text-muted"
-          >
-            <path d="m9 18 6-6-6-6" />
-          </svg>
+          <ChevronRightIcon className="sm:size-5" strokeWidth="1.5" />
         )}
       </Button>
     </header>

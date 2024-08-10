@@ -15,18 +15,15 @@ import { Description, Label } from '../src/field';
 import React from 'react';
 
 const meta: Meta = {
-  title: 'MultiSelect',
+  title: 'Multi select',
   parameters: {
     layout: 'centered',
     docs: {
       description: {
-        component: `Use the **MultiSelectField**, **MultiSelect**, **Tag**, **MultiSelectItem** to build multi select components.
-          `,
+        component:
+          'Use the **MultiSelectField**, **MultiSelect**, **Tag**, **MultiSelectItem** to build multi select components.',
       },
       ...docs,
-      controls: {
-        exclude: /.*/g,
-      },
     },
   },
   tags: ['autodocs'],
@@ -59,7 +56,7 @@ const frameworks = [
   },
 ];
 
-export const Example = () => {
+export const BasicExample = () => {
   const selectedList = useListData<Framework>({
     initialItems: [],
   });
@@ -80,7 +77,7 @@ export const Example = () => {
                   No results found for: <Strong>{inputValue}</Strong>
                 </>
               ) : (
-                `No options`
+                'No options'
               )}
             </Text>
           );
@@ -237,7 +234,7 @@ export const WithAvatars = () => {
                     No results found for: <Strong>{inputValue}</Strong>
                   </>
                 ) : (
-                  `No options`
+                  'No options'
                 )}
               </Text>
             );
@@ -261,7 +258,6 @@ export const WithAvatars = () => {
             );
           }}
         </MultiSelect>
-
         {isInvalid && (
           <Text className="text-destructive">
             Please select an item in the list.
@@ -269,9 +265,7 @@ export const WithAvatars = () => {
         )}
       </MultiSelectField>
 
-      <Button type="submit" className="self-start">
-        Submit
-      </Button>
+      <Button type="submit">Submit</Button>
     </Form>
   );
 };

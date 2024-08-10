@@ -1,23 +1,17 @@
 import type { Meta } from '@storybook/react';
-import { Heading, HeadingProps } from '../src/heading';
+import { Heading, SubHeading } from '../src/heading';
 import { docs } from '../.storybook/docs';
 
-const meta: Meta<HeadingProps> = {
+const meta: Meta = {
   title: 'Heading',
-  component: Heading,
   parameters: {
     layout: 'centered',
     docs: {
       description: {
-        component: `**Heading** is used to render semantic HTML heading elements.
-          \n\n- **level**: render heading from h1 to h4. Default level **1**.
-          \n\n- **displayLevel**: use display style of another level.
-          `,
+        component:
+          'The **Heading** component renders semantic HTML headings (h1–h3). Use the **level** prop to set heading level. The default level is **1**. Use the **displayLevel** to render display style of another level.',
       },
       ...docs,
-      controls: {
-        exclude: /.*/g,
-      },
     },
   },
   tags: ['autodocs'],
@@ -25,14 +19,59 @@ const meta: Meta<HeadingProps> = {
 
 export default meta;
 
-export const Example = () => {
+export const BasicExample = () => {
   return (
-    <div className='flex flex-col gap-4'>
-    <Heading>H1: The quick brown fox jumps over the lazy dog.</Heading>
-    <Heading level={2}>H2: The quick brown fox jumps over the lazy dog.</Heading>
-    <Heading level={3}>h3: The quick brown fox jumps over the lazy dog.</Heading>
-    <Heading level={4}>H4: The quick brown fox jumps over the lazy dog.</Heading>
-    <Heading level={4} displayLevel={1}>H4 with H1 style: The quick brown fox jumps over the lazy dog.</Heading>
-  </div>
-  )
+    <div className="space-y-4">
+      <Heading>H1: The quick brown fox jumps over the lazy dog</Heading>
+      <Heading level={2}>
+        H2: The quick brown fox jumps over the lazy dog
+      </Heading>
+      <Heading level={3}>
+        H3: The quick brown fox jumps over the lazy dog
+      </Heading>
+      <SubHeading>
+        Sub heading: The quick brown fox jumps over the lazy dog
+      </SubHeading>
+    </div>
+  );
+};
+
+export const RenderAsDiv = () => {
+  return (
+    <div className="space-y-4">
+      <Heading>Display level 1</Heading>
+      <Heading elementType="div" displayLevel={2}>
+        Display level 2
+      </Heading>
+      <Heading elementType="div" displayLevel={3}>
+        Display level 3
+      </Heading>
+    </div>
+  );
+};
+
+RenderAsDiv.parameters = {
+  docs: {
+    description: {
+      story:
+        'Use **elementType="div"**to render a div instead of HTML headings.',
+    },
+  },
+};
+
+export const AutoFocusHeading = () => {
+  return (
+    <div className="max-w-lg space-y-2">
+      <Heading autoFocus>Auto focus heading</Heading>
+    </div>
+  );
+};
+
+AutoFocusHeading.parameters = {
+  docs: {
+    description: {
+      story:
+        'Use **autoFocus** to focus the heading. \n\n>This is useful in SPA after navigation. A screen reader will then announce the new heading when it gets focus.',
+    },
+  },
 };

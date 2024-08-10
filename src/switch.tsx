@@ -1,10 +1,47 @@
+import React from 'react';
 import {
+  Group,
+  GroupProps,
   Switch as RACSwitch,
   SwitchProps as RACSwitchProps,
+  SwitchRenderProps,
 } from 'react-aria-components';
-import { composeTailwindRenderProps, focusOutlineStyle } from './utils';
+import {
+  composeTailwindRenderProps,
+  groupBox,
+  groupFocusVisibleOutline,
+} from './utils';
 import { twMerge } from 'tailwind-merge';
-import { DescriptionProvider, WithDescriptionContext } from './field';
+import { DescriptionProvider, DescriptionContext, LabeledGroup } from './field';
+
+export function SwitchGroup({ className, ...props }: GroupProps) {
+  return (
+    <LabeledGroup>
+      <Group
+        {...props}
+        className={composeTailwindRenderProps(className, groupBox)}
+      ></Group>
+    </LabeledGroup>
+  );
+}
+
+export function Switches({
+  className,
+  ...props
+}: JSX.IntrinsicElements['div']) {
+  return (
+    <div
+      data-ui="box"
+      className={twMerge(
+        'flex flex-col',
+        // When any switch item has description, apply all `font-medium` to all switch item labels
+        '[&_label]:has-[[data-ui=description]]:font-medium',
+        className,
+      )}
+      {...props}
+    />
+  );
+}
 
 export function SwitchField({
   className,
@@ -14,15 +51,13 @@ export function SwitchField({
     <DescriptionProvider>
       <div
         {...props}
+        data-ui="field"
         className={twMerge(
           'group flex flex-col gap-y-1',
-          'sm:[&_[slot=description]]:has-[label[data-label-position=left]]:pr-[4rem]',
-          'sm:[&_[slot=description]]:has-[label[data-label-position=right]]:pl-[3rem]',
-          '[&_label]:has-[[data-label-position=left]]:justify-between',
-          // When the radio has description, make the label font-medium
-          '[&_label]:has-[[slot=description]]:font-medium',
-          // When the switch is disabled
-          '[&_[slot=description]]:has-[label[data-disabled]]:opacity-50',
+          '[&_[data-ui=description]:not([class*=pe-])]:has-[label[data-label-placement=start]]:pe-[calc(theme(width.8)+16px)]',
+          '[&_[data-ui=description]:not([class*=ps-])]:has-[label[data-label-placement=end]]:ps-[calc(theme(width.8)+12px)]',
+          '[&_label]:has-[[data-ui=description]]:font-medium',
+          '[&_[data-ui=description]]:has-[label[data-disabled]]:opacity-50',
           className,
         )}
       />
@@ -31,57 +66,98 @@ export function SwitchField({
 }
 
 interface SwitchProps extends RACSwitchProps {
-  labelPosition?: 'left' | 'right';
+  labelPlacement?: 'start' | 'end';
+  render?: never;
+}
+
+export interface CustomRenderSwitchProps
+  extends Omit<RACSwitchProps, 'children'> {
+  render: React.ReactElement | ((props: SwitchRenderProps) => React.ReactNode);
+  children?: never;
 }
 
 export function Switch({
-  labelPosition = 'left',
-  children,
+  className,
   ...props
-}: SwitchProps) {
+}: SwitchProps | CustomRenderSwitchProps) {
+  const descriptionContext = React.useContext(DescriptionContext);
+
+  if (props.render) {
+    const { render, ...restProps } = props;
+
+    return (
+      <RACSwitch
+        {...restProps}
+        aria-describedby={descriptionContext?.['aria-describedby']}
+        className={composeTailwindRenderProps(className, [
+          'group',
+          'text-base/6 sm:text-sm/6',
+          'disabled:opacity-50',
+        ])}
+      >
+        {render}
+      </RACSwitch>
+    );
+  }
+
+  const { labelPlacement = 'end', children, ...restProps } = props;
+
   return (
-    <WithDescriptionContext>
-      {(context) => {
-        return (
-          <RACSwitch
-            {...props}
-            aria-describedby={context?.['aria-describedby']}
-            data-label-position={labelPosition}
-            className={composeTailwindRenderProps(
-              props.className,
-              'group flex items-center gap-4 text-base/6 transition disabled:opacity-50 sm:text-sm/6',
+    <RACSwitch
+      {...restProps}
+      aria-describedby={descriptionContext?.['aria-describedby']}
+      data-label-placement={labelPlacement}
+      className={composeTailwindRenderProps(className, [
+        'group flex items-center',
+        'data-[label-placement=start]:flex-row-reverse',
+        'data-[label-placement=start]:justify-between',
+        'text-base/6 sm:text-sm/6',
+        'disabled:opacity-50',
+      ])}
+    >
+      {(renderProps) => (
+        <>
+          <div
+            className={twMerge(
+              'h-5 w-8',
+              'flex shrink-0 cursor-default items-center rounded-full px-[1px] shadow-inner',
+              labelPlacement === 'end' ? 'me-3' : 'ms-3',
+              'bg-zinc-200',
+              'dark:bg-transparent',
+              'border',
+
+              // readonly
+              'group-data-[readonly]:opacity-50',
+
+              // selected
+              renderProps.isSelected && [
+                'border-accent',
+                'dark:border-0',
+                'bg-accent',
+                'dark:bg-accent',
+                'shadow-[inset_0_0_0_1px_rgba(255,255,255,0.1)]',
+              ],
+              renderProps.isDisabled && ['bg-gray-200', 'dark:bg-zinc-700'],
+              renderProps.isFocusVisible && groupFocusVisibleOutline,
             )}
           >
-            {(renderProps) => (
-              <>
-                {labelPosition === 'left' &&
-                  (typeof children === 'function'
-                    ? children(renderProps)
-                    : children)}
-
-                <div
-                  className={twMerge(
-                    'flex h-5 w-8 shrink-0 cursor-default items-center rounded-full border shadow-inner transition duration-200 ease-in-out',
-                    'bg-zinc-200 px-0.5 dark:bg-background',
-                    // selected
-                    'group-selected:border-accent group-selected:bg-accent/95',
-                    // disabled
-                    'group:disabled:bg-gray-200 group:disabled:dark:bg-zinc-700',
-                    renderProps.isFocusVisible && focusOutlineStyle,
-                  )}
-                >
-                  <span className="h-[0.85rem] w-[0.85rem] translate-x-0 transform rounded-full bg-white shadow-sm transition duration-200 ease-in-out group-selected:translate-x-[90%]" />
-                </div>
-
-                {labelPosition === 'right' &&
-                  (typeof children === 'function'
-                    ? children(renderProps)
-                    : children)}
-              </>
-            )}
-          </RACSwitch>
-        );
-      }}
-    </WithDescriptionContext>
+            <span
+              data-ui="thumb"
+              className={twMerge(
+                'size-4',
+                'rounded-full bg-white shadow-sm',
+                'translate-x-0 transition-all ease-in-out',
+                renderProps.isSelected && [
+                  'translate-x-3',
+                  'rtl:-translate-x-3',
+                  'border-accent',
+                ],
+              )}
+            />
+          </div>
+          {typeof children === 'function' ? children(renderProps) : children}
+        </>
+      )}
+    </RACSwitch>
   );
 }

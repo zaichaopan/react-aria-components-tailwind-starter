@@ -1,14 +1,19 @@
+import React from 'react';
 import type { Meta } from '@storybook/react';
-import { Checkbox, CheckboxField, CheckboxGroup } from '../src/checkbox';
+import {
+  Checkbox,
+  CheckboxField,
+  CheckboxGroup,
+  Checkboxes,
+} from '../src/checkbox';
 import { Form } from '../src/form';
 import { Button } from '../src/button';
-import { Strong, Text } from '../src/text';
-import { Label, Description, FieldError } from '../src/field';
+import { Label, Description, FieldError, LabeledGroup } from '../src/field';
 import { docs } from '../.storybook/docs';
+import { Group } from 'react-aria-components';
 
-const meta: Meta<typeof Checkbox> = {
+const meta: Meta = {
   title: 'Checkbox',
-  component: Checkbox,
   parameters: {
     layout: 'centered',
     docs: {
@@ -17,9 +22,6 @@ const meta: Meta<typeof Checkbox> = {
           'A <a href="https://react-spectrum.adobe.com/react-aria/Checkbox.html#checkbox" target="_blank">**checkbox**</a> allows a user to select multiple items from a list of individual items, or to mark one individual item as selected.',
       },
       ...docs,
-      controls: {
-        exclude: /.*/g,
-      },
     },
   },
   tags: ['autodocs'],
@@ -27,13 +29,13 @@ const meta: Meta<typeof Checkbox> = {
 
 export default meta;
 
-export const Example = () => {
-  return <Checkbox>I accept the terms and conditions</Checkbox>;
+export const BasicExample = () => {
+  return <Checkbox>I accept to the terms and conditions</Checkbox>;
 };
 
 export const CheckboxDescription = () => {
   return (
-    <CheckboxField>
+    <CheckboxField className="max-w-sm">
       <Checkbox>Subscribe</Checkbox>
       <Description>
         You will receive our newsletter once per week. Unsubscribe at any time.
@@ -46,14 +48,14 @@ CheckboxDescription.parameters = {
   docs: {
     description: {
       story:
-        'Use **CheckboxField** and **Description** component to add checkbox description.',
+        'Use the **CheckboxField** and **Description** component to add checkbox description.',
     },
   },
 };
 
-export const CheckboxDisabled = () => {
+export const CheckboxWithDisabledState = () => {
   return (
-    <CheckboxField>
+    <CheckboxField className="max-w-sm">
       <Checkbox isDisabled>Subscribe</Checkbox>
       <Description>
         You will receive our newsletter once per week. Unsubscribe at any time.
@@ -62,26 +64,26 @@ export const CheckboxDisabled = () => {
   );
 };
 
-CheckboxDisabled.parameters = {
-  docs: {
-    description: {
-      story:
-        'Use the **isDisabled** prop of **Checkbox** component to disable checkbox.',
-    },
-  },
+export const CheckboxWithReadonlyState = () => {
+  return (
+    <CheckboxField className="max-w-sm">
+      <Checkbox isReadOnly>Subscribe</Checkbox>
+      <Description>
+        You will receive our newsletter once per week. Unsubscribe at any time.
+      </Description>
+    </CheckboxField>
+  );
 };
 
 export const CheckboxGroups = () => {
   return (
     <CheckboxGroup>
-      <Label>Email settings</Label>
-      <Text className="pb-4">
-        Personalize your email experience according to your preferences and
-        needs
-      </Text>
-      <Checkbox value="newsletter">Newsletter</Checkbox>
-      <Checkbox value="deals">Deals</Checkbox>
-      <Checkbox value="notification">Notifications</Checkbox>
+      <Label>Notifications</Label>
+      <Checkboxes>
+        <Checkbox value="email">Notify via email</Checkbox>
+        <Checkbox value="sms">Notify via SMS</Checkbox>
+        <Checkbox value="telegram">Notify via telegram</Checkbox>
+      </Checkboxes>
     </CheckboxGroup>
   );
 };
@@ -89,167 +91,186 @@ export const CheckboxGroups = () => {
 CheckboxGroups.parameters = {
   docs: {
     description: {
-      story: 'Use **CheckboxGroup** and **Label** component to build your checkbox group.',
-    },
-  },
-};
-
-export const CheckboxGroupsWithDescription = () => {
-  return (
-    <CheckboxGroup>
-      <Label>Email settings</Label>
-      <Text className="pb-4">
-        Personalize your email experience according to your preferences and
-        needs
-      </Text>
-      <CheckboxField>
-        <Checkbox value="newsletter">Newsletter</Checkbox>
-        <Description>Receive our newsletter once per week</Description>
-      </CheckboxField>
-
-      <CheckboxField>
-        <Checkbox value="deals">Deals</Checkbox>
-        <Description>The best deals and sales for members</Description>
-      </CheckboxField>
-
-      <CheckboxField>
-        <Checkbox value="notification">Notifications</Checkbox>
-        <Description>Notifications about your orders</Description>
-      </CheckboxField>
-    </CheckboxGroup>
-  );
-};
-
-export const CheckboxGroupHorizontal = () => {
-  return (
-    <CheckboxGroup>
-      <Label>Favorite sports</Label>
-      <div className="flex gap-3 ">
-        <Checkbox value="soccer">Soccer</Checkbox>
-        <Checkbox value="baseball">Baseball</Checkbox>
-        <Checkbox value="basketball">Basketball</Checkbox>
-      </div>
-    </CheckboxGroup>
-  );
-};
-
-export const CheckboxLabelPosition = () => {
-  return (
-    <CheckboxGroup>
-      <Label>Email settings</Label>
-      <Text className="pb-4">
-        Personalize your email experience according to your preferences and
-        needs
-      </Text>
-      <CheckboxField>
-        <Checkbox value="newsletter" labelPosition="left">
-          Newsletter
-        </Checkbox>
-        <Description>Receive our newsletter once per week</Description>
-      </CheckboxField>
-
-      <CheckboxField>
-        <Checkbox value="deals" labelPosition="left">
-          Deals
-        </Checkbox>
-        <Description>The best deals and sales for members</Description>
-      </CheckboxField>
-
-      <CheckboxField>
-        <Checkbox value="notification" labelPosition="left">
-          Notifications
-        </Checkbox>
-        <Description>Notifications about your orders</Description>
-      </CheckboxField>
-    </CheckboxGroup>
-  );
-};
-
-CheckboxLabelPosition.parameters = {
-  docs: {
-    description: {
       story:
-        'Use **labelPosition="left"** to position label to the left size of the checkbox.',
+        'Use the **CheckboxGroup** and **Label** component to create a checkbox group.',
     },
   },
 };
 
-export const CheckboxGroupValidation = () => {
+export const CheckboxGroupWithDescription = () => {
+  return (
+    <CheckboxGroup>
+      <Label>Notifications</Label>
+      <Description>
+        Please select your preferred method of communication.
+      </Description>
+      <Checkboxes>
+        <Checkbox value="email">Notify via email</Checkbox>
+        <Checkbox value="sms">Notify via SMS</Checkbox>
+        <Checkbox value="telegram">Notify via telegram</Checkbox>
+      </Checkboxes>
+    </CheckboxGroup>
+  );
+};
+
+export const CheckboxGroupWithCheckboxDescription = () => {
+  return (
+    <CheckboxGroup>
+      <Label>Notifications</Label>
+      <Description>
+        Please select your preferred method of communication.
+      </Description>
+      <Checkboxes>
+        <CheckboxField>
+          <Checkbox value="email">Notify via email</Checkbox>
+          <Description>We'll send you a confirmation email</Description>
+        </CheckboxField>
+
+        <CheckboxField>
+          <Checkbox value="sms">Notify via SMS</Checkbox>
+          <Description>We'll send you a confirmation SMS</Description>
+        </CheckboxField>
+
+        <CheckboxField>
+          <Checkbox value="telegram">Notify via telegram</Checkbox>
+          <Description>We'll send you a confirmation telegram</Description>
+        </CheckboxField>
+      </Checkboxes>
+    </CheckboxGroup>
+  );
+};
+
+export const CheckboxGroupWithHorizontalLayout = () => {
+  return (
+    <CheckboxGroup orientation="horizontal">
+      <Label>Notifications</Label>
+      <Checkboxes>
+        <Checkbox value="email">Notify via email</Checkbox>
+        <Checkbox value="sms">Notify via SMS</Checkbox>
+        <Checkbox value="telegram">Notify via telegram</Checkbox>
+      </Checkboxes>
+    </CheckboxGroup>
+  );
+};
+
+export const CheckboxLabelPlacement = () => {
+  return (
+    <Checkbox labelPlacement="start">
+      I accept the terms and conditions
+    </Checkbox>
+  );
+};
+
+export const CheckboxGroupLabelPlacement = () => {
+  return (
+    <CheckboxGroup>
+      <Label>Notifications</Label>
+      <Description>
+        Please select your preferred method of communication.
+      </Description>
+      <Checkboxes>
+        <CheckboxField>
+          <Checkbox value="email" labelPlacement="start">
+            Notify via email
+          </Checkbox>
+          <Description>We'll send you a confirmation email</Description>
+        </CheckboxField>
+
+        <CheckboxField>
+          <Checkbox value="sms" labelPlacement="start">
+            Notify via SMS
+          </Checkbox>
+          <Description>We'll send you a confirmation SMS</Description>
+        </CheckboxField>
+
+        <CheckboxField>
+          <Checkbox value="telegram" labelPlacement="start">
+            Notify via telegram
+          </Checkbox>
+          <Description>We'll send you a confirmation telegram</Description>
+        </CheckboxField>
+      </Checkboxes>
+    </CheckboxGroup>
+  );
+};
+
+const options = ['Notify via email', 'Notify via SMS', 'Notify via Telegram'];
+
+export const CheckboxWithIndeterminateState = () => {
+  const [selected, setSelected] = React.useState<Array<string>>([]);
+
+  return (
+    <LabeledGroup>
+      <Label className="mb-3">Notifications</Label>
+
+      <Group className="space-y-3">
+        <Checkbox
+          isSelected={selected.length > 0}
+          isIndeterminate={
+            selected.length > 0 && selected.length !== options.length
+          }
+          onChange={(checked) => setSelected(checked ? options : [])}
+        >
+          Select all
+        </Checkbox>
+
+        {options.map((option) => (
+          <Checkbox
+            key={option}
+            name={option}
+            isSelected={selected.includes(option)}
+            onChange={(checked) => {
+              return setSelected((pending) => {
+                return checked
+                  ? [...pending, option]
+                  : pending.filter((item) => item !== option);
+              });
+            }}
+          >
+            {option}
+          </Checkbox>
+        ))}
+      </Group>
+    </LabeledGroup>
+  );
+};
+
+export const CheckboxWithValidation = () => {
   return (
     <Form>
       <CheckboxGroup isRequired>
-        <Label>Email settings</Label>
-        <Text className="pb-4">
-          Personalize your email experience according to your preferences and
-          needs
-        </Text>
-        <CheckboxField>
-          <Checkbox value="newsletter">Newsletter</Checkbox>
-          <Description>Receive our newsletter once per week</Description>
-        </CheckboxField>
+        <Label>Notifications</Label>
+        <Description>
+          Please select your preferred method of communication.
+        </Description>
+        <Checkboxes>
+          <CheckboxField>
+            <Checkbox value="email">Notify via email</Checkbox>
+            <Description>We'll send you a confirmation email</Description>
+          </CheckboxField>
 
-        <CheckboxField>
-          <Checkbox value="deals">Deals</Checkbox>
-          <Description>The best deals and sales for members</Description>
-        </CheckboxField>
+          <CheckboxField>
+            <Checkbox value="sms">Notify via SMS</Checkbox>
+            <Description>We'll send you a confirmation SMS</Description>
+          </CheckboxField>
 
-        <CheckboxField>
-          <Checkbox value="notification">Notifications</Checkbox>
-          <Description>Notifications about your orders</Description>
-        </CheckboxField>
+          <CheckboxField>
+            <Checkbox value="telegram">Notify via telegram</Checkbox>
+            <Description>We'll send you a confirmation telegram</Description>
+          </CheckboxField>
+        </Checkboxes>
         <FieldError />
       </CheckboxGroup>
-      <Button className="self-start" type="submit">
-        Save
-      </Button>
+      <Button type="submit">Save</Button>
     </Form>
   );
 };
 
-CheckboxGroupValidation.parameters = {
+CheckboxWithValidation.parameters = {
   docs: {
     description: {
       story:
-        'Combine **Form**, **FieldError** with **CheckboxGroup** component to add validation when submitting form.',
+        'Use the **Form**, **FieldError** and **CheckboxGroup** components to add validation when submitting form.',
     },
   },
-};
-
-export const CheckboxCards = () => {
-  return (
-    <div className="flex flex-1 flex-wrap gap-4">
-      <Checkbox
-        labelPosition="left"
-        className="w-56 justify-between rounded-md border px-4 py-2"
-        value="A1 keyboard"
-      >
-        <div>
-          <Strong>A1 keyboard</Strong>
-          <Text>US Layout</Text>
-        </div>
-      </Checkbox>
-
-      <Checkbox
-        labelPosition="left"
-        value="Pro mouse"
-        className="w-56 justify-between rounded-md border px-4 py-2"
-      >
-        <div>
-          <Strong>Pro mouse</Strong>
-          <Text>Zero-lag wireless</Text>
-        </div>
-      </Checkbox>
-
-      <Checkbox
-        labelPosition="left"
-        value="lightning mat"
-        className="w-56 justify-between  rounded-md border px-4 py-2"
-      >
-        <div>
-          <Strong>Lightning Mat</Strong>
-          <Text>Wireless charging</Text>
-        </div>
-      </Checkbox>
-    </div>
-  );
 };

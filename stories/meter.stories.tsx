@@ -23,7 +23,7 @@ const meta: Meta<typeof Meter> = {
 
 export default meta;
 
-export const Example = () => {
+export const BasicExample = () => {
   return (
     <div className="flex flex-col gap-4">
       <Meter label="Storage space" value={20} />

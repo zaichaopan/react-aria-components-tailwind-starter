@@ -8,13 +8,15 @@ type Position =
   | 'bottom-center'
   | 'bottom-right';
 
-type Type = 'error' | 'success' | 'warning';
+type Type = 'info' | 'error' | 'success' | 'warning';
 
 export type ToastConfig =
   | {
-      title?: string;
-      description: string;
       position?: Position;
+      title?: React.ReactNode;
+      description: React.ReactNode;
+      action?: React.ReactNode;
+      dismissable?: boolean;
       render?: never;
       type?: Type;
     }

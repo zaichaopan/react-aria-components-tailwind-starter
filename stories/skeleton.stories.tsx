@@ -2,16 +2,12 @@ import type { Meta } from '@storybook/react';
 import { Skeleton } from '../src/skeleton';
 import { docs } from '../.storybook/docs';
 
-const meta: Meta<typeof Skeleton> = {
+const meta: Meta = {
   title: 'Skeleton',
-  component: Skeleton,
   parameters: {
     layout: 'centered',
     docs: {
       ...docs,
-      controls: {
-        exclude: /.*/g,
-      },
     },
   },
   tags: ['autodocs'],
@@ -19,7 +15,7 @@ const meta: Meta<typeof Skeleton> = {
 
 export default meta;
 
-export const Example = () => {
+export const BasicExample = () => {
   return (
     <div className="flex flex-col space-y-8">
       {Array.from(Array(4)).map((_, index) => {

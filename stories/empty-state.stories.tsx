@@ -9,11 +9,10 @@ import {
   EmptyStateIcon,
 } from '../src/empty-state';
 import { FolderPlus, Plus } from 'lucide-react';
-import { Icon } from '../src/icon';
+import { Icon } from '../src/accessible-icon';
 
-const meta: Meta<typeof Button> = {
-  title: 'EmptyState',
-  component: Button,
+const meta: Meta = {
+  title: 'Empty state',
   parameters: {
     layout: 'fullscreen',
     docs: {
@@ -22,9 +21,6 @@ const meta: Meta<typeof Button> = {
           '<a href="https://tailwindui.com/components/application-ui/feedback/empty-states" target="_blank">**EmptyState**</a> is used as placeholder to tell users why content is missing.',
       },
       ...docs,
-      controls: {
-        exclude: /.*/g,
-      },
     },
   },
   tags: ['autodocs'],
@@ -32,7 +28,7 @@ const meta: Meta<typeof Button> = {
 
 export default meta;
 
-export const Example = () => {
+export const BasicExample = () => {
   return (
     <EmptyState className="h-screen">
       <EmptyStateIcon>

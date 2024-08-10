@@ -1,12 +1,20 @@
 import type { Meta } from '@storybook/react';
-import { Separator } from '../src/separator.tsx';
 import { docs } from '../.storybook/docs.ts';
-import { Mail } from 'lucide-react';
-import { Icon } from '../src/icon.tsx';
+import { MailIcon, PlusIcon, ChevronDownIcon } from 'lucide-react';
+import { Icon } from '../src/accessible-icon.tsx';
+import { Separator } from '../src/separator.tsx';
+import { Button } from '../src/button.tsx';
+import {
+  MenuItem,
+  MenuTrigger,
+  Menu,
+  MenuButton,
+  MenuPopover,
+  MenuSection,
+} from '../src/menu.tsx';
 
-const meta: Meta<typeof Separator> = {
+const meta: Meta = {
   title: 'Separator',
-  component: Separator,
   parameters: {
     layout: 'fullscreen',
     docs: {
@@ -15,9 +23,6 @@ const meta: Meta<typeof Separator> = {
           'A <a href="https://react-spectrum.adobe.com/react-aria/useSeparator.html#useseparator" target="_blank">**separator**</a> is a visual divider between two groups of content, e.g. groups of menu items or sections of a page.',
       },
       ...docs,
-      controls: {
-        exclude: /.*/g,
-      },
     },
   },
   tags: ['autodocs'],
@@ -25,18 +30,20 @@ const meta: Meta<typeof Separator> = {
 
 export default meta;
 
-export const Example = () => {
+export const BasicExample = () => {
   return (
-    <div className="flex flex-col items-center p-8">
+    <div className="flex flex-col items-center gap-4 p-8">
       <div>
         A separator consists of a single element that represents the divider
       </div>
       <Separator className="my-4" />
+      With reduced contrast
+      <Separator className="my-4" soft />
     </div>
   );
 };
 
-export const VerticalSeparators = () => {
+export const SeparatorWithVerticalOrientation = () => {
   return (
     <div className="flex p-8">
       <div className="h-48 flex-1 px-4"></div>
@@ -46,30 +53,73 @@ export const VerticalSeparators = () => {
   );
 };
 
-VerticalSeparators.parameters = {
+SeparatorWithVerticalOrientation.parameters = {
   docs: {
     description: {
-      story: 'Use **orientation="vertical"** to render vertical separators.',
+      story: 'Use **orientation="vertical"** to render vertical separator.',
     },
   },
 };
 
-export const WithTextsOrIcons = () => {
+export const SeparatorWithTextsOrIcons = () => {
   return (
-    <div className="flex flex-col gap-6">
-      <div className="flex flex-col p-8">
-        <div className="h-4"></div>
-        <Separator>Continue</Separator>
-        <div className="h-4"></div>
-      </div>
+    <div className="flex flex-col gap-6 p-8">
+      <Separator>Continue</Separator>
 
-      <div className="flex flex-col items-center p-8">
-        <Separator>
+      <Separator>
+        <Icon>
+          <MailIcon className="mx-2" />
+        </Icon>
+      </Separator>
+
+      <Separator>
+        {new Intl.DateTimeFormat('en', {
+          weekday: 'long',
+          month: 'short',
+          day: '2-digit',
+        }).format(new Date())}
+      </Separator>
+
+      <Separator>
+        <MenuTrigger>
+          <MenuButton variant="outline">
+            {new Intl.DateTimeFormat('en', {
+              weekday: 'long',
+              month: 'short',
+              day: '2-digit',
+            }).format(new Date())}
+          </MenuButton>
+          <MenuPopover>
+            <Menu>
+              <MenuSection title="Jump to&hellip; ">
+                <MenuItem>Today</MenuItem>
+                <MenuItem>Yesterday</MenuItem>
+                <MenuItem>Last week</MenuItem>
+                <MenuItem>Last month</MenuItem>
+                <MenuItem>The very beginning</MenuItem>
+              </MenuSection>
+            </Menu>
+          </MenuPopover>
+        </MenuTrigger>
+      </Separator>
+
+      <Separator>
+        <Button variant="outline">
           <Icon>
-            <Mail className="size-5 text-muted" strokeWidth={1.5} />
+            <PlusIcon />
           </Icon>
-        </Separator>
-      </div>
+          New Page
+        </Button>
+      </Separator>
+
+      <Separator>
+        <Button variant="outline">
+          Expand
+          <Icon>
+            <ChevronDownIcon />
+          </Icon>
+        </Button>
+      </Separator>
 
       <div className="flex p-8">
         <div className="h-48 flex-1 px-4"></div>
@@ -80,7 +130,7 @@ export const WithTextsOrIcons = () => {
   );
 };
 
-WithTextsOrIcons.parameters = {
+SeparatorWithTextsOrIcons.parameters = {
   docs: {
     description: {
       story:

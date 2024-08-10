@@ -2,7 +2,7 @@ import type { Meta } from '@storybook/react';
 import { Button } from '../src/button';
 import { CopyButton, Clipboard } from '../src/clipboard';
 import { docs } from '../.storybook/docs';
-import { Text } from '../src/text';
+import { Input, Label, TextField } from '../src/field';
 
 const meta: Meta = {
   title: 'Clipboard',
@@ -10,7 +10,8 @@ const meta: Meta = {
     layout: 'centered',
     docs: {
       description: {
-        component: 'A **Clipboard** copies given text to clipboard.',
+        component:
+          'A clipboard copies given text to clipboard. Use the **CopyButton** component to copy text to clipboard.',
       },
       ...docs,
       controls: {
@@ -23,30 +24,31 @@ const meta: Meta = {
 
 export default meta;
 
-export const Example = () => {
+export const BasicExample = () => {
   return (
-    <div className="flex items-center gap-1">
-      <Text>http://example.com</Text>
-
+    <div className='grid place-items-center gap-y-6'>
       <CopyButton
-        plain
-        copyText="http://example.com"
+        copyValue="http://example.com"
         label="Copy link"
-        labelCopied="Link is copied"
+        labelAfterCopied="Link is copied"
       ></CopyButton>
+
+      <div className="flex items-center gap-x-1">
+        <TextField isReadOnly>
+          <Label className="sr-only">Install command</Label>
+          <Input
+            value="npm i tailwindcss-react-aria-components"
+            className="truncate"
+          />
+        </TextField>
+
+        <CopyButton copyValue="npm i tailwindcss-react-aria-components" />
+      </div>
     </div>
   );
 };
 
-Example.parameters = {
-  docs: {
-    description: {
-      story: 'Use the **CopyButton** component to copy text to clipboard.'
-    }
-  }
-}
-
-export const CopyToClipboard = () => {
+export const ClipboardWithCustomUI = () => {
   return (
     <Clipboard>
       {({ copied, copy }) => {
@@ -63,11 +65,11 @@ export const CopyToClipboard = () => {
   );
 };
 
-CopyToClipboard.parameters = {
+ClipboardWithCustomUI.parameters = {
   docs: {
     description: {
       story:
-        'Use the **Clipboard** component to build your own copy to clipboard UI.',
+        'Use the **Clipboard** component to create your custom clipboard component.',
     },
   },
 };

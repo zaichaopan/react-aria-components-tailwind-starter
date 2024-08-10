@@ -1,8 +1,8 @@
 import type { Meta } from '@storybook/react';
-import { Switch, SwitchField } from '../src/switch';
+import { Switch, SwitchField, SwitchGroup, Switches } from '../src/switch';
 import { Text, TextLink } from '../src/text';
 import { docs } from '../.storybook/docs';
-import { Group, Description, Label } from '../src/field';
+import { Description, Label } from '../src/field';
 
 const meta: Meta<typeof Switch> = {
   title: 'Switch',
@@ -25,11 +25,22 @@ const meta: Meta<typeof Switch> = {
 
 export default meta;
 
-export const Example = () => {
+export const BasicExample = () => {
   return <Switch>Email notification</Switch>;
 };
 
-export const WithDescription = () => {
+export const SwitchWithDescription = () => {
+  return (
+    <SwitchField>
+      <Switch>Email notifications</Switch>
+      <Description>
+        Get email to find out what's going on when you'are not online.
+      </Description>
+    </SwitchField>
+  );
+};
+
+export const SwitchWithDisabledState = () => {
   return (
     <SwitchField>
       <Switch isDisabled>Email notifications</Switch>
@@ -40,10 +51,10 @@ export const WithDescription = () => {
   );
 };
 
-export const LabelPosition = () => {
+export const SwitchWithReadonlyState = () => {
   return (
     <SwitchField>
-      <Switch labelPosition="right">Email notifications</Switch>
+      <Switch isReadOnly>Email notifications</Switch>
       <Description>
         Get email to find out what's going on when you'are not online.
       </Description>
@@ -51,15 +62,40 @@ export const LabelPosition = () => {
   );
 };
 
-export const GroupExample = () => {
+export const SwitchLabelPlacement = () => {
   return (
-    <Group className="max-w-2xl">
+    <SwitchField>
+      <Switch labelPlacement="start">Email notifications</Switch>
+    </SwitchField>
+  );
+};
+
+export const SwitchGroups = () => {
+  return (
+    <SwitchGroup className="max-w-2xl">
+      <Label>Sync data</Label>
+      <Switches>
+        <Switch>Apps</Switch>
+        <Switch>Bookmarks</Switch>
+        <Switch>Extensions</Switch>
+        <Switch>History</Switch>
+        <Switch>Settings</Switch>
+      </Switches>
+    </SwitchGroup>
+  );
+};
+
+export const SwitchGroupWithDescription = () => {
+  return (
+    <SwitchGroup className="max-w-2xl">
       <Label>Audience and tagging</Label>
-      <Text>Manage what information you allow other people on X to see.</Text>
-      <div className="gap-6 pt-4">
+      <Description>
+        Manage what information you allow other people on X to see
+      </Description>
+      <Switches>
         <SwitchField>
-          <Switch>Protect your posts</Switch>
-          <Description className="flex pb-4" elementType="div">
+          <Switch labelPlacement="start">Protect your posts</Switch>
+          <Description elementType="div">
             <Text>
               When selected, your posts and other account information are only
               visible to people who follow you.{' '}
@@ -69,8 +105,8 @@ export const GroupExample = () => {
         </SwitchField>
 
         <SwitchField>
-          <Switch>Protect your videos</Switch>
-          <Description className="pb-4">
+          <Switch labelPlacement="start">Protect your videos</Switch>
+          <Description>
             If selected, videos in your posts will not be downloadable by
             default. This setting applies to posts going forward and is not
             retroactive.
@@ -78,9 +114,47 @@ export const GroupExample = () => {
         </SwitchField>
 
         <SwitchField>
-          <Switch>Photo tagging</Switch>
+          <Switch labelPlacement="start">Photo tagging</Switch>
         </SwitchField>
-      </div>
-    </Group>
+      </Switches>
+    </SwitchGroup>
+  );
+};
+
+export const SwitchGroupWithItemDisabled = () => {
+  return (
+    <SwitchGroup className="max-w-2xl">
+      <Label>Audience and tagging</Label>
+      <Description>
+        Manage what information you allow other people on X to see
+      </Description>
+      <Switches>
+        <SwitchField>
+          <Switch labelPlacement="start" isDisabled>
+            Protect your posts
+          </Switch>
+          <Description elementType="div">
+            <Text>
+              When selected, your posts and other account information are only
+              visible to people who follow you.{' '}
+              <TextLink className="inline">Learn more</TextLink>
+            </Text>
+          </Description>
+        </SwitchField>
+
+        <SwitchField>
+          <Switch labelPlacement="start">Protect your videos</Switch>
+          <Description>
+            If selected, videos in your posts will not be downloadable by
+            default. This setting applies to posts going forward and is not
+            retroactive.
+          </Description>
+        </SwitchField>
+
+        <SwitchField>
+          <Switch labelPlacement="start">Photo tagging</Switch>
+        </SwitchField>
+      </Switches>
+    </SwitchGroup>
   );
 };

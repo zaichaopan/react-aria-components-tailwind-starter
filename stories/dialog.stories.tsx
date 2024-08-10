@@ -20,6 +20,7 @@ import {
   TextArea,
   TextField,
 } from '../src/field';
+import { InputAddon, InputGroup } from '../src/input-group';
 import {
   MenuButton,
   MenuTrigger,
@@ -27,14 +28,31 @@ import {
   MenuItem,
   MenuPopover,
   MenuSection,
-  MenuSeparator,
 } from '../src/menu';
-import { Bell, Star } from 'lucide-react';
+import {
+  Bell,
+  FingerprintIcon,
+  MoveLeftIcon,
+  MoveRightIcon,
+  Star,
+} from 'lucide-react';
 import { Tab, TabList, TabPanel, Tabs } from '../src/tabs';
 import { TooltipTrigger, Tooltip } from '../src/tooltip';
 import { Text } from '../src/text';
 import { docs } from '../.storybook/docs';
-import { Heading } from '../src/heading';
+import { Heading, SubHeading } from '../src/heading';
+import { CopyButton } from '../src/clipboard';
+import {
+  Select,
+  SelectButton,
+  SelectListBox,
+  SelectListItem,
+  SelectListItemDescription,
+  SelectListItemLabel,
+  SelectPopover,
+} from '../src/select';
+import { Icon } from '../src/accessible-icon';
+import { Checkbox } from '../src/checkbox';
 
 const meta: Meta = {
   title: 'Dialog',
@@ -53,7 +71,7 @@ const meta: Meta = {
 
 export default meta;
 
-export const Example = () => {
+export const BasicExample = () => {
   return (
     <DialogTrigger>
       <Button>Edit profile</Button>
@@ -67,12 +85,12 @@ export const Example = () => {
             </Text>
             <Form className="py-4" id="edit-profile-form">
               <TextField isRequired className="grid grid-cols-4 gap-x-4">
-                <Label className="ml-auto">Name</Label>
+                <Label className="ms-auto">Name</Label>
                 <Input className="col-span-3"></Input>
                 <FieldError className="col-span-3 col-start-2" />
               </TextField>
               <TextField isRequired className="grid grid-cols-4 gap-4">
-                <Label className="ml-auto">Username</Label>
+                <Label className="ms-auto">Username</Label>
                 <Input className="col-span-3"></Input>
                 <FieldError className="col-span-3 col-start-2" />
               </TextField>
@@ -90,40 +108,132 @@ export const Example = () => {
   );
 };
 
-export const DialogSizes = () => {
+export const AlertDialogs = () => {
+  const [isOpen, setIsOpen] = React.useState(false);
+
   return (
-    <DialogTrigger>
-      <Button>Edit profile</Button>
-      <Modal size="xl">
-        <Dialog>
-          <DialogHeader>Edit profile</DialogHeader>
-          <DialogCloseButton />
+    <>
+      <Button color="destructive" onPress={() => setIsOpen(true)}>
+        Revoke access
+      </Button>
+      <Modal isOpen={isOpen} onOpenChange={setIsOpen}>
+        <Dialog alert>
+          <DialogHeader>Revoke access</DialogHeader>
           <DialogBody>
-            <Text>
-              Make changes to your profile here. Click save when you're done.
-            </Text>
-            <Form className="py-4" id="edit-profile-form">
-              <TextField isRequired className="grid grid-cols-4 gap-x-4">
-                <Label className="ml-auto">Name</Label>
-                <Input className="col-span-3"></Input>
-                <FieldError className="col-span-3 col-start-2" />
-              </TextField>
-              <TextField isRequired className="grid grid-cols-4 gap-4">
-                <Label className="ml-auto">Username</Label>
-                <Input className="col-span-3"></Input>
-                <FieldError className="col-span-3 col-start-2" />
-              </TextField>
-            </Form>
+            Are you sure? This application will no longer be accessible and any
+            existing sessions will be expired.
           </DialogBody>
           <DialogFooter>
             <DialogCloseButton>Cancel</DialogCloseButton>
-            <Button form="edit-profile-form" type="submit">
-              Save changes
+            <Button color="destructive" onPress={() => setIsOpen(false)}>
+              Revoke access
             </Button>
           </DialogFooter>
         </Dialog>
       </Modal>
-    </DialogTrigger>
+    </>
+  );
+};
+
+AlertDialogs.parameters = {
+  docs: {
+    description: {
+      story:
+        '**Alert dialogs** are a special type of **dialog** that the user must confirm before an action proceeds. Use the **alert** prop on the **Dialog** component to render an alert dialog.\n\n >Use Alert dialogs only when necessary. Use Dialog for low-signal notifications or confirmations.',
+    },
+  },
+};
+
+export const DialogDrawers = () => {
+  const placements = ['left', 'right'] as const;
+
+  return (
+    <div className="flex flex-wrap gap-4">
+      {placements.map((placement) => {
+        return (
+          <DialogTrigger key={placement}>
+            <Button variant="outline">
+              Open Drawer
+              <Icon>
+                {placement === 'left' ? <MoveRightIcon /> : <MoveLeftIcon />}
+              </Icon>
+            </Button>
+
+            <Modal drawer size="sm" placement={placement}>
+              <Dialog>
+                <DialogHeader>Dialog drawer</DialogHeader>
+                <DialogCloseButton />
+                <DialogBody>
+                  Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                  Quasi quae eveniet saepe quas quo sequi repudiandae voluptas
+                  quia enim, ut qui ad quis optio voluptate. Ratione harum
+                  quaerat cupiditate! Sunt veniam, ratione rem unde recusandae,
+                  distinctio minus corrupti asperiores, delectus officia
+                  consectetur. Accusantium ea facilis reiciendis nisi nostrum,
+                  hic voluptate.
+                </DialogBody>
+              </Dialog>
+            </Modal>
+          </DialogTrigger>
+        );
+      })}
+    </div>
+  );
+};
+
+DialogDrawers.parameters = {
+  docs: {
+    description: {
+      story:
+        'Use the **drawer** and **placement** prop of the **Modal** component to render a dialog out from the edge of the screen. The default placement is **left**.',
+    },
+  },
+};
+
+export const DialogSizes = () => {
+  const sizes = [
+    'xs',
+    'sm',
+    'md',
+    'lg',
+    'xl',
+    '2xl',
+    '3xl',
+    '4xl',
+    '5xl',
+    'fullWidth',
+  ] as const;
+
+  return (
+    <div className="flex flex-wrap gap-4">
+      {sizes.map((size) => {
+        const title = `A \`${size}\` size dialog`;
+
+        return (
+          <DialogTrigger key={size}>
+            <Button variant="outline">{size}</Button>
+            <Modal size={size}>
+              <Dialog>
+                <DialogHeader>{title}</DialogHeader>
+                <DialogCloseButton />
+                <DialogBody>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi
+                  mollitia ullam fugiat dicta placeat. Officia, hic harum id
+                  neque laborum sunt aliquam distinctio, rerum odit soluta sint
+                  quam quos laudantium accusamus ipsum molestias repellendus
+                  numquam. Consequuntur amet unde dolor natus dolorum quia
+                  doloribus inventore, fuga eius quo ipsum architecto adipisci.
+                  Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                  Repellendus vel excepturi magnam recusandae rerum.
+                  Reprehenderit provident voluptatibus repellat nobis
+                  doloremque?
+                </DialogBody>
+              </Dialog>
+            </Modal>
+          </DialogTrigger>
+        );
+      })}
+    </div>
   );
 };
 
@@ -131,39 +241,26 @@ DialogSizes.parameters = {
   docs: {
     description: {
       story:
-        'Use **size** prop of the **Modal** component change the side of dialog. \n\nAvailable size option includes **"sm"**, **"md"**, **"lg"**, **"xl"**, **"2xl"**, **"3xl"**, **"4xl"**, **"5xl"**. Default size is **lg**.',
+        'Use the **size** prop on the **Modal** component to change dialog size. The default **dialog** size is **lg**. The default **alert dialog** size is **md**.',
     },
   },
 };
 
-export const NoHeader = () => {
+export const DialogWithHeader = () => {
   return (
     <DialogTrigger>
-      <Button>Edit profile</Button>
-      <Modal size="md">
+      <Button>About</Button>
+      <Modal>
         <Dialog>
-          <DialogBody className="pt-8">
+          <DialogHeader>About</DialogHeader>
+          <DialogBody>
             <Text>
-              Make changes to your profile here. Click save when you're done.
+              Copyright © {new Date().getFullYear()} Acme Inc. All rights
+              reserved.
             </Text>
-            <Form className="py-4" id="edit-profile-form">
-              <TextField isRequired className="grid grid-cols-4 gap-x-4">
-                <Label className="ml-auto">Name</Label>
-                <Input className="col-span-3"></Input>
-                <FieldError className="col-span-3 col-start-2" />
-              </TextField>
-              <TextField isRequired className="grid grid-cols-4 gap-4">
-                <Label className="ml-auto">Username</Label>
-                <Input className="col-span-3"></Input>
-                <FieldError className="col-span-3 col-start-2" />
-              </TextField>
-            </Form>
           </DialogBody>
           <DialogFooter>
-            <DialogCloseButton>Cancel</DialogCloseButton>
-            <Button form="edit-profile-form" type="submit">
-              Save changes
-            </Button>
+            <DialogCloseButton>OK</DialogCloseButton>
           </DialogFooter>
         </Dialog>
       </Modal>
@@ -171,7 +268,81 @@ export const NoHeader = () => {
   );
 };
 
-NoHeader.parameters = {
+DialogWithHeader.parameters = {
+  docs: {
+    description: {
+      story:
+        'Use the **DialogHeader** component to add a header to the dialog. Text inside the **DialogHeader** component will be used as the dialog title.',
+    },
+  },
+};
+
+export const DialogHeaderWithNonTextContent = () => {
+  return (
+    <DialogTrigger>
+      <Button variant="plain">Forget password</Button>
+      <Modal size="xs">
+        <Dialog>
+          <DialogHeader className="flex-col">
+            <div className="mb-3 max-w-max self-center rounded-full border border-border/50 p-3 shadow-sm">
+              <Icon>
+                <FingerprintIcon />
+              </Icon>
+            </div>
+            <DialogTitle>Forget password</DialogTitle>
+            <SubHeading>No worries, we'll send reset instructions.</SubHeading>
+          </DialogHeader>
+          <DialogCloseButton />
+          <DialogBody>
+            <Form className="space-y-3">
+              <TextField isRequired>
+                <Label className="sr-only">Email</Label>
+                <Input placeholder="Enter your email"></Input>
+                <FieldError />
+              </TextField>
+              <Button type="submit" className="w-full">
+                Reset password
+              </Button>
+            </Form>
+          </DialogBody>
+        </Dialog>
+      </Modal>
+    </DialogTrigger>
+  );
+};
+
+DialogHeaderWithNonTextContent.parameters = {
+  docs: {
+    description: {
+      story:
+        'Use the **DialogTitle** component to add a header to the dialog with non-text content. You can use any component inside the **DialogTitle** component.',
+    },
+  },
+};
+
+export const DialogWithoutHeader = () => {
+  return (
+    <DialogTrigger>
+      <Button variant="plain">Open</Button>
+      <Modal>
+        <Dialog>
+          <DialogBody>
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eveniet,
+            quasi ducimus adipisci est quidem doloribus reprehenderit, nihil
+            sapiente molestias nam voluptate perspiciatis culpa molestiae
+            ratione itaque quisquam rem. Tenetur itaque id ratione repellendus
+            expedita pariatur voluptates explicabo officia eaque maiores?
+          </DialogBody>
+          <DialogFooter>
+            <DialogCloseButton>Close</DialogCloseButton>
+          </DialogFooter>
+        </Dialog>
+      </Modal>
+    </DialogTrigger>
+  );
+};
+
+DialogWithoutHeader.parameters = {
   docs: {
     description: {
       story:
@@ -180,92 +351,109 @@ NoHeader.parameters = {
   },
 };
 
-export const AutoFocusElements = (args: any) => {
+export const DialogFooters = () => {
+  const [isOpen, setIsOpen] = React.useState(false);
+  const [isDialogWithCheckboxOpen, setIsDialogWithCheckboxOpen] =
+    React.useState(false);
+
   return (
-    <DialogTrigger>
-      <Button>Edit profile</Button>
-      <Modal {...args} size="md">
+    <>
+      <Button
+        variant="outline"
+        onPress={() => setIsOpen(true)}
+        className="me-4"
+      >
+        Publish
+      </Button>
+      <Modal size="lg" isOpen={isOpen} onOpenChange={setIsOpen}>
         <Dialog>
-          <DialogHeader>Edit profile</DialogHeader>
-          <DialogCloseButton />
+          <DialogHeader>Confirm Publish</DialogHeader>
           <DialogBody>
-            <Text>
-              Make changes to your profile here. Click save when you're done.
-            </Text>
-            <Form className="py-4" id="edit-profile-form">
-              <TextField
-                isRequired
-                className="grid grid-cols-4 gap-x-4"
-                autoFocus
-              >
-                <Label className="ml-auto">Name</Label>
-                <Input className="col-span-3"></Input>
-                <FieldError className="col-span-3 col-start-2" />
-              </TextField>
-              <TextField isRequired className="grid grid-cols-4 gap-4">
-                <Label className="ml-auto">Username</Label>
-                <Input className="col-span-3"></Input>
-                <FieldError className="col-span-3 col-start-2" />
-              </TextField>
-            </Form>
+            Are you sure you want to publish this document?
           </DialogBody>
           <DialogFooter>
-            <DialogCloseButton>Cancel</DialogCloseButton>
-            <Button form="edit-profile-form" type="submit">
-              Save changes
+            <DialogCloseButton className="sm:me-auto">Cancel</DialogCloseButton>
+            <Button onPress={() => setIsOpen(false)} variant="outline">
+              Save as draft
+            </Button>
+            <Button onPress={() => setIsOpen(false)}>Publish</Button>
+          </DialogFooter>
+        </Dialog>
+      </Modal>
+
+      <Button variant="plain" onPress={() => setIsDialogWithCheckboxOpen(true)}>
+        Don't ask again
+      </Button>
+      <Modal
+        size="lg"
+        isOpen={isDialogWithCheckboxOpen}
+        onOpenChange={setIsDialogWithCheckboxOpen}
+      >
+        <Dialog>
+          <DialogHeader>Set yourself to active?</DialogHeader>
+          <DialogBody>
+            You're currently set to away, but it looks like you're back. Want to
+            update your availability?
+          </DialogBody>
+          <DialogFooter>
+            <Checkbox className="sm:me-auto">Don't ask again</Checkbox>
+            <DialogCloseButton>No Thanks</DialogCloseButton>
+            <Button
+              onPress={() => setIsDialogWithCheckboxOpen(false)}
+              variant="solid"
+              color="success"
+            >
+              Set to Active
             </Button>
           </DialogFooter>
         </Dialog>
       </Modal>
-    </DialogTrigger>
+    </>
   );
 };
 
-AutoFocusElements.parameters = {
+DialogFooters.parameters = {
   docs: {
     description: {
       story:
-        'Add the **autoFocus** prop to any focusable element in the dialog to automatically focus it when the dialog opens. Use <a href="https://react-spectrum.adobe.com/react-aria/FocusScope.html#focusscope" target="_blank">**FocusScope**</a> if autofocus not working properly in some edge cases.',
+        'Use the **DialogFooter** component to add actions to the dialog. **DialogFooter** can contain any components like **Button**, **DialogCloseButton**, etc.',
     },
   },
 };
 
-AutoFocusElements.storyName = 'Auto-focusing elements';
-
-export const WithIsDismissableAndKeyboardDismissDisabled = () => {
+export const DialogCloseButtons = () => {
   return (
     <DialogTrigger>
-      <Button>Edit profile</Button>
-      <Modal isDismissable isKeyboardDismissDisabled size="md">
+      <Button>Add Block</Button>
+      <Modal size="md">
         <Dialog>
-          <DialogHeader>Edit profile</DialogHeader>
+          <DialogHeader>Add Block to Project</DialogHeader>
           <DialogCloseButton />
-          <DialogBody>
+          <DialogBody className="space-y-4 pb-2">
             <Text>
-              Make changes to your profile here. Click save when you're done.
+              Run this command to add this Block to an existing project or to
+              create a new one.
             </Text>
-            <Form className="py-4" id="edit-profile-form">
-              <TextField
-                isRequired
-                className="grid grid-cols-4 gap-x-4"
-                autoFocus
-              >
-                <Label className="ml-auto">Name</Label>
-                <Input className="col-span-3"></Input>
-                <FieldError className="col-span-3 col-start-2" />
-              </TextField>
-              <TextField isRequired className="grid grid-cols-4 gap-4">
-                <Label className="ml-auto">Username</Label>
-                <Input className="col-span-3"></Input>
-                <FieldError className="col-span-3 col-start-2" />
-              </TextField>
-            </Form>
+
+            <TextField isReadOnly>
+              <Label className="sr-only">Install command</Label>
+              <InputGroup inline>
+                <Input
+                  value="npm i tailwindcss-react-aria-components"
+                  className="truncate"
+                />
+                <InputAddon className="pe-1">
+                  <CopyButton
+                    size="sm"
+                    variant="plain"
+                    copyValue="npm i tailwindcss-react-aria-components"
+                  ></CopyButton>
+                </InputAddon>
+              </InputGroup>
+            </TextField>
           </DialogBody>
           <DialogFooter>
-            <DialogCloseButton>Cancel</DialogCloseButton>
-            <Button form="edit-profile-form" type="submit">
-              Save changes
-            </Button>
+            <DialogCloseButton variant="solid">Close</DialogCloseButton>
           </DialogFooter>
         </Dialog>
       </Modal>
@@ -273,16 +461,16 @@ export const WithIsDismissableAndKeyboardDismissDisabled = () => {
   );
 };
 
-WithIsDismissableAndKeyboardDismissDisabled.parameters = {
+DialogCloseButtons.parameters = {
   docs: {
     description: {
-      story: `Use **isDismissable** prop of the **Modal** component to control whether the dialog can be closed by clicking outside. Default **false**. 
-        \n\nUse **isKeyboardDismissDisabled** pros to control whether the dialog can be closed by **ESC** key. Default **false**.`,
+      story:
+        '**DialogCloseButtons** are <a href="./?path=/docs/button--docs" target="_blank">**Buttons**</a>. By default, they are rendered as <a href="./?path=/docs/button--docs#close%20buttons" target="_blank">**CloseButton**</a> in the top right corner of the dialog. They can be customized by providing children.',
     },
   },
 };
 
-export const WithScrollingContent = () => {
+export const DialogWithLongContent = () => {
   return (
     <DialogTrigger>
       <Button>Terms Service</Button>
@@ -395,387 +583,107 @@ export const WithScrollingContent = () => {
   );
 };
 
-WithScrollingContent.parameters = {
+DialogWithLongContent.parameters = {
   docs: {
     description: {
       story:
-        'Long content within **DialogBody** automatically becomes scrollable.',
+        'Long content within the **DialogBody** component automatically becomes scrollable.',
     },
   },
 };
 
-export const WithControlledOpenState = () => {
-  const [isOpen, setOpen] = React.useState(false);
-
-  return (
-    <>
-      <MenuTrigger>
-        <MenuButton>Options</MenuButton>
-        <MenuPopover className="animate-none">
-          <Menu>
-            <MenuItem onAction={() => setOpen(true)}>Edit profile</MenuItem>
-            <MenuItem>Logout</MenuItem>
-          </Menu>
-        </MenuPopover>
-      </MenuTrigger>
-
-      <Modal isOpen={isOpen} onOpenChange={setOpen}>
-        <Dialog>
-          <DialogHeader>Edit profile</DialogHeader>
-          <DialogCloseButton />
-          <DialogBody>
-            <Text>
-              Make changes to your profile here. Click save when you're done.
-            </Text>
-            <Form className="py-4" id="edit-profile-form">
-              <TextField
-                isRequired
-                className="grid grid-cols-4 gap-x-4"
-                autoFocus
-              >
-                <Label className="ml-auto">Name</Label>
-                <Input className="col-span-3"></Input>
-                <FieldError className="col-span-3 col-start-2" />
-              </TextField>
-              <TextField isRequired className="grid grid-cols-4 gap-4">
-                <Label className="ml-auto">Username</Label>
-                <Input className="col-span-3"></Input>
-                <FieldError className="col-span-3 col-start-2" />
-              </TextField>
-            </Form>
-          </DialogBody>
-          <DialogFooter>
-            <DialogCloseButton>Cancel</DialogCloseButton>
-            <Button form="edit-profile-form" type="submit">
-              Save changes
-            </Button>
-          </DialogFooter>
-        </Dialog>
-      </Modal>
-    </>
-  );
-};
-
-WithControlledOpenState.parameters = {
-  docs: {
-    description: {
-      story:
-        'Use **isOpen** and **onOpenChange**  prop of the **Modal** component to control dialog open state.',
-    },
-  },
-};
-
-export const NestedDialogs = () => {
-  const [isEditDialogOpen, setIsEditDialogOpen] = React.useState(false);
-  const [isConfirmationDialogOpen, setIsConfirmationDialogOpen] =
-    React.useState(false);
-  const [post, setPost] = React.useState('');
-
-  return (
-    <div>
-      <Button onPress={() => setIsEditDialogOpen(true)}>Edit profile</Button>
-      <Modal
-        size="lg"
-        isOpen={isEditDialogOpen}
-        isDismissable
-        onOpenChange={() => {
-          if (post !== '') {
-            setIsConfirmationDialogOpen(true);
-          } else {
-            setIsEditDialogOpen(false);
-          }
-        }}
-      >
-        <Dialog aria-label="Edit profile">
-          <DialogBody className="py-4">
-            <TextField
-              autoFocus
-              value={post}
-              onChange={(value) => {
-                setPost(value);
-              }}
-            >
-              <Label>Edit bio</Label>
-              <TextArea placeholder="Add a bio" rows={4}></TextArea>
-              <Description>
-                Add some texts and click outside to close dialog
-              </Description>
-            </TextField>
-
-            <Button
-              className="ml-auto"
-              onPress={() => {
-                setIsEditDialogOpen(false);
-              }}
-            >
-              Save changes
-            </Button>
-          </DialogBody>
-        </Dialog>
-      </Modal>
-
-      <Modal
-        isOpen={isConfirmationDialogOpen}
-        onOpenChange={() => {
-          setIsConfirmationDialogOpen(false);
-          setIsEditDialogOpen(false);
-        }}
-      >
-        <Dialog alert>
-          <DialogHeader>Save changes?</DialogHeader>
-          <DialogBody>
-            You can save this to publish later from your drafts.
-          </DialogBody>
-          <DialogFooter>
-            <DialogCloseButton>No, thanks</DialogCloseButton>
-            <Button
-              onPress={() => {
-                alert('Your changes are saved');
-                setIsConfirmationDialogOpen(false);
-                setIsEditDialogOpen(false);
-              }}
-            >
-              Save
-            </Button>
-          </DialogFooter>
-        </Dialog>
-      </Modal>
-    </div>
-  );
-};
-
-NestedDialogs.parameters = {
-  docs: {
-    description: {
-      story:
-        'Preventing users from accidentally closing a modal Dialog component with unsaved changes by displaying a **nested** confirmation dialog.',
-    },
-  },
-};
-
-export const CustomDialogHeader = () => {
-  return (
-    <DialogTrigger>
-      <Button> Channel settings</Button>
-      <Modal size="xl">
-        <Dialog>
-          <DialogHeader>
-            <div className="flex flex-col">
-              <DialogTitle>Channel settings</DialogTitle>
-              <DialogCloseButton />
-              <div className="flex flex-col gap-6">
-                <div className="flex flex-wrap gap-2 pt-2">
-                  <MenuTrigger>
-                    <TooltipTrigger>
-                      <MenuButton
-                        outline
-                        aria-label="Start Conversation"
-                        className="py-0.5 text-xs/6"
-                      >
-                        <Star className="h-4 w-4" strokeWidth={1.5} />
-                      </MenuButton>
-                      <Tooltip>Start Channel</Tooltip>
-                    </TooltipTrigger>
-                    <MenuPopover>
-                      <Menu>
-                        <MenuSection title="Move to..">
-                          <MenuItem>Started</MenuItem>
-                          <MenuItem>Move to conversation</MenuItem>
-                        </MenuSection>
-                      </Menu>
-                    </MenuPopover>
-                  </MenuTrigger>
-                  <MenuTrigger>
-                    <TooltipTrigger>
-                      <MenuButton
-                        outline
-                        aria-label="Start Conversation"
-                        className="py-0.5 text-xs/6"
-                      >
-                        <Bell className="mr-1 h-4 w-4" strokeWidth={1.5} />
-                        <span className="hidden md:block">
-                          Get Notifications for All Messages
-                        </span>
-                      </MenuButton>
-                      <Tooltip>
-                        You'll be notified when you're mentioned in this channel
-                      </Tooltip>
-                    </TooltipTrigger>
-                    <MenuPopover>
-                      <Menu
-                        defaultSelectedKeys={['all_messages']}
-                        selectionMode="single"
-                      >
-                        <MenuItem
-                          id="all_messages"
-                          description="Get notification for all messages"
-                        >
-                          All messages
-                        </MenuItem>
-                        <MenuItem
-                          id="@mentions"
-                          description="Get notifications for @mentions, @here and @channel only"
-                        >
-                          @Mentions
-                        </MenuItem>
-                        <MenuItem
-                          id="muted_channel"
-                          description="Prevent this channel from bolding for unread messages and only receive a badge if you're mentioned"
-                        >
-                          Mute Channel
-                        </MenuItem>
-
-                        <MenuSeparator />
-
-                        <MenuItem
-                          id="off"
-                          description="You won't receive notifications"
-                        >
-                          Off
-                        </MenuItem>
-                      </Menu>
-                    </MenuPopover>
-                  </MenuTrigger>
-                </div>
-              </div>
-            </div>
-          </DialogHeader>
-          <DialogBody>
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Atque
-            consequatur dolorem accusamus consectetur asperiores, alias fugiat
-            odio, quod quos quisquam provident placeat impedit possimus. Sequi
-            deleniti omnis perspiciatis eum aliquid neque harum hic, maiores
-            accusantium nobis saepe perferendis dolorem itaque rerum labore ipsa
-            consequuntur doloremque dolores tempore eveniet. Laboriosam
-            asperiores eaque nemo consectetur alias vero quos deleniti fuga ex
-            temporibus aliquam sunt ad odit doloribus, dicta, quae, odio ullam.
-            Blanditiis expedita culpa, rerum laborum numquam atque hic minus
-            labore sapiente totam explicabo saepe sed! Beatae illum, facere,
-            dignissimos illo, rem reiciendis cupiditate corporis est facilis
-            eligendi corrupti nostrum eveniet excepturi. Lorem ipsum, dolor sit
-            amet consectetur adipisicing elit. A voluptas, soluta enim sit ipsum
-            qui esse non, asperiores similique quibusdam quasi. Quibusdam
-            dolorem, ex nostrum architecto minima nisi esse deleniti illo optio
-            ut sint nobis cum ullam voluptas nulla pariatur! Mollitia distinctio
-            voluptatum, quod ipsum doloribus provident architecto totam ipsa
-            temporibus nemo fugit nulla consequatur fugiat sint rerum id sed
-            aliquam numquam minima reprehenderit ad, assumenda itaque. Quam
-            maiores quaerat maxime, saepe at sint. Atque eius, illo magni
-            aperiam assumenda tempora accusantium voluptates est beatae vitae
-            facere dolor esse, debitis inventore dolore numquam maiores fugiat
-            impedit!
-          </DialogBody>
-        </Dialog>
-      </Modal>
-    </DialogTrigger>
-  );
-};
-
-CustomDialogHeader.parameters = {
-  docs: {
-    description: {
-      story: 'Use **DialogTitle** component to compose complex dialog header.',
-    },
-  },
-};
-
-export const WithMinHeight = () => {
+export const DialogWithMinHeight = () => {
   return (
     <DialogTrigger>
       <Button> Channel settings</Button>
       <Modal size="xl">
         <Dialog className="h-[min(85vh,820px)]">
           <DialogHeader>
-            <div className="flex flex-col">
-              <Heading level={2}>Channel settings</Heading>
-              <div className="flex flex-col gap-6">
-                <div className="flex flex-wrap gap-2 pt-2">
-                  <MenuTrigger>
-                    <TooltipTrigger>
-                      <MenuButton
-                        outline
-                        aria-label="Start Conversation"
-                        className="py-0.5 text-xs/6"
-                      >
-                        <Star className="h-4 w-4" strokeWidth={1.5} />
-                      </MenuButton>
-                      <Tooltip>Start Channel</Tooltip>
-                    </TooltipTrigger>
-                    <MenuPopover>
-                      <Menu>
-                        <MenuSection title="Move to..">
-                          <MenuItem>Started</MenuItem>
-                          <MenuItem>Move to conversation</MenuItem>
-                        </MenuSection>
-                      </Menu>
-                    </MenuPopover>
-                  </MenuTrigger>
-                  <MenuTrigger>
-                    <TooltipTrigger>
-                      <MenuButton
-                        outline
-                        aria-label="Start Conversation"
-                        className="py-0.5 text-xs/6"
-                      >
-                        <Bell className="mr-1 h-4 w-4" strokeWidth={1.5} />
-                        <span className="hidden md:block">
-                          Get Notifications for All Messages
-                        </span>
-                      </MenuButton>
-                      <Tooltip>
-                        You'll be notified when you're mentioned in this channel
-                      </Tooltip>
-                    </TooltipTrigger>
-                    <MenuPopover>
-                      <Menu
-                        defaultSelectedKeys={['all_messages']}
-                        selectionMode="single"
-                      >
-                        <MenuItem
-                          id="all_messages"
-                          description="Get notification for all messages"
-                        >
-                          All messages
-                        </MenuItem>
-                        <MenuItem
-                          id="@mentions"
-                          description="Get notifications for @mentions, @here and @channel only"
-                        >
-                          @Mentions
-                        </MenuItem>
-                        <MenuItem
-                          id="muted_channel"
-                          description="Prevent this channel from bolding for unread messages and only receive a badge if you're mentioned"
-                        >
-                          Mute Channel
-                        </MenuItem>
+            <div className="flex flex-1 flex-col">
+              <DialogTitle>Channel settings</DialogTitle>
+              <DialogCloseButton />
+              <div className="flex flex-wrap gap-2 pt-2">
+                <MenuTrigger>
+                  <TooltipTrigger>
+                    <MenuButton
+                      aria-label="Start Conversation"
+                      className="py-0.5 text-xs/6"
+                    >
+                      <Star className="h-4 w-4" strokeWidth={1.5} />
+                    </MenuButton>
+                    <Tooltip>Start Channel</Tooltip>
+                  </TooltipTrigger>
+                  <MenuPopover placement="bottom start">
+                    <Menu>
+                      <MenuSection title="Move to..">
+                        <MenuItem>Started</MenuItem>
+                        <MenuItem>Move to conversation</MenuItem>
+                      </MenuSection>
+                    </Menu>
+                  </MenuPopover>
+                </MenuTrigger>
+                <Select
+                  className="w-auto"
+                  aria-label="Notification Settings"
+                  defaultSelectedKey="all"
+                >
+                  <SelectButton>
+                    <Bell />
+                    Get notifications for
+                  </SelectButton>
+                  <SelectPopover>
+                    <SelectListBox>
+                      <SelectListItem id="all" textValue="All Messages">
+                        <SelectListItemLabel>All messages</SelectListItemLabel>
+                        <SelectListItemDescription>
+                          Get notification for all messages
+                        </SelectListItemDescription>
+                      </SelectListItem>
 
-                        <MenuSeparator />
+                      <SelectListItem id="mention" textValue="@Mentions">
+                        <SelectListItemLabel>@Mentions</SelectListItemLabel>
+                        <SelectListItemDescription>
+                          Get notifications for @mentions, @here and @channel
+                          only
+                        </SelectListItemDescription>
+                      </SelectListItem>
 
-                        <MenuItem
-                          id="off"
-                          description="You won't receive notifications"
-                        >
-                          Off
-                        </MenuItem>
-                      </Menu>
-                    </MenuPopover>
-                  </MenuTrigger>
-                </div>
+                      <SelectListItem
+                        id="mute_channel"
+                        textValue="Mute Channel"
+                      >
+                        <SelectListItemLabel>Mute Channel</SelectListItemLabel>
+                        <SelectListItemDescription>
+                          Prevent this channel from bolding for unread messages
+                          and only receive a badge if you're mentioned
+                        </SelectListItemDescription>
+                      </SelectListItem>
+                    </SelectListBox>
+                  </SelectPopover>
+                </Select>
               </div>
             </div>
           </DialogHeader>
           <DialogCloseButton />
           <DialogBody className="overflow-hidden px-0">
             <Tabs className="overflow-auto p-0 pb-0 text-base/6 sm:text-sm/6">
-              <div className="sticky top-0 bg-background">
-                <TabList aria-label="History of Ancient Rome" className="px-6">
-                  <Tab id="about">About</Tab>
-                  <Tab id="members">
-                    Members <span className="pl-2">24</span>
+              <div className="sticky top-0 bg-white dark:bg-zinc-900">
+                <TabList
+                  aria-label="History of Ancient Rome"
+                  className="space-x-4 px-6"
+                >
+                  <Tab className="py-2" id="about">
+                    About
                   </Tab>
-                  <Tab id="integrations">Integrations</Tab>
-                  <Tab id="settings">Settings</Tab>
+                  <Tab className="py-2" id="members">
+                    Members <span className="ps-2">24</span>
+                  </Tab>
+                  <Tab className="py-2" id="integrations">
+                    Integrations
+                  </Tab>
+                  <Tab className="py-2" id="settings">
+                    Settings
+                  </Tab>
                 </TabList>
               </div>
 
@@ -841,20 +749,20 @@ export const WithMinHeight = () => {
   );
 };
 
-WithMinHeight.parameters = {
+DialogWithMinHeight.parameters = {
   docs: {
     description: {
       story:
-        'Use **className="h-[min(**, **)]** to set **min-height** of the **Dialog** component.',
+        'Use **className="h-[min(*, *)]** to set min-height of the **Dialog** component.',
     },
   },
 };
 
-export const Drawers = (args: any) => {
+export const DialogWithIsDismissable = () => {
   return (
     <DialogTrigger>
       <Button>Edit profile</Button>
-      <Modal drawer size="sm" {...args}>
+      <Modal isDismissable size="md">
         <Dialog>
           <DialogHeader>Edit profile</DialogHeader>
           <DialogCloseButton />
@@ -863,13 +771,17 @@ export const Drawers = (args: any) => {
               Make changes to your profile here. Click save when you're done.
             </Text>
             <Form className="py-4" id="edit-profile-form">
-              <TextField isRequired className="grid grid-cols-4 gap-x-4">
-                <Label className="ml-auto">Name</Label>
+              <TextField
+                isRequired
+                className="grid grid-cols-4 gap-x-4"
+                autoFocus
+              >
+                <Label className="ms-auto">Name</Label>
                 <Input className="col-span-3"></Input>
                 <FieldError className="col-span-3 col-start-2" />
               </TextField>
               <TextField isRequired className="grid grid-cols-4 gap-4">
-                <Label className="ml-auto">Username</Label>
+                <Label className="ms-auto">Username</Label>
                 <Input className="col-span-3"></Input>
                 <FieldError className="col-span-3 col-start-2" />
               </TextField>
@@ -887,11 +799,251 @@ export const Drawers = (args: any) => {
   );
 };
 
-Drawers.parameters = {
+DialogWithIsDismissable.parameters = {
   docs: {
     description: {
       story:
-        'Use the **drawer** and **placement** prop to render dialogs out from the edge of the screen. \n\nAvailable **placement** option includes **left** and **right**. Default placement is **left**.',
+        'Use the **isDismissable** prop of the **Modal** component to control whether the dialog can be closed by clicking outside. The default value is **false**.',
     },
   },
+};
+
+export const DialogWithKeyboardDismissDisabled = () => {
+  return (
+    <DialogTrigger>
+      <Button>Edit profile</Button>
+      <Modal isKeyboardDismissDisabled size="md">
+        <Dialog>
+          <DialogHeader>Edit profile</DialogHeader>
+          <DialogCloseButton />
+          <DialogBody>
+            <Text>
+              Make changes to your profile here. Click save when you're done.
+            </Text>
+            <Form className="py-4" id="edit-profile-form">
+              <TextField
+                isRequired
+                className="grid grid-cols-4 gap-x-4"
+                autoFocus
+              >
+                <Label className="ms-auto">Name</Label>
+                <Input className="col-span-3"></Input>
+                <FieldError className="col-span-3 col-start-2" />
+              </TextField>
+              <TextField isRequired className="grid grid-cols-4 gap-4">
+                <Label className="ms-auto">Username</Label>
+                <Input className="col-span-3"></Input>
+                <FieldError className="col-span-3 col-start-2" />
+              </TextField>
+            </Form>
+          </DialogBody>
+          <DialogFooter>
+            <DialogCloseButton>Cancel</DialogCloseButton>
+            <Button form="edit-profile-form" type="submit">
+              Save changes
+            </Button>
+          </DialogFooter>
+        </Dialog>
+      </Modal>
+    </DialogTrigger>
+  );
+};
+
+DialogWithKeyboardDismissDisabled.parameters = {
+  docs: {
+    description: {
+      story:
+        'Use the **isKeyboardDismissDisabled** prop of the **Modal** component to control whether the dialog can be closed with the **ESC** key. The default value is **false**.',
+    },
+  },
+};
+
+export const DialogWithAutoFocusWhenOpen = (args: any) => {
+  return (
+    <DialogTrigger>
+      <Button>Edit profile</Button>
+      <Modal {...args} size="md">
+        <Dialog>
+          <DialogHeader>Edit profile</DialogHeader>
+          <DialogCloseButton />
+          <DialogBody>
+            <Text>
+              Make changes to your profile here. Click save when you're done.
+            </Text>
+            <Form className="py-4" id="edit-profile-form">
+              <TextField
+                isRequired
+                className="grid grid-cols-4 gap-x-4"
+                autoFocus
+              >
+                <Label className="ms-auto">Name</Label>
+                <Input className="col-span-3"></Input>
+                <FieldError className="col-span-3 col-start-2" />
+              </TextField>
+              <TextField isRequired className="grid grid-cols-4 gap-4">
+                <Label className="ms-auto">Username</Label>
+                <Input className="col-span-3"></Input>
+                <FieldError className="col-span-3 col-start-2" />
+              </TextField>
+            </Form>
+          </DialogBody>
+          <DialogFooter>
+            <DialogCloseButton>Cancel</DialogCloseButton>
+            <Button form="edit-profile-form" type="submit">
+              Save changes
+            </Button>
+          </DialogFooter>
+        </Dialog>
+      </Modal>
+    </DialogTrigger>
+  );
+};
+
+DialogWithAutoFocusWhenOpen.parameters = {
+  docs: {
+    description: {
+      story:
+        'Add the **autoFocus** prop to any focusable element inside the dialog to automatically focus it when the dialog opens. \n\n>Use <a href="https://react-spectrum.adobe.com/react-aria/FocusScope.html#focusscope" target="_blank">**FocusScope**</a> if autofocus not working properly in some edge cases.',
+    },
+  },
+};
+
+export const DialogWithControlledOpenState = () => {
+  const [isOpen, setOpen] = React.useState(false);
+
+  return (
+    <>
+      <MenuTrigger>
+        <MenuButton>Options</MenuButton>
+        <MenuPopover className="animate-none">
+          <Menu>
+            <MenuItem onAction={() => setOpen(true)}>Edit profile</MenuItem>
+            <MenuItem>Logout</MenuItem>
+          </Menu>
+        </MenuPopover>
+      </MenuTrigger>
+
+      <Modal isOpen={isOpen} onOpenChange={setOpen}>
+        <Dialog>
+          <DialogHeader>Edit profile</DialogHeader>
+          <DialogCloseButton />
+          <DialogBody>
+            <Text>
+              Make changes to your profile here. Click save when you're done.
+            </Text>
+            <Form className="py-4" id="edit-profile-form">
+              <TextField
+                isRequired
+                className="grid grid-cols-4 gap-x-4"
+                autoFocus
+              >
+                <Label className="ms-auto">Name</Label>
+                <Input className="col-span-3"></Input>
+                <FieldError className="col-span-3 col-start-2" />
+              </TextField>
+              <TextField isRequired className="grid grid-cols-4 gap-4">
+                <Label className="ms-auto">Username</Label>
+                <Input className="col-span-3"></Input>
+                <FieldError className="col-span-3 col-start-2" />
+              </TextField>
+            </Form>
+          </DialogBody>
+          <DialogFooter>
+            <DialogCloseButton>Cancel</DialogCloseButton>
+            <Button form="edit-profile-form" type="submit">
+              Save changes
+            </Button>
+          </DialogFooter>
+        </Dialog>
+      </Modal>
+    </>
+  );
+};
+
+DialogWithControlledOpenState.parameters = {
+  docs: {
+    description: {
+      story:
+        'Use the **isOpen** and **onOpenChange** prop of the **Modal** component to control dialog open state.',
+    },
+  },
+};
+
+export const NestedDialogs = () => {
+  const [isEditDialogOpen, setIsEditDialogOpen] = React.useState(false);
+  const [isConfirmationDialogOpen, setIsConfirmationDialogOpen] =
+    React.useState(false);
+  const [post, setPost] = React.useState('');
+
+  return (
+    <div>
+      <Button onPress={() => setIsEditDialogOpen(true)}>Edit profile</Button>
+      <Modal
+        size="lg"
+        isOpen={isEditDialogOpen}
+        isDismissable
+        onOpenChange={() => {
+          if (post !== '') {
+            setIsConfirmationDialogOpen(true);
+          } else {
+            setIsEditDialogOpen(false);
+          }
+        }}
+      >
+        <Dialog aria-label="Edit profile">
+          <DialogBody className="py-4">
+            <TextField
+              autoFocus
+              value={post}
+              onChange={(value) => {
+                setPost(value);
+              }}
+            >
+              <Label>Edit bio</Label>
+              <TextArea placeholder="Add a bio" rows={4}></TextArea>
+              <Description>
+                Add texts and click outside to close to show the second dialog.
+              </Description>
+            </TextField>
+
+            <Button
+              className="ms-auto mt-2"
+              onPress={() => {
+                setIsEditDialogOpen(false);
+              }}
+            >
+              Save changes
+            </Button>
+          </DialogBody>
+        </Dialog>
+      </Modal>
+
+      <Modal
+        isOpen={isConfirmationDialogOpen}
+        onOpenChange={() => {
+          setIsConfirmationDialogOpen(false);
+          setIsEditDialogOpen(false);
+        }}
+      >
+        <Dialog alert>
+          <DialogHeader>Save changes?</DialogHeader>
+          <DialogBody>
+            You can save this to publish later from your drafts.
+          </DialogBody>
+          <DialogFooter>
+            <DialogCloseButton>No, thanks</DialogCloseButton>
+            <Button
+              onPress={() => {
+                alert('Your changes are saved');
+                setIsConfirmationDialogOpen(false);
+                setIsEditDialogOpen(false);
+              }}
+            >
+              Save
+            </Button>
+          </DialogFooter>
+        </Dialog>
+      </Modal>
+    </div>
+  );
 };

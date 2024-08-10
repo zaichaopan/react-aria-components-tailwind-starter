@@ -4,32 +4,93 @@ import {
   HeadingProps as RACHeadingProps,
 } from 'react-aria-components';
 import { twMerge } from 'tailwind-merge';
+import { FocusScope } from 'react-aria';
+import { DisplayLevel, displayLevels } from './utils';
 
-const displayLevels = {
-  1: 'font-bold text-lg',
-  2: 'font-semibold text-base/6 ',
-  3: 'font-semibold text-base/6 sm:text-sm/6',
-  4: 'font-medium text-base/6 sm:text-sm/6',
+type BaseHeadingProps = {
+  displayLevel?: DisplayLevel;
+  autoFocus?: boolean;
 };
 
-type Level = keyof typeof displayLevels;
+export type HeadingProps = {
+  level?: DisplayLevel;
+  elementType?: never;
+} & RACHeadingProps;
 
-export interface HeadingProps
-  extends RACHeadingProps,
-    React.RefAttributes<HTMLHeadingElement> {
-  displayLevel?: Level;
-  level?: Level;
-}
+type CustomElement = {
+  level?: never;
+  elementType: 'div';
+} & JSX.IntrinsicElements['div'];
 
-export const Heading = React.forwardRef<HTMLHeadingElement, HeadingProps>(
-  function Heading({ displayLevel, className, level = 1, ...props }, ref) {
+export const Heading = React.forwardRef<
+  HTMLHeadingElement | HTMLDivElement,
+  BaseHeadingProps & (HeadingProps | CustomElement)
+>(function Heading({ elementType, autoFocus, ...props }, ref) {
+  if (elementType) {
+    const { displayLevel = 1, className, ...restProps } = props;
+
+    if (autoFocus) {
+      return (
+        <FocusScope autoFocus>
+          <div
+            {...restProps}
+            ref={ref}
+            {...(autoFocus && { tabIndex: -1 })}
+            className={twMerge(
+              [displayLevels[displayLevel], 'outline-none'],
+              className,
+            )}
+          />
+        </FocusScope>
+      );
+    }
     return (
-      <RACHeading
-        {...props}
+      <div
+        {...restProps}
         ref={ref}
-        level={level}
-        className={twMerge(displayLevels[displayLevel ?? level], className)}
+        className={twMerge(displayLevels[displayLevel], className)}
       />
     );
-  },
-);
+  }
+
+  const { level = 1, displayLevel, className, ...restProps } = props;
+
+  if (autoFocus) {
+    return (
+      <FocusScope autoFocus>
+        <RACHeading
+          {...restProps}
+          ref={ref}
+          level={level}
+          {...(autoFocus && { tabIndex: -1 })}
+          className={twMerge(
+            [displayLevels[displayLevel ?? level], 'outline-none'],
+            className,
+          )}
+        />
+      </FocusScope>
+    );
+  }
+
+  return (
+    <RACHeading
+      {...restProps}
+      ref={ref}
+      level={level}
+      className={twMerge(displayLevels[displayLevel ?? level], className)}
+    />
+  );
+});
+
+export const SubHeading = React.forwardRef<
+  HTMLDivElement,
+  JSX.IntrinsicElements['div']
+>(function SubHeading({ className, ...props }, ref) {
+  return (
+    <div
+      {...props}
+      ref={ref}
+      className={twMerge('text-base/6 sm:text-sm/6 text-muted', className)}
+    />
+  );
+});

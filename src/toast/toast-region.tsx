@@ -6,10 +6,20 @@ import type { ToastState } from '@react-stately/toast';
 import { useToastRegion } from '@react-aria/toast';
 import type { AriaToastProps } from '@react-aria/toast';
 import { useToast } from '@react-aria/toast';
-import { ButtonProps as AriaButtonProps } from 'react-aria-components';
-import { CloseButton } from '../button';
+import {
+  ButtonProps as AriaButtonProps,
+  composeRenderProps,
+} from 'react-aria-components';
+import { Button, ButtonWithoutAsChildProps } from '../button';
 import { twMerge } from 'tailwind-merge';
 import { toast, ToastConfig } from './toast-queue';
+import {
+  CircleCheckIcon,
+  CircleInfoIcon,
+  CircleXIcon,
+  OctagonAlertIcon,
+  XIcon,
+} from '../icons';
 
 interface ToastRegionProps extends AriaToastRegionProps {
   state: ToastState<ToastConfig>;
@@ -119,113 +129,94 @@ function Toast({ state, ...props }: ToastProps) {
     <div
       {...toastProps}
       ref={ref}
-      className="flex flex-1 rounded-md bg-background outline-none"
+      className={twMerge(
+        'relative isolate flex w-[min(85vw,360px)] space-x-1 rounded-lg shadow-sm transition',
+        'flex flex-1 rounded-lg bg-zinc-900 outline-none',
+        type ? 'px-2.5' : 'px-4',
+        'py-2.5',
+        !props.toast.content.render &&
+          'border border-zinc-950 dark:border-zinc-800',
+        enteringClassName,
+      )}
     >
-      <div
-        className={twMerge(
-          'toast flex w-[min(85vw,360px)] gap-1 rounded-md border px-3 py-2 shadow-sm transition',
-          type === undefined &&
-            !props.toast.content.render &&
-            'border-border/50 bg-background',
-          type === 'error' && 'border-destructive/15 bg-destructive/5',
-          type === 'warning' && 'border-warning/15 bg-warning/5',
-          type === 'success' && 'border-success/15 bg-success/5',
-          enteringClassName,
-        )}
-      >
-        {props.toast.content.render ? (
-          props.toast.content.render()
-        ) : (
-          <>
-            <div className="flex flex-1 items-center gap-2 self-center">
-              {type === 'error' && (
-                <svg
-                  aria-hidden
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  className="mt-1 flex size-5 self-start text-destructive"
+      {props.toast.content.render ? (
+        props.toast.content.render()
+      ) : (
+        <>
+          <div className="flex flex-1 items-center space-x-2.5 self-center">
+            {type === 'info' && (
+              <CircleInfoIcon className="mt-1 size-5 self-start text-blue-500" />
+            )}
+
+            {type === 'error' && (
+              <CircleXIcon className="mt-1 size-5 self-start text-destructive" />
+            )}
+
+            {type === 'warning' && (
+              <OctagonAlertIcon className="mt-1 size-5 self-start text-warning" />
+            )}
+
+            {type === 'success' && (
+              <CircleCheckIcon className="mt-1 size-5 self-start text-success" />
+            )}
+
+            <div className="flex flex-1 flex-col space-y-0.5 text-base/6 sm:text-sm/6">
+              {props.toast.content.title ? (
+                <div
+                  {...titleProps}
+                  className={twMerge(
+                    props.toast.content.description &&
+                      'text-sm/6 font-medium text-zinc-50',
+                  )}
                 >
-                  <path d="M12 16h.01" />
-                  <path d="M12 8v4" />
-                  <path d="M15.312 2a2 2 0 0 1 1.414.586l4.688 4.688A2 2 0 0 1 22 8.688v6.624a2 2 0 0 1-.586 1.414l-4.688 4.688a2 2 0 0 1-1.414.586H8.688a2 2 0 0 1-1.414-.586l-4.688-4.688A2 2 0 0 1 2 15.312V8.688a2 2 0 0 1 .586-1.414l4.688-4.688A2 2 0 0 1 8.688 2z" />
-                </svg>
-              )}
+                  {props.toast.content.title}
+                </div>
+              ) : null}
 
-              {type === 'warning' && (
-                <svg
-                  aria-hidden
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  className="mt-1 flex size-5 self-start text-warning"
+              {props.toast.content.description ? (
+                <div
+                  {...descriptionProps}
+                  className="text-base/5 text-zinc-400  sm:text-sm/5"
                 >
-                  <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3" />
-                  <path d="M12 9v4" />
-                  <path d="M12 17h.01" />
-                </svg>
-              )}
+                  {props.toast.content.description}
+                </div>
+              ) : null}
 
-              {type === 'success' && (
-                <svg
-                  aria-hidden
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  className="mt-1 flex size-5 self-start text-success"
-                >
-                  <circle cx="12" cy="12" r="10" />
-                  <path d="m9 12 2 2 4-4" />
-                </svg>
-              )}
-
-              <div className="flex flex-1 flex-col gap-1 text-sm/6">
-                {props.toast.content.title ? (
-                  <div
-                    {...titleProps}
-                    className={twMerge(
-                      props.toast.content.description && 'font-medium',
-                    )}
-                  >
-                    {props.toast.content.title}
-                  </div>
-                ) : null}
-
-                {props.toast.content.description ? (
-                  <div {...descriptionProps}>
-                    {props.toast.content.description}
-                  </div>
-                ) : null}
-              </div>
+              {props.toast.content.action ? (
+                <div className="flex flex-wrap gap-1 py-1">
+                  {props.toast.content.action}
+                </div>
+              ) : null}
             </div>
-          </>
-        )}
-
-        <CloseButton
-          plain
-          size="sm"
-          {...closeButtonProps}
-          className={twMerge('rounded', 'hover:bg-transparent')}
-        />
-      </div>
+          </div>
+          {props.toast.content.dismissable !== false && (
+            <Button
+              size="sm"
+              isIconOnly
+              variant="plain"
+              {...closeButtonProps}
+              className="p rounded text-zinc-400 hover:bg-transparent hover:text-zinc-50"
+            >
+              <XIcon aria-label="Close" />
+            </Button>
+          )}
+        </>
+      )}
     </div>
+  );
+}
+
+export function ToastAction({
+  variant = 'unstyle',
+  ...props
+}: ButtonWithoutAsChildProps) {
+  return (
+    <Button
+      {...props}
+      variant={variant}
+      className={composeRenderProps(props.className, (className) => {
+        return twMerge('text-base/6 text-zinc-50 sm:text-sm/6', className);
+      })}
+    />
   );
 }

@@ -2,8 +2,8 @@ import type { Meta } from '@storybook/react';
 import { ProgressBar } from '../src/progress-bar';
 import { docs } from '../.storybook/docs';
 
-const meta: Meta<typeof ProgressBar> = {
-  component: ProgressBar,
+const meta: Meta = {
+  title: 'Progress bar',
   parameters: {
     layout: 'centered',
     docs: {
@@ -12,9 +12,6 @@ const meta: Meta<typeof ProgressBar> = {
           '<a href="https://react-spectrum.adobe.com/react-aria/ProgressBar.html" target="_blank">**Progress bars**</a> show either determinate or indeterminate progress of an operation over time.',
       },
       ...docs,
-      controls: {
-        exclude: /.*/g,
-      },
     },
   },
   tags: ['autodocs'],
@@ -22,7 +19,7 @@ const meta: Meta<typeof ProgressBar> = {
 
 export default meta;
 
-export const Example = () => {
+export const BasicExample = () => {
   return <ProgressBar label="loading" value={80} />;
 };
 

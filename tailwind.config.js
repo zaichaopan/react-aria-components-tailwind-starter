@@ -11,19 +11,15 @@ export default {
   ],
   theme: {
     extend: {
-      fontFamily: {
-        sans: ['Inter', ...defaultTheme.fontFamily.sans],
-      },
       colors: {
-        background: 'hsl(var(--background))',
-        foreground: 'hsl(var(--foreground))',
-        accent: 'hsl(var(--accent))',
-        success: 'hsl(var(--success))',
-        destructive: 'hsl(var(--destructive))',
-        warning: 'hsl(var(--warning))',
-        hover: 'hsl(var(--hover))',
-        muted: 'hsl(var(--muted))',
-        border: 'hsl(var(--border))',
+        background: 'rgb(var(--background))',
+        foreground: 'rgb(var(--foreground))',
+        accent: 'rgb(var(--accent))',
+        success: 'rgb(var(--success))',
+        destructive: 'rgb(var(--destructive))',
+        warning: 'rgb(var(--warning))',
+        muted: 'rgb(var(--muted))',
+        border: 'rgb(var(--border))',
       },
     },
   },

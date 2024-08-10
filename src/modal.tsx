@@ -1,10 +1,10 @@
+import React from 'react';
 import {
   ModalOverlay as RACModalOverlay,
   ModalOverlayProps as RACModalOverlayProps,
   Modal as RACModal,
-  composeRenderProps,
 } from 'react-aria-components';
-import { twMerge } from 'tailwind-merge';
+import { composeTailwindRenderProps } from './utils';
 
 const sizes = {
   xs: 'sm:max-w-xs',
@@ -16,113 +16,144 @@ const sizes = {
   '3xl': 'sm:max-w-3xl',
   '4xl': 'sm:max-w-4xl',
   '5xl': 'sm:max-w-5xl',
+  fullWidth: 'w-full',
 };
 
-type Size = keyof typeof sizes;
-
-type DrawerProps =
-  | { drawer?: never }
+type ModalType =
+  | { drawer?: never; keepCentered?: boolean }
   | {
       drawer: true;
       placement?: 'left' | 'right';
+      keepCentered?: never;
     };
 
-type ClassNames = {
-  modalOverlay?: RACModalOverlayProps['className'];
-  modal?: RACModalOverlayProps['className'];
-};
-
 type ModalProps = Omit<RACModalOverlayProps, 'className'> & {
-  size?: Size;
-  animate?: boolean;
-  classNames?: ClassNames;
-} & DrawerProps;
+  size?: keyof typeof sizes;
+  classNames?: {
+    modalOverlay?: RACModalOverlayProps['className'];
+    modal?: RACModalOverlayProps['className'];
+  };
+} & ModalType;
 
-export function Modal({ animate = true, classNames, ...props }: ModalProps) {
+export function Modal({
+  classNames,
+  keepCentered = false,
+  ...props
+}: ModalProps) {
   const drawer = props.drawer;
-
   const placement = props.drawer ? props.placement ?? 'left' : undefined;
+
+  React.useEffect(() => {
+    document
+      .querySelector<HTMLElement>(':root')
+      ?.style.setProperty(
+        '--scrollbar-width',
+        `${window.innerWidth - document.documentElement.clientWidth}px`,
+      );
+  }, []);
 
   return (
     <RACModalOverlay
       {...props}
-      className={composeRenderProps(
-        classNames?.modalOverlay,
-        (className, renderProps) => {
-          return twMerge(
-            'fixed left-0 top-0 isolate z-20',
-            'h-[--visual-viewport-height] w-full',
-            'bg-zinc-950/15 dark:bg-zinc-950/50',
-            'flex items-end text-center sm:items-center',
-            drawer
-              ? [
-                  'p-2 [--visual-viewport-vertical-padding:16px]',
+      className={composeTailwindRenderProps(classNames?.modalOverlay, [
+        'fixed left-0 top-0 isolate z-20',
+        'h-[--visual-viewport-height] w-full',
+        'bg-zinc-950/40 dark:bg-zinc-950/50',
+        'flex',
+        'items-center',
+        'text-center',
 
-                  placement === 'left' ? 'justify-start ' : 'justify-end',
+        'entering:animate-in',
+        'entering:fade-in',
+        'entering:duration-300',
+        'entering:ease-out',
 
-                  renderProps.isEntering &&
-                    'duration-200 ease-out animate-in fade-in',
+        'exiting:animate-out',
+        'exiting:fade-out',
+        'exiting:duration-200',
+        'exiting:ease-in',
 
-                  renderProps.isExiting &&
-                    'duration-200 ease-in animate-out fade-out',
-                ]
-              : [
-                  'justify-center',
-                  'pt-4 [--visual-viewport-vertical-padding:16px] sm:p-4 sm:[--visual-viewport-vertical-padding:32px]',
+        drawer
+          ? [
+              'p-2 [--visual-viewport-vertical-padding:16px]',
+              '[&:has([data-placement=right])]:justify-end',
+            ]
+          : [
+              'justify-center',
+              'p-4',
+              '[--visual-viewport-vertical-padding:32px]',
 
-                  renderProps.isEntering &&
-                    'duration-200 ease-out animate-in fade-in',
+              !keepCentered && [
+                '[&:has([role=dialog])]:items-end',
+                '[&:has([role=dialog])]:pt-4',
+                '[&:has([role=dialog])]:px-0',
+                '[&:has([role=dialog])]:pb-0',
+                '[&:has([role=dialog])]:[--visual-viewport-vertical-padding:16px]',
 
-                  renderProps.isExiting &&
-                    'duration-200 ease-in animate-out fade-out',
-                ],
-            className,
-          );
-        },
-      )}
+                'sm:[&:has([role=dialog])]:items-center',
+                'sm:[&:has([role=dialog])]:p-4',
+                'sm:[&:has([role=dialog])]:[--visual-viewport-vertical-padding:32px]',
+              ],
+            ],
+      ])}
     >
       <RACModal
         {...props}
-        className={composeRenderProps(
-          classNames?.modal,
-          (className, renderProps) => {
-            return twMerge(
-              'max-h-full w-full overflow-hidden bg-background text-left align-middle shadow-lg',
-              'ring-1 ring-zinc-950/5 dark:ring-white/15',
-              'w-full',
-              props.size
-                ? sizes[props.size]
-                : 'sm:has-[[role=alertdialog]]:max-w-md sm:has-[[role=dialog]]:max-w-lg',
-              drawer
-                ? [
-                    'h-full rounded-lg',
-                    animate &&
-                      renderProps.isEntering && [
-                        placement === 'left'
-                          ? 'duration-200 ease-out animate-in slide-in-from-left'
-                          : 'duration-200 ease-out animate-in slide-in-from-right',
-                      ],
-                    animate &&
-                      renderProps.isExiting && [
-                        placement === 'left'
-                          ? 'duration-200 ease-in animate-out slide-out-to-left'
-                          : 'duration-200 ease-in animate-out slide-out-to-right',
-                      ],
-                  ]
-                : [
-                    'rounded-t-2xl sm:rounded-lg',
-                    animate &&
-                      renderProps.isEntering &&
-                      'duration-200 ease-out animate-in slide-in-from-bottom sm:zoom-in-105 sm:slide-in-from-bottom-0',
+        data-placement={placement}
+        className={composeTailwindRenderProps(classNames?.modal, [
+          'max-h-full w-full overflow-hidden',
+          'text-left align-middle',
+          'shadow-lg',
+          'bg-white dark:bg-zinc-900',
+          'dark:ring-1 dark:ring-white/10',
 
-                    animate &&
-                      renderProps.isExiting &&
-                      'duration-200 ease-in animate-out slide-out-to-bottom sm:zoom-out-95 sm:slide-out-to-bottom-0',
-                  ],
-              className,
-            );
-          },
-        )}
+          props.size
+            ? sizes[props.size]
+            : 'sm:has-[[role=alertdialog]]:max-w-md sm:has-[[role=dialog]]:max-w-lg',
+
+          'entering:animate-in',
+          'entering:ease-out',
+          'entering:duration-200',
+          'exiting:animate-out',
+          'exiting:ease-in',
+          'exiting:duration-200',
+
+          drawer
+            ? [
+                'h-full',
+                'rounded-xl',
+                'data-[placement=left]:entering:slide-in-from-left',
+                'data-[placement=right]:entering:slide-in-from-right',
+                'data-[placement=left]:exiting:slide-out-to-left',
+                'data-[placement=right]:exiting:slide-out-to-right',
+              ]
+            : [
+                'rounded-xl',
+                'entering:zoom-in-95',
+                'exiting:zoom-out-95',
+
+                // handle layout shift when toggling scroll lock
+                props.size !== 'fullWidth' &&
+                  'sm:exiting:-me-[var(--scrollbar-width)]',
+                'sm:exiting:duration-0',
+
+                !keepCentered && [
+                  'has-[[role=dialog]]:rounded-t-xl ',
+                  'has-[[role=dialog]]:rounded-b-none',
+                  'sm:has-[[role=dialog]]:rounded-xl',
+
+                  'has-[[role=dialog]]:entering:zoom-in-100',
+                  'has-[[role=dialog]]:entering:slide-in-from-bottom',
+                  'sm:has-[[role=dialog]]:entering:zoom-in-95',
+                  'sm:has-[[role=dialog]]:entering:slide-in-from-bottom-0',
+
+                  'has-[[role=dialog]]:exiting:zoom-out-100',
+                  'has-[[role=dialog]]:exiting:slide-out-to-bottom',
+                  'sm:has-[[role=dialog]]:exiting:zoom-out-95',
+                  'sm:has-[[role=dialog]]:exiting:slide-out-to-bottom-0',
+                ],
+              ],
+        ])}
       />
     </RACModalOverlay>
   );

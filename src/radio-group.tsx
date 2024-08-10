@@ -1,3 +1,4 @@
+import React from 'react';
 import {
   Radio as RACRadio,
   RadioGroup as RACRadioGroup,
@@ -5,18 +6,37 @@ import {
   RadioProps as RACRadioProps,
   RadioRenderProps,
 } from 'react-aria-components';
-import { DescriptionProvider, WithDescriptionContext } from './field';
-import { composeTailwindRenderProps, focusOutlineStyle } from './utils';
+import { DescriptionContext, DescriptionProvider } from './field';
+import {
+  composeTailwindRenderProps,
+  groupBox,
+  groupFocusVisibleOutline,
+} from './utils';
 import { twMerge } from 'tailwind-merge';
 
-export function RadioGroup(props: Omit<RACRadioGroupProps, 'orientation'>) {
+export function RadioGroup({ ...props }: RACRadioGroupProps) {
   return (
     <RACRadioGroup
       {...props}
-      className={composeTailwindRenderProps(
-        props.className,
-        'group flex flex-col gap-2',
+      className={composeTailwindRenderProps(props.className, groupBox)}
+    />
+  );
+}
+
+export function Radios({ className, ...props }: JSX.IntrinsicElements['div']) {
+  return (
+    <div
+      data-ui="box"
+      className={twMerge(
+        'flex',
+        'flex-col',
+        'group-aria-[orientation=horizontal]:flex-row',
+        'group-aria-[orientation=horizontal]:flex-wrap',
+        // When any radio item has description, apply all `font-medium` to all radio item labels
+        '[&_label]:has-[[data-ui=description]]:font-medium',
+        className,
       )}
+      {...props}
     />
   );
 }
@@ -29,15 +49,13 @@ export function RadioField({
     <DescriptionProvider>
       <div
         {...props}
+        data-ui="field"
         className={twMerge(
           'group flex flex-col gap-y-1',
-          'sm:[&_[slot=description]]:has-[label[data-label-position=left]]:pr-7',
-          'sm:[&_[slot=description]]:has-[label[data-label-position=right]]:pl-7',
-          '[&_label]:has-[[data-label-position=left]]:justify-between',
-          // When the radio has description, make the label font-medium
-          '[&_label]:has-[[slot=description]]:font-medium',
-          // When the radio is disabled
-          '[&_[slot=description]]:has-[label[data-disabled]]:opacity-50',
+          '[&_label]:has-[[data-label-placement=start]]:justify-between',
+          '[&_[data-ui=description]:not([class*=pe-])]:has-[label[data-label-placement=start]]:pe-16',
+          '[&_[data-ui=description]:not([class*=ps-])]:has-[label[data-label-placement=end]]:ps-7',
+          '[&_[data-ui=description]]:has-[label[data-disabled]]:opacity-50',
           className,
         )}
       />
@@ -46,13 +64,13 @@ export function RadioField({
 }
 
 export interface RadioProps extends RACRadioProps {
-  labelPosition?: 'left' | 'right';
+  labelPlacement?: 'start' | 'end';
   render?: never;
 }
 
 export interface CustomRenderRadioProps
   extends Omit<RACRadioProps, 'children'> {
-  render: (props: RadioRenderProps) => React.ReactNode;
+  render: React.ReactElement | ((props: RadioRenderProps) => React.ReactNode);
   children?: never;
 }
 
@@ -60,73 +78,78 @@ export function Radio({
   className,
   ...props
 }: RadioProps | CustomRenderRadioProps) {
+  const descriptionContext = React.useContext(DescriptionContext);
+
+  if (props.render) {
+    const { render, ...restProps } = props;
+
+    return (
+      <RACRadio
+        {...restProps}
+        aria-describedby={descriptionContext?.['aria-describedby']}
+        className={composeTailwindRenderProps(className, [
+          'group',
+          'text-base/6 sm:text-sm/6',
+          'disabled:opacity-50',
+        ])}
+      >
+        {render}
+      </RACRadio>
+    );
+  }
+
+  const { labelPlacement = 'end', ...restProps } = props;
+
   return (
-    <WithDescriptionContext>
-      {(context) => {
-        if (props.render) {
-          return (
-            <RACRadio
-              {...props}
-              aria-describedby={context?.['aria-describedby']}
-              className={composeTailwindRenderProps(
-                className,
-                'group flex items-center gap-3 text-base/6 disabled:opacity-50 sm:text-sm/6',
+    <RACRadio
+      {...restProps}
+      aria-describedby={descriptionContext?.['aria-describedby']}
+      data-label-placement={labelPlacement}
+      className={composeTailwindRenderProps(className, [
+        'group flex items-center',
+        'group-aria-[orientation=horizontal]:text-nowrap',
+        'data-[label-placement=start]:flex-row-reverse',
+        'data-[label-placement=start]:justify-between',
+        'text-base/6 sm:text-sm/6',
+        'disabled:opacity-50',
+      ])}
+    >
+      {(renderProps) => {
+        return (
+          <>
+            <div
+              slot="radio"
+              className={twMerge(
+                'grid size-[1.0625rem] shrink-0 place-content-center rounded-full shadow-sm',
+                labelPlacement === 'end' ? 'me-3' : 'ms-3',
+                'border',
+                'border-zinc-400/75',
+                'dark:border-zinc-600',
+
+                // readonly
+                'group-data-[readonly]:opacity-50',
+
+                // invalid
+                'group-invalid:border-destructive',
+                'group-invalid:dark:border-destructive',
+
+                // selected
+                'group-selected:dark:border-0',
+                'group-selected:border-accent',
+                'group-selected:bg-accent',
+                'group-selected:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.1)]',
+                groupFocusVisibleOutline,
               )}
             >
-              {props.render}
-            </RACRadio>
-          );
-        }
+              <div className="rounded-full group-selected:size-1.5 group-selected:bg-white"></div>
+            </div>
 
-        const { labelPosition = 'right', ...restProps } = props;
-
-        return (
-          <RACRadio
-            {...restProps}
-            aria-describedby={context?.['aria-describedby']}
-            data-label-position={labelPosition}
-            className={composeTailwindRenderProps(
-              className,
-              'group flex items-center gap-3 text-base/6 disabled:opacity-50 sm:text-sm/6',
-            )}
-          >
-            {(renderProps) => {
-              return (
-                <>
-                  {labelPosition === 'left' &&
-                    (typeof props.children === 'function'
-                      ? props.children(renderProps)
-                      : props.children)}
-
-                  <div
-                    slot="radio"
-                    className={twMerge(
-                      'h-4 w-4 shrink-0 rounded-full border shadow-sm transition-all disabled:opacity-75',
-                      ' border-zinc-400/75 dark:border-zinc-600',
-                      renderProps.isInvalid &&
-                        'border-destructive dark:border-destructive',
-                      renderProps.isSelected && [
-                        'border-[5px] border-accent/95 bg-white dark:border-accent/95',
-                        'ring-1 ring-accent',
-                      ],
-
-                      renderProps.isFocusVisible && focusOutlineStyle,
-                      renderProps.isSelected &&
-                        renderProps.isFocusVisible &&
-                        'border-[5px] border-accent bg-white dark:border-accent',
-                    )}
-                  />
-
-                  {labelPosition === 'right' &&
-                    (typeof props.children === 'function'
-                      ? props.children(renderProps)
-                      : props.children)}
-                </>
-              );
-            }}
-          </RACRadio>
+            {typeof props.children === 'function'
+              ? props.children(renderProps)
+              : props.children}
+          </>
         );
       }}
-    </WithDescriptionContext>
+    </RACRadio>
   );
 }

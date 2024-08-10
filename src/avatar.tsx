@@ -1,31 +1,17 @@
 import React from 'react';
 import { getInitials, getInitialsToken } from './get-initials';
 import { twMerge } from 'tailwind-merge';
-import { Icon } from './icon';
 import { useImageLoadingStatus } from './hooks/use-image-loading-status';
 
 const AvatarContext = React.createContext<{
   badgeId: string;
 } | null>(null);
 
-function useAvatarContext() {
-  const context = React.useContext(AvatarContext);
-
-  if (!context) {
-    throw new Error('<AvatarContext.Provider> is required');
-  }
-
-  return context;
-}
-
-type AvatarProps = {
+export type AvatarProps = {
   src?: string;
   alt: string;
   colorless?: boolean;
 } & JSX.IntrinsicElements['div'];
-
-const avatarStyle =
-  'h-full w-full rounded-lg [.rounded-full_&]:rounded-full object-cover fill-current font-medium text-white';
 
 export function Avatar({
   colorless = false,
@@ -45,20 +31,23 @@ export function Avatar({
         role="img"
         className={twMerge([
           'group relative flex size-10 shrink-0 items-center justify-center rounded-lg @container',
+          'outline outline-1 -outline-offset-1 outline-black/5 ring-background dark:outline-white/20',
+          '[&.rounded-full>svg]:rounded-full [&>svg]:size-full [&>svg]:rounded-lg',
+          '[&.rounded-full>img]:rounded-full [&>img]:size-full [&>img]:rounded-lg',
           className,
         ])}
         aria-labelledby={ariaLabelledby}
       >
-        {status === 'loaded' ? (
+        {status === 'error' ? (
+          <InitialAvatar alt={alt} id={avatarId} colorless={colorless} />
+        ) : (
           <img
             aria-hidden
             id={avatarId}
-            className={avatarStyle}
             src={src}
             alt={alt}
+            className="object-cover"
           />
-        ) : (
-          <InitialAvatar alt={alt} id={avatarId} colorless={colorless} />
         )}
         {children}
       </div>
@@ -81,13 +70,14 @@ function InitialAvatar({
   return (
     <svg
       aria-hidden
-      viewBox="0 0 24 24"
-      className={avatarStyle}
       id={id}
       aria-label={alt}
       style={{
         background: `var(--${token})`,
       }}
+      fill="currentColor"
+      viewBox="0 0 24 24"
+      className="font-medium text-white"
     >
       <text
         x="50%"
@@ -96,7 +86,7 @@ function InitialAvatar({
         dominantBaseline="middle"
         textAnchor="middle"
         dy=".125em"
-        fontSize="65%"
+        fontSize="60%"
       >
         {initials}
       </text>
@@ -107,72 +97,55 @@ function InitialAvatar({
 type AvatarBadgeProps = {
   className?: string;
   badge: React.ReactNode;
-  'aria-label': string;
 };
 
-export const AvatarBadge = ({
-  'aria-label': ariaLabel,
-  badge,
-  ...props
-}: AvatarBadgeProps) => {
-  const context = useAvatarContext();
+export const AvatarBadge = ({ badge, ...props }: AvatarBadgeProps) => {
+  const context = React.useContext(AvatarContext);
+
+  if (!context) {
+    throw new Error('<AvatarContext.Provider> is required');
+  }
 
   return (
     <span
       aria-hidden
       id={context.badgeId}
       className={twMerge([
-        '@[32px]:w-2/5 @[40px]:w-1/3 @[80px]:w-1/4 @[96px]:w-1/4',
-        'z-1 absolute bottom-0 right-0 z-10 rounded-full border-2 border-background bg-background',
+        'grid place-items-center',
+        '@[32px]:size-2/5 @[40px]:size-1/3 @[64px]:size-1/4 @[128px]:size-1/5',
+        'z-1 absolute bottom-0 end-0 z-10 rounded-full border-2 border-background bg-background',
         'translate-x-[15%] translate-y-[20%]',
-        '[.rounded-full_&]:translate-x-[35%] [.rounded-full_&]:translate-y-[5%]',
+        '[.rounded-full_&]:translate-x-[35%] [.rounded-full_&]:translate-y-[5%] rtl:[.rounded-full_&]:translate-y-[45%]',
         '@[40px]:[.rounded-full_&]:translate-x-[15%]',
-        '@[80px]:[.rounded-full_&]:-translate-x-[5%] @[80px]:[.rounded-full_&]:-translate-y-[10%]',
-        '@[96px]:[.rounded-full_&]:translate-x-[-10%]',
+        '@[64px]:[.rounded-full_&]:-translate-x-[5%] @[64px]:[.rounded-full_&]:-translate-y-[10%]',
+        '@[128px]:[.rounded-full_&]:translate-x-[-20%]',
         props.className,
       ])}
     >
-      <Icon aria-label={ariaLabel}>{badge}</Icon>
+      {badge}
     </span>
   );
 };
 
 type AvatarGroupProps = {
-  max?: number;
-  children?: React.ReactNode;
-  avatars: {
-    items: Array<Pick<AvatarProps, 'src' | 'alt'>>;
-  } & Pick<AvatarProps, 'colorless' | 'className'> &
-    JSX.IntrinsicElements['div'];
-};
+  reverseOverlap?: boolean;
+} & JSX.IntrinsicElements['div'];
 
 export function AvatarGroup({
-  max,
-  avatars,
-  children,
+  reverseOverlap = false,
+  className,
   ...props
 }: AvatarGroupProps) {
-  const { items, className, ...avatarProps } = avatars;
-
-  const displayItems = max
-    ? items.slice(0, Math.min(max, items.length))
-    : items;
-
   return (
-    <div className="flex items-center rounded-lg py-0.5" {...props}>
-      <div className="flex items-center -space-x-2 rtl:space-x-reverse">
-        {displayItems.map((item, index) => {
-          return (
-            <Avatar
-              {...avatarProps}
-              {...item}
-              key={index}
-              className={twMerge('ring-2 ring-background', className)}
-            />
-          );
-        })}
-        {children}
-      </div>
-    </div>
+    <div
+      {...props}
+      className={twMerge(
+        'flex items-center -space-x-1 rtl:space-x-reverse',
+        '[&>[role=img]:not([class*=ring-4])]:ring-2',
+        reverseOverlap &&
+          'flex-row-reverse justify-end ps-2 [&>[role=img]:first-of-type]:-ms-1',
+        className,
+      )}
+    />
   );
 }

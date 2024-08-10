@@ -5,19 +5,16 @@ import { docs } from '../.storybook/docs';
 import { FileTrigger } from '../src/file-trigger';
 import { Avatar } from '../src/avatar';
 
-const meta: Meta<typeof Button> = {
-  title: 'FileTrigger',
+const meta: Meta= {
+  title: 'File trigger',
   parameters: {
     layout: 'centered',
     docs: {
       description: {
         component:
-          'A <a href="https://react-spectrum.adobe.com/react-aria/FileTrigger.html" target="_blank">**FileTrigger**</a> allows a user to access the file system with any pressable React Aria or React Spectrum component, or custom components built with usePress.',
+          'A <a href="https://react-spectrum.adobe.com/react-aria/FileTrigger.html" target="_blank">**FileTrigger**</a> allows a user to access the file system with any pressable React Aria component.',
       },
       ...docs,
-      controls: {
-        exclude: /.*/g,
-      },
     },
   },
   tags: ['autodocs'],
@@ -25,7 +22,7 @@ const meta: Meta<typeof Button> = {
 
 export default meta;
 
-export const Example = () => {
+export const BasicExample = () => {
   const [file, setFile] = React.useState<Array<string> | null>(null);
 
   return (
@@ -41,7 +38,7 @@ export const Example = () => {
           setFile(filenames);
         }}
       >
-        <Button outline>Select a file</Button>
+        <Button variant="outline">Select a file</Button>
       </FileTrigger>
       {file && file}
     </>
@@ -53,7 +50,7 @@ export const ChangeProfile = () => {
 
   return (
     <div className="flex items-center gap-2">
-      <Avatar alt="D D" className="rounded-full" src={src}></Avatar>
+      <Avatar alt="T W" className="rounded-full" src={src}></Avatar>
       <FileTrigger
         onSelect={(e) => {
           if (!e) {
@@ -64,7 +61,7 @@ export const ChangeProfile = () => {
           setSrc(URL.createObjectURL(file));
         }}
       >
-        <Button outline>Change</Button>
+        <Button variant="outline">Change</Button>
       </FileTrigger>
     </div>
   );

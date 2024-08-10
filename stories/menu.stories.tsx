@@ -1,14 +1,6 @@
 import React from 'react';
+import { type Selection } from 'react-aria-components';
 import type { Meta } from '@storybook/react';
-import {
-  BadgeInfo,
-  ChevronsUpDown,
-  ExternalLink,
-  LogOut,
-  MoreHorizontal,
-  Settings,
-  UserCircle,
-} from 'lucide-react';
 import {
   Menu,
   SubMenu,
@@ -19,16 +11,47 @@ import {
   MenuTrigger,
   SubmenuTrigger,
   MenuPopover,
+  MenuItemLabel,
+  MenuItemDescription,
 } from '../src/menu';
 import { Switch } from '../src/switch';
 import { docs } from '../.storybook/docs';
-import { Icon } from '../src/icon';
-import { Strong } from '../src/text';
+import { Icon } from '../src/accessible-icon';
+import { Small, Strong, Text } from '../src/text';
 import { Avatar } from '../src/avatar';
+import { Kbd } from '../src/kbd';
+import {
+  BellIcon,
+  CogIcon,
+  CreditCardIcon,
+  FilePenLineIcon,
+  FilePlus2Icon,
+  FileX2Icon,
+  InfoIcon,
+  LinkIcon,
+  LogOutIcon,
+  MoonIcon,
+  UserIcon,
+  EllipsisIcon,
+  ChevronsUpDownIcon,
+  ScissorsIcon,
+  CopyCheckIcon,
+  ClipboardIcon,
+  AlignLeftIcon,
+  AlignCenterIcon,
+  AlignRightIcon,
+  UnderlineIcon,
+  ItalicIcon,
+  BoldIcon,
+  Settings2Icon,
+} from 'lucide-react';
+import { Popover } from '../src/popover';
+import { Dialog, DialogTrigger } from '../src/dialog';
+import { Separator } from '../src/separator';
+import { Button } from '../src/button';
 
 const meta: Meta = {
   title: 'Menu',
-  component: MenuTrigger,
   parameters: {
     layout: 'centered',
     docs: {
@@ -37,9 +60,6 @@ const meta: Meta = {
           'A <a href="https://react-spectrum.adobe.com/react-aria/Menu.html#menu" target="_blank">**menu**</a> displays a list of actions or options that a user can choose.',
       },
       ...docs,
-      controls: {
-        exclude: /.*/g,
-      },
     },
   },
   tags: ['autodocs'],
@@ -47,16 +67,16 @@ const meta: Meta = {
 
 export default meta;
 
-export const Example = () => {
+export const BasicExample = () => {
   return (
     <MenuTrigger>
-      <MenuButton outline>Options</MenuButton>
+      <MenuButton>Options</MenuButton>
       <MenuPopover>
         <Menu>
-          <MenuItem>Account</MenuItem>
-          <MenuItem>Settings</MenuItem>
-          <MenuItem>Support</MenuItem>
-          <MenuItem>Sign out</MenuItem>
+          <MenuItem>New file</MenuItem>
+          <MenuItem>Copy link</MenuItem>
+          <MenuItem>Edit file</MenuItem>
+          <MenuItem>Delete file</MenuItem>
         </Menu>
       </MenuPopover>
     </MenuTrigger>
@@ -65,30 +85,17 @@ export const Example = () => {
 
 export const MenuButtons = () => {
   return (
-    <div className="flex flex-col gap-2">
-      <MenuTrigger>
-        <MenuButton color="accent">Options</MenuButton>
-        <MenuPopover>
-          <Menu>
-            <MenuItem>Account</MenuItem>
-            <MenuItem>Settings</MenuItem>
-            <MenuItem>Support</MenuItem>
-            <MenuItem>Sign out</MenuItem>
-          </Menu>
-        </MenuPopover>
-      </MenuTrigger>
-      <MenuTrigger>
-        <MenuButton color="success">Options</MenuButton>
-        <MenuPopover>
-          <Menu>
-            <MenuItem>Account</MenuItem>
-            <MenuItem>Settings</MenuItem>
-            <MenuItem>Support</MenuItem>
-            <MenuItem>Sign out</MenuItem>
-          </Menu>
-        </MenuPopover>
-      </MenuTrigger>
-    </div>
+    <MenuTrigger>
+      <MenuButton variant="solid">Options</MenuButton>
+      <MenuPopover>
+        <Menu>
+          <MenuItem>New file</MenuItem>
+          <MenuItem>Copy link</MenuItem>
+          <MenuItem>Edit file</MenuItem>
+          <MenuItem>Delete file</MenuItem>
+        </Menu>
+      </MenuPopover>
+    </MenuTrigger>
   );
 };
 
@@ -96,21 +103,53 @@ MenuButtons.parameters = {
   docs: {
     description: {
       story:
-        'Menu Buttons are <a href="./?path=/docs/button--docs" target="_blank">**Buttons**</a>. Use the **color** prop to config button style.',
+        'Menu Buttons are <a href="./?path=/docs/button--docs" target="_blank">**Buttons**</a>. The default style is **outline**. Use the **color** and **variant** props on the **MenuButton** component to config button style.',
     },
   },
+};
+
+export const MenuItemWithDisabledState = () => {
+  return (
+    <MenuTrigger>
+      <MenuButton>Options</MenuButton>
+      <MenuPopover>
+        <Menu>
+          <MenuItem>New file</MenuItem>
+          <MenuItem>Copy link</MenuItem>
+          <MenuItem>Edit file</MenuItem>
+          <MenuItem isDisabled>Delete file</MenuItem>
+        </Menu>
+      </MenuPopover>
+    </MenuTrigger>
+  );
+};
+
+export const MenusWithDisabledState = () => {
+  return (
+    <MenuTrigger>
+      <MenuButton isDisabled>Options</MenuButton>
+      <MenuPopover>
+        <Menu>
+          <MenuItem>New file</MenuItem>
+          <MenuItem>Copy link</MenuItem>
+          <MenuItem>Edit file</MenuItem>
+          <MenuItem>Delete file</MenuItem>
+        </Menu>
+      </MenuPopover>
+    </MenuTrigger>
+  );
 };
 
 export const MenuPopoverPlacements = () => {
   return (
     <MenuTrigger>
-      <MenuButton outline>Options</MenuButton>
+      <MenuButton>Options</MenuButton>
       <MenuPopover placement="top">
         <Menu>
-          <MenuItem>Account</MenuItem>
-          <MenuItem>Settings</MenuItem>
-          <MenuItem>Support</MenuItem>
-          <MenuItem>Sign out</MenuItem>
+          <MenuItem>New file</MenuItem>
+          <MenuItem>Copy link</MenuItem>
+          <MenuItem>Edit file</MenuItem>
+          <MenuItem>Delete file</MenuItem>
         </Menu>
       </MenuPopover>
     </MenuTrigger>
@@ -121,7 +160,32 @@ MenuPopoverPlacements.parameters = {
   docs: {
     description: {
       story:
-        'Use [**placement**](https://react-spectrum.adobe.com/react-aria/Popover.html#placement) prop on **MenuPopover** component to position the menu relative to the trigger.',
+        'Use the <a href="https://react-spectrum.adobe.com/react-aria/Popover.html#placement" target="_blank">**placement**</a> prop on the **MenuPopover** component to position the menu relative to the trigger. The default replacement is **bottom**.',
+    },
+  },
+};
+
+export const MenuWithCustomWidth = (args: any) => {
+  return (
+    <MenuTrigger {...args}>
+      <MenuButton>Options</MenuButton>
+      <MenuPopover className="min-w-56">
+        <Menu>
+          <MenuItem>New file</MenuItem>
+          <MenuItem>Copy link</MenuItem>
+          <MenuItem>Edit file</MenuItem>
+          <MenuItem>Delete file</MenuItem>
+        </Menu>
+      </MenuPopover>
+    </MenuTrigger>
+  );
+};
+
+MenuWithCustomWidth.parameters = {
+  docs: {
+    description: {
+      story:
+        'Use **min-w-*** and **max-w-*** utilities on the **MenuPopover** component to set the minimum and maximum width of the menu popover.',
     },
   },
 };
@@ -129,14 +193,14 @@ MenuPopoverPlacements.parameters = {
 export const MenuSeparators = () => {
   return (
     <MenuTrigger>
-      <MenuButton outline>Options</MenuButton>
+      <MenuButton>Options</MenuButton>
       <MenuPopover>
         <Menu>
-          <MenuItem>Account</MenuItem>
-          <MenuItem>Settings</MenuItem>
-          <MenuItem>Support</MenuItem>
+          <MenuItem>New file</MenuItem>
+          <MenuItem>Copy link</MenuItem>
+          <MenuItem>Edit file</MenuItem>
           <MenuSeparator />
-          <MenuItem>Sign out</MenuItem>
+          <MenuItem>Delete file</MenuItem>
         </Menu>
       </MenuPopover>
     </MenuTrigger>
@@ -147,362 +211,37 @@ MenuSeparators.parameters = {
   docs: {
     description: {
       story:
-        'Use **MenuSeparator** component to render a separator between menu items.',
+        'Use the **MenuSeparator** component to add a separator between menu items.',
     },
   },
 };
 
-export const MenuSections = () => {
+export const MenuItemWithDescription = () => {
   return (
     <MenuTrigger>
-      <MenuButton outline>Options</MenuButton>
+      <MenuButton>Options</MenuButton>
       <MenuPopover>
         <Menu>
-          <MenuSection title="Your Organization">
-            <MenuItem id="repos">Repositories</MenuItem>
-            <MenuItem id="projects">Projects</MenuItem>
-            <MenuItem id="organizations">Organizations</MenuItem>
-            <MenuItem id="stars">Stars</MenuItem>
-            <MenuItem id="sponsors">Sponsors</MenuItem>
-          </MenuSection>
-          <MenuSection title="Your Account">
-            <MenuItem id="profile">Profile</MenuItem>
-            <MenuItem id="status">Set status</MenuItem>
-            <MenuItem id="sign-out">Sign out</MenuItem>
-          </MenuSection>
-        </Menu>
-      </MenuPopover>
-    </MenuTrigger>
-  );
-};
-
-MenuSections.parameters = {
-  docs: {
-    description: {
-      story:
-        'Use **MenuSection** component with the **title** prop, and **Separator** component to group menu items into sections.',
-    },
-  },
-};
-
-export const MenuDescriptions = () => {
-  return (
-    <MenuTrigger>
-      <MenuButton outline>Options</MenuButton>
-      <MenuPopover>
-        <Menu>
-          <MenuItem description="Copy the selected text">Copy</MenuItem>
-          <MenuItem description="Cut the selected text">Cut</MenuItem>
-          <MenuItem description="Paste the copied text">Paste</MenuItem>
-        </Menu>
-      </MenuPopover>
-    </MenuTrigger>
-  );
-};
-
-MenuDescriptions.parameters = {
-  docs: {
-    description: {
-      story:
-        'Use the **description** prop to add a description to a **MenItem**.',
-    },
-  },
-};
-
-export const WithIcons = () => {
-  return (
-    <MenuTrigger>
-      <MenuButton outline>Options</MenuButton>
-      <MenuPopover>
-        <Menu>
-          <MenuItem
-            icon={
-              <Icon>
-                <UserCircle />
-              </Icon>
-            }
-          >
-            Account
+          <MenuItem>
+            <MenuItemLabel>New file</MenuItemLabel>
+            <MenuItemDescription>Create a new file</MenuItemDescription>
           </MenuItem>
-          <MenuItem
-            icon={
-              <Icon>
-                <Settings />
-              </Icon>
-            }
-          >
-            Settings
+          <MenuItem>
+            <MenuItemLabel>Copy link</MenuItemLabel>
+            <MenuItemDescription>Copy the file link</MenuItemDescription>
           </MenuItem>
-          <MenuItem
-            icon={
-              <Icon>
-                <BadgeInfo></BadgeInfo>
-              </Icon>
-            }
-          >
-            Support
-          </MenuItem>
-          <MenuItem
-            icon={
-              <Icon>
-                <LogOut />
-              </Icon>
-            }
-          >
-            Sign out
-          </MenuItem>
-        </Menu>
-      </MenuPopover>
-    </MenuTrigger>
-  );
-};
-
-WithIcons.parameters = {
-  docs: {
-    description: {
-      story:
-        'Use the **icon** prop to add a **decorative icon** to a **MenuItem**.',
-    },
-  },
-};
-
-export const WithKeyboardShortcut = () => {
-  return (
-    <MenuTrigger>
-      <MenuButton outline>Options</MenuButton>
-      <MenuPopover>
-        <Menu>
-          <MenuItem>Account</MenuItem>
-          <MenuItem shortcut="⌘,">Settings</MenuItem>
-          <MenuItem>Support</MenuItem>
-          <MenuItem>Sign out</MenuItem>
-        </Menu>
-      </MenuPopover>
-    </MenuTrigger>
-  );
-};
-
-WithKeyboardShortcut.parameters = {
-  docs: {
-    description: {
-      story:
-        "Use the **shortcut** prop to show a **keyboard shortcut** in a **MenuItem**.",
-    },
-  },
-};
-
-export const DisabledMenuItems = () => {
-  return (
-    <MenuTrigger>
-      <MenuButton outline>Options</MenuButton>
-      <MenuPopover>
-        <Menu>
-          <MenuItem>Account</MenuItem>
-          <MenuItem>Settings</MenuItem>
-          <MenuItem isDisabled>Support</MenuItem>
-          <MenuItem>Sign out</MenuItem>
-        </Menu>
-      </MenuPopover>
-    </MenuTrigger>
-  );
-};
-
-DisabledMenuItems.parameters = {
-  docs: {
-    description: {
-      story:
-        'Use the **isDisabled** prop on a **MenuItem** to disable that item and prevent it from being selected.',
-    },
-  },
-};
-
-export const DisabledMenus = () => {
-  return (
-    <MenuTrigger>
-      <MenuButton outline isDisabled>
-        Options
-      </MenuButton>
-      <MenuPopover>
-        <Menu>
-          <MenuItem>Account</MenuItem>
-          <MenuItem>Settings</MenuItem>
-          <MenuItem>Support</MenuItem>
-          <MenuItem>Sign out</MenuItem>
-        </Menu>
-      </MenuPopover>
-    </MenuTrigger>
-  );
-};
-
-DisabledMenus.parameters = {
-  docs: {
-    description: {
-      story:
-        'Use the **isDisabled** prop on **MenuButton** to disable a **Menu**.',
-    },
-  },
-};
-
-
-export const DestructiveMenuItems = () => {
-  return (
-    <MenuTrigger>
-      <MenuButton outline>Options</MenuButton>
-      <MenuPopover>
-        <Menu>
-          <MenuItem shortcut="⌘C">Copy link</MenuItem>
-          <MenuItem shortcut="⌘Q">Quote reply</MenuItem>
-          <MenuItem shortcut="⌘E">Edit comment</MenuItem>
-          <MenuSeparator />
-          <MenuItem shortcut="⌘D" destructive>
-            Delete file
-          </MenuItem>
-        </Menu>
-      </MenuPopover>
-    </MenuTrigger>
-  );
-};
-
-DestructiveMenuItems.parameters = {
-  docs: {
-    description: {
-      story:
-        'Use the **destructive** prop to show a destructive **MenuItem**.',
-    },
-  },
-};
-
-export const WithIconTrigger = () => {
-  return (
-    <MenuTrigger>
-      <MenuButton noArrow outline>
-        <Icon aria-label="More">
-          <MoreHorizontal />
-        </Icon>
-      </MenuButton>
-      <MenuPopover>
-        <Menu>
-          <MenuItem>Account</MenuItem>
-          <MenuItem>Settings</MenuItem>
-          <MenuItem>Support</MenuItem>
-          <MenuItem>Sign out</MenuItem>
-        </Menu>
-      </MenuPopover>
-    </MenuTrigger>
-  );
-};
-
-WithIconTrigger.parameters = {
-  docs: {
-    description: {
-      story:
-        'Add **Icon** to **MenuButton** with the **aria-label** and **noArrow** prop to make an icon-only menu trigger.',
-    },
-  },
-};
-
-export const WithAvatarTrigger = () => {
-  return (
-    <MenuTrigger>
-      <MenuButton noArrow unstyle>
-        <Avatar
-          className="rounded-full"
-          src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=facearea&facepad=3&w=256&h=256&q=80"
-          alt="Jane"
-        />
-      </MenuButton>
-      <MenuPopover placement="bottom">
-        <Menu>
-          <MenuItem>Account</MenuItem>
-          <MenuItem>Settings</MenuItem>
-          <MenuItem>Support</MenuItem>
-          <MenuItem>Sign out</MenuItem>
-        </Menu>
-      </MenuPopover>
-    </MenuTrigger>
-  );
-};
-
-WithAvatarTrigger.parameters = {
-  docs: {
-    description: {
-      story:
-        "Add **Avatar** component to **MenuButton** with **variant='unstyled'** to use an avatar as the menu trigger.",
-    },
-  },
-};
-
-export const WithCustomTrigger = () => {
-  return (
-    <MenuTrigger>
-      <MenuButton
-        unstyle
-        noArrow
-        className="flex items-center gap-2 border border-transparent p-2 hover:border hover:border-border"
-        aria-label="Jane"
-      >
-        <Avatar
-          alt="Jane"
-          src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=facearea&facepad=3&w=256&h=256&q=80"
-        ></Avatar>
-        <div className="mr-16 flex w-16 flex-col justify-center">
-          <span className="text-sm/5 font-medium">Taylor</span>
-          <span className="text-xs/5 text-muted">Manager</span>
-        </div>
-        <Icon>
-          <ChevronsUpDown className="size-4 text-muted" strokeWidth={1.5} />
-        </Icon>
-      </MenuButton>
-      <MenuPopover className="min-w-56">
-        <Menu>
-          <MenuItem>Account</MenuItem>
-          <MenuItem>Settings</MenuItem>
-          <MenuItem>Support</MenuItem>
-          <MenuItem>Sign out</MenuItem>
-        </Menu>
-      </MenuPopover>
-    </MenuTrigger>
-  );
-};
-
-WithCustomTrigger.parameters = {
-  docs: {
-    description: {
-      story:
-        'Add **unstyle** prop to **MenuButton** to render your own custom menu trigger.',
-    },
-  },
-};
-
-export const WithLink = () => {
-  return (
-    <MenuTrigger>
-      <MenuButton outline>Options</MenuButton>
-      <MenuPopover>
-        <Menu>
-          <MenuItem href="https://react-spectrum.adobe.com/react-spectrum/Menu.html#links">
-            <div className="text-wrap text-xs/6 group-data-[focused]:text-white">
-              Your workspace is currently on{' '}
-              <Strong className="font-semibold group-data-[focused]:text-white sm:text-xs/6">
-                Business + Plan
-              </Strong>
-              .{' '}
-              <span className="font-semibold group-data-[focused]:text-white hover:underline">
-                Learn More
-              </span>
-            </div>
-          </MenuItem>
-
-          <MenuSeparator />
-          <MenuItem href="https://example/" target="_blank">
-            Settings
+          <MenuItem>
+            <MenuItemLabel>Edit file</MenuItemLabel>
+            <MenuItemDescription>
+              Allows you to edit the file
+            </MenuItemDescription>
           </MenuItem>
           <MenuSeparator />
           <MenuItem>
-            Workflow Analytics
-            <Icon>
-              <ExternalLink className="ml-auto h-4" />
-            </Icon>
+            <MenuItemLabel>Delete file</MenuItemLabel>
+            <MenuItemDescription>
+              Permanently delete the file
+            </MenuItemDescription>
           </MenuItem>
         </Menu>
       </MenuPopover>
@@ -510,18 +249,554 @@ export const WithLink = () => {
   );
 };
 
-WithLink.parameters = {
+export const MenuItemWithIcon = () => {
+  return (
+    <MenuTrigger>
+      <MenuButton>Options</MenuButton>
+      <MenuPopover>
+        <Menu>
+          <MenuItem>
+            <Icon>
+              <FilePlus2Icon />
+            </Icon>
+            <MenuItemLabel>New file</MenuItemLabel>
+          </MenuItem>
+          <MenuItem>
+            <Icon>
+              <LinkIcon />
+            </Icon>
+            <MenuItemLabel>Copy link</MenuItemLabel>
+          </MenuItem>
+          <MenuItem>
+            <Icon>
+              <FilePenLineIcon />
+            </Icon>
+            <MenuItemLabel>Edit file</MenuItemLabel>
+          </MenuItem>
+          <MenuSeparator />
+          <MenuItem>
+            <Icon>
+              <FileX2Icon />
+            </Icon>
+            <MenuItemLabel>Delete file </MenuItemLabel>
+          </MenuItem>
+        </Menu>
+      </MenuPopover>
+    </MenuTrigger>
+  );
+};
+
+export const MenuItemWithIconAndDescription = () => {
+  return (
+    <MenuTrigger>
+      <MenuButton>Options</MenuButton>
+      <MenuPopover>
+        <Menu>
+          <MenuItem>
+            <Icon>
+              <FilePlus2Icon />
+            </Icon>
+            <MenuItemLabel>New file</MenuItemLabel>
+            <MenuItemDescription>Create a new file</MenuItemDescription>
+          </MenuItem>
+          <MenuItem>
+            <Icon>
+              <LinkIcon />
+            </Icon>
+            <MenuItemLabel>Copy link</MenuItemLabel>
+            <MenuItemDescription>Copy the file link</MenuItemDescription>
+          </MenuItem>
+          <MenuItem>
+            <MenuItemLabel>Edit file</MenuItemLabel>
+          </MenuItem>
+          <MenuSeparator />
+          <MenuItem>
+            <MenuItemLabel>Delete file </MenuItemLabel>
+            <MenuItemDescription>
+              Permanently delete the file
+            </MenuItemDescription>
+          </MenuItem>
+        </Menu>
+      </MenuPopover>
+    </MenuTrigger>
+  );
+};
+
+export const MenuItemWithKbdShortcut = () => {
+  return (
+    <MenuTrigger>
+      <MenuButton>Options</MenuButton>
+      <MenuPopover>
+        <Menu>
+          <MenuItem>
+            <MenuItemLabel>New file</MenuItemLabel>
+            <Kbd>⌘N</Kbd>
+          </MenuItem>
+          <MenuItem>
+            <MenuItemLabel>Copy link </MenuItemLabel>
+            <Kbd>⌘C</Kbd>
+          </MenuItem>
+          <MenuItem>
+            <MenuItemLabel>Edit file</MenuItemLabel>
+            <Kbd>⌘⇧E</Kbd>
+          </MenuItem>
+          <MenuSeparator />
+          <MenuItem>
+            <MenuItemLabel>Delete file</MenuItemLabel>
+            <Kbd>⌘⇧D</Kbd>
+          </MenuItem>
+        </Menu>
+      </MenuPopover>
+    </MenuTrigger>
+  );
+};
+
+export const MenuItemWithKbdShortcutAndDescription = () => {
+  return (
+    <MenuTrigger>
+      <MenuButton>Options</MenuButton>
+      <MenuPopover>
+        <Menu>
+          <MenuItem>
+            <MenuItemLabel>New file</MenuItemLabel>
+            <MenuItemDescription>Create a new file</MenuItemDescription>
+            <Kbd>⌘N</Kbd>
+          </MenuItem>
+          <MenuItem>
+            <MenuItemLabel>Copy link </MenuItemLabel>
+            <MenuItemDescription>Copy the file link</MenuItemDescription>
+            <Kbd>⌘C</Kbd>
+          </MenuItem>
+          <MenuItem>
+            <MenuItemLabel>Edit file</MenuItemLabel>
+            <MenuItemDescription>
+              Allows you to edit the file
+            </MenuItemDescription>
+            <Kbd>⌘⇧E</Kbd>
+          </MenuItem>
+          <MenuSeparator />
+          <MenuItem>
+            <MenuItemLabel>Delete file</MenuItemLabel>
+            <MenuItemDescription>
+              Permanently delete the file
+            </MenuItemDescription>
+            <Kbd>⌘⇧D</Kbd>
+          </MenuItem>
+        </Menu>
+      </MenuPopover>
+    </MenuTrigger>
+  );
+};
+
+export const MenuItemWithIconKbdShortcutAndDescription = () => {
+  return (
+    <MenuTrigger>
+      <MenuButton>Options</MenuButton>
+      <MenuPopover>
+        <Menu>
+          <MenuItem>
+            <Icon>
+              <FilePlus2Icon />
+            </Icon>
+            <MenuItemLabel>New file</MenuItemLabel>
+            <MenuItemDescription>Create a new file</MenuItemDescription>
+            <Kbd>⌘N</Kbd>
+          </MenuItem>
+          <MenuItem>
+            <Icon>
+              <LinkIcon />
+            </Icon>
+            <MenuItemLabel>Copy link </MenuItemLabel>
+            <MenuItemDescription>Copy the file link</MenuItemDescription>
+            <Kbd>⌘C</Kbd>
+          </MenuItem>
+          <MenuItem>
+            <Icon>
+              <FilePenLineIcon />
+            </Icon>
+            <MenuItemLabel>Edit file</MenuItemLabel>
+            <MenuItemDescription>
+              Allows you to edit the file
+            </MenuItemDescription>
+            <Kbd>⌘⇧E</Kbd>
+          </MenuItem>
+          <MenuSeparator />
+          <MenuItem>
+            <Icon>
+              <FileX2Icon />
+            </Icon>
+            <MenuItemLabel>Delete file</MenuItemLabel>
+            <MenuItemDescription>
+              Permanently delete the file
+            </MenuItemDescription>
+            <Kbd>⌘⇧D</Kbd>
+          </MenuItem>
+        </Menu>
+      </MenuPopover>
+    </MenuTrigger>
+  );
+};
+
+export const MenuWithDestructiveItems = () => {
+  return (
+    <MenuTrigger>
+      <MenuButton>Options</MenuButton>
+      <MenuPopover>
+        <Menu>
+          <MenuItem>
+            <Icon>
+              <FilePlus2Icon />
+            </Icon>
+            <MenuItemLabel>New file</MenuItemLabel>
+            <MenuItemDescription>Create a new file</MenuItemDescription>
+            <Kbd>⌘N</Kbd>
+          </MenuItem>
+          <MenuItem>
+            <Icon>
+              <LinkIcon />
+            </Icon>
+            <MenuItemLabel>Copy link </MenuItemLabel>
+            <MenuItemDescription>Copy the file link</MenuItemDescription>
+            <Kbd>⌘C</Kbd>
+          </MenuItem>
+          <MenuItem>
+            <Icon>
+              <FilePenLineIcon />
+            </Icon>
+            <MenuItemLabel>Edit file</MenuItemLabel>
+            <MenuItemDescription>
+              Allows you to edit the file
+            </MenuItemDescription>
+            <Kbd>⌘⇧E</Kbd>
+          </MenuItem>
+          <MenuSeparator />
+          <MenuItem destructive>
+            <Icon>
+              <FileX2Icon />
+            </Icon>
+            <MenuItemLabel>Delete file</MenuItemLabel>
+            <MenuItemDescription>
+              Permanently delete the file
+            </MenuItemDescription>
+            <Kbd>⌘⇧D</Kbd>
+          </MenuItem>
+        </Menu>
+      </MenuPopover>
+    </MenuTrigger>
+  );
+};
+
+MenuWithDestructiveItems.parameters = {
   docs: {
     description: {
-      story: 'Add **href=\\*** to **MenuItem** to render a menu item as a link.',
+      story:
+        'Use the **destructive** prop on the **MenuItem** component to show a destructive menu item**.',
     },
   },
 };
 
-export const SubMenus = () => {
+export const MenuWithSections = () => {
+  return (
+    <div className="flex flex-col gap-4">
+      <MenuTrigger>
+        <MenuButton>Options</MenuButton>
+        <MenuPopover>
+          <Menu>
+            <MenuSection title="Actions">
+              <MenuItem>New file</MenuItem>
+              <MenuItem>Copy link</MenuItem>
+              <MenuItem>Edit file</MenuItem>
+            </MenuSection>
+            <MenuSection title="Danger zone">
+              <MenuItem>Delete file</MenuItem>
+            </MenuSection>
+          </Menu>
+        </MenuPopover>
+      </MenuTrigger>
+
+      <MenuTrigger>
+        <MenuButton>Options</MenuButton>
+        <MenuPopover>
+          <Menu>
+            <MenuSection title="Actions">
+              <MenuItem>
+                <Icon>
+                  <FilePlus2Icon />
+                </Icon>
+                <MenuItemLabel>New file</MenuItemLabel>
+                <MenuItemDescription>Create a new file</MenuItemDescription>
+                <Kbd>⌘N</Kbd>
+              </MenuItem>
+
+              <MenuItem>
+                <Icon>
+                  <LinkIcon />
+                </Icon>
+                <MenuItemLabel>Copy link</MenuItemLabel>
+                <MenuItemDescription>Copy the file link</MenuItemDescription>
+                <Kbd>⌘C</Kbd>
+              </MenuItem>
+              <MenuItem>
+                <Icon>
+                  <FilePenLineIcon />
+                </Icon>
+                <MenuItemLabel>Edit file</MenuItemLabel>
+                <MenuItemDescription>
+                  Allows you to edit the file
+                </MenuItemDescription>
+                <Kbd>⌘⇧E</Kbd>
+              </MenuItem>
+            </MenuSection>
+            <MenuSection title="Danger zone">
+              <MenuItem>
+                <Icon>
+                  <FileX2Icon />
+                </Icon>
+
+                <MenuItemLabel>Delete file</MenuItemLabel>
+                <MenuItemDescription>
+                  Permanently delete the file
+                </MenuItemDescription>
+                <Kbd>⌘⇧D</Kbd>
+              </MenuItem>
+            </MenuSection>
+          </Menu>
+        </MenuPopover>
+      </MenuTrigger>
+    </div>
+  );
+};
+
+MenuWithSections.parameters = {
+  docs: {
+    description: {
+      story:
+        'Use the **MenuSection** component with the **title** prop to group menu items into sections.',
+    },
+  },
+};
+
+export const MenuWithIconTrigger = () => {
   return (
     <MenuTrigger>
-      <MenuButton outline>Options</MenuButton>
+      <MenuButton noIndicator variant="plain" isIconOnly>
+        <Icon>
+          <EllipsisIcon />
+        </Icon>
+      </MenuButton>
+      <MenuPopover>
+        <Menu>
+          <MenuItem>View Report</MenuItem>
+          <MenuItem>Analyze Trend</MenuItem>
+          <MenuSeparator />
+          <MenuItem>Export Data</MenuItem>
+          <MenuItem>Set Alerts</MenuItem>
+          <MenuItem>Customize Alerts</MenuItem>
+        </Menu>
+      </MenuPopover>
+    </MenuTrigger>
+  );
+};
+
+MenuWithIconTrigger.parameters = {
+  docs: {
+    description: {
+      story:
+        'Add the **Icon** component to the **MenuButton** component with the **aria-label** and **noIndicator** prop to make an icon-only menu trigger.',
+    },
+  },
+};
+
+export const MenuWithAvatarTrigger = () => {
+  return (
+    <MenuTrigger>
+      <MenuButton noIndicator variant="unstyle">
+        <Avatar
+          className="rounded-full"
+          src="https://i.imgur.com/xIe7Wlb.png"
+          alt="Marissa Whitaker"
+        />
+      </MenuButton>
+      <MenuPopover>
+        <Menu>
+          <MenuItem>
+            <Icon>
+              <UserIcon />
+            </Icon>
+            <MenuItemLabel>Account</MenuItemLabel>
+          </MenuItem>
+          <MenuItem>
+            <Icon>
+              <CogIcon />
+            </Icon>
+            <MenuItemLabel>Settings</MenuItemLabel>
+          </MenuItem>
+          <MenuItem>
+            <Icon>
+              <BellIcon />
+            </Icon>
+            <MenuItemLabel>Notifications</MenuItemLabel>
+          </MenuItem>
+          <MenuItem>
+            <Icon>
+              <CreditCardIcon />
+            </Icon>
+            <MenuItemLabel>Billing</MenuItemLabel>
+          </MenuItem>
+          <MenuItem>
+            <Icon>
+              <InfoIcon />
+            </Icon>
+            <MenuItemLabel>Help center</MenuItemLabel>
+          </MenuItem>
+          <MenuSeparator />
+          <MenuItem>
+            <Icon>
+              <MoonIcon />
+            </Icon>
+            <MenuItemLabel>Dark mode</MenuItemLabel>
+          </MenuItem>
+          <MenuSeparator />
+          <MenuItem>
+            <Icon>
+              <LogOutIcon />
+            </Icon>
+            <MenuItemLabel>Sign out</MenuItemLabel>
+          </MenuItem>
+        </Menu>
+      </MenuPopover>
+    </MenuTrigger>
+  );
+};
+
+MenuWithAvatarTrigger.parameters = {
+  docs: {
+    description: {
+      story:
+        'Add the **Avatar** component to the **MenuButton** component with the **unstyled** prop to use an avatar as the menu trigger.',
+    },
+  },
+};
+
+export const MenuWithCustomTrigger = () => {
+  return (
+    <MenuTrigger>
+      <MenuButton
+        variant="unstyle"
+        noIndicator
+        className="flex items-center border border-transparent py-1 pe-2 ps-1 hover:border hover:border-border/50"
+        aria-label="Jane"
+      >
+        <Avatar
+          alt="Marissa Whitaker"
+          src="https://i.imgur.com/xIe7Wlb.png"
+        ></Avatar>
+        <div className="me-12 ms-2 flex flex-col justify-center">
+          <Strong className="self-start sm:leading-5">Marissa</Strong>
+          <Small className="self-start sm:leading-5">marissa@example.com</Small>
+        </div>
+        <Icon>
+          <ChevronsUpDownIcon className="size-4 text-muted/75" />
+        </Icon>
+      </MenuButton>
+      <MenuPopover>
+        <Menu>
+          <MenuItem>
+            <Icon>
+              <UserIcon />
+            </Icon>
+            <MenuItemLabel>Account</MenuItemLabel>
+          </MenuItem>
+          <MenuItem>
+            <Icon>
+              <CogIcon />
+            </Icon>
+            <MenuItemLabel>Settings</MenuItemLabel>
+          </MenuItem>
+          <MenuItem>
+            <Icon>
+              <BellIcon />
+            </Icon>
+            <MenuItemLabel>Notifications</MenuItemLabel>
+          </MenuItem>
+          <MenuItem>
+            <Icon>
+              <CreditCardIcon />
+            </Icon>
+            <MenuItemLabel>Billing</MenuItemLabel>
+          </MenuItem>
+          <MenuItem>
+            <Icon>
+              <InfoIcon />
+            </Icon>
+            <MenuItemLabel>Help center</MenuItemLabel>
+          </MenuItem>
+          <MenuSeparator />
+          <MenuItem>
+            <Icon>
+              <MoonIcon />
+            </Icon>
+            <MenuItemLabel>Dark mode</MenuItemLabel>
+          </MenuItem>
+          <MenuSeparator />
+          <MenuItem>
+            <Icon>
+              <LogOutIcon />
+            </Icon>
+            <MenuItemLabel>Sign out</MenuItemLabel>
+          </MenuItem>
+        </Menu>
+      </MenuPopover>
+    </MenuTrigger>
+  );
+};
+
+MenuWithCustomTrigger.parameters = {
+  docs: {
+    description: {
+      story:
+        'Use **variant="unstyle"** prop on the **MenuButton** component to render your own custom menu trigger.',
+    },
+  },
+};
+
+export const MenuItemAsLink = () => {
+  return (
+    <MenuTrigger>
+      <MenuButton>Options</MenuButton>
+      <MenuPopover>
+        <Menu>
+          <MenuItem href="https://adobe.com/" target="_blank">
+            Adobe
+          </MenuItem>
+          <MenuItem href="https://apple.com/" target="_blank">
+            Apple
+          </MenuItem>
+          <MenuItem href="https://google.com/" target="_blank">
+            Google
+          </MenuItem>
+          <MenuItem href="https://microsoft.com/" target="_blank">
+            Microsoft
+          </MenuItem>
+        </Menu>
+      </MenuPopover>
+    </MenuTrigger>
+  );
+};
+
+MenuItemAsLink.parameters = {
+  docs: {
+    description: {
+      story:
+        'Use the **href** prop on the **MenuItem** component to render a menu item as a link.',
+    },
+  },
+};
+
+export const MenuWithSubMenus = () => {
+  return (
+    <MenuTrigger>
+      <MenuButton>Options</MenuButton>
       <MenuPopover>
         <Menu>
           <MenuItem id="new">New…</MenuItem>
@@ -546,10 +821,11 @@ export const SubMenus = () => {
   );
 };
 
-SubMenus.parameters = {
+MenuWithSubMenus.parameters = {
   docs: {
     description: {
-      story: 'Use **SubmenuTrigger** and **SubMenu** to render a sub menu.',
+      story:
+        'Use the **SubmenuTrigger** and **SubMenu** component to render a sub menu.',
     },
   },
 };
@@ -557,7 +833,7 @@ SubMenus.parameters = {
 export const SubMenuOnMobile = () => {
   return (
     <MenuTrigger>
-      <MenuButton outline>Options</MenuButton>
+      <MenuButton>Options</MenuButton>
       <MenuPopover>
         <Menu>
           <MenuItem id="new">New…</MenuItem>
@@ -595,17 +871,23 @@ SubMenuOnMobile.parameters = {
   docs: {
     description: {
       story:
-        'To show submenu properly small screen, duplicate your **Submenu** with **placement="bottom"**.',
+        'To show submenu properly small screen, duplicate your **Submenu** with **placement="bottom"** and show it in small screen.',
     },
   },
 };
 
-export const SingleSelection = () => {
+export const MenuWithSingleSelection = () => {
+  const [selected, setSelected] = React.useState<Selection>(new Set(['left']));
+
   return (
     <MenuTrigger>
-      <MenuButton outline>Options</MenuButton>
+      <MenuButton>Options</MenuButton>
       <MenuPopover>
-        <Menu selectionMode="single" defaultSelectedKeys={['left']}>
+        <Menu
+          selectionMode="single"
+          selectedKeys={selected}
+          onSelectionChange={setSelected}
+        >
           <MenuItem id="left">Left</MenuItem>
           <MenuItem id="center">Center</MenuItem>
           <MenuItem id="right">Right</MenuItem>
@@ -616,132 +898,76 @@ export const SingleSelection = () => {
   );
 };
 
-SingleSelection.parameters = {
+MenuWithSingleSelection.parameters = {
   docs: {
     description: {
       story:
-        'Add **sectionMode="single"** and **defaultSelectedKey** to **Menu** to make menu supports single selection.',
+        'Use **sectionMode="single"** and **defaultSelectedKey** on the **Menu** component to supports single selection.',
     },
   },
 };
 
-export const MultiSelections = () => {
+export const MenuSelectedIconPlacement = () => {
+  const [selected, setSelected] = React.useState<Selection>(new Set(['left']));
+
   return (
     <MenuTrigger>
-      <MenuButton outline>Options</MenuButton>
+      <MenuButton>Options</MenuButton>
       <MenuPopover>
         <Menu
-          selectionMode="multiple"
-          defaultSelectedKeys={['sidebar', 'console']}
+          selectedIconPlacement="start"
+          selectionMode="single"
+          selectedKeys={selected}
+          onSelectionChange={setSelected}
         >
-          <MenuItem id="sidebar">Sidebar</MenuItem>
-          <MenuItem id="searchbar">Searchbar</MenuItem>
-          <MenuItem id="tools">Tools</MenuItem>
-          <MenuItem id="console">Console</MenuItem>
+          <MenuItem id="left">Left</MenuItem>
+          <MenuItem id="center">Center</MenuItem>
+          <MenuItem id="right">Right</MenuItem>
+          <MenuItem id="left1">Left</MenuItem>
         </Menu>
       </MenuPopover>
     </MenuTrigger>
   );
 };
 
-MultiSelections.parameters = {
-  docs: {
-    description: {
-      story:
-        'Use **sectionMode="multiple"** and **defaultSelectedKey** to make menu supports multi selections.',
-    },
-  },
-};
+export const MenuWithSingleSelectionAndDescription = () => {
+  const [selected, setSelected] = React.useState<Selection>(
+    new Set(['copy_link']),
+  );
 
-export const MenuHeaders = () => {
   return (
     <MenuTrigger>
-      <MenuButton outline>Options</MenuButton>
+      <MenuButton>Options</MenuButton>
       <MenuPopover>
-        <div className="flex items-center gap-4 border-b p-4">
-          <Avatar
-            alt="Jane"
-            className="rounded-full"
-            src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=facearea&facepad=3&w=256&h=256&q=80"
-          ></Avatar>
-          <div className="text-xs text-muted">jane@example.com</div>
-        </div>
-        <Menu className="py-2">
-          <MenuItem>Account</MenuItem>
-          <MenuItem>Settings</MenuItem>
-          <MenuItem>Support</MenuItem>
-          <MenuItem>Sign out</MenuItem>
-        </Menu>
-      </MenuPopover>
-    </MenuTrigger>
-  );
-};
-
-MenuHeaders.parameters = {
-  docs: {
-    description: {
-      story:
-        'Add your custom header component as the first child of **MenPopover** component.',
-    },
-  },
-};
-
-export const CustomMenuWidth = (args: any) => {
-  return (
-    <MenuTrigger {...args}>
-      <MenuButton outline>Options</MenuButton>
-      <MenuPopover className="min-w-56">
-        <Menu>
-          <MenuItem>Account</MenuItem>
-          <MenuItem>Settings</MenuItem>
-          <MenuItem>Support</MenuItem>
-          <MenuItem>Sign out</MenuItem>
-        </Menu>
-      </MenuPopover>
-    </MenuTrigger>
-  );
-};
-
-CustomMenuWidth.parameters = {
-  docs: {
-    description: {
-      story:
-        'Use **min-w-*** utilities to increase the minimum width of a menu popover, and **max-w-*** utilities to prevent it from getting wider than a specific size:',
-    },
-  },
-};
-
-export const ControlledMenuOpenState = () => {
-  const [isOpen, setOpen] = React.useState(false);
-  const [subScribe, setSubscribe] = React.useState(true);
-
-  return (
-    <MenuTrigger>
-      <MenuButton onPress={() => setOpen((prev) => !prev)} outline>
-        Options
-      </MenuButton>
-      <MenuPopover isOpen={isOpen} onOpenChange={setOpen}>
         <Menu
-          onAction={(key) => {
-            if (key === 'subscribe') {
-              if (
-                confirm(
-                  `You want to ${subScribe ? 'un-subscribe' : 'subscribe'}`,
-                )
-              ) {
-                setSubscribe((prev) => !prev);
-              }
-              return;
-            }
-            setOpen(false);
-          }}
+          selectionMode="single"
+          selectedKeys={selected}
+          onSelectionChange={setSelected}
         >
-          <MenuItem>Settings</MenuItem>
-          <MenuItem>Help</MenuItem>
-          <MenuItem aria-label="New teams" id="subscribe">
-            <Switch isSelected={subScribe} className="flex-1 justify-between">
-              Subscribe
-            </Switch>
+          <MenuItem id="new_file">
+            <MenuItemLabel>New file</MenuItemLabel>
+            <MenuItemDescription>Create a new file</MenuItemDescription>
+            <Kbd>⌘N</Kbd>
+          </MenuItem>
+
+          <MenuItem id="copy_link">
+            <MenuItemLabel>Copy link</MenuItemLabel>
+            <MenuItemDescription>Copy the file link</MenuItemDescription>
+            <Kbd>⌘C</Kbd>
+          </MenuItem>
+          <MenuItem>
+            <MenuItemLabel id="edit_file">Edit file</MenuItemLabel>
+            <MenuItemDescription>
+              Allows you to edit the file
+            </MenuItemDescription>
+            <Kbd>⌘⇧E</Kbd>
+          </MenuItem>
+          <MenuItem>
+            <MenuItemLabel id="delete_file">Delete file</MenuItemLabel>
+            <MenuItemDescription>
+              Permanently delete the file
+            </MenuItemDescription>
+            <Kbd>⌘⇧D</Kbd>
           </MenuItem>
         </Menu>
       </MenuPopover>
@@ -749,11 +975,484 @@ export const ControlledMenuOpenState = () => {
   );
 };
 
-ControlledMenuOpenState.parameters = {
+export const MenuWithSingleSelectionAndIcon = () => {
+  const [selected, setSelected] = React.useState<Selection>(
+    new Set(['copy_link']),
+  );
+
+  return (
+    <MenuTrigger>
+      <MenuButton>Options</MenuButton>
+      <MenuPopover>
+        <Menu
+          selectionMode="single"
+          selectedKeys={selected}
+          onSelectionChange={setSelected}
+        >
+          <MenuItem id="new_file">
+            <Icon>
+              <FilePlus2Icon />
+            </Icon>
+            <MenuItemLabel>New file</MenuItemLabel>
+            <MenuItemDescription>Create a new file</MenuItemDescription>
+            <Kbd>⌘N</Kbd>
+          </MenuItem>
+
+          <MenuItem id="copy_link">
+            <Icon>
+              <LinkIcon />
+            </Icon>
+            <MenuItemLabel>Copy link</MenuItemLabel>
+            <MenuItemDescription>Copy the file link</MenuItemDescription>
+            <Kbd>⌘C</Kbd>
+          </MenuItem>
+          <MenuItem id="edit_file">
+            <Icon>
+              <FilePenLineIcon />
+            </Icon>
+            <MenuItemLabel>Edit file</MenuItemLabel>
+            <MenuItemDescription>
+              Allows you to edit the file
+            </MenuItemDescription>
+            <Kbd>⌘⇧E</Kbd>
+          </MenuItem>
+          <MenuItem id="delete_file">
+            <Icon>
+              <FileX2Icon />
+            </Icon>
+
+            <MenuItemLabel>Delete file</MenuItemLabel>
+            <MenuItemDescription>
+              Permanently delete the file
+            </MenuItemDescription>
+            <Kbd>⌘⇧D</Kbd>
+          </MenuItem>
+        </Menu>
+      </MenuPopover>
+    </MenuTrigger>
+  );
+};
+
+export const MenuWithSingleSelectionAndSection = () => {
+  const [selected, setSelected] = React.useState<Selection>(
+    new Set(['copy_link']),
+  );
+
+  return (
+    <MenuTrigger>
+      <MenuButton>Options</MenuButton>
+      <MenuPopover>
+        <Menu
+          selectionMode="single"
+          selectedKeys={selected}
+          onSelectionChange={setSelected}
+        >
+          <MenuSection title="Actions">
+            <MenuItem id="new_file">New file</MenuItem>
+            <MenuItem id="copy_link">Copy link</MenuItem>
+            <MenuItem id="edit_file">Edit file</MenuItem>
+          </MenuSection>
+          <MenuSection title="Danger zone">
+            <MenuItem id="delete_file">Delete file</MenuItem>
+          </MenuSection>
+        </Menu>
+      </MenuPopover>
+    </MenuTrigger>
+  );
+};
+
+export const MenuWithSingleSelectionWithSectionAndDescription = () => {
+  const [selected, setSelected] = React.useState<Selection>(
+    new Set(['copy_link']),
+  );
+
+  return (
+    <MenuTrigger>
+      <MenuButton>Options</MenuButton>
+      <MenuPopover>
+        <Menu
+          selectionMode="single"
+          selectedKeys={selected}
+          onSelectionChange={setSelected}
+        >
+          <MenuSection title="Actions">
+            <MenuItem id="new_file">
+              <MenuItemLabel>New file</MenuItemLabel>
+              <MenuItemDescription>Create a new file</MenuItemDescription>
+              <Kbd>⌘N</Kbd>
+            </MenuItem>
+
+            <MenuItem id="copy_link">
+              <MenuItemLabel>Copy link</MenuItemLabel>
+              <MenuItemDescription>Copy the file link</MenuItemDescription>
+              <Kbd>⌘C</Kbd>
+            </MenuItem>
+            <MenuItem>
+              <MenuItemLabel id="edit_file">Edit file</MenuItemLabel>
+              <MenuItemDescription>
+                Allows you to edit the file
+              </MenuItemDescription>
+              <Kbd>⌘⇧E</Kbd>
+            </MenuItem>
+          </MenuSection>
+          <MenuSection title="Danger zone">
+            <MenuItem>
+              <MenuItemLabel id="delete_file">Delete file</MenuItemLabel>
+              <MenuItemDescription>
+                Permanently delete the file
+              </MenuItemDescription>
+              <Kbd>⌘⇧D</Kbd>
+            </MenuItem>
+          </MenuSection>
+        </Menu>
+      </MenuPopover>
+    </MenuTrigger>
+  );
+};
+
+export const MenuWithSingleSelectionCompleteExample = () => {
+  const [selected, setSelected] = React.useState<Selection>(
+    new Set(['copy_link']),
+  );
+
+  return (
+    <MenuTrigger>
+      <MenuButton>Options</MenuButton>
+      <MenuPopover>
+        <Menu
+          selectionMode="single"
+          selectedKeys={selected}
+          onSelectionChange={setSelected}
+        >
+          <MenuSection title="Actions">
+            <MenuItem id="new_file">
+              <Icon>
+                <FilePlus2Icon />
+              </Icon>
+              <MenuItemLabel>New file</MenuItemLabel>
+              <MenuItemDescription>Create a new file</MenuItemDescription>
+              <Kbd>⌘N</Kbd>
+            </MenuItem>
+
+            <MenuItem id="copy_link">
+              <Icon>
+                <LinkIcon />
+              </Icon>
+              <MenuItemLabel>Copy link</MenuItemLabel>
+              <MenuItemDescription>Copy the file link</MenuItemDescription>
+              <Kbd>⌘C</Kbd>
+            </MenuItem>
+            <MenuItem id="edit_file">
+              <Icon>
+                <FilePenLineIcon />
+              </Icon>
+              <MenuItemLabel>Edit file</MenuItemLabel>
+              <MenuItemDescription>
+                Allows you to edit the file
+              </MenuItemDescription>
+              <Kbd>⌘⇧E</Kbd>
+            </MenuItem>
+          </MenuSection>
+          <MenuSection title="Danger zone">
+            <MenuItem id="delete_file">
+              <Icon>
+                <FileX2Icon />
+              </Icon>
+
+              <MenuItemLabel>Delete file</MenuItemLabel>
+              <MenuItemDescription>
+                Permanently delete the file
+              </MenuItemDescription>
+              <Kbd>⌘⇧D</Kbd>
+            </MenuItem>
+          </MenuSection>
+        </Menu>
+      </MenuPopover>
+    </MenuTrigger>
+  );
+};
+
+export const MenuWithMultiSelections = () => {
+  const [selected, setSelected] = React.useState<Selection>(
+    new Set(['sidebar', 'console']),
+  );
+
+  return (
+    <>
+      <Text className="w-64 pb-4 pt-2">
+        Current selection (controlled): {[...selected].join(', ')}
+      </Text>
+
+      <MenuTrigger>
+        <MenuButton>Options</MenuButton>
+        <MenuPopover>
+          <Menu
+            selectedKeys={selected}
+            onSelectionChange={setSelected}
+            selectionMode="multiple"
+          >
+            <MenuItem id="sidebar">Sidebar</MenuItem>
+            <MenuItem id="searchbar">Searchbar</MenuItem>
+            <MenuItem id="tools">Tools</MenuItem>
+            <MenuItem id="console">Console</MenuItem>
+          </Menu>
+        </MenuPopover>
+      </MenuTrigger>
+    </>
+  );
+};
+
+MenuWithMultiSelections.parameters = {
   docs: {
     description: {
       story:
-        'Use the **isOpen** and **onOpenChange** prop to control menu popover open state.',
+        'Use **sectionMode="multiple"** and **defaultSelectedKey** on the **Menu** component to supports multi selections.',
+    },
+  },
+};
+
+export const MenuWithSectionLevelSelection = () => {
+  const placements = ['start', 'end'] as const;
+  const [style, setStyle] = React.useState<Selection>(new Set(['bold']));
+  const [align, setAlign] = React.useState<Selection>(new Set(['left']));
+
+  return (
+    <div className="flex gap-x-2">
+      {placements.map((placement) => {
+        return (
+          <MenuTrigger key={placement}>
+            <MenuButton>Options</MenuButton>
+            <MenuPopover>
+              <Menu selectedIconPlacement={placement}>
+                <MenuSection title="Clipboard">
+                  <MenuItem id="cut">
+                    <Icon>
+                      <ScissorsIcon />
+                    </Icon>
+                    <MenuItemLabel>Cut</MenuItemLabel>
+                  </MenuItem>
+                  <MenuItem id="copy">
+                    <Icon>
+                      <CopyCheckIcon />
+                    </Icon>
+                    <MenuItemLabel>Copy</MenuItemLabel>
+                  </MenuItem>
+                  <MenuItem id="paste">
+                    <Icon>
+                      <ClipboardIcon />
+                    </Icon>
+                    <MenuItemLabel>Paste</MenuItemLabel>
+                  </MenuItem>
+                </MenuSection>
+                <MenuSection
+                  title="Text Alignment"
+                  selectionMode="single"
+                  selectedKeys={align}
+                  onSelectionChange={setAlign}
+                >
+                  <MenuItem id="left">
+                    <Icon>
+                      <AlignLeftIcon />
+                    </Icon>
+                    <MenuItemLabel>Left</MenuItemLabel>
+                  </MenuItem>
+                  <MenuItem id="center">
+                    <Icon>
+                      <AlignCenterIcon />
+                    </Icon>
+                    <MenuItemLabel>Center</MenuItemLabel>
+                  </MenuItem>
+                  <MenuItem id="right">
+                    <Icon>
+                      <AlignRightIcon />
+                    </Icon>
+                    <MenuItemLabel>Right</MenuItemLabel>
+                  </MenuItem>
+                </MenuSection>
+                <MenuSection
+                  title="Font Style"
+                  selectionMode="multiple"
+                  selectedKeys={style}
+                  onSelectionChange={setStyle}
+                >
+                  <MenuItem id="bold">
+                    <Icon>
+                      <BoldIcon />
+                    </Icon>
+                    <MenuItemLabel>Left</MenuItemLabel>
+                  </MenuItem>
+                  <MenuItem id="italic">
+                    <Icon>
+                      <ItalicIcon />
+                    </Icon>
+                    <MenuItemLabel>Italic</MenuItemLabel>
+                  </MenuItem>
+                  <MenuItem id="underline">
+                    <Icon>
+                      <UnderlineIcon />
+                    </Icon>
+                    <MenuItemLabel>Underline</MenuItemLabel>
+                  </MenuItem>
+                </MenuSection>
+              </Menu>
+            </MenuPopover>
+          </MenuTrigger>
+        );
+      })}
+    </div>
+  );
+};
+
+export const MenuWithHeaders = () => {
+  return (
+    <MenuTrigger>
+      <MenuButton>Options</MenuButton>
+      <MenuPopover>
+        <Menu>
+          <MenuSection
+            title={
+              <div className="flex flex-col border-b border-border/45 pb-2">
+                <Small>Signed in as Tony Reichert</Small>
+                <Strong>@tonyreichert</Strong>
+              </div>
+            }
+          >
+            <MenuItem>Team Settings</MenuItem>
+            <MenuItem>Analytics</MenuItem>
+            <MenuItem>System</MenuItem>
+            <MenuItem>Configuration</MenuItem>
+            <MenuItem> Help & Feedback</MenuItem>
+            <MenuItem>Log Out</MenuItem>
+          </MenuSection>
+        </Menu>
+      </MenuPopover>
+    </MenuTrigger>
+  );
+};
+
+export function AccountMenuExample() {
+  return (
+    <div className="flex items-start">
+      <DialogTrigger>
+        <Button isIconOnly aria-label="Account" variant='plain'>
+          <Avatar
+            alt="Marissa Whitaker"
+            src="https://i.imgur.com/xIe7Wlb.png"
+            className="size-7 rounded-full"
+          ></Avatar>
+        </Button>
+        <Popover placement="bottom end" className="p-1.5">
+          <Dialog className="outline-none" aria-label="account">
+            <div className="mx-3 mt-2 flex items-center gap-2">
+              <Avatar
+                alt="Marissa Whitaker"
+                src="https://i.imgur.com/xIe7Wlb.png"
+                className="size-16 rounded-full"
+              />
+              <div className="flex flex-col">
+                <Strong className="sm:text-base/4">Marissa Whitaker</Strong>
+                <Text className="pb-1">user@example.com</Text>
+                <Switch>Dark Mode</Switch>
+              </div>
+            </div>
+            <Separator className="my-3" />
+
+            <Menu aria-label="account">
+              <MenuItem id="account-settings">
+                <Icon>
+                  <Settings2Icon></Settings2Icon>
+                </Icon>
+                <MenuItemLabel>Account Settings</MenuItemLabel>
+              </MenuItem>
+              <MenuItem id="support">Support</MenuItem>
+              <MenuSeparator />
+              <MenuItem id="legal-notice">Legal notices</MenuItem>
+              <MenuItem id="about">About</MenuItem>
+              <MenuSeparator />
+              <MenuItem id="sign-out">Sign out</MenuItem>
+            </Menu>
+          </Dialog>
+        </Popover>
+      </DialogTrigger>
+    </div>
+  );
+}
+
+export const MenuWithControlledOpenState = () => {
+  const [isOpen, setOpen] = React.useState(false);
+  const [darkMode, setDarkMode] = React.useState(false);
+
+  return (
+    <MenuTrigger>
+      <MenuButton onPress={() => setOpen((prev) => !prev)}>Options</MenuButton>
+      <MenuPopover isOpen={isOpen} onOpenChange={setOpen}>
+        <Menu
+          onAction={(key) => {
+            if (key === 'dark_mode') {
+              setDarkMode((prev) => !prev);
+              return;
+            }
+
+            setOpen(false);
+          }}
+        >
+          <MenuItem>
+            <Icon>
+              <UserIcon />
+            </Icon>
+            <MenuItemLabel>Account</MenuItemLabel>
+          </MenuItem>
+          <MenuItem>
+            <Icon>
+              <CogIcon />
+            </Icon>
+            <MenuItemLabel>Settings</MenuItemLabel>{' '}
+          </MenuItem>
+          <MenuItem>
+            <Icon>
+              <CreditCardIcon />
+            </Icon>
+            <MenuItemLabel>Billing</MenuItemLabel>{' '}
+          </MenuItem>
+          <MenuItem>
+            <Icon>
+              <InfoIcon />
+            </Icon>
+            <MenuItemLabel>Help center</MenuItemLabel>
+          </MenuItem>
+          <MenuSeparator />
+          <MenuItem id="dark_mode">
+            <Icon>
+              <MoonIcon />
+            </Icon>
+
+            <Switch
+              data-ui="label"
+              isSelected={darkMode}
+              className="flex-1 justify-between"
+              labelPlacement="start"
+            >
+              Dark mode
+            </Switch>
+          </MenuItem>
+          <MenuSeparator />
+          <MenuItem>
+            <Icon>
+              <LogOutIcon />
+            </Icon>
+            <MenuItemLabel>Sign out</MenuItemLabel>
+          </MenuItem>
+        </Menu>
+      </MenuPopover>
+    </MenuTrigger>
+  );
+};
+
+MenuWithControlledOpenState.parameters = {
+  docs: {
+    description: {
+      story:
+        'Use the **isOpen** and **onOpenChange** props of the **MenuPopover** component to control menu popover open state.',
     },
   },
 };

@@ -3,25 +3,16 @@ import {
   ListBox as RACListBox,
   ListBoxItem as RACListBoxItem,
   ListBoxProps as RACListBoxProps,
-  Collection,
-  Header,
   ListBoxItemProps,
-  Section,
-  SectionProps,
-  composeRenderProps,
 } from 'react-aria-components';
-import { composeTailwindRenderProps, focusOutlineStyle } from './utils';
-import { twMerge } from 'tailwind-merge';
+import { composeTailwindRenderProps, focusVisibleOutline } from './utils';
 
-interface ListBoxProps<T>
+export interface ListBoxProps<T>
   extends Omit<RACListBoxProps<T>, 'layout' | 'orientation'> {}
 
-export function ListBox<T extends object>({
-  children,
-  ...props
-}: ListBoxProps<T>) {
+export function ListBox<T extends object>(props: ListBoxProps<T>) {
   const ref = React.useRef<HTMLDivElement>(null);
-
+  
   // Fix not auto scroll to selected item
   React.useEffect(() => {
     if (ref.current) {
@@ -33,7 +24,6 @@ export function ListBox<T extends object>({
             behavior: 'smooth',
           });
         }, 50);
-
         return () => {
           clearTimeout(timer);
         };
@@ -44,11 +34,9 @@ export function ListBox<T extends object>({
   return (
     <RACListBox
       {...props}
-      className={composeTailwindRenderProps(props.className, 'outline-none')}
       ref={ref}
-    >
-      {children}
-    </RACListBox>
+      className={composeTailwindRenderProps(props.className, ['outline-none'])}
+    />
   );
 }
 
@@ -61,108 +49,11 @@ export function ListBoxItem(props: ListBoxItemProps) {
     <RACListBoxItem
       {...props}
       textValue={textValue}
-      className={composeRenderProps(
-        props.className,
-        (className, { isDisabled, isFocusVisible }) => {
-          return twMerge(
-            'group relative flex outline-0',
-            isDisabled && 'opacity-50',
-            isFocusVisible && focusOutlineStyle,
-            className,
-          );
-        },
-      )}
-    >
-      {props.children}
-    </RACListBoxItem>
-  );
-}
-
-export function DropdownItem({
-  destructive,
-  ...props
-}: ListBoxItemProps & { destructive?: true }) {
-  const textValue =
-    props.textValue ||
-    (typeof props.children === 'string' ? props.children : undefined);
-
-  return (
-    <RACListBoxItem
-      {...props}
-      textValue={textValue}
-      className={composeRenderProps(
-        props.className,
-        (className, { isDisabled, isFocused }) => {
-          return twMerge([
-            'group flex cursor-default select-none items-center gap-1 outline-none outline-0',
-            'rounded-md text-base/6 sm:text-sm/6',
-            'p-1.5 has-submenu:pr-0',
-            isDisabled && 'opacity-50',
-            isFocused && 'bg-hover',
-            destructive && 'text-destructive ',
-            isFocused && destructive && 'bg-destructive/10',
-            className,
-          ]);
-        },
-      )}
-    >
-      {composeRenderProps(props.children, (children, { isSelected }) => (
-        <>
-          <span className="mr-0.5 flex w-4 items-center">
-            {isSelected && (
-              <svg
-                aria-hidden
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="size-4"
-              >
-                <path d="M20 6 9 17l-5-5" />
-              </svg>
-            )}
-          </span>
-          <span className="flex flex-1 items-center gap-2 text-nowrap">
-            {children}
-          </span>
-        </>
-      ))}
-    </RACListBoxItem>
-  );
-}
-
-export interface DropdownSectionProps<T> extends SectionProps<T> {
-  title?: string;
-}
-
-export function DropdownSection<T extends object>(
-  props: DropdownSectionProps<T>,
-) {
-  return (
-    <Section
-      className={twMerge(
-        '[&:first-child]:-mt-[1px]',
-        '[&:not(:first-child)]:my-1.5',
-        '[&:not(:first-child)]:border-t [&:not(:first-child)]:border-t-border/40',
-        '[&_header]:has-[[role=option]]:pl-7',
-        '[&_header]:has-[[role=menuitem]]:pl-3',
-      )}
-    >
-      <Header
-        className={twMerge(
-          'sticky z-10 truncate bg-background px-2 pt-2 text-xs/6 text-muted',
-          '-top-[1px] -mx-[1px]',
-          props.className,
-        )}
-      >
-        {props.title}
-      </Header>
-      <Collection items={props.items}>{props.children}</Collection>
-    </Section>
+      className={composeTailwindRenderProps(props.className, [
+        'group relative flex outline-0',
+        'disabled:opacity-50',
+        focusVisibleOutline,
+      ])}
+    />
   );
 }

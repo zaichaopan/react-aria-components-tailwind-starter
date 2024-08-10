@@ -4,149 +4,180 @@ import {
   ButtonProps as RACButtonProps,
   ToggleButton as RACToggleButton,
   ToggleButtonProps as RACToggleButtonProps,
-  composeRenderProps,
+  ToggleButtonGroup as RACToggleButtonGroup,
+  ToggleButtonGroupProps,
 } from 'react-aria-components';
-import { focusOutlineStyle } from './utils';
+import { composeTailwindRenderProps, focusVisibleOutline } from './utils';
 import { twMerge } from 'tailwind-merge';
-import { VisuallyHidden } from './visually-hidden';
 import { AsChildProps, Slot } from './slot';
-import { Spinner } from './spinner';
-
-type NeverExcept<T, K extends keyof T> = {
-  [N in keyof Omit<T, K>]?: never;
-} & {
-  [Key in K]?: T[Key];
-};
-
-type Variants = {
-  outline: true;
-  plain: true;
-  unstyle: true;
-};
-
-type Variant =
-  | NeverExcept<Variants, 'outline'>
-  | NeverExcept<Variants, 'plain'>
-  | NeverExcept<Variants, 'unstyle'>;
+import { SpinnerIcon } from './icons';
 
 type Color = 'accent' | 'success' | 'destructive';
 
 type Size = 'sm' | 'lg';
 
+type Variant = 'solid' | 'outline' | 'plain' | 'unstyle';
+
 export type BasicButtonProps = {
   color?: Color;
   size?: Size;
-  isLoading?: boolean;
-  loadingLabel?: string;
-  iconOnly?: boolean;
-} & Variant;
+  isCustomPending?: boolean;
+  isIconOnly?: boolean;
+  pendingLabel?: string;
+  variant?: Variant;
+};
 
 export type ButtonProps = AsChildProps<RACButtonProps> & BasicButtonProps;
 
 export type ButtonWithoutAsChildProps = RACButtonProps & BasicButtonProps;
 
-function buttonStyle({ size, color, iconOnly, ...props }: BasicButtonProps) {
-  if (props.unstyle) {
-    return 'relative outline-none rounded-md';
+const buttonVariants = {
+  base: [
+    'group relative inline-flex gap-x-2 justify-center items-center',
+    'font-semibold text-base/6 sm:text-sm/6 whitespace-nowrap outline-none rounded-lg',
+  ],
+  solid: [
+    'border border-[var(--btn-bg)] dark:border-none dark:[--border-with:0px]',
+    'bg-[var(--btn-bg)] hover:bg-[var(--btn-bg-hover)] pressed:bg-[var(--btn-bg-hover)]',
+    'shadow-[inset_0_1px_0_0_rgba(255,255,255,0.1)]',
+    'text-white',
+  ],
+  outline: [
+    'border border-zinc-950/10 dark:border-white/15 border-b-zinc-950/15 dark:border-b-white/20',
+    'hover:bg-zinc-50 pressed:bg-zinc-50 dark:hover:bg-zinc-800 dark:pressed:bg-zinc-800',
+    'shadow-sm',
+    'text-[var(--btn-color)]',
+  ],
+  plain: [
+    '[--border-with:0px]',
+    'hover:bg-zinc-100 dark:hover:bg-zinc-800',
+    'text-[var(--btn-color)]',
+  ],
+};
+
+const buttonSizes = {
+  sm: {
+    button: [
+      'h-8 sm:h-7 text-sm/6 sm:text-xs/6 rounded-md',
+      'px-[calc(theme(spacing[3])-var(--border-with,1px))]',
+      'sm:px-[calc(theme(spacing[2.5])-var(--border-with,1px))]',
+      '[&_svg[data-ui=icon]:not([class*=size-])]:size-3',
+    ],
+    iconOnly: [
+      'size-8 sm:size-7 rounded-md',
+      '[&_svg[data-ui=icon]:not([class*=size-])]:size-5',
+      'sm:[&_svg[data-ui=icon]:not([class*=size-])]:size-4',
+    ],
+  },
+  md: {
+    // H: 44px, sm:36px
+    button: [
+      'px-[calc(theme(spacing[3.5])-var(--border-with,1px))]',
+      'sm:px-[calc(theme(spacing[3])-var(--border-with,1px))]',
+      'py-[calc(theme(spacing[2.5])-var(--border-with,1px))]',
+      'sm:py-[calc(theme(spacing[1.5])-var(--border-with,1px))]',
+
+      '[&_svg[data-ui=icon]:not([class*=size-])]:size-5',
+      'sm:[&_svg[data-ui=icon]:not([class*=size-])]:size-4',
+    ],
+    iconOnly: [
+      'p-[calc(theme(spacing[2.5])-var(--border-with,1px))]',
+      'sm:p-[calc(theme(spacing[1.5])-var(--border-with,1px))]',
+
+      // 20+2x2=24px
+      '[&_svg[data-ui=icon]:not([class*=size-])]:size-5',
+      '[&_svg[data-ui=icon]]:m-0.5',
+
+      // 16+4x2=24px
+      'sm:[&_svg[data-ui=icon]:not([class*=size-])]:size-4',
+      'sm:[&_svg[data-ui=icon]]:m-1',
+    ],
+  },
+  lg: {
+    button: [
+      'px-[calc(theme(spacing[4])-var(--border-with,1px))]',
+      'py-[calc(theme(spacing[2.5])-var(--border-with,1px))]',
+      '[&_svg[data-ui=icon]:not([class*=size-])]:size-5',
+    ],
+    iconOnly: [
+      'p-[calc(theme(spacing[2.5])-var(--border-with,1px))]',
+      '[&_svg[data-ui=icon]:not([class*=size-])]:size-5',
+      '[&_svg[data-ui=icon]]:m-0.5',
+    ],
+  },
+};
+
+function buttonStyle({
+  size,
+  color,
+  isIconOnly,
+  variant = 'solid',
+}: BasicButtonProps) {
+  if (variant === 'unstyle') {
+    return 'relative outline-none rounded-lg';
   }
 
+  const buttonSize = size ?? 'md';
+  const buttonType = isIconOnly ? 'iconOnly' : 'button';
+
+  const buttonBackground = {
+    accent: [
+      '[--btn-bg:theme(colors.accent)]',
+      '[--btn-bg-hover:theme(colors.accent/90%)]',
+    ],
+    destructive: [
+      '[--btn-bg:theme(colors.destructive)]',
+      '[--btn-bg-hover:theme(colors.destructive/90%)]',
+    ],
+    success: [
+      '[--btn-bg:theme(colors.success)]',
+      '[--btn-bg-hover:theme(colors.success/90%)]',
+    ],
+  };
+  const buttonColor = {
+    foreground: '[--btn-color:theme(colors.foreground)]',
+    accent: '[--btn-color:theme(colors.accent)]',
+    destructive: '[--btn-color:theme(colors.destructive)]',
+    success: '[--btn-color:theme(colors.success)]',
+  };
+
+  const iconColor = [
+    !isIconOnly && [
+      variant === 'solid' &&
+        '[&:not(:hover)_svg[data-ui=icon]:not([class*=text-])]:text-zinc-300',
+      variant === 'outline' &&
+        '[&:not(:hover)_svg[data-ui=icon]:not([class*=text-])]:text-muted',
+    ],
+  ];
+
   return [
-    // Base
-    'group relative inline-flex justify-center items-center whitespace-nowrap rounded-md outline-none',
-
-    // Disabled
-    'disabled:opacity-50',
-
-    // Size
-    iconOnly
-      ? [
-          // default size
-          'p-1.5 size-9',
-          size === 'sm' && 'p-1 size-7',
-          size === 'lg' && 'size-10',
-        ]
-      : [
-          // default size
-          'h-9 px-3 gap-2 text-base/6 sm:text-sm/6 font-semibold',
-          size === 'sm' && 'h-7 px-2 gap-1 text-sm/6 sm:text-xs/6',
-          size === 'lg' && 'h-10 px-4 gap-2',
-        ],
-
-    // Color
-    color === 'accent' && 'text-accent',
-
-    color === 'success' && 'text-success',
-
-    color === 'destructive' && 'text-destructive',
-
-    // Variant
-    props.outline && [
-      'border border-border/75 bg-transparent shadow-sm hover:bg-hover',
-    ],
-
-    props.plain && ['bg-transparent hover:bg-hover'],
-
-    props.outline === undefined &&
-      props.plain === undefined && [
-        'border dark:border-0',
-        'shadow-[inset_0_1px_0_0_rgba(255,255,255,0.1)]',
-        'border-accent bg-accent text-white hover:bg-accent/90',
-        color === 'success' && 'border-success bg-success hover:bg-success/90',
-        color === 'destructive' &&
-          'border-destructive bg-destructive hover:bg-destructive/90',
-      ],
-
-    // Add svg size when itself does not have a size
-    '[&.h-7_svg:not([class^=size-])]:size-3 [&.size-7_svg:not([class^=size-])]:size-4',
-    '[&.h-9_svg:not([class^=size-])]:size-4 [&.size-9_svg:not([class^=size-])]:size-5',
-    '[&.h-10_svg:not([class^=size-])]:size-5 [&.size-10_svg::not([class^=size-])]:size-6',
-
-    (!iconOnly || props.outline || props.plain) && [
-      '[&:not(:hover)_svg:not([class^=text-])]:opacity-75',
-    ],
+    buttonVariants.base,
+    buttonVariants[variant],
+    variant == 'solid'
+      ? [buttonBackground[color ?? 'accent']]
+      : [buttonColor[color ?? 'foreground']],
+    buttonSizes[buttonSize][buttonType],
+    iconColor,
   ];
 }
 
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   function Button(props, ref) {
     if (props.asChild) {
-      const {
-        asChild,
-        size,
-        color,
-        plain,
-        unstyle,
-        outline,
-        iconOnly,
-        ...slotProps
-      } = props;
-
       return (
-        <Slot
-          {...slotProps}
-          className={twMerge(
-            buttonStyle({
-              size,
-              color,
-              iconOnly,
-              ...({ unstyle, outline, plain } as Variant),
-            }),
-          )}
-        />
+        <Slot className={twMerge(buttonStyle(props))}>{props.children}</Slot>
       );
     }
 
     const {
       asChild,
       children,
-      isLoading,
-      loadingLabel,
+      isCustomPending,
+      pendingLabel,
       size,
       color,
-      plain,
-      unstyle,
-      outline,
-      iconOnly,
+      variant = 'solid',
+      isIconOnly,
       ...buttonProps
     } = props;
 
@@ -155,123 +186,139 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         <RACButton
           {...buttonProps}
           ref={ref}
-          className={composeRenderProps(
-            props.className,
-            (className, renderProps) => {
-              return twMerge(
-                buttonStyle({
-                  size,
-                  color,
-                  iconOnly,
-                  ...({ unstyle, outline, plain } as Variant),
-                }),
-                renderProps.isFocusVisible && focusOutlineStyle,
-                isLoading && 'text-transparent',
-                className,
-              );
-            },
-          )}
+          data-variant={variant}
+          className={composeTailwindRenderProps(props.className, [
+            buttonStyle({ size, color, isIconOnly, variant }),
+            focusVisibleOutline,
+            'disabled:opacity-50',
+            'data-[pending]:opacity-75',
+            !isCustomPending && 'data-[pending]:text-transparent',
+          ])}
         >
           {(renderProps) => {
             return (
               <>
-                {isLoading ? (
-                  <div className="absolute flex h-full items-center justify-center">
-                    <Spinner
+                {renderProps.isPending ? (
+                  <>
+                    <SpinnerIcon
+                      aria-label={pendingLabel}
                       className={twMerge(
-                        'size-4 text-white',
-                        size == 'lg' && 'size-5',
-                        size == 'sm' && 'size-3',
-                        'stroke-white dark:stroke-white',
-                        '[.bg-transparent_&]:stroke-zinc-900 dark:[.bg-transparent_&]:stroke-white',
+                        'absolute',
+                        'text-foreground',
+                        'group-data-[variant=solid]:text-zinc-300',
+                        isCustomPending
+                          ? 'group-data-[pending]:sr-only'
+                          : 'group-data-[pending]:flex',
                       )}
                     />
-                  </div>
-                ) : null}
-                {typeof children === 'function'
-                  ? children(renderProps)
-                  : children}
+                    <span
+                      className="contents"
+                      {...(renderProps.isPending && { 'aria-hidden': true })}
+                    >
+                      {typeof children === 'function'
+                        ? children(renderProps)
+                        : children}
+                    </span>
+                  </>
+                ) : typeof children === 'function' ? (
+                  children(renderProps)
+                ) : (
+                  children
+                )}
               </>
             );
           }}
         </RACButton>
-        <VisuallyHidden>
-          <span aria-live="polite">{isLoading ? loadingLabel : ''}</span>
-        </VisuallyHidden>
       </>
     );
   },
 );
 
-export type ToggleButtonProps = RACToggleButtonProps &
-  Exclude<BasicButtonProps, 'isLoading' | 'loadingLabel'>;
-
-export function ToggleButton(props: ToggleButtonProps) {
+export function ToggleButton(props: RACToggleButtonProps & BasicButtonProps) {
+  const { variant, ...buttonProps } = props;
   return (
     <RACToggleButton
+      {...buttonProps}
+      data-variant={variant}
+      className={composeTailwindRenderProps(props.className, [
+        buttonStyle(props),
+        focusVisibleOutline,
+      ])}
+    />
+  );
+}
+
+function buttonGroupStyle({
+  inline,
+  orientation,
+}: {
+  inline?: boolean;
+  orientation?: 'horizontal' | 'vertical';
+}) {
+  return [
+    'group inline-flex w-max items-center',
+
+    orientation === 'horizontal'
+      ? [
+          '[&>button:first-child]:rounded-e-none',
+          '[&>button:last-child]:rounded-s-none',
+          '[&>button:not(:last-child)]:border-e-0',
+          inline &&
+            'shadow-sm [&>button:not(:first-child)]:border-s-0 [&>button]:shadow-none',
+        ]
+      : [
+          'flex-col',
+          '[&>button:first-child]:rounded-b-none',
+          '[&>button:last-child]:rounded-t-none',
+          '[&>button:not(:last-child)]:border-b-0',
+
+          inline &&
+            'shadow-sm [&>button:not(:first-child)]:border-t-0 [&>button]:shadow-none',
+        ],
+
+    '[&>button:not(:first-child):not(:last-child)]:rounded-none',
+
+    // Add border to solid button which has not border in dark mode
+    'dark:[&>button[data-variant=solid]]:border-solid',
+    'dark:[&>button[data-variant=solid]]:[--border-with:1px]',
+    '[&>button[data-variant=solid]:not(:first-child)]:border-s-black/15',
+  ];
+}
+
+export function ToggleButtonGroup({
+  inline,
+  orientation = 'horizontal',
+  ...props
+}: ToggleButtonGroupProps & {
+  inline?: boolean;
+  orientation?: 'horizontal' | 'vertical';
+}) {
+  return (
+    <RACToggleButtonGroup
       {...props}
-      className={composeRenderProps(props.className, (className, renderProps) =>
-        twMerge(
-          buttonStyle(props),
-          renderProps.isFocusVisible && focusOutlineStyle,
-          className,
-        ),
+      data-ui="button-group"
+      className={composeTailwindRenderProps(
+        props.className,
+        buttonGroupStyle({ inline, orientation }),
       )}
     />
   );
 }
 
-export type CloseButtonProps = ButtonWithoutAsChildProps & {
-  iconOnly?: never;
-  asChild?: never;
-  children?: never;
-};
-export function CloseButton({
-  'aria-label': ariaLabel = 'Close',
-  ...props
-}: CloseButtonProps) {
-  return (
-    <Button iconOnly {...props} aria-label={ariaLabel}>
-      <svg
-        aria-hidden
-        xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-        <path d="M18 6 6 18" />
-        <path d="m6 6 12 12" />
-      </svg>
-    </Button>
-  );
-}
-
 export function ButtonGroup({
   className,
-  contrast,
+  inline,
+  orientation = 'horizontal',
   ...props
-}: JSX.IntrinsicElements['div'] & { contrast?: boolean }) {
+}: JSX.IntrinsicElements['div'] & {
+  inline?: boolean;
+  orientation?: 'horizontal' | 'vertical';
+}) {
   return (
     <div
-      className={twMerge(
-        'flex items-center',
-        '[&>button:first-of-type]:rounded-r-none',
-        '[&>button:last-of-type]:rounded-l-none',
-        '[&>button:not(:first-of-type):not(:last-of-type)]:rounded-none',
-        '[&>button:not(:last-of-type)]:border-r-0',
-        'dark:[&>button:not(.bg-transparent)]:border',
-        contrast
-          ? '[&>button:not(.bg-transparent):not(:first-of-type)]:border-l-white/30'
-          : '[&>button:not(.bg-transparent):not(:first-of-type)]:border-l-black/15',
-
-        className,
-      )}
       {...props}
+      data-ui="button-group"
+      className={twMerge(buttonGroupStyle({ inline, orientation }), className)}
     />
   );
 }

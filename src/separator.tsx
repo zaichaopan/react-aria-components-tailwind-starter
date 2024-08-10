@@ -2,16 +2,18 @@ import { useSeparator } from 'react-aria';
 import { twMerge } from 'tailwind-merge';
 import { SeparatorProps as RACSeparatorProps } from 'react-aria-components';
 
-type SeparatorProps = RACSeparatorProps & {
+export type SeparatorProps = RACSeparatorProps & {
   children?: React.ReactNode;
-};
+  soft?: boolean;
+} & JSX.IntrinsicElements['div'];
 
 export function Separator({
   orientation = 'horizontal',
   className,
+  soft = false,
   children,
   ...props
-}: SeparatorProps & JSX.IntrinsicElements['div']) {
+}: SeparatorProps) {
   const { separatorProps } = useSeparator({ orientation });
 
   return (
@@ -19,20 +21,22 @@ export function Separator({
       {...separatorProps}
       className={twMerge(
         'text-sm/6',
+        '[&>svg:not([class*=size])]:size-5',
         children
           ? [
-              'after:border-border/50 before:border-border/50',
+              soft
+                ? 'before:border-border/35 after:border-border/35'
+                : 'before:border-border/75 after:border-border/75',
               orientation === 'vertical'
                 ? [
-                    'mx-2 flex flex-col items-center',
+                    'mx-4 flex flex-col items-center',
                     "before:content-['']",
                     'before:border-l',
                     'before:flex-1',
-                    'before:mb-2',
                     "after:content-['']",
                     'after:border-r',
                     'after:flex-1',
-                    'after:mt-2',
+                    typeof children === 'string' && ['before:mb-4 after:mt-4'],
                   ]
                 : [
                     'self-stretch',
@@ -40,18 +44,24 @@ export function Separator({
                     "before:content-['']",
                     'before:border-t',
                     'before:flex-1',
-                    'before:mr-2',
+
                     "after:content-['']",
                     'after:border-t',
                     'after:flex-1',
-                    'after:ml-2',
+                    typeof children === 'string' && ['before:me-4 after:ms-4'],
                   ],
             ]
           : [
-              'border-border/50',
+              soft? 'border-border/35': 'border-border/75',
               orientation === 'vertical'
-                ? 'mx-1 h-auto self-stretch border-l'
-                : 'my-0.5 h-px w-full self-stretch border-b',
+                ? [
+                    'h-auto self-stretch border-l',
+                    typeof children === 'string' && ['mx-1'],
+                  ]
+                : [
+                    'h-px w-full self-stretch border-b',
+                    typeof children === 'string' && ['my-1'],
+                  ],
             ],
         className,
       )}

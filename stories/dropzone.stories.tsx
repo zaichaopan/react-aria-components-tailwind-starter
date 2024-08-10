@@ -5,23 +5,18 @@ import { DropZone } from '../src/dropzone';
 import { FileTrigger, isFileDropItem } from 'react-aria-components';
 import { Button } from '../src/button';
 import { Text } from '../src/text';
-import { Icon } from '../src/icon';
-import { Image } from 'lucide-react';
+import { Icon } from '../src/accessible-icon';
 
-const meta: Meta<typeof DropZone> = {
-  title: 'DropZone',
-  component: DropZone,
+const meta: Meta = {
+  title: 'Dropzone',
   parameters: {
     layout: 'centered',
     docs: {
       description: {
         component:
-          'A <a href="https://react-spectrum.adobe.com/react-aria/DropZone.html#dropzone" target="_blank">**drop zone**</a> is an area into which one or multiple objects can be dragged and dropped..',
+          'A <a href="https://react-spectrum.adobe.com/react-aria/DropZone.html#dropzone" target="_blank">**drop zone**</a> is an area into which one or multiple objects can be dragged and dropped.',
       },
       ...docs,
-      controls: {
-        exclude: /.*/g,
-      },
     },
   },
   tags: ['autodocs'],
@@ -29,7 +24,7 @@ const meta: Meta<typeof DropZone> = {
 
 export default meta;
 
-export const Example = () => {
+export const BasicExample = () => {
   const [droppedImage, setDroppedImage] = React.useState<string | undefined>(
     undefined,
   );
@@ -57,13 +52,24 @@ export const Example = () => {
           className="aspect-square h-full w-full object-contain"
         />
       ) : (
-        <div className="flex flex-1 flex-col gap-2 pt-6">
+        <div className="flex flex-1 flex-col py-6">
           <div className="flex flex-1 justify-center">
             <Icon>
-              <Image />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="1em"
+                height="1em"
+                viewBox="0 0 20 20"
+                className="size-10 text-muted/50"
+              >
+                <path
+                  fill="currentColor"
+                  d="M18 3H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1m-4.75 3.5a1.25 1.25 0 1 1 0 2.5a1.25 1.25 0 0 1 0-2.5M4 14l3.314-7.619l3.769 6.102l3.231-1.605L16 14z"
+                ></path>
+              </svg>
             </Icon>
           </div>
-          <div className="flex flex-1">
+          <div className="flex flex-1 pt-2">
             <FileTrigger
               acceptedFileTypes={['image/png', 'image/jpeg']}
               allowsMultiple={false}
@@ -79,8 +85,8 @@ export const Example = () => {
               }}
             >
               <Button
-                unstyle
-                className="text-nowrap text-base/6 font-medium text-foreground sm:text-sm/6"
+                variant="unstyle"
+                className="text-nowrap text-base/6 font-medium text-accent sm:text-sm/6"
               >
                 Upload a file
               </Button>

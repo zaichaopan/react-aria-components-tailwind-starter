@@ -3,19 +3,15 @@ import { Description, Label } from '../src/field';
 import { NativeSelect, NativeSelectField } from '../src/native-select';
 
 const meta = {
-  title: 'NativeSelect',
-  component: NativeSelect,
+  title: 'Native select',
   parameters: {
     layout: 'centered',
     docs: {
       description: {
         component:
-          '**Native select** renders <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select" target="_blank">**\\<select\\>**</a> HTML element represents a control that provides a menu of options.',
+          '**Native select** renders <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select" target="_blank">**select**</a> HTML element represents a control that provides a menu of options.',
       },
       ...docs,
-      controls: {
-        exclude: /.*/g,
-      },
     },
   },
   tags: ['autodocs'],
@@ -23,11 +19,10 @@ const meta = {
 
 export default meta;
 
-export const Example = () => {
+export const BasicExample = () => {
   return (
-    <NativeSelectField className='sm:w-80'>
+    <NativeSelectField className="sm:w-80">
       <Label>Choose a pet</Label>
-      <Description>Please choose an option</Description>
       <NativeSelect name="pet">
         <option value="dog">Dog</option>
         <option value="cat">Cat</option>
@@ -40,9 +35,40 @@ export const Example = () => {
   );
 };
 
-export const DisabledSelect = () => {
+export const NativeSelectWithDescription = () => {
   return (
-    <NativeSelectField className='sm:w-80'>
+    <div className='space-y-12'>
+      <NativeSelectField className="sm:w-80">
+        <Label>Choose a pet</Label>
+        <Description>Please choose an option</Description>
+        <NativeSelect name="pet">
+          <option value="dog">Dog</option>
+          <option value="cat">Cat</option>
+          <option value="hamster">Hamster</option>
+          <option value="parrot">Parrot</option>
+          <option value="spider">Spider</option>
+          <option value="goldfish">Goldfish</option>
+        </NativeSelect>
+      </NativeSelectField>
+      <NativeSelectField className="sm:w-80">
+        <Label>Choose a pet</Label>
+        <NativeSelect name="pet">
+          <option value="dog">Dog</option>
+          <option value="cat">Cat</option>
+          <option value="hamster">Hamster</option>
+          <option value="parrot">Parrot</option>
+          <option value="spider">Spider</option>
+          <option value="goldfish">Goldfish</option>
+        </NativeSelect>
+        <Description>Please choose an option</Description>
+      </NativeSelectField>
+    </div>
+  );
+};
+
+export const NativeSelectWithDisabledState = () => {
+  return (
+    <NativeSelectField className="sm:w-80">
       <Label>Choose a pet</Label>
       <Description>Please choose an option</Description>
       <NativeSelect name="pet" disabled>
@@ -59,11 +85,9 @@ export const DisabledSelect = () => {
   );
 };
 
-
-
-export const DisabledOptions = () => {
+export const NativeSelectWithDisabledOptions = () => {
   return (
-    <NativeSelectField className='sm:w-80'>
+    <NativeSelectField className="sm:w-80">
       <Label>Choose a pet</Label>
       <Description>Please choose an option</Description>
       <NativeSelect name="pet">
@@ -79,4 +103,3 @@ export const DisabledOptions = () => {
     </NativeSelectField>
   );
 };
-

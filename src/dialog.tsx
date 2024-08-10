@@ -1,19 +1,14 @@
 import {
   DialogProps as RACDialogProps,
-  OverlayTriggerStateContext,
   Dialog as RACDialog,
 } from 'react-aria-components';
 import { twMerge } from 'tailwind-merge';
 import React from 'react';
 import { Heading, HeadingProps } from './heading';
-import {
-  Button,
-  ButtonWithoutAsChildProps,
-  CloseButton,
-  CloseButtonProps,
-} from './button';
+import { Button, ButtonWithoutAsChildProps } from './button';
 import { composeTailwindRenderProps } from './utils';
 import { Text } from './text';
+import { XIcon } from './icons';
 
 export { DialogTrigger } from 'react-aria-components';
 
@@ -28,6 +23,8 @@ export function Dialog({ role, alert = false, ...props }: DialogProps) {
       role={role ?? alert ? 'alertdialog' : 'dialog'}
       className={twMerge(
         'relative flex max-h-[inherit] flex-col overflow-hidden outline-none',
+        '[&:not(:has([data-ui=dialog-header]))>[data-ui=dialog-body]:not([class*=pt-])]:pt-6',
+        '[&:not(:has([data-ui=dialog-footer]))>[data-ui=dialog-body]:not([class*=pt-])]:pb-6',
         props.className,
       )}
     />
@@ -36,7 +33,7 @@ export function Dialog({ role, alert = false, ...props }: DialogProps) {
 
 type DialogHeaderProps = HeadingProps;
 
-export function DialogHeader(props: DialogHeaderProps) {
+export function DialogHeader({ className, ...props }: DialogHeaderProps) {
   const headerRef = React.useRef<HTMLHeadingElement>(null);
 
   React.useEffect(() => {
@@ -55,31 +52,48 @@ export function DialogHeader(props: DialogHeaderProps) {
     });
 
     observer.observe(header);
+
     return () => {
       observer.unobserve(header);
     };
   }, []);
 
-  return (
-    <div ref={headerRef} className="relative flex px-6 pb-2 pt-6">
-      {typeof props.children === 'string' ? (
-        <DialogTitle {...props} />
-      ) : (
-        props.children
+  return typeof props.children === 'string' ? (
+    <DialogTitle
+      {...props}
+      data-ui="dialog-header"
+      ref={headerRef}
+      className={twMerge('px-6 pb-2 pt-6', className)}
+    />
+  ) : (
+    <div
+      ref={headerRef}
+      data-ui="dialog-header"
+      className={twMerge(
+        'relative flex w-full items-center px-6 pb-2 pt-6',
+        className,
       )}
+      {...props}
+    >
+      {props.children}
     </div>
   );
 }
 
-export function DialogBody(props: JSX.IntrinsicElements['div']) {
-  const { className, children, ...rest } = props;
+export function DialogBody({
+  className,
+  children,
+  ...props
+}: JSX.IntrinsicElements['div']) {
   return (
     <div
+      {...props}
+      data-ui="dialog-body"
       className={twMerge(
-        'flex max-h-[calc(var(--visual-viewport-height)-var(--visual-viewport-vertical-padding)-var(--dialog-header-height,0px)-var(--dialog-footer-height,0px))] flex-1 flex-col gap-2 overflow-auto px-6',
+        'flex flex-1 flex-col overflow-auto px-6',
+        'max-h-[calc(var(--visual-viewport-height)-var(--visual-viewport-vertical-padding)-var(--dialog-header-height,0px)-var(--dialog-footer-height,0px))]',
         className,
       )}
-      {...rest}
     >
       {typeof children === 'string' ? <Text>{children}</Text> : children}
     </div>
@@ -117,74 +131,51 @@ export function DialogFooter({
   return (
     <div
       {...props}
+      data-ui="dialog-footer"
       ref={footerRef}
       className={twMerge(
-        'mt-auto flex flex-col flex-col-reverse justify-end gap-3 px-6 pb-6 pt-4 sm:flex-row',
+        'mt-auto flex flex-col flex-col-reverse justify-end gap-3 p-6 sm:flex-row',
         className,
       )}
     />
   );
 }
 
-type DialogCloseButtonProps =
-  | Omit<CloseButtonProps, 'outline' | 'unstyle' | 'plain'>
-  | (ButtonWithoutAsChildProps & {
-      children: Exclude<React.ReactNode, null | undefined>;
-    });
-
-export function DialogCloseButton(props: DialogCloseButtonProps) {
-  const state = React.useContext(OverlayTriggerStateContext)!;
-
-  if (props.children === undefined) {
-    const { onPress, className, ...restProps } = props;
-
-    return (
-      <CloseButton
-        {...restProps}
-        plain
-        className={composeTailwindRenderProps(
-          className,
-          'absolute right-4 top-4 p-1.5',
-        )}
-        onPress={(e) => {
-          state.close();
-          onPress?.(e);
-        }}
-      />
-    );
+export function DialogCloseButton({
+  variant = 'plain',
+  ...props
+}: ButtonWithoutAsChildProps) {
+  if (props.children) {
+    return <Button {...props} slot="close" variant={variant} />;
   }
 
-  const { onPress, ...restProps } = props;
-
-  if (!restProps.unstyle && !restProps.outline) {
-    restProps.plain = true;
-  }
+  const {
+    className,
+    size = 'lg',
+    'aria-label': ariaLabel,
+    isIconOnly = true,
+    ...restProps
+  } = props;
 
   return (
     <Button
       {...restProps}
-      onPress={(e) => {
-        state.close();
-        onPress?.(e);
-      }}
-    />
+      slot="close"
+      isIconOnly={isIconOnly}
+      variant={variant}
+      size={size}
+      className={composeTailwindRenderProps(className, [
+        'absolute end-3 top-4 p-1.5 text-muted/75 hover:text-foreground',
+      ])}
+    >
+      <XIcon aria-label={ariaLabel ?? 'Close'} />
+    </Button>
   );
 }
 
-export function DialogTitle({
-  className,
-  level = 2,
-  children,
-  ...props
-}: DialogHeaderProps) {
-  return (
-    <Heading
-      {...props}
-      slot="title"
-      level={level}
-      className={twMerge('flex flex-1 items-center', className)}
-    >
-      {children}
-    </Heading>
-  );
-}
+export const DialogTitle = React.forwardRef<
+  HTMLHeadingElement,
+  DialogHeaderProps
+>(function DialogTitle({ level = 2, ...props }, ref) {
+  return <Heading {...props} ref={ref} slot="title" level={level} />;
+});

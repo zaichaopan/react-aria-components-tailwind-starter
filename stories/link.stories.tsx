@@ -1,11 +1,16 @@
 import type { Meta } from '@storybook/react';
 import { Link } from '../src/link';
-import { ExternalLink, MessageCircle, Phone, Video } from 'lucide-react';
+import {
+  MessageCircle,
+  Phone,
+  SquareArrowOutUpRightIcon,
+  Video,
+} from 'lucide-react';
 import { docs } from '../.storybook/docs';
 import { Button } from '../src/button';
 import { NotificationBadge } from '../src/notification-badge';
 import { Avatar } from '../src/avatar';
-import { Icon } from '../src/icon';
+import { Icon } from '../src/accessible-icon';
 
 const meta: Meta<typeof Link> = {
   title: 'Link',
@@ -28,11 +33,11 @@ const meta: Meta<typeof Link> = {
 
 export default meta;
 
-export const Example = () => {
+export const BasicExample = () => {
   return <Link>React Aria Component Link</Link>;
 };
 
-export const WithIcons = () => {
+export const LinkWithIcons = () => {
   return (
     <Link
       href="https://react-spectrum.adobe.com/react-aria/routing.html"
@@ -40,26 +45,17 @@ export const WithIcons = () => {
     >
       React Aria Component Link
       <Icon>
-        <ExternalLink className="size-5" strokeWidth={1.5} />
+        <SquareArrowOutUpRightIcon></SquareArrowOutUpRightIcon>
       </Icon>
     </Link>
   );
-};
-
-WithIcons.parameters = {
-  docs: {
-    description: {
-      story:
-        'Use the **Icon** component to render a decoration icon inside a link:',
-    },
-  },
 };
 
 export function NavLinks() {
   return (
     <nav className="flex w-16 flex-col gap-4 rounded border border-border p-3">
       <Link
-        className="flex-col p-2 hover:no-underline"
+        className="group flex-col p-2 hover:no-underline"
         aria-label="Chat - 6 new messages"
       >
         <Icon>
@@ -68,33 +64,41 @@ export function NavLinks() {
             className="transition group-hover:scale-110"
           />
         </Icon>
-        <NotificationBadge count={6} />
+        <NotificationBadge
+          variant="numeric"
+          value={6}
+          aria-label="6 new chat messages"
+        />
         <span className="text-xs" aria-hidden="true">
           Chat
         </span>
       </Link>
       <Link
         aria-label="Calls - new calls"
-        className="flex-col p-2 hover:no-underline"
+        className="group flex-col p-2 hover:no-underline"
       >
         <Icon>
           <Phone size={20} className="transition group-hover:scale-110" />
         </Icon>
 
-        <NotificationBadge show />
+        <NotificationBadge variant="dot" />
         <span className="text-xs" aria-hidden="true">
           Calls
         </span>
       </Link>
       <Link
         aria-label="Meet - 9 new meet alerts"
-        className="flex-col p-2 hover:no-underline"
+        className="group flex-col p-2 hover:no-underline"
       >
         <Icon>
           <Video size={20} className="transition group-hover:scale-110" />
         </Icon>
 
-        <NotificationBadge count={20} />
+        <NotificationBadge
+          variant="numeric"
+          value={20}
+          aria-label="9 new meeting alerts"
+        />
         <span className="text-xs" aria-hidden="true">
           Meet
         </span>
@@ -103,23 +107,24 @@ export function NavLinks() {
   );
 }
 
-export const AvatarLinks = () => {
+export const LinkAvatars = () => {
   return (
     <Link>
-      <Avatar alt="D P" />
+      <Avatar alt="Jane Doe" />
     </Link>
   );
 };
 
-AvatarLinks.parameters = {
+LinkAvatars.parameters = {
   docs: {
     description: {
-      story: 'Use the **Avatar** component to render avatar inside a link:',
+      story:
+        'Use the <a href="./?path=/docs/avatar--docs" target="_blank">**Avatar**</a> component to render avatar inside a link.',
     },
   },
 };
 
-export const DisabledLinks = () => {
+export const LinkWithDisabledState = () => {
   return (
     <Link
       isDisabled
@@ -127,17 +132,14 @@ export const DisabledLinks = () => {
       target="_blank"
     >
       React Aria Component Link
-      <Icon>
-        <ExternalLink className="size-5" strokeWidth={1.5} />
-      </Icon>
     </Link>
   );
 };
 
 export const AsChild = () => {
   return (
-    <Link>
-      <Button unstyle>Edit Profile</Button>
+    <Link asChild>
+      <Button variant="unstyle">Edit Profile</Button>
     </Link>
   );
 };
@@ -146,7 +148,7 @@ AsChild.parameters = {
   docs: {
     description: {
       story:
-        'Use **asChild** prop to render other react components like <a href="https://reactrouter.com/en/main/components/link" target="_blank">**Router router Link**</a>:',
+        'Use the **asChild** prop to render other react components like <a href="https://reactrouter.com/en/main/components/link" target="_blank">**Router router Link**</a>.',
     },
   },
 };

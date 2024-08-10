@@ -21,9 +21,11 @@ import { twMerge } from 'tailwind-merge';
 import { Checkbox } from './checkbox';
 import {
   composeTailwindRenderProps,
-  focusOutlineStyle,
-  focusRingStyle,
+  focusRing,
+  focusVisibleOutline,
+  focusVisibleRing,
 } from './utils';
+import { ChevronUpIcon } from './icons';
 
 export function Table(props: TableProps) {
   return (
@@ -49,12 +51,11 @@ export function Column(props: ColumnProps) {
             <Group
               role="presentation"
               tabIndex={-1}
-              className={({ isFocusVisible }) => {
-                return twMerge(
-                  isFocusVisible ? focusRingStyle : 'outline-none',
-                  'flex h-5 flex-1 items-center gap-1 overflow-hidden px-2',
-                );
-              }}
+              className={twMerge(
+                'outline-none',
+                focusVisibleRing,
+                'flex h-5 flex-1 items-center gap-1 overflow-hidden px-2',
+              )}
             >
               <span className="truncate">{children}</span>
               {allowsSorting && (
@@ -64,33 +65,18 @@ export function Column(props: ColumnProps) {
                   }`}
                 >
                   {sortDirection && (
-                    <svg
-                      aria-hidden
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      className="size-4 text-muted"
-                    >
-                      <path d="m18 15-6-6-6 6" />
-                    </svg>
+                    <ChevronUpIcon className="size-4 text-muted" />
                   )}
                 </span>
               )}
             </Group>
             {!props.width && (
               <ColumnResizer
-                className={({ isFocusVisible }) => {
-                  return twMerge(
-                    isFocusVisible ? focusRingStyle : 'outline-none',
-                    'box-content h-5 w-[1.5px] translate-x-[8px] cursor-col-resize rounded bg-border bg-clip-content px-[8px] py-1 -outline-offset-2 resizing:w-[2px] resizing:bg-accent resizing:pl-[7px] forced-colors:bg-[ButtonBorder] forced-colors:resizing:bg-[Highlight]',
-                  );
-                }}
+                className={twMerge(
+                  'outline-none',
+                  focusRing,
+                  'box-content h-5 w-[1.5px] translate-x-[8px] cursor-col-resize rounded bg-border bg-clip-content px-[8px] py-1 -outline-offset-2 resizing:w-[2px] resizing:bg-accent resizing:pl-[7px] forced-colors:bg-[ButtonBorder] forced-colors:resizing:bg-[Highlight]',
+                )}
               />
             )}
           </div>
@@ -142,14 +128,16 @@ export function Row<T extends object>({
     <AriaRow
       id={id}
       {...otherProps}
-      className={({ isFocusVisible }) => {
-        return twMerge(
-          isFocusVisible ? focusOutlineStyle : 'outline-none',
-          'group/row relative cursor-default select-none text-sm -outline-offset-2  disabled:text-muted',
-          'hover:bg-hover',
-          'selected:bg-accent/5 hover:selected:bg-hover dark:selected:bg-accent/35 dark:hover:selected:bg-hover',
-        );
-      }}
+      className={twMerge(
+        focusVisibleOutline,
+        'focus-visible:outline-none',
+        'focus-visible:rounded',
+        'focus-visible:-outline-offset-2',
+        'group/row relative cursor-default select-none text-sm  disabled:text-muted',
+        'hover:bg-zinc-100 dark:hover:bg-zinc-700',
+        'hover:selected:bg-zinc-100 dark:hover:selected:bg-zinc-700',
+        'selected:bg-accent/5 dark:selected:bg-accent/35',
+      )}
     >
       {allowsDragging && (
         <Cell>
@@ -170,12 +158,13 @@ export function Cell(props: CellProps) {
   return (
     <AriaCell
       {...props}
-      className={({ isFocusVisible }) => {
-        return twMerge(
-          isFocusVisible ? [focusOutlineStyle, 'rounded'] : 'outline-none',
-          'truncate border-b p-2 -outline-offset-2 group-last/row:border-b-0',
-        );
-      }}
+      className={twMerge(
+        'outline-none',
+        focusVisibleOutline,
+        'focus-visible:rounded',
+        'focus-visible:-outline-offset-2',
+        'truncate border-b p-2 group-last/row:border-b-0',
+      )}
     />
   );
 }

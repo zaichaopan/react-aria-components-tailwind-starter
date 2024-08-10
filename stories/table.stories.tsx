@@ -35,7 +35,7 @@ const rows = [
   { id: 9, name: 'Budget.xls', date: '1/6/2024', type: 'Excel file' },
 ];
 
-export const Example = () => {
+export const BasicExample = () => {
   const [sortDescriptor, setSortDescriptor] = React.useState<SortDescriptor>({
     column: 'name',
     direction: 'ascending',

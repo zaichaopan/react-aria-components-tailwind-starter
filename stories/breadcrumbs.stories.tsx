@@ -3,8 +3,7 @@ import { Breadcrumb, Breadcrumbs } from '../src/breadcrumbs';
 
 import type { Meta } from '@storybook/react';
 
-const meta: Meta<typeof Breadcrumbs> = {
-  component: Breadcrumbs,
+const meta: Meta = {
   title: 'Breadcrumbs',
   parameters: {
     layout: 'centered',
@@ -21,7 +20,7 @@ const meta: Meta<typeof Breadcrumbs> = {
 
 export default meta;
 
-export const Example = () => {
+export const BasicExample = () => {
   return (
     <Breadcrumbs>
       <Breadcrumb href="/">Home</Breadcrumb>

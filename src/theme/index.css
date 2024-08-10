@@ -1,0 +1,59 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* white */
+    --background: 255 255 255;
+    /* zinc-950 */
+    --foreground: 9 9 11;
+    /* zinc-900 */
+    --accent: 24 24 27;
+    /* zinc-300 */
+    --border: 212 212 216;
+    /** zinc-500 **/
+    --muted: 113 113 122;
+    /** green-600 **/
+    --success: 22 163 74;
+    /** red-600 **/
+    --destructive: 220 38 38;
+    /* yellow-600 */
+    --warning: 202 138 4;
+  }
+
+  .dark {
+    /* zinc-950 */
+    --background: 9 9 11;
+    /* zinc-50 */
+    --foreground: 250 250 250;
+    /** zinc-600 **/
+    --accent: 82 82 91;
+    /* zinc-700 */
+    --border: 63 63 70;
+    /** zinc-400 **/
+    --muted: 161 161 170;
+    /** green-600 **/
+    --success: 22 163 74;
+    /** red-600 **/
+    --destructive: 220 38 38;
+    /* yellow-600 */
+    --warning: 202 138 4;
+  }
+}
+
+@layer base {
+  *,
+  *:before,
+  *:after {
+    @apply border-border;
+  }
+
+  body {
+    @apply h-full bg-background font-sans text-foreground antialiased;
+  }
+
+  [data-ui=icon] {
+    flex-shrink: 0;
+  }
+}

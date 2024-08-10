@@ -1,8 +1,10 @@
+import React from 'react';
 import type { Meta } from '@storybook/react';
 import { Button } from '../src/button';
 import { docs } from '../.storybook/docs';
-import { GlobalToastRegion } from '../src/toast/toast-region';
+import { GlobalToastRegion, ToastAction } from '../src/toast/toast-region';
 import { toast } from '../src/toast/toast-queue';
+import { TextLink } from '../src/text';
 
 const meta: Meta = {
   title: 'Toast',
@@ -14,9 +16,6 @@ const meta: Meta = {
           '<a href="https://react-spectrum.adobe.com/react-aria/useToast.html#usetoast" target="_blank">**Toasts**</a> display brief, temporary notifications of actions, errors, or other events in an application.',
       },
       ...docs,
-      controls: {
-        exclude: /.*/g,
-      },
     },
   },
   tags: ['autodocs'],
@@ -24,11 +23,13 @@ const meta: Meta = {
 
 export default meta;
 
-export const Example = () => {
+export const BasicExample = () => {
+  const toastKey = React.useRef<string | null>(null);
+
   return (
-    <div className="flex flex-col items-center gap-4 p-12">
+    <div className="flex items-center justify-center gap-4 p-12">
       <Button
-        outline
+        variant="outline"
         onPress={() => {
           toast.add({
             title: 'Templates unavailable',
@@ -41,7 +42,7 @@ export const Example = () => {
       </Button>
 
       <Button
-        outline
+        variant="outline"
         onPress={() => {
           toast.add({
             description:
@@ -53,7 +54,21 @@ export const Example = () => {
       </Button>
 
       <Button
-        outline
+        variant="outline"
+        onPress={() => {
+          toast.add({
+            type: 'info',
+            title: 'Templates unavailable',
+            description:
+              'Issue template and forms are current unavailable. Please try again later.',
+          });
+        }}
+      >
+        Info
+      </Button>
+
+      <Button
+        variant="outline"
         onPress={() => {
           toast.add({
             type: 'error',
@@ -67,7 +82,7 @@ export const Example = () => {
       </Button>
 
       <Button
-        outline
+        variant="outline"
         onPress={() => {
           toast.add({
             type: 'warning',
@@ -81,7 +96,7 @@ export const Example = () => {
       </Button>
 
       <Button
-        outline
+        variant="outline"
         onPress={() => {
           toast.add({
             title: 'Payment details saved',
@@ -91,6 +106,49 @@ export const Example = () => {
         }}
       >
         Success
+      </Button>
+
+      <Button
+        variant="outline"
+        onPress={() => {
+          toast.add({
+            title: 'Payment details saved',
+            description: (
+              <div>
+                Your payment details have been save successfully.&nbsp;{' '}
+                <TextLink href="/">Learn more</TextLink>{' '}
+              </div>
+            ),
+            type: 'success',
+          });
+        }}
+      >
+        Link
+      </Button>
+
+      <Button
+        variant="outline"
+        onPress={() => {
+          toastKey.current = toast.add({
+            title: 'Payment details saved',
+            description: 'Your payment details have been save successfully',
+            action: (
+              <ToastAction
+                onPress={() => {
+                  console.log('test', toastKey);
+                  if (toastKey.current) {
+                    toast.close(toastKey.current);
+                  }
+                }}
+              >
+                Dismiss
+              </ToastAction>
+            ),
+            type: 'success',
+          });
+        }}
+      >
+        With Action
       </Button>
 
       <GlobalToastRegion aria-label="notification" />

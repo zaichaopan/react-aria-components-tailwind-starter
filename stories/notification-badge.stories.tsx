@@ -1,25 +1,22 @@
 import type { Meta } from '@storybook/react';
 import { NotificationBadge } from '../src/notification-badge';
 import { docs } from '../.storybook/docs';
-import { Icon } from '../src/icon';
-import { MessageCircle } from 'lucide-react';
+import { Icon } from '../src/accessible-icon';
+import { BellIcon, MessageCircle } from 'lucide-react';
 import { Link } from '../src/link';
 import { Button } from '../src/button';
+import React from 'react';
 
-const meta: Meta<typeof NotificationBadge> = {
-  title: 'NotificationBadge',
-  component: NotificationBadge,
+const meta: Meta = {
+  title: 'Notification badge',
   parameters: {
     layout: 'centered',
     docs: {
       description: {
         component:
-          '**\\`Notification badges\\`** show notifications, counts, or status information on navigation items and icons. Add **\\`aria-label=*\\`** to its parent to make it accessible.',
+          '**Notification badges** show notifications, counts, or status information on navigation items and icons. Add **aria-label=*** to its parent to make it accessible.',
       },
       ...docs,
-      controls: {
-        exclude: /.*/g,
-      },
     },
   },
   tags: ['autodocs'],
@@ -27,41 +24,66 @@ const meta: Meta<typeof NotificationBadge> = {
 
 export default meta;
 
-export const WithDotNotifications = () => {
+export const ChatWithDotNotifications = () => {
   return (
-    <div className="flex gap-4">
+    <div className="flex gap-6">
       <Link className="p-2" aria-label="Chat - 6 new messages">
         <Icon>
           <MessageCircle />
         </Icon>
-        <NotificationBadge show />
+        <NotificationBadge variant="dot" aria-label="Chat - 6 new messages" />
       </Link>
 
-      <Button aria-label="Chat - 6 new messages">
+      <Button aria-label="Chat - 6 new messages" variant="outline">
         <Icon>
           <MessageCircle />
         </Icon>
-        <NotificationBadge count={10} />
+        <NotificationBadge
+          variant="numeric"
+          value={6}
+          aria-label="Chat - 6 new messages"
+        />
       </Button>
+
+      <div className="flex items-center gap-x-1">
+        <Icon>
+          <BellIcon className='text-muted size-5'></BellIcon>
+        </Icon>
+        Notifications
+        <NotificationBadge variant="numeric" inlined value={8} className='ms-2'/>
+      </div>
     </div>
   );
 };
 
-export const WithNumberNotifications = () => {
+export const NotificationBadgeAccessibility = () => {
+  const [value, setValue] = React.useState(0);
+
   return (
-    <Link className="relative p-2" aria-label="New message">
-      <Icon>
-        <MessageCircle />
-      </Icon>
-      <NotificationBadge count={10} />
-    </Link>
+    <div className="inline-flex flex-col space-y-4">
+      <Link
+        className="relative self-center p-2"
+        aria-label={`Chat - ${value} new messages`}
+      >
+        <Icon>
+          <MessageCircle />
+        </Icon>
+        <NotificationBadge
+          variant="numeric"
+          value={value}
+          aria-label={`Chat - ${value} new messages`}
+        />
+      </Link>
+      <Button onPress={() => setValue(value + 1)}>Add</Button>
+    </div>
   );
 };
 
-WithNumberNotifications.parameters = {
+NotificationBadgeAccessibility.parameters = {
   docs: {
     description: {
-      story: 'Use the **\\`count\\`** prop to render counts.',
+      story:
+        '> Add an **aria-label** to both the **badge** and its parent for accessibility. If aria-label is not provided to the badge, the screen reader will not read the value of the badge when it changes. Learn more about <a href="https://www.w3.org/WAI/WCAG21/Techniques/aria/ARIA22" target="_blank">**Status messages**</a>.',
     },
   },
 };

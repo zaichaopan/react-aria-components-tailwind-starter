@@ -1,34 +1,19 @@
 import type { Meta } from '@storybook/react';
-import {
-  TextField,
-  Label,
-  Description,
-  FieldError,
-  Input,
-  InputFieldGroup,
-  SearchField,
-  SearchInput,
-} from '../src/field';
+import { TextField, Label, Description, FieldError, Input } from '../src/field';
 import { docs } from '../.storybook/docs';
 import { Form } from '../src/form';
 import { Button } from '../src/button';
-import { Mail } from 'lucide-react';
-import { Icon } from '../src/icon';
 
-const meta: Meta<typeof TextField> = {
-  title: 'TextField',
-  component: TextField,
+const meta: Meta = {
+  title: 'Text Field (Input)',
   parameters: {
     layout: 'centered',
     docs: {
       description: {
         component:
-          'A <a href="https://react-spectrum.adobe.com/react-aria/TextField.html#textfield" target="_blank">**text field**</a> allows a user to enter a plain text value with a keyboard.',
+          'A <a href="https://react-spectrum.adobe.com/react-aria/TextField.html#textfield" target="_blank">**text field**</a> allows a user to enter a plain text value with a keyboard. More input <a href="./?path=/story/origin-ui-inputs--inputs" target="_blank">**examples**</a>',
       },
       ...docs,
-      controls: {
-        exclude: /.*/g,
-      },
     },
   },
   tags: ['autodocs'],
@@ -36,7 +21,7 @@ const meta: Meta<typeof TextField> = {
 
 export default meta;
 
-export const Example = () => {
+export const BasicExample = () => {
   return (
     <TextField className="w-full sm:w-80" name="email" type="email">
       <Label>Email address</Label>
@@ -45,78 +30,65 @@ export const Example = () => {
   );
 };
 
-export const WithDescription = () => {
+export const TextInputWithDescription = () => {
   return (
-    <TextField className="w-full sm:w-96" name="email" type="email">
-      <Label>Email address</Label>
-      <Description>
-        Enter an email for us to contact you about your order.
-      </Description>
-      <Input />
-    </TextField>
-  );
-};
-
-export const WithDisabled = () => {
-  return (
-    <TextField className="w-full sm:w-96" name="email" type="email" isDisabled>
-      <Label>Email address</Label>
-      <Description>
-        Enter an email for us to contact you about your order.
-      </Description>
-      <Input />
-    </TextField>
-  );
-};
-
-export const WithIcon = () => {
-  return (
-    <TextField className="w-full sm:w-96" name="email" type="email">
-      <Label>Email address</Label>
-      <Description>
-        Enter an email for us to contact you about your order.
-      </Description>
-
-      <InputFieldGroup role="presentation">
-        <Icon>
-          <Mail className="ml-2 size-4" strokeWidth={1.5} />
-        </Icon>
+    <div className="space-y-12">
+      <TextField name="email" type="email">
+        <Label>Email address</Label>
+        <Description>
+          Enter an email for us to contact you about your order.
+        </Description>
         <Input />
-      </InputFieldGroup>
+      </TextField>
+
+      <TextField name="email" type="email">
+        <Label>Email address</Label>
+
+        <Input />
+        <Description>
+          Enter an email for us to contact you about your order.
+        </Description>
+      </TextField>
+    </div>
+  );
+};
+
+export const TextInputWithDisabledState = () => {
+  return (
+    <TextField name="email" type="email" isDisabled>
+      <Label>Email address</Label>
+      <Description>
+        Enter an email for us to contact you about your order.
+      </Description>
+      <Input placeholder="you@example.com" />
     </TextField>
   );
 };
 
-export const SearchInputs = () => {
+export const TextInputWithReadonlyState = () => {
   return (
-    <SearchField>
-      <Label>Search</Label>
-      <SearchInput placeholder="Search&hellip;" />
-    </SearchField>
+    <TextField name="email" type="email" isReadOnly>
+      <Label>Email address</Label>
+      <Description>
+        Enter an email for us to contact you about your order.
+      </Description>
+      <Input placeholder="you@example.com" />
+    </TextField>
   );
 };
 
-export const WithValidation = () => {
+export const TextInputWithValidation = () => {
   return (
-    <Form className="flex flex-col gap-6">
+    <Form>
       <TextField isRequired>
         <Label>Email address</Label>
         <Description>
           Enter an email for us to contact you about your order.
         </Description>
-
-        <InputFieldGroup role="presentation">
-          <Icon>
-            <Mail className="ml-2 size-4" strokeWidth={1.5} />
-          </Icon>
-          <Input />
-        </InputFieldGroup>
-
+        <Input />
         <FieldError></FieldError>
       </TextField>
-      <Button type="submit" className="self-start">
-        Submit
-      </Button>
+      <Button type="submit">Submit</Button>
     </Form>
   );
 };
