@@ -8,24 +8,13 @@ import {
   Text,
 } from 'react-aria-components';
 import { CalendarGridHeader, CalendarHeader } from './calendar';
-import { focusOutlineStyle } from './utils';
+import { groupFocusVisibleOutlineStyle } from './utils';
 import { twMerge } from 'tailwind-merge';
 
 export interface RangeCalendarProps<T extends DateValue>
   extends Omit<RACRangeCalendarProps<T>, 'visibleDuration'> {
   errorMessage?: string;
 }
-
-const selectionStateStyle = {
-  none: 'group-hover:bg-hover group-pressed:bg-accent/90 group-hover:rounded-md',
-  middle: [
-    'group-hover:bg-accent/20 dark:group-hover:bg-accent/50',
-    'group-invalid:group-hover:bg-destructive/50',
-    'group-pressed:bg-accent group-pressed:text-white',
-    'group-invalid:group-pressed:bg-destructive group-invalid:group-pressed:text-white',
-  ],
-  cap: 'bg-accent text-white group-invalid:bg-destructive group-invalid:text-white',
-};
 
 export function RangeCalendar<T extends DateValue>({
   errorMessage,
@@ -40,30 +29,68 @@ export function RangeCalendar<T extends DateValue>({
           {(date) => (
             <CalendarCell
               date={date}
-              className="group size-9 cursor-default text-sm outline outline-0 selected:bg-hover invalid:selected:bg-destructive/15 selection-start:rounded-s-md selection-end:rounded-e-md"
+              className={[
+                'group size-9 cursor-default text-sm outline-none',
+                'selected:bg-accent/[0.085] dark:selected:bg-accent/40',
+                'invalid:selected:bg-destructive/15 dark:invalid:selected:bg-destructive/30',
+                'selection-start:rounded-s-lg',
+                'selection-end:rounded-e-lg',
+                '[td:first-child_&]:rounded-s-lg [td:last-child_&]:rounded-e-lg',
+              ].join(' ')}
             >
-              {({
-                formattedDate,
-                isSelected,
-                isSelectionStart,
-                isSelectionEnd,
-                isFocusVisible,
-                isDisabled,
-              }) => (
+              {({ formattedDate }) => (
                 <span
                   className={twMerge(
-                    'flex h-full w-full items-center justify-center',
-                    isSelectionStart && 'rounded-l-md',
-                    isSelectionEnd && 'rounded-r-md',
-                    selectionStateStyle[
-                      isSelected && (isSelectionStart || isSelectionEnd)
-                        ? 'cap'
-                        : isSelected
-                          ? 'middle'
-                          : 'none'
-                    ],
-                    isFocusVisible && [focusOutlineStyle, 'rounded'],
-                    isDisabled && 'text-muted',
+                    'flex size-[calc(theme(size.9)-1px)] items-center justify-center',
+                    'group-hover:rounded-lg',
+                    'group-hover:bg-zinc-100',
+                    'dark:group-hover:bg-zinc-700',
+                    'group-pressed:bg-accent/90',
+
+                    // selected
+                    'group-selected:group-hover:bg-accent/15',
+                    'group-selected:dark:group-hover:bg-accent/50',
+                    'group-selected:group-pressed:bg-accent',
+                    'group-selected:group-pressed:text-white',
+
+                    // disabled
+                    'group-disabled:opacity-50',
+
+                    // unavailable
+                    'group-unavailable:text-destructive',
+                    'group-unavailable:decoration-destructive',
+                    'group-unavailable:line-through',
+
+                    // selection start
+                    'group-selected:group-selection-start:border',
+                    'group-selected:group-selection-start:dark:border-0',
+                    'group-selected:group-selection-start:border-accent',
+                    'group-selected:group-selection-start:rounded-lg',
+                    'group-selected:group-selection-start:bg-accent',
+                    'group-selected:group-selection-start:text-white',
+                    'group-selected:group-selection-start:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.1)]',
+                    'group-selected:group-selection-start:group-hover:bg-accent/90',
+                    'group-selected:group-selection-start:dark:group-hover:bg-accent/90',
+                    'group-selected:group-selection-start:group-invalid:border-destructive',
+                    'group-selected:group-selection-start:group-invalid:bg-destructive',
+                    'group-selected:group-selection-start:group-invalid:text-white',
+
+                    // selection end
+                    'group-selected:group-selection-end:border',
+                    'group-selected:group-selection-end:dark:border-0',
+                    'group-selected:group-selection-end:border-accent',
+                    'group-selected:group-selection-end:rounded-lg',
+                    'group-selected:group-selection-end:bg-accent',
+                    'group-selected:group-selection-end:text-white',
+                    'group-selected:group-selection-end:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.1)]',
+                    'group-selected:group-selection-end:group-hover:bg-accent/90',
+                    'group-selected:group-selection-end:dark:group-hover:bg-accent/90',
+                    'group-selected:group-selection-end:group-invalid:border-destructive',
+                    'group-selected:group-selection-end:group-invalid:bg-destructive',
+                    'group-selected:group-selection-end:group-invalid:text-white',
+
+                    groupFocusVisibleOutlineStyle,
+                    'group-focus-visible:rounded-lg',
                   )}
                 >
                   {formattedDate}

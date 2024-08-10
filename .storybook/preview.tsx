@@ -1,6 +1,7 @@
-import '../src/themes/index.css';
-import '../src/themes/themes.css';
-import '../src/themes/initial-color-palette.css';
+import '../src/theme/index.css';
+import '../src/theme/accents.css';
+import '../src/theme/initials.css';
+import './preview.css';
 import type { Preview } from '@storybook/react';
 import React from 'react';
 
@@ -43,7 +44,7 @@ const preview: Preview = {
           },
           {
             value: 'indigo-theme',
-            title: 'Indigo'
+            title: 'Indigo',
           },
           {
             value: 'violet-theme',
@@ -52,10 +53,24 @@ const preview: Preview = {
           {
             value: 'purple-theme',
             title: 'Purple',
-          }, {
-            value: 'fuchsia-theme',
-            title: 'Fuchsia'
-          }
+          },
+        ],
+      },
+    },
+    textDirection: {
+      description: 'Text Direction',
+      defaultValue: 'ltr',
+      toolbar: {
+        dynamicTitle: true,
+        items: [
+          {
+            value: 'ltr',
+            title: 'LTR',
+          },
+          {
+            value: 'rtl',
+            title: 'RTL',
+          },
         ],
       },
     },
@@ -70,6 +85,10 @@ const preview: Preview = {
           ?.className.split(' ')
           .filter((name) => name.includes('-theme')) ?? []),
       ].forEach((name) => {
+        if (name === '') {
+          name = 'zinc-theme';
+        }
+
         document.querySelector('body')?.classList.toggle(name);
       });
 
@@ -93,12 +112,18 @@ const preview: Preview = {
         }
       }
 
+      const html = document.querySelector('html');
+
+      if (html) {
+        html.dir = context.globals.textDirection;
+      }
+
       return <Story />;
     },
   ],
   parameters: {
     backgrounds: { disable: true },
-    grids: {disabled: true},
+    grids: { disabled: true },
     layout: 'fullscreen',
     actions: { argTypesRegex: '^on[A-Z].*' },
     controls: {
@@ -106,7 +131,7 @@ const preview: Preview = {
     },
     options: {
       storySort: {
-        order: ['Overview','*'],
+        order: ['Overview', '*'],
       },
     },
   },

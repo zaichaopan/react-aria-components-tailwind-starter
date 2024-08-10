@@ -2,6 +2,7 @@ import React from 'react';
 import { Button, ButtonWithoutAsChildProps } from './button';
 import { useCopyToClipboard } from './hooks/use-clipboard';
 import { TooltipTrigger, Tooltip } from './tooltip';
+import { CopyIcon } from './icons';
 
 export type ClipboardProps = {
   timeout?: number;
@@ -19,7 +20,8 @@ export function Clipboard({ timeout, children }: ClipboardProps) {
 export function CopyButton({
   copyText,
   label = 'Copy',
-  labelCopied = 'Copied',
+  labelCopied = 'Copied to clipboard',
+  variant = 'plain',
   children,
   ...props
 }: {
@@ -29,12 +31,17 @@ export function CopyButton({
 } & ButtonWithoutAsChildProps) {
   const [showTooltip, setShowTooltip] = React.useState(false);
 
+  console.log('children', children)
   return (
     <Clipboard>
       {({ copied, copy }) => {
         return (
           <TooltipTrigger isOpen={copied || showTooltip}>
             <Button
+              variant={variant}
+              {...(!children && {
+                isIconOnly: true,
+              })}
               aria-label={label}
               {...props}
               onHoverChange={setShowTooltip}
@@ -43,23 +50,7 @@ export function CopyButton({
                 setShowTooltip(false);
               }}
             >
-              {children ?? (
-                <svg
-                  aria-hidden
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <rect width="14" height="14" x="8" y="8" rx="2" ry="2" />
-                  <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" />
-                </svg>
-              )}
+              {children ?? <CopyIcon />}
             </Button>
             <Tooltip>{copied ? labelCopied : label}</Tooltip>
           </TooltipTrigger>

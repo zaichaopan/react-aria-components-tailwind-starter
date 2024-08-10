@@ -1,0 +1,33 @@
+.blue-theme {
+  --accent: 37 99 235;
+}
+
+.dark .blue-theme {
+  --accent: 37 99 235;
+}
+
+.indigo-theme {
+  --accent: 79 70 229;
+}
+
+.dark .indigo-theme {
+  --accent: 79 70 229;
+}
+
+.violet-theme {
+  --accent: 124 58 237;
+}
+
+.dark .violet-theme {
+  --accent: 124 58 237;
+}
+
+.purple-theme {
+  --accent: 147 51 234;
+}
+
+.dark .purple-theme {
+  --accent: 147 51 234;
+}
+
+
