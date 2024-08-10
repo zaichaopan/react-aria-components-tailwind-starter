@@ -1,5 +1,5 @@
 import type { Meta } from '@storybook/react';
-import { Text, Strong, TextLink } from '../src/Text';
+import { Text, Strong, TextLink } from '../src/text';
 import { docs } from '../.storybook/docs';
 
 const meta: Meta<typeof Text> = {

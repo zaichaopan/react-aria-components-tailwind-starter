@@ -1,9 +1,9 @@
 import React from 'react';
 import type { Meta } from '@storybook/react';
-import { Tab, TabList, TabPanel, Tabs } from '../src/Tabs';
+import { Tab, TabList, TabPanel, Tabs } from '../src/tabs';
 import { Key } from 'react-aria-components';
-import { NativeSelect } from '../src/NativeSelect';
-import { Heading } from '../src/Heading';
+import { NativeSelect } from '../src/native-select';
+import { Heading } from '../src/heading';
 import { docs } from '../.storybook/docs';
 
 const meta: Meta<typeof Tabs> = {

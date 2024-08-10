@@ -1,10 +1,10 @@
 import type { Meta } from '@storybook/react';
-import { NotificationBadge } from '../src/NotificationBadge';
+import { NotificationBadge } from '../src/notification-badge';
 import { docs } from '../.storybook/docs';
-import { Icon } from '../src/Icon';
+import { Icon } from '../src/icon';
 import { MessageCircle } from 'lucide-react';
-import { Link } from '../src/Link';
-import { Button } from '../src/Button';
+import { Link } from '../src/link';
+import { Button } from '../src/button';
 
 const meta: Meta<typeof NotificationBadge> = {
   title: 'NotificationBadge',

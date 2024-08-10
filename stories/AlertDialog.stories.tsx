@@ -1,9 +1,9 @@
 import React from 'react';
 import type { Meta } from '@storybook/react';
 import { docs } from '../.storybook/docs';
-import { Button } from '../src/Button';
-import { Modal } from '../src/Modal';
-import { Text, TextLink } from '../src/Text';
+import { Button } from '../src/button';
+import { Modal } from '../src/modal';
+import { Text, TextLink } from '../src/text';
 import {
   DialogTrigger,
   Dialog,
@@ -11,8 +11,8 @@ import {
   DialogFooter,
   DialogHeader,
   DialogCloseButton,
-} from '../src/Dialog';
-import { Checkbox } from '../src/Checkbox';
+} from '../src/dialog';
+import { Checkbox } from '../src/checkbox';
 
 const meta: Meta = {
   title: 'AlertDialog',

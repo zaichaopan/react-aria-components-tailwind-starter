@@ -1,5 +1,5 @@
 import type { Meta } from '@storybook/react';
-import { Heading, HeadingProps } from '../src/Heading';
+import { Heading, HeadingProps } from '../src/heading';
 import { docs } from '../.storybook/docs';
 
 const meta: Meta<HeadingProps> = {

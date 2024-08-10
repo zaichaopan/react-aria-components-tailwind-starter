@@ -1,10 +1,10 @@
 import type { Meta } from '@storybook/react';
-import { TextField, SearchInput, SearchField } from '../../src/Field';
+import { TextField, SearchInput, SearchField } from '../../src/field';
 import { docs } from '../../.storybook/docs';
-import { Button } from '../../src/Button';
-import { Strong, TextLink } from '../../src/Text';
-import { Separator } from '../../src/Separator';
-import { Icon } from '../../src/Icon';
+import { Button } from '../../src/button';
+import { Strong, TextLink } from '../../src/text.tsx';
+import { Separator } from '../../src/separator.ts';
+import { Icon } from '../../src/icon';
 import {
   Menu,
   MenuButton,
@@ -12,8 +12,8 @@ import {
   MenuPopover,
   MenuSeparator,
   MenuTrigger,
-} from '../../src/Menu';
-import { Avatar } from '../../src/Avatar';
+} from '../../src/menu';
+import { Avatar } from '../../src/avatar';
 import {
   Bell,
   Lightbulb,
@@ -23,15 +23,15 @@ import {
   ShieldCheck,
   UserCircle,
 } from 'lucide-react';
-import { Modal } from '../../src/Modal';
+import { Modal } from '../../src/modal';
 import {
   DialogTrigger,
   Dialog,
   DialogBody,
   DialogCloseButton,
-} from '../../src/Dialog';
-import { Link } from '../../src/Link';
-import { Heading } from '../../src/Heading';
+} from '../../src/dialog';
+import { Link } from '../../src/link';
+import { Heading } from '../../src/heading';
 
 const meta: Meta<typeof TextField> = {
   title: 'Block/StackedLayout',

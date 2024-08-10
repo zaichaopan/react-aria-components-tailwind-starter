@@ -1,10 +1,10 @@
 import React from 'react';
 import type { Meta } from '@storybook/react';
 import { Form, Key } from 'react-aria-components';
-import { Button } from '../src/Button';
-import { SelectField, Select, SelectItem, SelectSection } from '../src/Select';
-import { Avatar } from '../src/Avatar';
-import { Description, FieldError, Label } from '../src/Field';
+import { Button } from '../src/button';
+import { SelectField, Select, SelectItem, SelectSection } from '../src/select';
+import { Avatar } from '../src/avatar';
+import { Description, FieldError, Label } from '../src/field';
 import { docs } from '../.storybook/docs';
 
 const meta: Meta<typeof Select> = {

@@ -1,22 +1,22 @@
 import React from 'react';
 import type { Meta } from '@storybook/react';
 import { Settings } from 'lucide-react';
-import { Button } from '../src/Button';
-import { Popover} from '../src/Popover';
+import { Button } from '../src/button';
+import { Popover} from '../src/popover';
 import { docs } from '../.storybook/docs';
-import { Avatar, AvatarBadge } from '../src/Avatar';
-import { Separator } from '../src/Separator';
-import { Switch } from '../src/Switch';
-import { Text } from '../src/Text';
+import { Avatar, AvatarBadge } from '../src/avatar';
+import { Separator } from '../src/separator.ts';
+import { Switch } from '../src/switch.tsx';
+import { Text } from '../src/text.tsx';
 import {
   Menu,
   MenuItem,
   MenuPopover,
   MenuTrigger,
   MenuButton,
-} from '../src/Menu';
-import { Available } from '../src/Status';
-import { Dialog } from '../src/Dialog';
+} from '../src/menu';
+import { Available } from '../src/status.tsx';
+import { Dialog } from '../src/dialog';
 import { DialogTrigger } from 'react-aria-components';
 
 const meta: Meta<typeof Popover> = {

@@ -1,7 +1,7 @@
 import type { Meta } from '@storybook/react';
 import React from 'react';
 import { SortDescriptor, TableBody} from 'react-aria-components';
-import { Cell, Column, Row, Table, TableHeader } from '../src/Table';
+import { Cell, Column, Row, Table, TableHeader } from '../src/table';
 import { docs } from '../.storybook/docs';
 
 const meta: Meta<typeof Table> = {

@@ -1,6 +1,6 @@
 import React from 'react';
 import type { Meta } from '@storybook/react';
-import { Modal } from '../src/Modal';
+import { Modal } from '../src/modal';
 import {
   DialogTrigger,
   Dialog,
@@ -9,9 +9,9 @@ import {
   DialogFooter,
   DialogTitle,
   DialogCloseButton,
-} from '../src/Dialog';
-import { Button } from '../src/Button';
-import { Form } from '../src/Form';
+} from '../src/dialog';
+import { Button } from '../src/button';
+import { Form } from '../src/form';
 import {
   Description,
   FieldError,
@@ -19,7 +19,7 @@ import {
   Label,
   TextArea,
   TextField,
-} from '../src/Field';
+} from '../src/field';
 import {
   MenuButton,
   MenuTrigger,
@@ -28,13 +28,13 @@ import {
   MenuPopover,
   MenuSection,
   MenuSeparator,
-} from '../src/Menu';
+} from '../src/menu';
 import { Bell, Star } from 'lucide-react';
-import { Tab, TabList, TabPanel, Tabs } from '../src/Tabs';
-import { TooltipTrigger, Tooltip } from '../src/Tooltip';
-import { Text } from '../src/Text';
+import { Tab, TabList, TabPanel, Tabs } from '../src/tabs';
+import { TooltipTrigger, Tooltip } from '../src/tooltip';
+import { Text } from '../src/text';
 import { docs } from '../.storybook/docs';
-import { Heading } from '../src/Heading';
+import { Heading } from '../src/heading';
 
 const meta: Meta = {
   title: 'Dialog',

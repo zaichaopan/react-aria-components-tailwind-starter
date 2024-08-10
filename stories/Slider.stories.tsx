@@ -1,6 +1,6 @@
 import type { Meta } from '@storybook/react';
-import { Slider, SliderOutput, SliderTack } from '../src/Slider';
-import { Description, Label } from '../src/Field';
+import { Slider, SliderOutput, SliderTack } from '../src/slider';
+import { Description, Label } from '../src/field';
 import { Volume, Volume2 } from 'lucide-react';
 import { docs } from '../.storybook/docs';
 

@@ -3,10 +3,10 @@ import {
   HoverCard,
   HoverCardContent,
   HoverCardTrigger,
-} from '../src/HoverCard';
+} from '../src/hover-card';
 import { docs } from '../.storybook/docs';
-import { Link } from '../src/Link';
-import { Strong, Text } from '../src/Text';
+import { Link } from '../src/link';
+import { Strong, Text } from '../src/text';
 
 const meta: Meta<typeof HoverCard> = {
   title: 'HoverCard',

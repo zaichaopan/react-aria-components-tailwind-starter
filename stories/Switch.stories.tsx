@@ -1,8 +1,8 @@
 import type { Meta } from '@storybook/react';
-import { Switch, SwitchField } from '../src/Switch';
-import { Text, TextLink } from '../src/Text';
+import { Switch, SwitchField } from '../src/switch';
+import { Text, TextLink } from '../src/text';
 import { docs } from '../.storybook/docs';
-import { Group, Description, Label } from '../src/Field';
+import { Group, Description, Label } from '../src/field';
 
 const meta: Meta<typeof Switch> = {
   title: 'Switch',

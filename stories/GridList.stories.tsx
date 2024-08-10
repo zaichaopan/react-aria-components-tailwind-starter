@@ -1,5 +1,5 @@
 import type { Meta } from '@storybook/react';
-import { GridList, GridListItem } from '../src/GridList';
+import { GridList, GridListItem } from '../src/grid-list';
 import { docs } from '../.storybook/docs';
 
 const meta: Meta<typeof GridList> = {

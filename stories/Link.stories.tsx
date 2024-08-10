@@ -1,11 +1,11 @@
 import type { Meta } from '@storybook/react';
-import { Link } from '../src/Link';
+import { Link } from '../src/link';
 import { ExternalLink, MessageCircle, Phone, Video } from 'lucide-react';
 import { docs } from '../.storybook/docs';
-import { Button } from '../src/Button';
-import { NotificationBadge } from '../src/NotificationBadge';
-import { Avatar } from '../src/Avatar';
-import { Icon } from '../src/Icon';
+import { Button } from '../src/button';
+import { NotificationBadge } from '../src/notification-badge';
+import { Avatar } from '../src/avatar';
+import { Icon } from '../src/icon';
 
 const meta: Meta<typeof Link> = {
   title: 'Link',

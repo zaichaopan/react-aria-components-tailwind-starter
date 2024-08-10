@@ -1,5 +1,5 @@
 import type { Meta } from '@storybook/react';
-import { Button } from '../src/Button';
+import { Button } from '../src/button';
 import { docs } from '../.storybook/docs';
 import {
   EmptyState,
@@ -7,9 +7,9 @@ import {
   EmptyStateDescription,
   EmptyStateHeading,
   EmptyStateIcon,
-} from '../src/EmptyState';
+} from '../src/empty-state';
 import { FolderPlus, Plus } from 'lucide-react';
-import { Icon } from '../src/Icon';
+import { Icon } from '../src/icon';
 
 const meta: Meta<typeof Button> = {
   title: 'EmptyState',

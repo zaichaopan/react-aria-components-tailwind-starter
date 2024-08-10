@@ -1,7 +1,7 @@
 import React from 'react';
 import type { Meta } from '@storybook/react';
 import { Form } from 'react-aria-components';
-import { Button } from '../src/Button';
+import { Button } from '../src/button';
 import {
   ComboBox,
   ComboBoxListBox,
@@ -9,13 +9,13 @@ import {
   ClearButton,
   TriggerButton,
   ComboBoxControl,
-} from '../src/ComboBox';
-import { DropdownItem, DropdownSection } from '../src/ListBox';
-import { Description, FieldError, Input, Label } from '../src/Field';
+} from '../src/combobox';
+import { DropdownItem, DropdownSection } from '../src/list-box';
+import { Description, FieldError, Input, Label } from '../src/field';
 import { docs } from '../.storybook/docs';
-import { Text } from '../src/Text';
+import { Text } from '../src/text';
 import { Search } from 'lucide-react';
-import { Icon } from '../src/Icon';
+import { Icon } from '../src/icon';
 
 const meta: Meta<typeof ComboBox> = {
   title: 'ComboBox',

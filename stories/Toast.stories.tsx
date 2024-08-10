@@ -1,5 +1,5 @@
 import type { Meta } from '@storybook/react';
-import { Button } from '../src/Button';
+import { Button } from '../src/button';
 import { docs } from '../.storybook/docs';
 import { GlobalToastRegion } from '../src/toast/toast-region';
 import { toast } from '../src/toast/toast-queue';

@@ -1,13 +1,13 @@
 import type { Meta } from '@storybook/react';
 import { Form } from 'react-aria-components';
-import { Button } from '../src/Button';
+import { Button } from '../src/button';
 import {
   DatePicker,
   DatePickerButton,
   DatePickerInput,
-} from '../src/DatePicker';
+} from '../src/date-picker';
 import { docs } from '../.storybook/docs';
-import { Description, FieldError, Label } from '../src/Field';
+import { Description, FieldError, Label } from '../src/field';
 import { today, getLocalTimeZone } from '@internationalized/date';
 
 const meta: Meta<typeof DatePicker> = {

@@ -1,17 +1,17 @@
 import type { Meta } from '@storybook/react';
 import { docs } from '../.storybook/docs';
-import { Form } from '../src/Form';
-import { Button } from '../src/Button';
+import { Form } from '../src/form';
+import { Button } from '../src/button';
 import { useListData } from 'react-stately';
-import { Avatar } from '../src/Avatar';
-import { Strong, Text } from '../src/Text';
+import { Avatar } from '../src/avatar';
+import { Strong, Text } from '../src/text';
 import {
   MultiSelect,
   MultiSelectField,
   MultiSelectItem,
-} from '../src/MultiSelect';
-import { Tag } from '../src/TagGroup';
-import { Description, Label } from '../src/Field';
+} from '../src/multi-select';
+import { Tag } from '../src/tag-group';
+import { Description, Label } from '../src/field';
 import React from 'react';
 
 const meta: Meta = {

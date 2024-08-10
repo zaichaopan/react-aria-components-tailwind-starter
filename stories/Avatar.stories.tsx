@@ -1,7 +1,7 @@
 import type { Meta } from '@storybook/react';
-import { Avatar, AvatarBadge, AvatarGroup } from '../src/Avatar';
+import { Avatar, AvatarBadge, AvatarGroup } from '../src/avatar';
 import { docs } from '../.storybook/docs';
-import { Available, Away, Busy, DoNotDisturb } from '../src/Status';
+import { Available, Away, Busy, DoNotDisturb } from '../src/status';
 
 const meta: Meta<typeof Avatar> = {
   title: 'Avatar',

@@ -1,15 +1,15 @@
 import React from 'react';
 import type { Meta } from '@storybook/react';
-import { Button } from '../src/Button';
+import { Button } from '../src/button';
 import {
   NonFousableTooltipTarget,
   TooltipTrigger,
   Tooltip,
   NativeTooltip,
-} from '../src/Tooltip';
+} from '../src/tooltip';
 import { docs } from '../.storybook/docs';
 import { Moon, Sun } from 'lucide-react';
-import { Icon } from '../src/Icon';
+import { Icon } from '../src/icon';
 
 const meta: Meta<typeof Tooltip> = {
   title: 'Tooltip',

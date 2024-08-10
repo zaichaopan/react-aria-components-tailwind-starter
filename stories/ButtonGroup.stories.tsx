@@ -1,8 +1,8 @@
 import type { Meta } from '@storybook/react';
 import { ChevronLeft, ChevronRight, Minus, Plus, Star } from 'lucide-react';
-import { Button, ButtonGroup } from '../src/Button';
+import { Button, ButtonGroup } from '../src/button';
 import { docs } from '../.storybook/docs';
-import { Icon } from '../src/Icon';
+import { Icon } from '../src/icon';
 
 const meta: Meta = {
   title: 'ButtonGroup',

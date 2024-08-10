@@ -7,7 +7,7 @@ import { useToastRegion } from '@react-aria/toast';
 import type { AriaToastProps } from '@react-aria/toast';
 import { useToast } from '@react-aria/toast';
 import { ButtonProps as AriaButtonProps } from 'react-aria-components';
-import { CloseButton } from '../Button';
+import { CloseButton } from '../button';
 import { twMerge } from 'tailwind-merge';
 import { toast, ToastConfig } from './toast-queue';
 

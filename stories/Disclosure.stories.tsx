@@ -1,9 +1,9 @@
 import type { Meta } from '@storybook/react';
-import { Accordion, Disclosure, DisclosureControl } from '../src/Disclosure';
+import { Accordion, Disclosure, DisclosureControl } from '../src/disclosure';
 import { docs } from '../.storybook/docs';
-import { Text } from '../src/Text';
+import { Text } from '../src/text';
 import { ChevronDown } from 'lucide-react';
-import { Heading } from '../src/Heading';
+import { Heading } from '../src/heading';
 
 const meta: Meta<typeof Disclosure> = {
   title: 'Disclosure',

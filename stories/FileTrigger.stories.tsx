@@ -1,9 +1,9 @@
 import React from 'react';
 import type { Meta } from '@storybook/react';
-import { Button } from '../src/Button';
+import { Button } from '../src/button';
 import { docs } from '../.storybook/docs';
-import { FileTrigger } from '../src/FileTrigger';
-import { Avatar } from '../src/Avatar';
+import { FileTrigger } from '../src/file-trigger';
+import { Avatar } from '../src/avatar';
 
 const meta: Meta<typeof Button> = {
   title: 'FileTrigger',

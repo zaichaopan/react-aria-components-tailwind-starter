@@ -1,10 +1,10 @@
 import type { Meta } from '@storybook/react';
 import { FolderPlus, Mail, MicIcon, Plus } from 'lucide-react';
-import { Button, CloseButton } from '../src/Button';
+import { Button, CloseButton } from '../src/button';
 import { docs } from '../.storybook/docs';
-import { Icon } from '../src/Icon';
-import { Avatar } from '../src/Avatar';
-import { Link } from '../src/Link';
+import { Icon } from '../src/icon';
+import { Avatar } from '../src/avatar';
+import { Link } from '../src/link';
 
 const meta: Meta<typeof Button> = {
   title: 'Button',

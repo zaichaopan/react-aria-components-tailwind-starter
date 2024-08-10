@@ -1,15 +1,15 @@
 import type { Meta } from '@storybook/react';
-import { TextField, Label, FieldError, Input } from '../../src/Field';
+import { TextField, Label, FieldError, Input } from '../../src/field';
 import { docs } from '../../.storybook/docs';
-import { Form } from '../../src/Form';
-import { Button } from '../../src/Button';
-import { Heading } from '../../src/Heading';
-import { PasswordInput } from '../../src/PasswordInput';
-import { Link } from '../../src/Link';
-import { Strong, Text } from '../../src/Text';
-import { Switch } from '../../src/Switch';
-import { Separator } from '../../src/Separator';
-import { Icon } from '../../src/Icon';
+import { Form } from '../../src/form';
+import { Button } from '../../src/button';
+import { Heading } from '../../src/heading';
+import { PasswordInput } from '../../src/password-input';
+import { Link } from '../../src/link';
+import { Strong, Text } from '../../src/text.tsx';
+import { Switch } from '../../src/switch.tsx';
+import { Separator } from '../../src/separator.ts';
+import { Icon } from '../../src/icon';
 
 const meta: Meta<typeof TextField> = {
   title: 'Block/Authentication',

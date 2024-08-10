@@ -1,5 +1,5 @@
 import type { Meta } from '@storybook/react';
-import { Meter } from '../src/Meter';
+import { Meter } from '../src/meter';
 import { docs } from '../.storybook/docs';
 
 const meta: Meta<typeof Meter> = {

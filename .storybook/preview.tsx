@@ -1,6 +1,6 @@
 import '../src/themes/index.css';
 import '../src/themes/themes.css';
-import '../src/themes/avatarColorPalette.css';
+import '../src/themes/initial-color-palette.css';
 import type { Preview } from '@storybook/react';
 import React from 'react';
 

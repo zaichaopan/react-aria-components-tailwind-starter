@@ -1,8 +1,8 @@
 import type { Meta } from '@storybook/react';
-import { Button } from '../src/Button';
-import { CopyButton, Clipboard } from '../src/Clipboard';
+import { Button } from '../src/button';
+import { CopyButton, Clipboard } from '../src/clipboard';
 import { docs } from '../.storybook/docs';
-import { Text } from '../src/Text';
+import { Text } from '../src/text';
 
 const meta: Meta = {
   title: 'Clipboard',

@@ -1,6 +1,6 @@
 import type { Meta } from '@storybook/react';
-import { Tag, TagGroup, TagList } from '../src/TagGroup';
-import { Label } from '../src/Field';
+import { Tag, TagGroup, TagList } from '../src/tag-group';
+import { Label } from '../src/field';
 
 const meta: Meta<typeof Example> = {
   component: TagGroup,

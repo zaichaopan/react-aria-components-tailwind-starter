@@ -1,5 +1,5 @@
 import type { Meta } from '@storybook/react';
-import { VisuallyHidden } from '../src/VisuallyHidden';
+import { VisuallyHidden } from '../src/visually-hidden';
 import { docs } from '../.storybook/docs';
 
 const meta: Meta<typeof VisuallyHidden> = {

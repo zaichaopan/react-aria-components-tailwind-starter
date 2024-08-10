@@ -1,8 +1,8 @@
 import type { Meta } from '@storybook/react';
 import React from 'react';
-import { Avatar, AvatarBadge } from '../../src/Avatar';
-import { Icon } from '../../src/Icon';
-import { Available } from '../../src/Status';
+import { Avatar, AvatarBadge } from '../../src/avatar';
+import { Icon } from '../../src/icon';
+import { Available } from '../../src/status';
 import {
   MenuButton,
   MenuTrigger,
@@ -13,7 +13,7 @@ import {
   SubMenu,
   MenuSection,
   MenuSeparator,
-} from '../../src/Menu';
+} from '../../src/menu';
 import {
   Bell,
   Bookmark,
@@ -33,15 +33,15 @@ import {
   Smile,
   UserPlus2,
 } from 'lucide-react';
-import { Link } from '../../src/Link';
-import { Strong } from '../../src/Text';
-import { NotificationBadge } from '../../src/NotificationBadge';
-import { ComboBox, ComboBoxListBox, ComboBoxPopover } from '../../src/ComboBox';
-import { Input } from '../../src/Field';
+import { Link } from '../../src/link';
+import { Strong } from '../../src/text';
+import { NotificationBadge } from '../../src/notification-badge';
+import { ComboBox, ComboBoxListBox, ComboBoxPopover } from '../../src/combobox';
+import { Input } from '../../src/field';
 import { Keyboard } from 'react-aria-components';
-import { DropdownItem, DropdownSection } from '../../src/ListBox';
-import { Button } from '../../src/Button';
-import { TooltipTrigger, Tooltip } from '../../src/Tooltip';
+import { DropdownItem, DropdownSection } from '../../src/list-box';
+import { Button } from '../../src/button';
+import { TooltipTrigger, Tooltip } from '../../src/tooltip';
 
 const meta: Meta = {
   title: 'Layouts/slack',

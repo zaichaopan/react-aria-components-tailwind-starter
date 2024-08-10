@@ -6,9 +6,9 @@ import {
   MenuTrigger,
   MenuButton,
   MenuSeparator,
-} from '../src/Menu';
+} from '../src/menu';
 import { docs } from '../.storybook/docs';
-import { Button, ButtonGroup } from '../src/Button';
+import { Button, ButtonGroup } from '../src/button';
 
 const meta: Meta = {
   title: 'SplitButton',

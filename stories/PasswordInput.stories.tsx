@@ -1,8 +1,8 @@
 import type { Meta } from '@storybook/react';
-import { TextField, Label, FieldError } from '../src/Field';
-import { Form } from '../src/Form';
-import { Button } from '../src/Button';
-import { PasswordInput } from '../src/PasswordInput';
+import { TextField, Label, FieldError } from '../src/field';
+import { Form } from '../src/form';
+import { Button } from '../src/button';
+import { PasswordInput } from '../src/password-input';
 import { docs } from '../.storybook/docs';
 
 const meta: Meta<typeof PasswordInput> = {

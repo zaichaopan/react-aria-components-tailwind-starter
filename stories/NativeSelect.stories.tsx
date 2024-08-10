@@ -1,6 +1,6 @@
 import { docs } from '../.storybook/docs';
-import { Description, Label } from '../src/Field';
-import { NativeSelect, NativeSelectField } from '../src/NativeSelect';
+import { Description, Label } from '../src/field';
+import { NativeSelect, NativeSelectField } from '../src/native-select';
 
 const meta = {
   title: 'NativeSelect',

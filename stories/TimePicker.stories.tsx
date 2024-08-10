@@ -3,9 +3,9 @@ import type { Meta } from '@storybook/react';
 import {
   DatePicker,
   DatePickerButton,
-} from '../src/DatePicker';
+} from '../src/date-picker';
 import { docs } from '../.storybook/docs';
-import { FieldError, Group, Label } from '../src/Field';
+import { FieldError, Group, Label } from '../src/field';
 import {
   today,
   getLocalTimeZone,
@@ -15,8 +15,8 @@ import {
   Time,
   toTime,
 } from '@internationalized/date';
-import { getRoundMinute, useTimePicker } from '../src/timePicker';
-import { Select, SelectField, SelectItem } from '../src/Select';
+import { getRoundMinute, useTimePicker } from '../src/time-picker';
+import { Select, SelectField, SelectItem } from '../src/select';
 
 const t = now(getLocalTimeZone());
 

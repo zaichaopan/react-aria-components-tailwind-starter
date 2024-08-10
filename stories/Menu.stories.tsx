@@ -19,12 +19,12 @@ import {
   MenuTrigger,
   SubmenuTrigger,
   MenuPopover,
-} from '../src/Menu';
-import { Switch } from '../src/Switch';
+} from '../src/menu';
+import { Switch } from '../src/switch';
 import { docs } from '../.storybook/docs';
-import { Icon } from '../src/Icon';
-import { Strong } from '../src/Text';
-import { Avatar } from '../src/Avatar';
+import { Icon } from '../src/icon';
+import { Strong } from '../src/text';
+import { Avatar } from '../src/avatar';
 
 const meta: Meta = {
   title: 'Menu',

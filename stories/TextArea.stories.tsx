@@ -1,13 +1,13 @@
 import type { Meta } from '@storybook/react';
-import { Form } from '../src/Form';
-import { Button } from '../src/Button';
+import { Form } from '../src/form';
+import { Button } from '../src/button';
 import {
   TextField,
   Label,
   TextArea,
   Description,
   FieldError,
-} from '../src/Field';
+} from '../src/field';
 import { docs } from '../.storybook/docs';
 
 const meta: Meta<typeof TextField> = {

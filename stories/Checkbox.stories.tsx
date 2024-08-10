@@ -1,9 +1,9 @@
 import type { Meta } from '@storybook/react';
-import { Checkbox, CheckboxField, CheckboxGroup } from '../src/Checkbox';
-import { Form } from '../src/Form';
-import { Button } from '../src/Button';
-import { Strong, Text } from '../src/Text';
-import { Label, Description, FieldError } from '../src/Field';
+import { Checkbox, CheckboxField, CheckboxGroup } from '../src/checkbox';
+import { Form } from '../src/form';
+import { Button } from '../src/button';
+import { Strong, Text } from '../src/text';
+import { Label, Description, FieldError } from '../src/field';
 import { docs } from '../.storybook/docs';
 
 const meta: Meta<typeof Checkbox> = {

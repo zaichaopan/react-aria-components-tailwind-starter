@@ -8,12 +8,12 @@ import {
   InputFieldGroup,
   SearchField,
   SearchInput,
-} from '../src/Field';
+} from '../src/field';
 import { docs } from '../.storybook/docs';
-import { Form } from '../src/Form';
-import { Button } from '../src/Button';
+import { Form } from '../src/form';
+import { Button } from '../src/button';
 import { Mail } from 'lucide-react';
-import { Icon } from '../src/Icon';
+import { Icon } from '../src/icon';
 
 const meta: Meta<typeof TextField> = {
   title: 'TextField',

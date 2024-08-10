@@ -1,6 +1,6 @@
 import React from 'react';
 import type { Meta } from '@storybook/react';
-import { Form } from '../src/Form';
+import { Form } from '../src/form';
 import {
   Description,
   FieldError,
@@ -8,32 +8,32 @@ import {
   Label,
   TextArea,
   TextField,
-} from '../src/Field';
-import { PasswordInput } from '../src/PasswordInput';
-import { Button } from '../src/Button';
-import { Strong, Text, TextLink } from '../src/Text';
-import { Link } from '../src/Link';
-import { Icon } from '../src/Icon';
-import { Avatar } from '../src/Avatar';
-import { DateRangePicker, DateRangePickerInput } from '../src/DateRangePicker';
-import { Heading } from '../src/Heading';
-import { Tab, TabList, Tabs } from '../src/Tabs';
-import { Switch } from '../src/Switch';
-import { Radio, RadioField, RadioGroup } from '../src/RadioGroup';
+} from '../src/field';
+import { PasswordInput } from '../src/password-input';
+import { Button } from '../src/button';
+import { Strong, Text, TextLink } from '../src/text';
+import { Link } from '../src/link';
+import { Icon } from '../src/icon';
+import { Avatar } from '../src/avatar';
+import { DateRangePicker, DateRangePickerInput } from '../src/date-range-picker';
+import { Heading } from '../src/heading';
+import { Tab, TabList, Tabs } from '../src/tabs';
+import { Switch } from '../src/switch';
+import { Radio, RadioField, RadioGroup } from '../src/radio-group';
 import { twMerge } from 'tailwind-merge';
-import { Slider, SliderOutput, SliderTack } from '../src/Slider';
-import { Checkbox, CheckboxField, CheckboxGroup } from '../src/Checkbox';
-import { NumberField, NumberInput } from '../src/NumberField';
-import { Select, SelectField, SelectItem } from '../src/Select';
+import { Slider, SliderOutput, SliderTack } from '../src/slider';
+import { Checkbox, CheckboxField, CheckboxGroup } from '../src/checkbox';
+import { NumberField, NumberInput } from '../src/number-field';
+import { Select, SelectField, SelectItem } from '../src/select';
 import { DialogTrigger, FileTrigger } from 'react-aria-components';
-import { Modal } from '../src/Modal';
+import { Modal } from '../src/modal';
 import {
   Dialog,
   DialogBody,
   DialogCloseButton,
   DialogFooter,
   DialogHeader,
-} from '../src/Dialog';
+} from '../src/dialog';
 import { NativeTooltips } from './Tooltip.stories';
 import { WithAvatars } from './MultiSelect.stories';
 

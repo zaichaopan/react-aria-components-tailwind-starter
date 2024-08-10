@@ -1,6 +1,6 @@
 import type { Meta } from '@storybook/react';
-import { Available, Away, Busy, DoNotDisturb } from '../src/Status';
-import { Icon } from '../src/Icon';
+import { Available, Away, Busy, DoNotDisturb } from '../src/status';
+import { Icon } from '../src/icon';
 import { docs } from '../.storybook/docs';
 import { Mail } from 'lucide-react';
 

@@ -1,21 +1,21 @@
 import React from 'react';
 import type { Meta } from '@storybook/react';
-import { Button } from '../src/Button';
+import { Button } from '../src/button';
 import {
   ComboBox,
   ComboBoxListBox,
   ComboBoxPopover,
   ClearButton,
   ComboBoxControl,
-} from '../src/ComboBox';
-import { Input } from '../src/Field';
+} from '../src/combobox';
+import { Input } from '../src/field';
 import { docs } from '../.storybook/docs';
 import { Search } from 'lucide-react';
-import { Icon } from '../src/Icon';
-import { Modal } from '../src/Modal';
-import { Dialog } from '../src/Dialog';
-import { Text } from '../src/Text';
-import { DropdownItem, DropdownSection } from '../src/ListBox';
+import { Icon } from '../src/icon';
+import { Modal } from '../src/modal';
+import { Dialog } from '../src/dialog';
+import { Text } from '../src/text';
+import { DropdownItem, DropdownSection } from '../src/list-box';
 import { Keyboard } from 'react-aria-components';
 
 const meta: Meta<typeof Button> = {

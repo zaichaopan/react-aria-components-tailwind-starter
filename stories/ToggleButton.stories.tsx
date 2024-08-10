@@ -1,10 +1,10 @@
 import React from 'react';
 import type { Meta } from '@storybook/react';
-import { ToggleButton } from '../src/Button';
+import { ToggleButton } from '../src/button';
 import { Mic, MicOff } from 'lucide-react';
-import { TooltipTrigger, Tooltip } from '../src/Tooltip';
+import { TooltipTrigger, Tooltip } from '../src/tooltip';
 import { docs } from '../.storybook/docs';
-import { Icon } from '../src/Icon';
+import { Icon } from '../src/icon';
 
 const meta: Meta<typeof ToggleButton> = {
   title: 'ToggleButton',

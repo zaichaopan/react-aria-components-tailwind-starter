@@ -1,11 +1,11 @@
 import React from 'react';
 import type { Meta } from '@storybook/react';
 import { docs } from '../.storybook/docs';
-import { DropZone } from '../src/Dropzone';
+import { DropZone } from '../src/dropzone';
 import { FileTrigger, isFileDropItem } from 'react-aria-components';
-import { Button } from '../src/Button';
-import { Text } from '../src/Text';
-import { Icon } from '../src/Icon';
+import { Button } from '../src/button';
+import { Text } from '../src/text';
+import { Icon } from '../src/icon';
 import { Image } from 'lucide-react';
 
 const meta: Meta<typeof DropZone> = {
