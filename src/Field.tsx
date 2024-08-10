@@ -21,7 +21,7 @@ import {
   SearchFieldProps as RACSearchFieldProps,
 } from 'react-aria-components';
 import { twMerge } from 'tailwind-merge';
-import { composeTailwindRenderProps, inputRingStyle } from './utils';
+import { composeTailwindRenderProps, focusRingStyle } from './utils';
 import { Text } from './Text';
 import { CloseButton } from './Button';
 import { Icon } from './Icon';
@@ -208,7 +208,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
               'flex flex w-full rounded-md border bg-inherit px-2 py-[5px] text-base/6 shadow-sm outline-none placeholder:text-muted sm:text-sm/6',
               renderProps.isInvalid && 'border-destructive',
               renderProps.isDisabled && 'disabled:opacity-50',
-              renderProps.isFocused && inputRingStyle,
+              renderProps.isFocused && focusRingStyle,
               // When it is inside input group with role=presentation|group and it has border
               '[[role=presentation]_&.border]:h-fit [[role=presentation]_&.border]:border-none [[role=presentation]_&.border]:shadow-none [[role=presentation]_&.border]:ring-0 [[role=presentation]_&.border]:disabled:opacity-100',
               '[[role=group]_&.border]:h-fit [[role=group]_&.border]:border-none [[role=group]_&.border]:shadow-none [[role=group]_&.border]:ring-0 [[role=group]_&.border]:invalid:ring-0 [[role=group]_&.border]:disabled:opacity-100',
@@ -232,7 +232,7 @@ export function TextArea(props: RACTextAreaProps) {
             'w-full rounded-md border bg-inherit p-2 text-base/6 text-foreground outline-none sm:text-sm/6',
             renderProps.isInvalid && 'border-destructive',
             renderProps.isDisabled && 'disabled:opacity-50',
-            renderProps.isFocused && inputRingStyle,
+            renderProps.isFocused && focusRingStyle,
             className,
           );
         },
@@ -254,7 +254,7 @@ export const InputFieldGroup = React.forwardRef<HTMLDivElement, GroupProps>(
               'group relative flex w-full items-center overflow-hidden rounded-md border bg-inherit shadow-sm',
               'group-invalid:border-destructive',
               '[&:not(:hover)_svg]:opacity-75',
-              renderProps.isFocusWithin && inputRingStyle,
+              renderProps.isFocusWithin && focusRingStyle,
               className,
             );
           },

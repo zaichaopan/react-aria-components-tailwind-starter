@@ -119,10 +119,10 @@ function Toast({ state, ...props }: ToastProps) {
           'toast flex w-[min(85vw,360px)] gap-1 rounded-md border px-3 py-2 shadow-sm transition',
           type === undefined &&
             !props.toast.content.render &&
-            'border-border/75 bg-background dark:border-border',
-          type === 'error' && 'border-destructive/20 bg-destructive/10',
-          type === 'warning' && 'border-yellow-700/20 bg-yellow-700/10',
-          type === 'success' && 'border-success/20 bg-success/10',
+            'border-border/50 bg-background',
+          type === 'error' && 'border-destructive/15 bg-destructive/5',
+          type === 'warning' && 'border-warning/15 bg-warning/5',
+          type === 'success' && 'border-success/15 bg-success/5',
           enteringClassName,
         )}
       >
@@ -136,7 +136,7 @@ function Toast({ state, ...props }: ToastProps) {
               )}
 
               {type === 'warning' && (
-                <AlertTriangle className="mt-1 flex size-5 self-start text-yellow-700" />
+                <AlertTriangle className="mt-1 flex size-5 self-start text-warning" />
               )}
 
               {type === 'success' && (
@@ -172,9 +172,6 @@ function Toast({ state, ...props }: ToastProps) {
           className={twMerge(
             'rounded',
             'hover:bg-transparent',
-            type === 'warning' && 'text-yellow-700',
-            type === 'error' && 'text-destructive',
-            type === 'success' && 'text-success',
           )}
         />
       </div>

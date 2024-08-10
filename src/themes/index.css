@@ -6,25 +6,23 @@
   :root {
     --background: 0 0% 100%;
     --foreground: 20 14.3% 4.1%;
-    --hover: 0 0% 96%;
-
+    --hover: 210 12% 97%;
     --success: 142 72% 29%;
     --destructive: 0 72% 51%;
     --warning: 41 96% 40%;
     --muted: 240 4% 46%;
-    --border: 20 6% 85%;
+    --border: 216 12% 84%;
   }
 
   .dark {
     --background: 240 10% 4%;
     --foreground: 0 0% 98%;
-    --hover: 0 0% 22%;
-
+    --hover: 240 3.7% 15.9%;
     --success: 142 72% 29%;
     --destructive: 0 72% 51%;
     --warning: 41 96% 40%;
     --muted: 240 5% 65%;
-    --border: 240 5% 28%;
+    --border: 240 5% 26%;
   }
 }
 

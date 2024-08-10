@@ -65,7 +65,7 @@ export const SidebarLayout01 = () => {
           <SearchField aria-label="Search">
             <SearchInput className="bg-background" placeholder="Search" />
           </SearchField>
-          <Button isIconOnly plain className="text-muted">
+          <Button iconOnly plain className="text-muted">
             <Icon aria-label="Notification">
               <Inbox />
             </Icon>
@@ -318,7 +318,7 @@ export const SidebarLayout01 = () => {
 function HamburgerMenu() {
   return (
     <DialogTrigger>
-      <Button plain isIconOnly className="text-muted lg:hidden">
+      <Button plain iconOnly className="text-muted lg:hidden">
         <Icon aria-label="Open Navigation">
           <MenuIcon />
         </Icon>

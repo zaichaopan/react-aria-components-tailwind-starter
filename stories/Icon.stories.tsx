@@ -56,7 +56,7 @@ DecorationIcons.parameters = {
   docs: {
     description: {
       story:
-        'when **aria-label=*** is not provided, **aria-hidden="true"** is added automatically to create a decoration only icon:',
+        'When **aria-label=*** is not provided, **aria-hidden="true"** is added automatically to create a decoration only icon.',
     },
   },
 };

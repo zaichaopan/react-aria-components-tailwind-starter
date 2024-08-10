@@ -123,7 +123,7 @@ export const StackedLayout01 = () => {
           <SearchField aria-label="Search">
             <SearchInput className="bg-background" placeholder="Search" />
           </SearchField>
-          <Button isIconOnly plain className="text-muted">
+          <Button iconOnly plain className="text-muted">
             <Icon aria-label="Notification">
               <Bell strokeWidth={1.5}></Bell>
             </Icon>
@@ -216,7 +216,7 @@ export const StackedLayout01 = () => {
 function HamburgerMenu() {
   return (
     <DialogTrigger>
-      <Button plain isIconOnly className="text-muted lg:hidden">
+      <Button plain iconOnly className="text-muted lg:hidden">
         <Icon aria-label="Open Navigation">
           <MenuIcon />
         </Icon>

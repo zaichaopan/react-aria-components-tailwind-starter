@@ -3,7 +3,6 @@ import type { Meta } from '@storybook/react';
 import { Modal } from '../src/Modal';
 import {
   DialogTrigger,
-  AlertDialog,
   Dialog,
   DialogBody,
   DialogHeader,
@@ -522,7 +521,7 @@ export const NestedDialogs = () => {
           setIsEditDialogOpen(false);
         }}
       >
-        <AlertDialog>
+        <Dialog alert>
           <DialogHeader>Save changes?</DialogHeader>
           <DialogBody>
             You can save this to publish later from your drafts.
@@ -539,7 +538,7 @@ export const NestedDialogs = () => {
               Save
             </Button>
           </DialogFooter>
-        </AlertDialog>
+        </Dialog>
       </Modal>
     </div>
   );

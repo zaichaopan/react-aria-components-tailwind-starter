@@ -1,5 +1,5 @@
 import {
-  DialogProps,
+  DialogProps as RACDialogProps,
   OverlayTriggerStateContext,
   Dialog as RACDialog,
 } from 'react-aria-components';
@@ -17,19 +17,15 @@ import { Text } from './Text';
 
 export { DialogTrigger } from 'react-aria-components';
 
-export function AlertDialog({ children, ...props }: DialogProps) {
-  return (
-    <Dialog {...props} role="alertdialog">
-      {children}
-    </Dialog>
-  );
+export interface DialogProps extends RACDialogProps {
+  alert?: boolean;
 }
 
-export function Dialog({ role, ...props }: DialogProps) {
+export function Dialog({ role, alert = false, ...props }: DialogProps) {
   return (
     <RACDialog
       {...props}
-      role={role ?? 'dialog'}
+      role={role ?? alert ? 'alertdialog' : 'dialog'}
       className={twMerge(
         'relative flex max-h-[inherit] flex-col overflow-hidden outline-none',
         props.className,

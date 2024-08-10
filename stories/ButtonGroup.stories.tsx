@@ -1,12 +1,5 @@
 import type { Meta } from '@storybook/react';
-import {
-
-  ChevronLeft,
-  ChevronRight,
-  Minus,
-  Plus,
-  Star,
-} from 'lucide-react';
+import { ChevronLeft, ChevronRight, Minus, Plus, Star } from 'lucide-react';
 import { Button, ButtonGroup } from '../src/Button';
 import { docs } from '../.storybook/docs';
 import { Icon } from '../src/Icon';
@@ -49,36 +42,36 @@ export const Example = () => {
         <Button outline>1K</Button>
       </ButtonGroup>
       <ButtonGroup>
-        <Button isIconOnly>
+        <Button iconOnly>
           <Icon aria-label="Zoom In">
             <Plus></Plus>
           </Icon>
         </Button>
-        <Button isIconOnly>
+        <Button iconOnly>
           <Icon aria-label="Zoom Out">
             <Minus />
           </Icon>
         </Button>
       </ButtonGroup>
       <ButtonGroup>
-        <Button isIconOnly color='success'>
+        <Button iconOnly color="success">
           <Icon aria-label="Zoom In">
             <Plus></Plus>
           </Icon>
         </Button>
-        <Button isIconOnly color='success'>
+        <Button iconOnly color="success">
           <Icon aria-label="Zoom Out">
             <Minus />
           </Icon>
         </Button>
       </ButtonGroup>
       <ButtonGroup>
-        <Button isIconOnly outline>
+        <Button iconOnly outline>
           <Icon aria-label="Previous">
             <ChevronLeft />
           </Icon>
         </Button>
-        <Button isIconOnly outline>
+        <Button iconOnly outline>
           <Icon aria-label="Next">
             <ChevronRight />
           </Icon>
@@ -88,16 +81,16 @@ export const Example = () => {
   );
 };
 
-export const CustomSeparatorColor = () => {
+export const ContrastSeparatorColor = () => {
   return (
     <div className="flex flex-col gap-4">
-      <ButtonGroup className="[--separator-color:theme(colors.white/0.15)]">
-        <Button isIconOnly>
+      <ButtonGroup contrast>
+        <Button iconOnly>
           <Icon aria-label="Zoom In">
             <Plus></Plus>
           </Icon>
         </Button>
-        <Button isIconOnly>
+        <Button iconOnly>
           <Icon aria-label="Zoom Out">
             <Minus />
           </Icon>
@@ -107,11 +100,11 @@ export const CustomSeparatorColor = () => {
   );
 };
 
-CustomSeparatorColor.parameters = {
+ContrastSeparatorColor.parameters = {
   docs: {
     description: {
       story:
-        'If the **separator** is not visible for some button background, use **className="[--separator-color:\\*]"** to customize the color.',
+        'If the **separator** border is not visible for some button background, use the **contrast** prop to make the it stands out.',
     },
   },
 };

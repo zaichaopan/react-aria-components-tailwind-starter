@@ -84,8 +84,8 @@ export function Checkbox({
                 <div
                   className={twMerge([
                     'flex flex-shrink-0 items-center justify-center',
-                    'size-4 rounded border border-zinc-400/75 shadow-sm transition',
-                    'dark:border-[1.5px] dark:border-zinc-600',
+                    'size-4 rounded shadow-sm transition',
+                    'border border-zinc-400/75 dark:border-[1.5px] dark:border-zinc-600',
                     renderProps.isInvalid &&
                       'border-destructive dark:border-destructive',
                     (renderProps.isSelected || renderProps.isIndeterminate) &&

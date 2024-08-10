@@ -26,24 +26,28 @@ type Variants = {
   unstyle: true;
 };
 
-export type Variant =
+type Variant =
   | NeverExcept<Variants, 'outline'>
   | NeverExcept<Variants, 'plain'>
   | NeverExcept<Variants, 'unstyle'>;
 
+type Color = 'accent' | 'success' | 'destructive';
+
+type Size = 'sm' | 'lg';
+
 export type BasicButtonProps = {
-  color?: 'accent' | 'success' | 'destructive';
-  size?: 'sm' | 'lg';
+  color?: Color;
+  size?: Size;
   isLoading?: boolean;
   loadingLabel?: string;
-  isIconOnly?: boolean;
+  iconOnly?: boolean;
 } & Variant;
 
 export type ButtonProps = AsChildProps<RACButtonProps> & BasicButtonProps;
 
 export type ButtonWithoutAsChildProps = RACButtonProps & BasicButtonProps;
 
-function buttonStyle({ size, color, isIconOnly, ...props }: BasicButtonProps) {
+function buttonStyle({ size, color, iconOnly, ...props }: BasicButtonProps) {
   if (props.unstyle) {
     return 'relative outline-none rounded-md';
   }
@@ -56,7 +60,7 @@ function buttonStyle({ size, color, isIconOnly, ...props }: BasicButtonProps) {
     'disabled:opacity-50',
 
     // Size
-    isIconOnly
+    iconOnly
       ? [
           // default size
           'p-1.5 size-9',
@@ -78,7 +82,9 @@ function buttonStyle({ size, color, isIconOnly, ...props }: BasicButtonProps) {
     color === 'destructive' && 'text-destructive',
 
     // Variant
-    props.outline && ['border bg-transparent shadow-sm hover:bg-hover'],
+    props.outline && [
+      'border border-border/75 bg-transparent shadow-sm hover:bg-hover',
+    ],
 
     props.plain && ['bg-transparent hover:bg-hover'],
 
@@ -97,7 +103,7 @@ function buttonStyle({ size, color, isIconOnly, ...props }: BasicButtonProps) {
     '[&.h-9_svg:not([class^=size-])]:size-4 [&.size-9_svg:not([class^=size-])]:size-5',
     '[&.h-10_svg:not([class^=size-])]:size-5 [&.size-10_svg::not([class^=size-])]:size-6',
 
-    (!isIconOnly || props.outline || props.plain) && [
+    (!iconOnly || props.outline || props.plain) && [
       '[&:not(:hover)_svg:not([class^=text-])]:opacity-75',
     ],
   ];
@@ -113,7 +119,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         plain,
         unstyle,
         outline,
-        isIconOnly,
+        iconOnly,
         ...slotProps
       } = props;
 
@@ -124,7 +130,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
             buttonStyle({
               size,
               color,
-              isIconOnly,
+              iconOnly,
               ...({ unstyle, outline, plain } as Variant),
             }),
           )}
@@ -142,7 +148,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       plain,
       unstyle,
       outline,
-      isIconOnly,
+      iconOnly,
       ...buttonProps
     } = props;
 
@@ -158,7 +164,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
                 buttonStyle({
                   size,
                   color,
-                  isIconOnly,
+                  iconOnly,
                   ...({ unstyle, outline, plain } as Variant),
                 }),
                 renderProps.isFocusVisible && focusOutlineStyle,
@@ -218,7 +224,7 @@ export function ToggleButton(props: ToggleButtonProps) {
 }
 
 export type CloseButtonProps = ButtonWithoutAsChildProps & {
-  isIconOnly?: never;
+  iconOnly?: never;
   asChild?: never;
   children?: never;
 };
@@ -227,7 +233,7 @@ export function CloseButton({
   ...props
 }: CloseButtonProps) {
   return (
-    <Button isIconOnly {...props}>
+    <Button iconOnly {...props}>
       <Icon aria-label={ariaLabel}>
         <X strokeWidth={1.5} />
       </Icon>
@@ -237,8 +243,9 @@ export function CloseButton({
 
 export function ButtonGroup({
   className,
+  contrast,
   ...props
-}: JSX.IntrinsicElements['div']) {
+}: JSX.IntrinsicElements['div'] & { contrast?: boolean }) {
   return (
     <div
       className={twMerge(
@@ -248,7 +255,10 @@ export function ButtonGroup({
         '[&>button:not(:first-of-type):not(:last-of-type)]:rounded-none',
         '[&>button:not(:last-of-type)]:border-r-0',
         'dark:[&>button:not(.bg-transparent)]:border',
-        '[&>button:not(.bg-transparent):not(:first-of-type)]:border-l-[var(--separator-color,theme(colors.black/0.15))]',
+        contrast
+          ? '[&>button:not(.bg-transparent):not(:first-of-type)]:border-l-white/30'
+          : '[&>button:not(.bg-transparent):not(:first-of-type)]:border-l-black/15',
+
         className,
       )}
       {...props}

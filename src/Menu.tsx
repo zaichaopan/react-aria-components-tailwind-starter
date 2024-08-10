@@ -88,7 +88,7 @@ export function SubMenu<T extends object>(
 export function MenuSeparator({ className }: { className?: string }) {
   return (
     <Separator
-      className={twMerge('my-1.5 w-full border-t border-border/50', className)}
+      className={twMerge('my-1.5 w-full border-t border-border/40', className)}
     />
   );
 }

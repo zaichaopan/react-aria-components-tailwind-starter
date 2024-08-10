@@ -23,7 +23,7 @@ import { Checkbox } from './Checkbox';
 import {
   composeTailwindRenderProps,
   focusOutlineStyle,
-  inputRingStyle,
+  focusRingStyle,
 } from './utils';
 
 export function Table(props: TableProps) {
@@ -52,7 +52,7 @@ export function Column(props: ColumnProps) {
               tabIndex={-1}
               className={({ isFocusVisible }) => {
                 return twMerge(
-                  isFocusVisible ? inputRingStyle : 'outline-none',
+                  isFocusVisible ? focusRingStyle : 'outline-none',
                   'flex h-5 flex-1 items-center gap-1 overflow-hidden px-2',
                 );
               }}
@@ -77,7 +77,7 @@ export function Column(props: ColumnProps) {
               <ColumnResizer
                 className={({ isFocusVisible }) => {
                   return twMerge(
-                    isFocusVisible ? inputRingStyle : 'outline-none',
+                    isFocusVisible ? focusRingStyle : 'outline-none',
                     'box-content h-5 w-[1.5px] translate-x-[8px] cursor-col-resize rounded bg-border bg-clip-content px-[8px] py-1 -outline-offset-2 resizing:w-[2px] resizing:bg-accent resizing:pl-[7px] forced-colors:bg-[ButtonBorder] forced-colors:resizing:bg-[Highlight]',
                   );
                 }}

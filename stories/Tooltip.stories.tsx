@@ -87,7 +87,7 @@ export const NativeTooltips = () => {
   return (
     <NativeTooltip title={title}>
       <Button
-        isIconOnly
+        iconOnly
         outline
         onPress={() =>
           setTheme((theme) => (theme === 'light' ? 'dark' : 'light'))

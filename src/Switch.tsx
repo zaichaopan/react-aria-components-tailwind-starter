@@ -62,10 +62,9 @@ export function Switch({
                 <div
                   className={twMerge(
                     'flex h-5 w-8 shrink-0 cursor-default items-center rounded-full border shadow-inner transition duration-200 ease-in-out',
-
-                    'border-zinc-300 bg-zinc-200 px-0.5 dark:border-zinc-600 dark:bg-background',
+                    'bg-zinc-200 px-0.5 dark:bg-background',
                     // selected
-                    'group-selected:border-zinc-50 group-selected:bg-accent/90 group-selected:dark:border-zinc-800',
+                    'group-selected:border-accent group-selected:bg-accent/95',
                     // disabled
                     'group:disabled:bg-gray-200 group:disabled:dark:bg-zinc-700',
                     renderProps.isFocusVisible && focusOutlineStyle,

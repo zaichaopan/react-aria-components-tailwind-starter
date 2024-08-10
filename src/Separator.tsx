@@ -21,7 +21,7 @@ export function Separator({
         'text-sm/6',
         children
           ? [
-              'after:border-border/75 before:border-border/75',
+              'after:border-border/50 before:border-border/50',
               orientation === 'vertical'
                 ? [
                     'mx-2 flex flex-col items-center',
@@ -48,7 +48,7 @@ export function Separator({
                   ],
             ]
           : [
-              'border-border/75',
+              'border-border/50',
               orientation === 'vertical'
                 ? 'mx-1 h-auto self-stretch border-l'
                 : 'my-0.5 h-px w-full self-stretch border-b',

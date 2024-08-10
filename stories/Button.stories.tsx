@@ -1,15 +1,10 @@
 import type { Meta } from '@storybook/react';
-import {
-  FolderPlus,
-  Mail,
-  MicIcon,
-} from 'lucide-react';
+import { FolderPlus, Mail, MicIcon, Plus } from 'lucide-react';
 import { Button, CloseButton } from '../src/Button';
 import { docs } from '../.storybook/docs';
 import { Icon } from '../src/Icon';
 import { Avatar } from '../src/Avatar';
 import { Link } from '../src/Link';
-
 
 const meta: Meta<typeof Button> = {
   title: 'Button',
@@ -33,15 +28,15 @@ const meta: Meta<typeof Button> = {
 export default meta;
 
 export const Example = () => {
-  return <Button>Press me</Button>;
+  return <Button>Button</Button>;
 };
 
 export const ButtonColors = () => {
   return (
     <div className="flex flex-col gap-4">
-      <Button color="accent">Press me</Button>
-      <Button color="destructive">Press me</Button>
-      <Button color="success">Press me</Button>
+      <Button color="accent">Default</Button>
+      <Button color="destructive">Destructive</Button>
+      <Button color="success">Success</Button>
     </div>
   );
 };
@@ -50,7 +45,7 @@ ButtonColors.parameters = {
   docs: {
     description: {
       story:
-        'Use **color** props to set the button color. \n\nAvailable **color** option includes **accent**, **success**, **destructive**. Default color value is **accent**.',
+        'Use the **color** prop to set the button color. Default color is **accent**. Available **color** option includes **success** and **destructive**.',
     },
   },
 };
@@ -58,9 +53,9 @@ ButtonColors.parameters = {
 export const ButtonSizes = () => {
   return (
     <div className="flex items-end gap-4">
-      <Button size="sm">Press me</Button>
-      <Button>Press me</Button>
-      <Button size="lg">Press me</Button>
+      <Button size="sm">Small</Button>
+      <Button>Default</Button>
+      <Button size="lg">Large</Button>
     </div>
   );
 };
@@ -69,7 +64,7 @@ ButtonSizes.parameters = {
   docs: {
     description: {
       story:
-        'Use **size** prop to set the button size. Default size is **size-9**. Available size option includes **sm** and **lg**.',
+        'Use the **size** prop to set the button size. Default size is **size-9**. Available size option includes **sm** and **lg**.',
     },
   },
 };
@@ -77,10 +72,10 @@ ButtonSizes.parameters = {
 export const ButtonVariants = () => {
   return (
     <div className="flex flex-col gap-4">
-      <Button>Press me</Button>
-      <Button outline>Press me</Button>
-      <Button plain>Press me</Button>
-      <Button unstyle>Press me</Button>
+      <Button>Button</Button>
+      <Button outline>Outline</Button>
+      <Button plain>Plain</Button>
+      <Button unstyle>Unstyle</Button>
     </div>
   );
 };
@@ -89,7 +84,7 @@ ButtonVariants.parameters = {
   docs: {
     description: {
       story:
-        'Use prop **outline**, **plain** or **unstyle** to render buttons with different variants.',
+        'Use the **outline**, **plain** or **unstyle**  prop to render buttons with different variants.',
     },
   },
 };
@@ -105,9 +100,9 @@ export const WithIcons = () => {
       </Button>
       <Button outline>
         <Icon>
-          <FolderPlus />
+          <Plus />
         </Icon>
-        Create New Folder
+        Create New Project
       </Button>
     </div>
   );
@@ -117,7 +112,7 @@ WithIcons.parameters = {
   docs: {
     description: {
       story:
-        'Use **Icon** component to place a decorative icon at the start or end of a button. Icon size is auto scaled based on button sizes.',
+        'Use the <a href="./?path=/docs/icon--docs" target="_blank">**Icon**</a> component to place a decorative icon at the start or end of a button. Icon size is auto scaled based on button sizes.',
     },
   },
 };
@@ -125,12 +120,12 @@ WithIcons.parameters = {
 export const IconButtons = () => {
   return (
     <div className="flex gap-4">
-      <Button isIconOnly>
+      <Button iconOnly>
         <Icon>
           <MicIcon />
         </Icon>
       </Button>
-      <Button isIconOnly>
+      <Button iconOnly>
         <Icon aria-label="Create New Folder">
           <FolderPlus strokeWidth={1.5} />
         </Icon>
@@ -143,7 +138,7 @@ IconButtons.parameters = {
   docs: {
     description: {
       story:
-        'Use **isIconOnly** prop to render a icon only button. Use **aria-label** for none decorative buttons. Icon size is auto scaled based on button sizes.',
+        'Use the **iconOnly** prop to render a icon only button. Use **aria-label** for none decorative buttons. Icon size is auto scaled based on button sizes.',
     },
   },
 };
@@ -155,19 +150,19 @@ export const CloseButtons = () => {
 CloseButtons.parameters = {
   docs: {
     description: {
-      story: 'Use **CloseButton** component to render close button.',
+      story: 'Use the **CloseButton** component to render close button.',
     },
   },
 };
 
 export const DisabledButtons = () => {
-  return <Button isDisabled>Press me</Button>;
+  return <Button isDisabled>Button</Button>;
 };
 
 DisabledButtons.parameters = {
   docs: {
     description: {
-      story: 'Use **isDisabled** prop to disable buttons.',
+      story: 'Use the **isDisabled** prop to disable buttons.',
     },
   },
 };
@@ -198,7 +193,7 @@ LoadingState.parameters = {
   docs: {
     description: {
       story:
-        'Use **isLoading** prop to render a loading spinner. Use **loadingLabel** for accessibility.',
+        'Use the **isLoading** prop to render a loading spinner. Use **loadingLabel** for accessibility.',
     },
   },
 };
@@ -218,7 +213,7 @@ ImageButtons.parameters = {
   docs: {
     description: {
       story:
-        'Use **Avatar** component and **unstyle** button to render image buttons.',
+        'Use the <a href="/?path=/docs/avatar--docs" target="_blank">**Avatar**</a> component and **unstyle** button to render image buttons.',
     },
   },
 };
@@ -256,7 +251,7 @@ AsChild.parameters = {
   docs: {
     description: {
       story:
-        'Use **asChild** prop to render another react components, e.g., render **Link** component with button styles.',
+        'Use the **asChild** prop to render another react components, e.g., render **Link** component with button styles.',
     },
   },
 };

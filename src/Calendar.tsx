@@ -65,7 +65,7 @@ export function CalendarHeader() {
 
   return (
     <header className="flex w-full items-center gap-1">
-      <Button slot="previous" plain isIconOnly>
+      <Button slot="previous" plain iconOnly>
         {
           <Icon aria-label="Previous">
             {direction === 'rtl' ? (
@@ -83,7 +83,7 @@ export function CalendarHeader() {
         aria-hidden
       />
 
-      <Button slot="next" plain isIconOnly>
+      <Button slot="next" plain iconOnly>
         {
           <Icon aria-label="Next">
             {direction === 'rtl' ? (

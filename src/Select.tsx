@@ -15,7 +15,7 @@ import {
   ListBox,
 } from './ListBox';
 import { Popover } from './Popover';
-import { composeTailwindRenderProps, inputRingStyle } from './utils';
+import { composeTailwindRenderProps, focusRingStyle } from './utils';
 import { twMerge } from 'tailwind-merge';
 
 export interface SelectProps<T extends object>
@@ -73,7 +73,7 @@ function SelectButton(props: { icon?: React.ReactNode; className?: string }) {
             'flex min-h-9 w-full cursor-default items-center gap-4 rounded-md border py-[5px] pl-3 pr-2 shadow-sm outline-none transition',
             'group-invalid:border-destructive',
             'group:disabled:cursor-not-allowed group-disabled:opacity-50',
-            isFocusVisible && inputRingStyle,
+            isFocusVisible && focusRingStyle,
             'ring-offset-0',
             className,
           ),

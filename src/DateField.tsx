@@ -7,7 +7,7 @@ import {
   DateValue,
   composeRenderProps,
 } from 'react-aria-components';
-import { inputRingStyle } from './utils';
+import { focusRingStyle } from './utils';
 import { twMerge } from 'tailwind-merge';
 
 export interface DateFieldProps<T extends DateValue>
@@ -43,7 +43,7 @@ export function DateInput({
           'group flex h-9 w-full items-center rounded-md border bg-inherit shadow-sm',
           renderProps.isInvalid && 'border-destructive',
           renderProps.isDisabled && 'opacity-50',
-          renderProps.isFocusWithin && inputRingStyle,
+          renderProps.isFocusWithin && focusRingStyle,
           'ring-offset-0',
           'block min-w-[150px] px-2 py-1.5 text-sm',
           // When it is inside role=presentation | group parent and it has border

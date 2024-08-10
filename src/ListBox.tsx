@@ -133,7 +133,7 @@ export function DropdownSection<T extends object>(
       className={twMerge(
         '[&:first-child]:-mt-[1px]',
         '[&:not(:first-child)]:my-1.5',
-        '[&:not(:first-child)]:border-t [&:not(:first-child)]:border-t-border/50',
+        '[&:not(:first-child)]:border-t [&:not(:first-child)]:border-t-border/40',
         '[&_header]:has-[[role=option]]:pl-7',
         '[&_header]:has-[[role=menuitem]]:pl-3',
       )}

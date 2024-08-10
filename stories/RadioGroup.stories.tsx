@@ -33,7 +33,7 @@ export default meta;
 export const Example = () => {
   return (
     <div className="w-full max-w-sm p-3">
-      <RadioGroup>
+      <RadioGroup defaultValue="automatic">
         <Label>Show scrollbars</Label>
         <Radio value="automatic">Automatic</Radio>
         <Radio value="scrolling">While scrolling</Radio>

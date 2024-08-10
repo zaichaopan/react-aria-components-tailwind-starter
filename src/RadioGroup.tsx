@@ -101,14 +101,16 @@ export function Radio({
                   <div
                     slot="radio"
                     className={twMerge(
-                      'h-4 w-4 shrink-0 rounded-full border border-zinc-400/75 shadow-sm transition-all disabled:opacity-75 dark:border-zinc-600',
+                      'h-4 w-4 shrink-0 rounded-full border shadow-sm transition-all disabled:opacity-75',
+                      ' border-zinc-400/75 dark:border-zinc-600',
                       renderProps.isInvalid &&
                         'border-destructive dark:border-destructive',
-                      renderProps.isSelected &&
-                        'border-[5px] border-accent bg-white dark:border-accent',
+                      renderProps.isSelected && [
+                        'border-[5px] border-accent/95 bg-white dark:border-accent/95',
+                        'ring-1 ring-accent',
+                      ],
 
                       renderProps.isFocusVisible && focusOutlineStyle,
-
                       renderProps.isSelected &&
                         renderProps.isFocusVisible &&
                         'border-[5px] border-accent bg-white dark:border-accent',
