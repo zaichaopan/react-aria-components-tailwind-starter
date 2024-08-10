@@ -24,8 +24,6 @@ import { twMerge } from 'tailwind-merge';
 import { composeTailwindRenderProps, focusRingStyle } from './utils';
 import { Text } from './Text';
 import { CloseButton } from './Button';
-import { Icon } from './Icon';
-import { Search } from 'lucide-react';
 
 export const Group = React.forwardRef<HTMLDivElement, GroupProps>(
   function (props, ref) {
@@ -289,9 +287,22 @@ export function SearchInput({
         '[&_input::-webkit-search-cancel-button]:hidden',
       )}
     >
-      <Icon>
-        <Search className="ml-2 size-5" />
-      </Icon>
+      <svg
+        aria-hidden
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        strokeWidth={2}
+        stroke="currentColor"
+        className="ml-2 size-5"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
+        />
+      </svg>
+
       <Input {...props} />
       <CloseButton plain size="sm" className="mr-1 group-empty:invisible" />
     </InputFieldGroup>

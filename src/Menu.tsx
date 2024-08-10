@@ -1,4 +1,3 @@
-import { Check, ChevronDown, ChevronRight } from 'lucide-react';
 import {
   Menu as RACMenu,
   MenuItem as RACMenuItem,
@@ -13,7 +12,6 @@ import { DropdownSection, DropdownSectionProps } from './ListBox';
 import { Popover, PopoverProps } from './Popover';
 import { Button, ButtonWithoutAsChildProps } from './Button';
 import { twMerge } from 'tailwind-merge';
-import { Icon } from './Icon';
 import { composeTailwindRenderProps } from './utils';
 
 export { MenuTrigger, SubmenuTrigger } from 'react-aria-components';
@@ -41,11 +39,21 @@ export function MenuButton({
           <>
             {typeof children === 'function' ? children(renderProps) : children}
             {!noArrow && (
-              <Icon>
-                <ChevronDown
-                  className={twMerge(!!children && 'ml-0.5 mt-0.5')}
-                />
-              </Icon>
+              <svg
+                aria-hidden
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className={twMerge(!!children && 'ml-0.5 mt-0.5')}
+              >
+                <path d="m6 9 6 6 6-6" />
+              </svg>
             )}
           </>
         );
@@ -129,9 +137,21 @@ export function MenuItem({
             {selectionMode !== 'none' && (
               <span className="mr-0.5 flex w-4 items-center">
                 {isSelected && (
-                  <Icon>
-                    <Check className="size-4" />
-                  </Icon>
+                  <svg
+                    aria-hidden
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="size-4"
+                  >
+                    <path d="M20 6 9 17l-5-5" />
+                  </svg>
                 )}
               </span>
             )}
@@ -180,14 +200,24 @@ export function MenuItem({
               )}
             </div>
 
-            <Icon>
-              <ChevronRight
-                strokeWidth="1.5"
-                className={twMerge([
-                  'hidden size-4 text-muted group-data-[has-submenu]:inline-block',
-                ])}
-              />
-            </Icon>
+            {/* Sub menu right arrow */}
+            <svg
+              aria-hidden
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className={twMerge([
+                'hidden size-4 text-muted group-data-[has-submenu]:inline-block',
+              ])}
+            >
+              <path d="m9 18 6-6-6-6" />
+            </svg>
           </>
         ),
       )}

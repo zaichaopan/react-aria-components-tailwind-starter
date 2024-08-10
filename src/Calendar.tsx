@@ -1,4 +1,3 @@
-import { ChevronLeft, ChevronRight } from 'lucide-react';
 import {
   Calendar as RACCalendar,
   CalendarGridHeader as RACCalendarGridHeader,
@@ -16,7 +15,6 @@ import {
 import { Button } from './Button';
 import { focusOutlineStyle } from './utils';
 import { twMerge } from 'tailwind-merge';
-import { Icon } from './Icon';
 
 export interface CalendarProps<T extends DateValue>
   extends Omit<RACCalendarProps<T>, 'visibleDuration'> {
@@ -65,16 +63,40 @@ export function CalendarHeader() {
 
   return (
     <header className="flex w-full items-center gap-1">
-      <Button slot="previous" plain iconOnly>
-        {
-          <Icon aria-label="Previous">
-            {direction === 'rtl' ? (
-              <ChevronRight className="text-muted" />
-            ) : (
-              <ChevronLeft className="text-muted" />
-            )}
-          </Icon>
-        }
+      <Button slot="previous" plain iconOnly aria-label="Previous">
+        {direction === 'rtl' ? (
+          <svg
+            aria-hidden
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="text-muted"
+          >
+            <path d="m9 18 6-6-6-6" />
+          </svg>
+        ) : (
+          <svg
+            aria-hidden
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="text-muted"
+          >
+            <path d="m15 18-6-6 6-6" />
+          </svg>
+        )}
       </Button>
 
       <Heading
@@ -83,16 +105,40 @@ export function CalendarHeader() {
         aria-hidden
       />
 
-      <Button slot="next" plain iconOnly>
-        {
-          <Icon aria-label="Next">
-            {direction === 'rtl' ? (
-              <ChevronLeft className="text-muted" />
-            ) : (
-              <ChevronRight className="text-muted" />
-            )}
-          </Icon>
-        }
+      <Button slot="next" plain iconOnly aria-label="Next">
+        {direction === 'rtl' ? (
+          <svg
+            aria-hidden
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="text-muted"
+          >
+            <path d="m15 18-6-6 6-6" />
+          </svg>
+        ) : (
+          <svg
+            aria-hidden
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="text-muted"
+          >
+            <path d="m9 18 6-6-6-6" />
+          </svg>
+        )}
       </Button>
     </header>
   );

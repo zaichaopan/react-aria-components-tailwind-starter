@@ -1,4 +1,3 @@
-import { ChevronsUpDown } from 'lucide-react';
 import React from 'react';
 import {
   Select as RACSelect,
@@ -83,10 +82,21 @@ function SelectButton(props: { icon?: React.ReactNode; className?: string }) {
       {props.icon ? (
         props.icon
       ) : (
-        <ChevronsUpDown
+        <svg
           aria-hidden
-          className="h-3.5 w-3.5 opacity-75 group-disabled:opacity-50"
-        />
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          strokeWidth="2"
+          stroke="currentColor"
+          className="size-4 opacity-60 group-disabled:opacity-50"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M8.25 15 12 18.75 15.75 15m-7.5-6L12 5.25 15.75 9"
+          />
+        </svg>
       )}
     </Button>
   );

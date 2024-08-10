@@ -20,8 +20,6 @@ import { Popover } from './Popover';
 import { ListBox, ListBoxItem } from './ListBox';
 import { Button } from './Button';
 import { twMerge } from 'tailwind-merge';
-import { ChevronDown } from 'lucide-react';
-import { Icon } from './Icon';
 import { TagGroup, TagList } from './TagGroup';
 import { VisuallyHidden } from './VisuallyHidden';
 
@@ -229,7 +227,7 @@ export function MultiSelect<
                         items={selectedList.items}
                         className={twMerge(
                           selectedList.items.length !== 0 && 'p-1',
-                          'outline-none'
+                          'outline-none',
                         )}
                       >
                         {props.tag}
@@ -269,9 +267,21 @@ export function MultiSelect<
                             className="mr-1 size-6 rounded p-0.5"
                             ref={triggerButtonRef}
                           >
-                            <Icon>
-                              <ChevronDown className="size-4" />
-                            </Icon>
+                            <svg
+                              aria-hidden
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="24"
+                              height="24"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
+                              strokeWidth="2"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              className="size-4"
+                            >
+                              <path d="m6 9 6 6 6-6" />
+                            </svg>
                           </Button>
                         </VisuallyHidden>
                       </div>
@@ -302,9 +312,20 @@ export function MultiSelect<
                           onClick={() => triggerButtonRef.current?.click()}
                           tabIndex={-1}
                         >
-                          <Icon>
-                            <ChevronDown className="size-4" />
-                          </Icon>
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            className="size-4 opacity-75"
+                          >
+                            <path d="m6 9 6 6 6-6" />
+                          </svg>
                         </button>
                       </div>
                     </Button>

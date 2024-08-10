@@ -1,4 +1,3 @@
-import { Minus, Plus } from 'lucide-react';
 import {
   NumberField as RACNumberField,
   NumberFieldProps as RACNumberFieldProps,
@@ -8,7 +7,6 @@ import {
 } from 'react-aria-components';
 import { Input, InputFieldGroup } from './Field';
 import { composeTailwindRenderProps } from './utils';
-import { Icon } from './Icon';
 
 export interface NumberFieldProps extends RACNumberFieldProps {}
 
@@ -30,16 +28,41 @@ export function NumberInput(
   return (
     <InputFieldGroup className="fist:border-r">
       <StepperButton slot="increment">
-        <Icon>
-          <Plus className="size-4" />
-        </Icon>
+        <svg
+          aria-hidden
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          className="size-4"
+        >
+          <path d="M5 12h14" />
+          <path d="M12 5v14" />
+        </svg>
       </StepperButton>
       <Input {...props} />
 
       <StepperButton slot="decrement">
-        <Icon>
-          <Minus className="size-4" />
-        </Icon>
+        <svg
+          aria-hidden
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          className="size-4"
+        >
+          <path d="M5 12h14" />
+        </svg>
       </StepperButton>
     </InputFieldGroup>
   );

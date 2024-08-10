@@ -10,7 +10,6 @@ import { ButtonProps as AriaButtonProps } from 'react-aria-components';
 import { CloseButton } from '../Button';
 import { twMerge } from 'tailwind-merge';
 import { toast, ToastConfig } from './toast-queue';
-import { AlertOctagon, AlertTriangle, CheckCircle2 } from 'lucide-react';
 
 interface ToastRegionProps extends AriaToastRegionProps {
   state: ToastState<ToastConfig>;
@@ -76,10 +75,14 @@ export function GlobalToastRegion(props: AriaToastRegionProps) {
 
 function Toast({ state, ...props }: ToastProps) {
   const ref = React.useRef(null);
-  const { toastProps, titleProps, closeButtonProps, descriptionProps }: Omit<ToastAria, 'closeButtonProps'> & {
+  const {
+    toastProps,
+    titleProps,
+    closeButtonProps,
+    descriptionProps,
+  }: Omit<ToastAria, 'closeButtonProps'> & {
     closeButtonProps: Omit<AriaButtonProps, 'children'>;
-  } =
-    useToast(props, state, ref);
+  } = useToast(props, state, ref);
 
   let enteringClassName = '';
   const position = props.toast.content.position ?? 'bottom-right';
@@ -113,7 +116,11 @@ function Toast({ state, ...props }: ToastProps) {
   const type = props.toast.content.type;
 
   return (
-    <div {...toastProps} ref={ref} className="flex flex-1 bg-background rounded-md outline-none">
+    <div
+      {...toastProps}
+      ref={ref}
+      className="flex flex-1 rounded-md bg-background outline-none"
+    >
       <div
         className={twMerge(
           'toast flex w-[min(85vw,360px)] gap-1 rounded-md border px-3 py-2 shadow-sm transition',
@@ -132,15 +139,62 @@ function Toast({ state, ...props }: ToastProps) {
           <>
             <div className="flex flex-1 items-center gap-2 self-center">
               {type === 'error' && (
-                <AlertOctagon className="mt-1 flex size-5 self-start text-destructive" />
+                <svg
+                  aria-hidden
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="mt-1 flex size-5 self-start text-destructive"
+                >
+                  <path d="M12 16h.01" />
+                  <path d="M12 8v4" />
+                  <path d="M15.312 2a2 2 0 0 1 1.414.586l4.688 4.688A2 2 0 0 1 22 8.688v6.624a2 2 0 0 1-.586 1.414l-4.688 4.688a2 2 0 0 1-1.414.586H8.688a2 2 0 0 1-1.414-.586l-4.688-4.688A2 2 0 0 1 2 15.312V8.688a2 2 0 0 1 .586-1.414l4.688-4.688A2 2 0 0 1 8.688 2z" />
+                </svg>
               )}
 
               {type === 'warning' && (
-                <AlertTriangle className="mt-1 flex size-5 self-start text-warning" />
+                <svg
+                  aria-hidden
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="mt-1 flex size-5 self-start text-warning"
+                >
+                  <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3" />
+                  <path d="M12 9v4" />
+                  <path d="M12 17h.01" />
+                </svg>
               )}
 
               {type === 'success' && (
-                <CheckCircle2 className="mt-1 flex size-5 self-start text-success" />
+                <svg
+                  aria-hidden
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="mt-1 flex size-5 self-start text-success"
+                >
+                  <circle cx="12" cy="12" r="10" />
+                  <path d="m9 12 2 2 4-4" />
+                </svg>
               )}
 
               <div className="flex flex-1 flex-col gap-1 text-sm/6">
@@ -169,10 +223,7 @@ function Toast({ state, ...props }: ToastProps) {
           plain
           size="sm"
           {...closeButtonProps}
-          className={twMerge(
-            'rounded',
-            'hover:bg-transparent',
-          )}
+          className={twMerge('rounded', 'hover:bg-transparent')}
         />
       </div>
     </div>

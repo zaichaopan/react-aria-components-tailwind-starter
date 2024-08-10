@@ -1,4 +1,3 @@
-import { ArrowUp } from 'lucide-react';
 import {
   Cell as AriaCell,
   Column as AriaColumn,
@@ -60,15 +59,26 @@ export function Column(props: ColumnProps) {
               <span className="truncate">{children}</span>
               {allowsSorting && (
                 <span
-                  className={`flex h-4 w-4 items-center justify-center transition ${
+                  className={`flex size-4 items-center justify-center transition ${
                     sortDirection === 'descending' ? 'rotate-180' : ''
                   }`}
                 >
                   {sortDirection && (
-                    <ArrowUp
+                    <svg
                       aria-hidden
-                      className="h-4 w-4 text-gray-500 dark:text-zinc-400 forced-colors:text-[ButtonText]"
-                    />
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className="size-4 text-muted"
+                    >
+                      <path d="m18 15-6-6-6 6" />
+                    </svg>
                   )}
                 </span>
               )}

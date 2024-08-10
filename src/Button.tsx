@@ -7,10 +7,8 @@ import {
   composeRenderProps,
 } from 'react-aria-components';
 import { focusOutlineStyle } from './utils';
-import { X } from 'lucide-react';
 import { twMerge } from 'tailwind-merge';
 import { VisuallyHidden } from './VisuallyHidden';
-import { Icon } from './Icon';
 import { AsChildProps, Slot } from './slot';
 import { Spinner } from './Spinner';
 
@@ -233,10 +231,22 @@ export function CloseButton({
   ...props
 }: CloseButtonProps) {
   return (
-    <Button iconOnly {...props}>
-      <Icon aria-label={ariaLabel}>
-        <X strokeWidth={1.5} />
-      </Icon>
+    <Button iconOnly {...props} aria-label={ariaLabel}>
+      <svg
+        aria-hidden
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <path d="M18 6 6 18" />
+        <path d="m6 6 12 12" />
+      </svg>
     </Button>
   );
 }

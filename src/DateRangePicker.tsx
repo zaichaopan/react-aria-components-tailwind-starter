@@ -1,5 +1,4 @@
 import React from 'react';
-import { CalendarDays } from 'lucide-react';
 import {
   DateRangePicker as AriaDateRangePicker,
   DateRangePickerProps as AriaDateRangePickerProps,
@@ -14,7 +13,6 @@ import { InputFieldGroup } from './Field';
 import { Popover } from './Popover';
 import { RangeCalendar } from './RangeCalendar';
 import { composeTailwindRenderProps } from './utils';
-import { Icon } from './Icon';
 import { twMerge } from 'tailwind-merge';
 
 export interface DateRangePickerProps<T extends DateValue>
@@ -27,7 +25,7 @@ export function DateRangePicker<T extends DateValue>({
     <AriaDateRangePicker
       {...props}
       className={composeTailwindRenderProps(props.className, [
-        'group flex flex-col gap-1 shrink-0',
+        'group flex shrink-0 flex-col gap-1',
       ])}
     />
   );
@@ -50,9 +48,24 @@ export function DateRangePickerInput() {
           size="sm"
           className="mx-1.5 size-auto rounded p-0.5 outline-offset-0"
         >
-          <Icon>
-            <CalendarDays className="size-4" />
-          </Icon>
+          <svg
+            aria-hidden
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="size-4"
+          >
+            <path d="M8 2v4" />
+            <path d="M16 2v4" />
+            <rect width="18" height="18" x="3" y="4" rx="2" />
+            <path d="M3 10h18" />
+          </svg>
         </Button>
       </InputFieldGroup>
       <Popover className="max-w-none" placement="bottom">
@@ -99,9 +112,25 @@ export function DateRangePickerButton() {
               Select date range
             </span>
           )}
-          <Icon>
-            <CalendarDays className="size-4" />
-          </Icon>
+
+          <svg
+            aria-hidden
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="size-4"
+          >
+            <path d="M8 2v4" />
+            <path d="M16 2v4" />
+            <rect width="18" height="18" x="3" y="4" rx="2" />
+            <path d="M3 10h18" />
+          </svg>
         </Button>
 
         <DateInput slot="start" aria-hidden className="hidden" />

@@ -1,9 +1,7 @@
-import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { twMerge } from 'tailwind-merge';
 import { Button } from './Button';
 import { Link } from './Link';
 import { LinkProps } from 'react-aria-components';
-import { Icon } from './Icon';
 
 export function Pagination({
   className,
@@ -49,9 +47,21 @@ export function PaginationPrevious({
           className,
         )}
       >
-        <Icon>
-          <ChevronLeft />
-        </Icon>
+        <svg
+          aria-hidden
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <path d="m15 18-6-6 6-6" />
+        </svg>
+
         {label}
       </Link>
     </Button>
@@ -73,9 +83,20 @@ export function PaginationNext({
         )}
       >
         {label}
-        <Icon>
-          <ChevronRight />
-        </Icon>
+        <svg
+          aria-hidden
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <path d="m9 18 6-6-6-6" />
+        </svg>
       </Link>
     </Button>
   );

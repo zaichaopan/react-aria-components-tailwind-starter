@@ -9,8 +9,6 @@ import { ButtonWithoutAsChildProps, CloseButton, Button } from './Button';
 import { ListBox } from './ListBox';
 import { composeTailwindRenderProps } from './utils';
 import { Popover, PopoverProps } from './Popover';
-import { ChevronDown } from 'lucide-react';
-import { Icon } from './Icon';
 import { twMerge } from 'tailwind-merge';
 
 export interface ComboBoxProps<T extends object>
@@ -38,7 +36,6 @@ export function ComboBoxControl({
 }: JSX.IntrinsicElements['div']) {
   return <div className={twMerge('relative', className)} {...props} />;
 }
-
 
 export function ComboBoxPopover({ className, ...props }: PopoverProps) {
   return (
@@ -73,9 +70,21 @@ export function TriggerButton() {
       className="absolute right-1 top-1/2 size-6 -translate-y-1/2 rounded p-0.5"
       plain
     >
-      <Icon>
-        <ChevronDown className="size-4 opacity-75" />
-      </Icon>
+      <svg
+        aria-hidden
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        className="size-4 opacity-75"
+      >
+        <path d="m6 9 6 6 6-6" />
+      </svg>
     </Button>
   );
 }
