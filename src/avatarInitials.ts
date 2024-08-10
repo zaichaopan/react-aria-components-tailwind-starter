@@ -22,7 +22,7 @@ const tokens = [
   'rose',
 ];
 
-export function getDefaultInitials(name: string) {
+export function getInitials(name: string) {
   return name
     .split(/\s/)
     .map((part) => part.substring(0, 1))
@@ -41,7 +41,7 @@ function sumChars(str: string) {
   return sum;
 }
 
-export function getRandomToken(name: string, colorless: boolean) {
+export function getInitialsToken(name: string, colorless: boolean) {
   if (colorless) {
     return tokens[0];
   }

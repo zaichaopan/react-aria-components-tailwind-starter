@@ -33,6 +33,9 @@ export const docs =  {
       code = code.replace(/\(args: any\) => ((.|\n)*)$/, '$1');
       code = code.replace(/\s{\.\.\.args}\s/, ' ');
       code = code.replace(/\s{\.\.\.args}>/, '>');
+
+      code = code.replace(/src=".+"/g, 'src="..."');
+      code = code.replace(/src: '.+'/g, "src: '...'");
       return code;
     },
   },

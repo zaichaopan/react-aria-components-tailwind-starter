@@ -1,5 +1,5 @@
 import React from 'react';
-import { getDefaultInitials, getRandomToken } from './generateInitialAvatar';
+import { getInitials, getInitialsToken } from './get-initials';
 import { twMerge } from 'tailwind-merge';
 import { Icon } from './Icon';
 import { useImageLoadingStatus } from './hooks/use-image-loading-status';
@@ -75,8 +75,8 @@ function InitialAvatar({
   id: string;
   colorless: boolean;
 }) {
-  const initials = getDefaultInitials(alt);
-  const token = getRandomToken(alt, colorless);
+  const initials = getInitials(alt);
+  const token = getInitialsToken(alt, colorless);
 
   return (
     <svg
@@ -107,13 +107,12 @@ function InitialAvatar({
 type AvatarBadgeProps = {
   className?: string;
   badge: React.ReactNode;
-  fillBackground?: boolean;
   'aria-label': string;
 };
 
 export const AvatarBadge = ({
-  badge,
   'aria-label': ariaLabel,
+  badge,
   ...props
 }: AvatarBadgeProps) => {
   const context = useAvatarContext();
@@ -139,17 +138,25 @@ export const AvatarBadge = ({
 };
 
 type AvatarGroupProps = {
+  max?: number;
   children?: React.ReactNode;
   avatars: {
     items: Array<Pick<AvatarProps, 'src' | 'alt'>>;
-    maxDisplays?: number;
   } & Pick<AvatarProps, 'colorless' | 'className'> &
     JSX.IntrinsicElements['div'];
 };
 
-export function AvatarGroup({ avatars, children, ...props }: AvatarGroupProps) {
-  const { maxDisplays, items, className, ...avatarProps } = avatars;
-  const displayItems = items.slice(0, Math.min(maxDisplays ?? 4, items.length));
+export function AvatarGroup({
+  max,
+  avatars,
+  children,
+  ...props
+}: AvatarGroupProps) {
+  const { items, className, ...avatarProps } = avatars;
+
+  const displayItems = max
+    ? items.slice(0, Math.min(max, items.length))
+    : items;
 
   return (
     <div className="flex items-center rounded-lg py-0.5" {...props}>

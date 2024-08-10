@@ -90,11 +90,19 @@ AvatarSizes.parameters = {
 
 export const InitialFallbacks = () => {
   return (
-    <div className="flex items-end gap-4">
-      <Avatar alt="Taylor Harber" />
-      <Avatar alt="A B" />
-      <Avatar alt="B O" />
-      <Avatar alt="T W" colorless />
+    <div className="flex flex-col gap-4">
+      <div className="flex items-end gap-4">
+        <Avatar alt="Taylor Harber" />
+        <Avatar alt="A B" />
+        <Avatar alt="B O" />
+        <Avatar alt="T W" colorless />
+      </div>
+      <div className="flex items-end gap-4">
+        <Avatar alt="JJ" className="rounded-full" />
+        <Avatar alt="A P" className="rounded-full" />
+        <Avatar alt="S W" className="rounded-full" />
+        <Avatar alt="M C" className="rounded-full" colorless />
+      </div>
     </div>
   );
 };
@@ -124,18 +132,18 @@ export const AvatarBadges = () => {
           src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=facearea&facepad=3&w=256&h=256&q=80"
           alt="Taylor Harber"
         >
-          <AvatarBadge badge={<Busy />} aria-label="Available" />
+          <AvatarBadge badge={<Busy />} aria-label="Busy" />
         </Avatar>
 
         <Avatar
           src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=facearea&facepad=3&w=256&h=256&q=80"
           alt="Taylor Harber"
         >
-          <AvatarBadge badge={<Away />} aria-label="Available" />
+          <AvatarBadge badge={<Away />} aria-label="Away" />
         </Avatar>
 
         <Avatar alt="Taylor Harber">
-          <AvatarBadge aria-label="Available" badge={<DoNotDisturb />} />
+          <AvatarBadge aria-label="Do not disturb" badge={<DoNotDisturb />} />
         </Avatar>
 
         <Avatar
@@ -145,15 +153,7 @@ export const AvatarBadges = () => {
           <AvatarBadge
             aria-label="In meeting"
             className="bg-purple-500 p-0.5 text-white"
-            badge={
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 448 512"
-                className="fill-current"
-              >
-                <path d="M128 0c17.7 0 32 14.3 32 32V64H288V32c0-17.7 14.3-32 32-32s32 14.3 32 32V64h48c26.5 0 48 21.5 48 48v48H0V112C0 85.5 21.5 64 48 64H96V32c0-17.7 14.3-32 32-32zM0 192H448V464c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V192zm64 80v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V272c0-8.8-7.2-16-16-16H80c-8.8 0-16 7.2-16 16zm128 0v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V272c0-8.8-7.2-16-16-16H208c-8.8 0-16 7.2-16 16zm144-16c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V272c0-8.8-7.2-16-16-16H336zM64 400v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V400c0-8.8-7.2-16-16-16H80c-8.8 0-16 7.2-16 16zm144-16c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V400c0-8.8-7.2-16-16-16H208zm112 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V400c0-8.8-7.2-16-16-16H336c-8.8 0-16 7.2-16 16z" />
-              </svg>
-            }
+            badge={<InMeeting />}
           ></AvatarBadge>
         </Avatar>
 
@@ -164,21 +164,7 @@ export const AvatarBadges = () => {
           <AvatarBadge
             aria-label="Verified"
             className="border-none bg-blue-500 p-0 text-white"
-            badge={
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="1.5"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M9 12.75 11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 0 1-1.043 3.296 3.745 3.745 0 0 1-3.296 1.043A3.745 3.745 0 0 1 12 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 0 1-3.296-1.043 3.745 3.745 0 0 1-1.043-3.296A3.745 3.745 0 0 1 3 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 0 1 1.043-3.296 3.746 3.746 0 0 1 3.296-1.043A3.746 3.746 0 0 1 12 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 0 1 3.296 1.043 3.746 3.746 0 0 1 1.043 3.296A3.745 3.745 0 0 1 21 12Z"
-                />
-              </svg>
-            }
+            badge={<Verified />}
           ></AvatarBadge>
         </Avatar>
       </div>
@@ -197,7 +183,7 @@ export const AvatarBadges = () => {
           src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=facearea&facepad=3&w=256&h=256&q=80"
           alt="Taylor Harber"
         >
-          <AvatarBadge badge={<Busy />} aria-label="Available" />
+          <AvatarBadge badge={<Busy />} aria-label="Busy" />
         </Avatar>
 
         <Avatar
@@ -205,11 +191,11 @@ export const AvatarBadges = () => {
           src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=facearea&facepad=3&w=256&h=256&q=80"
           alt="Taylor Harber"
         >
-          <AvatarBadge badge={<Away />} aria-label="Available" />
+          <AvatarBadge badge={<Away />} aria-label="Away" />
         </Avatar>
 
         <Avatar alt="Taylor Harber" className="rounded-full">
-          <AvatarBadge aria-label="Available" badge={<DoNotDisturb />} />
+          <AvatarBadge aria-label="Do not disturb" badge={<DoNotDisturb />} />
         </Avatar>
 
         <Avatar
@@ -220,15 +206,7 @@ export const AvatarBadges = () => {
           <AvatarBadge
             aria-label="In meeting"
             className="bg-purple-500 p-0.5 text-white"
-            badge={
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 448 512"
-                className="fill-current"
-              >
-                <path d="M128 0c17.7 0 32 14.3 32 32V64H288V32c0-17.7 14.3-32 32-32s32 14.3 32 32V64h48c26.5 0 48 21.5 48 48v48H0V112C0 85.5 21.5 64 48 64H96V32c0-17.7 14.3-32 32-32zM0 192H448V464c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V192zm64 80v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V272c0-8.8-7.2-16-16-16H80c-8.8 0-16 7.2-16 16zm128 0v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V272c0-8.8-7.2-16-16-16H208c-8.8 0-16 7.2-16 16zm144-16c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V272c0-8.8-7.2-16-16-16H336zM64 400v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V400c0-8.8-7.2-16-16-16H80c-8.8 0-16 7.2-16 16zm144-16c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V400c0-8.8-7.2-16-16-16H208zm112 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V400c0-8.8-7.2-16-16-16H336c-8.8 0-16 7.2-16 16z" />
-              </svg>
-            }
+            badge={<InMeeting />}
           ></AvatarBadge>
         </Avatar>
 
@@ -240,21 +218,7 @@ export const AvatarBadges = () => {
           <AvatarBadge
             aria-label="Verified"
             className="border-1 bg-blue-500 p-0 text-white"
-            badge={
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="1.5"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M9 12.75 11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 0 1-1.043 3.296 3.745 3.745 0 0 1-3.296 1.043A3.745 3.745 0 0 1 12 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 0 1-3.296-1.043 3.745 3.745 0 0 1-1.043-3.296A3.745 3.745 0 0 1 3 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 0 1 1.043-3.296 3.746 3.746 0 0 1 3.296-1.043A3.746 3.746 0 0 1 12 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 0 1 3.296 1.043 3.746 3.746 0 0 1 1.043 3.296A3.745 3.745 0 0 1 21 12Z"
-                />
-              </svg>
-            }
+            badge={<Verified />}
           ></AvatarBadge>
         </Avatar>
       </div>
@@ -271,7 +235,7 @@ export const AvatarBadges = () => {
           src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=facearea&facepad=3&w=256&h=256&q=80"
           alt="Taylor Harber"
         >
-          <AvatarBadge badge={<Busy />} aria-label="Available" />
+          <AvatarBadge badge={<Busy />} aria-label="Busy" />
         </Avatar>
 
         <Avatar
@@ -279,11 +243,11 @@ export const AvatarBadges = () => {
           alt="Taylor Harber"
           className="size-12"
         >
-          <AvatarBadge badge={<Away />} aria-label="Available" />
+          <AvatarBadge badge={<Away />} aria-label="Away" />
         </Avatar>
 
         <Avatar alt="Taylor Harber" className="size-16">
-          <AvatarBadge aria-label="Available" badge={<DoNotDisturb />} />
+          <AvatarBadge aria-label="Do not disturb" badge={<DoNotDisturb />} />
         </Avatar>
 
         <Avatar
@@ -294,15 +258,7 @@ export const AvatarBadges = () => {
           <AvatarBadge
             aria-label="In meeting"
             className="bg-purple-500 p-0.5 text-white"
-            badge={
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 448 512"
-                className="fill-current"
-              >
-                <path d="M128 0c17.7 0 32 14.3 32 32V64H288V32c0-17.7 14.3-32 32-32s32 14.3 32 32V64h48c26.5 0 48 21.5 48 48v48H0V112C0 85.5 21.5 64 48 64H96V32c0-17.7 14.3-32 32-32zM0 192H448V464c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V192zm64 80v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V272c0-8.8-7.2-16-16-16H80c-8.8 0-16 7.2-16 16zm128 0v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V272c0-8.8-7.2-16-16-16H208c-8.8 0-16 7.2-16 16zm144-16c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V272c0-8.8-7.2-16-16-16H336zM64 400v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V400c0-8.8-7.2-16-16-16H80c-8.8 0-16 7.2-16 16zm144-16c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V400c0-8.8-7.2-16-16-16H208zm112 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V400c0-8.8-7.2-16-16-16H336c-8.8 0-16 7.2-16 16z" />
-              </svg>
-            }
+            badge={<InMeeting />}
           ></AvatarBadge>
         </Avatar>
 
@@ -314,21 +270,7 @@ export const AvatarBadges = () => {
           <AvatarBadge
             aria-label="Verified"
             className="border-none bg-blue-500 p-0 text-white"
-            badge={
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="1.5"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M9 12.75 11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 0 1-1.043 3.296 3.745 3.745 0 0 1-3.296 1.043A3.745 3.745 0 0 1 12 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 0 1-3.296-1.043 3.745 3.745 0 0 1-1.043-3.296A3.745 3.745 0 0 1 3 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 0 1 1.043-3.296 3.746 3.746 0 0 1 3.296-1.043A3.746 3.746 0 0 1 12 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 0 1 3.296 1.043 3.746 3.746 0 0 1 1.043 3.296A3.745 3.745 0 0 1 21 12Z"
-                />
-              </svg>
-            }
+            badge={<Verified />}
           ></AvatarBadge>
         </Avatar>
       </div>
@@ -346,7 +288,7 @@ export const AvatarBadges = () => {
           alt="Taylor Harber"
           className="rounded-full"
         >
-          <AvatarBadge badge={<Busy />} aria-label="Available" />
+          <AvatarBadge badge={<Busy />} aria-label="Busy" />
         </Avatar>
 
         <Avatar
@@ -354,11 +296,11 @@ export const AvatarBadges = () => {
           alt="Taylor Harber"
           className="size-12 rounded-full"
         >
-          <AvatarBadge badge={<Away />} aria-label="Available" />
+          <AvatarBadge badge={<Away />} aria-label="Away" />
         </Avatar>
 
         <Avatar alt="Taylor Harber" className="size-16 rounded-full ">
-          <AvatarBadge aria-label="Available" badge={<DoNotDisturb />} />
+          <AvatarBadge aria-label="Do not disturb" badge={<DoNotDisturb />} />
         </Avatar>
 
         <Avatar
@@ -369,15 +311,7 @@ export const AvatarBadges = () => {
           <AvatarBadge
             aria-label="In meeting"
             className="bg-purple-500 p-0.5 text-white"
-            badge={
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 448 512"
-                className="fill-current"
-              >
-                <path d="M128 0c17.7 0 32 14.3 32 32V64H288V32c0-17.7 14.3-32 32-32s32 14.3 32 32V64h48c26.5 0 48 21.5 48 48v48H0V112C0 85.5 21.5 64 48 64H96V32c0-17.7 14.3-32 32-32zM0 192H448V464c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V192zm64 80v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V272c0-8.8-7.2-16-16-16H80c-8.8 0-16 7.2-16 16zm128 0v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V272c0-8.8-7.2-16-16-16H208c-8.8 0-16 7.2-16 16zm144-16c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V272c0-8.8-7.2-16-16-16H336zM64 400v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V400c0-8.8-7.2-16-16-16H80c-8.8 0-16 7.2-16 16zm144-16c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V400c0-8.8-7.2-16-16-16H208zm112 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V400c0-8.8-7.2-16-16-16H336c-8.8 0-16 7.2-16 16z" />
-              </svg>
-            }
+            badge={<InMeeting />}
           ></AvatarBadge>
         </Avatar>
 
@@ -389,21 +323,7 @@ export const AvatarBadges = () => {
           <AvatarBadge
             aria-label="Verified"
             className="border-none bg-blue-500 p-0 text-white"
-            badge={
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="1.5"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M9 12.75 11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 0 1-1.043 3.296 3.745 3.745 0 0 1-3.296 1.043A3.745 3.745 0 0 1 12 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 0 1-3.296-1.043 3.745 3.745 0 0 1-1.043-3.296A3.745 3.745 0 0 1 3 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 0 1 1.043-3.296 3.746 3.746 0 0 1 3.296-1.043A3.746 3.746 0 0 1 12 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 0 1 3.296 1.043 3.746 3.746 0 0 1 1.043 3.296A3.745 3.745 0 0 1 21 12Z"
-                />
-              </svg>
-            }
+            badge={<Verified />}
           ></AvatarBadge>
         </Avatar>
       </div>
@@ -411,10 +331,41 @@ export const AvatarBadges = () => {
   );
 };
 
+function InMeeting() {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 448 512"
+      className="fill-current"
+    >
+      <path d="M128 0c17.7 0 32 14.3 32 32V64H288V32c0-17.7 14.3-32 32-32s32 14.3 32 32V64h48c26.5 0 48 21.5 48 48v48H0V112C0 85.5 21.5 64 48 64H96V32c0-17.7 14.3-32 32-32zM0 192H448V464c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V192zm64 80v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V272c0-8.8-7.2-16-16-16H80c-8.8 0-16 7.2-16 16zm128 0v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V272c0-8.8-7.2-16-16-16H208c-8.8 0-16 7.2-16 16zm144-16c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V272c0-8.8-7.2-16-16-16H336zM64 400v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V400c0-8.8-7.2-16-16-16H80c-8.8 0-16 7.2-16 16zm144-16c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V400c0-8.8-7.2-16-16-16H208zm112 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V400c0-8.8-7.2-16-16-16H336c-8.8 0-16 7.2-16 16z" />
+    </svg>
+  );
+}
+
+function Verified() {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      strokeWidth="1.5"
+      stroke="currentColor"
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M9 12.75 11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 0 1-1.043 3.296 3.745 3.745 0 0 1-3.296 1.043A3.745 3.745 0 0 1 12 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 0 1-3.296-1.043 3.745 3.745 0 0 1-1.043-3.296A3.745 3.745 0 0 1 3 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 0 1 1.043-3.296 3.746 3.746 0 0 1 3.296-1.043A3.746 3.746 0 0 1 12 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 0 1 3.296 1.043 3.746 3.746 0 0 1 1.043 3.296A3.745 3.745 0 0 1 21 12Z"
+      />
+    </svg>
+  );
+}
+
 AvatarBadges.parameters = {
   docs: {
     description: {
       story: `Use **AvatarBadge** component to add badges. Badge size is auto scaled based on avatar sizes. 
+      \n- **Badge** is auto wrapped within the <a href="./?path=/docs/icon--docs" target="_blank">**Icon**</a> component.
       \n- Use **aria-label** for accessibility. 
       \n- Use **className** to style badge **border** and **background**.`,
     },
@@ -478,9 +429,10 @@ export const AvatarGroups = () => {
         }}
       ></AvatarGroup>
       <AvatarGroup
+        max={6}
         avatars={{
           className: 'size-8 rounded-full',
-          maxDisplays: 6,
+
           items: [
             {
               alt: 'Sonja Balmann',
@@ -518,7 +470,7 @@ export const AvatarGroups = () => {
           ],
         }}
       >
-        <div className="relative flex size-8 items-center justify-center rounded-full shadow-sm p-1 text-xs  bg-hover">
+        <div className="relative flex size-8 items-center justify-center rounded-full border-2 border-background bg-hover text-xs shadow-sm">
           +2
         </div>
       </AvatarGroup>
@@ -529,7 +481,7 @@ export const AvatarGroups = () => {
 AvatarGroups.parameters = {
   docs: {
     description: {
-      story: `Use **AvatarGroup** component to stack avatars. \n\nUse **maxDisplays** prop to control how many avatars to display. Default value is **4**.
+      story: `Use **AvatarGroup** component to stack avatars. \n\nUse the **max** prop to control how many avatars to display.
       `,
     },
   },
