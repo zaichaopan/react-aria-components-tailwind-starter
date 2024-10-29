@@ -61,9 +61,9 @@ export const BasicExample = () => {
 export const Colors = () => {
   return (
     <div className="flex flex-col gap-5">
-      <Button>Accent</Button>
-      <Button color="destructive">Danger</Button>
-      <Button color="success">Success</Button>
+      <Button>Button</Button>
+      <Button color="destructive">Button</Button>
+      <Button color="success">Button</Button>
     </div>
   );
 };
@@ -81,11 +81,11 @@ export const Sizes = () => {
   return (
     <div className="flex items-end gap-3">
       <Button size="lg" variant="outline">
-        Large
+        Button
       </Button>
-      <Button variant="outline">Default</Button>
+      <Button variant="outline">Button</Button>
       <Button variant="outline" size="sm">
-        Small
+        Button
       </Button>
     </div>
   );
@@ -102,10 +102,10 @@ Sizes.parameters = {
 export const Variants = () => {
   return (
     <div className="flex flex-col gap-4">
-      <Button>Default</Button>
-      <Button variant="outline">Outline</Button>
-      <Button variant="plain">Plain</Button>
-      <Button variant="unstyle">Unstyle</Button>
+      <Button>Button</Button>
+      <Button variant="outline">Button</Button>
+      <Button variant="plain">Button</Button>
+      <Button variant="unstyle">Button</Button>
     </div>
   );
 };
@@ -136,10 +136,16 @@ export const Icons = () => {
           Export
         </Button>
         <Button size="lg">
-          Live preview <SquareArrowOutUpRight strokeWidth={1.5} />
+          Live preview
+          <AccessibleIcon>
+            <SquareArrowOutUpRight strokeWidth={1.5} />
+          </AccessibleIcon>
         </Button>
         <Button size="lg" variant="outline">
-          Get template <ChevronRightIcon />
+          Get template
+          <AccessibleIcon>
+            <ChevronRightIcon />
+          </AccessibleIcon>
         </Button>
       </div>
       <div></div>
@@ -340,19 +346,19 @@ export const ToggleButtonWithIconAndTooltip = () => {
 
 export const ButtonGroups = () => {
   return (
-    <div className="space-y-5">
+    <div className="flex flex-col space-y-5">
       <ButtonGroup>
         <Button variant="outline">Oldest</Button>
         <Button variant="outline">Newest</Button>
         <Button variant="outline">Top</Button>
       </ButtonGroup>
       <ButtonGroup>
-        <Button isIconOnly color="success">
+        <Button isIconOnly>
           <AccessibleIcon aria-label="Zoom In">
             <PlusIcon />
           </AccessibleIcon>
         </Button>
-        <Button isIconOnly color="success">
+        <Button isIconOnly>
           <AccessibleIcon aria-label="Zoom Out">
             <MinusIcon aria-label="Zoom Out" />
           </AccessibleIcon>
@@ -360,6 +366,19 @@ export const ButtonGroups = () => {
       </ButtonGroup>
 
       <ButtonGroup blend>
+        <Button isIconOnly variant="outline">
+          <AccessibleIcon aria-label="Zoom In">
+            <PlusIcon />
+          </AccessibleIcon>
+        </Button>
+        <Button isIconOnly variant="outline">
+          <AccessibleIcon aria-label="Zoom Out">
+            <MinusIcon aria-label="Zoom Out" />
+          </AccessibleIcon>
+        </Button>
+      </ButtonGroup>
+
+      <ButtonGroup orientation="vertical">
         <Button isIconOnly variant="outline">
           <AccessibleIcon aria-label="Zoom In">
             <PlusIcon />
@@ -476,7 +495,7 @@ SplitButtons.parameters = {
   },
 };
 
-function CloudUploadingIcon() {
+function CloudUploadingIcon(props: JSX.IntrinsicElements['svg']) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -484,6 +503,7 @@ function CloudUploadingIcon() {
       height="1em"
       viewBox="0 0 24 24"
       className="size-5 text-white/75"
+      {...props}
     >
       <path
         fill="currentColor"

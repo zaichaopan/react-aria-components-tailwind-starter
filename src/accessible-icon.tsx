@@ -15,13 +15,13 @@ export function AccessibleIcon({
   return (
     <>
       {React.cloneElement(child as React.ReactElement, {
+        ...props,
         'aria-hidden': 'true',
         'aria-label': undefined,
         'data-ui': 'icon',
         focusable: 'false',
-        ...props,
       })}
-      {ariaLabel ? <span className='sr-only'>{ariaLabel}</span> : null}
+      {ariaLabel ? <span className="sr-only">{ariaLabel}</span> : null}
     </>
   );
 }

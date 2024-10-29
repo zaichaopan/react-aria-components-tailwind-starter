@@ -57,12 +57,12 @@ const buttonSizes = {
   sm: {
     button: [
       'h-8 sm:h-7 px-2 text-sm/6 sm:text-xs/6 rounded-md',
-      '[&_svg:not([class*=size-])]:size-3',
+      '[&_svg[data-ui=icon]:not([class*=size-])]:size-3',
     ],
     iconOnly: [
       'size-8 sm:size-7 rounded-md',
-      '[&_svg:not([class*=size-])]:size-5',
-      'sm:[&_svg:not([class*=size-])]:size-4',
+      '[&_svg[data-ui=icon]:not([class*=size-])]:size-5',
+      'sm:[&_svg[data-ui=icon]:not([class*=size-])]:size-4',
     ],
   },
   md: {
@@ -71,34 +71,36 @@ const buttonSizes = {
       'px-3 py-[calc(theme(spacing[2.5])-var(--border-with,1px))]',
       'sm:py-[calc(theme(spacing[1.5])-var(--border-with,1px))]',
 
-      '[&_svg:not([class*=size-])]:size-5',
-      'sm:[&_svg:not([class*=size-])]:size-4',
+      '[&_svg[data-ui=icon]:not([class*=size-])]:size-5',
+      'sm:[&_svg[data-ui=icon]:not([class*=size-])]:size-4',
     ],
     iconOnly: [
       'p-[calc(theme(spacing[2.5])-var(--border-with,1px))]',
       'sm:p-[calc(theme(spacing[1.5])-var(--border-with,1px))]',
 
       // 20+2x2=24px
-      '[&_svg:not([class*=size-])]:size-5',
-      '[&_svg]:m-0.5',
+      '[&_svg[data-ui=icon]:not([class*=size-])]:size-5',
+      '[&_svg[data-ui=icon]]:m-0.5',
 
       // 16+4x2=24px
-      'sm:[&_svg:not([class*=size-])]:size-4',
-      'sm:[&_svg]:m-1',
+      'sm:[&_svg[data-ui=icon]:not([class*=size-])]:size-4',
+      'sm:[&_svg[data-ui=icon]]:m-1',
     ],
   },
   lg: {
     button: [
       'px-4 py-[calc(theme(spacing[2.5])-var(--border-with,1px))]',
-      '[&_svg:not([class*=size-])]:size-5',
+      '[&_svg[data-ui=icon]:not([class*=size-])]:size-5',
     ],
     iconOnly: [
       'p-[calc(theme(spacing[2.5])-var(--border-with,1px))]',
-      '[&_svg:not([class*=size-])]:size-5',
-      '[&_svg]:m-0.5',
+      '[&_svg[data-ui=icon]:not([class*=size-])]:size-5',
+      '[&_svg[data-ui=icon]]:m-0.5',
     ],
   },
 };
+
+// solid + no icon button + no text + no + hover
 
 function buttonStyle({
   size,
@@ -134,6 +136,15 @@ function buttonStyle({
     success: '[--btn-color:theme(colors.success)]',
   };
 
+  const iconColor = [
+    !isIconOnly && [
+      variant === 'solid' &&
+        '[&:not(:hover)_svg[data-ui=icon]:not([class*=text-])]:text-white/65',
+      variant === 'outline' &&
+        '[&:not(:hover)_svg[data-ui=icon]:not([class*=text-])]:text-muted',
+    ],
+  ];
+
   return [
     buttonVariants.base,
     buttonVariants[variant],
@@ -141,6 +152,7 @@ function buttonStyle({
       ? [buttonBackground[color ?? 'accent']]
       : [buttonColor[color ?? 'foreground']],
     buttonSizes[buttonSize][buttonType],
+    iconColor,
   ];
 }
 
@@ -243,32 +255,32 @@ export function ButtonGroup({
       {...props}
       data-ui="button-group"
       className={twMerge(
-        'group flex w-max items-center',
+        'group inline-flex w-max items-center',
 
         orientation === 'horizontal'
           ? [
-              '[&>button:first-of-type]:rounded-e-none',
-              '[&>button:last-of-type]:rounded-s-none',
-              '[&>button:not(:last-of-type)]:border-e-0',
+              '[&>button:first-child]:rounded-e-none',
+              '[&>button:last-child]:rounded-s-none',
+              '[&>button:not(:last-child)]:border-e-0',
               blend &&
-                'shadow-sm [&>button:not(:first-of-type)]:border-s-0 [&>button]:shadow-none',
+                'shadow-sm [&>button:not(:first-child)]:border-s-0 [&>button]:shadow-none',
             ]
           : [
               'flex-col',
-              '[&>button:first-of-type]:rounded-b-none',
-              '[&>button:last-of-type]:rounded-t-none',
-              '[&>button:not(:last-of-type)]:border-b-0',
+              '[&>button:first-child]:rounded-b-none',
+              '[&>button:last-child]:rounded-t-none',
+              '[&>button:not(:last-child)]:border-b-0',
 
               blend &&
-                'shadow-sm [&>button:not(:first-of-type)]:border-t-0 [&>button]:shadow-none',
+                'shadow-sm [&>button:not(:first-child)]:border-t-0 [&>button]:shadow-none',
             ],
 
-        '[&>button:not(:first-of-type):not(:last-of-type)]:rounded-none',
+        '[&>button:not(:first-child):not(:last-child)]:rounded-none',
 
         // Add border to solid button which has not border in dark mode
         'dark:[&>button[data-variant=solid]]:border-solid',
         'dark:[&>button[data-variant=solid]]:[--border-with:1px]',
-        '[&>button[data-variant=solid]:not(:first-of-type)]:border-s-black/15',
+        '[&>button[data-variant=solid]:not(:first-child)]:border-s-black/15',
         className,
       )}
     />

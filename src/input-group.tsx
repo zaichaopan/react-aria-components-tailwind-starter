@@ -28,12 +28,7 @@ export function InputGroup({
 
               '[[data-ui=text-field]_&>[data-ui=addon]:first-child]:col-start-1',
               '[[data-ui=text-field]_&>[data-ui=addon]:first-child]:row-start-1',
-              '[[data-ui=text-field]_&>[data-ui=addon]:first-child]:z-10',
-              '[[data-ui=text-field]_&>[data-ui=addon]:last-child]:-col-end-1',
-              '[[data-ui=text-field]_&>[data-ui=addon]:last-child]:row-start-1',
-              '[[data-ui=text-field]_&>[data-ui=addon]:first-child]:col-start-1',
-              '[[data-ui=text-field]_&>[data-ui=addon]:first-child]:row-start-1',
-              '[[data-ui=text-field]_&>[data-ui=addon]:first-child]:z-10',
+              '[[data-ui=text-field]:has(:autofill)_&>[data-ui=addon]:first-child]:z-10',
               '[[data-ui=text-field]_&>[data-ui=addon]:last-child]:-col-end-1',
               '[[data-ui=text-field]_&>[data-ui=addon]:last-child]:row-start-1',
               '[[data-ui=text-field]_&>[data-ui=addon]]:border-0',

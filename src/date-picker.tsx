@@ -67,7 +67,7 @@ export function DatePickerInput(props: DateInputProps) {
 
       <Popover
         className={[
-          'max-w-none rounded-xl',
+          'max-w-none',
           'dark:bg-zinc-800',
           'dark:ring-zinc-700',
         ].join(' ')}
@@ -97,7 +97,7 @@ export function DatePickerButton({
       <Group data-ui="control">
         <Button
           className={twMerge(
-            'text w-auto min-w-52 flex-1 justify-between px-2.5 font-normal',
+            'text w-full min-w-52 flex-1 justify-between px-2.5 font-normal',
             className,
           )}
           variant="outline"
@@ -116,7 +116,7 @@ export function DatePickerButton({
 
       <Popover
         className={[
-          'max-w-none rounded-xl',
+          'max-w-none',
           'dark:bg-zinc-800',
           'dark:ring-zinc-700',
         ].join(' ')}

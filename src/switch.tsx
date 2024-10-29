@@ -4,6 +4,7 @@ import {
   GroupProps,
   Switch as RACSwitch,
   SwitchProps as RACSwitchProps,
+  SwitchRenderProps,
 } from 'react-aria-components';
 import {
   composeTailwindRenderProps,
@@ -66,22 +67,48 @@ export function SwitchField({
 
 interface SwitchProps extends RACSwitchProps {
   labelPosition?: 'left' | 'right';
+  render?: never;
+}
+
+export interface CustomRenderSwitchProps
+  extends Omit<RACSwitchProps, 'children'> {
+  render: React.ReactElement | ((props: SwitchRenderProps) => React.ReactNode);
+  children?: never;
 }
 
 export function Switch({
-  labelPosition = 'right',
-  children,
+  className,
   ...props
-}: SwitchProps) {
+}: SwitchProps | CustomRenderSwitchProps) {
   const descriptionContext = React.useContext(DescriptionContext);
+
+  if (props.render) {
+    const { render, ...restProps } = props;
+
+    return (
+      <RACSwitch
+        {...restProps}
+        aria-describedby={descriptionContext?.['aria-describedby']}
+        className={composeTailwindRenderProps(className, [
+          'group',
+          'text-base/6 sm:text-sm/6',
+          'disabled:opacity-50',
+        ])}
+      >
+        {render}
+      </RACSwitch>
+    );
+  }
+
+  const { labelPosition = 'right', children, ...restProps } = props;
 
   return (
     <RACSwitch
-      {...props}
+      {...restProps}
       aria-describedby={descriptionContext?.['aria-describedby']}
       data-position={labelPosition}
-      className={composeTailwindRenderProps(props.className, [
-        'group/control flex items-center gap-x-3',
+      className={composeTailwindRenderProps(className, [
+        'group/control flex items-center',
         'data-[position=left]:flex-row-reverse',
         'data-[position=left]:justify-between',
         'text-base/6 sm:text-sm/6',
@@ -92,13 +119,13 @@ export function Switch({
         <>
           <div
             className={twMerge(
-              'h-5 w-8 cursor-default rounded-full px-0.5 shadow-inner',
-              'transition duration-200 ease-in-out',
+              'h-5 w-8',
+              'cursor-default rounded-full px-[1px] shadow-inner',
+              labelPosition === 'right' ? 'me-3' : 'ms-3',
               'flex shrink-0 items-center',
               'bg-zinc-200',
               'dark:bg-transparent',
               'border',
-
               'group-selected/control:border-accent',
               'group-selected/control:dark:border-0',
               'group-selected/control:bg-accent',
@@ -112,12 +139,13 @@ export function Switch({
           >
             <span
               className={twMerge(
-                'h-[0.95rem] w-[0.95rem] rounded-full bg-white shadow-sm',
-                'translate-x-0 transform transition duration-200 ease-in-out',
+                'size-4',
+                'rounded-full bg-white shadow-sm',
+                'translate-x-0 transition-all ease-in-out',
+                'group-selected/control:translate-x-3',
+                'group-selected/control:rtl:-translate-x-3',
                 'border',
                 'group-selected/control:border-accent',
-                'group-selected/control:translate-x-[78%]',
-                'group-selected/control:rtl:-translate-x-[78%]',
               )}
             />
           </div>

@@ -6,7 +6,6 @@ import { FileTrigger, isFileDropItem } from 'react-aria-components';
 import { Button } from '../src/button';
 import { Text } from '../src/text';
 import { AccessibleIcon } from '../src/accessible-icon';
-import { Image } from 'lucide-react';
 
 const meta: Meta<typeof DropZone> = {
   title: 'Dropzone',
@@ -60,7 +59,18 @@ export const BasicExample = () => {
         <div className="flex flex-1 flex-col gap-2 py-6">
           <div className="flex flex-1 justify-center">
             <AccessibleIcon>
-              <Image />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="1em"
+                height="1em"
+                viewBox="0 0 20 20"
+                className="size-10 text-muted/50"
+              >
+                <path
+                  fill="currentColor"
+                  d="M18 3H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1m-4.75 3.5a1.25 1.25 0 1 1 0 2.5a1.25 1.25 0 0 1 0-2.5M4 14l3.314-7.619l3.769 6.102l3.231-1.605L16 14z"
+                ></path>
+              </svg>
             </AccessibleIcon>
           </div>
           <div className="flex flex-1">

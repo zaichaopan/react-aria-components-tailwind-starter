@@ -70,7 +70,7 @@ export interface RadioProps extends RACRadioProps {
 
 export interface CustomRenderRadioProps
   extends Omit<RACRadioProps, 'children'> {
-  render: (props: RadioRenderProps) => React.ReactNode;
+  render: React.ReactElement | ((props: RadioRenderProps) => React.ReactNode);
   children?: never;
 }
 
@@ -81,16 +81,19 @@ export function Radio({
   const descriptionContext = React.useContext(DescriptionContext);
 
   if (props.render) {
+    const { render, ...restProps } = props;
+
     return (
       <RACRadio
-        {...props}
+        {...restProps}
         aria-describedby={descriptionContext?.['aria-describedby']}
         className={composeTailwindRenderProps(className, [
+          'group',
           'text-base/6 sm:text-sm/6',
           'disabled:opacity-50',
         ])}
       >
-        {props.render}
+        {render}
       </RACRadio>
     );
   }
@@ -103,7 +106,7 @@ export function Radio({
       aria-describedby={descriptionContext?.['aria-describedby']}
       data-position={labelPosition}
       className={composeTailwindRenderProps(className, [
-        'group flex items-center gap-x-3',
+        'group flex items-center',
         'group-aria-[orientation=horizontal]:text-nowrap',
         'data-[position=left]:flex-row-reverse',
         'data-[position=left]:justify-between',
@@ -118,6 +121,7 @@ export function Radio({
               slot="radio"
               className={twMerge(
                 'grid size-[1.0625rem] shrink-0 place-content-center rounded-full shadow-sm',
+                labelPosition === 'right'? 'me-3': 'ms-3',
                 'border',
                 'border-zinc-400/75',
                 'dark:border-zinc-600',

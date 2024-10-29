@@ -133,9 +133,12 @@ export const TwoColumns = () => {
               </InputGroup>
             </TextField>
 
-            <TextField className="col-span-full">
+            <TextField
+              className="col-span-full"
+              defaultValue="I own a computer."
+            >
               <Label>Bio</Label>
-              <TextArea rows={5} defaultValue="I own a computer."></TextArea>
+              <TextArea rows={5}></TextArea>
 
               <Description>
                 You can <Strong>@mention</Strong> other users and organizations

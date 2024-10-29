@@ -31,7 +31,7 @@ export function RangeCalendar<T extends DateValue>({
               date={date}
               className={[
                 'group size-9 cursor-default text-sm outline-none',
-                'selected:bg-accent/[0.085] dark:selected:bg-accent/40',
+                'selected:bg-zinc-100 dark:selected:bg-zinc-700',
                 'invalid:selected:bg-destructive/15 dark:invalid:selected:bg-destructive/30',
                 'selection-start:rounded-s-lg',
                 'selection-end:rounded-e-lg',
@@ -48,8 +48,9 @@ export function RangeCalendar<T extends DateValue>({
                     'group-pressed:bg-accent/90',
 
                     // selected
-                    'group-selected:group-hover:bg-accent/15',
-                    'group-selected:dark:group-hover:bg-accent/50',
+                    'group-selected:group-hover:bg-accent',
+                    'group-selected:group-hover:text-white',
+                    'group-selected:dark:group-hover:bg-accent',
                     'group-selected:group-pressed:bg-accent',
                     'group-selected:group-pressed:text-white',
 

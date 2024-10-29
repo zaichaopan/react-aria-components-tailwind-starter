@@ -45,7 +45,7 @@ export function DateRangePickerInput() {
         data-ui="control"
         className={twMerge(
           '[&:has([aria-valuetext=Empty]:) w-full',
-          'grid grid-cols-[1fr_16px_1fr_40px] items-center sm:grid-cols-[1fr_16px_1fr_36px]',
+          'grid grid-cols-[max-content_16px_max-content_1fr] items-center',
           'group relative rounded-lg border bg-inherit shadow-sm',
           'group-invalid:border-destructive',
           '[&:has(_input[data-disabled=true])]:border-border/50',
@@ -71,14 +71,14 @@ export function DateRangePickerInput() {
           variant="plain"
           isIconOnly
           size="sm"
-          className="place-self-center focus-visible:-outline-offset-1"
+          className="justify-self-end focus-visible:-outline-offset-1 me-1"
         >
           <CalendarIcon />
         </Button>
       </Group>
       <Popover
         className={[
-          'max-w-none rounded-xl',
+          'max-w-none',
           'dark:bg-zinc-800',
           'dark:ring-zinc-700',
         ].join(' ')}
@@ -148,7 +148,7 @@ export function DateRangePickerButton({
       </Group>
       <Popover
         className={[
-          'max-w-none rounded-xl',
+          'max-w-none',
           'dark:bg-zinc-800',
           'dark:ring-zinc-700 ',
         ].join(' ')}

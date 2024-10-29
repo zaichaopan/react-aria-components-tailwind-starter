@@ -2,7 +2,8 @@ import React from 'react';
 import { Button, ButtonWithoutAsChildProps } from './button';
 import { useCopyToClipboard } from './hooks/use-clipboard';
 import { TooltipTrigger, Tooltip } from './tooltip';
-import { CopyIcon } from './icons';
+import { CheckIcon, CopyIcon } from './icons';
+import { twMerge } from 'tailwind-merge';
 
 export type ClipboardProps = {
   timeout?: number;
@@ -21,6 +22,7 @@ export function CopyButton({
   copyText,
   label = 'Copy',
   labelCopied = 'Copied to clipboard',
+  icon,
   variant = 'plain',
   children,
   ...props
@@ -28,10 +30,10 @@ export function CopyButton({
   copyText: string;
   label?: string;
   labelCopied?: string;
+  icon?: JSX.Element;
 } & ButtonWithoutAsChildProps) {
   const [showTooltip, setShowTooltip] = React.useState(false);
 
-  console.log('children', children)
   return (
     <Clipboard>
       {({ copied, copy }) => {
@@ -50,7 +52,38 @@ export function CopyButton({
                 setShowTooltip(false);
               }}
             >
-              {children ?? <CopyIcon />}
+              {children ?? (
+                <>
+                  {icon ? (
+                    React.cloneElement(icon, {
+                      className: twMerge(
+                        'transition-all',
+                        copied
+                          ? 'absolute scale-0 opacity-0'
+                          : 'scale-100 opacity-100',
+                      ),
+                    })
+                  ) : (
+                    <CopyIcon
+                      className={twMerge(
+                        'transition-all',
+                        copied
+                          ? 'absolute scale-0 opacity-0'
+                          : 'scale-100 opacity-100',
+                      )}
+                    />
+                  )}
+
+                  <CheckIcon
+                    className={twMerge(
+                      'text-success transition-all',
+                      copied
+                        ? 'scale-100 opacity-100'
+                        : 'absolute  scale-0 opacity-0',
+                    )}
+                  ></CheckIcon>
+                </>
+              )}
             </Button>
             <Tooltip>{copied ? labelCopied : label}</Tooltip>
           </TooltipTrigger>

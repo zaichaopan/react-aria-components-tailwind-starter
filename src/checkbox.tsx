@@ -74,22 +74,48 @@ export function CheckboxField({
 
 interface CheckboxProps extends RACCheckboxProps {
   labelPosition?: 'left' | 'right';
+  render?: never;
+}
+
+export interface CustomRenderCheckboxProps
+  extends Omit<RACCheckboxProps, 'children'> {
+  render: React.ReactElement | ((props: CheckboxProps) => React.ReactNode);
+  children?: never;
 }
 
 export function Checkbox({
-  labelPosition = 'right',
-  children,
+  className,
   ...props
-}: CheckboxProps) {
+}: CheckboxProps | CustomRenderCheckboxProps) {
   const descriptionContext = React.useContext(DescriptionContext);
+
+  if (props.render) {
+    const { render, ...restProps } = props;
+
+    return (
+      <RACCheckbox
+        {...restProps}
+        aria-describedby={descriptionContext?.['aria-describedby']}
+        className={composeTailwindRenderProps(className, [
+          'group',
+          'text-base/6 sm:text-sm/6',
+          'disabled:opacity-50',
+        ])}
+      >
+        {render}
+      </RACCheckbox>
+    );
+  }
+
+  const { labelPosition = 'right', ...restProps } = props;
 
   return (
     <RACCheckbox
-      {...props}
+      {...restProps}
       aria-describedby={descriptionContext?.['aria-describedby']}
       data-position={labelPosition}
-      className={composeTailwindRenderProps(props.className, [
-        'group flex items-center gap-x-3',
+      className={composeTailwindRenderProps(className, [
+        'group flex items-center',
         'group-data-[orientation=horizontal]:text-nowrap',
         'data-[position=left]:flex-row-reverse',
         'data-[position=left]:justify-between',
@@ -103,6 +129,7 @@ export function Checkbox({
             <div
               className={twMerge([
                 'flex flex-shrink-0 items-center justify-center',
+                labelPosition === 'right' ? 'me-3' : 'ms-3',
                 'size-[1.125rem] rounded shadow-sm sm:size-4',
                 'border border-zinc-400/75 dark:border-[1.5px] dark:border-zinc-600',
 
@@ -132,7 +159,9 @@ export function Checkbox({
               ) : null}
             </div>
 
-            {typeof children === 'function' ? children(renderProps) : children}
+            {typeof props.children === 'function'
+              ? props.children(renderProps)
+              : props.children}
           </>
         );
       }}

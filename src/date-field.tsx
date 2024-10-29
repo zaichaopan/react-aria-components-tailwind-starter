@@ -58,6 +58,7 @@ export function DateInput(props: DateInputProps) {
     >
       {(segment) => (
         <DateSegment
+          data-ui="date-segment"
           segment={segment}
           className={twMerge(
             'inline rounded px-0.5 caret-transparent outline-0 type-literal:px-0',
