@@ -3,12 +3,6 @@
   border-radius: 8px !important;
 }
 
-.sbdocs-preview > .docs-story > div:first-child {
-  padding-top: 48px !important;
-  padding-bottom: 48px !important
-}
-
-
 /* Update font family */
 .sbdocs-content > h1.sbdocs-title,
 .sbdocs-content > h1.sbdocs-title + p:first-of-type,
@@ -55,8 +49,7 @@ h3[id^='basic'] + div.sbdocs-preview {
   max-width: 100%;
 }
 
-
 .sb-anchor > h3[class^='css'] + p {
-  margin-top: 24px!important;
-  margin-bottom: 24px!important;
+  margin-top: 24px !important;
+  margin-bottom: 24px !important;
 }

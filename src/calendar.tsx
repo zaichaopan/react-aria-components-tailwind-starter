@@ -36,7 +36,7 @@ export function Calendar<T extends DateValue>({
       <CalendarHeader />
       <CalendarGrid
         weekdayStyle="short"
-        className="mx-3 border-separate border-spacing-y-1 sm:mx-2"
+        className="mx-3 border-separate border-spacing-y-0.5 sm:mx-2"
       >
         <CalendarGridHeader />
         <CalendarGridBody>

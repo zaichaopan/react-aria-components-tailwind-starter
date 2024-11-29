@@ -39,7 +39,7 @@ export function Tabs({
         orientation={orientation}
         className={composeTailwindRenderProps(props.className, [
           'group flex',
-          orientation === 'horizontal' ? 'flex-col' : 'flex-row',
+          orientation === 'horizontal' ? 'flex-col' : 'flex-col sm:flex-row',
         ])}
       />
     </TabsContext.Provider>
@@ -49,7 +49,7 @@ export function Tabs({
 const tabList = {
   base: {
     horizontal: ['whitespace-nowrap'],
-    vertical: ['flex-col'],
+    vertical: ['flex-col flex-1 sm:flex-initial'],
   },
   underline: {
     horizontal: ['w-full space-x-4 border-b'],
@@ -98,7 +98,7 @@ const tabPanel = {
   },
   pills: {
     horizontal: ['px-5 py-4'],
-    vertical: ['pl-8'],
+    vertical: ['p-4 sm:pl-8 sm:py-0'],
   },
   segment: {
     horizontal: ['px-3 py-4'],
@@ -145,8 +145,7 @@ const tab = {
       'px-3',
       'py-2',
       'rounded-lg',
-      'selected:bg-accent',
-      'selected:text-white',
+      'selected:bg-zinc-100 dark:selected:bg-zinc-600/45',
     ],
     horizontal: [],
     vertical: [],

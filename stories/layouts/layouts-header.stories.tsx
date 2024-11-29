@@ -1,7 +1,6 @@
 import { docs } from '../../.storybook/docs.ts';
 import { Button } from '../../src/button.tsx';
 import { Strong } from '../../src/text.tsx';
-import { Separator } from '../../src/separator.tsx';
 import { Icon } from '../../src/accessible-icon.tsx';
 import {
   Menu,
@@ -14,12 +13,15 @@ import {
 } from '../../src/menu.tsx';
 import { Avatar } from '../../src/avatar.tsx';
 import {
-  ChevronDownIcon,
+  ActivityIcon,
+  BookIcon,
   Lightbulb,
   LogOut,
   SearchIcon,
   Settings,
+  Settings2Icon,
   ShieldCheck,
+  TicketsPlaneIcon,
   UserCircle,
 } from 'lucide-react';
 import { Modal } from '../../src/modal.tsx';
@@ -33,7 +35,7 @@ import {
 import { Link } from '../../src/link.tsx';
 import { Kbd } from '../../src/kbd.tsx';
 import { NotificationBadge } from '../../src/notification-badge.tsx';
-import { Disclosure, DisclosureControl } from '../../src/disclosure.tsx';
+import { Tab, TabList, TabPanel, Tabs } from '../../src/tabs.tsx';
 
 const meta = {
   title: 'Layouts/Header',
@@ -53,29 +55,40 @@ export default meta;
 
 export const Header = () => {
   return (
-    <div className="bg-zinc-10 flex min-h-screen w-full flex-col bg-zinc-100 dark:bg-background">
+    <div className="flex min-h-screen w-full flex-col">
       <header className="flex h-14 items-center px-2 md:px-6 lg:px-8">
         <HamburgerMenu />
 
         <div className="mx-auto flex w-full max-w-7xl">
           <div className="flex hidden space-x-4 lg:flex">
             <div className="mr-3 flex items-center gap-2">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="1em"
-                height="1em"
-                viewBox="0 0 32 32"
-                className="size-6"
-              >
-                <path
-                  fill="currentColor"
-                  d="M16 32C7.163 32 0 24.837 0 16S7.163 0 16 0s16 7.163 16 16s-7.163 16-16 16M13.77 6.5a.87.87 0 0 0-.759.444L6.105 19.263a.87.87 0 0 0 0 .85l2.21 3.942a.87.87 0 0 0 .758.445h13.854a.87.87 0 0 0 .759-.445l2.209-3.942a.87.87 0 0 0 0-.85L18.989 6.944a.87.87 0 0 0-.759-.444zM16 11.401l4.653 8.287h-9.306z"
-                ></path>
-              </svg>
-              <Strong>Acme.Co</Strong>
+              <Icon>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="1em"
+                  height="1em"
+                  viewBox="0 0 24 24"
+                  className="size-8 text-accent"
+                >
+                  <rect width="24" height="24" fill="none" />
+                  <path
+                    fill="currentColor"
+                    d="M21 2H9a1 1 0 0 0-1 .999V7h8a1 1 0 0 1 1 .999V16h4a1 1 0 0 0 1-.999V3a1 1 0 0 0-.999-1z"
+                    opacity="0.25"
+                  />
+                  <path
+                    fill="currentColor"
+                    d="M3 12h8a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-8a1 1 0 0 1 1-1"
+                  />
+                  <path
+                    fill="currentColor"
+                    d="M16 7H6a1 1 0 0 0-1 .999V12h6a1 1 0 0 1 1 .999V19h4a1 1 0 0 0 1-.999V8a1 1 0 0 0-.999-1z"
+                    opacity="0.5"
+                  />
+                </svg>
+              </Icon>
+              <Strong>Company</Strong>
             </div>
-
-            <Separator orientation="vertical" className="my-2" />
 
             <nav className="flex">
               <ul className="flex flex-1 gap-4">
@@ -83,46 +96,40 @@ export const Header = () => {
                   <Link
                     href="/"
                     className={[
-                      'p-2 font-semibold hover:bg-zinc-200 hover:no-underline dark:hover:bg-zinc-800',
+                      'p-2 hover:bg-zinc-100 hover:no-underline dark:hover:bg-zinc-800',
                       'before:absolute',
-                      'before:left-[8px]',
+                      'before:left-0',
                       'before:-bottom-2',
                       "before:content-['']",
-                      'before:w-[calc(100%-16px)]',
+                      'before:w-full',
                       'before:border-b-2',
                       'before:border-accent',
+                      'font-medium',
                     ].join(' ')}
                   >
                     Home
                   </Link>
                 </li>
                 <li className="flex">
-                  <MenuTrigger>
-                    <MenuButton className="px-2 sm:py-2" variant="plain">
-                      Projects
-                    </MenuButton>
-                    <MenuPopover offset={4}>
-                      <Menu>
-                        <MenuItem href="#">Project 1</MenuItem>
-                        <MenuItem href="#">Project 2</MenuItem>
-                        <MenuItem href="#">Project 3</MenuItem>
-                        <MenuItem href="#">Project 4</MenuItem>
-                      </Menu>
-                    </MenuPopover>
-                  </MenuTrigger>
+                  <Link
+                    href="/"
+                    className="p-2 font-medium text-muted hover:bg-zinc-100 hover:text-foreground hover:no-underline dark:hover:bg-zinc-800"
+                  >
+                    Projects
+                  </Link>
                 </li>
                 <li className="flex">
                   <Link
-                    href="/orders"
-                    className="p-2 font-semibold hover:bg-zinc-200 hover:no-underline dark:hover:bg-zinc-800"
+                    href="/"
+                    className="p-2 font-medium text-muted hover:bg-zinc-100 hover:text-foreground hover:no-underline dark:hover:bg-zinc-800"
                   >
                     Integrations
                   </Link>
                 </li>
                 <li className="flex">
                   <Link
-                    href="/broadcasts"
-                    className="p-2 font-semibold hover:bg-zinc-200 hover:no-underline dark:hover:bg-zinc-800"
+                    href="/"
+                    className="p-2 font-medium text-muted  hover:bg-zinc-100 hover:text-foreground hover:no-underline dark:hover:bg-zinc-800"
                   >
                     Apps
                   </Link>
@@ -158,17 +165,21 @@ export const Header = () => {
                 </svg>
               </Icon>
 
-              <NotificationBadge show className="right-2 top-1.5" />
+              <NotificationBadge variant="dot" className="right-2 top-1.5" />
             </Button>
             <MenuTrigger>
-              <MenuButton variant="plain">
+              <MenuButton variant="plain" noIndicator>
                 <Avatar
                   className="size-8"
-                  src="https://images.unsplash.com/photo-1601412436009-d964bd02edbc?q=80&auto=format&fit=facearea&facepad=3&w=256&h=256"
-                  alt="Jessica Campbell"
+                  src="https://i.imgur.com/xIe7Wlb.png"
+                  alt="Marissa Whitaker"
                 />
               </MenuButton>
-              <MenuPopover placement="bottom end" className="min-w-64" offset={4}>
+              <MenuPopover
+                placement="bottom end"
+                className="min-w-64"
+                offset={4}
+              >
                 <Menu>
                   <MenuItem>
                     <Icon>
@@ -208,8 +219,66 @@ export const Header = () => {
           </div>
         </div>
       </header>
-      <main className="flex-1 border-t border-border/65 bg-background p-6 dark:bg-zinc-900 lg:p-8">
-        <div className="mx-auto max-w-7xl"></div>
+      <main className="flex-1 border-t border-border/60 bg-background p-6 dark:bg-zinc-900 lg:p-8">
+        <div className="mx-auto max-w-7xl">
+          <div>
+            <Tabs orientation="vertical" variant="pills">
+              <TabList aria-label="Home Navigation">
+                <Tab id="Overview" className="min-w-48">
+                  <Icon>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-miterlimit="10"
+                        stroke-width="1.5"
+                        d="M10 21v-9m-7 0h18M5.4 3h13.2A2.4 2.4 0 0 1 21 5.4v13.2a2.4 2.4 0 0 1-2.4 2.4H5.4A2.4 2.4 0 0 1 3 18.6V5.4A2.4 2.4 0 0 1 5.4 3"
+                      />
+                    </svg>
+                  </Icon>
+                  Dashboard
+                </Tab>
+                <Tab id="Activity" className="min-w-48">
+                  <Icon>
+                    <ActivityIcon />
+                  </Icon>
+                  Activity
+                </Tab>
+                <Tab id="Settings" className="min-w-48">
+                  <Icon>
+                    <Settings2Icon />
+                  </Icon>
+                  Settings
+                </Tab>
+                <Tab id="Documents" className="min-w-48">
+                  <Icon>
+                    <BookIcon />
+                  </Icon>
+                  Documents
+                </Tab>
+                <Tab id="Reports" className="min-w-48">
+                  <Icon>
+                    <TicketsPlaneIcon />
+                  </Icon>
+                  Reports
+                </Tab>
+              </TabList>
+
+              <TabPanel id="Overview"></TabPanel>
+              <TabPanel id="Activity"></TabPanel>
+              <TabPanel id="Settings"></TabPanel>
+              <TabPanel id="Documents"></TabPanel>
+              <TabPanel id="Reports"></TabPanel>
+            </Tabs>
+          </div>
+        </div>
       </main>
     </div>
   );
@@ -241,93 +310,80 @@ function HamburgerMenu() {
         <Dialog>
           <DialogHeader>
             <div className="flex items-center gap-2.5">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="1em"
-                height="1em"
-                viewBox="0 0 32 32"
-                className="size-6"
-              >
-                <path
-                  fill="currentColor"
-                  d="M16 32C7.163 32 0 24.837 0 16S7.163 0 16 0s16 7.163 16 16s-7.163 16-16 16M13.77 6.5a.87.87 0 0 0-.759.444L6.105 19.263a.87.87 0 0 0 0 .85l2.21 3.942a.87.87 0 0 0 .758.445h13.854a.87.87 0 0 0 .759-.445l2.209-3.942a.87.87 0 0 0 0-.85L18.989 6.944a.87.87 0 0 0-.759-.444zM16 11.401l4.653 8.287h-9.306z"
-                ></path>
-              </svg>
-              <Strong>ACME.Co</Strong>
+              <Icon>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="1em"
+                  height="1em"
+                  viewBox="0 0 24 24"
+                  className="size-8 text-accent"
+                >
+                  <rect width="24" height="24" fill="none" />
+                  <path
+                    fill="currentColor"
+                    d="M21 2H9a1 1 0 0 0-1 .999V7h8a1 1 0 0 1 1 .999V16h4a1 1 0 0 0 1-.999V3a1 1 0 0 0-.999-1z"
+                    opacity="0.25"
+                  />
+                  <path
+                    fill="currentColor"
+                    d="M3 12h8a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-8a1 1 0 0 1 1-1"
+                  />
+                  <path
+                    fill="currentColor"
+                    d="M16 7H6a1 1 0 0 0-1 .999V12h6a1 1 0 0 1 1 .999V19h4a1 1 0 0 0 1-.999V8a1 1 0 0 0-.999-1z"
+                    opacity="0.5"
+                  />
+                </svg>
+              </Icon>
+              <Strong>Company</Strong>
             </div>
           </DialogHeader>
           <DialogCloseButton />
 
           <DialogBody className="px-0">
-            <nav>
-              <ul className="grid gap-y-0.5 p-4">
+            <nav className="flex flex-1 flex-col">
+              <ul className="grid gap-y-0.5 p-4 px-1.5">
                 <li>
                   <Link
                     href="/"
-                    className="w-full p-2 font-medium text-muted hover:text-foreground hover:no-underline"
+                    className={[
+                      'w-full gap-x-2.5 p-2 font-medium text-foreground hover:no-underline sm:text-sm/5',
+                      'before:absolute',
+                      'before:-left-1.5',
+                      "before:content-['']",
+                      'before:h-[calc(100%-0.5rem)]',
+                      'before:border-l-2',
+                      'before:border-accent',
+                      'focus-visible:outline-offset-0',
+                      'font-medium',
+                    ].join(' ')}
                   >
                     Home
                   </Link>
                 </li>
 
-                <li className="grid ">
-                  <Disclosure>
-                    <DisclosureControl className="flex-1 items-center p-2 text-sm/6 text-muted group-open:mb-0 group-open:text-foreground ">
-                      Projects
-                      <Icon>
-                        <ChevronDownIcon className="ml-auto size-4 transition-all  group-open:rotate-180" />
-                      </Icon>
-                    </DisclosureControl>
-
-                    <ul className="ml-2.5 grid border-l border-l-border/50">
-                      <li>
-                        <Link
-                          href="/"
-                          className="w-full py-2 pl-4 font-medium text-muted hover:text-foreground hover:no-underline"
-                        >
-                          Project 1
-                        </Link>
-                      </li>
-                      <li>
-                        <Link
-                          href="/"
-                          className="w-full py-2 pl-4 font-medium text-muted hover:text-foreground hover:no-underline"
-                        >
-                          Project 2
-                        </Link>
-                      </li>
-                      <li>
-                        <Link
-                          href="/"
-                          className="w-full py-2 pl-4 font-medium text-muted hover:text-foreground hover:no-underline"
-                        >
-                          Project 3
-                        </Link>
-                      </li>
-                      <li>
-                        <Link
-                          href="/"
-                          className="w-full py-2 pl-4 font-medium text-muted hover:text-foreground hover:no-underline"
-                        >
-                          Project 4
-                        </Link>
-                      </li>
-                    </ul>
-                  </Disclosure>
-                </li>
                 <li>
                   <Link
                     href="/"
-                    className="w-full flex-1 p-2 font-medium text-muted hover:text-foreground hover:no-underline"
+                    className="w-full gap-x-2.5 p-2 font-medium font-medium text-muted hover:text-foreground hover:no-underline sm:text-sm/5"
                   >
-                    Integrations
+                    Projects
                   </Link>
                 </li>
 
                 <li>
                   <Link
                     href="/"
-                    className="w-full p-2 font-medium text-muted hover:text-foreground hover:no-underline"
+                    className="w-full gap-x-2.5 p-2 font-medium text-muted hover:text-foreground hover:no-underline sm:text-sm/5"
+                  >
+                    Integration
+                  </Link>
+                </li>
+
+                <li>
+                  <Link
+                    href="/"
+                    className="w-full gap-x-2.5 p-2 font-medium text-muted hover:text-foreground hover:no-underline sm:text-sm/5"
                   >
                     Apps
                   </Link>

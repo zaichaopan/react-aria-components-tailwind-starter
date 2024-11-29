@@ -29,7 +29,7 @@ export function RangeCalendar<T extends DateValue>({
       })}
     >
       <CalendarHeader />
-      <CalendarGrid className="mx-3 sm:mx-2 [&_td]:px-0 border-spacing-y-1 border-separate" weekdayStyle="short">
+      <CalendarGrid className="mx-3 sm:mx-2 [&_td]:px-0 border-spacing-y-0.5 border-separate" weekdayStyle="short">
         <CalendarGridHeader />
         <CalendarGridBody className="">
           {(date) => (

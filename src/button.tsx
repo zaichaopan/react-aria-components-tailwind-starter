@@ -145,7 +145,7 @@ function buttonStyle({
     !isIconOnly && [
       variant === 'solid' &&
         '[&:not(:hover)_svg[data-ui=icon]:not([class*=text-])]:text-zinc-300',
-      variant === 'outline' &&
+      (variant === 'outline' || variant == 'plain') &&
         '[&:not(:hover)_svg[data-ui=icon]:not([class*=text-])]:text-muted',
     ],
   ];

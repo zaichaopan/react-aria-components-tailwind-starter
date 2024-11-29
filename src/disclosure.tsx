@@ -13,7 +13,7 @@ export function DisclosureControl(props: ButtonProps) {
       {...props}
       slot="trigger"
       className={composeTailwindRenderProps(props.className, [
-        'group flex items-center gap-x-1 rounded-md outline-none',
+        'group flex items-center gap-x-1 rounded outline-none',
         focusVisibleOutline,
       ])}
     />
