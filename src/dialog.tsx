@@ -84,7 +84,7 @@ export function DialogBody({
   className,
   children,
   ...props
-}: JSX.IntrinsicElements['div']) {
+}: React.JSX.IntrinsicElements['div']) {
   return (
     <div
       {...props}
@@ -103,7 +103,7 @@ export function DialogBody({
 export function DialogFooter({
   className,
   ...props
-}: JSX.IntrinsicElements['div']) {
+}: React.JSX.IntrinsicElements['div']) {
   const footerRef = React.useRef<HTMLDivElement>(null);
 
   React.useEffect(() => {

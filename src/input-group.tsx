@@ -168,7 +168,7 @@ export function InputAddon({ className, ...props }: TextProps) {
 export function InputSeparator({
   className,
   ...props
-}: JSX.IntrinsicElements['div']) {
+}: React.JSX.IntrinsicElements['div']) {
   return (
     <div
       {...props}

@@ -235,7 +235,7 @@ export function SelectListItem({
 export function SelectListItemLabel({
   className,
   ...props
-}: JSX.IntrinsicElements['span']) {
+}: React.JSX.IntrinsicElements['span']) {
   return (
     <span
       {...props}
@@ -249,7 +249,7 @@ export function SelectListItemLabel({
 export function SelectListItemDescription({
   className,
   ...props
-}: JSX.IntrinsicElements['span']) {
+}: React.JSX.IntrinsicElements['span']) {
   return (
     <Small
       {...props}

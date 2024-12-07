@@ -212,7 +212,7 @@ export function MenuItem({ destructive, ...props }: MenuItemProps) {
 export function MenuItemLabel({
   className,
   ...props
-}: JSX.IntrinsicElements['span']) {
+}: React.JSX.IntrinsicElements['span']) {
   return (
     <span
       slot="label"
@@ -226,7 +226,7 @@ export function MenuItemLabel({
 export function MenuItemDescription({
   className,
   ...props
-}: JSX.IntrinsicElements['span']) {
+}: React.JSX.IntrinsicElements['span']) {
   return (
     <Small
       slot="description"

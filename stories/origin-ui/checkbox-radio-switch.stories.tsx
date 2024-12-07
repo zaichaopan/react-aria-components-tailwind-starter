@@ -1540,7 +1540,7 @@ function SwitchPlan() {
   );
 }
 
-function MasterCardIcon(props: JSX.IntrinsicElements['svg']) {
+function MasterCardIcon(props: React.JSX.IntrinsicElements['svg']) {
   return (
     <svg
       width="32"
@@ -1566,7 +1566,7 @@ function MasterCardIcon(props: JSX.IntrinsicElements['svg']) {
   );
 }
 
-function SupaBaseIcon(props: JSX.IntrinsicElements['svg']) {
+function SupaBaseIcon(props: React.JSX.IntrinsicElements['svg']) {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" {...props}>
       <circle cx="16" cy="16" r="16" fill="#121212"></circle>
@@ -1616,7 +1616,7 @@ function SupaBaseIcon(props: JSX.IntrinsicElements['svg']) {
   );
 }
 
-function StarFillIcon(props: JSX.IntrinsicElements['svg']) {
+function StarFillIcon(props: React.JSX.IntrinsicElements['svg']) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

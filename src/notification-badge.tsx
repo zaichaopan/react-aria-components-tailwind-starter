@@ -11,7 +11,7 @@ type NumericVariantProps = {
 };
 
 export type NotificationBadgeProps = (DotVariantProps | NumericVariantProps) &
-  JSX.IntrinsicElements['span'];
+  React.JSX.IntrinsicElements['span'];
 
 export function NotificationBadge({
   className,

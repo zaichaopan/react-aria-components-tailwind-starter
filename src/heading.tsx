@@ -20,7 +20,7 @@ export type HeadingProps = {
 type CustomElement = {
   level?: never;
   elementType: 'div';
-} & JSX.IntrinsicElements['div'];
+} & React.JSX.IntrinsicElements['div'];
 
 export const Heading = React.forwardRef<
   HTMLHeadingElement | HTMLDivElement,
@@ -84,7 +84,7 @@ export const Heading = React.forwardRef<
 
 export const SubHeading = React.forwardRef<
   HTMLDivElement,
-  JSX.IntrinsicElements['div']
+  React.JSX.IntrinsicElements['div']
 >(function SubHeading({ className, ...props }, ref) {
   return (
     <div

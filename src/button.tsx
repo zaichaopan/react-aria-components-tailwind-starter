@@ -310,7 +310,7 @@ export function ButtonGroup({
   inline,
   orientation = 'horizontal',
   ...props
-}: JSX.IntrinsicElements['div'] & {
+}: React.JSX.IntrinsicElements['div'] & {
   inline?: boolean;
   orientation?: 'horizontal' | 'vertical';
 }) {

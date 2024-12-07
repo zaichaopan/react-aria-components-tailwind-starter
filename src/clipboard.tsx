@@ -30,7 +30,7 @@ export function CopyButton({
   copyValue: string;
   label?: string;
   labelAfterCopied?: string;
-  icon?: JSX.Element;
+  icon?: React.JSX.Element;
 } & ButtonWithoutAsChildProps) {
   const [showTooltip, setShowTooltip] = React.useState(false);
 

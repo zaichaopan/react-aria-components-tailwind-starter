@@ -12,7 +12,7 @@ import { LabelContext } from 'react-aria-components';
 export function NativeSelectField({
   className,
   ...props
-}: JSX.IntrinsicElements['div']) {
+}: React.JSX.IntrinsicElements['div']) {
   const labelId = React.useId();
 
   return (
@@ -36,7 +36,7 @@ export function NativeSelect({
   className,
   plain,
   ...props
-}: JSX.IntrinsicElements['select'] & {
+}: React.JSX.IntrinsicElements['select'] & {
   plain?: boolean;
 }) {
   const { focusProps } = useFocusRing();

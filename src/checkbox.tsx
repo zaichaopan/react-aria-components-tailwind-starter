@@ -37,7 +37,7 @@ export function CheckboxGroup({
 export function Checkboxes({
   className,
   ...props
-}: JSX.IntrinsicElements['div']) {
+}: React.JSX.IntrinsicElements['div']) {
   return (
     <div
       data-ui="box"
@@ -54,7 +54,7 @@ export function Checkboxes({
 export function CheckboxField({
   className,
   ...props
-}: JSX.IntrinsicElements['div']) {
+}: React.JSX.IntrinsicElements['div']) {
   return (
     <DescriptionProvider>
       <div

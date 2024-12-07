@@ -6,7 +6,7 @@ import { Heading, HeadingProps } from './heading';
 export function EmptyState({
   className,
   ...props
-}: JSX.IntrinsicElements['div']) {
+}: React.JSX.IntrinsicElements['div']) {
   return (
     <div
       {...props}
@@ -22,7 +22,7 @@ export function EmptyStateIcon({
   className,
   children,
   ...props
-}: JSX.IntrinsicElements['div']) {
+}: React.JSX.IntrinsicElements['div']) {
   return (
     <div
       {...props}
@@ -63,7 +63,7 @@ export function EmptyStateDescription({ className, ...props }: TextProps) {
 export function EmptyStateActions({
   className,
   ...props
-}: JSX.IntrinsicElements['div']) {
+}: React.JSX.IntrinsicElements['div']) {
   return (
     <div
       {...props}

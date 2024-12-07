@@ -607,7 +607,7 @@ function StatusIcon({ className }: { className: string }) {
   );
 }
 
-function Canada(props: JSX.IntrinsicElements['svg']) {
+function Canada(props: React.JSX.IntrinsicElements['svg']) {
   return (
     <svg viewBox="0 0 16 12" fill="none" {...props}>
       <g clipPath="url(#clip0_270_55097)">
@@ -634,7 +634,7 @@ function Canada(props: JSX.IntrinsicElements['svg']) {
   );
 }
 
-function US(props: JSX.IntrinsicElements['svg']) {
+function US(props: React.JSX.IntrinsicElements['svg']) {
   return (
     <svg viewBox="0 0 16 12" fill="none" {...props}>
       <g clipPath="url(#clip0_270_55071)">
@@ -668,7 +668,7 @@ function US(props: JSX.IntrinsicElements['svg']) {
   );
 }
 
-function Mexico(props: JSX.IntrinsicElements['svg']) {
+function Mexico(props: React.JSX.IntrinsicElements['svg']) {
   return (
     <svg viewBox="0 0 16 12" fill="none" {...props}>
       <g clipPath="url(#clip0_270_55118)">

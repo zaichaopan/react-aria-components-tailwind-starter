@@ -366,7 +366,7 @@ function MainNavigation() {
                         />
                       </svg>
                     </Icon>
-                    Projects Analyze
+                    Projects
                   </NavLink>
                 </li>
                 <li>

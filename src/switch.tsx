@@ -28,7 +28,7 @@ export function SwitchGroup({ className, ...props }: GroupProps) {
 export function Switches({
   className,
   ...props
-}: JSX.IntrinsicElements['div']) {
+}: React.JSX.IntrinsicElements['div']) {
   return (
     <div
       data-ui="box"
@@ -46,7 +46,7 @@ export function Switches({
 export function SwitchField({
   className,
   ...props
-}: JSX.IntrinsicElements['div']) {
+}: React.JSX.IntrinsicElements['div']) {
   return (
     <DescriptionProvider>
       <div

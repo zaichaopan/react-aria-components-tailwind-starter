@@ -23,7 +23,7 @@ export function RadioGroup({ ...props }: RACRadioGroupProps) {
   );
 }
 
-export function Radios({ className, ...props }: JSX.IntrinsicElements['div']) {
+export function Radios({ className, ...props }: React.JSX.IntrinsicElements['div']) {
   return (
     <div
       data-ui="box"
@@ -44,7 +44,7 @@ export function Radios({ className, ...props }: JSX.IntrinsicElements['div']) {
 export function RadioField({
   className,
   ...props
-}: JSX.IntrinsicElements['div']) {
+}: React.JSX.IntrinsicElements['div']) {
   return (
     <DescriptionProvider>
       <div

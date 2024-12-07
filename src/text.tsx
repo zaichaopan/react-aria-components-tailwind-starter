@@ -26,7 +26,7 @@ export function Text({
 export function Strong({
   className,
   ...props
-}: JSX.IntrinsicElements['strong']) {
+}: React.JSX.IntrinsicElements['strong']) {
   return (
     <Text
       {...props}
@@ -36,7 +36,7 @@ export function Strong({
   );
 }
 
-export function Small({ className, ...props }: JSX.IntrinsicElements['small']) {
+export function Small({ className, ...props }: React.JSX.IntrinsicElements['small']) {
   return (
     <Text
       {...props}
