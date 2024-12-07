@@ -5,7 +5,7 @@ import {
 import { twMerge } from 'tailwind-merge';
 import React from 'react';
 import { Heading, HeadingProps } from './heading';
-import { Button, ButtonWithoutAsChildProps } from './button';
+import { Button, ButtonProps } from './button';
 import { composeTailwindRenderProps } from './utils';
 import { Text } from './text';
 import { XIcon } from './icons';
@@ -63,14 +63,14 @@ export function DialogHeader({ className, ...props }: DialogHeaderProps) {
       {...props}
       data-ui="dialog-header"
       ref={headerRef}
-      className={twMerge('px-6 pb-2 pt-6', className)}
+      className={twMerge('pb-2 pe-10 ps-6 pt-6', className)}
     />
   ) : (
     <div
       ref={headerRef}
       data-ui="dialog-header"
       className={twMerge(
-        'relative flex w-full items-center px-6 pb-2 pt-6',
+        'relative flex w-full flex-col pb-2 pe-10 ps-6 pt-6',
         className,
       )}
       {...props}
@@ -84,7 +84,7 @@ export function DialogBody({
   className,
   children,
   ...props
-}: JSX.IntrinsicElements['div']) {
+}: React.JSX.IntrinsicElements['div']) {
   return (
     <div
       {...props}
@@ -103,7 +103,7 @@ export function DialogBody({
 export function DialogFooter({
   className,
   ...props
-}: JSX.IntrinsicElements['div']) {
+}: React.JSX.IntrinsicElements['div']) {
   const footerRef = React.useRef<HTMLDivElement>(null);
 
   React.useEffect(() => {
@@ -144,7 +144,7 @@ export function DialogFooter({
 export function DialogCloseButton({
   variant = 'plain',
   ...props
-}: ButtonWithoutAsChildProps) {
+}: ButtonProps) {
   if (props.children) {
     return <Button {...props} slot="close" variant={variant} />;
   }
@@ -165,7 +165,7 @@ export function DialogCloseButton({
       variant={variant}
       size={size}
       className={composeTailwindRenderProps(className, [
-        'absolute end-3 top-4 p-1.5 text-muted/75 hover:text-foreground',
+        'absolute end-2 top-2 p-1.5 text-muted/75 hover:text-foreground',
       ])}
     >
       <XIcon aria-label={ariaLabel ?? 'Close'} />

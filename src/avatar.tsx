@@ -11,7 +11,7 @@ export type AvatarProps = {
   src?: string;
   alt: string;
   colorless?: boolean;
-} & JSX.IntrinsicElements['div'];
+} & React.JSX.IntrinsicElements['div'];
 
 export function Avatar({
   colorless = false,
@@ -129,7 +129,7 @@ export const AvatarBadge = ({ badge, ...props }: AvatarBadgeProps) => {
 
 type AvatarGroupProps = {
   reverseOverlap?: boolean;
-} & JSX.IntrinsicElements['div'];
+} & React.JSX.IntrinsicElements['div'];
 
 export function AvatarGroup({
   reverseOverlap = false,

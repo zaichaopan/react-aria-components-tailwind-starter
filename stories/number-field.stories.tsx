@@ -72,7 +72,7 @@ export const NumberFieldWithWithReadonlyState = () => {
 
 export const NumberFieldWithValidation = () => {
   return (
-    <Form>
+    <Form className='space-y-4'>
       <NumberField maxValue={7} isRequired>
         <Label>Viewer(s)</Label>
         <Description>Maximum of 7</Description>

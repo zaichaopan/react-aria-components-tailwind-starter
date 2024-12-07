@@ -1,7 +1,7 @@
 import { Keyboard as RACKeyboard } from 'react-aria-components';
 import { twMerge } from 'tailwind-merge';
 
-export type KeyboardProps = Omit<JSX.IntrinsicElements['div'], 'children'> & {
+export type KeyboardProps = Omit<React.JSX.IntrinsicElements['div'], 'children'> & {
   children: string;
 };
 

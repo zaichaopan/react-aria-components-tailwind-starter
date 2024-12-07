@@ -46,7 +46,7 @@ export function DateRangePickerInput() {
         className={twMerge(
           '[&:has([aria-valuetext=Empty]:) w-full',
           'grid grid-cols-[max-content_16px_max-content_1fr] items-center',
-          'group relative rounded-lg border bg-inherit shadow-sm',
+          'group relative rounded-md border bg-inherit shadow-sm',
           'group-invalid:border-destructive',
           '[&:has(_input[data-disabled=true])]:border-border/50',
           '[&:has([data-ui=date-segment][aria-readonly])]:bg-zinc-50',

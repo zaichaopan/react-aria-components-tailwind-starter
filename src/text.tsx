@@ -15,7 +15,7 @@ export function Text({
     {
       ...props,
       className: twMerge(
-        'text-pretty text-base/6 text-muted sm:text-sm/6',
+        'text-pretty text-base text-muted sm:text-sm/6',
         className,
       ),
     },
@@ -26,7 +26,7 @@ export function Text({
 export function Strong({
   className,
   ...props
-}: JSX.IntrinsicElements['strong']) {
+}: React.JSX.IntrinsicElements['strong']) {
   return (
     <Text
       {...props}
@@ -36,7 +36,10 @@ export function Strong({
   );
 }
 
-export function Small({ className, ...props }: JSX.IntrinsicElements['small']) {
+export function Small({
+  className,
+  ...props
+}: React.JSX.IntrinsicElements['small']) {
   return (
     <Text
       {...props}
@@ -50,7 +53,10 @@ export function TextLink(props: LinkProps) {
   return (
     <Link
       {...props}
-      className={composeTailwindRenderProps(props.className, 'underline underline-offset-4')}
+      className={composeTailwindRenderProps(
+        props.className,
+        'underline underline-offset-4',
+      )}
     />
   );
 }

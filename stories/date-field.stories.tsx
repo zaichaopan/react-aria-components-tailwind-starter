@@ -70,7 +70,7 @@ export const DateFieldWithReadonlyState = () => {
 };
 
 export const DateFieldWithValidation = () => (
-  <Form className="flex flex-col items-start gap-2">
+  <Form className="flex flex-col items-start space-y-4">
     <DateField isRequired>
       <Label>Birth date</Label>
       <Description>Please enter your birth date</Description>

@@ -10,7 +10,7 @@ import {
   ButtonProps as AriaButtonProps,
   composeRenderProps,
 } from 'react-aria-components';
-import { Button, ButtonWithoutAsChildProps } from '../button';
+import { Button, ButtonProps } from '../button';
 import { twMerge } from 'tailwind-merge';
 import { toast, ToastConfig } from './toast-queue';
 import {
@@ -131,7 +131,7 @@ function Toast({ state, ...props }: ToastProps) {
       ref={ref}
       className={twMerge(
         'relative isolate flex w-[min(85vw,360px)] space-x-1 rounded-lg shadow-sm transition',
-        'flex flex-1 rounded-lg bg-zinc-900 outline-none',
+        'flex flex-1 rounded-ld bg-zinc-900 outline-none',
         type ? 'px-2.5' : 'px-4',
         'py-2.5',
         !props.toast.content.render &&
@@ -209,7 +209,7 @@ function Toast({ state, ...props }: ToastProps) {
 export function ToastAction({
   variant = 'unstyle',
   ...props
-}: ButtonWithoutAsChildProps) {
+}: ButtonProps) {
   return (
     <Button
       {...props}

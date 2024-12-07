@@ -1,7 +1,4 @@
-import {
-  DropZoneProps,
-  DropZone as RACDropZone,
-} from 'react-aria-components';
+import { DropZoneProps, DropZone as RACDropZone } from 'react-aria-components';
 import {
   composeTailwindRenderProps,
   dropTargetOutline,
@@ -14,7 +11,7 @@ export function DropZone(props: DropZoneProps) {
       {...props}
       className={composeTailwindRenderProps(props.className, [
         'sm:min-w-96',
-        'flex flex-shrink-0 flex-col items-center justify-center rounded-xl',
+        'flex flex-shrink-0 flex-col items-center justify-center rounded-md',
         'border border-dashed p-2',
         focusVisibleOutline,
         'drop-target:border-solid',

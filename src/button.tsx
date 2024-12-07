@@ -11,6 +11,7 @@ import { composeTailwindRenderProps, focusVisibleOutline } from './utils';
 import { twMerge } from 'tailwind-merge';
 import { AsChildProps, Slot } from './slot';
 import { SpinnerIcon } from './icons';
+import { TooltipTrigger } from './tooltip';
 
 type Color = 'accent' | 'success' | 'destructive';
 
@@ -18,7 +19,7 @@ type Size = 'sm' | 'lg';
 
 type Variant = 'solid' | 'outline' | 'plain' | 'unstyle';
 
-export type BasicButtonProps = {
+export type ButtonStyleProps = {
   color?: Color;
   size?: Size;
   isCustomPending?: boolean;
@@ -27,14 +28,22 @@ export type BasicButtonProps = {
   variant?: Variant;
 };
 
-export type ButtonProps = AsChildProps<RACButtonProps> & BasicButtonProps;
+export type ButtonWithAsChildProps = AsChildProps<
+  RACButtonProps & {
+    tooltip?: React.ReactNode;
+  }
+> &
+  ButtonStyleProps;
 
-export type ButtonWithoutAsChildProps = RACButtonProps & BasicButtonProps;
+export type ButtonProps = RACButtonProps &
+  ButtonStyleProps & {
+    tooltip?: React.ReactNode;
+  };
 
 const buttonVariants = {
   base: [
     'group relative inline-flex gap-x-2 justify-center items-center',
-    'font-semibold text-base/6 sm:text-sm/6 whitespace-nowrap outline-none rounded-lg',
+    'font-semibold text-base/6 sm:text-sm/6 whitespace-nowrap outline-none rounded-md',
   ],
   solid: [
     'border border-[var(--btn-bg)] dark:border-none dark:[--border-with:0px]',
@@ -112,9 +121,9 @@ function buttonStyle({
   color,
   isIconOnly,
   variant = 'solid',
-}: BasicButtonProps) {
+}: ButtonStyleProps) {
   if (variant === 'unstyle') {
-    return 'relative outline-none rounded-lg';
+    return 'relative outline-none rounded-md';
   }
 
   const buttonSize = size ?? 'md';
@@ -161,81 +170,111 @@ function buttonStyle({
   ];
 }
 
-export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  function Button(props, ref) {
-    if (props.asChild) {
-      return (
-        <Slot className={twMerge(buttonStyle(props))}>{props.children}</Slot>
-      );
-    }
-
-    const {
-      asChild,
-      children,
-      isCustomPending,
-      pendingLabel,
-      size,
-      color,
-      variant = 'solid',
-      isIconOnly,
-      ...buttonProps
-    } = props;
-
+export const Button = React.forwardRef<
+  HTMLButtonElement,
+  ButtonWithAsChildProps
+>(function Button(props, ref) {
+  if (props.asChild) {
     return (
-      <>
-        <RACButton
+      <Slot className={twMerge(buttonStyle(props))}>{props.children}</Slot>
+    );
+  }
+
+  const {
+    asChild,
+    tooltip,
+    children,
+    isCustomPending,
+    pendingLabel,
+    size,
+    color,
+    variant = 'solid',
+    isIconOnly,
+    ...buttonProps
+  } = props;
+
+  const button = (
+    <RACButton
+      {...buttonProps}
+      ref={ref}
+      data-variant={variant}
+      className={composeTailwindRenderProps(props.className, [
+        buttonStyle({ size, color, isIconOnly, variant }),
+        focusVisibleOutline,
+        'disabled:opacity-50',
+        'data-[pending]:opacity-75',
+        !isCustomPending && 'data-[pending]:text-transparent',
+      ])}
+    >
+      {(renderProps) => {
+        return (
+          <>
+            {renderProps.isPending ? (
+              <>
+                <SpinnerIcon
+                  aria-label={pendingLabel}
+                  className={twMerge(
+                    'absolute',
+                    'text-foreground',
+                    'group-data-[variant=solid]:text-zinc-300',
+                    isCustomPending
+                      ? 'group-data-[pending]:sr-only'
+                      : 'group-data-[pending]:flex',
+                  )}
+                />
+                <span
+                  className="contents"
+                  {...(renderProps.isPending && { 'aria-hidden': true })}
+                >
+                  {typeof children === 'function'
+                    ? children(renderProps)
+                    : children}
+                </span>
+              </>
+            ) : typeof children === 'function' ? (
+              children(renderProps)
+            ) : (
+              children
+            )}
+          </>
+        );
+      }}
+    </RACButton>
+  );
+
+  if (tooltip) {
+    return (
+      <TooltipTrigger>
+        {button}
+        {tooltip}
+      </TooltipTrigger>
+    );
+  }
+
+  return button;
+});
+
+export function ToggleButton(
+  props: RACToggleButtonProps &
+    ButtonStyleProps & { tooltip?: React.ReactNode },
+) {
+  const { variant, tooltip, ...buttonProps } = props;
+
+  if (tooltip) {
+    return (
+      <TooltipTrigger>
+        <RACToggleButton
           {...buttonProps}
-          ref={ref}
           data-variant={variant}
           className={composeTailwindRenderProps(props.className, [
-            buttonStyle({ size, color, isIconOnly, variant }),
+            buttonStyle(props),
             focusVisibleOutline,
-            'disabled:opacity-50',
-            'data-[pending]:opacity-75',
-            !isCustomPending && 'data-[pending]:text-transparent',
           ])}
-        >
-          {(renderProps) => {
-            return (
-              <>
-                {renderProps.isPending ? (
-                  <>
-                    <SpinnerIcon
-                      aria-label={pendingLabel}
-                      className={twMerge(
-                        'absolute',
-                        'text-foreground',
-                        'group-data-[variant=solid]:text-zinc-300',
-                        isCustomPending
-                          ? 'group-data-[pending]:sr-only'
-                          : 'group-data-[pending]:flex',
-                      )}
-                    />
-                    <span
-                      className="contents"
-                      {...(renderProps.isPending && { 'aria-hidden': true })}
-                    >
-                      {typeof children === 'function'
-                        ? children(renderProps)
-                        : children}
-                    </span>
-                  </>
-                ) : typeof children === 'function' ? (
-                  children(renderProps)
-                ) : (
-                  children
-                )}
-              </>
-            );
-          }}
-        </RACButton>
-      </>
+        />
+        {tooltip}
+      </TooltipTrigger>
     );
-  },
-);
-
-export function ToggleButton(props: RACToggleButtonProps & BasicButtonProps) {
-  const { variant, ...buttonProps } = props;
+  }
   return (
     <RACToggleButton
       {...buttonProps}
@@ -310,7 +349,7 @@ export function ButtonGroup({
   inline,
   orientation = 'horizontal',
   ...props
-}: JSX.IntrinsicElements['div'] & {
+}: React.JSX.IntrinsicElements['div'] & {
   inline?: boolean;
   orientation?: 'horizontal' | 'vertical';
 }) {

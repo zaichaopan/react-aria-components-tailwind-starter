@@ -123,7 +123,7 @@ export const DatePickerWithReadonlyState = () => {
 };
 
 export const DatePickerWithValidation = () => (
-  <Form>
+  <Form className='space-y-4'>
     <DatePicker isRequired>
       <Label>Event date</Label>
       <Description>Please enter the event date</Description>

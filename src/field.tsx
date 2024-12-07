@@ -164,7 +164,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
         {...props}
         ref={ref}
         className={composeTailwindRenderProps(props.className, [
-          'w-full rounded-lg border bg-inherit shadow-sm outline-none',
+          'w-full rounded-md border bg-inherit shadow-sm outline-none',
           'px-3 py-[calc(theme(spacing[2.5])-1px)] sm:py-[calc(theme(spacing[1.5])-1px)]',
           'text-base/6 placeholder:text-muted sm:text-sm/6',
           'invalid:border-destructive',
@@ -183,7 +183,7 @@ export function TextArea(props: RACTextAreaProps) {
     <RACTextArea
       {...props}
       className={composeTailwindRenderProps(props.className, [
-        'w-full rounded-lg border bg-inherit px-3 py-1 outline-none',
+        'w-full rounded-md border bg-inherit px-3 py-1 outline-none',
         'text-base/6 placeholder:text-muted sm:text-sm/6 ',
         'disabled:opacity-50',
         'invalid:border-destructive',

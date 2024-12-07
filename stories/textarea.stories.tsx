@@ -88,7 +88,7 @@ export const TextareaWithReadonlyState = () => {
 
 export const TextareaWithValidation = () => {
   return (
-    <Form>
+    <Form className='space-y-3'>
       <TextField isRequired>
         <Label>Bio</Label>
         <Description>

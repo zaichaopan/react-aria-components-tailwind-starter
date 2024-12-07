@@ -1,5 +1,3 @@
-import type { Meta } from '@storybook/react';
-import { TextField } from '../../src/field.tsx';
 import { docs } from '../../.storybook/docs.ts';
 import { Button } from '../../src/button.tsx';
 import { Strong } from '../../src/text.tsx';
@@ -50,7 +48,7 @@ import { NotificationBadge } from '../../src/notification-badge.tsx';
 import { composeRenderProps, LinkProps } from 'react-aria-components';
 import { twMerge } from 'tailwind-merge';
 
-const meta: Meta<typeof TextField> = {
+const meta = {
   title: 'Layouts/Sidebar',
   parameters: {
     layout: 'fullscreen',
@@ -332,7 +330,7 @@ function MainNavigation() {
             </Icon>
             Inbox
             <NotificationBadge
-              inlined
+              inline
               variant="numeric"
               value={10}
               className="ms-auto rounded bg-accent"
@@ -366,7 +364,7 @@ function MainNavigation() {
                         />
                       </svg>
                     </Icon>
-                    Projects Analyze
+                    Projects
                   </NavLink>
                 </li>
                 <li>

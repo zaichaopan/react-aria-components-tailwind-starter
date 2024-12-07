@@ -17,7 +17,7 @@ export function GridList<T extends object>({
       {...props}
       className={composeTailwindRenderProps(
         props.className,
-        'relative overflow-auto rounded-lg border p-1',
+        'relative overflow-auto rounded-md border p-1',
       )}
     >
       {children}

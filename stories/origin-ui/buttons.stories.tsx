@@ -598,7 +598,7 @@ function ToggleButtonExample() {
   );
 }
 
-function GoogleIcon({ className, ...props }: JSX.IntrinsicElements['svg']) {
+function GoogleIcon({ className, ...props }: React.JSX.IntrinsicElements['svg']) {
   return (
     <svg
       viewBox="0 0 24 24"
@@ -614,7 +614,7 @@ function GoogleIcon({ className, ...props }: JSX.IntrinsicElements['svg']) {
   );
 }
 
-function FacebookIcon({ className, ...props }: JSX.IntrinsicElements['svg']) {
+function FacebookIcon({ className, ...props }: React.JSX.IntrinsicElements['svg']) {
   return (
     <svg
       viewBox="0 0 24 24"
@@ -630,7 +630,7 @@ function FacebookIcon({ className, ...props }: JSX.IntrinsicElements['svg']) {
   );
 }
 
-function XIcon({ className, ...props }: JSX.IntrinsicElements['svg']) {
+function XIcon({ className, ...props }: React.JSX.IntrinsicElements['svg']) {
   return (
     <svg
       viewBox="0 0 24 24"
@@ -646,7 +646,7 @@ function XIcon({ className, ...props }: JSX.IntrinsicElements['svg']) {
   );
 }
 
-function GithubIcon({ className, ...props }: JSX.IntrinsicElements['svg']) {
+function GithubIcon({ className, ...props }: React.JSX.IntrinsicElements['svg']) {
   return (
     <svg
       viewBox="0 0 24 24"

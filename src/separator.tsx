@@ -5,7 +5,7 @@ import { SeparatorProps as RACSeparatorProps } from 'react-aria-components';
 export type SeparatorProps = RACSeparatorProps & {
   children?: React.ReactNode;
   soft?: boolean;
-} & JSX.IntrinsicElements['div'];
+} & React.JSX.IntrinsicElements['div'];
 
 export function Separator({
   orientation = 'horizontal',

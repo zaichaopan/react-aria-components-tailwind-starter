@@ -16,6 +16,7 @@ import { Button } from './button';
 import { focusVisibleOutline } from './utils';
 import { twMerge } from 'tailwind-merge';
 import { ChevronLeftIcon, ChevronRightIcon } from './icons';
+import { getLocalTimeZone, isToday } from '@internationalized/date';
 
 export interface CalendarProps<T extends DateValue>
   extends Omit<RACCalendarProps<T>, 'visibleDuration'> {
@@ -40,24 +41,31 @@ export function Calendar<T extends DateValue>({
       >
         <CalendarGridHeader />
         <CalendarGridBody>
-          {(date) => (
-            <CalendarCell
-              date={date}
-              className={twMerge(
-                'flex size-9 cursor-default items-center justify-center rounded-lg  text-[0.85rem] outline-none',
-                'hover:bg-zinc-100 dark:hover:bg-zinc-700',
-                'pressed:bg-accent/90 pressed:text-white',
-                'disabled:opacity-50',
+          {(date) => {
+            return (
+              <CalendarCell
+                date={date}
+                className={twMerge(
+                  'relative flex size-9 cursor-default items-center justify-center rounded-md  text-[0.85rem] outline-none',
+                  'hover:bg-zinc-100 dark:hover:bg-zinc-700',
+                  'pressed:bg-accent/90 pressed:text-white',
+                  'disabled:opacity-50',
 
-                'selected:border selected:border-accent selected:text-sm selected:dark:border-0',
-                'selected:bg-accent selected:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.1)]',
-                'selected:text-white',
-                'selected:invalid:border-destructive selected:invalid:bg-destructive selected:invalid:text-white',
-                'unavailable:text-destructive unavailable:line-through unavailable:decoration-destructive',
-                focusVisibleOutline,
-              )}
-            />
-          )}
+                  isToday(date, getLocalTimeZone()) && [
+                    'bg-zinc-100 dark:bg-zinc-700',
+                  ],
+
+                  'selected:text-sm selected:text-white',
+                  'selected:border selected:border-accent selected:dark:border-0',
+                  'selected:bg-accent selected:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.1)]',
+                  'selected:hover:bg-accent dark:selected:hover:bg-accent',
+                  'selected:invalid:border-destructive selected:invalid:bg-destructive selected:invalid:text-white',
+                  'unavailable:text-destructive unavailable:line-through unavailable:decoration-destructive',
+                  focusVisibleOutline,
+                )}
+              />
+            );
+          }}
         </CalendarGridBody>
       </CalendarGrid>
       {errorMessage && (

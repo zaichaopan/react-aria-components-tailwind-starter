@@ -1,6 +1,6 @@
 import React from 'react';
 
-interface IconProps extends Omit<JSX.IntrinsicElements['svg'], 'ara-hidden'> {
+interface IconProps extends Omit<React.JSX.IntrinsicElements['svg'], 'ara-hidden'> {
   children: React.ReactNode;
 }
 

@@ -8,7 +8,7 @@ export function Pagination({
   className,
   'aria-label': arialLabel = 'Page navigation',
   ...props
-}: JSX.IntrinsicElements['nav']) {
+}: React.JSX.IntrinsicElements['nav']) {
   return (
     <nav
       role="navigation"
@@ -25,7 +25,7 @@ export function Pagination({
 export function PaginationList({
   className,
   ...props
-}: JSX.IntrinsicElements['div']) {
+}: React.JSX.IntrinsicElements['div']) {
   return (
     <div
       {...props}
@@ -100,7 +100,7 @@ export function PaginationPage({
 export function PaginationGap({
   className,
   ...props
-}: JSX.IntrinsicElements['span']) {
+}: React.JSX.IntrinsicElements['span']) {
   return (
     <span {...props} aria-hidden className={twMerge('h-9 px-3.5', className)}>
       &hellip;

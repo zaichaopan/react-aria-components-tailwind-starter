@@ -29,7 +29,7 @@ import { ChevronUpIcon } from './icons';
 
 export function Table(props: TableProps) {
   return (
-    <ResizableTableContainer className="relative max-h-[280px] w-[550px] scroll-pt-[2.281rem] overflow-auto rounded-lg border">
+    <ResizableTableContainer className="relative max-h-[280px] w-[550px] scroll-pt-[2.281rem] overflow-auto rounded-md border">
       <AriaTable {...props} className="border-separate border-spacing-0" />
     </ResizableTableContainer>
   );
@@ -94,7 +94,7 @@ export function TableHeader<T extends object>(props: TableHeaderProps<T>) {
     <AriaTableHeader
       {...props}
       className={composeTailwindRenderProps(props.className, [
-        'sticky top-0 z-10 rounded-t-lg  backdrop-blur-md',
+        'sticky top-0 z-10 rounded-t-md  backdrop-blur-md',
         "after:content-['']",
 
         'after:flex-1',

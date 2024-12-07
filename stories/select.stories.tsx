@@ -18,7 +18,7 @@ import { Avatar } from '../src/avatar';
 import { Description, FieldError, Label } from '../src/field';
 import { docs } from '../.storybook/docs';
 import { Icon } from '../src/accessible-icon';
-import { AlignJustifyIcon, AlignRightIcon } from 'lucide-react';
+import { AlignJustifyIcon, AlignLeftIcon, AlignRightIcon } from 'lucide-react';
 import { Text } from '../src/text';
 
 const meta: Meta = {
@@ -274,7 +274,7 @@ export const SelectItemWithIcon = () => {
         <SelectPopover>
           <SelectListBox>
             <SelectListItem id="1" textValue="Backlog">
-              {/* <StatusIcon className="bg-gray-500" /> */}
+              <StatusIcon className="bg-gray-500" />
               <SelectListItemLabel>Backlog</SelectListItemLabel>
             </SelectListItem>
             <SelectListItem id="2" textValue="In Progress">
@@ -282,10 +282,9 @@ export const SelectItemWithIcon = () => {
               <SelectListItemLabel>In Progress</SelectListItemLabel>
             </SelectListItem>
             <SelectListItem id="3" textValue="In Review">
-            In Review
-              {/* <StatusIcon className="bg-yellow-500" />
-              <SelectListItemLabel>In Review</SelectListItemLabel>*/}
-            </SelectListItem> 
+              <StatusIcon className="bg-yellow-500" />
+              <SelectListItemLabel>In Review</SelectListItemLabel>
+            </SelectListItem>
             <SelectListItem id="4" textValue="Done">
               <StatusIcon className="bg-green-500" />
               <SelectListItemLabel>Done</SelectListItemLabel>
@@ -304,9 +303,9 @@ export const SelectItemWithIcon = () => {
         <SelectPopover>
           <SelectListBox>
             <SelectListItem id="left" textValue="Left">
-              {/* <Icon>
+              <Icon>
                 <AlignLeftIcon />
-              </Icon> */}
+              </Icon>
               <SelectListItemLabel>Left</SelectListItemLabel>
             </SelectListItem>
             <SelectListItem id="right" textValue="Right">
@@ -367,13 +366,11 @@ export const SelectItemWithAvatars = () => {
             {(user) => {
               return (
                 <SelectListItem textValue={user.name}>
-                  {user.id !== 1 && (
-                    <Avatar
-                      className="rounded-full"
-                      src={user.avatar}
-                      alt={user.name}
-                    />
-                  )}
+                  <Avatar
+                    className="rounded-full"
+                    src={user.avatar}
+                    alt={user.name}
+                  />
                   <SelectListItemLabel>{user.name}</SelectListItemLabel>
                 </SelectListItem>
               );
@@ -390,14 +387,11 @@ export const SelectItemWithAvatars = () => {
             {(user) => {
               return (
                 <SelectListItem textValue={user.name}>
-                  {user.id !== 1 && (
-                    <Avatar
-                      className="rounded-full"
-                      src={user.avatar}
-                      alt={user.name}
-                    />
-                  )}
-
+                  <Avatar
+                    className="rounded-full"
+                    src={user.avatar}
+                    alt={user.name}
+                  />
                   <SelectListItemLabel>{user.name}</SelectListItemLabel>
                   <SelectListItemDescription>
                     {user.description}
@@ -471,7 +465,7 @@ export const SelectItemWithSecondaryText = () => {
 };
 export const SelectWithValidation = () => {
   return (
-    <Form>
+    <Form className='space-y-4'>
       <Select isRequired placeholder="Select status&hellip;">
         <Label>Project status</Label>
         <Description>
@@ -557,7 +551,7 @@ SelectWithCustomWidth.parameters = {
 
 export const SelectWithCustomLayout = () => {
   return (
-    <Form>
+    <Form className='space-y-4'>
       <Select isRequired placeholder="Select status&hellip;" className="gap-2">
         <div className="flex items-center gap-2">
           <Label className="mb-0 mt-1 self-start">Project status</Label>
@@ -607,7 +601,7 @@ function StatusIcon({ className }: { className: string }) {
   );
 }
 
-function Canada(props: JSX.IntrinsicElements['svg']) {
+function Canada(props: React.JSX.IntrinsicElements['svg']) {
   return (
     <svg viewBox="0 0 16 12" fill="none" {...props}>
       <g clipPath="url(#clip0_270_55097)">
@@ -634,7 +628,7 @@ function Canada(props: JSX.IntrinsicElements['svg']) {
   );
 }
 
-function US(props: JSX.IntrinsicElements['svg']) {
+function US(props: React.JSX.IntrinsicElements['svg']) {
   return (
     <svg viewBox="0 0 16 12" fill="none" {...props}>
       <g clipPath="url(#clip0_270_55071)">
@@ -668,7 +662,7 @@ function US(props: JSX.IntrinsicElements['svg']) {
   );
 }
 
-function Mexico(props: JSX.IntrinsicElements['svg']) {
+function Mexico(props: React.JSX.IntrinsicElements['svg']) {
   return (
     <svg viewBox="0 0 16 12" fill="none" {...props}>
       <g clipPath="url(#clip0_270_55118)">

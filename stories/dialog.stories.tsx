@@ -30,7 +30,7 @@ import {
   MenuSection,
 } from '../src/menu';
 import {
-  Bell,
+  BellIcon,
   FingerprintIcon,
   MoveLeftIcon,
   MoveRightIcon,
@@ -38,7 +38,7 @@ import {
 } from 'lucide-react';
 import { Tab, TabList, TabPanel, Tabs } from '../src/tabs';
 import { TooltipTrigger, Tooltip } from '../src/tooltip';
-import { Text } from '../src/text';
+import { Small, Strong, Text, TextLink } from '../src/text';
 import { docs } from '../.storybook/docs';
 import { Heading, SubHeading } from '../src/heading';
 import { CopyButton } from '../src/clipboard';
@@ -53,6 +53,7 @@ import {
 } from '../src/select';
 import { Icon } from '../src/accessible-icon';
 import { Checkbox } from '../src/checkbox';
+import { Switch, SwitchField } from '../src/switch';
 
 const meta: Meta = {
   title: 'Dialog',
@@ -142,6 +143,310 @@ AlertDialogs.parameters = {
         '**Alert dialogs** are a special type of **dialog** that the user must confirm before an action proceeds. Use the **alert** prop on the **Dialog** component to render an alert dialog.\n\n >Use Alert dialogs only when necessary. Use Dialog for low-signal notifications or confirmations.',
     },
   },
+};
+
+export const NestedDialogs = () => {
+  const [isViewDialogOpen, setIsViewDialogOpen] = React.useState(false);
+  const [isCustomizeDialogOpen, setIsCustomizeDialogOpen] =
+    React.useState(false);
+
+  return (
+    <div>
+      <Button onPress={() => setIsViewDialogOpen(true)} variant="outline">
+        View notifications
+      </Button>
+
+      <Modal isOpen={isViewDialogOpen} isDismissable size="md">
+        <Dialog>
+          <DialogHeader>Notifications</DialogHeader>
+
+          <DialogBody>You are all caught up. Good job!</DialogBody>
+        </Dialog>
+        <DialogFooter className="justify-between">
+          <Button
+            variant="plain"
+            color="accent"
+            onPress={() => {
+              setIsCustomizeDialogOpen(true);
+            }}
+          >
+            Customize
+          </Button>
+          <DialogCloseButton
+            variant="outline"
+            onPress={() => {
+              setIsViewDialogOpen(false);
+            }}
+          >
+            Cancel
+          </DialogCloseButton>
+        </DialogFooter>
+      </Modal>
+      <Modal
+        isDismissable={false}
+        isKeyboardDismissDisabled
+        isOpen={isCustomizeDialogOpen}
+      >
+        <Dialog alert>
+          <DialogHeader>Customize notifications</DialogHeader>
+          <DialogBody>Review your settings here.</DialogBody>
+          <DialogFooter>
+            <Button
+              variant="outline"
+              onPress={() => {
+                setIsCustomizeDialogOpen(false);
+              }}
+            >
+              Close
+            </Button>
+          </DialogFooter>
+        </Dialog>
+      </Modal>
+    </div>
+  );
+};
+
+NestedDialogs.parameters = {
+  docs: {
+    description: {
+      story:
+        'You can nest dialogs within one another normally. Nested Dialog style is inspired by <a href="https://base-ui.com/react/components/dialog#close-confirmation" target="_blank">**BaseUI**</a> and <a href="https://share.cleanshot.com/n7vy5RsH" target="_blank">**Clerk**</a>.',
+    },
+  },
+};
+
+export const CloseConfirmation = () => {
+  const [isEditDialogOpen, setIsEditDialogOpen] = React.useState(false);
+  const [isConfirmationDialogOpen, setIsConfirmationDialogOpen] =
+    React.useState(false);
+  const [post, setPost] = React.useState('');
+
+  return (
+    <div>
+      <Button onPress={() => setIsEditDialogOpen(true)} variant="outline">
+        Tweet
+      </Button>
+
+      <Modal
+        size="md"
+        isOpen={isEditDialogOpen}
+        isDismissable
+        onOpenChange={() => {
+          if (post !== '') {
+            setIsConfirmationDialogOpen(true);
+          } else {
+            setIsEditDialogOpen(false);
+          }
+        }}
+      >
+        <Dialog>
+          <DialogHeader>New Tweet</DialogHeader>
+
+          <DialogBody>
+            <TextField
+              autoFocus
+              value={post}
+              onChange={(value) => {
+                setPost(value);
+              }}
+            >
+              <Label className="sr-only">New tweet</Label>
+              <TextArea placeholder="What's on your mind?" rows={8}></TextArea>
+            </TextField>
+            <div className="ms-auto mt-2 flex space-x-2.5">
+              <DialogCloseButton>Cancel</DialogCloseButton>
+
+              <Button
+                onPress={() => {
+                  setIsEditDialogOpen(false);
+                }}
+              >
+                Tweet
+              </Button>
+            </div>
+          </DialogBody>
+        </Dialog>
+      </Modal>
+      <Modal
+        isDismissable={false}
+        isKeyboardDismissDisabled
+        isOpen={isConfirmationDialogOpen}
+      >
+        <Dialog alert>
+          <DialogHeader>Discard tweet?</DialogHeader>
+          <DialogBody>Your tweet will be lost.</DialogBody>
+          <DialogFooter>
+            <Button
+              variant="plain"
+              onPress={() => {
+                setIsConfirmationDialogOpen(false);
+              }}
+            >
+              Go back
+            </Button>
+            <Button
+              onPress={() => {
+                setIsConfirmationDialogOpen(false);
+                setIsEditDialogOpen(false);
+              }}
+            >
+              Discard
+            </Button>
+          </DialogFooter>
+        </Dialog>
+      </Modal>
+    </div>
+  );
+};
+
+CloseConfirmation.parameters = {
+  docs: {
+    description: {
+      story:
+        'A nested confirmation dialog opens if the text entered in the parent dialog is going to be discarded.',
+    },
+  },
+};
+
+export const NestedLargeDialogs = () => {
+  const [isInviteDialogOpen, setIsInviteDialogOpen] = React.useState(false);
+  const [isCustomizeDialogOpen, setIsCustomizeDialogOpen] =
+    React.useState(false);
+
+  return (
+    <div>
+      <Button onPress={() => setIsInviteDialogOpen(true)} variant="outline">
+        Invitation
+      </Button>
+
+      <Modal
+        placement="top"
+        classNames={{
+          modalOverlay:
+            '[&:has(~[data-ui=modal-overlay]:not([data-exiting]))>[data-ui=modal]]:-translate-y-10 sm:[&:has(~[data-ui=modal-overlay]:not([data-exiting]))>[data-ui=modal]]:-translate-y-8',
+        }}
+        isOpen={isInviteDialogOpen}
+        isDismissable
+        size="md"
+      >
+        <Dialog>
+          <DialogHeader>
+            <DialogTitle>Invitation</DialogTitle>
+            <SubHeading>
+              Learn how to use <Strong>email & SMS templating feature.</Strong>
+            </SubHeading>
+          </DialogHeader>
+
+          <DialogBody className="px-0 pt-1">
+            <div className="flex flex-col items-center space-y-2 bg-zinc-100 py-8 text-center dark:bg-zinc-800">
+              <Small>Today 9:41 AM</Small>
+
+              <Text>
+                Danny Rico has invited you to join on Clerk{' '}
+                <TextLink className="text-blue-600 no-underline">
+                  https://invitedlink.com/HfrdfKrfr
+                </TextLink>
+              </Text>
+            </div>
+            <div className="px-6 pt-6">
+              <SwitchField>
+                <Switch defaultSelected>Delievered by Clerk</Switch>
+                <Description>
+                  If enaled, Clerk will use Twillo to deliver this SMS. If
+                  disabled, Clerk will not send this SMS and you must listen to
+                  the sms webook to send it on your own.
+                </Description>
+              </SwitchField>
+            </div>
+          </DialogBody>
+        </Dialog>
+        <DialogFooter>
+          <Button
+            className="sm:me-auto"
+            variant="plain"
+            onPress={() => {
+              setIsCustomizeDialogOpen(true);
+            }}
+          >
+            Request change
+          </Button>
+
+          <DialogCloseButton
+            onPress={() => {
+              setIsInviteDialogOpen(false);
+            }}
+          >
+            Cancel
+          </DialogCloseButton>
+          <Button>Save</Button>
+        </DialogFooter>
+      </Modal>
+      <Modal
+        isDismissable={false}
+        isKeyboardDismissDisabled
+        isOpen={isCustomizeDialogOpen}
+        size="md"
+        placement="top"
+      >
+        <Dialog>
+          <DialogHeader className="pt-3">
+            <Button
+              variant="plain"
+              className="-ms-2.5 self-start"
+              onPress={() => {
+                setIsCustomizeDialogOpen(false);
+              }}
+            >
+              <Icon>
+                <MoveLeftIcon></MoveLeftIcon>
+              </Icon>
+              Back
+            </Button>
+            <DialogTitle>Update message: Invitation</DialogTitle>
+            <SubHeading>
+              For security reasons the changes will apply after approval.
+            </SubHeading>
+          </DialogHeader>
+          <DialogBody className="space-y-6 px-0 pt-2">
+            <div className="flex flex-col items-center space-y-2 bg-zinc-100 py-4 text-center dark:bg-zinc-800">
+              <Text className="opacity-45">
+                on Clerk:{' '}
+                <TextLink className="text-blue-600 no-underline">
+                  https://invitedlink.com/HfrdfKrfr
+                </TextLink>
+              </Text>
+
+              <div className="flex flex-col gap-y-2 py-6">
+                <Small>Proposed message</Small>
+                <Text>
+                  Danny Rico has invited you to join on Clerk{' '}
+                  <TextLink className="text-blue-600 no-underline">
+                    https://invitedlink.com/HfrdfKrfr
+                  </TextLink>
+                </Text>
+              </div>
+            </div>
+
+            <div className="flex flex-col gap-y-4 px-6">
+              <TextField defaultValue="Invitation">
+                <Label>Name</Label>
+                <Input />
+              </TextField>
+
+              <TextField defaultValue="{{inviter_name}} has invited you to join them on {{app.name}} {{action_url}}">
+                <Label>Message</Label>
+                <TextArea rows={6}></TextArea>
+              </TextField>
+            </div>
+          </DialogBody>
+          <DialogFooter>
+            <Button variant="plain">Reset</Button>
+            <Button>Request Changes</Button>
+          </DialogFooter>
+        </Dialog>
+      </Modal>
+    </div>
+  );
 };
 
 export const DialogDrawers = () => {
@@ -484,7 +789,7 @@ export const DialogWithLongContent = () => {
               agreement. Keep in mind that this is just an example terms of
               service template and does not cover many of the important topics.
             </Text>
-            <Heading level={3} className="mt-4">
+            <Heading level={3} className="mb-4 mt-5 font-bold">
               Privacy Policy
             </Heading>
             <Text className="text-foreground">
@@ -492,7 +797,7 @@ export const DialogWithLongContent = () => {
               privacy policy [link to privacy policy] regarding our user data
               collection. It will help you better understand our practices.
             </Text>
-            <Heading level={3} className="mt-4">
+            <Heading level={3} className="mb-4 mt-5 font-bold">
               Copyright
             </Heading>
             <Text className="text-foreground">
@@ -503,7 +808,7 @@ export const DialogWithLongContent = () => {
               exclusive property of [name], with copyright authorship for this
               compilation by [name].
             </Text>
-            <Heading level={3} className="mt-4">
+            <Heading level={3} className="mb-4 mt-5 font-bold">
               Communications
             </Heading>
             <Text className="text-foreground">
@@ -518,7 +823,7 @@ export const DialogWithLongContent = () => {
               provide to you electronically meet the legal requirements that
               such communications be in writing.
             </Text>
-            <Heading level={3} className="mt-4">
+            <Heading level={3} className="mb-4 mt-5 font-bold">
               Applicable Law
             </Heading>
             <Text className="text-foreground">
@@ -528,7 +833,7 @@ export const DialogWithLongContent = () => {
               might come between [name] and you, or its business partners and
               associates.
             </Text>
-            <Heading level={3} className="mt-4">
+            <Heading level={3} className="mb-4 mt-5 font-bold">
               Disputes
             </Heading>
             <Text className="text-foreground">
@@ -537,7 +842,7 @@ export const DialogWithLongContent = () => {
               federal court [your location] and you consent to exclusive
               jurisdiction and venue of such courts.
             </Text>
-            <Heading level={3} className="mt-4">
+            <Heading level={3} className="mb-4 mt-5 font-bold">
               Comments, Reviews, and Emails
             </Heading>
             <Text className="text-foreground">
@@ -552,7 +857,7 @@ export const DialogWithLongContent = () => {
               reproduce, publish, modify such content throughout the world in
               any media.
             </Text>
-            <Heading level={3} className="mt-4">
+            <Heading level={3} className="mb-4 mt-5 font-bold">
               License and Site Access
             </Heading>
             <Text className="text-foreground">
@@ -560,7 +865,7 @@ export const DialogWithLongContent = () => {
               this website. You are not allowed to download or modify it. This
               may be done only with written consent from us.
             </Text>
-            <Heading level={3} className="mt-4">
+            <Heading level={3} className="mb-4 mt-5 font-bold">
               User Account
             </Heading>
             <Text className="text-foreground">
@@ -628,7 +933,9 @@ export const DialogWithMinHeight = () => {
                   defaultSelectedKey="all"
                 >
                   <SelectButton>
-                    <Bell />
+                    <Icon className="size-4 text-muted">
+                      <BellIcon />
+                    </Icon>
                     Get notifications for
                   </SelectButton>
                   <SelectPopover>
@@ -967,83 +1274,4 @@ DialogWithControlledOpenState.parameters = {
         'Use the **isOpen** and **onOpenChange** prop of the **Modal** component to control dialog open state.',
     },
   },
-};
-
-export const NestedDialogs = () => {
-  const [isEditDialogOpen, setIsEditDialogOpen] = React.useState(false);
-  const [isConfirmationDialogOpen, setIsConfirmationDialogOpen] =
-    React.useState(false);
-  const [post, setPost] = React.useState('');
-
-  return (
-    <div>
-      <Button onPress={() => setIsEditDialogOpen(true)}>Edit profile</Button>
-      <Modal
-        size="lg"
-        isOpen={isEditDialogOpen}
-        isDismissable
-        onOpenChange={() => {
-          if (post !== '') {
-            setIsConfirmationDialogOpen(true);
-          } else {
-            setIsEditDialogOpen(false);
-          }
-        }}
-      >
-        <Dialog aria-label="Edit profile">
-          <DialogBody className="py-4">
-            <TextField
-              autoFocus
-              value={post}
-              onChange={(value) => {
-                setPost(value);
-              }}
-            >
-              <Label>Edit bio</Label>
-              <TextArea placeholder="Add a bio" rows={4}></TextArea>
-              <Description>
-                Add texts and click outside to close to show the second dialog.
-              </Description>
-            </TextField>
-
-            <Button
-              className="ms-auto mt-2"
-              onPress={() => {
-                setIsEditDialogOpen(false);
-              }}
-            >
-              Save changes
-            </Button>
-          </DialogBody>
-        </Dialog>
-      </Modal>
-
-      <Modal
-        isOpen={isConfirmationDialogOpen}
-        onOpenChange={() => {
-          setIsConfirmationDialogOpen(false);
-          setIsEditDialogOpen(false);
-        }}
-      >
-        <Dialog alert>
-          <DialogHeader>Save changes?</DialogHeader>
-          <DialogBody>
-            You can save this to publish later from your drafts.
-          </DialogBody>
-          <DialogFooter>
-            <DialogCloseButton>No, thanks</DialogCloseButton>
-            <Button
-              onPress={() => {
-                alert('Your changes are saved');
-                setIsConfirmationDialogOpen(false);
-                setIsEditDialogOpen(false);
-              }}
-            >
-              Save
-            </Button>
-          </DialogFooter>
-        </Dialog>
-      </Modal>
-    </div>
-  );
 };

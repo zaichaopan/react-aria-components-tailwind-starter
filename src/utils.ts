@@ -110,8 +110,8 @@ export const selectBoxIndicator = [
 
 export const displayLevels = {
   1: 'font-semibold text-2xl',
-  2: 'font-semibold text-base/6',
-  3: 'font-medium text-base/6 sm:text-sm/6',
+  2: 'font-semibold text-base',
+  3: 'font-medium text-base sm:text-sm/6',
 };
 
 export type DisplayLevel = keyof typeof displayLevels;

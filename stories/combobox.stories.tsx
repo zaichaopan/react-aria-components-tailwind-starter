@@ -360,7 +360,7 @@ export const ComboboxWithAvatar = () => {
 
 export const ComboboxWithValidation = () => {
   return (
-    <Form className="flex flex-col items-start gap-2">
+    <Form className="flex flex-col items-start space-y-4">
       <ComboBox isRequired>
         <Label>Favorite Animal</Label>
         <Description>Choose your favorite animal</Description>

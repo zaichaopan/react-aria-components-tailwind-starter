@@ -4,7 +4,7 @@ import { Icon } from './accessible-icon';
 export function EyeIcon({
   'aria-label': arialLabel,
   ...props
-}: JSX.IntrinsicElements['svg']) {
+}: React.JSX.IntrinsicElements['svg']) {
   return (
     <Icon aria-label={arialLabel}>
       <svg
@@ -27,7 +27,7 @@ export function EyeIcon({
 export function EyeOffIcon({
   'aria-label': arialLabel,
   ...props
-}: JSX.IntrinsicElements['svg']) {
+}: React.JSX.IntrinsicElements['svg']) {
   return (
     <Icon aria-label={arialLabel}>
       <svg
@@ -50,7 +50,7 @@ export function EyeOffIcon({
 export function CheckIcon({
   'aria-label': arialLabel,
   ...props
-}: JSX.IntrinsicElements['svg']) {
+}: React.JSX.IntrinsicElements['svg']) {
   return (
     <Icon aria-label={arialLabel}>
       <svg
@@ -73,7 +73,7 @@ export function CheckIcon({
 export function CircleInfoIcon({
   'aria-label': arialLabel,
   ...props
-}: JSX.IntrinsicElements['svg']) {
+}: React.JSX.IntrinsicElements['svg']) {
   return (
     <Icon aria-label={arialLabel}>
       <svg
@@ -99,7 +99,7 @@ export function CircleInfoIcon({
 export function CircleCheckIcon({
   'aria-label': arialLabel,
   ...props
-}: JSX.IntrinsicElements['svg']) {
+}: React.JSX.IntrinsicElements['svg']) {
   return (
     <Icon aria-label={arialLabel}>
       <svg
@@ -124,7 +124,7 @@ export function CircleCheckIcon({
 export function OctagonAlertIcon({
   'aria-label': arialLabel,
   ...props
-}: JSX.IntrinsicElements['svg']) {
+}: React.JSX.IntrinsicElements['svg']) {
   return (
     <Icon aria-label={arialLabel}>
       <svg
@@ -150,7 +150,7 @@ export function OctagonAlertIcon({
 export function CircleXIcon({
   'aria-label': arialLabel,
   ...props
-}: JSX.IntrinsicElements['svg']) {
+}: React.JSX.IntrinsicElements['svg']) {
   return (
     <Icon aria-label={arialLabel}>
       <svg
@@ -176,7 +176,7 @@ export function CircleXIcon({
 export function PlusIcon({
   'aria-label': arialLabel,
   ...props
-}: JSX.IntrinsicElements['svg']) {
+}: React.JSX.IntrinsicElements['svg']) {
   return (
     <Icon aria-label={arialLabel}>
       <svg
@@ -201,7 +201,7 @@ export function PlusIcon({
 export function MinusIcon({
   'aria-label': arialLabel,
   ...props
-}: JSX.IntrinsicElements['svg']) {
+}: React.JSX.IntrinsicElements['svg']) {
   return (
     <Icon aria-label={arialLabel}>
       <svg
@@ -225,7 +225,7 @@ export function MinusIcon({
 export function XIcon({
   'aria-label': arialLabel,
   ...props
-}: JSX.IntrinsicElements['svg']) {
+}: React.JSX.IntrinsicElements['svg']) {
   return (
     <Icon aria-label={arialLabel}>
       <svg
@@ -250,7 +250,7 @@ export function XIcon({
 export function CalendarIcon({
   'aria-label': arialLabel,
   ...props
-}: JSX.IntrinsicElements['svg']) {
+}: React.JSX.IntrinsicElements['svg']) {
   return (
     <Icon aria-label={arialLabel}>
       <svg
@@ -277,7 +277,7 @@ export function CalendarIcon({
 export function ChevronUpIcon({
   'aria-label': arialLabel,
   ...props
-}: JSX.IntrinsicElements['svg']) {
+}: React.JSX.IntrinsicElements['svg']) {
   return (
     <Icon aria-label={arialLabel}>
       <svg
@@ -301,7 +301,7 @@ export function ChevronUpIcon({
 export function ChevronDownIcon({
   'aria-label': arialLabel,
   ...props
-}: JSX.IntrinsicElements['svg']) {
+}: React.JSX.IntrinsicElements['svg']) {
   return (
     <Icon aria-label={arialLabel}>
       <svg
@@ -325,7 +325,7 @@ export function ChevronDownIcon({
 export function ChevronRightIcon({
   'aria-label': arialLabel,
   ...props
-}: JSX.IntrinsicElements['svg']) {
+}: React.JSX.IntrinsicElements['svg']) {
   return (
     <Icon aria-label={arialLabel}>
       <svg
@@ -349,7 +349,7 @@ export function ChevronRightIcon({
 export function ChevronLeftIcon({
   'aria-label': arialLabel,
   ...props
-}: JSX.IntrinsicElements['svg']) {
+}: React.JSX.IntrinsicElements['svg']) {
   return (
     <Icon aria-label={arialLabel}>
       <svg
@@ -373,7 +373,7 @@ export function ChevronLeftIcon({
 export function SearchIcon({
   'aria-label': arialLabel,
   ...props
-}: JSX.IntrinsicElements['svg']) {
+}: React.JSX.IntrinsicElements['svg']) {
   return (
     <Icon aria-label={arialLabel}>
       <svg
@@ -396,7 +396,7 @@ export function SpinnerIcon({
   className,
   'aria-label': arialLabel,
   ...props
-}: JSX.IntrinsicElements['svg']) {
+}: React.JSX.IntrinsicElements['svg']) {
   return (
     <Icon aria-label={arialLabel}>
       <svg
@@ -427,7 +427,7 @@ export function SpinnerIcon({
 export function CopyIcon({
   'aria-label': arialLabel,
   ...props
-}: JSX.IntrinsicElements['svg']) {
+}: React.JSX.IntrinsicElements['svg']) {
   return (
     <Icon aria-label={arialLabel}>
       <svg
@@ -453,7 +453,7 @@ export function AvailableIcon({
   className,
   'aria-label': arialLabel,
   ...props
-}: JSX.IntrinsicElements['svg']) {
+}: React.JSX.IntrinsicElements['svg']) {
   return (
     <Icon aria-label={arialLabel}>
       <svg
@@ -473,7 +473,7 @@ export function BusyIcon({
   className,
   'aria-label': arialLabel,
   ...props
-}: JSX.IntrinsicElements['svg']) {
+}: React.JSX.IntrinsicElements['svg']) {
   return (
     <Icon aria-label={arialLabel}>
       <svg
@@ -493,7 +493,7 @@ export function AwayIcon({
   className,
   'aria-label': arialLabel,
   ...props
-}: JSX.IntrinsicElements['svg']) {
+}: React.JSX.IntrinsicElements['svg']) {
   return (
     <Icon aria-label={arialLabel}>
       <svg
@@ -517,7 +517,7 @@ export function DoNotDisturbIcon({
   className,
   'aria-label': arialLabel,
   ...props
-}: JSX.IntrinsicElements['svg']) {
+}: React.JSX.IntrinsicElements['svg']) {
   return (
     <Icon aria-label={arialLabel}>
       <svg

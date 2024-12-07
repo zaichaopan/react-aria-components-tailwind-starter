@@ -73,7 +73,7 @@ export const PasswordInputWithWithReadonlyState = () => {
 
 export const PasswordInputWithWithValidation = () => {
   return (
-    <Form className="w-72 ">
+    <Form className="w-72 space-y-4">
       <TextField isRequired name="password">
         <Label>Password</Label>
         <PasswordInput placeholder="Password" minLength={8} />

@@ -57,7 +57,7 @@ export const TooltipWithWithDisabledElements = () => (
   <TooltipTrigger>
     <NonFousableTooltipTarget>
       <div>
-        <Button variant='outline' isDisabled>
+        <Button variant="outline" isDisabled>
           Hover me
         </Button>
       </div>
@@ -84,7 +84,7 @@ export const NativeTooltips = () => {
     <NativeTooltip title={title}>
       <Button
         isIconOnly
-        variant='outline'
+        variant="outline"
         onPress={() =>
           setTheme((theme) => (theme === 'light' ? 'dark' : 'light'))
         }

@@ -75,7 +75,11 @@ export function TagsInput({
 
     if (lastKey !== null) {
       list.remove(lastKey.id);
-      onTagRemove?.(list.getItem(lastKey.id));
+      const item = list.getItem(lastKey.id);
+
+      if (item) {
+        onTagRemove?.(item);
+      }
     }
   }, [list, onTagRemove]);
 
@@ -124,7 +128,11 @@ export function TagsInput({
 
   function handleRemove(keys: Set<Key>) {
     list.remove(...keys);
-    onTagRemove?.(list.getItem([...keys][0]));
+    const item = list.getItem([...keys][0]);
+
+    if (item) {
+      onTagRemove?.(item);
+    }
   }
 
   const { id: labelId } = (React.useContext(LabelContext) ?? {}) as {
@@ -158,7 +166,7 @@ export function TagsInput({
                 setInputValue(e.target.value);
               }}
               onKeyDown={handleKeyDown}
-              className="border-0 px-0.5 py-0 shadow-none focus:ring-0"
+              className="border-0 px-0.5 py-0 shadow-none focus:ring-0 sm:py-0"
             />
           </div>
         </div>

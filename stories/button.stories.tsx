@@ -17,6 +17,7 @@ import {
   BoldIcon,
   ItalicIcon,
   UnderlineIcon,
+  MessageCircleMoreIcon,
 } from 'lucide-react';
 import {
   Button,
@@ -39,7 +40,7 @@ import {
   MenuItemDescription,
 } from '../src/menu';
 import { SpinnerIcon } from '../src/icons';
-import { TooltipTrigger, Tooltip } from '../src/tooltip';
+import { Tooltip } from '../src/tooltip';
 
 const meta: Meta = {
   title: 'Button',
@@ -205,6 +206,27 @@ ButtonWithIconOnly.parameters = {
   },
 };
 
+export const ButtonWithTooltip = () => {
+  return (
+    <Button
+      variant="plain"
+      isIconOnly
+      tooltip={<Tooltip>Direct message</Tooltip>}
+    >
+      <MessageCircleMoreIcon />
+    </Button>
+  );
+};
+
+ButtonWithTooltip.parameters = {
+  docs: {
+    description: {
+      story:
+        'The **tooltip** prop accepts tooltip created by <a href="./?path=/docs/tooltip--docs" target="_blank">**Tooltip**</a> component.',
+    },
+  },
+};
+
 export const ButtonWithDisabledState = () => {
   return <Button isDisabled>Button</Button>;
 };
@@ -346,29 +368,31 @@ ButtonToggle.parameters = {
   },
 };
 
-export const ButtonToggleWithIconAndTooltip = () => {
+export const ToggleButtonWithIconAndTooltip = () => {
   const [isMicMuted, setIsMicMuted] = React.useState(true);
 
   return (
-    <TooltipTrigger>
-      <ToggleButton
-        variant="plain"
-        isSelected={isMicMuted}
-        onChange={setIsMicMuted}
-        size="lg"
-        className="w-16 flex-col gap-y-1.5 text-xs"
-      >
-        <Icon aria-label="Mute mic" className="size-6 ">
-          {isMicMuted ? (
-            <MicOffIcon strokeWidth={1.5} />
-          ) : (
-            <MicIcon strokeWidth={1.5} />
-          )}
-        </Icon>
-        Mic
-      </ToggleButton>
-      <Tooltip>{isMicMuted ? 'Un-mute Microphone' : 'Mute Microphone'}</Tooltip>
-    </TooltipTrigger>
+    <ToggleButton
+      tooltip={
+        <Tooltip>
+          {isMicMuted ? 'Un-mute Microphone' : 'Mute Microphone'}
+        </Tooltip>
+      }
+      variant="plain"
+      isSelected={isMicMuted}
+      onChange={setIsMicMuted}
+      size="lg"
+      className="w-16 flex-col gap-y-1.5 text-xs"
+    >
+      <Icon aria-label="Mute mic" className="size-6 ">
+        {isMicMuted ? (
+          <MicOffIcon strokeWidth={1.5} />
+        ) : (
+          <MicIcon strokeWidth={1.5} />
+        )}
+      </Icon>
+      Mic
+    </ToggleButton>
   );
 };
 
@@ -564,7 +588,7 @@ SplitButtons.parameters = {
   },
 };
 
-function CloudUploadingIcon(props: JSX.IntrinsicElements['svg']) {
+function CloudUploadingIcon(props: React.JSX.IntrinsicElements['svg']) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

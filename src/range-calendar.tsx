@@ -11,6 +11,7 @@ import {
 import { CalendarGridHeader, CalendarHeader } from './calendar';
 import { groupFocusVisibleOutline } from './utils';
 import { twMerge } from 'tailwind-merge';
+import { getLocalTimeZone, isToday } from '@internationalized/date';
 
 export interface RangeCalendarProps<T extends DateValue>
   extends Omit<RACRangeCalendarProps<T>, 'visibleDuration'> {
@@ -29,26 +30,31 @@ export function RangeCalendar<T extends DateValue>({
       })}
     >
       <CalendarHeader />
-      <CalendarGrid className="mx-3 sm:mx-2 [&_td]:px-0 border-spacing-y-0.5 border-separate" weekdayStyle="short">
+      <CalendarGrid
+        className="mx-3 border-separate border-spacing-y-0.5 sm:mx-2 [&_td]:px-0"
+        weekdayStyle="short"
+      >
         <CalendarGridHeader />
-        <CalendarGridBody className="">
+        <CalendarGridBody>
           {(date) => (
             <CalendarCell
               date={date}
               className={[
                 'group size-9 cursor-default text-[0.85rem] outline-none',
-                'selected:bg-accent/[0.06] selected:text-accent selected:dark:bg-accent/35 dark:selected:text-white',
-                'invalid:selected:bg-destructive/15 dark:invalid:selected:bg-destructive/30 invalid:selected:text-destructive',
-                'selection-start:rounded-s-lg',
-                'selection-end:rounded-e-lg',
-                '[td:first-child_&]:rounded-s-lg [td:last-child_&]:rounded-e-lg',
+                'selected:bg-accent/[0.07] selected:dark:bg-accent/35 dark:selected:text-white',
+                'invalid:selected:bg-destructive/15 invalid:selected:text-destructive dark:invalid:selected:bg-destructive/30',
+                'selection-start:rounded-s-md',
+                'selection-end:rounded-e-md',
+                '[td:first-child_&]:rounded-s-md [td:last-child_&]:rounded-e-md',
+                isToday(date, getLocalTimeZone()) &&
+                  'rounded-md bg-zinc-100 selected:rounded-none dark:bg-zinc-700',
               ].join(' ')}
             >
               {({ formattedDate }) => (
                 <span
                   className={twMerge(
-                    'flex size-[calc(theme(size.9)-1px)] items-center justify-center',
-                    'group-hover:rounded-lg',
+                    'relative flex size-[calc(theme(size.9)-1px)] items-center justify-center',
+                    'group-hover:rounded-md',
                     'group-hover:bg-zinc-100',
                     'dark:group-hover:bg-zinc-700',
                     'group-pressed:bg-accent/90',
@@ -73,7 +79,7 @@ export function RangeCalendar<T extends DateValue>({
                     'group-selected:group-selection-start:border',
                     'group-selected:group-selection-start:dark:border-0',
                     'group-selected:group-selection-start:border-accent',
-                    'group-selected:group-selection-start:rounded-lg',
+                    'group-selected:group-selection-start:rounded-md',
                     'group-selected:group-selection-start:bg-accent',
                     'group-selected:group-selection-start:text-white',
                     'group-selected:group-selection-start:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.1)]',
@@ -88,7 +94,7 @@ export function RangeCalendar<T extends DateValue>({
                     'group-selected:group-selection-end:border',
                     'group-selected:group-selection-end:dark:border-0',
                     'group-selected:group-selection-end:border-accent',
-                    'group-selected:group-selection-end:rounded-lg',
+                    'group-selected:group-selection-end:rounded-md',
                     'group-selected:group-selection-end:bg-accent',
                     'group-selected:group-selection-end:text-white',
                     'group-selected:group-selection-end:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.1)]',
@@ -99,7 +105,7 @@ export function RangeCalendar<T extends DateValue>({
                     'group-selected:group-selection-end:group-invalid:text-white',
 
                     groupFocusVisibleOutline,
-                    'group-focus-visible:rounded-lg',
+                    'group-focus-visible:rounded-md',
                   )}
                 >
                   {formattedDate}

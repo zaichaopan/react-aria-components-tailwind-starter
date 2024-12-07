@@ -142,7 +142,7 @@ export const DateRangePickerWithReadonlyState = () => {
 
 export const DateRangePickerValidation = () => {
   return (
-    <Form className="flex flex-col items-start gap-2">
+    <Form className="flex flex-col items-start space-y-4">
       <DateRangePicker isRequired>
         <Label>Stay duration</Label>
         <Description>Please enter your stay duration</Description>
@@ -156,7 +156,7 @@ export const DateRangePickerValidation = () => {
 
 export const DateRangePickerButtons = () => {
   return (
-    <Form className="flex flex-col items-start gap-2">
+    <Form className="flex flex-col items-start space-y-4">
       <DateRangePicker isRequired>
         <Label>Stay duration</Label>
         <Description>Please select your stay duration</Description>

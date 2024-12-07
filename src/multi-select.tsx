@@ -215,30 +215,33 @@ export function MultiSelect<
         ref={triggerRef}
         className={twMerge(
           'relative',
-          'pe-2',
-          'flex min-h-9 w-[350px] flex-row flex-wrap items-center rounded-lg shadow-sm',
+          'pe-4',
+          'flex min-h-9 w-[350px] flex-row flex-wrap items-center rounded-md shadow-sm',
           'border has-[input[data-focused=true]]:border-blue-500',
           'has-[input[data-invalid=true][data-focused=true]]:border-blue-500 has-[input[data-invalid=true]]:border-destructive',
           'has-[input[data-focused=true]]:ring-1 has-[input[data-focused=true]]:ring-blue-500',
           className,
         )}
       >
-        <TagGroup
-          id={tagGroupId}
-          aria-labelledby={labelContext.id}
-          className="contents"
-          onRemove={onRemove}
-        >
-          <TagList
-            items={selectedList.items}
-            className={twMerge(
-              selectedList.items.length !== 0 && 'p-1',
-              'outline-none',
-            )}
+        {selectedList.items.length > 0 && (
+          <TagGroup
+            id={tagGroupId}
+            aria-labelledby={labelContext.id}
+            className="contents"
+            onRemove={onRemove}
           >
-            {props.tag}
-          </TagList>
-        </TagGroup>
+            <TagList
+              items={selectedList.items}
+              className={twMerge(
+                selectedList.items.length !== 0 && 'p-1',
+                'outline-none',
+              )}
+            >
+              {props.tag}
+            </TagList>
+          </TagGroup>
+        )}
+
         <ComboBox
           {...props}
           allowsEmptyCollection
@@ -250,9 +253,14 @@ export function MultiSelect<
           onInputChange={onInputChange}
           aria-labelledby={labelContext.id}
         >
-          <div className="inline-flex flex-1 flex-wrap items-center gap-1 px-2">
+          <div
+            className={[
+              'inline-flex flex-1 flex-wrap items-center gap-1 px-2',
+              selectedList.items.length > 0 && 'ps-0',
+            ].join(' ')}
+          >
             <Input
-              className="flex-1 border-0 px-0.5 py-0 shadow-none outline-0 focus:ring-0"
+              className="me-4 flex-1 border-0 px-0.5 py-0 shadow-none outline-0 focus:ring-0"
               onBlur={() => {
                 setFieldState({
                   inputValue: '',
@@ -321,7 +329,7 @@ export function MultiSelect<
                 strokeWidth="2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                className="size-4 opacity-75"
+                className="size-4 text-muted group-hover:text-foreground"
               >
                 <path d="m6 9 6 6 6-6" />
               </svg>
@@ -345,7 +353,7 @@ export function MultiSelectItem(props: ListBoxItemProps) {
         props.className,
         (className, { isFocused }) => {
           return twMerge([
-            'rounded-lg p-1.5 text-base/6 outline-0 focus-visible:outline-0 sm:text-sm/6',
+            'rounded-md p-1.5 text-base/6 outline-0 focus-visible:outline-0 sm:text-sm/6',
             isFocused && 'bg-zinc-100 dark:bg-zinc-700',
             className,
           ]);

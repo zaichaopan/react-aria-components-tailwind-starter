@@ -188,6 +188,7 @@ export const WithAvatars = () => {
 
   return (
     <Form
+    className='space-y-4'
       onSubmit={(e) => {
         if (selectedList.items.length === 0) {
           setIsInvalid(true);

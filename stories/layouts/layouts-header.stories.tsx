@@ -224,7 +224,7 @@ export const Header = () => {
           <div>
             <Tabs orientation="vertical" variant="pills">
               <TabList aria-label="Home Navigation">
-                <Tab id="Overview" className="min-w-48">
+                <Tab id="Overview" className="min-w-56">
                   <Icon>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -245,25 +245,25 @@ export const Header = () => {
                   </Icon>
                   Dashboard
                 </Tab>
-                <Tab id="Activity" className="min-w-48">
+                <Tab id="Activity" className="min-w-56">
                   <Icon>
                     <ActivityIcon />
                   </Icon>
                   Activity
                 </Tab>
-                <Tab id="Settings" className="min-w-48">
+                <Tab id="Settings" className="min-w-56">
                   <Icon>
                     <Settings2Icon />
                   </Icon>
                   Settings
                 </Tab>
-                <Tab id="Documents" className="min-w-48">
+                <Tab id="Documents" className="min-w-56">
                   <Icon>
                     <BookIcon />
                   </Icon>
                   Documents
                 </Tab>
-                <Tab id="Reports" className="min-w-48">
+                <Tab id="Reports" className="min-w-56">
                   <Icon>
                     <TicketsPlaneIcon />
                   </Icon>

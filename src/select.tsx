@@ -44,7 +44,7 @@ export function SelectButton(props: {
     <Button
       data-ui="control"
       className={composeTailwindRenderProps(props.className, [
-        'relative flex w-full cursor-default items-center gap-x-1 rounded-lg border text-start shadow-sm outline-none transition',
+        'relative flex w-full cursor-default items-center gap-x-1 rounded-md border text-start shadow-sm outline-none transition',
         'pe-8 ps-3',
         'py-[calc(theme(spacing[2.5])-1px)]',
         'sm:py-[calc(theme(spacing[1.5])-1px)]',
@@ -110,7 +110,7 @@ export function SelectListBox<T extends object>({
       className={composeTailwindRenderProps(props.className, [
         'max-h-[inherit] overflow-auto',
         'flex flex-col',
-        'p-1 has-[header]:px-2 has-[header]:pt-0',
+        'p-1 has-[header]:pt-0',
 
         // Listbox item
         '[&_[data-ui=content]]:grid',
@@ -154,7 +154,7 @@ export function SelectSection<T extends object>(props: SectionProps<T>) {
   return (
     <RACListBoxSection
       className={twMerge(
-        '[&:not(:first-child)]:my-1.5',
+        '[&:not(:first-child)]:mt-1.5',
         '[&:not(:first-child)]:border-t [&:not(:first-child)]:border-t-border/40',
         props.className,
       )}
@@ -162,7 +162,7 @@ export function SelectSection<T extends object>(props: SectionProps<T>) {
       <Header
         className={twMerge(
           'sticky z-10 truncate bg-white ps-8 pt-2 text-xs/6 text-muted dark:bg-zinc-800',
-          'inset-0 rounded-md',
+          'inset-0 rounded',
           '[[data-selected-icon-placement=end]_&]:px-2',
         )}
       >
@@ -188,7 +188,7 @@ export function SelectListItem({
       {...props}
       textValue={textValue}
       className={composeTailwindRenderProps(props.className, [
-        'group flex cursor-default select-none items-center gap-x-1.5 rounded-md outline-none',
+        'group flex cursor-default select-none items-center gap-x-1.5 rounded outline-none',
         'px-2 py-2.5 sm:py-1.5',
         'text-base/6 sm:text-sm/6',
         'disabled:opacity-50',
@@ -235,7 +235,7 @@ export function SelectListItem({
 export function SelectListItemLabel({
   className,
   ...props
-}: JSX.IntrinsicElements['span']) {
+}: React.JSX.IntrinsicElements['span']) {
   return (
     <span
       {...props}
@@ -249,7 +249,7 @@ export function SelectListItemLabel({
 export function SelectListItemDescription({
   className,
   ...props
-}: JSX.IntrinsicElements['span']) {
+}: React.JSX.IntrinsicElements['span']) {
   return (
     <Small
       {...props}

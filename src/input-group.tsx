@@ -98,7 +98,7 @@ export function InputGroup({
               '[&_button]:shadow-none',
               '[&_select]:shadow-none',
               '[&:has(>[data-ui=text-field])]:shadow-sm',
-              '[&:has(>[data-ui=text-field])]:rounded-lg',
+              '[&:has(>[data-ui=text-field])]:rounded-md',
             ].join(' ')
           : ['[&>[data-ui=separator]]:bg-border'].join(' '),
 
@@ -150,8 +150,8 @@ export function InputAddon({ className, ...props }: TextProps) {
           'place-content-center',
           'px-3',
           'first:border-s',
-          'first:rounded-s-lg',
-          'last:rounded-e-lg',
+          'first:rounded-s-md',
+          'last:rounded-e-md',
           'last:border-e',
           'group-focus-within:border-red-400',
 
@@ -168,7 +168,7 @@ export function InputAddon({ className, ...props }: TextProps) {
 export function InputSeparator({
   className,
   ...props
-}: JSX.IntrinsicElements['div']) {
+}: React.JSX.IntrinsicElements['div']) {
   return (
     <div
       {...props}
@@ -190,7 +190,7 @@ export function InputGroups(props: GroupProps) {
         'group',
         'items-center',
         'w-max',
-        'rounded-lg border',
+        'rounded-md border',
         'data-[invalid]:border-destructive',
         '[&>input]:border-0',
         '[&>input:focus]:border-0',

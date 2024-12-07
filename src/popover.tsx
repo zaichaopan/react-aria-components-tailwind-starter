@@ -33,7 +33,7 @@ export function Popover(props: PopoverProps) {
         'bg-white',
         'dark:bg-zinc-900',
         'shadow-md',
-        'rounded-lg',
+        'rounded-md',
         'ring-1',
         'ring-zinc-950/10',
         'dark:ring-zinc-800',

@@ -12,14 +12,14 @@ import {
 } from 'react-aria-components';
 import { twMerge } from 'tailwind-merge';
 import { Popover, PopoverProps } from './popover';
-import { Button, ButtonWithoutAsChildProps } from './button';
+import { Button, ButtonProps } from './button';
 import { composeTailwindRenderProps } from './utils';
 import { Small } from './text';
 import { CheckIcon, ChevronDownIcon, ChevronRightIcon } from './icons';
 
 export { MenuTrigger, SubmenuTrigger } from 'react-aria-components';
 
-type MenuButtonProps = ButtonWithoutAsChildProps & {
+type MenuButtonProps = ButtonProps & {
   noIndicator?: boolean;
 };
 
@@ -53,7 +53,7 @@ export function MenuPopover({ className, ...props }: PopoverProps) {
           'dark:bg-zinc-800',
           'dark:ring-zinc-700',
           'max-w-72',
-          'rounded-lg',
+          'rounded-md',
           'min-w-[max(theme(spacing[36]),var(--trigger-width))]',
           'has-[[data-ui=content]_[data-ui=icon]]:min-w-[max(theme(spacing[48]),var(--trigger-width))]',
           'has-[[data-ui=content]_kbd]:min-w-[max(theme(spacing[11]),var(--trigger-width))]',
@@ -78,7 +78,7 @@ export function Menu<T extends object>({
       className={twMerge(
         'max-h-[inherit] overflow-auto outline-none',
         'flex flex-col',
-        'p-1 has-[header]:px-1.5 has-[header]:pt-0',
+        'p-1 has-[header]:pt-0',
 
         // Header, Menu item style when has selectable items
         '[&_header]:px-2',
@@ -152,7 +152,7 @@ export function MenuItem({ destructive, ...props }: MenuItemProps) {
         props.className,
         (className, { isFocused, isDisabled }) => {
           return twMerge([
-            'group rounded-md outline-none',
+            'group rounded outline-none',
             'flex items-center gap-x-1.5',
             'px-2 py-2.5 sm:py-1.5',
             'text-base/6 sm:text-sm/6',
@@ -212,7 +212,7 @@ export function MenuItem({ destructive, ...props }: MenuItemProps) {
 export function MenuItemLabel({
   className,
   ...props
-}: JSX.IntrinsicElements['span']) {
+}: React.JSX.IntrinsicElements['span']) {
   return (
     <span
       slot="label"
@@ -226,7 +226,7 @@ export function MenuItemLabel({
 export function MenuItemDescription({
   className,
   ...props
-}: JSX.IntrinsicElements['span']) {
+}: React.JSX.IntrinsicElements['span']) {
   return (
     <Small
       slot="description"
@@ -249,7 +249,7 @@ export function MenuSection<T extends object>({
     <RACMenuSection
       {...props}
       className={twMerge(
-        '[&:not(:first-child)]:my-1.5',
+        '[&:not(:first-child)]:mt-1.5',
         '[&:not(:first-child)]:border-t',
         '[&:not(:first-child)]:border-t-border/40',
         className,

@@ -436,7 +436,7 @@ export const AvatarGroups = () => {
           />
           <Avatar className="size-8 rounded-full" alt="D P" colorless />
         </AvatarGroup>
-        <div className="relative -ms-1 grid size-8 place-items-center rounded-full bg-zinc-50 text-xs/6 outline outline-1 -outline-offset-1 outline-black/5 ring ring-2 ring-background dark:bg-zinc-600 dark:outline-white/20">
+        <div className="relative -ms-1 grid size-8 place-items-center rounded-full bg-zinc-50 text-sm/6 outline outline-1 -outline-offset-1 outline-zinc-100 ring ring-2 ring-background dark:bg-zinc-600 dark:outline-white/20 text-muted hover:text-foreground font-medium">
           +2
         </div>
       </div>

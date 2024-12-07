@@ -23,7 +23,7 @@ export function RadioGroup({ ...props }: RACRadioGroupProps) {
   );
 }
 
-export function Radios({ className, ...props }: JSX.IntrinsicElements['div']) {
+export function Radios({ className, ...props }: React.JSX.IntrinsicElements['div']) {
   return (
     <div
       data-ui="box"
@@ -44,7 +44,7 @@ export function Radios({ className, ...props }: JSX.IntrinsicElements['div']) {
 export function RadioField({
   className,
   ...props
-}: JSX.IntrinsicElements['div']) {
+}: React.JSX.IntrinsicElements['div']) {
   return (
     <DescriptionProvider>
       <div
@@ -137,7 +137,7 @@ export function Radio({
                 'group-selected:dark:border-0',
                 'group-selected:border-accent',
                 'group-selected:bg-accent',
-                'group-selected:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.1)]',
+                'dark:group-selected:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.1)]',
                 groupFocusVisibleOutline,
               )}
             >

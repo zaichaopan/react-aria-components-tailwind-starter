@@ -2,7 +2,6 @@ import React from 'react';
 import {
   Tooltip as RACTooltip,
   TooltipProps as RACTooltipProps,
-  OverlayArrow,
 } from 'react-aria-components';
 import { composeTailwindRenderProps } from './utils';
 import { mergeProps, useFocusable } from 'react-aria';
@@ -17,22 +16,16 @@ export function Tooltip({ children, ...props }: TooltipProps) {
   return (
     <RACTooltip
       {...props}
-      offset={10}
-      className={composeTailwindRenderProps(
-        props.className,
-        'shadow-xs group max-w-56 text-wrap text-pretty rounded-md bg-zinc-950 p-2 text-xs text-white dark:bg-zinc-800 dark:shadow-none',
-      )}
+      offset={6}
+      className={composeTailwindRenderProps(props.className, [
+        'group max-w-64 rounded-md px-3 py-1.5',
+        'text-wrap text-pretty',
+        'shadow-xs dark:border dark:shadow-none',
+        typeof children === 'string'
+          ? 'bg-zinc-950 text-xs text-white dark:bg-zinc-800'
+          : 'border bg-background',
+      ])}
     >
-      <OverlayArrow>
-        <svg
-          width={12}
-          height={12}
-          viewBox="0 0 8 8"
-          className="fill-zinc-950 stroke-zinc-950 stroke-[0.5px] group-placement-left:-rotate-90 group-placement-right:rotate-90 group-placement-bottom:rotate-180"
-        >
-          <path d="M0 0 L4 4 L8 0" />
-        </svg>
-      </OverlayArrow>
       {children}
     </RACTooltip>
   );
@@ -56,6 +49,6 @@ export function NonFousableTooltipTarget(props: {
 export function NativeTooltip({
   title,
   ...props
-}: JSX.IntrinsicElements['div'] & { title: string }) {
+}: React.JSX.IntrinsicElements['div'] & { title: string }) {
   return <div title={title} role="presentation" {...props} />;
 }

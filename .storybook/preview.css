@@ -22,12 +22,16 @@ code {
   font-weight: 500;
 }
 
+.sbdocs-content > h1.sbdocs-title + p {
+  font-size: 1rem !important;
+}
+
 /* Change story title case */
 .sb-anchor > h3[class^='css']:first-child {
   text-transform: lowercase !important;
-  font-size: 1rem !important;
   line-height: 1.75rem !important;
-  font-weight: 600;
+  margin-bottom:0px!important;
+  font-weight: 500;
 }
 
 .sb-anchor > h3[class^='css']:first-child:first-letter {
@@ -49,7 +53,13 @@ h3[id^='basic'] + div.sbdocs-preview {
   max-width: 100%;
 }
 
-.sb-anchor > h3[class^='css'] + p {
+.sb-anchor > h3[class^='css'] + p,
+.sb-anchor > h3[class^='css'] + div > p {
   margin-top: 24px !important;
   margin-bottom: 24px !important;
+}
+
+
+h3 + div.sbdocs-preview {
+  margin-top: 24px !important;
 }

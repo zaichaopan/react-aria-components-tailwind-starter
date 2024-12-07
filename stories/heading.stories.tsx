@@ -61,7 +61,7 @@ RenderAsDiv.parameters = {
 
 export const AutoFocusHeading = () => {
   return (
-    <div className="max-w-lg space-y-2">
+    <div className="max-w-md space-y-2">
       <Heading autoFocus>Auto focus heading</Heading>
     </div>
   );

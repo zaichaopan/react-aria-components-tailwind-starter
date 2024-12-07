@@ -14,38 +14,35 @@ import { XIcon } from './icons';
 
 const colors = {
   default: [
-    'selected:border-accent',
-    'selected:bg-accent',
+    'bg-zinc-600/10',
+    'text-zinc-700',
+    'dark:bg-white/10',
+    'dark:text-zinc-400',
+    'selected:bg-zinc-700',
     'selected:text-white',
-    'selected:outline-0',
+    'dark:selected:bg-white/20',
   ],
   success: [
-    'bg-success/10',
-    'border-success/15',
-    'dark:bg-success/35',
-    'dark:border-success/40',
+    'bg-success/15',
+    'text-success',
+    'dark:bg-success/40',
     'selected:bg-success',
-    'selected:border-success',
     'selected:dark:bg-success',
     'selected:text-white',
   ],
   warning: [
-    'bg-warning/10',
-    'border-warning/15',
-    'dark:bg-warning/35',
-    'dark:border-warning/40',
+    'bg-warning/15',
+    'text-warning',
+    'dark:bg-warning/40',
     'selected:bg-warning',
-    'selected:border-warning',
     'selected:dark:bg-warning',
     'selected:text-white',
   ],
   destructive: [
-    'bg-destructive/10',
-    'border-destructive/15',
-    'dark:bg-destructive/35',
-    'dark:border-destructive/40',
+    'bg-destructive/15',
+    'text-destructive',
+    'dark:bg-destructive/40',
     'selected:bg-destructive',
-    'selected:border-destructive',
     'selected:dark:bg-destructive',
     'selected:text-white',
   ],
@@ -97,18 +94,19 @@ export function Tag({ children, color, ...props }: TagProps) {
       textValue={textValue}
       {...props}
       className={composeTailwindRenderProps(props.className, [
-        'flex max-w-fit cursor-default items-center gap-1 rounded-md border px-1 py-0.5 text-xs transition',
+        'flex max-w-fit cursor-default items-center gap-x-1 rounded-md px-1.5 py-0.5 text-xs/5 font-medium outline-0 transition',
+        '[&[data-selection-mode]]:cursor-pointer',
         colors[color || groupColor],
         focusVisibleOutline,
         'focus-visible:outline-offset-1',
         'disabled:opacity-50',
       ])}
     >
-      {({ allowsRemoving }) => {
+      {(renderProps) => {
         return (
           <>
-            {children}
-            {allowsRemoving && (
+            {typeof children === 'function' ? children(renderProps) : children}
+            {renderProps.allowsRemoving && (
               <Button
                 slot="remove"
                 className={composeTailwindRenderProps('', [
