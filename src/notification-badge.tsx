@@ -48,7 +48,7 @@ export function NotificationBadge({
           inlined
             ? ''
             : 'absolute right-0 top-0 -translate-y-1.5 translate-x-1',
-          ' flex h-4  items-center justify-center rounded-full bg-red-600 text-[0.65rem] text-white text-white',
+          ' flex h-4  items-center justify-center rounded-full bg-red-600 text-[0.65rem] text-white',
           props.value > 0 ? (props.value > 9 ? 'w-5' : 'w-4') : 'hidden',
           className,
         ])}
