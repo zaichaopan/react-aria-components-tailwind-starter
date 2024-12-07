@@ -19,7 +19,7 @@ import {
   KeyboardIcon,
   Music2Icon,
   DiscAlbumIcon,
-  MicVocalIcon
+  MicVocalIcon,
 } from 'lucide-react';
 
 const meta: Meta<typeof Tabs> = {
@@ -217,6 +217,170 @@ export const VerticalPillsTab = () => {
             Recording
           </Tab>
           <Tab id="Keyboard Shortcuts">
+            <Icon>
+              <KeyboardIcon />
+            </Icon>
+            Keyboard Shortcuts
+          </Tab>
+        </TabList>
+
+        <TabPanel id="General"></TabPanel>
+        <TabPanel id="Video"></TabPanel>
+        <TabPanel id="Audio"></TabPanel>
+        <TabPanel id="Screen Share"></TabPanel>
+        <TabPanel id="Team Chat"></TabPanel>
+        <TabPanel id="Recording"></TabPanel>
+        <TabPanel id="Keyboard Shortcuts"></TabPanel>
+      </Tabs>
+    </div>
+  );
+};
+
+export const VerticalPillsTabWithAccentBackground = () => {
+  return (
+    <div className="p-4 sm:p-12">
+      <Tabs variant="pills" orientation="vertical">
+        <TabList aria-label="Settings">
+          <Tab
+            id="General"
+            className="selected:bg-accent selected:text-white dark:selected:bg-accent"
+          >
+            <Icon>
+              <CogIcon />
+            </Icon>
+            General
+          </Tab>
+          <Tab
+            id="Video"
+            className="selected:bg-accent selected:text-white dark:selected:bg-accent"
+          >
+            <Icon>
+              <VideoIcon />
+            </Icon>
+            Video
+          </Tab>
+          <Tab
+            id="Audio"
+            className="selected:bg-accent selected:text-white dark:selected:bg-accent"
+          >
+            <Icon>
+              <Mic2Icon />
+            </Icon>
+            Audio
+          </Tab>
+          <Tab
+            id="Screen Share"
+            className="selected:bg-accent selected:text-white dark:selected:bg-accent"
+          >
+            <Icon>
+              <ScreenShareIcon />
+            </Icon>
+            Screen Share
+          </Tab>
+          <Tab
+            id="Team Chat"
+            className="selected:bg-accent selected:text-white dark:selected:bg-accent"
+          >
+            <Icon>
+              <MessageSquareIcon />
+            </Icon>
+            Team Chat
+          </Tab>
+          <Tab
+            id="Recording"
+            className="selected:bg-accent selected:text-white dark:selected:bg-accent"
+          >
+            <Icon>
+              <Disc2Icon />
+            </Icon>
+            Recording
+          </Tab>
+          <Tab
+            id="Keyboard Shortcuts"
+            className="selected:bg-accent selected:text-white dark:selected:bg-accent"
+          >
+            <Icon>
+              <KeyboardIcon />
+            </Icon>
+            Keyboard Shortcuts
+          </Tab>
+        </TabList>
+
+        <TabPanel id="General"></TabPanel>
+        <TabPanel id="Video"></TabPanel>
+        <TabPanel id="Audio"></TabPanel>
+        <TabPanel id="Screen Share"></TabPanel>
+        <TabPanel id="Team Chat"></TabPanel>
+        <TabPanel id="Recording"></TabPanel>
+        <TabPanel id="Keyboard Shortcuts"></TabPanel>
+      </Tabs>
+    </div>
+  );
+};
+
+export const VerticalPillsTabWithAccentColor = () => {
+  return (
+    <div className="p-4 sm:p-12">
+      <Tabs variant="pills" orientation="vertical">
+        <TabList aria-label="Settings">
+          <Tab
+            id="General"
+            className="selected:bg-accent/10 selected:text-accent dark:selected:bg-accent dark:selected:text-white"
+          >
+            <Icon>
+              <CogIcon />
+            </Icon>
+            General
+          </Tab>
+          <Tab
+            id="Video"
+            className="selected:bg-accent/10 selected:text-accent dark:selected:bg-accent dark:selected:text-white"
+          >
+            <Icon>
+              <VideoIcon />
+            </Icon>
+            Video
+          </Tab>
+          <Tab
+            id="Audio"
+            className="selected:bg-accent/10 selected:text-accent dark:selected:bg-accent dark:selected:text-white"
+          >
+            <Icon>
+              <Mic2Icon />
+            </Icon>
+            Audio
+          </Tab>
+          <Tab
+            id="Screen Share"
+            className="selected:bg-accent/10 selected:text-accent dark:selected:bg-accent dark:selected:text-white"
+          >
+            <Icon>
+              <ScreenShareIcon />
+            </Icon>
+            Screen Share
+          </Tab>
+          <Tab
+            id="Team Chat"
+            className="selected:bg-accent/10 selected:text-accent dark:selected:bg-accent dark:selected:text-white"
+          >
+            <Icon>
+              <MessageSquareIcon />
+            </Icon>
+            Team Chat
+          </Tab>
+          <Tab
+            id="Recording"
+            className="selected:bg-accent/10 selected:text-accent dark:selected:bg-accent dark:selected:text-white"
+          >
+            <Icon>
+              <Disc2Icon />
+            </Icon>
+            Recording
+          </Tab>
+          <Tab
+            id="Keyboard Shortcuts"
+            className="selected:bg-accent/10 selected:text-accent dark:selected:bg-accent dark:selected:text-white"
+          >
             <Icon>
               <KeyboardIcon />
             </Icon>

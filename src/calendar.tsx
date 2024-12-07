@@ -49,9 +49,10 @@ export function Calendar<T extends DateValue>({
                 'pressed:bg-accent/90 pressed:text-white',
                 'disabled:opacity-50',
 
-                'selected:border selected:border-accent selected:text-sm selected:dark:border-0',
+                'selected:text-sm selected:text-white',
+                'selected:border selected:border-accent selected:dark:border-0',
                 'selected:bg-accent selected:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.1)]',
-                'selected:text-white',
+                'selected:hover:bg-accent dark:selected:hover:bg-accent',
                 'selected:invalid:border-destructive selected:invalid:bg-destructive selected:invalid:text-white',
                 'unavailable:text-destructive unavailable:line-through unavailable:decoration-destructive',
                 focusVisibleOutline,
