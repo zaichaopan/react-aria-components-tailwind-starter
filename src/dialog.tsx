@@ -5,7 +5,7 @@ import {
 import { twMerge } from 'tailwind-merge';
 import React from 'react';
 import { Heading, HeadingProps } from './heading';
-import { Button, ButtonWithoutAsChildProps } from './button';
+import { Button, ButtonProps } from './button';
 import { composeTailwindRenderProps } from './utils';
 import { Text } from './text';
 import { XIcon } from './icons';
@@ -144,7 +144,7 @@ export function DialogFooter({
 export function DialogCloseButton({
   variant = 'plain',
   ...props
-}: ButtonWithoutAsChildProps) {
+}: ButtonProps) {
   if (props.children) {
     return <Button {...props} slot="close" variant={variant} />;
   }

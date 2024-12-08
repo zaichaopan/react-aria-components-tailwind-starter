@@ -7,7 +7,7 @@ import {
   Group,
   Keyboard,
 } from 'react-aria-components';
-import { ButtonWithoutAsChildProps, Button } from './button';
+import { ButtonProps, Button } from './button';
 import { composeTailwindRenderProps, inputField } from './utils';
 import { twMerge } from 'tailwind-merge';
 import {
@@ -103,7 +103,7 @@ export function ComboBoxButton() {
 export function ComboBoxClearButton({
   onPress,
 }: {
-  onPress?: ButtonWithoutAsChildProps['onPress'];
+  onPress?: ButtonProps['onPress'];
 }) {
   const state = React.useContext(ComboBoxStateContext);
 

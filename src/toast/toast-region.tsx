@@ -10,7 +10,7 @@ import {
   ButtonProps as AriaButtonProps,
   composeRenderProps,
 } from 'react-aria-components';
-import { Button, ButtonWithoutAsChildProps } from '../button';
+import { Button, ButtonProps } from '../button';
 import { twMerge } from 'tailwind-merge';
 import { toast, ToastConfig } from './toast-queue';
 import {
@@ -209,7 +209,7 @@ function Toast({ state, ...props }: ToastProps) {
 export function ToastAction({
   variant = 'unstyle',
   ...props
-}: ButtonWithoutAsChildProps) {
+}: ButtonProps) {
   return (
     <Button
       {...props}
