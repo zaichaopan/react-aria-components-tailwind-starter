@@ -50,7 +50,7 @@ export const ChatWithDotNotifications = () => {
           <BellIcon className='text-muted size-5'></BellIcon>
         </Icon>
         Notifications
-        <NotificationBadge variant="numeric" inlined value={8} className='ms-2'/>
+        <NotificationBadge variant="numeric" inline value={8} className='ms-2'/>
       </div>
     </div>
   );

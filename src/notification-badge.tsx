@@ -7,7 +7,7 @@ type DotVariantProps = {
 type NumericVariantProps = {
   variant: 'numeric';
   value: number;
-  inlined?: boolean;
+  inline?: boolean;
 };
 
 export type NotificationBadgeProps = (DotVariantProps | NumericVariantProps) &
@@ -38,16 +38,16 @@ export function NotificationBadge({
     );
   }
 
-  const { value, variant, inlined, ...rest } = props;
+  const { value, variant, inline, ...rest } = props;
 
   return (
     <>
       <span
         aria-hidden
         className={twMerge([
-          inlined
+          inline
             ? ''
-            : 'absolute right-0 top-0 -translate-y-1.5 translate-x-1',
+            : 'absolute -right-1 -top-1.5',
           ' flex h-4  items-center justify-center rounded-full bg-red-600 text-[0.65rem] text-white',
           props.value > 0 ? (props.value > 9 ? 'w-5' : 'w-4') : 'hidden',
           className,

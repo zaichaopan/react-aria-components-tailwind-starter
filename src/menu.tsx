@@ -12,14 +12,14 @@ import {
 } from 'react-aria-components';
 import { twMerge } from 'tailwind-merge';
 import { Popover, PopoverProps } from './popover';
-import { Button, ButtonWithoutAsChildProps } from './button';
+import { Button, ButtonProps } from './button';
 import { composeTailwindRenderProps } from './utils';
 import { Small } from './text';
 import { CheckIcon, ChevronDownIcon, ChevronRightIcon } from './icons';
 
 export { MenuTrigger, SubmenuTrigger } from 'react-aria-components';
 
-type MenuButtonProps = ButtonWithoutAsChildProps & {
+type MenuButtonProps = ButtonProps & {
   noIndicator?: boolean;
 };
 

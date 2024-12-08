@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, ButtonWithoutAsChildProps } from './button';
+import { Button, ButtonProps } from './button';
 import { useCopyToClipboard } from './hooks/use-clipboard';
 import { TooltipTrigger, Tooltip } from './tooltip';
 import { CheckIcon, CopyIcon } from './icons';
@@ -31,7 +31,7 @@ export function CopyButton({
   label?: string;
   labelAfterCopied?: string;
   icon?: React.JSX.Element;
-} & ButtonWithoutAsChildProps) {
+} & ButtonProps) {
   const [showTooltip, setShowTooltip] = React.useState(false);
 
   return (
