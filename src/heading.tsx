@@ -90,7 +90,10 @@ export const SubHeading = React.forwardRef<
     <div
       {...props}
       ref={ref}
-      className={twMerge('text-base/6 sm:text-sm/6 text-muted', className)}
+      className={twMerge(
+        'text-base text-muted sm:text-sm/6',
+        className,
+      )}
     />
   );
 });

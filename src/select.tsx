@@ -154,7 +154,7 @@ export function SelectSection<T extends object>(props: SectionProps<T>) {
   return (
     <RACListBoxSection
       className={twMerge(
-        '[&:not(:first-child)]:my-1.5',
+        '[&:not(:first-child)]:mb-1.5',
         '[&:not(:first-child)]:border-t [&:not(:first-child)]:border-t-border/40',
         props.className,
       )}

@@ -70,7 +70,7 @@ export function DialogHeader({ className, ...props }: DialogHeaderProps) {
       ref={headerRef}
       data-ui="dialog-header"
       className={twMerge(
-        'relative flex w-full items-center px-6 pb-2 pt-6',
+        'relative flex w-full flex-col px-6 pb-2 pt-6',
         className,
       )}
       {...props}

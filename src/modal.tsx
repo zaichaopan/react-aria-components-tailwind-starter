@@ -20,7 +20,7 @@ const sizes = {
 };
 
 type ModalType =
-  | { drawer?: never; keepCentered?: boolean }
+  | { drawer?: never; keepCentered?: boolean; placement?: 'centered' | 'top' }
   | {
       drawer: true;
       placement?: 'left' | 'right';
@@ -41,7 +41,9 @@ export function Modal({
   ...props
 }: ModalProps) {
   const drawer = props.drawer;
-  const placement = props.drawer ? props.placement ?? 'left' : undefined;
+  const placement = props.drawer
+    ? props.placement ?? 'left'
+    : props.placement ?? 'centered';
 
   React.useEffect(() => {
     document
@@ -61,7 +63,9 @@ export function Modal({
         'h-[--visual-viewport-height] w-full',
         'bg-zinc-950/25 dark:bg-zinc-950/50',
         'flex',
-        'items-center',
+
+        placement === 'top' ? 'items-start' : 'items-center',
+
         'text-center',
 
         'entering:animate-in',
@@ -84,6 +88,8 @@ export function Modal({
               'p-4',
               '[--visual-viewport-vertical-padding:32px]',
 
+              // Not keepCentered:
+              // Make the dialog start from bottom on mobile (except for role=alertdialog)
               !keepCentered && [
                 '[&:has([role=dialog])]:items-end',
                 '[&:has([role=dialog])]:pt-4',
@@ -91,28 +97,44 @@ export function Modal({
                 '[&:has([role=dialog])]:pb-0',
                 '[&:has([role=dialog])]:[--visual-viewport-vertical-padding:16px]',
 
-                'sm:[&:has([role=dialog])]:items-center',
-                'sm:[&:has([role=dialog])]:p-4',
-                'sm:[&:has([role=dialog])]:[--visual-viewport-vertical-padding:32px]',
+                placement === 'top'
+                  ? [
+                      'sm:[&:has([role=dialog])]:items-start',
+                      'sm:[&:has([role=dialog])]:px-4',
+                      'sm:[&:has([role=dialog])]:pt-16',
+                      'sm:[&:has([role=dialog])]:pb-4',
+                      'sm:[&:has([role=dialog])]:[--visual-viewport-vertical-padding:80px]',
+                    ]
+                  : [
+                      'sm:[&:has([role=dialog])]:items-center',
+                      'sm:[&:has([role=dialog])]:p-4',
+                      'sm:[&:has([role=dialog])]:[--visual-viewport-vertical-padding:32px]',
+                    ],
               ],
 
-              // Animation style for nested dialog
-              // When the nested dialog is not closing
+              /**
+               * Style for stack dialog
+               */
+              // First dialog
+              '[&:has(~[data-ui=modal-overlay]:not([data-exiting]))>[data-ui=modal]>section]:opacity-75',
+              '[&:has(~[data-ui=modal-overlay]:not([data-exiting]))>[data-ui=modal]]:bg-zinc-100',
+              'dark:[&:has(~[data-ui=modal-overlay]:not([data-exiting]))>[data-ui=modal]]:bg-zinc-900',
+
+              'sm:[&:has(~[data-ui=modal-overlay])>[data-ui=modal]]:transform-[scale]',
+              'sm:[&:has(~[data-ui=modal-overlay])>[data-ui=modal]]:ease-in-out',
+              'sm:[&:has(~[data-ui=modal-overlay])>[data-ui=modal]]:duration-200',
+
+              //  When the nested dialog is not closing
               'sm:[&:has(~[data-ui=modal-overlay]:not([data-exiting]))>[data-ui=modal]]:scale-90',
-              'sm:[&:has(~[data-ui=modal-overlay]:not([data-exiting]))>[data-ui=modal]]:translate-y-3',
-              'sm:[&:has(~[data-ui=modal-overlay]:not([data-exiting]))>[data-ui=modal]]:transform-[scale,y]',
-              'sm:[&:has(~[data-ui=modal-overlay]:not([data-exiting]))>[data-ui=modal]]:ease-in-out',
-              'sm:[&:has(~[data-ui=modal-overlay]:not([data-exiting]))>[data-ui=modal]]:bg-zinc-200',
-              'sm:dark:[&:has(~[data-ui=modal-overlay]:not([data-exiting]))>[data-ui=modal]]:bg-zinc-900',
-              'sm:[&:has(~[data-ui=modal-overlay]:not([data-exiting]))>[data-ui=modal]]:duration-75',
+              'sm:[&:has(~[data-ui=modal-overlay]:not([data-exiting]))>[data-ui=modal]]:translate-y-4',
+              
+              // Remove nested dialog overlay background and fade in effect
+              '[&:has(~[data-ui=modal-overlay])~[data-ui=modal-overlay]]:bg-transparent',
+              '[&:has(~[data-ui=modal-overlay])~[data-ui=modal-overlay]]:fade-in-100',
 
-              // When both dialogs are closing
-              'sm:[&[data-exiting]:has(~[data-ui=modal-overlay])>[data-ui=modal]]:scale-90',
-
-              // Remove nested dialog overlay background
-              'sm:[&:has(~[data-ui=modal-overlay])~[data-ui=modal-overlay]]:bg-transparent',
-              'sm:[&:has(~[data-ui=modal-overlay])~[data-ui=modal-overlay][data-exiting]]:opacity-0',
-              'sm:[&:has(~[data-ui=modal-overlay])~[data-ui=modal-overlay][data-entering]]:fade-in-100',
+              // Make both dialogs closes immediately
+              '[&:has(~[data-ui=modal-overlay])~[data-ui=modal-overlay][data-exiting]]:opacity-0',
+              '[&[data-exiting]:has(~[data-ui=modal-overlay])]:opacity-0',
             ],
       ])}
     >
@@ -121,11 +143,11 @@ export function Modal({
         data-ui="modal"
         data-placement={placement}
         className={composeTailwindRenderProps(classNames?.modal, [
-          'max-h-full w-full overflow-hidden',
+          'relative max-h-full w-full',
           'text-left align-middle',
           'shadow-lg',
           'bg-white dark:bg-zinc-900',
-          'dark:ring-1 dark:ring-white/10',
+          'ring-1 ring-zinc-950/5 dark:ring-zinc-800',
 
           props.size
             ? sizes[props.size]
@@ -158,7 +180,7 @@ export function Modal({
                 'sm:exiting:duration-0',
 
                 !keepCentered && [
-                  'has-[[role=dialog]]:rounded-t-xl ',
+                  'has-[[role=dialog]]:rounded-t-xl',
                   'has-[[role=dialog]]:rounded-b-none',
                   'sm:has-[[role=dialog]]:rounded-xl',
 

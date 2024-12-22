@@ -249,7 +249,7 @@ export function MenuSection<T extends object>({
     <RACMenuSection
       {...props}
       className={twMerge(
-        '[&:not(:first-child)]:my-1.5',
+        '[&:not(:first-child)]:mt-1.5',
         '[&:not(:first-child)]:border-t',
         '[&:not(:first-child)]:border-t-border/40',
         className,
