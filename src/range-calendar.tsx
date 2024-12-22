@@ -11,6 +11,7 @@ import {
 import { CalendarGridHeader, CalendarHeader } from './calendar';
 import { groupFocusVisibleOutline } from './utils';
 import { twMerge } from 'tailwind-merge';
+import { getLocalTimeZone, isToday } from '@internationalized/date';
 
 export interface RangeCalendarProps<T extends DateValue>
   extends Omit<RACRangeCalendarProps<T>, 'visibleDuration'> {
@@ -29,16 +30,19 @@ export function RangeCalendar<T extends DateValue>({
       })}
     >
       <CalendarHeader />
-      <CalendarGrid className="mx-3 sm:mx-2 [&_td]:px-0 border-spacing-y-0.5 border-separate" weekdayStyle="short">
+      <CalendarGrid
+        className="mx-3 border-separate border-spacing-y-0.5 sm:mx-2 [&_td]:px-0"
+        weekdayStyle="short"
+      >
         <CalendarGridHeader />
-        <CalendarGridBody className="">
+        <CalendarGridBody>
           {(date) => (
             <CalendarCell
               date={date}
               className={[
                 'group size-9 cursor-default text-[0.85rem] outline-none',
                 'selected:bg-accent/[0.06] selected:text-accent selected:dark:bg-accent/35 dark:selected:text-white',
-                'invalid:selected:bg-destructive/15 dark:invalid:selected:bg-destructive/30 invalid:selected:text-destructive',
+                'invalid:selected:bg-destructive/15 invalid:selected:text-destructive dark:invalid:selected:bg-destructive/30',
                 'selection-start:rounded-s-lg',
                 'selection-end:rounded-e-lg',
                 '[td:first-child_&]:rounded-s-lg [td:last-child_&]:rounded-e-lg',
@@ -47,7 +51,7 @@ export function RangeCalendar<T extends DateValue>({
               {({ formattedDate }) => (
                 <span
                   className={twMerge(
-                    'flex size-[calc(theme(size.9)-1px)] items-center justify-center',
+                    'relative flex size-[calc(theme(size.9)-1px)] items-center justify-center',
                     'group-hover:rounded-lg',
                     'group-hover:bg-zinc-100',
                     'dark:group-hover:bg-zinc-700',
@@ -100,6 +104,28 @@ export function RangeCalendar<T extends DateValue>({
 
                     groupFocusVisibleOutline,
                     'group-focus-visible:rounded-lg',
+
+                    // Selected
+                    isToday(date, getLocalTimeZone()) && [
+                      'after:absolute',
+                      "after:content-['']",
+                      'after:size-1',
+                      'after:bg-black',
+                      'dark:after:bg-white',
+                      'after:rounded-full',
+                      'group-selected:after:bg-accent',
+                      'group-selected:group-hover:after:bg-white',
+                      'dark:group-selected:after:bg-white',
+                      'group-selected:group-selection-start:after:bg-white',
+                      'group-selected:group-selection-start:group-hover:after:bg-white',
+                      'group-selected:group-selection-end:after:bg-white',
+                      'group-selected:group-selection-end:group-hover:after:bg-white',
+                     
+                      'pressed:after:bg-white',
+                      'after:bottom-1',
+                      'after:left-1/2',
+                      'after:-translate-x-1/2',
+                    ],
                   )}
                 >
                   {formattedDate}
