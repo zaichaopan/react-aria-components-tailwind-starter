@@ -970,6 +970,78 @@ DialogWithControlledOpenState.parameters = {
 };
 
 export const NestedDialogs = () => {
+  const [isViewDialogOpen, setIsViewDialogOpen] = React.useState(false);
+  const [isCustomizeDialogOpen, setIsCustomizeDialogOpen] =
+    React.useState(false);
+
+  return (
+    <div>
+      <Button onPress={() => setIsViewDialogOpen(true)} variant="outline">
+        View notifications
+      </Button>
+
+      <Modal
+        isOpen={isViewDialogOpen}
+        isDismissable
+        size='md'
+      >
+        <Dialog>
+          <DialogHeader>Notifications</DialogHeader>
+
+          <DialogBody>You are all caught up. Good job!</DialogBody>
+        </Dialog>
+        <DialogFooter>
+          <Button
+            variant="plain"
+            onPress={() => {
+              setIsCustomizeDialogOpen(true);
+            }}
+          >
+            Customize
+          </Button>
+          <DialogCloseButton
+            variant="outline"
+            onPress={() => {
+              setIsViewDialogOpen(false);
+            }}
+          >
+            Cancel
+          </DialogCloseButton>
+        </DialogFooter>
+      </Modal>
+      <Modal
+        isDismissable={false}
+        isKeyboardDismissDisabled
+        isOpen={isCustomizeDialogOpen}
+      >
+        <Dialog alert>
+          <DialogHeader>Customize notifications</DialogHeader>
+          <DialogBody>Review your settings here..</DialogBody>
+          <DialogFooter>
+            <Button
+              variant="outline"
+              onPress={() => {
+                setIsCustomizeDialogOpen(false);
+              }}
+            >
+              Close
+            </Button>
+          </DialogFooter>
+        </Dialog>
+      </Modal>
+    </div>
+  );
+};
+
+NestedDialogs.parameters = {
+  docs: {
+    description: {
+      story:
+        'You can nest dialogs within one another normally. Styled is inspired by <a href="https://base-ui.com/react/components/dialog#close-confirmation" target="_blank">**BaseUI**</a>',
+    },
+  }}
+
+export const CloseConfirmation = () => {
   const [isEditDialogOpen, setIsEditDialogOpen] = React.useState(false);
   const [isConfirmationDialogOpen, setIsConfirmationDialogOpen] =
     React.useState(false);
@@ -977,9 +1049,12 @@ export const NestedDialogs = () => {
 
   return (
     <div>
-      <Button onPress={() => setIsEditDialogOpen(true)}>Edit profile</Button>
+      <Button onPress={() => setIsEditDialogOpen(true)} variant="outline">
+        Tweet
+      </Button>
+
       <Modal
-        size="lg"
+        size="md"
         isOpen={isEditDialogOpen}
         isDismissable
         onOpenChange={() => {
@@ -990,8 +1065,10 @@ export const NestedDialogs = () => {
           }
         }}
       >
-        <Dialog aria-label="Edit profile">
-          <DialogBody className="py-4">
+        <Dialog>
+          <DialogHeader>New Tweet</DialogHeader>
+
+          <DialogBody>
             <TextField
               autoFocus
               value={post}
@@ -999,47 +1076,47 @@ export const NestedDialogs = () => {
                 setPost(value);
               }}
             >
-              <Label>Edit bio</Label>
-              <TextArea placeholder="Add a bio" rows={4}></TextArea>
-              <Description>
-                Add texts and click outside to close to show the second dialog.
-              </Description>
+              <Label className="sr-only">New tweet</Label>
+              <TextArea placeholder="What's on your mind?" rows={8}></TextArea>
             </TextField>
+            <div className="ms-auto mt-2 flex space-x-2.5">
+              <DialogCloseButton>Cancel</DialogCloseButton>
 
-            <Button
-              className="ms-auto mt-2"
-              onPress={() => {
-                setIsEditDialogOpen(false);
-              }}
-            >
-              Save changes
-            </Button>
+              <Button
+                onPress={() => {
+                  setIsEditDialogOpen(false);
+                }}
+              >
+                Tweet
+              </Button>
+            </div>
           </DialogBody>
         </Dialog>
       </Modal>
-
       <Modal
+        isDismissable={false}
+        isKeyboardDismissDisabled
         isOpen={isConfirmationDialogOpen}
-        onOpenChange={() => {
-          setIsConfirmationDialogOpen(false);
-          setIsEditDialogOpen(false);
-        }}
       >
         <Dialog alert>
-          <DialogHeader>Save changes?</DialogHeader>
-          <DialogBody>
-            You can save this to publish later from your drafts.
-          </DialogBody>
+          <DialogHeader>Discard tweet?</DialogHeader>
+          <DialogBody>Your tweet will be lost.</DialogBody>
           <DialogFooter>
-            <DialogCloseButton>No, thanks</DialogCloseButton>
+            <Button
+              variant="plain"
+              onPress={() => {
+                setIsConfirmationDialogOpen(false);
+              }}
+            >
+              Go back
+            </Button>
             <Button
               onPress={() => {
-                alert('Your changes are saved');
                 setIsConfirmationDialogOpen(false);
                 setIsEditDialogOpen(false);
               }}
             >
-              Save
+              Discard
             </Button>
           </DialogFooter>
         </Dialog>

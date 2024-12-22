@@ -55,10 +55,11 @@ export function Modal({
   return (
     <RACModalOverlay
       {...props}
+      data-ui="modal-overlay"
       className={composeTailwindRenderProps(classNames?.modalOverlay, [
         'fixed left-0 top-0 isolate z-20',
         'h-[--visual-viewport-height] w-full',
-        'bg-zinc-950/40 dark:bg-zinc-950/50',
+        'bg-zinc-950/25 dark:bg-zinc-950/50',
         'flex',
         'items-center',
         'text-center',
@@ -94,11 +95,30 @@ export function Modal({
                 'sm:[&:has([role=dialog])]:p-4',
                 'sm:[&:has([role=dialog])]:[--visual-viewport-vertical-padding:32px]',
               ],
+
+              // Animation style for nested dialog
+              // When the nested dialog is not closing
+              'sm:[&:has(~[data-ui=modal-overlay]:not([data-exiting]))>[data-ui=modal]]:scale-90',
+              'sm:[&:has(~[data-ui=modal-overlay]:not([data-exiting]))>[data-ui=modal]]:translate-y-3',
+              'sm:[&:has(~[data-ui=modal-overlay]:not([data-exiting]))>[data-ui=modal]]:transform-[scale,y]',
+              'sm:[&:has(~[data-ui=modal-overlay]:not([data-exiting]))>[data-ui=modal]]:ease-in-out',
+              'sm:[&:has(~[data-ui=modal-overlay]:not([data-exiting]))>[data-ui=modal]]:bg-zinc-200',
+              'sm:dark:[&:has(~[data-ui=modal-overlay]:not([data-exiting]))>[data-ui=modal]]:bg-zinc-900',
+              'sm:[&:has(~[data-ui=modal-overlay]:not([data-exiting]))>[data-ui=modal]]:duration-75',
+
+              // When both dialogs are closing
+              'sm:[&[data-exiting]:has(~[data-ui=modal-overlay])>[data-ui=modal]]:scale-90',
+
+              // Remove nested dialog overlay background
+              'sm:[&:has(~[data-ui=modal-overlay])~[data-ui=modal-overlay]]:bg-transparent',
+              'sm:[&:has(~[data-ui=modal-overlay])~[data-ui=modal-overlay][data-exiting]]:opacity-0',
+              'sm:[&:has(~[data-ui=modal-overlay])~[data-ui=modal-overlay][data-entering]]:fade-in-100',
             ],
       ])}
     >
       <RACModal
         {...props}
+        data-ui="modal"
         data-placement={placement}
         className={composeTailwindRenderProps(classNames?.modal, [
           'max-h-full w-full overflow-hidden',
