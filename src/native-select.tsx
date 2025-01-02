@@ -60,7 +60,7 @@ export function NativeSelect({
           'pe-8 ps-3',
           'py-[calc(theme(spacing[2.5])-1px)]',
           ' sm:py-[calc(theme(spacing[1.5])-1px)]',
-          'rounded-md border shadow-sm outline-none',
+          'rounded-md border outline-none',
           'text-base/6 sm:text-sm/6',
           'hover:bg-zinc-100 dark:hover:bg-zinc-800',
           focusVisibleRing,

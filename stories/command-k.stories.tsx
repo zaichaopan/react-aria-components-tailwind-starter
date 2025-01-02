@@ -175,7 +175,7 @@ export function OpenInDialog() {
         onOpenChange={setIsModalOpen}
         classNames={{
           modal:
-            'entering:duration-0 exiting:duration-0 self-start shadow-none ring-0 sm:self-start bg-transparent dark:bg-transparent dark:ring-0',
+            'entering:duration-0 exiting:duration-0 self-start ring-0 sm:self-start bg-transparent dark:bg-transparent dark:ring-0',
         }}
       >
         <Dialog

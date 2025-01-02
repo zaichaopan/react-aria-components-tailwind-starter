@@ -120,7 +120,7 @@ export function Radio({
             <div
               slot="radio"
               className={twMerge(
-                'grid size-[1.0625rem] shrink-0 place-content-center rounded-full shadow-sm',
+                'grid size-[1.0625rem] shrink-0 place-content-center rounded-full',
                 labelPlacement === 'end' ? 'me-3' : 'ms-3',
                 'border',
                 'border-zinc-400/75',

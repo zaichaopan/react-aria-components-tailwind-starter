@@ -46,7 +46,7 @@ export function DateRangePickerInput() {
         className={twMerge(
           '[&:has([aria-valuetext=Empty]:) w-full',
           'grid grid-cols-[max-content_16px_max-content_1fr] items-center',
-          'group relative rounded-md border bg-inherit shadow-sm',
+          'group relative rounded-md border bg-inherit',
           'group-invalid:border-destructive',
           '[&:has(_input[data-disabled=true])]:border-border/50',
           '[&:has([data-ui=date-segment][aria-readonly])]:bg-zinc-50',
@@ -58,7 +58,7 @@ export function DateRangePickerInput() {
         <DateInput
           slot="start"
           className={[
-            'flex min-w-fit border-none shadow-none focus-within:ring-0',
+            'flex min-w-fit border-none focus-within:ring-0',
             '[&:has([data-ui=date-segment][aria-readonly])]:bg-transparent',
             'dark:[&:has([data-ui=date-segment][aria-readonly])]:bg-transparent',
           ].join(' ')}
@@ -72,7 +72,7 @@ export function DateRangePickerInput() {
         <DateInput
           slot="end"
           className={[
-            'flex min-w-fit flex-1 border-none opacity-100 shadow-none focus-within:ring-0',
+            'flex min-w-fit flex-1 border-none opacity-100 focus-within:ring-0',
             '[&:has([data-ui=date-segment][aria-readonly])]:bg-transparent',
             'dark:[&:has([data-ui=date-segment][aria-readonly])]:bg-transparent',
           ].join(' ')}

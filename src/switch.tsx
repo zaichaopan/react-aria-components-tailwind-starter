@@ -145,7 +145,7 @@ export function Switch({
               data-ui="thumb"
               className={twMerge(
                 'size-4',
-                'rounded-full bg-white shadow-sm',
+                'rounded-full bg-white',
                 'translate-x-0 transition-all ease-in-out',
                 renderProps.isSelected && [
                   'translate-x-3',

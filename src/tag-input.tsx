@@ -148,7 +148,7 @@ export function TagsInput({
     >
       <div
         className={twMerge(
-          'flex min-h-9 items-center rounded-md shadow-sm',
+          'flex min-h-9 items-center rounded-md',
           'border has-[input[data-focused=true]]:border-blue-500',
           'has-[input[data-invalid=true][data-focused=true]]:border-blue-500 has-[input[data-invalid=true]]:border-destructive',
           'has-[input[data-focused=true]]:ring-1 has-[input[data-focused=true]]:ring-blue-500',
@@ -166,7 +166,7 @@ export function TagsInput({
                 setInputValue(e.target.value);
               }}
               onKeyDown={handleKeyDown}
-              className="border-0 px-0.5 py-0 shadow-none focus:ring-0 sm:py-0"
+              className="border-0 px-0.5 py-0 focus:ring-0 sm:py-0"
             />
           </div>
         </div>

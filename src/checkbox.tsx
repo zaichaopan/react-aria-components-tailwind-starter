@@ -129,7 +129,7 @@ export function Checkbox({
           <>
             <div
               className={twMerge([
-                'flex shrink-0 items-center justify-center rounded shadow-sm',
+                'flex shrink-0 items-center justify-center rounded',
                 labelPlacement === 'end' ? 'me-3' : 'ms-3',
                 'size-[1.125rem] sm:size-4',
                 'border dark:border-[1.5px]',

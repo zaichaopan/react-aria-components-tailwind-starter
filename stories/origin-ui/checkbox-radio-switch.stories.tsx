@@ -976,7 +976,7 @@ function DeliveryOptions() {
               value={option.name}
               className={({ isSelected }) => {
                 return twMerge(
-                  'items-start rounded-lg border px-4 py-3 shadow-sm [&_[slot=radio]]:mt-1.5',
+                  'items-start rounded-lg border px-4 py-3 [&_[slot=radio]]:mt-1.5',
                   isSelected && 'border-accent',
                 );
               }}
@@ -1014,7 +1014,7 @@ function DeliveryOptionsRightAlignment() {
               value={option.name}
               className={({ isSelected }) => {
                 return twMerge(
-                  'items-start rounded-lg border px-4 py-3 shadow-sm [&_[slot=radio]]:mt-1.5',
+                  'items-start rounded-lg border px-4 py-3 [&_[slot=radio]]:mt-1.5',
                   isSelected && 'border-accent',
                 );
               }}
@@ -1296,7 +1296,7 @@ function CpuOptions() {
                 <div
                   className={[
                     'min-w-[86px]',
-                    'rounded-md border  px-4 py-2 font-semibold shadow-sm',
+                    'rounded-md border  px-4 py-2 font-semibold',
                     'group-selected:border-accent group-selected:bg-accent group-selected:text-white',
                     groupFocusVisibleOutline,
                   ].join(' ')}

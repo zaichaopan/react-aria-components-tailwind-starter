@@ -44,7 +44,7 @@ export function SelectButton(props: {
     <Button
       data-ui="control"
       className={composeTailwindRenderProps(props.className, [
-        'relative flex w-full cursor-default items-center gap-x-1 rounded-md border text-start shadow-sm outline-none transition',
+        'relative flex w-full cursor-default items-center gap-x-1 rounded-md border text-start outline-none transition',
         'pe-8 ps-3',
         'py-[calc(theme(spacing[2.5])-1px)]',
         'sm:py-[calc(theme(spacing[1.5])-1px)]',
@@ -52,7 +52,8 @@ export function SelectButton(props: {
         'group:disabled:cursor-not-allowed group-disabled:opacity-50',
         'text-base/6 sm:text-sm/6',
         focusVisibleRing,
-        'focus-visible:ring-offset-0',
+        'hover:bg-zinc-50 dark:hover:pressed:bg-zinc-800',
+        'pressed:bg-zinc-50 dark:pressed:bg-zinc-800',
         selectBoxIndicator,
       ])}
     >
@@ -124,7 +125,7 @@ export function SelectListBox<T extends object>({
         // Icon
         '[&_[data-ui=content]>[data-ui=icon]:not([class*=size-])]:size-4',
         '[&_[data-ui=content]:not(:hover)>[data-ui=icon]:not([class*=text-])]:text-muted',
-       
+
         // Label
         '[&_[data-ui=label]]:col-span-full',
         '[&:has(:is([data-ui=icon],[role=img])+[data-ui=label])_[data-ui=label]]:col-start-2',

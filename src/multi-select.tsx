@@ -216,7 +216,7 @@ export function MultiSelect<
         className={twMerge(
           'relative',
           'pe-4',
-          'flex min-h-9 w-[350px] flex-row flex-wrap items-center rounded-md shadow-sm',
+          'flex min-h-9 w-[350px] flex-row flex-wrap items-center rounded-md',
           'border has-[input[data-focused=true]]:border-blue-500',
           'has-[input[data-invalid=true][data-focused=true]]:border-blue-500 has-[input[data-invalid=true]]:border-destructive',
           'has-[input[data-focused=true]]:ring-1 has-[input[data-focused=true]]:ring-blue-500',
@@ -260,7 +260,7 @@ export function MultiSelect<
             ].join(' ')}
           >
             <Input
-              className="me-4 flex-1 border-0 px-0.5 py-0 shadow-none outline-0 focus:ring-0"
+              className="me-4 flex-1 border-0 px-0.5 py-0 outline-0 focus:ring-0"
               onBlur={() => {
                 setFieldState({
                   inputValue: '',

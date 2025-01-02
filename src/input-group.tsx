@@ -94,10 +94,6 @@ export function InputGroup({
         inline
           ? [
               '[&>[data-ui=separator]]:bg-[linear-gradient(to_bottom,_theme(colors.border)_1px,_transparent_1px,_transparent_calc(100%_-_1px),_theme(colors.border)_calc(100%_-_1px))]',
-              '[&_input]:shadow-none',
-              '[&_button]:shadow-none',
-              '[&_select]:shadow-none',
-              '[&:has(>[data-ui=text-field])]:shadow-sm',
               '[&:has(>[data-ui=text-field])]:rounded-md',
             ].join(' ')
           : ['[&>[data-ui=separator]]:bg-border'].join(' '),
@@ -184,7 +180,6 @@ export function InputGroups(props: GroupProps) {
       {...props}
       data-ui="control"
       className={composeTailwindRenderProps(props.className, [
-        'shadow-sm',
         'grid',
         'grid-flow-col',
         'group',
@@ -196,7 +191,6 @@ export function InputGroups(props: GroupProps) {
         '[&>input:focus]:border-0',
         '[&>input]:ring-0',
         '[&>input:focus]:ring-0',
-        '[&>input]:shadow-none',
         '[&>input]:min-w-12',
         'sm:[&>input]:min-w-11',
         '[&>input:not(:first-of-type):not(:last-of-type)]:text-center',

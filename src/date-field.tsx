@@ -45,7 +45,7 @@ export function DateInput(props: DateInputProps) {
       {...props}
       data-ui="control"
       className={composeTailwindRenderProps(props.className, [
-        'group flex w-full items-center rounded-md border bg-transparent shadow-sm',
+        'group flex w-full items-center rounded-md border bg-transparent',
         'invalid:border-destructive',
         '[&:has([data-disabled=true])]:opacity-50',
         '[&:has([data-ui=date-segment][aria-readonly])]:bg-zinc-50',
