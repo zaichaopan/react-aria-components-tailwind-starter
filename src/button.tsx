@@ -116,7 +116,7 @@ const buttonSizes = {
   },
 };
 
-function buttonStyle({
+function getButtonStyle({
   size,
   color,
   isIconOnly,
@@ -167,6 +167,7 @@ function buttonStyle({
       : [buttonColor[color ?? 'foreground']],
     buttonSizes[buttonSize][buttonType],
     iconColor,
+    focusVisibleOutline,
   ];
 }
 
@@ -176,7 +177,7 @@ export const Button = React.forwardRef<
 >(function Button(props, ref) {
   if (props.asChild) {
     return (
-      <Slot className={twMerge(buttonStyle(props))}>{props.children}</Slot>
+      <Slot className={twMerge(getButtonStyle(props))}>{props.children}</Slot>
     );
   }
 
@@ -199,8 +200,7 @@ export const Button = React.forwardRef<
       ref={ref}
       data-variant={variant}
       className={composeTailwindRenderProps(props.className, [
-        buttonStyle({ size, color, isIconOnly, variant }),
-        focusVisibleOutline,
+        getButtonStyle({ size, color, isIconOnly, variant }),
         'disabled:opacity-50',
         'data-[pending]:opacity-75',
         !isCustomPending && 'data-[pending]:text-transparent',
@@ -266,10 +266,10 @@ export function ToggleButton(
         <RACToggleButton
           {...buttonProps}
           data-variant={variant}
-          className={composeTailwindRenderProps(props.className, [
-            buttonStyle(props),
-            focusVisibleOutline,
-          ])}
+          className={composeTailwindRenderProps(
+            props.className,
+            getButtonStyle(props),
+          )}
         />
         {tooltip}
       </TooltipTrigger>
@@ -279,10 +279,10 @@ export function ToggleButton(
     <RACToggleButton
       {...buttonProps}
       data-variant={variant}
-      className={composeTailwindRenderProps(props.className, [
-        buttonStyle(props),
-        focusVisibleOutline,
-      ])}
+      className={composeTailwindRenderProps(
+        props.className,
+        getButtonStyle(props),
+      )}
     />
   );
 }

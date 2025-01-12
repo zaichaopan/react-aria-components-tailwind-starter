@@ -5,7 +5,7 @@ import { ToggleButton } from './button';
 import { composeTailwindRenderProps } from './utils';
 import { EyeIcon, EyeOffIcon } from './icons';
 
-export function PasswordInput(props: InputProps) {
+export function PasswordInput({className, ...props}: InputProps) {
   const [isPasswordVisible, setIsPasswordVisible] = React.useState(false);
 
   return (
@@ -19,7 +19,7 @@ export function PasswordInput(props: InputProps) {
     >
       <Input
         {...props}
-        className={composeTailwindRenderProps(props.className, [
+        className={composeTailwindRenderProps(className, [
           'peer',
           'col-span-full',
           'row-start-1',
