@@ -96,22 +96,22 @@ export const Colors = (args: any) => {
   return (
     <TagGroup
       {...args}
-      defaultSelectedKeys={['strawberry']}
+      defaultSelectedKeys={['in-review']}
       selectionMode="single"
     >
-      <Label>Ice cream flavor</Label>
+      <Label>Status</Label>
       <TagList>
-        <Tag id="default" color="default">
-          Default
+        <Tag id="in-review" color="default">
+          In Review
         </Tag>
-        <Tag id="success" color="success">
-          Success
+        <Tag id="ready-to-merge" color="success">
+          Ready to merge
         </Tag>
-        <Tag id="warning" color="warning">
-          Warning
+        <Tag id="experimental" color="warning">
+          Experimental
         </Tag>
-        <Tag id="destructive" color="destructive">
-          Destructive
+        <Tag id="breaking-changes" color="destructive">
+          Breaking changes
         </Tag>
       </TagList>
     </TagGroup>

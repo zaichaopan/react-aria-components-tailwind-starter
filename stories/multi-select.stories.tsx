@@ -68,7 +68,7 @@ export const BasicExample = () => {
       <MultiSelect
         selectedList={selectedList}
         items={frameworks}
-        tag={(item) => <Tag textValue={item.textValue}>{item.textValue}</Tag>}
+        tag={(item) => <Tag textValue={item.textValue} className="font-medium">{item.textValue}</Tag>}
         renderEmptyState={(inputValue) => {
           return (
             <Text className="p-2">
@@ -217,7 +217,7 @@ export const WithAvatars = () => {
           items={users}
           tag={(item) => {
             return (
-              <Tag textValue={item.textValue}>
+              <Tag textValue={item.textValue} className="font-medium">
                 <Avatar
                   src={item.src}
                   alt={item.userName}

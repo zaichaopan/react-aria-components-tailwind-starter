@@ -14,7 +14,7 @@ import { XIcon } from './icons';
 
 const colors = {
   default: [
-    'bg-zinc-600/10',
+    'bg-zinc-100',
     'text-zinc-700',
     'dark:bg-white/10',
     'dark:text-zinc-400',
@@ -25,7 +25,7 @@ const colors = {
   success: [
     'bg-success/15',
     'text-success',
-    'dark:bg-success/40',
+    'dark:bg-success/20',
     'selected:bg-success',
     'selected:dark:bg-success',
     'selected:text-white',
@@ -33,7 +33,7 @@ const colors = {
   warning: [
     'bg-warning/15',
     'text-warning',
-    'dark:bg-warning/40',
+    'dark:bg-warning/20',
     'selected:bg-warning',
     'selected:dark:bg-warning',
     'selected:text-white',
@@ -41,7 +41,7 @@ const colors = {
   destructive: [
     'bg-destructive/15',
     'text-destructive',
-    'dark:bg-destructive/40',
+    'dark:bg-destructive/20',
     'selected:bg-destructive',
     'selected:dark:bg-destructive',
     'selected:text-white',
@@ -94,7 +94,7 @@ export function Tag({ children, color, ...props }: TagProps) {
       textValue={textValue}
       {...props}
       className={composeTailwindRenderProps(props.className, [
-        'flex max-w-fit cursor-default items-center gap-x-1 rounded-md px-1.5 py-0.5 text-xs/5 font-medium outline-0 transition',
+        'flex max-w-fit cursor-default items-center gap-x-1 rounded px-2 py-0.5 text-xs/5 font-semibold outline-0 transition',
         '[&[data-selection-mode]]:cursor-pointer',
         colors[color || groupColor],
         focusVisibleOutline,

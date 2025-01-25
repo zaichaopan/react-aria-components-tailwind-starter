@@ -52,7 +52,7 @@ export function SelectButton(props: {
         'group:disabled:cursor-not-allowed group-disabled:opacity-50',
         'text-base/6 sm:text-sm/6',
         focusVisibleRing,
-        'hover:bg-zinc-50 dark:hover:pressed:bg-zinc-800',
+        'hover:bg-zinc-50 dark:hover:bg-zinc-800 dark:hover:pressed:bg-zinc-800',
         'pressed:bg-zinc-50 dark:pressed:bg-zinc-800',
         selectBoxIndicator,
       ])}

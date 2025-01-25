@@ -31,11 +31,14 @@ export const BasicExample = () => {
       <Button
         variant="outline"
         onPress={() => {
-          toast.add({
-            title: 'Templates unavailable',
-            description:
-              'Issue template and forms are current unavailable. Please try again later.',
-          });
+          toast.add(
+            {
+              title: 'Templates unavailable',
+              description:
+                'Issue template and forms are current unavailable. Please try again later.',
+            },
+            { timeout: 5000 },
+          );
         }}
       >
         Default
@@ -44,10 +47,13 @@ export const BasicExample = () => {
       <Button
         variant="outline"
         onPress={() => {
-          toast.add({
-            description:
-              'Issue template and forms are current unavailable. Please try again later.',
-          });
+          toast.add(
+            {
+              description:
+                'Issue template and forms are current unavailable. Please try again later.',
+            },
+            { timeout: 5000 },
+          );
         }}
       >
         Description only
@@ -56,12 +62,15 @@ export const BasicExample = () => {
       <Button
         variant="outline"
         onPress={() => {
-          toast.add({
-            type: 'info',
-            title: 'Templates unavailable',
-            description:
-              'Issue template and forms are current unavailable. Please try again later.',
-          });
+          toast.add(
+            {
+              type: 'info',
+              title: 'Templates unavailable',
+              description:
+                'Issue template and forms are current unavailable. Please try again later.',
+            },
+            { timeout: 5000 },
+          );
         }}
       >
         Info
@@ -70,12 +79,15 @@ export const BasicExample = () => {
       <Button
         variant="outline"
         onPress={() => {
-          toast.add({
-            type: 'error',
-            title: 'Templates unavailable',
-            description:
-              'Issue template and forms are current unavailable. Please try again later.',
-          });
+          toast.add(
+            {
+              type: 'error',
+              title: 'Templates unavailable',
+              description:
+                'Issue template and forms are current unavailable. Please try again later.',
+            },
+            { timeout: 5000 },
+          );
         }}
       >
         Error
@@ -84,12 +96,15 @@ export const BasicExample = () => {
       <Button
         variant="outline"
         onPress={() => {
-          toast.add({
-            type: 'warning',
-            title: 'Templates unavailable',
-            description:
-              'Issue template and forms are current unavailable. Please try again later.',
-          });
+          toast.add(
+            {
+              type: 'warning',
+              title: 'Templates unavailable',
+              description:
+                'Issue template and forms are current unavailable. Please try again later.',
+            },
+            { timeout: 5000 },
+          );
         }}
       >
         Warning
@@ -98,11 +113,14 @@ export const BasicExample = () => {
       <Button
         variant="outline"
         onPress={() => {
-          toast.add({
-            title: 'Payment details saved',
-            description: 'Your payment details have been save successfully.',
-            type: 'success',
-          });
+          toast.add(
+            {
+              title: 'Payment details saved',
+              description: 'Your payment details have been save successfully.',
+              type: 'success',
+            },
+            { timeout: 5000 },
+          );
         }}
       >
         Success
@@ -111,16 +129,19 @@ export const BasicExample = () => {
       <Button
         variant="outline"
         onPress={() => {
-          toast.add({
-            title: 'Payment details saved',
-            description: (
-              <div>
-                Your payment details have been save successfully.&nbsp;{' '}
-                <TextLink href="/">Learn more</TextLink>{' '}
-              </div>
-            ),
-            type: 'success',
-          });
+          toast.add(
+            {
+              title: 'Payment details saved',
+              description: (
+                <div>
+                  Your payment details have been save successfully.&nbsp;{' '}
+                  <TextLink href="/">Learn more</TextLink>{' '}
+                </div>
+              ),
+              type: 'success',
+            },
+            { timeout: 5000 },
+          );
         }}
       >
         Link
