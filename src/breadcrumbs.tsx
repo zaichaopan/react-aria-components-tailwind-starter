@@ -4,10 +4,10 @@ import {
   BreadcrumbProps as RACBreadcrumbProps,
   BreadcrumbsProps as RACBreadcrumbsProps,
   LinkProps,
+  composeRenderProps,
 } from 'react-aria-components';
 import { twMerge } from 'tailwind-merge';
 import { Link } from './link';
-import { composeTailwindRenderProps } from './utils';
 import { ChevronRightIcon } from './icons';
 
 export function Breadcrumbs<T extends object>({
@@ -21,22 +21,28 @@ export function Breadcrumbs<T extends object>({
 
 type BreadcrumbProps = RACBreadcrumbProps & LinkProps;
 
-export function Breadcrumb({ className, ...props }: BreadcrumbProps) {
+export function Breadcrumb(props: BreadcrumbProps) {
   return (
     <RACBreadcrumb
       {...props}
-      className={composeTailwindRenderProps(
-        className as RACBreadcrumbProps['className'],
-        'flex items-center gap-1',
+      className={composeRenderProps(
+        props.className as RACBreadcrumbProps['className'],
+        (className) => {
+          return twMerge('flex items-center gap-1', className);
+        },
       )}
     >
       <Link
         {...props}
-        className="underline underline-offset-2 disabled:opacity-100 [&:not(:hover)]:decoration-muted"
+        className={({ isDisabled, isHovered }) => {
+          return twMerge(
+            'underline underline-offset-2',
+            isDisabled && 'opacity-100',
+            !isHovered && 'decoration-muted',
+          );
+        }}
       />
-      {props.href && (
-        <ChevronRightIcon className="size-4 text-muted" strokeWidth={1.5} />
-      )}
+      {props.href && <ChevronRightIcon className="size-4 text-muted" />}
     </RACBreadcrumb>
   );
 }

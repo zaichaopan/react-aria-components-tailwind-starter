@@ -5,7 +5,7 @@ import { DropZone } from '../src/dropzone';
 import { FileTrigger, isFileDropItem } from 'react-aria-components';
 import { Button } from '../src/button';
 import { Text } from '../src/text';
-import { Icon } from '../src/accessible-icon';
+import { Icon } from '../src/icon';
 
 const meta: Meta = {
   title: 'Dropzone',

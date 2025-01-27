@@ -13,7 +13,6 @@ import {
   composeRenderProps,
 } from 'react-aria-components';
 import { Button } from './button';
-import { focusVisibleOutline } from './utils';
 import { twMerge } from 'tailwind-merge';
 import { ChevronLeftIcon, ChevronRightIcon } from './icons';
 import { getLocalTimeZone, isToday } from '@internationalized/date';
@@ -45,23 +44,49 @@ export function Calendar<T extends DateValue>({
             return (
               <CalendarCell
                 date={date}
-                className={twMerge(
-                  'relative flex size-9 cursor-default items-center justify-center rounded-md  text-[0.85rem] outline-none',
-                  'hover:bg-zinc-100 dark:hover:bg-zinc-700',
-                  'pressed:bg-accent/90 pressed:text-white',
-                  'disabled:opacity-50',
-
-                  isToday(date, getLocalTimeZone()) && [
-                    'bg-zinc-100 dark:bg-zinc-700',
-                  ],
-
-                  'selected:text-sm selected:text-white',
-                  'selected:border selected:border-accent selected:dark:border-0',
-                  'selected:bg-accent selected:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.1)]',
-                  'selected:hover:bg-accent dark:selected:hover:bg-accent',
-                  'selected:invalid:border-destructive selected:invalid:bg-destructive selected:invalid:text-white',
-                  'unavailable:text-destructive unavailable:line-through unavailable:decoration-destructive',
-                  focusVisibleOutline,
+                className={composeRenderProps(
+                  '',
+                  (
+                    className,
+                    {
+                      isHovered,
+                      isPressed,
+                      isDisabled,
+                      isSelected,
+                      isInvalid,
+                      isUnavailable,
+                      isFocusVisible,
+                    },
+                  ) => {
+                    return twMerge(
+                      'relative flex size-9 cursor-default items-center justify-center rounded-md text-[0.85rem] outline-none',
+                      isToday(date, getLocalTimeZone()) && [
+                        'bg-zinc-100 dark:bg-zinc-700',
+                      ],
+                      isHovered && 'bg-zinc-100 dark:bg-zinc-700',
+                      isPressed && 'bg-accent/90 text-white',
+                      isDisabled && 'opacity-50',
+                      isSelected && [
+                        'text-sm text-white',
+                        'border border-accent dark:border-0',
+                        'bg-accent shadow-[inset_0_1px_0_0_rgba(255,255,255,0.1)]',
+                        isHovered && ['bg-accent', 'dark:bg-accent'],
+                        isInvalid && [
+                          'border-destructive bg-destructive text-white',
+                        ],
+                      ],
+                      isUnavailable && [
+                        'text-destructive line-through decoration-destructive',
+                      ],
+                      isFocusVisible && [
+                        'outline',
+                        'outline-2',
+                        'outline-ring',
+                        isSelected && 'outline-offset-1',
+                      ],
+                      className,
+                    );
+                  },
                 )}
               />
             );

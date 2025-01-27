@@ -14,13 +14,12 @@ import {
   TextArea as RACTextArea,
   TextAreaProps as RACTextAreaProps,
   Text as RACText,
+  composeRenderProps,
 } from 'react-aria-components';
 import { twMerge } from 'tailwind-merge';
 import {
-  composeTailwindRenderProps,
   DisplayLevel,
   displayLevels,
-  focusRing,
   inputField,
 } from './utils';
 import { Text } from './text';
@@ -139,7 +138,9 @@ export function TextField(props: RACTextFieldProps) {
     <RACTextField
       {...props}
       data-ui="text-field"
-      className={composeTailwindRenderProps(props.className, inputField)}
+      className={composeRenderProps(props.className, (className) =>
+        twMerge(inputField, className),
+      )}
     />
   );
 }
@@ -149,9 +150,8 @@ export function FieldError(props: FieldErrorProps) {
     <RACFieldError
       {...props}
       data-ui="errorMessage"
-      className={composeTailwindRenderProps(
-        props.className,
-        'block text-base/6 text-destructive sm:text-sm/6',
+      className={composeRenderProps(props.className, (className) =>
+        twMerge('block text-base/6 text-destructive sm:text-sm/6', className),
       )}
     />
   );
@@ -163,16 +163,26 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
       <RACInput
         {...props}
         ref={ref}
-        className={composeTailwindRenderProps(props.className, [
-          'w-full rounded-md border bg-inherit outline-none',
-          'px-3 py-[calc(theme(spacing[2.5])-1px)] sm:py-[calc(theme(spacing[1.5])-1px)]',
-          'text-base/6 placeholder:text-muted sm:text-sm/6',
-          'invalid:border-destructive',
-          'disabled:opacity-50',
-          '[&[readonly]]:bg-zinc-50',
-          'dark:[&[readonly]]:bg-white/10',
-          focusRing,
-        ])}
+        className={composeRenderProps(
+          props.className,
+          (className, renderProps) =>
+            twMerge(
+              'w-full rounded-md border bg-inherit outline-none',
+              'px-3 py-[calc(theme(spacing[2.5])-1px)] sm:py-[calc(theme(spacing[1.5])-1px)]',
+              'text-base/6 placeholder:text-muted sm:text-sm/6',
+              renderProps.isDisabled && 'opacity-50',
+              renderProps.isInvalid && 'border-destructive',
+              '[&[readonly]]:bg-zinc-50',
+              'dark:[&[readonly]]:bg-white/10',
+              renderProps.isFocused && [
+                'ring-1',
+                'ring-inset',
+                'ring-ring',
+                'border-ring',
+              ],
+              className,
+            ),
+        )}
       />
     );
   },
@@ -182,15 +192,23 @@ export function TextArea(props: RACTextAreaProps) {
   return (
     <RACTextArea
       {...props}
-      className={composeTailwindRenderProps(props.className, [
-        'w-full rounded-md border bg-inherit px-3 py-1 outline-none',
-        'text-base/6 placeholder:text-muted sm:text-sm/6 ',
-        'disabled:opacity-50',
-        'invalid:border-destructive',
-        '[&[readonly]]:bg-zinc-50',
-        'dark:[&[readonly]]:bg-white/10',
-        focusRing,
-      ])}
+      className={composeRenderProps(props.className, (className, renderProps) =>
+        twMerge(
+          'w-full rounded-md border bg-inherit px-3 py-1 outline-none',
+          'text-base/6 placeholder:text-muted sm:text-sm/6 ',
+          renderProps.isDisabled && 'opacity-50',
+          renderProps.isInvalid && 'border-destructive',
+          '[&[readonly]]:bg-zinc-50',
+          'dark:[&[readonly]]:bg-white/10',
+          renderProps.isFocused && [
+            'ring-1',
+            'ring-inset',
+            'ring-ring',
+            'border-ring',
+          ],
+          className,
+        ),
+      )}
     />
   );
 }

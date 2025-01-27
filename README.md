@@ -9,6 +9,8 @@ This project is heavily inspired by below amazing projects.
 - <a href="https://ui.shadcn.com/docs" target="_blank">Shadcn UI</a>
 - <a href="https://nextui.org" target="_blank">NextUI</a>
 
+**For TailwindV4, please use https://github.com/zaichaopan/react-aria-components-tailwind-starter/tree/tailwindV4**
+
 ## Installation
 
 **This is *NOT* a component library**. It just contains re-usable and styled components that you can copy and paste to your project.
@@ -20,7 +22,6 @@ This project is heavily inspired by below amazing projects.
 npm i react-aria-components
 npm i react-stately
 npm i react-aria
-npm i tailwindcss-react-aria-components
 npm i tailwindcss-animate
 npm i @tailwindcss/container-queries
 npm i tailwind-merge

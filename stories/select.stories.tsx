@@ -17,7 +17,7 @@ import {
 import { Avatar } from '../src/avatar';
 import { Description, FieldError, Label } from '../src/field';
 import { docs } from '../.storybook/docs';
-import { Icon } from '../src/accessible-icon';
+import { Icon } from '../src/icon';
 import { AlignJustifyIcon, AlignLeftIcon, AlignRightIcon } from 'lucide-react';
 import { Text } from '../src/text';
 

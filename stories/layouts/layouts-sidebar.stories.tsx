@@ -1,7 +1,7 @@
 import { docs } from '../../.storybook/docs.ts';
 import { Button } from '../../src/button.tsx';
 import { Strong } from '../../src/text.tsx';
-import { Icon } from '../../src/accessible-icon.tsx';
+import { Icon } from '../../src/icon.tsx';
 import {
   Menu,
   MenuButton,

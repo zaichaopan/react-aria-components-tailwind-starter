@@ -1,5 +1,5 @@
 import type { Meta } from '@storybook/react';
-import { Icon } from '../src/accessible-icon';
+import { Icon } from '../src/icon';
 import { docs } from '../.storybook/docs';
 import { MailIcon } from 'lucide-react';
 

@@ -4,15 +4,17 @@ import {
   ListBoxItem as RACListBoxItem,
   ListBoxProps as RACListBoxProps,
   ListBoxItemProps,
+  composeRenderProps,
 } from 'react-aria-components';
-import { composeTailwindRenderProps, focusVisibleOutline } from './utils';
+import { composeTailwindRenderProps } from './utils';
+import { twMerge } from 'tailwind-merge';
 
 export interface ListBoxProps<T>
   extends Omit<RACListBoxProps<T>, 'layout' | 'orientation'> {}
 
 export function ListBox<T extends object>(props: ListBoxProps<T>) {
   const ref = React.useRef<HTMLDivElement>(null);
-  
+
   // Fix not auto scroll to selected item
   React.useEffect(() => {
     if (ref.current) {
@@ -49,11 +51,17 @@ export function ListBoxItem(props: ListBoxItemProps) {
     <RACListBoxItem
       {...props}
       textValue={textValue}
-      className={composeTailwindRenderProps(props.className, [
-        'group relative flex outline-0',
-        'disabled:opacity-50',
-        focusVisibleOutline,
-      ])}
+      className={composeRenderProps(
+        props.className,
+        (className, { isFocusVisible, isDisabled }) =>
+          twMerge(
+            'group relative flex outline-0',
+            isDisabled && 'opacity-50',
+            isFocusVisible &&
+              'outline outline-2 outline-offset-2 outline-ring',
+            className,
+          ),
+      )}
     />
   );
 }

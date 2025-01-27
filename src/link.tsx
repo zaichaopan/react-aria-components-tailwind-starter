@@ -1,9 +1,9 @@
 import React from 'react';
 import {
+  composeRenderProps,
   Link as RACLink,
   LinkProps as RACLinkProps,
 } from 'react-aria-components';
-import { composeTailwindRenderProps, focusVisibleOutline } from './utils';
 import { twMerge } from 'tailwind-merge';
 import { AsChildProps, Slot } from './slot';
 import { TooltipTrigger } from './tooltip';
@@ -21,15 +21,15 @@ export type LinkWithAsChild = AsChildProps<
 const linkStyle = [
   'relative inline-flex cursor-pointer items-center gap-1 rounded outline-none hover:underline',
   'text-base/6 sm:text-sm/6',
-  'disabled:no-underline disabled:opacity-50 disabled:cursor-default',
   '[&.border]:hover:no-underline',
   '[&>[data-ui=icon]:not([class*=size-])]:size-4',
+  'data-[disabled]:no-underline data-[disabled]:opacity-50 data-[disabled]:cursor-default',
 ].join(' ');
 
 export const Link = React.forwardRef<HTMLAnchorElement, LinkWithAsChild>(
   function Link(props, ref) {
     if (props.asChild) {
-      return <Slot className={twMerge(linkStyle)}>{props.children}</Slot>;
+      return <Slot className={linkStyle}>{props.children}</Slot>;
     }
 
     const { asChild, tooltip, ...rest } = props;
@@ -38,10 +38,16 @@ export const Link = React.forwardRef<HTMLAnchorElement, LinkWithAsChild>(
       <RACLink
         {...rest}
         ref={ref}
-        className={composeTailwindRenderProps(props.className, [
-          linkStyle,
-          focusVisibleOutline,
-        ])}
+        className={composeRenderProps(
+          props.className,
+          (className, { isFocusVisible }) =>
+            twMerge(
+              linkStyle,
+              isFocusVisible &&
+                'outline outline-2 outline-offset-2 outline-ring',
+              className,
+            ),
+        )}
       />
     );
 
@@ -54,6 +60,6 @@ export const Link = React.forwardRef<HTMLAnchorElement, LinkWithAsChild>(
       );
     }
 
-    return link
+    return link;
   },
 );

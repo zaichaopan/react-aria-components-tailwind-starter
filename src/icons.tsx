@@ -1,5 +1,5 @@
 import { twMerge } from 'tailwind-merge';
-import { Icon } from './accessible-icon';
+import { Icon } from './icon';
 
 export function EyeIcon({
   'aria-label': arialLabel,

@@ -6,13 +6,14 @@ import {
   DatePickerStateContext,
   useLocale,
   Group,
+  composeRenderProps,
 } from 'react-aria-components';
 import { Button } from './button';
 import { Calendar } from './calendar';
 import { DateInput, DateInputProps } from './date-field';
 import { Dialog } from './dialog';
 import { Popover } from './popover';
-import { composeTailwindRenderProps, inputField } from './utils';
+import { inputField } from './utils';
 import { twMerge } from 'tailwind-merge';
 import { CalendarIcon } from './icons';
 
@@ -23,7 +24,9 @@ export function DatePicker<T extends DateValue>(props: DatePickerProps<T>) {
   return (
     <RACDatePicker
       {...props}
-      className={composeTailwindRenderProps(props.className, inputField)}
+      className={composeRenderProps(props.className, (className) => {
+        return twMerge(inputField, className);
+      })}
     />
   );
 }
@@ -43,12 +46,15 @@ export function DatePickerInput(props: DateInputProps) {
       >
         <DateInput
           {...props}
-          className={composeTailwindRenderProps(props.className, [
-            'col-span-full',
-            'row-start-1',
-            'sm:pe-9',
-            'pe-10',
-          ])}
+          className={composeRenderProps(props.className, (className) =>
+            twMerge(
+              'col-span-full',
+              'row-start-1',
+              'sm:pe-9',
+              'pe-10',
+              className,
+            ),
+          )}
         />
         <Button
           variant="plain"
@@ -110,7 +116,7 @@ export function DatePickerButton({
             <span className="text-sm">{formattedDate}</span>
           )}
 
-          <CalendarIcon className="text-muted group-hover:text-foreground group-pressed:text-foreground" />
+          <CalendarIcon className="text-muted group-hover:text-foreground" />
         </Button>
 
         <DateInput className="hidden" aria-hidden />

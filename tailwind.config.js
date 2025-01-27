@@ -20,11 +20,11 @@ export default {
         warning: 'rgb(var(--warning))',
         muted: 'rgb(var(--muted))',
         border: 'rgb(var(--border))',
+        ring: 'rgb(var(--ring))',
       },
     },
   },
   plugins: [
-    require('tailwindcss-react-aria-components'),
     require('tailwindcss-animate'),
     require('@tailwindcss/container-queries'),
   ],

@@ -7,11 +7,7 @@ import {
   DateValue,
   composeRenderProps,
 } from 'react-aria-components';
-import {
-  composeTailwindRenderProps,
-  focusWithinRing,
-  inputField,
-} from './utils';
+import { inputField } from './utils';
 import { twMerge } from 'tailwind-merge';
 
 export interface DateFieldProps<T extends DateValue>
@@ -44,26 +40,34 @@ export function DateInput(props: DateInputProps) {
     <RACDateInput
       {...props}
       data-ui="control"
-      className={composeTailwindRenderProps(props.className, [
-        'group flex w-full items-center rounded-md border bg-transparent',
-        'invalid:border-destructive',
-        '[&:has([data-disabled=true])]:opacity-50',
-        '[&:has([data-ui=date-segment][aria-readonly])]:bg-zinc-50',
-        'dark:[&:has([data-ui=date-segment][aria-readonly])]:bg-white/10',
-        'block min-w-[150px]',
-        'text-base/6 sm:text-sm/6',
-        'px-3',
-        'py-[calc(theme(spacing[2.5])-1px)] sm:py-[calc(theme(spacing[1.5])-1px)]',
-        focusWithinRing,
-        'ring-offset-0',
-      ])}
+      className={composeRenderProps(props.className, (className, renderProps) =>
+        twMerge(
+          'group flex w-full items-center rounded-md border bg-transparent',
+
+          '[&:has([data-disabled=true])]:opacity-50',
+          '[&:has([data-ui=date-segment][aria-readonly])]:bg-zinc-50',
+          'dark:[&:has([data-ui=date-segment][aria-readonly])]:bg-white/10',
+          'block min-w-[150px]',
+          'text-base/6 sm:text-sm/6',
+          'px-3',
+          'py-[calc(theme(spacing[2.5])-1px)] sm:py-[calc(theme(spacing[1.5])-1px)]',
+          renderProps.isInvalid && 'border-destructive',
+          renderProps.isFocusWithin && [
+            'ring-1',
+            'ring-inset',
+            'ring-ring',
+            'border-ring',
+          ],
+          className,
+        ),
+      )}
     >
       {(segment) => (
         <DateSegment
           data-ui="date-segment"
           segment={segment}
           className={twMerge(
-            'inline rounded px-0.5 caret-transparent outline-0 type-literal:px-0',
+            'inline rounded px-0.5 caret-transparent outline-0 data-[type=literal]:px-0',
             'data-[placeholder]:italic data-[placeholder]:text-muted',
             'focus:bg-accent focus:text-white focus:data-[placeholder]:text-white',
           )}

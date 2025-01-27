@@ -1,16 +1,13 @@
 import React, { ReactNode } from 'react';
 import {
   CheckboxRenderProps,
+  composeRenderProps,
   Checkbox as RACCheckbox,
   CheckboxGroup as RACCheckboxGroup,
   CheckboxGroupProps as RACCheckboxGroupProps,
   CheckboxProps as RACCheckboxProps,
 } from 'react-aria-components';
-import {
-  composeTailwindRenderProps,
-  groupBox,
-  groupFocusVisibleOutline,
-} from './utils';
+import { groupBox } from './utils';
 import { twMerge } from 'tailwind-merge';
 import { DescriptionContext, DescriptionProvider } from './field';
 import { CheckIcon, MinusIcon } from './icons';
@@ -29,7 +26,9 @@ export function CheckboxGroup({
     <RACCheckboxGroup
       {...props}
       data-orientation={orientation}
-      className={composeTailwindRenderProps(props.className, groupBox)}
+      className={composeRenderProps(props.className, (className) => {
+        return twMerge(groupBox, className);
+      })}
     />
   );
 }
@@ -42,7 +41,9 @@ export function Checkboxes({
     <div
       data-ui="box"
       className={twMerge(
-        'flex flex-col group-data-[orientation=horizontal]:flex-row group-data-[orientation=horizontal]:flex-wrap',
+        'flex flex-col',
+        'group-data-[orientation=horizontal]:flex-row',
+        'group-data-[orientation=horizontal]:flex-wrap',
         '[&_label]:has-[[data-ui=description]]:font-medium',
         className,
       )}
@@ -80,14 +81,13 @@ interface CheckboxProps extends RACCheckboxProps {
 
 export interface CustomRenderCheckboxProps
   extends Omit<RACCheckboxProps, 'children'> {
-  render: React.ReactElement | ((props: CheckboxRenderProps) => React.ReactNode);
+  render:
+    | React.ReactElement
+    | ((props: CheckboxRenderProps) => React.ReactNode);
   children?: never;
 }
 
-export function Checkbox({
-  className,
-  ...props
-}: CheckboxProps | CustomRenderCheckboxProps) {
+export function Checkbox(props: CheckboxProps | CustomRenderCheckboxProps) {
   const descriptionContext = React.useContext(DescriptionContext);
 
   if (props.render) {
@@ -97,11 +97,16 @@ export function Checkbox({
       <RACCheckbox
         {...restProps}
         aria-describedby={descriptionContext?.['aria-describedby']}
-        className={composeTailwindRenderProps(className, [
-          'group',
-          'text-base/6 sm:text-sm/6',
-          'disabled:opacity-50',
-        ])}
+        className={composeRenderProps(
+          props.className,
+          (className, renderProps) =>
+            twMerge([
+              'group',
+              'text-base/6 sm:text-sm/6',
+              renderProps.isDisabled && 'opacity-50',
+              className,
+            ]),
+        )}
       >
         {render}
       </RACCheckbox>
@@ -115,14 +120,17 @@ export function Checkbox({
       {...restProps}
       aria-describedby={descriptionContext?.['aria-describedby']}
       data-label-placement={labelPlacement}
-      className={composeTailwindRenderProps(className, [
-        'group flex items-center',
-        'group-data-[orientation=horizontal]:text-nowrap',
-        'data-[label-placement=start]:flex-row-reverse',
-        'data-[label-placement=start]:justify-between',
-        'text-base/6 sm:text-sm/6',
-        'disabled:opacity-50',
-      ])}
+      className={composeRenderProps(
+        props.className,
+        (className, renderProps) => {
+          return twMerge(
+            'group flex items-center text-base/6 group-data-[orientation=horizontal]:text-nowrap sm:text-sm/6',
+            labelPlacement === 'start' && 'flex-row-reverse justify-between',
+            renderProps.isDisabled && 'opacity-50',
+            className,
+          );
+        },
+      )}
     >
       {(renderProps) => {
         return (
@@ -130,34 +138,16 @@ export function Checkbox({
             <div
               className={twMerge([
                 'flex shrink-0 items-center justify-center rounded',
-                labelPlacement === 'end' ? 'me-3' : 'ms-3',
                 'size-[1.125rem] sm:size-4',
-                'border dark:border-[1.5px]',
-                'border-zinc-400/75 dark:border-zinc-600',
-
-                // readonly
-                'group-data-[readonly]:opacity-50',
-
-                // invalid
-                'group-invalid:border-destructive',
-                'group-invalid:dark:border-destructive',
-
-                // selected
-                'group-selected:border',
-                'group-selected:border-accent',
-                'group-selected:bg-accent',
-                'group-selected:dark:border-0',
-                'group-selected:dark:border-accent',
-                'group-selected:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.1)]',
-
-                // indeterminate
-                'group-indeterminate:border',
-                'group-indeterminate:border-accent',
-                'group-indeterminate:bg-accent',
-                'group-indeterminate:dark:border-0',
-                'group-indeterminate:dark:border-accent',
-                'group-indeterminate:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.1)]',
-                groupFocusVisibleOutline,
+                'border border-zinc-400/75 dark:border-[1.5px] dark:border-zinc-600',
+                labelPlacement === 'end' ? 'me-3' : 'ms-3',
+                renderProps.isReadOnly && 'opacity-50',
+                renderProps.isInvalid &&
+                  'border-destructive dark:border-destructive',
+                (renderProps.isSelected || renderProps.isIndeterminate) &&
+                  'border border-accent bg-accent shadow-[inset_0_1px_0_0_rgba(255,255,255,0.1)] dark:border-0 dark:border-accent',
+                renderProps.isFocusVisible &&
+                  'outline-ring outline outline-2 outline-offset-2',
               ])}
             >
               {renderProps.isIndeterminate ? (

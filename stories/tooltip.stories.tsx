@@ -9,7 +9,7 @@ import {
 } from '../src/tooltip';
 import { docs } from '../.storybook/docs';
 import { Moon, Sun } from 'lucide-react';
-import { Icon } from '../src/accessible-icon';
+import { Icon } from '../src/icon';
 
 const meta: Meta = {
   title: 'Tooltip',

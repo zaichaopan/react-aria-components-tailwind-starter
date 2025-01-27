@@ -10,7 +10,7 @@ import { docs } from '../.storybook/docs';
 import { Button } from '../src/button';
 import { NotificationBadge } from '../src/notification-badge';
 import { Avatar } from '../src/avatar';
-import { Icon } from '../src/accessible-icon';
+import { Icon } from '../src/icon';
 
 const meta: Meta<typeof Link> = {
   title: 'Link',

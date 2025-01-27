@@ -5,50 +5,45 @@ import {
   TagGroupProps as AriaTagGroupProps,
   TagProps as AriaTagProps,
   Button,
+  composeRenderProps,
   TagList as RACTagList,
   TagListProps,
 } from 'react-aria-components';
 import { twMerge } from 'tailwind-merge';
-import { composeTailwindRenderProps, focusVisibleOutline } from './utils';
+import { composeTailwindRenderProps } from './utils';
 import { XIcon } from './icons';
 
-const colors = {
-  default: [
-    'bg-zinc-100',
-    'text-zinc-700',
-    'dark:bg-white/10',
-    'dark:text-zinc-400',
-    'selected:bg-zinc-700',
-    'selected:text-white',
-    'dark:selected:bg-white/20',
-  ],
-  success: [
-    'bg-success/15',
-    'text-success',
-    'dark:bg-success/20',
-    'selected:bg-success',
-    'selected:dark:bg-success',
-    'selected:text-white',
-  ],
-  warning: [
-    'bg-warning/15',
-    'text-warning',
-    'dark:bg-warning/20',
-    'selected:bg-warning',
-    'selected:dark:bg-warning',
-    'selected:text-white',
-  ],
-  destructive: [
-    'bg-destructive/15',
-    'text-destructive',
-    'dark:bg-destructive/20',
-    'selected:bg-destructive',
-    'selected:dark:bg-destructive',
-    'selected:text-white',
-  ],
+const colors = ({ isSelected }: { isSelected: boolean }) => {
+  return {
+    default: [
+      'bg-zinc-100',
+      'text-zinc-700',
+      'dark:bg-white/10',
+      'dark:text-zinc-400',
+      isSelected && 'bg-zinc-700 text-white dark:g-white/20',
+    ],
+    success: [
+      'bg-success/15',
+      'text-success',
+      'dark:bg-success/20',
+      isSelected && 'bg-success dark:bg-success text-white',
+    ],
+    warning: [
+      'bg-warning/15',
+      'text-warning',
+      'dark:bg-warning/20',
+      isSelected && 'bg-warning dark:bg-warning text-white',
+    ],
+    destructive: [
+      'bg-destructive/15',
+      'text-destructive',
+      'dark:bg-destructive/20',
+      isSelected && 'bg-destructive dark:bg-destructive text-white',
+    ],
+  };
 };
 
-type Color = keyof typeof colors;
+type Color = keyof ReturnType<typeof colors>;
 
 const ColorContext = React.createContext<Color>('default');
 
@@ -93,14 +88,18 @@ export function Tag({ children, color, ...props }: TagProps) {
     <AriaTag
       textValue={textValue}
       {...props}
-      className={composeTailwindRenderProps(props.className, [
-        'flex max-w-fit cursor-default items-center gap-x-1 rounded px-2 py-0.5 text-xs/5 font-semibold outline-0 transition',
-        '[&[data-selection-mode]]:cursor-pointer',
-        colors[color || groupColor],
-        focusVisibleOutline,
-        'focus-visible:outline-offset-1',
-        'disabled:opacity-50',
-      ])}
+      className={composeRenderProps(
+        props.className,
+        (className, { isFocusVisible, isDisabled, isSelected }) =>
+          twMerge(
+            'flex max-w-fit cursor-default items-center gap-x-1 rounded px-2 py-0.5 text-xs/5 font-semibold outline-0 transition',
+            '[&[data-selection-mode]]:cursor-pointer',
+            colors({ isSelected })[color || groupColor],
+            isFocusVisible && 'outline-ring outline outline-2 outline-offset-1',
+            isDisabled && 'opacity-50',
+            className,
+          ),
+      )}
     >
       {(renderProps) => {
         return (
@@ -109,10 +108,18 @@ export function Tag({ children, color, ...props }: TagProps) {
             {renderProps.allowsRemoving && (
               <Button
                 slot="remove"
-                className={composeTailwindRenderProps('', [
-                  'flex cursor-default items-center justify-center rounded-full p-0.5 outline-0 transition-[background-color] hover:bg-black/10 pressed:bg-black/20 dark:hover:bg-white/10 dark:pressed:bg-white/20',
-                  focusVisibleOutline,
-                ])}
+                className={composeRenderProps(
+                  '',
+                  (className, { isPressed, isHovered, isFocusVisible }) =>
+                    twMerge(
+                      'flex cursor-default items-center justify-center rounded-full p-0.5 outline-0 transition-[background-color]',
+                      isHovered && 'pressed: bg-black/10 dark:bg-white/10',
+                      isPressed && 'bg-black/20 dark:bg-white/20',
+                      isFocusVisible &&
+                        'outline-ring outline outline-2 outline-offset-2',
+                      className,
+                    ),
+                )}
               >
                 <XIcon className="size-3"></XIcon>
               </Button>

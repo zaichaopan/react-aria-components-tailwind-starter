@@ -49,7 +49,7 @@ export function SearchInput(props: InputProps) {
         isIconOnly
         variant="plain"
         size="sm"
-        className="group-empty-invisible -col-end-1 row-start-1 place-self-center group-empty:invisible"
+        className="-col-end-1 row-start-1 place-self-center group-data-[empty]:invisible"
       >
         <XIcon aria-label="Clear" />
       </Button>

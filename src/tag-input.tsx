@@ -149,8 +149,8 @@ export function TagsInput({
       <div
         className={twMerge(
           'flex min-h-9 items-center rounded-md',
-          'border has-[input[data-focused=true]]:border-blue-500',
-          'has-[input[data-invalid=true][data-focused=true]]:border-blue-500 has-[input[data-invalid=true]]:border-destructive',
+          'border has-[input[data-focused=true]]:border-ring',
+          'has-[input[data-invalid=true][data-focused=true]]:border-ring has-[input[data-invalid=true]]:border-destructive',
           'has-[input[data-focused=true]]:ring-1 has-[input[data-focused=true]]:ring-blue-500',
         )}
       >

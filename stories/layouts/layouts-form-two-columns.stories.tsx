@@ -10,11 +10,10 @@ import {
   TextArea,
   TextField,
 } from '../../src/field';
-import { InputGroup, InputAddon } from '../../src/input-group';
 import { Separator } from '../../src/separator';
 import { FileTrigger, Group } from 'react-aria-components';
 import { DropZone } from '../../src/dropzone';
-import { Icon } from '../../src/accessible-icon';
+import { Icon } from '../../src/icon';
 import { Heading } from '../../src/heading';
 import { Avatar } from '../../src/avatar';
 import { DatePicker, DatePickerInput } from '../../src/date-picker';
@@ -120,17 +119,19 @@ export const TwoColumns = () => {
               </DropZone>
             </div>
 
-            <TextField className="sm:col-span-4">
-              <Label>Website</Label>
-
-              <Description>
-                Add a link to your website, blog, or social media profiles.
-              </Description>
-
-              <InputGroup>
-                <InputAddon>https://</InputAddon>
-                <Input placeholder="www.example.com" />
-              </InputGroup>
+            <TextField className="sm:col-span-4" name="company_website">
+              <Label>Company website</Label>
+              <div className="flex">
+                <span className="flex items-center rounded-s border border-e-0 px-2.5 text-base/6 text-foreground sm:text-sm/6">
+                  https://
+                </span>
+                <Input
+                  type="text"
+                  placeholder="www.example.com"
+                  className="rounded-s-none"
+                  autoComplete="email"
+                />
+              </div>
             </TextField>
 
             <TextField

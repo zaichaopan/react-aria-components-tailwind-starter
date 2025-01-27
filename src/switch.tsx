@@ -1,25 +1,22 @@
 import React from 'react';
+import { twMerge } from 'tailwind-merge';
 import {
+  composeRenderProps,
   Group,
   GroupProps,
   Switch as RACSwitch,
   SwitchProps as RACSwitchProps,
   SwitchRenderProps,
 } from 'react-aria-components';
-import {
-  composeTailwindRenderProps,
-  groupBox,
-  groupFocusVisibleOutline,
-} from './utils';
-import { twMerge } from 'tailwind-merge';
+import { groupBox, composeTailwindRenderProps } from './utils';
 import { DescriptionProvider, DescriptionContext, LabeledGroup } from './field';
 
-export function SwitchGroup({ className, ...props }: GroupProps) {
+export function SwitchGroup(props: GroupProps) {
   return (
     <LabeledGroup>
       <Group
         {...props}
-        className={composeTailwindRenderProps(className, groupBox)}
+        className={composeTailwindRenderProps(props.className, groupBox)}
       ></Group>
     </LabeledGroup>
   );
@@ -31,6 +28,7 @@ export function Switches({
 }: React.JSX.IntrinsicElements['div']) {
   return (
     <div
+      {...props}
       data-ui="box"
       className={twMerge(
         'flex flex-col',
@@ -38,7 +36,6 @@ export function Switches({
         '[&_label]:has-[[data-ui=description]]:font-medium',
         className,
       )}
-      {...props}
     />
   );
 }
@@ -76,10 +73,7 @@ export interface CustomRenderSwitchProps
   children?: never;
 }
 
-export function Switch({
-  className,
-  ...props
-}: SwitchProps | CustomRenderSwitchProps) {
+export function Switch(props: SwitchProps | CustomRenderSwitchProps) {
   const descriptionContext = React.useContext(DescriptionContext);
 
   if (props.render) {
@@ -89,11 +83,15 @@ export function Switch({
       <RACSwitch
         {...restProps}
         aria-describedby={descriptionContext?.['aria-describedby']}
-        className={composeTailwindRenderProps(className, [
-          'group',
-          'text-base/6 sm:text-sm/6',
-          'disabled:opacity-50',
-        ])}
+        className={composeRenderProps(
+          props.className,
+          (className, { isDisabled }) =>
+            twMerge(
+              'group text-base/6 sm:text-sm/6',
+              isDisabled && 'opacity-50',
+              className,
+            ),
+        )}
       >
         {render}
       </RACSwitch>
@@ -107,13 +105,16 @@ export function Switch({
       {...restProps}
       aria-describedby={descriptionContext?.['aria-describedby']}
       data-label-placement={labelPlacement}
-      className={composeTailwindRenderProps(className, [
-        'group flex items-center',
-        'data-[label-placement=start]:flex-row-reverse',
-        'data-[label-placement=start]:justify-between',
-        'text-base/6 sm:text-sm/6',
-        'disabled:opacity-50',
-      ])}
+      className={composeRenderProps(
+        props.className,
+        (className, { isDisabled }) =>
+          twMerge(
+            'group flex items-center text-base/6 sm:text-sm/6',
+            labelPlacement === 'start' && 'flex-row-reverse justify-between',
+            isDisabled && 'opacity-50',
+            className,
+          ),
+      )}
     >
       {(renderProps) => (
         <>
@@ -121,37 +122,24 @@ export function Switch({
             className={twMerge(
               'h-5 w-8',
               'flex shrink-0 cursor-default items-center rounded-full px-[1px] shadow-inner',
-              labelPlacement === 'end' ? 'me-3' : 'ms-3',
-              'bg-zinc-200',
-              'dark:bg-transparent',
+              'bg-zinc-200 dark:bg-transparent',
               'border',
-
-              // readonly
-              'group-data-[readonly]:opacity-50',
-
-              // selected
-              renderProps.isSelected && [
-                'border-accent',
-                'dark:border-0',
-                'bg-accent',
-                'dark:bg-accent',
-                'shadow-[inset_0_0_0_1px_rgba(255,255,255,0.1)]',
-              ],
-              renderProps.isDisabled && ['bg-gray-200', 'dark:bg-zinc-700'],
-              renderProps.isFocusVisible && groupFocusVisibleOutline,
+              labelPlacement === 'end' ? 'me-3' : 'ms-3',
+              renderProps.isReadOnly && 'opacity-50',
+              renderProps.isSelected &&
+                'border-black/10 bg-accent dark:bg-accent',
+              renderProps.isDisabled && 'bg-gray-200 dark:bg-zinc-700',
+              renderProps.isFocusVisible &&
+                'outline outline-2 outline-offset-2 outline-ring',
             )}
           >
             <span
               data-ui="thumb"
               className={twMerge(
-                'size-4',
-                'rounded-full bg-white',
-                'translate-x-0 transition-all ease-in-out',
-                renderProps.isSelected && [
-                  'translate-x-3',
-                  'rtl:-translate-x-3',
-                  'border-accent',
-                ],
+                'size-4 rounded-full bg-white transition-all ease-in-out',
+                renderProps.isSelected
+                  ? 'translate-x-3 border-accent rtl:-translate-x-3'
+                  : 'translate-x-0',
               )}
             />
           </div>

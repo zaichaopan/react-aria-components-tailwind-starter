@@ -6,12 +6,12 @@ import {
   ToggleButtonProps as RACToggleButtonProps,
   ToggleButtonGroup as RACToggleButtonGroup,
   ToggleButtonGroupProps,
+  composeRenderProps,
 } from 'react-aria-components';
-import { composeTailwindRenderProps, focusVisibleOutline } from './utils';
 import { twMerge } from 'tailwind-merge';
 import { AsChildProps, Slot } from './slot';
 import { SpinnerIcon } from './icons';
-import { TooltipTrigger } from './tooltip';
+import { NonFousableTooltipTarget, TooltipTrigger } from './tooltip';
 
 type Color = 'accent' | 'success' | 'destructive';
 
@@ -31,6 +31,7 @@ export type ButtonStyleProps = {
 export type ButtonWithAsChildProps = AsChildProps<
   RACButtonProps & {
     tooltip?: React.ReactNode;
+    allowTooltipOnDisabled?: boolean;
   }
 > &
   ButtonStyleProps;
@@ -40,136 +41,148 @@ export type ButtonProps = RACButtonProps &
     tooltip?: React.ReactNode;
   };
 
-const buttonVariants = {
-  base: [
-    'group relative inline-flex gap-x-2 justify-center items-center',
-    'font-semibold text-base/6 sm:text-sm/6 whitespace-nowrap outline-none rounded-md',
-  ],
-  solid: [
-    'border border-[var(--btn-bg)] dark:border-none dark:[--border-with:0px]',
-    'bg-[var(--btn-bg)] hover:bg-[var(--btn-bg-hover)] pressed:bg-[var(--btn-bg-hover)]',
-    'shadow-[inset_0_1px_0_0_rgba(255,255,255,0.1)]',
-    'text-white',
-  ],
-  outline: [
-    'border border-zinc-950/10 dark:border-white/15 border-b-zinc-950/15 dark:border-b-white/20',
-    'hover:bg-zinc-50 pressed:bg-zinc-50 dark:hover:bg-zinc-800 dark:pressed:bg-zinc-800',
-    'shadow-sm',
-    'text-[var(--btn-color)]',
-  ],
-  plain: [
-    '[--border-with:0px]',
-    'hover:bg-zinc-100 dark:hover:bg-zinc-800',
-    'text-[var(--btn-color)]',
-  ],
-};
-
-const buttonSizes = {
-  sm: {
-    button: [
-      'h-8 sm:h-7 text-sm/6 sm:text-xs/6 rounded-md',
-      'px-[calc(theme(spacing[3])-var(--border-with,1px))]',
-      'sm:px-[calc(theme(spacing[2.5])-var(--border-with,1px))]',
-      '[&_svg[data-ui=icon]:not([class*=size-])]:size-3',
-    ],
-    iconOnly: [
-      'size-8 sm:size-7 rounded-md',
-      '[&_svg[data-ui=icon]:not([class*=size-])]:size-5',
-      'sm:[&_svg[data-ui=icon]:not([class*=size-])]:size-4',
-    ],
-  },
-  md: {
-    // H: 44px, sm:36px
-    button: [
-      'px-[calc(theme(spacing[3.5])-var(--border-with,1px))]',
-      'sm:px-[calc(theme(spacing[3])-var(--border-with,1px))]',
-      'py-[calc(theme(spacing[2.5])-var(--border-with,1px))]',
-      'sm:py-[calc(theme(spacing[1.5])-var(--border-with,1px))]',
-
-      '[&_svg[data-ui=icon]:not([class*=size-])]:size-5',
-      'sm:[&_svg[data-ui=icon]:not([class*=size-])]:size-4',
-    ],
-    iconOnly: [
-      'p-[calc(theme(spacing[2.5])-var(--border-with,1px))]',
-      'sm:p-[calc(theme(spacing[1.5])-var(--border-with,1px))]',
-
-      // 20+2x2=24px
-      '[&_svg[data-ui=icon]:not([class*=size-])]:size-5',
-      '[&_svg[data-ui=icon]]:m-0.5',
-
-      // 16+4x2=24px
-      'sm:[&_svg[data-ui=icon]:not([class*=size-])]:size-4',
-      'sm:[&_svg[data-ui=icon]]:m-1',
-    ],
-  },
-  lg: {
-    button: [
-      'px-[calc(theme(spacing[4])-var(--border-with,1px))]',
-      'py-[calc(theme(spacing[2.5])-var(--border-with,1px))]',
-      '[&_svg[data-ui=icon]:not([class*=size-])]:size-5',
-    ],
-    iconOnly: [
-      'p-[calc(theme(spacing[2.5])-var(--border-with,1px))]',
-      '[&_svg[data-ui=icon]:not([class*=size-])]:size-5',
-      '[&_svg[data-ui=icon]]:m-0.5',
-    ],
-  },
-};
-
-function getButtonStyle({
+const buttonStyle = ({
   size,
   color,
   isIconOnly,
   variant = 'solid',
-}: ButtonStyleProps) {
+  isPending,
+  isDisabled,
+  isFocusVisible,
+  isCustomPending,
+}: ButtonStyleProps & {
+  isPending?: boolean;
+  isCustomPending?: boolean;
+  isDisabled?: boolean;
+  isFocusVisible?: boolean;
+}) => {
+  const base = [
+    'relative rounded-md',
+    isFocusVisible
+      ? 'outline outline-2 outline-offset-2 outline-ring'
+      : 'outline-none',
+    isDisabled && 'opacity-50',
+  ];
+
   if (variant === 'unstyle') {
-    return 'relative outline-none rounded-md';
+    return base;
   }
+
+  const style = {
+    base,
+    variant: {
+      base: 'group inline-flex gap-x-2 justify-center items-center font-semibold text-base/6 sm:text-sm/6 whitespace-nowrap',
+      solid: [
+        'border border-black/10 dark:border-none dark:[--border-with:0px]',
+        'bg-[var(--btn-bg)]',
+        !isDisabled && 'hover:opacity-90',
+        'shadow-[inset_0_1px_0_0_rgba(255,255,255,0.1)]',
+        'text-white',
+      ],
+      outline: [
+        'border border-zinc-950/10 dark:border-white/15 border-b-zinc-950/15 dark:border-b-white/20',
+        !isDisabled && 'hover:bg-zinc-50 dark:hover:bg-zinc-800',
+        'shadow-sm',
+        'text-[var(--btn-color)]',
+      ],
+      plain: [
+        '[--border-with:0px]',
+        !isDisabled && 'hover:bg-zinc-100 dark:hover:bg-zinc-800',
+        'text-[var(--btn-color)]',
+      ],
+    },
+    size: {
+      sm: {
+        button: [
+          'h-8 sm:h-7 text-sm/6 sm:text-xs/6 rounded-md',
+          'px-[calc(theme(spacing[3])-var(--border-with,1px))]',
+          'sm:px-[calc(theme(spacing[2.5])-var(--border-with,1px))]',
+          '[&_svg[data-ui=icon]:not([class*=size-])]:size-3',
+        ],
+        iconOnly: [
+          'size-8 sm:size-7 rounded-md',
+          '[&_svg[data-ui=icon]:not([class*=size-])]:size-5',
+          'sm:[&_svg[data-ui=icon]:not([class*=size-])]:size-4',
+        ],
+      },
+      md: {
+        // H: 44px, sm:36px
+        button: [
+          'px-[calc(theme(spacing[3.5])-var(--border-with,1px))]',
+          'sm:px-[calc(theme(spacing[3])-var(--border-with,1px))]',
+          'py-[calc(theme(spacing[2.5])-var(--border-with,1px))]',
+          'sm:py-[calc(theme(spacing[1.5])-var(--border-with,1px))]',
+          '[&_svg[data-ui=icon]:not([class*=size-])]:size-5',
+          'sm:[&_svg[data-ui=icon]:not([class*=size-])]:size-4',
+        ],
+        iconOnly: [
+          'p-[calc(theme(spacing[2.5])-var(--border-with,1px))]',
+          'sm:p-[calc(theme(spacing[1.5])-var(--border-with,1px))]',
+
+          // 20+2x2=24px
+          '[&_svg[data-ui=icon]:not([class*=size-])]:size-5',
+          '[&_svg[data-ui=icon]]:m-0.5',
+
+          // 16+4x2=24px
+          'sm:[&_svg[data-ui=icon]:not([class*=size-])]:size-4',
+          'sm:[&_svg[data-ui=icon]]:m-1',
+        ],
+      },
+      lg: {
+        button: [
+          'px-[calc(theme(spacing[4])-var(--border-with,1px))]',
+          'py-[calc(theme(spacing[2.5])-var(--border-with,1px))]',
+          '[&_svg[data-ui=icon]:not([class*=size-])]:size-5',
+        ],
+        iconOnly: [
+          'p-[calc(theme(spacing[2.5])-var(--border-with,1px))]',
+          '[&_svg[data-ui=icon]:not([class*=size-])]:size-5',
+          '[&_svg[data-ui=icon]]:m-0.5',
+        ],
+      },
+    },
+    color: {
+      foreground: '[--btn-color:theme(colors.foreground)]',
+      accent: '[--btn-color:theme(colors.accent)]',
+      destructive: '[--btn-color:theme(colors.destructive)]',
+      success: '[--btn-color:theme(colors.success)]',
+    },
+    iconColor: {
+      button: {
+        solid:
+          '[&:not(:hover)_svg[data-ui=icon]:not([class*=text-])]:text-zinc-300',
+        outline:
+          '[&:not(:hover)_svg[data-ui=icon]:not([class*=text-])]:text-muted',
+        plain:
+          '[&:not(:hover)_svg[data-ui=icon]:not([class*=text-])]:text-muted',
+      },
+      iconOnly: {
+        solid: '',
+        outline: '',
+        plain: '',
+      },
+    },
+    backgroundColor: {
+      accent: '[--btn-bg:theme(colors.accent)]',
+      destructive: '[--btn-bg:theme(colors.destructive)]',
+      success: '[--btn-bg:theme(colors.success)]',
+    },
+  };
 
   const buttonSize = size ?? 'md';
   const buttonType = isIconOnly ? 'iconOnly' : 'button';
 
-  const buttonBackground = {
-    accent: [
-      '[--btn-bg:theme(colors.accent)]',
-      '[--btn-bg-hover:theme(colors.accent/90%)]',
-    ],
-    destructive: [
-      '[--btn-bg:theme(colors.destructive)]',
-      '[--btn-bg-hover:theme(colors.destructive/90%)]',
-    ],
-    success: [
-      '[--btn-bg:theme(colors.success)]',
-      '[--btn-bg-hover:theme(colors.success/90%)]',
-    ],
-  };
-  const buttonColor = {
-    foreground: '[--btn-color:theme(colors.foreground)]',
-    accent: '[--btn-color:theme(colors.accent)]',
-    destructive: '[--btn-color:theme(colors.destructive)]',
-    success: '[--btn-color:theme(colors.success)]',
-  };
-
-  const iconColor = [
-    !isIconOnly && [
-      variant === 'solid' &&
-        '[&:not(:hover)_svg[data-ui=icon]:not([class*=text-])]:text-zinc-300',
-      (variant === 'outline' || variant == 'plain') &&
-        '[&:not(:hover)_svg[data-ui=icon]:not([class*=text-])]:text-muted',
-    ],
-  ];
-
   return [
-    buttonVariants.base,
-    buttonVariants[variant],
-    variant == 'solid'
-      ? [buttonBackground[color ?? 'accent']]
-      : [buttonColor[color ?? 'foreground']],
-    buttonSizes[buttonSize][buttonType],
-    iconColor,
-    focusVisibleOutline,
+    style.base,
+    style.variant.base,
+    style.variant[variant],
+    style.size[buttonSize][buttonType],
+    style.color[color ?? 'foreground'],
+    style.iconColor[buttonType][variant],
+    style.backgroundColor[color ?? 'accent'],
+    !isCustomPending && isPending && 'text-transparent',
   ];
-}
+};
 
 export const Button = React.forwardRef<
   HTMLButtonElement,
@@ -177,13 +190,14 @@ export const Button = React.forwardRef<
 >(function Button(props, ref) {
   if (props.asChild) {
     return (
-      <Slot className={twMerge(getButtonStyle(props))}>{props.children}</Slot>
+      <Slot className={twMerge(buttonStyle(props))}>{props.children}</Slot>
     );
   }
 
   const {
     asChild,
     tooltip,
+    allowTooltipOnDisabled,
     children,
     isCustomPending,
     pendingLabel,
@@ -199,12 +213,19 @@ export const Button = React.forwardRef<
       {...buttonProps}
       ref={ref}
       data-variant={variant}
-      className={composeTailwindRenderProps(props.className, [
-        getButtonStyle({ size, color, isIconOnly, variant }),
-        'disabled:opacity-50',
-        'data-[pending]:opacity-75',
-        !isCustomPending && 'data-[pending]:text-transparent',
-      ])}
+      className={composeRenderProps(props.className, (className, renderProps) =>
+        twMerge([
+          buttonStyle({
+            size,
+            color,
+            isIconOnly,
+            variant,
+            isCustomPending,
+            ...renderProps,
+          }),
+          className,
+        ]),
+      )}
     >
       {(renderProps) => {
         return (
@@ -216,10 +237,8 @@ export const Button = React.forwardRef<
                   className={twMerge(
                     'absolute',
                     'text-foreground',
-                    'group-data-[variant=solid]:text-zinc-300',
-                    isCustomPending
-                      ? 'group-data-[pending]:sr-only'
-                      : 'group-data-[pending]:flex',
+                    variant == 'solid' && 'text-zinc-300',
+                    isCustomPending ? 'sr-only' : 'flex',
                   )}
                 />
                 <span
@@ -243,6 +262,17 @@ export const Button = React.forwardRef<
   );
 
   if (tooltip) {
+    if (allowTooltipOnDisabled && buttonProps.isDisabled) {
+      return (
+        <TooltipTrigger>
+          <NonFousableTooltipTarget>
+            <div className="content">{button}</div>
+          </NonFousableTooltipTarget>
+          {tooltip}
+        </TooltipTrigger>
+      );
+    }
+
     return (
       <TooltipTrigger>
         {button}
@@ -256,73 +286,101 @@ export const Button = React.forwardRef<
 
 export function ToggleButton(
   props: RACToggleButtonProps &
-    ButtonStyleProps & { tooltip?: React.ReactNode },
+    ButtonStyleProps & {
+      tooltip?: React.ReactNode;
+      allowTooltipOnDisabled?: boolean;
+    },
 ) {
-  const { variant, tooltip, ...buttonProps } = props;
+  const {
+    variant,
+    tooltip,
+    allowTooltipOnDisabled,
+    size,
+    isIconOnly,
+    color,
+    ...buttonProps
+  } = props;
+
+  const toggleButton = (
+    <RACToggleButton
+      {...buttonProps}
+      data-variant={variant}
+      className={composeRenderProps(
+        props.className,
+        (className, renderProps) => {
+          return twMerge(
+            buttonStyle({
+              variant,
+              size,
+              isIconOnly,
+              color,
+              ...renderProps,
+            }),
+            className,
+          );
+        },
+      )}
+    />
+  );
 
   if (tooltip) {
+    if (allowTooltipOnDisabled && buttonProps.isDisabled) {
+      return (
+        <TooltipTrigger>
+          <NonFousableTooltipTarget>
+            <div className="content">{toggleButton}</div>
+          </NonFousableTooltipTarget>
+          {tooltip}
+        </TooltipTrigger>
+      );
+    }
+
     return (
       <TooltipTrigger>
-        <RACToggleButton
-          {...buttonProps}
-          data-variant={variant}
-          className={composeTailwindRenderProps(
-            props.className,
-            getButtonStyle(props),
-          )}
-        />
+        {toggleButton}
         {tooltip}
       </TooltipTrigger>
     );
   }
-  return (
-    <RACToggleButton
-      {...buttonProps}
-      data-variant={variant}
-      className={composeTailwindRenderProps(
-        props.className,
-        getButtonStyle(props),
-      )}
-    />
-  );
+
+  return toggleButton;
 }
 
-function buttonGroupStyle({
+const buttonGroupStyle = ({
   inline,
-  orientation,
+  orientation = 'horizontal',
 }: {
   inline?: boolean;
   orientation?: 'horizontal' | 'vertical';
-}) {
-  return [
-    'group inline-flex w-max items-center',
+}) => {
+  const style = {
+    base: [
+      'group inline-flex w-max items-center',
+      '[&>*:not(:first-child):not(:last-child)]:rounded-none',
+      'dark:[&>*[data-variant=solid]]:border-solid',
+      'dark:[&>*[data-variant=solid]]:[--border-with:1px]',
+      '[&>*[data-variant=solid]:not(:first-child)]:border-s-black/15',
+    ],
+    horizontal: [
+      '[&>*:first-child]:rounded-e-none',
+      '[&>*:last-child]:rounded-s-none',
+      '[&>*:not(:last-child)]:border-e-0',
+      inline &&
+        'shadow-sm [&>*:not(:first-child)]:border-s-0 [&>*]:shadow-none',
+    ],
+    vertical: [
+      'flex-col',
+      '[&>*:first-child]:rounded-b-none',
+      '[&>*:last-child]:rounded-t-none',
+      '[&>*:not(:last-child)]:border-b-0',
 
-    orientation === 'horizontal'
-      ? [
-          '[&>button:first-child]:rounded-e-none',
-          '[&>button:last-child]:rounded-s-none',
-          '[&>button:not(:last-child)]:border-e-0',
-          inline &&
-            'shadow-sm [&>button:not(:first-child)]:border-s-0 [&>button]:shadow-none',
-        ]
-      : [
-          'flex-col',
-          '[&>button:first-child]:rounded-b-none',
-          '[&>button:last-child]:rounded-t-none',
-          '[&>button:not(:last-child)]:border-b-0',
+      inline &&
+        'shadow-sm [&>*:not(:first-child)]:border-t-0 [&>*]:shadow-none',
+    ],
+  };
 
-          inline &&
-            'shadow-sm [&>button:not(:first-child)]:border-t-0 [&>button]:shadow-none',
-        ],
-
-    '[&>button:not(:first-child):not(:last-child)]:rounded-none',
-
-    // Add border to solid button which has not border in dark mode
-    'dark:[&>button[data-variant=solid]]:border-solid',
-    'dark:[&>button[data-variant=solid]]:[--border-with:1px]',
-    '[&>button[data-variant=solid]:not(:first-child)]:border-s-black/15',
-  ];
-}
+  return [style.base, style[orientation]];
+};
 
 export function ToggleButtonGroup({
   inline,
@@ -336,9 +394,8 @@ export function ToggleButtonGroup({
     <RACToggleButtonGroup
       {...props}
       data-ui="button-group"
-      className={composeTailwindRenderProps(
-        props.className,
-        buttonGroupStyle({ inline, orientation }),
+      className={composeRenderProps(props.className, (className) =>
+        twMerge(buttonGroupStyle({ inline, orientation }), className),
       )}
     />
   );

@@ -1,12 +1,12 @@
 import {
   DialogProps as RACDialogProps,
   Dialog as RACDialog,
+  composeRenderProps,
 } from 'react-aria-components';
 import { twMerge } from 'tailwind-merge';
 import React from 'react';
 import { Heading, HeadingProps } from './heading';
 import { Button, ButtonProps } from './button';
-import { composeTailwindRenderProps } from './utils';
 import { Text } from './text';
 import { XIcon } from './icons';
 
@@ -150,7 +150,6 @@ export function DialogCloseButton({
   }
 
   const {
-    className,
     size = 'lg',
     'aria-label': ariaLabel,
     isIconOnly = true,
@@ -164,9 +163,12 @@ export function DialogCloseButton({
       isIconOnly={isIconOnly}
       variant={variant}
       size={size}
-      className={composeTailwindRenderProps(className, [
-        'absolute end-2 top-2 p-1.5 text-muted/75 hover:text-foreground',
-      ])}
+      className={composeRenderProps(props.className, (className) =>
+        twMerge(
+          'absolute end-2 top-2 p-1.5 text-muted/75 hover:text-foreground',
+          className,
+        ),
+      )}
     >
       <XIcon aria-label={ariaLabel ?? 'Close'} />
     </Button>

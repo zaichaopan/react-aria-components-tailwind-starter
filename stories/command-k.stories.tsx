@@ -14,7 +14,7 @@ import {
 } from '../src/combobox';
 import { docs } from '../.storybook/docs';
 import { Search } from 'lucide-react';
-import { Icon } from '../src/accessible-icon';
+import { Icon } from '../src/icon';
 import { Modal } from '../src/modal';
 import { Dialog } from '../src/dialog';
 import { Text } from '../src/text';
@@ -175,7 +175,7 @@ export function OpenInDialog() {
         onOpenChange={setIsModalOpen}
         classNames={{
           modal:
-            'entering:duration-0 exiting:duration-0 self-start ring-0 sm:self-start bg-transparent dark:bg-transparent dark:ring-0',
+            'data-[entering]:duration-0 data-[exiting]:duration-0 self-start ring-0 sm:self-start bg-transparent dark:bg-transparent dark:ring-0',
         }}
       >
         <Dialog
@@ -211,7 +211,7 @@ export function OpenInDialog() {
             </ComboBoxGroup>
 
             <ComboBoxPopover
-              className="rounded-t-none border border-t-0 ring-0 entering:duration-0"
+              className="rounded-t-none border border-t-0 ring-0 data-[entering]:duration-0"
               offset={0}
               isOpen
             >

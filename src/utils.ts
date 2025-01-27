@@ -8,54 +8,6 @@ export function composeTailwindRenderProps<T>(
   return composeRenderProps(className, (className) => twMerge(tw, className));
 }
 
-export const focusVisibleOutline = [
-  'focus-visible:outline',
-  'focus-visible:outline-2',
-  'focus-visible:outline-blue-500',
-  'focus-visible:outline-offset-2',
-].join(' ');
-
-export const groupFocusVisibleOutline = [
-  'group-focus-visible:outline',
-  'group-focus-visible:outline-2',
-  'group-focus-visible:outline-blue-500',
-  'group-focus-visible:outline-offset-2',
-].join(' ');
-
-export const dropTargetOutline = [
-  'drop-target:outline',
-  'drop-target:outline-2',
-  'drop-target:outline-blue-500',
-  'drop-target:outline-offset-2',
-].join(' ');
-
-export const focusRing = [
-  'focus:ring-1',
-  'focus:ring-inset',
-  'focus:ring-blue-500',
-  'focus:border-blue-500',
-  'focus:invalid:border-blue-500',
-  'focus:group-invalid:border-blue-500',
-].join(' ');
-
-export const focusVisibleRing = [
-  'focus-visible:ring-1',
-  'focus-visible:ring-inset',
-  'focus-visible:ring-blue-500',
-  'focus-visible:border-blue-500',
-  'focus-visible:invalid:border-blue-500',
-  'focus-visible:group-invalid:border-blue-500',
-].join(' ');
-
-export const focusWithinRing = [
-  'focus-within:ring-1',
-  'focus-within:ring-inset',
-  'focus-within:ring-blue-500',
-  'focus-within:border-blue-500',
-  'focus-within:invalid:border-blue-500',
-  'focus-within:group-invalid:border-blue-500',
-].join(' ');
-
 // RAC uses `slot=*`. We use `data-ui=* to avoid potential conflict
 export const inputField = [
   'group',

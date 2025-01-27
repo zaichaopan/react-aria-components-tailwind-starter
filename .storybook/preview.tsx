@@ -81,7 +81,7 @@ const preview: Preview = {
       [
         `${context.globals.theme}`,
         ...(document
-          .querySelector('body')
+          .querySelector('html')
           ?.className.split(' ')
           .filter((name) => name.includes('-theme')) ?? []),
       ].forEach((name) => {
@@ -89,7 +89,7 @@ const preview: Preview = {
           name = 'zinc-theme';
         }
 
-        document.querySelector('body')?.classList.toggle(name);
+        document.querySelector('html')?.classList.toggle(name);
       });
 
       // change mode

@@ -9,7 +9,7 @@ import {
   EmptyStateIcon,
 } from '../src/empty-state';
 import { FolderPlus, Plus } from 'lucide-react';
-import { Icon } from '../src/accessible-icon';
+import { Icon } from '../src/icon';
 
 const meta: Meta = {
   title: 'Empty state',

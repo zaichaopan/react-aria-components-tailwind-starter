@@ -4,7 +4,7 @@ import { Tab, TabList, TabPanel, Tabs } from '../src/tabs';
 import { Key } from 'react-aria-components';
 import { NativeSelect, NativeSelectField } from '../src/native-select';
 import { docs } from '../.storybook/docs';
-import { Icon } from '../src/accessible-icon';
+import { Icon } from '../src/icon';
 import { Strong } from '../src/text';
 import {
   BellIcon,
@@ -243,7 +243,9 @@ export const VerticalPillsTabWithAccentBackground = () => {
         <TabList aria-label="Settings">
           <Tab
             id="General"
-            className="selected:bg-accent selected:text-white dark:selected:bg-accent"
+            className={({ isSelected }) =>
+              isSelected ? 'bg-accent text-white dark:bg-accent' : ''
+            }
           >
             <Icon>
               <CogIcon />
@@ -252,7 +254,9 @@ export const VerticalPillsTabWithAccentBackground = () => {
           </Tab>
           <Tab
             id="Video"
-            className="selected:bg-accent selected:text-white dark:selected:bg-accent"
+            className={({ isSelected }) =>
+              isSelected ? 'bg-accent text-white dark:bg-accent' : ''
+            }
           >
             <Icon>
               <VideoIcon />
@@ -261,7 +265,9 @@ export const VerticalPillsTabWithAccentBackground = () => {
           </Tab>
           <Tab
             id="Audio"
-            className="selected:bg-accent selected:text-white dark:selected:bg-accent"
+            className={({ isSelected }) =>
+              isSelected ? 'bg-accent text-white dark:bg-accent' : ''
+            }
           >
             <Icon>
               <Mic2Icon />
@@ -270,7 +276,9 @@ export const VerticalPillsTabWithAccentBackground = () => {
           </Tab>
           <Tab
             id="Screen Share"
-            className="selected:bg-accent selected:text-white dark:selected:bg-accent"
+            className={({ isSelected }) =>
+              isSelected ? 'bg-accent text-white dark:bg-accent' : ''
+            }
           >
             <Icon>
               <ScreenShareIcon />
@@ -279,7 +287,9 @@ export const VerticalPillsTabWithAccentBackground = () => {
           </Tab>
           <Tab
             id="Team Chat"
-            className="selected:bg-accent selected:text-white dark:selected:bg-accent"
+            className={({ isSelected }) =>
+              isSelected ? 'bg-accent text-white dark:bg-accent' : ''
+            }
           >
             <Icon>
               <MessageSquareIcon />
@@ -288,7 +298,9 @@ export const VerticalPillsTabWithAccentBackground = () => {
           </Tab>
           <Tab
             id="Recording"
-            className="selected:bg-accent selected:text-white dark:selected:bg-accent"
+            className={({ isSelected }) =>
+              isSelected ? 'bg-accent text-white dark:bg-accent' : ''
+            }
           >
             <Icon>
               <Disc2Icon />
@@ -297,7 +309,9 @@ export const VerticalPillsTabWithAccentBackground = () => {
           </Tab>
           <Tab
             id="Keyboard Shortcuts"
-            className="selected:bg-accent selected:text-white dark:selected:bg-accent"
+            className={({ isSelected }) =>
+              isSelected ? 'bg-accent text-white dark:bg-accent' : ''
+            }
           >
             <Icon>
               <KeyboardIcon />
@@ -325,7 +339,11 @@ export const VerticalPillsTabWithAccentColor = () => {
         <TabList aria-label="Settings">
           <Tab
             id="General"
-            className="selected:bg-accent/10 selected:text-accent dark:selected:bg-accent dark:selected:text-white"
+            className={({ isSelected }) =>
+              isSelected
+                ? 'bg-accent/10 text-accent dark:bg-accent dark:text-white'
+                : ''
+            }
           >
             <Icon>
               <CogIcon />
@@ -334,7 +352,11 @@ export const VerticalPillsTabWithAccentColor = () => {
           </Tab>
           <Tab
             id="Video"
-            className="selected:bg-accent/10 selected:text-accent dark:selected:bg-accent dark:selected:text-white"
+            className={({ isSelected }) =>
+              isSelected
+                ? 'bg-accent/10 text-accent dark:bg-accent dark:text-white'
+                : ''
+            }
           >
             <Icon>
               <VideoIcon />
@@ -343,7 +365,11 @@ export const VerticalPillsTabWithAccentColor = () => {
           </Tab>
           <Tab
             id="Audio"
-            className="selected:bg-accent/10 selected:text-accent dark:selected:bg-accent dark:selected:text-white"
+            className={({ isSelected }) =>
+              isSelected
+                ? 'bg-accent/10 text-accent dark:bg-accent dark:text-white'
+                : ''
+            }
           >
             <Icon>
               <Mic2Icon />
@@ -352,7 +378,11 @@ export const VerticalPillsTabWithAccentColor = () => {
           </Tab>
           <Tab
             id="Screen Share"
-            className="selected:bg-accent/10 selected:text-accent dark:selected:bg-accent dark:selected:text-white"
+            className={({ isSelected }) =>
+              isSelected
+                ? 'bg-accent/10 text-accent dark:bg-accent dark:text-white'
+                : ''
+            }
           >
             <Icon>
               <ScreenShareIcon />
@@ -361,7 +391,11 @@ export const VerticalPillsTabWithAccentColor = () => {
           </Tab>
           <Tab
             id="Team Chat"
-            className="selected:bg-accent/10 selected:text-accent dark:selected:bg-accent dark:selected:text-white"
+            className={({ isSelected }) =>
+              isSelected
+                ? 'bg-accent/10 text-accent dark:bg-accent dark:text-white'
+                : ''
+            }
           >
             <Icon>
               <MessageSquareIcon />
@@ -370,7 +404,11 @@ export const VerticalPillsTabWithAccentColor = () => {
           </Tab>
           <Tab
             id="Recording"
-            className="selected:bg-accent/10 selected:text-accent dark:selected:bg-accent dark:selected:text-white"
+            className={({ isSelected }) =>
+              isSelected
+                ? 'bg-accent/10 text-accent dark:bg-accent dark:text-white'
+                : ''
+            }
           >
             <Icon>
               <Disc2Icon />
@@ -379,7 +417,11 @@ export const VerticalPillsTabWithAccentColor = () => {
           </Tab>
           <Tab
             id="Keyboard Shortcuts"
-            className="selected:bg-accent/10 selected:text-accent dark:selected:bg-accent dark:selected:text-white"
+            className={({ isSelected }) =>
+              isSelected
+                ? 'bg-accent/10 text-accent dark:bg-accent dark:text-white'
+                : ''
+            }
           >
             <Icon>
               <KeyboardIcon />

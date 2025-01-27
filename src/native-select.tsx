@@ -1,11 +1,7 @@
 import React from 'react';
 import { useFocusRing } from 'react-aria';
 import { twMerge } from 'tailwind-merge';
-import {
-  selectBoxIndicator,
-  inputField,
-  focusVisibleRing,
-} from './utils';
+import { selectBoxIndicator, inputField } from './utils';
 import { DescriptionContext, DescriptionProvider } from './field';
 import { LabelContext } from 'react-aria-components';
 
@@ -63,7 +59,10 @@ export function NativeSelect({
           'rounded-md border outline-none',
           'text-base/6 sm:text-sm/6',
           'hover:bg-zinc-100 dark:hover:bg-zinc-800',
-          focusVisibleRing,
+          'focus-visible:ring-1',
+          'focus-visible:ring-inset',
+          'focus-visible:ring-ring',
+          'focus-visible:border-ring',
           className,
         )}
         {...props}

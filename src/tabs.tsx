@@ -8,12 +8,17 @@ import {
   TabPanelProps,
   TabProps,
   TabsProps as RACTabProps,
+  composeRenderProps,
+  TabRenderProps,
 } from 'react-aria-components';
-import { composeTailwindRenderProps, focusVisibleRing } from './utils';
+import { twMerge } from 'tailwind-merge';
+
+type Orientation = 'vertical' | 'horizontal';
+type Variant = 'underline' | 'pills' | 'segment';
 
 const TabsContext = React.createContext<{
-  variant: 'underline' | 'pills' | 'segment';
-  orientation: 'vertical' | 'horizontal';
+  variant: Variant;
+  orientation: Orientation;
 }>({
   variant: 'underline',
   orientation: 'horizontal',
@@ -37,10 +42,13 @@ export function Tabs({
         {...props}
         keyboardActivation={keyboardActivation}
         orientation={orientation}
-        className={composeTailwindRenderProps(props.className, [
-          'group flex',
-          orientation === 'horizontal' ? 'flex-col' : 'flex-col sm:flex-row',
-        ])}
+        className={composeRenderProps(props.className, (className) =>
+          twMerge([
+            'group flex',
+            orientation === 'horizontal' ? 'flex-col' : 'flex-col sm:flex-row',
+            className,
+          ]),
+        )}
       />
     </TabsContext.Provider>
   );
@@ -80,12 +88,15 @@ export function TabList<T extends object & { title: string }>(
     <div className="flex overflow-x-auto pb-px pl-px">
       <RACTabList
         {...props}
-        className={composeTailwindRenderProps(props.className, [
-          'flex',
-          'text-base/6 sm:text-sm/6',
-          tabList.base[orientation],
-          tabList[variant][orientation],
-        ])}
+        className={composeRenderProps(props.className, (className) =>
+          twMerge([
+            'flex',
+            'text-base/6 sm:text-sm/6',
+            tabList.base[orientation],
+            tabList[variant][orientation],
+            className,
+          ]),
+        )}
       />
     </div>
   );
@@ -112,60 +123,88 @@ export function TabPanel(props: TabPanelProps) {
   return (
     <RACTabPanel
       {...props}
-      className={composeTailwindRenderProps(props.className, [
-        'flex-1 outline-0',
-        tabPanel[variant][orientation],
-      ])}
+      className={composeRenderProps(props.className, (className) =>
+        twMerge([
+          'flex-1 outline-none',
+          tabPanel[variant][orientation],
+          className,
+        ]),
+      )}
     />
   );
 }
 
-const tab = {
-  underline: {
-    base: ['before:absolute', 'before:bg-accent'],
-    horizontal: [
-      'before:bottom-[-1.5px]',
-      'before:w-full',
-      'before:inset-x-0',
-      'selected:before:h-[2px]',
-      'p-2',
-    ],
-    vertical: [
-      'before:inset-y-0',
-      'before:selected:bg-accent',
-      'before:selected:left-[-1.5px]',
-      'before:selected:w-[2px]',
-      'px-4',
-    ],
-  },
-  pills: {
+const tab = ({
+  isSelected,
+  isDisabled,
+  isHovered,
+  isFocusVisible,
+  variant,
+  orientation,
+}: {
+  variant: Variant;
+  orientation: Orientation;
+} & TabRenderProps) => {
+  const style = {
     base: [
-      'flex',
-      'items-center',
-      'px-3',
-      'py-2',
-      'rounded-md',
-      'selected:bg-zinc-100 dark:selected:bg-zinc-600/45',
+      'outline-none relative flex items-center gap-x-3 rounded font-medium',
+      '[&>[data-ui=icon]:not([class*=size-])]:size-5',
+      isDisabled && 'opacity-50',
+      isSelected || isHovered ? 'text-foreground' : 'text-muted',
+      isFocusVisible && ['ring-2', 'ring-inset', 'ring-ring'],
     ],
-    horizontal: [],
-    vertical: [],
-  },
-  segment: {
-    base: [
-      'flex-1',
-      'justify-center',
-      'px-6',
-      'py-1',
-      'selected:bg-background',
-      'dark:selected:bg-zinc-600',
-      'selected:text-foreground',
-      'selected:shadow-sm',
-      'selected:rounded-[calc(theme(borderRadius.md)-2px)]',
-      '[&>[data-ui=icon]:not([class*=size-])]:size-4',
-    ],
-    horizontal: [],
-    vertical: [],
-  },
+    underline: {
+      base: ['before:absolute', 'before:bg-accent'],
+      horizontal: [
+        'p-2',
+        'before:bottom-[-1.5px]',
+        'before:w-full',
+        'before:inset-x-0',
+        isSelected && 'before:h-[2px]',
+      ],
+      vertical: [
+        'px-4',
+        'before:inset-y-0',
+        isSelected && [
+          'before:bg-accent',
+          'before:left-[-1.5px]',
+          'before:w-[2px]',
+        ],
+      ],
+    },
+    pills: {
+      base: [
+        'flex',
+        'items-center',
+        'px-3',
+        'py-2',
+        'rounded-md',
+        isSelected && ['bg-zinc-100 dark:bg-zinc-600/45'],
+      ],
+      horizontal: [],
+      vertical: [],
+    },
+    segment: {
+      base: [
+        'flex-1',
+        'justify-center',
+        'px-6',
+        'py-1',
+        '[&>[data-ui=icon]:not([class*=size-])]:size-4',
+        isSelected && [
+          'bg-background',
+          'dark:bg-zinc-600',
+          'text-foreground',
+          'shadow-xs',
+          'rounded',
+        ],
+      ],
+      horizontal: [],
+      vertical: [],
+    },
+  };
+
+  return [style.base, style[variant].base, style[variant][orientation]];
 };
 
 export function Tab(props: TabProps) {
@@ -174,22 +213,19 @@ export function Tab(props: TabProps) {
   return (
     <RACTab
       {...props}
-      className={composeTailwindRenderProps(props.className, [
-        'relative flex items-center gap-x-3 rounded font-medium outline-none outline-0',
-        // disable
-        'disabled:opacity-50',
-
-        '[&>[data-ui=icon]:not([class*=size-])]:size-5',
-
-        // hover
-        '[&:not([data-selected])]:text-muted',
-        '[&:not([data-selected])]:hover:text-foreground',
-
-        tab[variant].base,
-        tab[variant][orientation],
-        focusVisibleRing,
-        'focus-visible:ring-2',
-      ])}
+      className={composeRenderProps(
+        props.className,
+        (className, renderProps) => {
+          return twMerge(
+            tab({
+              variant,
+              orientation,
+              ...renderProps,
+            }),
+            className,
+          );
+        },
+      )}
     />
   );
 }

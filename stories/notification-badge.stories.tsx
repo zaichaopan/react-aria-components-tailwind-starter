@@ -1,7 +1,7 @@
 import type { Meta } from '@storybook/react';
 import { NotificationBadge } from '../src/notification-badge';
 import { docs } from '../.storybook/docs';
-import { Icon } from '../src/accessible-icon';
+import { Icon } from '../src/icon';
 import { BellIcon, MessageCircle } from 'lucide-react';
 import { Link } from '../src/link';
 import { Button } from '../src/button';

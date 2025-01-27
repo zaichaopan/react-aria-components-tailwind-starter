@@ -18,7 +18,7 @@ import {
 } from '../src/menu.tsx';
 import { Dialog } from '../src/dialog.tsx';
 import { DialogTrigger } from 'react-aria-components';
-import { Icon } from '../src/accessible-icon.tsx';
+import { Icon } from '../src/icon.tsx';
 import { Input, Label, TextField } from '../src/field.tsx';
 import { NativeSelect, NativeSelectField } from '../src/native-select.tsx';
 import {

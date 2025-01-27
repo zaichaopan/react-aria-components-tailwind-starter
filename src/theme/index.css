@@ -20,6 +20,8 @@
     --destructive: 220 38 38;
     /* yellow-600 */
     --warning: 202 138 4;
+    /* blue-500 */
+    --ring: 43 127 255;
   }
 
   .dark {
@@ -53,7 +55,7 @@
     @apply h-full bg-background font-sans text-foreground antialiased;
   }
 
-  [data-ui=icon] {
+  [data-ui='icon'] {
     flex-shrink: 0;
   }
 }

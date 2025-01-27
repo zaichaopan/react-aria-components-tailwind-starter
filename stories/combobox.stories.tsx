@@ -19,7 +19,7 @@ import { Description, FieldError, Label } from '../src/field';
 import { docs } from '../.storybook/docs';
 import { Text } from '../src/text';
 import { Search } from 'lucide-react';
-import { Icon } from '../src/accessible-icon';
+import { Icon } from '../src/icon';
 import { users } from './users';
 import { Avatar } from '../src/avatar';
 

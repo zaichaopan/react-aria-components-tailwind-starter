@@ -17,7 +17,6 @@ import {
   selectBoxIndicator,
   composeTailwindRenderProps,
   inputField,
-  focusVisibleRing,
 } from './utils';
 import { twMerge } from 'tailwind-merge';
 import { Small } from './text';
@@ -43,19 +42,31 @@ export function SelectButton(props: {
   return (
     <Button
       data-ui="control"
-      className={composeTailwindRenderProps(props.className, [
-        'relative flex w-full cursor-default items-center gap-x-1 rounded-md border text-start outline-none transition',
-        'pe-8 ps-3',
-        'py-[calc(theme(spacing[2.5])-1px)]',
-        'sm:py-[calc(theme(spacing[1.5])-1px)]',
-        'group-invalid:border-destructive',
-        'group:disabled:cursor-not-allowed group-disabled:opacity-50',
-        'text-base/6 sm:text-sm/6',
-        focusVisibleRing,
-        'hover:bg-zinc-50 dark:hover:bg-zinc-800 dark:hover:pressed:bg-zinc-800',
-        'pressed:bg-zinc-50 dark:pressed:bg-zinc-800',
-        selectBoxIndicator,
-      ])}
+      className={composeRenderProps(
+        props.className,
+        (className, { isFocusVisible, isPressed, isHovered, isDisabled }) =>
+          twMerge(
+            'relative flex w-full cursor-default items-center gap-x-1 rounded-md border text-start outline-none transition',
+            'pe-8 ps-3',
+            'py-[calc(theme(spacing[2.5])-1px)]',
+            'sm:py-[calc(theme(spacing[1.5])-1px)]',
+            'text-base/6 sm:text-sm/6',
+            'group-data-[invalid]:border-destructive',
+            isDisabled && 'cursor-not-allowed opacity-50',
+            isHovered && ['bg-zinc-50 dark:bg-zinc-800 '],
+            isPressed && ['bg-zinc-50 dark:bg-zinc-800'],
+            isHovered && isPressed && ['dark:bg-zinc-800'],
+            isFocusVisible && [
+              'ring-1',
+              'ring-inset',
+              'ring-ring',
+              'border-ring',
+              'group-data-[invalid]:border-ring',
+            ],
+            selectBoxIndicator,
+            className,
+          ),
+      )}
     >
       {!!props.children && (
         <span className="flex items-center gap-x-2">{props.children}</span>
@@ -188,25 +199,26 @@ export function SelectListItem({
     <RACListBoxItem
       {...props}
       textValue={textValue}
-      className={composeTailwindRenderProps(props.className, [
-        'group flex cursor-default select-none items-center gap-x-1.5 rounded outline-none',
-        'px-2 py-2.5 sm:py-1.5',
-        'text-base/6 sm:text-sm/6',
-        'disabled:opacity-50',
-        'focus:bg-zinc-100 focus:dark:bg-zinc-700',
-        destructive && 'text-destructive',
-      ])}
+      className={composeRenderProps(
+        props.className,
+        (className, { isFocused, isDisabled }) =>
+          twMerge(
+            'group flex cursor-default select-none items-center gap-x-1.5 rounded outline-none',
+            'px-2 py-2.5 text-base/6 sm:py-1.5 sm:text-sm/6',
+            isDisabled && 'opacity-50',
+            isFocused && 'bg-zinc-100 dark:bg-zinc-700',
+            destructive && 'text-destructive',
+            className,
+          ),
+      )}
     >
-      {composeRenderProps(props.children, (children) => {
+      {composeRenderProps(props.children, (children, { isSelected }) => {
         return (
           <>
             <CheckIcon
               className={twMerge(
-                'invisible',
-                'mt-1',
-                'size-4',
-                'self-start',
-                'group-selected:visible',
+                isSelected ? 'visible' : 'invisible',
+                'mt-1 size-4 self-start',
                 '[[data-ui=select-value]_&]:hidden',
                 '[[data-selected-icon-placement=end]_&]:hidden',
               )}
@@ -217,11 +229,8 @@ export function SelectListItem({
             </div>
             <CheckIcon
               className={twMerge(
-                'invisible',
-                'mt-1',
-                'size-4',
-                'self-start',
-                'group-selected:visible',
+                isSelected ? 'visible' : 'invisible',
+                'mt-1 size-4 self-start',
                 '[[data-ui=select-value]_&]:hidden',
                 '[[data-selected-icon-placement=start]_&]:hidden',
               )}

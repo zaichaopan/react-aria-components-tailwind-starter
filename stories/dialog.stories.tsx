@@ -20,7 +20,6 @@ import {
   TextArea,
   TextField,
 } from '../src/field';
-import { InputAddon, InputGroup } from '../src/input-group';
 import {
   MenuButton,
   MenuTrigger,
@@ -51,7 +50,7 @@ import {
   SelectListItemLabel,
   SelectPopover,
 } from '../src/select';
-import { Icon } from '../src/accessible-icon';
+import { Icon } from '../src/icon';
 import { Checkbox } from '../src/checkbox';
 import { Switch, SwitchField } from '../src/switch';
 
@@ -742,19 +741,22 @@ export const DialogCloseButtons = () => {
 
             <TextField isReadOnly>
               <Label className="sr-only">Install command</Label>
-              <InputGroup inline>
+
+              <div className="group grid grid-cols-[auto_1fr_auto]">
                 <Input
+                  type="text"
                   value="npm i tailwindcss-react-aria-components"
-                  className="truncate"
+                  className="col-span-full row-start-1 truncate px-9"
+                  placeholder="Search..."
                 />
-                <InputAddon className="pe-1">
-                  <CopyButton
-                    size="sm"
-                    variant="plain"
-                    copyValue="npm i tailwindcss-react-aria-components"
-                  ></CopyButton>
-                </InputAddon>
-              </InputGroup>
+
+                <CopyButton
+                  size="sm"
+                  variant="plain"
+                  className="-col-end-1 row-start-1 me-1 self-center"
+                  copyValue="npm i tailwindcss-react-aria-components"
+                ></CopyButton>
+              </div>
             </TextField>
           </DialogBody>
           <DialogFooter>

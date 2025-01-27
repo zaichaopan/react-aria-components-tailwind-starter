@@ -1,6 +1,6 @@
 import { docs } from '../../.storybook/docs.ts';
 import { Button, ButtonProps } from '../../src/button.tsx';
-import { Icon } from '../../src/accessible-icon.tsx';
+import { Icon } from '../../src/icon.tsx';
 import {
   Menu,
   MenuButton,

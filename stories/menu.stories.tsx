@@ -16,7 +16,7 @@ import {
 } from '../src/menu';
 import { Switch } from '../src/switch';
 import { docs } from '../.storybook/docs';
-import { Icon } from '../src/accessible-icon';
+import { Icon } from '../src/icon';
 import { Small, Strong, Text } from '../src/text';
 import { Avatar } from '../src/avatar';
 import { Kbd } from '../src/kbd';

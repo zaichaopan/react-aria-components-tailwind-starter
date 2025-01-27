@@ -1,7 +1,7 @@
 import type { Meta } from '@storybook/react';
 import { docs } from '../.storybook/docs';
 import { Avatar, AvatarBadge, AvatarGroup } from '../src/avatar';
-import { Icon } from '../src/accessible-icon';
+import { Icon } from '../src/icon';
 import {
   AvailableIcon,
   AwayIcon,
@@ -30,7 +30,7 @@ export const BasicExample = () => {
   return (
     <Avatar
       alt="M A"
-      src="https://i.imgur.com/xIe7Wlb.png"
+      src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8aGVhZHNob3R8ZW58MHx8MHx8fDA%3D"
     />
   );
 };
@@ -40,12 +40,12 @@ export const RoundedAvatars = () => {
     <div className="flex gap-6">
       <Avatar
         alt="M A"
-        src="https://i.imgur.com/xIe7Wlb.png"
+        src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8aGVhZHNob3R8ZW58MHx8MHx8fDA%3D"
       />
       <Avatar
         className="rounded-full"
         alt="M A"
-        src="https://i.imgur.com/xIe7Wlb.png"
+        src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8aGVhZHNob3R8ZW58MHx8MHx8fDA%3D"
       />
     </div>
   );
@@ -65,36 +65,36 @@ export const AvatarSizes = () => {
       <Avatar
         className="size-8"
         alt="M A"
-        src="https://i.imgur.com/xIe7Wlb.png"
+        src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8aGVhZHNob3R8ZW58MHx8MHx8fDA%3D"
       />
       <Avatar
         className="size-9"
         alt="M A"
-        src="https://i.imgur.com/xIe7Wlb.png"
+        src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8aGVhZHNob3R8ZW58MHx8MHx8fDA%3D"
       />
       <Avatar
         alt="M A"
-        src="https://i.imgur.com/xIe7Wlb.png"
+        src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8aGVhZHNob3R8ZW58MHx8MHx8fDA%3D"
       />
       <Avatar
         className="size-11"
         alt="M A"
-        src="https://i.imgur.com/xIe7Wlb.png"
+        src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8aGVhZHNob3R8ZW58MHx8MHx8fDA%3D"
       />
       <Avatar
         className="size-12"
         alt="M A"
-        src="https://i.imgur.com/xIe7Wlb.png"
+        src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8aGVhZHNob3R8ZW58MHx8MHx8fDA%3D"
       />
       <Avatar
         className="size-14"
         alt="M A"
-        src="https://i.imgur.com/xIe7Wlb.png"
+        src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8aGVhZHNob3R8ZW58MHx8MHx8fDA%3D"
       />
       <Avatar
         className="size-16"
         alt="M A"
-        src="https://i.imgur.com/xIe7Wlb.png"
+        src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8aGVhZHNob3R8ZW58MHx8MHx8fDA%3D"
       />
     </div>
   );
@@ -162,21 +162,21 @@ export const AvatarBadges = () => {
     <div className="flex flex-col gap-6">
       <div className="flex gap-4">
         <Avatar
-          src="https://i.imgur.com/xIe7Wlb.png"
+          src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8aGVhZHNob3R8ZW58MHx8MHx8fDA%3D"
           alt="M A"
         >
           <AvatarBadge badge={<AvailableIcon aria-label="Available" />} />
         </Avatar>
 
         <Avatar
-          src="https://i.imgur.com/xIe7Wlb.png"
+          src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8aGVhZHNob3R8ZW58MHx8MHx8fDA%3D"
           alt="M A"
         >
           <AvatarBadge badge={<BusyIcon aria-label="Busy" />} />
         </Avatar>
 
         <Avatar
-          src="https://i.imgur.com/xIe7Wlb.png"
+          src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8aGVhZHNob3R8ZW58MHx8MHx8fDA%3D"
           alt="M A"
         >
           <AvatarBadge badge={<AwayIcon aria-label="Away" />} />
@@ -184,7 +184,7 @@ export const AvatarBadges = () => {
 
         <Avatar
           alt="M A"
-          src="https://i.imgur.com/xIe7Wlb.png"
+          src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8aGVhZHNob3R8ZW58MHx8MHx8fDA%3D"
         >
           <AvatarBadge
             badge={<DoNotDisturbIcon aria-label="Do not disturb" />}
@@ -208,7 +208,7 @@ export const AvatarBadgeAccessibility = () => {
   return (
     <div className="flex gap-4">
       <Avatar
-        src="https://i.imgur.com/xIe7Wlb.png"
+        src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8aGVhZHNob3R8ZW58MHx8MHx8fDA%3D"
         alt="Jane Doe"
       >
         <AvatarBadge
@@ -235,7 +235,7 @@ export const AvatarBadgeAccessibility = () => {
       </Avatar>
 
       <Avatar
-        src="https://i.imgur.com/xIe7Wlb.png"
+        src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8aGVhZHNob3R8ZW58MHx8MHx8fDA%3D"
         alt="Jane Doe"
       >
         <AvatarBadge
@@ -280,41 +280,41 @@ export const AvatarBadgeSizes = () => {
         <Avatar
           className="size-9"
           alt="M A"
-          src="https://i.imgur.com/xIe7Wlb.png"
+          src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8aGVhZHNob3R8ZW58MHx8MHx8fDA%3D"
         >
           <AvatarBadge badge={<AvailableIcon aria-label="Available" />} />
         </Avatar>
         <Avatar
           alt="M A"
-          src="https://i.imgur.com/xIe7Wlb.png"
+          src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8aGVhZHNob3R8ZW58MHx8MHx8fDA%3D"
         >
           <AvatarBadge badge={<AvailableIcon aria-label="Available" />} />
         </Avatar>
         <Avatar
           className="size-11"
           alt="M A"
-          src="https://i.imgur.com/xIe7Wlb.png"
+          src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8aGVhZHNob3R8ZW58MHx8MHx8fDA%3D"
         >
           <AvatarBadge badge={<AvailableIcon aria-label="Available" />} />
         </Avatar>
         <Avatar
           className="size-12"
           alt="M A"
-          src="https://i.imgur.com/xIe7Wlb.png"
+          src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8aGVhZHNob3R8ZW58MHx8MHx8fDA%3D"
         >
           <AvatarBadge badge={<AvailableIcon aria-label="Available" />} />
         </Avatar>
         <Avatar
           className="size-16"
           alt="M A"
-          src="https://i.imgur.com/xIe7Wlb.png"
+          src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8aGVhZHNob3R8ZW58MHx8MHx8fDA%3D"
         >
           <AvatarBadge badge={<AvailableIcon aria-label="Available" />} />
         </Avatar>
         <Avatar
           className="size-20"
           alt="M A"
-          src="https://i.imgur.com/xIe7Wlb.png"
+          src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8aGVhZHNob3R8ZW58MHx8MHx8fDA%3D"
         >
           <AvatarBadge badge={<AvailableIcon aria-label="Available" />} />
         </Avatar>
@@ -323,42 +323,42 @@ export const AvatarBadgeSizes = () => {
         <Avatar
           className="size-9 rounded-full"
           alt="M A"
-          src="https://i.imgur.com/xIe7Wlb.png"
+          src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8aGVhZHNob3R8ZW58MHx8MHx8fDA%3D"
         >
           <AvatarBadge badge={<AvailableIcon aria-label="Available" />} />
         </Avatar>
         <Avatar
           alt="M A"
           className="rounded-full"
-          src="https://i.imgur.com/xIe7Wlb.png"
+          src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8aGVhZHNob3R8ZW58MHx8MHx8fDA%3D"
         >
           <AvatarBadge badge={<AvailableIcon aria-label="Available" />} />
         </Avatar>
         <Avatar
           className="size-11 rounded-full"
           alt="M A"
-          src="https://i.imgur.com/xIe7Wlb.png"
+          src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8aGVhZHNob3R8ZW58MHx8MHx8fDA%3D"
         >
           <AvatarBadge badge={<AvailableIcon aria-label="Available" />} />
         </Avatar>
         <Avatar
           className="size-12 rounded-full"
           alt="M A"
-          src="https://i.imgur.com/xIe7Wlb.png"
+          src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8aGVhZHNob3R8ZW58MHx8MHx8fDA%3D"
         >
           <AvatarBadge badge={<AvailableIcon aria-label="Available" />} />
         </Avatar>
         <Avatar
           className="size-16 rounded-full"
           alt="M A"
-          src="https://i.imgur.com/xIe7Wlb.png"
+          src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8aGVhZHNob3R8ZW58MHx8MHx8fDA%3D"
         >
           <AvatarBadge badge={<AvailableIcon aria-label="Available" />} />
         </Avatar>
         <Avatar
           className="size-20 rounded-full"
           alt="M A"
-          src="https://i.imgur.com/xIe7Wlb.png"
+          src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8aGVhZHNob3R8ZW58MHx8MHx8fDA%3D"
         >
           <AvatarBadge badge={<AvailableIcon aria-label="Available" />} />
         </Avatar>
@@ -382,7 +382,7 @@ export const AvatarGroups = () => {
         <Avatar
           className="size-8"
           alt="D P"
-          src="https://i.imgur.com/xIe7Wlb.png"
+          src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8aGVhZHNob3R8ZW58MHx8MHx8fDA%3D"
         />
         <Avatar
           className="size-8"
@@ -399,11 +399,7 @@ export const AvatarGroups = () => {
           alt="M J"
           src="https://images.unsplash.com/photo-1528763380143-65b3ac89a3ff?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
         />
-        <Avatar
-          className="size-8"
-          alt="M J"
-          src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8aGVhZHNob3R8ZW58MHx8MHx8fDA%3D"
-        />
+        <Avatar className="size-8" alt="M J" />
         <Avatar className="size-8" alt="D P" colorless />
       </AvatarGroup>
 
@@ -412,10 +408,10 @@ export const AvatarGroups = () => {
           <Avatar
             className="size-8 rounded-full"
             alt="D P"
-            src="https://i.imgur.com/xIe7Wlb.png"
+            src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8aGVhZHNob3R8ZW58MHx8MHx8fDA%3D"
           />
           <Avatar
-            className="size-8 rounded-full "
+            className="size-8 rounded-full"
             alt="M C"
             src="https://images.unsplash.com/photo-1554151228-14d9def656e4?q=80&w=3386&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
           />
@@ -429,14 +425,10 @@ export const AvatarGroups = () => {
             alt="M J"
             src="https://images.unsplash.com/photo-1528763380143-65b3ac89a3ff?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
           />
-          <Avatar
-            className="size-8 rounded-full"
-            alt="M J"
-            src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8aGVhZHNob3R8ZW58MHx8MHx8fDA%3D"
-          />
+          <Avatar className="size-8 rounded-full" alt="M J" />
           <Avatar className="size-8 rounded-full" alt="D P" colorless />
         </AvatarGroup>
-        <div className="relative -ms-1 grid size-8 place-items-center rounded-full bg-zinc-50 text-sm/6 outline outline-1 -outline-offset-1 outline-zinc-100 ring ring-2 ring-background dark:bg-zinc-600 dark:outline-white/20 text-muted hover:text-foreground font-medium">
+        <div className="relative -ms-1 grid size-8 place-items-center rounded-full bg-zinc-50 text-sm/6 font-medium text-muted outline outline-1 -outline-offset-1 outline-zinc-100 ring ring-2 ring-background hover:text-foreground dark:bg-zinc-600 dark:outline-white/20">
           +2
         </div>
       </div>
@@ -460,7 +452,7 @@ export const AvatarGroupsWithReverseOverlap = () => {
         <Avatar
           className="size-8"
           alt="D P"
-          src="https://i.imgur.com/xIe7Wlb.png"
+          src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8aGVhZHNob3R8ZW58MHx8MHx8fDA%3D"
         />
         <Avatar
           className="size-8"
@@ -477,11 +469,7 @@ export const AvatarGroupsWithReverseOverlap = () => {
           alt="M J"
           src="https://images.unsplash.com/photo-1528763380143-65b3ac89a3ff?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
         />
-        <Avatar
-          className="size-8"
-          alt="M J"
-          src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8aGVhZHNob3R8ZW58MHx8MHx8fDA%3D"
-        />
+        <Avatar className="size-8" alt="M J" />
       </AvatarGroup>
 
       <div className="flex items-center">
@@ -490,10 +478,10 @@ export const AvatarGroupsWithReverseOverlap = () => {
           <Avatar
             className="size-8 rounded-full"
             alt="J C"
-            src="https://i.imgur.com/xIe7Wlb.png"
+            src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8aGVhZHNob3R8ZW58MHx8MHx8fDA%3D"
           />
           <Avatar
-            className="size-8 rounded-full "
+            className="size-8 rounded-full"
             alt="M C"
             src="https://images.unsplash.com/photo-1554151228-14d9def656e4?q=80&w=3386&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
           />
@@ -507,11 +495,7 @@ export const AvatarGroupsWithReverseOverlap = () => {
             alt="M J"
             src="https://images.unsplash.com/photo-1528763380143-65b3ac89a3ff?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
           />
-          <Avatar
-            className="size-8 rounded-full"
-            alt="Kurtis Gurrado"
-            src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8aGVhZHNob3R8ZW58MHx8MHx8fDA%3D"
-          />
+          <Avatar className="size-8 rounded-full" alt="Kurtis Gurrado" />
         </AvatarGroup>
         <div className="relative flex size-8 items-center justify-center rounded-full text-xs/6">
           +2

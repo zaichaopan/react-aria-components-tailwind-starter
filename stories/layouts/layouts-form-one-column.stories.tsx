@@ -11,7 +11,6 @@ import {
   TextField,
   FieldError,
 } from '../../src/field';
-import { InputGroup, InputAddon, InputSeparator } from '../../src/input-group';
 import { Separator } from '../../src/separator';
 import { NativeSelect, NativeSelectField } from '../../src/native-select';
 import { Group } from 'react-aria-components';
@@ -26,7 +25,7 @@ import {
   SelectPopover,
 } from '../../src/select';
 import { Switch, Switches, SwitchField, SwitchGroup } from '../../src/switch';
-import { Icon } from '../../src/accessible-icon';
+import { Icon } from '../../src/icon';
 import {
   ComboBox,
   ComboBoxButton,
@@ -71,10 +70,13 @@ export const OneColumn = () => {
             </TextField>
 
             <TextField className="sm:col-span-3" name="work_email" isRequired>
-              <Label requiredHint>Work email</Label>
-              <InputGroup inline>
-                <InputAddon>
-                  <Icon>
+              <Label>Email</Label>
+              <div
+                data-ui="control"
+                className="group grid grid-cols-[auto_1fr]"
+              >
+                <span className="col-start-1 row-start-1 grid place-content-center px-3 group-has-[:autofill]:z-10">
+                  <Icon className="size-5 text-muted/90 sm:size-4">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="1em"
@@ -87,11 +89,13 @@ export const OneColumn = () => {
                       ></path>
                     </svg>
                   </Icon>
-                </InputAddon>
-
-                <Input />
-              </InputGroup>
-
+                </span>
+                <Input
+                  type="email"
+                  className="col-span-full row-start-1 ps-9"
+                  autoComplete="email"
+                />
+              </div>
               <Description>
                 Email address used within your organization.
               </Description>
@@ -122,16 +126,26 @@ export const OneColumn = () => {
 
             <TextField className="sm:col-span-4" name="company_website">
               <Label>Company website</Label>
-              <InputGroup role="presentation" inline>
-                <InputAddon>https://</InputAddon>
-                <Input className="ps-16 sm:ps-14" />
-              </InputGroup>
+              <div className="flex">
+                <span className="flex items-center rounded-s border border-e-0 px-2.5 text-base/6 text-foreground sm:text-sm/6">
+                  https://
+                </span>
+                <Input
+                  type="text"
+                  placeholder="www.example.com"
+                  className="rounded-s-none"
+                  autoComplete="email"
+                />
+              </div>
             </TextField>
 
             <ComboBox className="sm:col-span-4" name="industry">
               <Label>Industry</Label>
               <ComboBoxGroup>
-                <ComboBoxInput placeholder="Select your industry" className="text-ellipsis"></ComboBoxInput>
+                <ComboBoxInput
+                  placeholder="Select your industry"
+                  className="text-ellipsis"
+                ></ComboBoxInput>
                 <ComboBoxClearButton />
                 <ComboBoxButton />
               </ComboBoxGroup>
@@ -151,10 +165,10 @@ export const OneColumn = () => {
 
             <LabeledGroup className="sm:col-span-4">
               <Label>Phone Number</Label>
-              <InputGroup>
-                <Select defaultSelectedKey="ca">
-                  <Label>Phone Country Code</Label>
-                  <SelectButton></SelectButton>
+              <Group className="group flex">
+                <Select defaultSelectedKey="ca" className="w-max min-w-max">
+                  <Label className="sr-only">Phone Country Code</Label>
+                  <SelectButton className="rounded-e-none group-has-[[data-ui=text-field]:focus-within]:border-e-ring"></SelectButton>
 
                   <SelectPopover className="w-36" placement="bottom start">
                     <SelectListBox>
@@ -178,25 +192,27 @@ export const OneColumn = () => {
                   </SelectPopover>
                 </Select>
 
-                <InputSeparator />
-
                 <TextField>
-                  <Label>Phone number</Label>
-                  <Input placeholder="+1 (123) 457-7890" />
+                  <Label className="sr-only">Phone number</Label>
+                  <Input
+                    placeholder="+1 (123) 457-7890"
+                    className="rounded-none border-e-0 border-s-0"
+                  />
                 </TextField>
 
-                <InputSeparator />
-
                 <NativeSelectField>
-                  <Label>Work phone number type</Label>
-                  <NativeSelect name="work_phone_number_type">
+                  <Label className="sr-only">Work phone number type</Label>
+                  <NativeSelect
+                    name="work_phone_number_type"
+                    className="min-w-max rounded-s-none group-has-[[data-ui=text-field]:focus-within]:border-s-ring"
+                  >
                     <option value="Mobile">Mobile</option>
                     <option value="Phone">Phone</option>
                     <option value="Page">Page</option>
                     <option value="Fax">Fax</option>
                   </NativeSelect>
                 </NativeSelectField>
-              </InputGroup>
+              </Group>
             </LabeledGroup>
 
             <TextField className="col-span-full" name="about">

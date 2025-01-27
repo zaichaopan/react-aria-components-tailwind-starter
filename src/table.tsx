@@ -19,12 +19,7 @@ import {
 } from 'react-aria-components';
 import { twMerge } from 'tailwind-merge';
 import { Checkbox } from './checkbox';
-import {
-  composeTailwindRenderProps,
-  focusRing,
-  focusVisibleOutline,
-  focusVisibleRing,
-} from './utils';
+import { composeTailwindRenderProps } from './utils';
 import { ChevronUpIcon } from './icons';
 
 export function Table(props: TableProps) {
@@ -51,10 +46,16 @@ export function Column(props: ColumnProps) {
             <Group
               role="presentation"
               tabIndex={-1}
-              className={twMerge(
-                'outline-none',
-                focusVisibleRing,
-                'flex h-5 flex-1 items-center gap-1 overflow-hidden px-2',
+              className={composeRenderProps(
+                '',
+                (className, { isFocusVisible }) =>
+                  twMerge(
+                    isFocusVisible
+                      ? 'outline-ring rounded outline outline-2 outline-offset-2'
+                      : 'outline-none',
+                    'flex h-5 flex-1 items-center gap-1 overflow-hidden px-2',
+                    className,
+                  ),
               )}
             >
               <span className="truncate">{children}</span>
@@ -72,10 +73,18 @@ export function Column(props: ColumnProps) {
             </Group>
             {!props.width && (
               <ColumnResizer
-                className={twMerge(
-                  'outline-none',
-                  focusRing,
-                  'box-content h-5 w-[1.5px] translate-x-[8px] cursor-col-resize rounded bg-border bg-clip-content px-[8px] py-1 -outline-offset-2 resizing:w-[2px] resizing:bg-accent resizing:pl-[7px] forced-colors:bg-[ButtonBorder] forced-colors:resizing:bg-[Highlight]',
+                className={composeRenderProps(
+                  '',
+                  (className, { isFocusVisible, isResizing }) =>
+                    twMerge(
+                      'box-content h-5 w-[1.5px] translate-x-[8px] cursor-col-resize rounded bg-border bg-clip-content px-[8px] py-1',
+                      isResizing &&
+                        'resizing:w-[2px] resizing:bg-accent resizing:pl-[7px]',
+                      isFocusVisible
+                        ? 'outline-ring rounded outline outline-2 -outline-offset-2'
+                        : 'outline-none',
+                      className,
+                    ),
                 )}
               />
             )}
@@ -96,7 +105,6 @@ export function TableHeader<T extends object>(props: TableHeaderProps<T>) {
       className={composeTailwindRenderProps(props.className, [
         'sticky top-0 z-10 rounded-t-md  backdrop-blur-md',
         "after:content-['']",
-
         'after:flex-1',
       ])}
     >
@@ -120,23 +128,28 @@ export function Row<T extends object>({
   id,
   columns,
   children,
-  ...otherProps
+  ...props
 }: RowProps<T>) {
   const { selectionBehavior, allowsDragging } = useTableOptions();
 
   return (
     <AriaRow
       id={id}
-      {...otherProps}
-      className={twMerge(
-        focusVisibleOutline,
-        'focus-visible:outline-none',
-        'focus-visible:rounded',
-        'focus-visible:-outline-offset-2',
-        'group/row relative cursor-default select-none text-sm  disabled:text-muted',
-        'hover:bg-zinc-100 dark:hover:bg-zinc-700',
-        'hover:selected:bg-zinc-100 dark:hover:selected:bg-zinc-700',
-        'selected:bg-accent/5 dark:selected:bg-accent/35',
+      {...props}
+      className={composeRenderProps(
+        props.className,
+        (className, { isFocusVisible, isSelected, isHovered, isDisabled }) =>
+          twMerge(
+            'group/row relative cursor-default select-none text-sm',
+            isDisabled && 'text-muted',
+            isHovered && 'bg-zinc-100 dark:bg-zinc-700',
+            isSelected && 'bg-accent/5 dark:bg-accent/35',
+            isHovered && isSelected && 'bg-zinc-100 dark:selected:bg-zinc-700',
+            isFocusVisible
+              ? 'outline-ring rounded outline outline-2 -outline-offset-2'
+              : 'outline-none',
+            className,
+          ),
       )}
     >
       {allowsDragging && (
@@ -158,12 +171,16 @@ export function Cell(props: CellProps) {
   return (
     <AriaCell
       {...props}
-      className={twMerge(
-        'outline-none',
-        focusVisibleOutline,
-        'focus-visible:rounded',
-        'focus-visible:-outline-offset-2',
-        'truncate border-b p-2 group-last/row:border-b-0',
+      className={composeRenderProps(
+        props.className,
+        (className, { isFocusVisible }) =>
+          twMerge(
+            'truncate border-b p-2 group-last/row:border-b-0',
+            isFocusVisible
+              ? 'outline-ring rounded outline outline-2 -outline-offset-2'
+              : 'outline-none',
+            className,
+          ),
       )}
     />
   );

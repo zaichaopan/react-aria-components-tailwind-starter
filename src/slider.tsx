@@ -4,8 +4,9 @@ import {
   SliderThumb,
   SliderTrack as RACSliderTrack,
   SliderRenderProps,
+  composeRenderProps,
 } from 'react-aria-components';
-import { composeTailwindRenderProps, focusVisibleOutline } from './utils';
+import { composeTailwindRenderProps } from './utils';
 import { twMerge } from 'tailwind-merge';
 
 export { SliderOutput } from 'react-aria-components';
@@ -21,7 +22,7 @@ export function Slider<T extends number | number[]>(props: SliderProps<T>) {
       {...props}
       className={composeTailwindRenderProps(
         props.className,
-        'flex flex-col gap-2 orientation-horizontal:min-w-64 orientation-vertical:items-center',
+        'flex flex-col gap-2 data-[orientation=horizontal]:min-w-64 data-[orientation=vertical]:items-center',
       )}
     />
   );
@@ -29,19 +30,19 @@ export function Slider<T extends number | number[]>(props: SliderProps<T>) {
 
 const trackStyle = [
   'absolute top-[50%] translate-y-[-50%] rounded-full',
-  'group-orientation-horizontal:h-1',
-  'group-orientation-horizontal:w-full',
-  'group-orientation-vertical:left-[50%]',
-  'group-orientation-vertical:h-full',
-  'group-orientation-vertical:w-[6px]',
-  'group-orientation-vertical:translate-x-[-50%]',
-  'group-orientation-vertical:translate-y-[-50%]',
-  'group-disabled:opacity-50',
+  'group-data-[orientation=horizontal]:h-1',
+  'group-data-[orientation=horizontal]:w-full',
+  'group-data-[orientation=vertical]:left-[50%]',
+  'group-data-[orientation=vertical]:h-full',
+  'group-data-[orientation=vertical]:w-[6px]',
+  'group-data-[orientation=vertical]:translate-x-[-50%]',
+  'group-data-[orientation=vertical]:translate-y-[-50%]',
+  'group-data-[disabled]:opacity-50',
 ];
 
 export function SliderTack({ thumbLabels }: { thumbLabels?: string[] }) {
   return (
-    <RACSliderTrack className="group relative flex w-full items-center orientation-horizontal:h-7 orientation-vertical:h-44 orientation-vertical:w-7">
+    <RACSliderTrack className="group relative flex w-full items-center data-[orientation=horizontal]:h-7 data-[orientation=vertical]:h-44 data-[orientation=vertical]:w-7">
       {({ state, orientation }) => {
         return (
           <>
@@ -57,13 +58,23 @@ export function SliderTack({ thumbLabels }: { thumbLabels?: string[] }) {
                 key={i}
                 index={i}
                 aria-label={thumbLabels?.[i]}
-                className={composeTailwindRenderProps('', [
-                  'size-5 rounded-full bg-white shadow-xl ring ring-1 ring-zinc-400/45 dark:ring-0',
-                  'group-orientation-horizontal:top-[50%] group-orientation-vertical:left-[50%]',
-                  'dragging:ring-accent  dragging:border-8 dragging:border-accent',
-                  'disabled:cursor-not-allowed',
-                  focusVisibleOutline,
-                ])}
+                className={composeRenderProps(
+                  '',
+                  (className, { isFocusVisible, isDragging, isDisabled }) =>
+                    twMerge(
+                      'ring-3 size-5 rounded-full bg-white shadow-xl ring-1 ring-zinc-400/45 dark:ring-0',
+                      'group-data-[orientation=horizontal]:top-[50%] group-data-[orientation=vertical]:left-[50%]',
+                      isDragging && ['ring-accent border-accent border-8'],
+                      isDisabled && 'cursor-not-allowed opacity-50',
+                      isFocusVisible && [
+                        'outline',
+                        'outline-2',
+                        'outline-ring',
+                        'outline-offset-2',
+                      ],
+                      className,
+                    ),
+                )}
               />
             ))}
           </>

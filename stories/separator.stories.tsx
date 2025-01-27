@@ -1,7 +1,7 @@
 import type { Meta } from '@storybook/react';
 import { docs } from '../.storybook/docs.ts';
 import { MailIcon, PlusIcon, ChevronDownIcon } from 'lucide-react';
-import { Icon } from '../src/accessible-icon.tsx';
+import { Icon } from '../src/icon.tsx';
 import { Separator } from '../src/separator.tsx';
 import { Button } from '../src/button.tsx';
 import {

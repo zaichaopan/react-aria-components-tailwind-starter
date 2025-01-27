@@ -14,7 +14,6 @@ import { Popover } from './popover';
 import { RangeCalendar } from './range-calendar';
 import {
   composeTailwindRenderProps,
-  focusWithinRing,
   inputField,
 } from './utils';
 import { twMerge } from 'tailwind-merge';
@@ -47,12 +46,17 @@ export function DateRangePickerInput() {
           '[&:has([aria-valuetext=Empty]:) w-full',
           'grid grid-cols-[max-content_16px_max-content_1fr] items-center',
           'group relative rounded-md border bg-inherit',
-          'group-invalid:border-destructive',
+          'group-data-[invalid]:border-destructive',
           '[&:has(_input[data-disabled=true])]:border-border/50',
           '[&:has([data-ui=date-segment][aria-readonly])]:bg-zinc-50',
           'dark:[&:has([data-ui=date-segment][aria-readonly])]:bg-white/10',
           formattedValue ? 'min-w-60' : 'min-w-[278px]',
-          focusWithinRing,
+          'focus-within:ring-1',
+          'focus-within:ring-inset',
+          'focus-within:ring-ring',
+          'focus-within:border-ring',
+          'focus-within:invalid:border-ring',
+          'focus-within:group-invalid:border-ring',
         )}
       >
         <DateInput
@@ -65,7 +69,7 @@ export function DateRangePickerInput() {
         />
         <span
           aria-hidden="true"
-          className="place-self-center text-muted group-disabled:opacity-50"
+          className="place-self-center text-muted group-data-[disabled]:opacity-50"
         >
           –
         </span>
@@ -138,7 +142,7 @@ export function DateRangePickerButton({
                 </span>
                 <span
                   aria-hidden="true"
-                  className="place-self-center text-muted group-disabled:opacity-50"
+                  className="place-self-center text-muted group-data-[disabled]:opacity-50"
                 >
                   –
                 </span>
@@ -152,7 +156,7 @@ export function DateRangePickerButton({
               </span>
             )}
 
-            <CalendarIcon className="place-self-center text-muted group-hover:text-foreground group-pressed:text-foreground" />
+            <CalendarIcon className="place-self-center text-muted group-hover:text-foreground" />
           </div>
         </Button>
 

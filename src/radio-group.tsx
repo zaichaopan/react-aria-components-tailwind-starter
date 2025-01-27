@@ -1,20 +1,17 @@
 import React from 'react';
 import {
+  composeRenderProps,
   Radio as RACRadio,
   RadioGroup as RACRadioGroup,
   RadioGroupProps as RACRadioGroupProps,
   RadioProps as RACRadioProps,
   RadioRenderProps,
 } from 'react-aria-components';
-import { DescriptionContext, DescriptionProvider } from './field';
-import {
-  composeTailwindRenderProps,
-  groupBox,
-  groupFocusVisibleOutline,
-} from './utils';
 import { twMerge } from 'tailwind-merge';
+import { DescriptionContext, DescriptionProvider } from './field';
+import { composeTailwindRenderProps, groupBox } from './utils';
 
-export function RadioGroup({ ...props }: RACRadioGroupProps) {
+export function RadioGroup(props: RACRadioGroupProps) {
   return (
     <RACRadioGroup
       {...props}
@@ -23,7 +20,10 @@ export function RadioGroup({ ...props }: RACRadioGroupProps) {
   );
 }
 
-export function Radios({ className, ...props }: React.JSX.IntrinsicElements['div']) {
+export function Radios({
+  className,
+  ...props
+}: React.JSX.IntrinsicElements['div']) {
   return (
     <div
       data-ui="box"
@@ -74,10 +74,7 @@ export interface CustomRenderRadioProps
   children?: never;
 }
 
-export function Radio({
-  className,
-  ...props
-}: RadioProps | CustomRenderRadioProps) {
+export function Radio(props: RadioProps | CustomRenderRadioProps) {
   const descriptionContext = React.useContext(DescriptionContext);
 
   if (props.render) {
@@ -87,11 +84,15 @@ export function Radio({
       <RACRadio
         {...restProps}
         aria-describedby={descriptionContext?.['aria-describedby']}
-        className={composeTailwindRenderProps(className, [
-          'group',
-          'text-base/6 sm:text-sm/6',
-          'disabled:opacity-50',
-        ])}
+        className={composeRenderProps(
+          props.className,
+          (className, { isDisabled }) =>
+            twMerge(
+              'group text-base/6 sm:text-sm/6',
+              isDisabled && 'opacity-50',
+              className,
+            ),
+        )}
       >
         {render}
       </RACRadio>
@@ -105,14 +106,17 @@ export function Radio({
       {...restProps}
       aria-describedby={descriptionContext?.['aria-describedby']}
       data-label-placement={labelPlacement}
-      className={composeTailwindRenderProps(className, [
-        'group flex items-center',
-        'group-aria-[orientation=horizontal]:text-nowrap',
-        'data-[label-placement=start]:flex-row-reverse',
-        'data-[label-placement=start]:justify-between',
-        'text-base/6 sm:text-sm/6',
-        'disabled:opacity-50',
-      ])}
+      className={composeRenderProps(
+        props.className,
+        (className, { isDisabled }) =>
+          twMerge(
+            'group flex items-center text-base/6 sm:text-sm/6',
+            'group-aria-[orientation=horizontal]:text-nowrap',
+            labelPlacement === 'start' && 'flex-row-reverse justify-between',
+            isDisabled && 'opacity-50',
+            className,
+          ),
+      )}
     >
       {(renderProps) => {
         return (
@@ -121,27 +125,23 @@ export function Radio({
               slot="radio"
               className={twMerge(
                 'grid size-[1.0625rem] shrink-0 place-content-center rounded-full',
+                'border border-zinc-400/75 dark:border-zinc-600',
                 labelPlacement === 'end' ? 'me-3' : 'ms-3',
-                'border',
-                'border-zinc-400/75',
-                'dark:border-zinc-600',
-
-                // readonly
-                'group-data-[readonly]:opacity-50',
-
-                // invalid
-                'group-invalid:border-destructive',
-                'group-invalid:dark:border-destructive',
-
-                // selected
-                'group-selected:dark:border-0',
-                'group-selected:border-accent',
-                'group-selected:bg-accent',
-                'dark:group-selected:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.1)]',
-                groupFocusVisibleOutline,
+                renderProps.isReadOnly && 'opacity-50',
+                renderProps.isInvalid &&
+                  'border-destructive dark:border-destructive',
+                renderProps.isSelected &&
+                  'border-accent bg-accent dark:border-0 dark:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.1)]',
+                renderProps.isFocusVisible &&
+                  'outline-ring outline outline-2 outline-offset-2',
               )}
             >
-              <div className="rounded-full group-selected:size-1.5 group-selected:bg-white"></div>
+              <div
+                className={twMerge(
+                  'rounded-full',
+                  renderProps.isSelected && 'size-1.5 bg-white',
+                )}
+              ></div>
             </div>
 
             {typeof props.children === 'function'

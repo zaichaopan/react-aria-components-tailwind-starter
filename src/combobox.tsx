@@ -6,9 +6,10 @@ import {
   GroupProps,
   Group,
   Keyboard,
+  composeRenderProps,
 } from 'react-aria-components';
 import { ButtonProps, Button } from './button';
-import { composeTailwindRenderProps, inputField } from './utils';
+import { inputField } from './utils';
 import { twMerge } from 'tailwind-merge';
 import {
   SelectListBox,
@@ -26,10 +27,9 @@ export function ComboBox(props: RACComboBoxProps<object>) {
     <RACComboBox
       {...props}
       data-ui="comboBox"
-      className={composeTailwindRenderProps(props.className, [
-        'w-full min-w-56',
-        inputField,
-      ])}
+      className={composeRenderProps(props.className, (className) =>
+        twMerge(['w-full min-w-56', inputField, className]),
+      )}
     />
   );
 }
@@ -39,47 +39,51 @@ export function ComboBoxGroup(props: GroupProps) {
     <Group
       data-ui="control"
       {...props}
-      className={composeTailwindRenderProps(props.className, [
-        'group/combobox',
-        'isolate',
-        'grid',
-        'grid-cols-[36px_1fr_minmax(40px,max-content)_minmax(40px,max-content)]',
-        'sm:grid-cols-[36px_1fr_minmax(36px,max-content)_minmax(36px,max-content)]',
-        'items-center',
+      className={composeRenderProps(props.className, (className) =>
+        twMerge([
+          'group/combobox',
+          'isolate',
+          'grid',
+          'grid-cols-[36px_1fr_minmax(40px,max-content)_minmax(40px,max-content)]',
+          'sm:grid-cols-[36px_1fr_minmax(36px,max-content)_minmax(36px,max-content)]',
+          'items-center',
 
-        // Icon
-        'sm:[&>[data-ui=icon]:has(+input)]:size-4',
-        '[&>[data-ui=icon]:has(+input)]:size-5',
-        '[&>[data-ui=icon]:has(+input)]:row-start-1',
-        '[&>[data-ui=icon]:has(+input)]:col-start-1',
-        '[&>[data-ui=icon]:has(+input)]:place-self-center',
-        '[&>[data-ui=icon]:has(+input)]:text-muted',
-        '[&>[data-ui=icon]:has(+input)]:z-10',
+          // Icon
+          'sm:[&>[data-ui=icon]:has(+input)]:size-4',
+          '[&>[data-ui=icon]:has(+input)]:size-5',
+          '[&>[data-ui=icon]:has(+input)]:row-start-1',
+          '[&>[data-ui=icon]:has(+input)]:col-start-1',
+          '[&>[data-ui=icon]:has(+input)]:place-self-center',
+          '[&>[data-ui=icon]:has(+input)]:text-muted',
+          '[&>[data-ui=icon]:has(+input)]:z-10',
 
-        // Input
-        '[&>input]:row-start-1',
-        '[&>input]:col-span-full',
-        '[&>input:not([class*=pe-])]:pe-10',
-        'sm:[&>input:not([class*=pe-])]:pe-9',
+          // Input
+          '[&>input]:row-start-1',
+          '[&>input]:col-span-full',
+          '[&>input:not([class*=pe-])]:pe-10',
+          'sm:[&>input:not([class*=pe-])]:pe-9',
 
-        '[&>input:has(+[data-ui=clear]:not(:last-of-type))]:pe-20',
-        'sm:[&>input:has(+[data-ui=clear]:not(:last-of-type))]:pe-16',
+          '[&>input:has(+[data-ui=clear]:not(:last-of-type))]:pe-20',
+          'sm:[&>input:has(+[data-ui=clear]:not(:last-of-type))]:pe-16',
 
-        '[&:has([data-ui=icon]+input)>input]:ps-10',
-        'sm:[&:has([data-ui=icon]+input)>input]:ps-8',
+          '[&:has([data-ui=icon]+input)>input]:ps-10',
+          'sm:[&:has([data-ui=icon]+input)>input]:ps-8',
 
-        // Trigger button
-        '[&>[data-ui=trigger]]:row-start-1',
-        '[&>[data-ui=trigger]]:-col-end-1',
-        '[&>[data-ui=trigger]]:place-self-center',
+          // Trigger button
+          '[&>[data-ui=trigger]]:row-start-1',
+          '[&>[data-ui=trigger]]:-col-end-1',
+          '[&>[data-ui=trigger]]:place-self-center',
 
-        // Clear button
-        '[&>[data-ui=clear]]:row-start-1',
-        '[&>[data-ui=clear]]:-col-end-2',
-        '[&>[data-ui=clear]]:justify-self-end',
-        '[&>[data-ui=clear]:last-of-type]:-col-end-1',
-        '[&>[data-ui=clear]:last-of-type]:place-self-center',
-      ])}
+          // Clear button
+          '[&>[data-ui=clear]]:row-start-1',
+          '[&>[data-ui=clear]]:-col-end-2',
+          '[&>[data-ui=clear]]:justify-self-end',
+          '[&>[data-ui=clear]:last-of-type]:-col-end-1',
+          '[&>[data-ui=clear]:last-of-type]:place-self-center',
+
+          className,
+        ]),
+      )}
     />
   );
 }

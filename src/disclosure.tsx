@@ -1,5 +1,5 @@
-import { Button, ButtonProps } from 'react-aria-components';
-import { composeTailwindRenderProps, focusVisibleOutline } from './utils';
+import { Button, ButtonProps, composeRenderProps } from 'react-aria-components';
+import { twMerge } from 'tailwind-merge';
 
 export {
   Disclosure,
@@ -12,10 +12,21 @@ export function DisclosureControl(props: ButtonProps) {
     <Button
       {...props}
       slot="trigger"
-      className={composeTailwindRenderProps(props.className, [
-        'group flex items-center gap-x-1 rounded outline-none',
-        focusVisibleOutline,
-      ])}
+      className={composeRenderProps(
+        props.className,
+        (className, { isFocusVisible }) => {
+          return twMerge([
+            'group flex items-center gap-x-1 rounded outline-none',
+            isFocusVisible && [
+              'outline',
+              'outline-2',
+              'outline-ring',
+              'outline-offset-2',
+            ],
+            className,
+          ]);
+        },
+      )}
     />
   );
 }
