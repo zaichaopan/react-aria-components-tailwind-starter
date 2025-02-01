@@ -92,8 +92,8 @@ export function Tag({ children, color, ...props }: TagProps) {
         props.className,
         (className, { isFocusVisible, isDisabled, isSelected }) =>
           twMerge(
-            'flex max-w-fit cursor-default items-center gap-x-1 rounded px-2 py-0.5 text-xs/5 font-semibold outline-0 transition',
-            '[&[data-selection-mode]]:cursor-pointer',
+            'flex max-w-fit cursor-default items-center gap-x-1 rounded-sm px-2 py-0.5 text-xs/5 font-semibold outline-0 transition',
+            'data-selection-mode:cursor-pointer',
             colors({ isSelected })[color || groupColor],
             isFocusVisible && 'outline-ring outline outline-2 outline-offset-1',
             isDisabled && 'opacity-50',

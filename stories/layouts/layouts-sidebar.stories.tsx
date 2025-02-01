@@ -333,7 +333,7 @@ function MainNavigation() {
               inline
               variant="numeric"
               value={10}
-              className="ms-auto rounded bg-accent"
+              className="ms-auto rounded-sm bg-accent"
             />
           </NavLink>
         </li>

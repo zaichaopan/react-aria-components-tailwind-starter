@@ -36,7 +36,7 @@ export function Column(props: ColumnProps) {
       {...props}
       className={composeTailwindRenderProps(
         props.className,
-        'cursor-default border-b text-start text-sm font-semibold [&:focus-within]:z-20 [&:hover]:z-20',
+        'cursor-default border-b text-start text-sm font-semibold focus-within:z-20 [&:hover]:z-20',
       )}
     >
       {composeRenderProps(
@@ -51,8 +51,8 @@ export function Column(props: ColumnProps) {
                 (className, { isFocusVisible }) =>
                   twMerge(
                     isFocusVisible
-                      ? 'outline-ring rounded outline outline-2 outline-offset-2'
-                      : 'outline-none',
+                      ? 'outline-ring rounded-sm outline outline-2 outline-offset-2'
+                      : 'outline-hidden',
                     'flex h-5 flex-1 items-center gap-1 overflow-hidden px-2',
                     className,
                   ),
@@ -77,12 +77,12 @@ export function Column(props: ColumnProps) {
                   '',
                   (className, { isFocusVisible, isResizing }) =>
                     twMerge(
-                      'box-content h-5 w-[1.5px] translate-x-[8px] cursor-col-resize rounded bg-border bg-clip-content px-[8px] py-1',
+                      'box-content h-5 w-[1.5px] translate-x-[8px] cursor-col-resize rounded-sm bg-border bg-clip-content px-[8px] py-1',
                       isResizing &&
                         'resizing:w-[2px] resizing:bg-accent resizing:pl-[7px]',
                       isFocusVisible
-                        ? 'outline-ring rounded outline outline-2 -outline-offset-2'
-                        : 'outline-none',
+                        ? 'outline-ring rounded-sm outline outline-2 -outline-offset-2'
+                        : 'outline-hidden',
                       className,
                     ),
                 )}
@@ -146,8 +146,8 @@ export function Row<T extends object>({
             isSelected && 'bg-accent/5 dark:bg-accent/35',
             isHovered && isSelected && 'bg-zinc-100 dark:selected:bg-zinc-700',
             isFocusVisible
-              ? 'outline-ring rounded outline outline-2 -outline-offset-2'
-              : 'outline-none',
+              ? 'outline-ring rounded-sm outline outline-2 -outline-offset-2'
+              : 'outline-hidden',
             className,
           ),
       )}
@@ -177,8 +177,8 @@ export function Cell(props: CellProps) {
           twMerge(
             'truncate border-b p-2 group-last/row:border-b-0',
             isFocusVisible
-              ? 'outline-ring rounded outline outline-2 -outline-offset-2'
-              : 'outline-none',
+              ? 'outline-ring rounded-sm outline outline-2 -outline-offset-2'
+              : 'outline-hidden',
             className,
           ),
       )}

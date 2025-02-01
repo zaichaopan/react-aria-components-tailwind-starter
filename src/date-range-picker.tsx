@@ -43,7 +43,7 @@ export function DateRangePickerInput() {
           '[&:has([aria-valuetext=Empty]:) w-full',
           'grid grid-cols-[max-content_16px_max-content_1fr] items-center',
           'group relative rounded-md border bg-inherit',
-          'group-data-[invalid]:border-destructive',
+          'group-data-invalid:border-destructive',
           '[&:has(_input[data-disabled=true])]:border-border/50',
           '[&:has([data-ui=date-segment][aria-readonly])]:bg-zinc-50',
           'dark:[&:has([data-ui=date-segment][aria-readonly])]:bg-white/10',
@@ -52,7 +52,7 @@ export function DateRangePickerInput() {
           'focus-within:ring-ring/30',
           'focus-within:border-ring',
           'focus-within:invalid:border-ring',
-          'focus-within:group-invalid:border-ring',
+          'group-invalid:focus-within:border-ring',
         )}
       >
         <DateInput
@@ -65,7 +65,7 @@ export function DateRangePickerInput() {
         />
         <span
           aria-hidden="true"
-          className="place-self-center text-muted group-data-[disabled]:opacity-50"
+          className="place-self-center text-muted group-data-disabled:opacity-50"
         >
           –
         </span>
@@ -138,7 +138,7 @@ export function DateRangePickerButton({
                 </span>
                 <span
                   aria-hidden="true"
-                  className="place-self-center text-muted group-data-[disabled]:opacity-50"
+                  className="place-self-center text-muted group-data-disabled:opacity-50"
                 >
                   –
                 </span>

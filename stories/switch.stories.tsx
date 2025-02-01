@@ -200,10 +200,10 @@ export const SwitchCustomization = () => {
               'border-zinc-200',
               'p-[0.5px]',
               'dark:border-border',
-              'group-data-[selected]:border-accent',
+              'group-data-selected:border-accent',
               'bg-zinc-200',
               'dark:bg-transparent',
-              'group-data-[selected]:bg-accent',
+              'group-data-selected:bg-accent',
               'transition ease-in-out',
             ].join(' ')}
           >
@@ -215,7 +215,7 @@ export const SwitchCustomization = () => {
                   'p-1',
                   'grid place-items-center',
                   'transition ease-in-out',
-                  'opacity-100 group-data-[selected]:opacity-0',
+                  'opacity-100 group-data-selected:opacity-0',
                 ].join(' ')}
               >
                 <Icon>
@@ -242,7 +242,7 @@ export const SwitchCustomization = () => {
                   'p-1',
                   'grid place-items-center',
                   'transition ease-in-out',
-                  'opacity-0 group-data-[selected]:opacity-100',
+                  'opacity-0 group-data-selected:opacity-100',
                 ].join(' ')}
               >
                 <Icon>
@@ -259,7 +259,7 @@ export const SwitchCustomization = () => {
               <div
                 className={[
                   'h-full w-1/2 rounded-full bg-white',
-                  'absolute left-0 top-0 group-data-[selected]:left-1/2',
+                  'absolute left-0 top-0 group-data-selected:left-1/2',
                   'transition-all ease-in-out',
                 ].join(' ')}
               ></div>
@@ -275,26 +275,26 @@ export const SwitchCustomization = () => {
           <div
             className={[
               'flex rounded-full bg-zinc-200 p-0.5 dark:bg-zinc-700',
-              'group-data-[selected]:bg-accent',
+              'group-data-selected:bg-accent',
             ].join(' ')}
           >
             <div className="relative isolate flex">
               <div className="z-10 p-1.5">
                 <Icon>
-                  <SunIcon className="size-4 text-foreground transition group-data-[selected]:text-white" />
+                  <SunIcon className="size-4 text-foreground transition group-data-selected:text-white" />
                 </Icon>
               </div>
 
               <div className="z-10 p-1.5">
                 <Icon>
-                  <MoonIcon className="size-4 text-muted/75 transition group-data-[selected]:text-foreground" />
+                  <MoonIcon className="size-4 text-muted/75 transition group-data-selected:text-foreground" />
                 </Icon>
               </div>
 
               <div
                 className={[
                   'h-full w-1/2 rounded-full bg-white dark:bg-zinc-900',
-                  'absolute left-0 top-0 group-data-[selected]:left-1/2',
+                  'absolute left-0 top-0 group-data-selected:left-1/2',
                   'transition-all ease-in-out',
                 ].join(' ')}
               ></div>
@@ -314,8 +314,8 @@ export const SwitchCustomization = () => {
               'rounded-full',
               'bg-zinc-200',
               'dark:bg-zinc-700',
-              'group-data-[selected]:bg-accent',
-              'group-data-[selected]:text-white',
+              'group-data-selected:bg-accent',
+              'group-data-selected:text-white',
               'transition-[background]',
               'ease-in-out',
             ].join(' ')}
@@ -326,9 +326,9 @@ export const SwitchCustomization = () => {
                   'z-10',
                   'p-1.5',
                   'opacity-0',
-                  'group-data-[selected]:opacity-100',
+                  'group-data-selected:opacity-100',
                   'translate-x-full',
-                  'group-data-[selected]:translate-x-0',
+                  'group-data-selected:translate-x-0',
                   'transition-all',
                   'ease-in-out',
                 ].join(' ')}
@@ -343,9 +343,9 @@ export const SwitchCustomization = () => {
                   'z-10',
                   'p-1.5',
                   'opacity-100',
-                  'group-data-[selected]:opacity-0',
+                  'group-data-selected:opacity-0',
                   'translate-x-0',
-                  'group-data-[selected]:-translate-x-full',
+                  'group-data-selected:-translate-x-full',
                   'transition-all',
                   'ease-in-out',
                 ].join(' ')}
@@ -364,7 +364,7 @@ export const SwitchCustomization = () => {
                   'absolute',
                   'top-0',
                   'left-0',
-                  'group-data-[selected]:left-1/2',
+                  'group-data-selected:left-1/2',
                   'transition-all',
                   'ease-in-out',
                 ].join(' ')}

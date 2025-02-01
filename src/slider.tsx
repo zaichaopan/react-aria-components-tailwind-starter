@@ -37,7 +37,7 @@ const trackStyle = [
   'group-data-[orientation=vertical]:w-[6px]',
   'group-data-[orientation=vertical]:translate-x-[-50%]',
   'group-data-[orientation=vertical]:translate-y-[-50%]',
-  'group-data-[disabled]:opacity-50',
+  'group-data-disabled:opacity-50',
 ];
 
 export function SliderTack({ thumbLabels }: { thumbLabels?: string[] }) {

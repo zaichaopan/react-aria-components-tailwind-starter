@@ -38,8 +38,8 @@ export function GridListItem({ children, ...props }: GridListItemProps) {
         props.className,
         (className, { isFocusVisible, isSelected, isDisabled, isHovered }) =>
           twMerge(
-            'relative -mb-px flex cursor-default select-none gap-3 rounded-md px-2 py-1.5 text-sm outline-none',
-            '[&:not(:last-child)]:mb-0.5',
+            'relative -mb-px flex cursor-default select-none gap-3 rounded-md px-2 py-1.5 text-sm outline-hidden',
+            'not-last:mb-0.5',
             isHovered && ['bg-zinc100 dark:bg-zinc-700'],
             isSelected && ['z-20'],
             isDisabled && ['opacity-50'],

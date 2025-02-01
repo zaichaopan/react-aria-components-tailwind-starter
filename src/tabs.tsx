@@ -125,7 +125,7 @@ export function TabPanel(props: TabPanelProps) {
       {...props}
       className={composeRenderProps(props.className, (className) =>
         twMerge([
-          'flex-1 outline-none',
+          'flex-1 outline-hidden',
           tabPanel[variant][orientation],
           className,
         ]),
@@ -147,7 +147,7 @@ const tab = ({
 } & TabRenderProps) => {
   const style = {
     base: [
-      'outline-none relative flex items-center gap-x-3 rounded font-medium',
+      'outline-hidden relative flex items-center gap-x-3 rounded-sm font-medium',
       '[&>[data-ui=icon]:not([class*=size-])]:size-5',
       isDisabled && 'opacity-50',
       isSelected || isHovered ? 'text-foreground' : 'text-muted',
@@ -195,8 +195,8 @@ const tab = ({
           'bg-background',
           'dark:bg-zinc-600',
           'text-foreground',
-          'shadow-xs',
-          'rounded',
+          'shadow-2xs',
+          'rounded-sm',
         ],
       ],
       horizontal: [],
