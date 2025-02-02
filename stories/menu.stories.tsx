@@ -24,7 +24,6 @@ import {
   BellIcon,
   CogIcon,
   CreditCardIcon,
-  FilePenLineIcon,
   FilePlus2Icon,
   FileX2Icon,
   InfoIcon,
@@ -57,7 +56,7 @@ const meta: Meta = {
     docs: {
       description: {
         component:
-          'A <a href="https://react-spectrum.adobe.com/react-aria/Menu.html#menu" target="_blank">**menu**</a> displays a list of actions or options that a user can choose.',
+          'A <a href="https://react-spectrum.adobe.com/react-aria/Menu.html#menu" target="_blank">**menu**</a> displays a list of actions or Actions that a user can choose.',
       },
       ...docs,
     },
@@ -70,13 +69,13 @@ export default meta;
 export const BasicExample = () => {
   return (
     <MenuTrigger>
-      <MenuButton>Options</MenuButton>
+      <MenuButton>Actions</MenuButton>
       <MenuPopover>
         <Menu>
-          <MenuItem>New file</MenuItem>
-          <MenuItem>Copy link</MenuItem>
-          <MenuItem>Edit file</MenuItem>
-          <MenuItem>Delete file</MenuItem>
+          <MenuItem>Copy</MenuItem>
+          <MenuItem>Cut</MenuItem>
+          <MenuItem>Paste</MenuItem>
+          <MenuItem>Delete</MenuItem>
         </Menu>
       </MenuPopover>
     </MenuTrigger>
@@ -86,13 +85,13 @@ export const BasicExample = () => {
 export const MenuButtons = () => {
   return (
     <MenuTrigger>
-      <MenuButton variant="solid">Options</MenuButton>
+      <MenuButton variant="solid">Actions</MenuButton>
       <MenuPopover>
         <Menu>
-          <MenuItem>New file</MenuItem>
-          <MenuItem>Copy link</MenuItem>
-          <MenuItem>Edit file</MenuItem>
-          <MenuItem>Delete file</MenuItem>
+          <MenuItem>Copy</MenuItem>
+          <MenuItem>Cut</MenuItem>
+          <MenuItem>Paste</MenuItem>
+          <MenuItem>Delete</MenuItem>
         </Menu>
       </MenuPopover>
     </MenuTrigger>
@@ -111,13 +110,13 @@ MenuButtons.parameters = {
 export const MenuItemWithDisabledState = () => {
   return (
     <MenuTrigger>
-      <MenuButton>Options</MenuButton>
+      <MenuButton>Actions</MenuButton>
       <MenuPopover>
         <Menu>
-          <MenuItem>New file</MenuItem>
-          <MenuItem>Copy link</MenuItem>
-          <MenuItem>Edit file</MenuItem>
-          <MenuItem isDisabled>Delete file</MenuItem>
+          <MenuItem>Copy</MenuItem>
+          <MenuItem>Cut</MenuItem>
+          <MenuItem>Paste</MenuItem>
+          <MenuItem isDisabled>Delete</MenuItem>
         </Menu>
       </MenuPopover>
     </MenuTrigger>
@@ -127,13 +126,13 @@ export const MenuItemWithDisabledState = () => {
 export const MenusWithDisabledState = () => {
   return (
     <MenuTrigger>
-      <MenuButton isDisabled>Options</MenuButton>
+      <MenuButton isDisabled>Actions</MenuButton>
       <MenuPopover>
         <Menu>
-          <MenuItem>New file</MenuItem>
-          <MenuItem>Copy link</MenuItem>
-          <MenuItem>Edit file</MenuItem>
-          <MenuItem>Delete file</MenuItem>
+          <MenuItem>Copy</MenuItem>
+          <MenuItem>Cut</MenuItem>
+          <MenuItem>Paste</MenuItem>
+          <MenuItem>Delete</MenuItem>
         </Menu>
       </MenuPopover>
     </MenuTrigger>
@@ -143,13 +142,13 @@ export const MenusWithDisabledState = () => {
 export const MenuPopoverPlacements = () => {
   return (
     <MenuTrigger>
-      <MenuButton>Options</MenuButton>
+      <MenuButton>Actions</MenuButton>
       <MenuPopover placement="top">
         <Menu>
-          <MenuItem>New file</MenuItem>
-          <MenuItem>Copy link</MenuItem>
-          <MenuItem>Edit file</MenuItem>
-          <MenuItem>Delete file</MenuItem>
+          <MenuItem>Copy</MenuItem>
+          <MenuItem>Cut</MenuItem>
+          <MenuItem>Paste</MenuItem>
+          <MenuItem>Delete</MenuItem>
         </Menu>
       </MenuPopover>
     </MenuTrigger>
@@ -165,16 +164,16 @@ MenuPopoverPlacements.parameters = {
   },
 };
 
-export const MenuWithCustomWidth = (args: any) => {
+export const MenuWithCustomWidth = () => {
   return (
-    <MenuTrigger {...args}>
-      <MenuButton>Options</MenuButton>
+    <MenuTrigger>
+      <MenuButton>Actions</MenuButton>
       <MenuPopover className="min-w-56">
         <Menu>
-          <MenuItem>New file</MenuItem>
-          <MenuItem>Copy link</MenuItem>
-          <MenuItem>Edit file</MenuItem>
-          <MenuItem>Delete file</MenuItem>
+          <MenuItem>Copy</MenuItem>
+          <MenuItem>Cut</MenuItem>
+          <MenuItem>Paste</MenuItem>
+          <MenuItem>Delete</MenuItem>
         </Menu>
       </MenuPopover>
     </MenuTrigger>
@@ -193,14 +192,14 @@ MenuWithCustomWidth.parameters = {
 export const MenuSeparators = () => {
   return (
     <MenuTrigger>
-      <MenuButton>Options</MenuButton>
+      <MenuButton>Actions</MenuButton>
       <MenuPopover>
         <Menu>
-          <MenuItem>New file</MenuItem>
-          <MenuItem>Copy link</MenuItem>
-          <MenuItem>Edit file</MenuItem>
+          <MenuItem>Copy</MenuItem>
+          <MenuItem>Cut</MenuItem>
+          <MenuItem>Paste</MenuItem>
           <MenuSeparator />
-          <MenuItem>Delete file</MenuItem>
+          <MenuItem>Delete</MenuItem>
         </Menu>
       </MenuPopover>
     </MenuTrigger>
@@ -219,29 +218,25 @@ MenuSeparators.parameters = {
 export const MenuItemWithDescription = () => {
   return (
     <MenuTrigger>
-      <MenuButton>Options</MenuButton>
+      <MenuButton>Actions</MenuButton>
       <MenuPopover>
         <Menu>
           <MenuItem>
-            <MenuItemLabel>New file</MenuItemLabel>
-            <MenuItemDescription>Create a new file</MenuItemDescription>
+            <MenuItemLabel>Copy</MenuItemLabel>
+            <MenuItemDescription>Copy the selected text</MenuItemDescription>
           </MenuItem>
           <MenuItem>
-            <MenuItemLabel>Copy link</MenuItemLabel>
-            <MenuItemDescription>Copy the file link</MenuItemDescription>
+            <MenuItemLabel>Cut</MenuItemLabel>
+            <MenuItemDescription>Cut the selected text</MenuItemDescription>
           </MenuItem>
           <MenuItem>
-            <MenuItemLabel>Edit file</MenuItemLabel>
-            <MenuItemDescription>
-              Allows you to edit the file
-            </MenuItemDescription>
+            <MenuItemLabel>Paste</MenuItemLabel>
+            <MenuItemDescription>Paste the selected text</MenuItemDescription>
           </MenuItem>
           <MenuSeparator />
           <MenuItem>
-            <MenuItemLabel>Delete file</MenuItemLabel>
-            <MenuItemDescription>
-              Permanently delete the file
-            </MenuItemDescription>
+            <MenuItemLabel>Delete</MenuItemLabel>
+            <MenuItemDescription>Delete the selected text</MenuItemDescription>
           </MenuItem>
         </Menu>
       </MenuPopover>
@@ -252,33 +247,33 @@ export const MenuItemWithDescription = () => {
 export const MenuItemWithIcon = () => {
   return (
     <MenuTrigger>
-      <MenuButton>Options</MenuButton>
+      <MenuButton>Actions</MenuButton>
       <MenuPopover>
         <Menu>
           <MenuItem>
             <Icon>
-              <FilePlus2Icon />
-            </Icon>
-            <MenuItemLabel>New file</MenuItemLabel>
-          </MenuItem>
-          <MenuItem>
-            <Icon>
               <LinkIcon />
             </Icon>
-            <MenuItemLabel>Copy link</MenuItemLabel>
+            <MenuItemLabel>Copy</MenuItemLabel>
           </MenuItem>
           <MenuItem>
             <Icon>
-              <FilePenLineIcon />
+              <ScissorsIcon />
             </Icon>
-            <MenuItemLabel>Edit file</MenuItemLabel>
+            <MenuItemLabel>Cut</MenuItemLabel>
+          </MenuItem>
+          <MenuItem>
+            <Icon>
+              <ClipboardIcon />
+            </Icon>
+            <MenuItemLabel>Paste</MenuItemLabel>
           </MenuItem>
           <MenuSeparator />
           <MenuItem>
             <Icon>
               <FileX2Icon />
             </Icon>
-            <MenuItemLabel>Delete file </MenuItemLabel>
+            <MenuItemLabel>Delete</MenuItemLabel>
           </MenuItem>
         </Menu>
       </MenuPopover>
@@ -289,32 +284,37 @@ export const MenuItemWithIcon = () => {
 export const MenuItemWithIconAndDescription = () => {
   return (
     <MenuTrigger>
-      <MenuButton>Options</MenuButton>
+      <MenuButton>Actions</MenuButton>
       <MenuPopover>
         <Menu>
           <MenuItem>
             <Icon>
-              <FilePlus2Icon />
+              <LinkIcon />
             </Icon>
-            <MenuItemLabel>New file</MenuItemLabel>
-            <MenuItemDescription>Create a new file</MenuItemDescription>
+            <MenuItemLabel>Copy</MenuItemLabel>
+            <MenuItemDescription>Copy the selected text</MenuItemDescription>
           </MenuItem>
           <MenuItem>
             <Icon>
-              <LinkIcon />
+              <ScissorsIcon />
             </Icon>
-            <MenuItemLabel>Copy link</MenuItemLabel>
-            <MenuItemDescription>Copy the file link</MenuItemDescription>
+            <MenuItemLabel>Cut</MenuItemLabel>
+            <MenuItemDescription>Cut the selected text</MenuItemDescription>
           </MenuItem>
           <MenuItem>
-            <MenuItemLabel>Edit file</MenuItemLabel>
+            <Icon>
+              <ClipboardIcon />
+            </Icon>
+            <MenuItemLabel>Paste</MenuItemLabel>
+            <MenuItemDescription>Paste the selected text</MenuItemDescription>
           </MenuItem>
           <MenuSeparator />
           <MenuItem>
-            <MenuItemLabel>Delete file </MenuItemLabel>
-            <MenuItemDescription>
-              Permanently delete the file
-            </MenuItemDescription>
+            <Icon>
+              <FileX2Icon />
+            </Icon>
+            <MenuItemLabel>Delete</MenuItemLabel>
+            <MenuItemDescription>Delete the selected text</MenuItemDescription>
           </MenuItem>
         </Menu>
       </MenuPopover>
@@ -325,24 +325,24 @@ export const MenuItemWithIconAndDescription = () => {
 export const MenuItemWithKbdShortcut = () => {
   return (
     <MenuTrigger>
-      <MenuButton>Options</MenuButton>
+      <MenuButton>Actions</MenuButton>
       <MenuPopover>
         <Menu>
           <MenuItem>
-            <MenuItemLabel>New file</MenuItemLabel>
-            <Kbd>⌘N</Kbd>
-          </MenuItem>
-          <MenuItem>
-            <MenuItemLabel>Copy link </MenuItemLabel>
+            <MenuItemLabel>Copy</MenuItemLabel>
             <Kbd>⌘C</Kbd>
           </MenuItem>
           <MenuItem>
-            <MenuItemLabel>Edit file</MenuItemLabel>
-            <Kbd>⌘⇧E</Kbd>
+            <MenuItemLabel>Cut</MenuItemLabel>
+            <Kbd>⌘X</Kbd>
+          </MenuItem>
+          <MenuItem>
+            <MenuItemLabel>Paste</MenuItemLabel>
+            <Kbd>⌘V</Kbd>
           </MenuItem>
           <MenuSeparator />
           <MenuItem>
-            <MenuItemLabel>Delete file</MenuItemLabel>
+            <MenuItemLabel>Delete</MenuItemLabel>
             <Kbd>⌘⇧D</Kbd>
           </MenuItem>
         </Menu>
@@ -354,32 +354,28 @@ export const MenuItemWithKbdShortcut = () => {
 export const MenuItemWithKbdShortcutAndDescription = () => {
   return (
     <MenuTrigger>
-      <MenuButton>Options</MenuButton>
+      <MenuButton>Actions</MenuButton>
       <MenuPopover>
         <Menu>
           <MenuItem>
-            <MenuItemLabel>New file</MenuItemLabel>
-            <MenuItemDescription>Create a new file</MenuItemDescription>
-            <Kbd>⌘N</Kbd>
-          </MenuItem>
-          <MenuItem>
-            <MenuItemLabel>Copy link </MenuItemLabel>
-            <MenuItemDescription>Copy the file link</MenuItemDescription>
+            <MenuItemLabel>Copy</MenuItemLabel>
+            <MenuItemDescription>Create the selected text</MenuItemDescription>
             <Kbd>⌘C</Kbd>
           </MenuItem>
           <MenuItem>
-            <MenuItemLabel>Edit file</MenuItemLabel>
-            <MenuItemDescription>
-              Allows you to edit the file
-            </MenuItemDescription>
-            <Kbd>⌘⇧E</Kbd>
+            <MenuItemLabel>Cut</MenuItemLabel>
+            <MenuItemDescription>Copy the selected text</MenuItemDescription>
+            <Kbd>⌘X</Kbd>
+          </MenuItem>
+          <MenuItem>
+            <MenuItemLabel>Paste</MenuItemLabel>
+            <MenuItemDescription>Paste the selected text</MenuItemDescription>
+            <Kbd>⌘V</Kbd>
           </MenuItem>
           <MenuSeparator />
           <MenuItem>
-            <MenuItemLabel>Delete file</MenuItemLabel>
-            <MenuItemDescription>
-              Permanently delete the file
-            </MenuItemDescription>
+            <MenuItemLabel>Delete</MenuItemLabel>
+            <MenuItemDescription>Delete the selected text</MenuItemDescription>
             <Kbd>⌘⇧D</Kbd>
           </MenuItem>
         </Menu>
@@ -391,44 +387,40 @@ export const MenuItemWithKbdShortcutAndDescription = () => {
 export const MenuItemWithIconKbdShortcutAndDescription = () => {
   return (
     <MenuTrigger>
-      <MenuButton>Options</MenuButton>
+      <MenuButton>Actions</MenuButton>
       <MenuPopover>
         <Menu>
           <MenuItem>
             <Icon>
               <FilePlus2Icon />
             </Icon>
-            <MenuItemLabel>New file</MenuItemLabel>
-            <MenuItemDescription>Create a new file</MenuItemDescription>
-            <Kbd>⌘N</Kbd>
-          </MenuItem>
-          <MenuItem>
-            <Icon>
-              <LinkIcon />
-            </Icon>
-            <MenuItemLabel>Copy link </MenuItemLabel>
-            <MenuItemDescription>Copy the file link</MenuItemDescription>
+            <MenuItemLabel>Copy</MenuItemLabel>
+            <MenuItemDescription>Copy the selected text</MenuItemDescription>
             <Kbd>⌘C</Kbd>
           </MenuItem>
           <MenuItem>
             <Icon>
-              <FilePenLineIcon />
+              <ScissorsIcon />
             </Icon>
-            <MenuItemLabel>Edit file</MenuItemLabel>
-            <MenuItemDescription>
-              Allows you to edit the file
-            </MenuItemDescription>
-            <Kbd>⌘⇧E</Kbd>
+            <MenuItemLabel>Cut</MenuItemLabel>
+            <MenuItemDescription>Cut the selected text</MenuItemDescription>
+            <Kbd>⌘X</Kbd>
+          </MenuItem>
+          <MenuItem>
+            <Icon>
+              <ClipboardIcon />
+            </Icon>
+            <MenuItemLabel>Paste</MenuItemLabel>
+            <MenuItemDescription>Paste the selected text</MenuItemDescription>
+            <Kbd>⌘V</Kbd>
           </MenuItem>
           <MenuSeparator />
           <MenuItem>
             <Icon>
               <FileX2Icon />
             </Icon>
-            <MenuItemLabel>Delete file</MenuItemLabel>
-            <MenuItemDescription>
-              Permanently delete the file
-            </MenuItemDescription>
+            <MenuItemLabel>Delete</MenuItemLabel>
+            <MenuItemDescription>Delete the selected text</MenuItemDescription>
             <Kbd>⌘⇧D</Kbd>
           </MenuItem>
         </Menu>
@@ -440,44 +432,40 @@ export const MenuItemWithIconKbdShortcutAndDescription = () => {
 export const MenuWithDestructiveItems = () => {
   return (
     <MenuTrigger>
-      <MenuButton>Options</MenuButton>
+      <MenuButton>Actions</MenuButton>
       <MenuPopover>
         <Menu>
           <MenuItem>
             <Icon>
               <FilePlus2Icon />
             </Icon>
-            <MenuItemLabel>New file</MenuItemLabel>
-            <MenuItemDescription>Create a new file</MenuItemDescription>
-            <Kbd>⌘N</Kbd>
-          </MenuItem>
-          <MenuItem>
-            <Icon>
-              <LinkIcon />
-            </Icon>
-            <MenuItemLabel>Copy link </MenuItemLabel>
-            <MenuItemDescription>Copy the file link</MenuItemDescription>
+            <MenuItemLabel>Copy</MenuItemLabel>
+            <MenuItemDescription>Copy the selected text</MenuItemDescription>
             <Kbd>⌘C</Kbd>
           </MenuItem>
           <MenuItem>
             <Icon>
-              <FilePenLineIcon />
+              <ScissorsIcon />
             </Icon>
-            <MenuItemLabel>Edit file</MenuItemLabel>
-            <MenuItemDescription>
-              Allows you to edit the file
-            </MenuItemDescription>
-            <Kbd>⌘⇧E</Kbd>
+            <MenuItemLabel>Cut</MenuItemLabel>
+            <MenuItemDescription>Cut the selected text</MenuItemDescription>
+            <Kbd>⌘X</Kbd>
+          </MenuItem>
+          <MenuItem>
+            <Icon>
+              <ClipboardIcon />
+            </Icon>
+            <MenuItemLabel>Paste</MenuItemLabel>
+            <MenuItemDescription>Paste the selected text</MenuItemDescription>
+            <Kbd>⌘V</Kbd>
           </MenuItem>
           <MenuSeparator />
           <MenuItem destructive>
             <Icon>
               <FileX2Icon />
             </Icon>
-            <MenuItemLabel>Delete file</MenuItemLabel>
-            <MenuItemDescription>
-              Permanently delete the file
-            </MenuItemDescription>
+            <MenuItemLabel>Delete</MenuItemLabel>
+            <MenuItemDescription>Delete the selected text</MenuItemDescription>
             <Kbd>⌘⇧D</Kbd>
           </MenuItem>
         </Menu>
@@ -499,23 +487,23 @@ export const MenuWithSections = () => {
   return (
     <div className="flex flex-col gap-4">
       <MenuTrigger>
-        <MenuButton>Options</MenuButton>
+        <MenuButton>Actions</MenuButton>
         <MenuPopover>
           <Menu>
             <MenuSection title="Actions">
-              <MenuItem>New file</MenuItem>
-              <MenuItem>Copy link</MenuItem>
-              <MenuItem>Edit file</MenuItem>
+              <MenuItem>Copy</MenuItem>
+              <MenuItem>Cut</MenuItem>
+              <MenuItem>Paste</MenuItem>
             </MenuSection>
             <MenuSection title="Danger zone">
-              <MenuItem>Delete file</MenuItem>
+              <MenuItem>Delete</MenuItem>
             </MenuSection>
           </Menu>
         </MenuPopover>
       </MenuTrigger>
 
       <MenuTrigger>
-        <MenuButton>Options</MenuButton>
+        <MenuButton>Actions</MenuButton>
         <MenuPopover>
           <Menu>
             <MenuSection title="Actions">
@@ -523,28 +511,30 @@ export const MenuWithSections = () => {
                 <Icon>
                   <FilePlus2Icon />
                 </Icon>
-                <MenuItemLabel>New file</MenuItemLabel>
-                <MenuItemDescription>Create a new file</MenuItemDescription>
-                <Kbd>⌘N</Kbd>
+                <MenuItemLabel>Copy</MenuItemLabel>
+                <MenuItemDescription>
+                  Copy the selected text
+                </MenuItemDescription>
+                <Kbd>⌘C</Kbd>
               </MenuItem>
 
               <MenuItem>
                 <Icon>
-                  <LinkIcon />
+                  <ScissorsIcon />
                 </Icon>
-                <MenuItemLabel>Copy link</MenuItemLabel>
-                <MenuItemDescription>Copy the file link</MenuItemDescription>
-                <Kbd>⌘C</Kbd>
+                <MenuItemLabel>Cut</MenuItemLabel>
+                <MenuItemDescription>Cut the selected text</MenuItemDescription>
+                <Kbd>⌘V</Kbd>
               </MenuItem>
               <MenuItem>
                 <Icon>
-                  <FilePenLineIcon />
+                  <ClipboardIcon />
                 </Icon>
-                <MenuItemLabel>Edit file</MenuItemLabel>
+                <MenuItemLabel>Paste</MenuItemLabel>
                 <MenuItemDescription>
-                  Allows you to edit the file
+                  Paste the selected text
                 </MenuItemDescription>
-                <Kbd>⌘⇧E</Kbd>
+                <Kbd>⌘X</Kbd>
               </MenuItem>
             </MenuSection>
             <MenuSection title="Danger zone">
@@ -553,9 +543,9 @@ export const MenuWithSections = () => {
                   <FileX2Icon />
                 </Icon>
 
-                <MenuItemLabel>Delete file</MenuItemLabel>
+                <MenuItemLabel>Delete</MenuItemLabel>
                 <MenuItemDescription>
-                  Permanently delete the file
+                  Delete the selected text
                 </MenuItemDescription>
                 <Kbd>⌘⇧D</Kbd>
               </MenuItem>
@@ -579,7 +569,7 @@ MenuWithSections.parameters = {
 export const MenuWithIconTrigger = () => {
   return (
     <MenuTrigger>
-      <MenuButton noIndicator variant="plain" isIconOnly>
+      <MenuButton buttonArrow={null} variant="plain" isIconOnly>
         <Icon>
           <EllipsisIcon />
         </Icon>
@@ -602,7 +592,7 @@ MenuWithIconTrigger.parameters = {
   docs: {
     description: {
       story:
-        'Add the **Icon** component to the **MenuButton** component with the **aria-label** and **noIndicator** prop to make an icon-only menu trigger.',
+        'Add the **Icon** component to the **MenuButton** component with the **aria-label** to make an icon-only menu trigger.',
     },
   },
 };
@@ -610,7 +600,7 @@ MenuWithIconTrigger.parameters = {
 export const MenuWithAvatarTrigger = () => {
   return (
     <MenuTrigger>
-      <MenuButton noIndicator variant="unstyle">
+      <MenuButton buttonArrow={null} variant="unstyle">
         <Avatar
           className="rounded-full"
           src="https://i.imgur.com/xIe7Wlb.png"
@@ -683,7 +673,11 @@ export const MenuWithCustomTrigger = () => {
     <MenuTrigger>
       <MenuButton
         variant="unstyle"
-        noIndicator
+        buttonArrow={
+          <Icon>
+            <ChevronsUpDownIcon className="size-4 text-muted/75" />
+          </Icon>
+        }
         className="flex items-center border border-transparent py-1 pe-2 ps-1 hover:border hover:border-border/50"
         aria-label="Jane"
       >
@@ -695,9 +689,6 @@ export const MenuWithCustomTrigger = () => {
           <Strong className="self-start sm:leading-5">Marissa</Strong>
           <Small className="self-start sm:leading-5">marissa@example.com</Small>
         </div>
-        <Icon>
-          <ChevronsUpDownIcon className="size-4 text-muted/75" />
-        </Icon>
       </MenuButton>
       <MenuPopover>
         <Menu>
@@ -763,7 +754,7 @@ MenuWithCustomTrigger.parameters = {
 export const MenuItemAsLink = () => {
   return (
     <MenuTrigger>
-      <MenuButton>Options</MenuButton>
+      <MenuButton>Actions</MenuButton>
       <MenuPopover>
         <Menu>
           <MenuItem href="https://adobe.com/" target="_blank">
@@ -796,7 +787,7 @@ MenuItemAsLink.parameters = {
 export const MenuWithSubMenus = () => {
   return (
     <MenuTrigger>
-      <MenuButton>Options</MenuButton>
+      <MenuButton>Actions</MenuButton>
       <MenuPopover>
         <Menu>
           <MenuItem id="new">New…</MenuItem>
@@ -833,7 +824,7 @@ MenuWithSubMenus.parameters = {
 export const SubMenuOnMobile = () => {
   return (
     <MenuTrigger>
-      <MenuButton>Options</MenuButton>
+      <MenuButton>Actions</MenuButton>
       <MenuPopover>
         <Menu>
           <MenuItem id="new">New…</MenuItem>
@@ -881,7 +872,7 @@ export const MenuWithSingleSelection = () => {
 
   return (
     <MenuTrigger>
-      <MenuButton>Options</MenuButton>
+      <MenuButton>Actions</MenuButton>
       <MenuPopover>
         <Menu
           selectionMode="single"
@@ -912,7 +903,7 @@ export const MenuSelectedIconPlacement = () => {
 
   return (
     <MenuTrigger>
-      <MenuButton>Options</MenuButton>
+      <MenuButton>Actions</MenuButton>
       <MenuPopover>
         <Menu
           selectedIconPlacement="start"
@@ -931,44 +922,44 @@ export const MenuSelectedIconPlacement = () => {
 };
 
 export const MenuWithSingleSelectionAndDescription = () => {
-  const [selected, setSelected] = React.useState<Selection>(
-    new Set(['copy_link']),
-  );
+  const [selected, setSelected] = React.useState<Selection>(new Set(['copy']));
 
   return (
     <MenuTrigger>
-      <MenuButton>Options</MenuButton>
+      <MenuButton>Actions</MenuButton>
       <MenuPopover>
         <Menu
           selectionMode="single"
           selectedKeys={selected}
           onSelectionChange={setSelected}
         >
-          <MenuItem id="new_file">
-            <MenuItemLabel>New file</MenuItemLabel>
-            <MenuItemDescription>Create a new file</MenuItemDescription>
-            <Kbd>⌘N</Kbd>
-          </MenuItem>
+          <MenuSection title="Actions">
+            <MenuItem id="copy">
+              <MenuItemLabel>Copy</MenuItemLabel>
+              <MenuItemDescription>Copy the selected text</MenuItemDescription>
+              <Kbd>⌘C</Kbd>
+            </MenuItem>
 
-          <MenuItem id="copy_link">
-            <MenuItemLabel>Copy link</MenuItemLabel>
-            <MenuItemDescription>Copy the file link</MenuItemDescription>
-            <Kbd>⌘C</Kbd>
-          </MenuItem>
-          <MenuItem>
-            <MenuItemLabel id="edit_file">Edit file</MenuItemLabel>
-            <MenuItemDescription>
-              Allows you to edit the file
-            </MenuItemDescription>
-            <Kbd>⌘⇧E</Kbd>
-          </MenuItem>
-          <MenuItem>
-            <MenuItemLabel id="delete_file">Delete file</MenuItemLabel>
-            <MenuItemDescription>
-              Permanently delete the file
-            </MenuItemDescription>
-            <Kbd>⌘⇧D</Kbd>
-          </MenuItem>
+            <MenuItem id="cut">
+              <MenuItemLabel>Cut</MenuItemLabel>
+              <MenuItemDescription>Cut the selected text</MenuItemDescription>
+              <Kbd>⌘X</Kbd>
+            </MenuItem>
+            <MenuItem id="paste">
+              <MenuItemLabel>Paste</MenuItemLabel>
+              <MenuItemDescription>Paste the selected text</MenuItemDescription>
+              <Kbd>⌘V</Kbd>
+            </MenuItem>
+          </MenuSection>
+          <MenuSection title="Danger zone">
+            <MenuItem id="delete" destructive>
+              <MenuItemLabel>Delete</MenuItemLabel>
+              <MenuItemDescription>
+                Delete the selected text
+              </MenuItemDescription>
+              <Kbd>⌘⇧D</Kbd>
+            </MenuItem>
+          </MenuSection>
         </Menu>
       </MenuPopover>
     </MenuTrigger>
@@ -976,55 +967,49 @@ export const MenuWithSingleSelectionAndDescription = () => {
 };
 
 export const MenuWithSingleSelectionAndIcon = () => {
-  const [selected, setSelected] = React.useState<Selection>(
-    new Set(['copy_link']),
-  );
+  const [selected, setSelected] = React.useState<Selection>(new Set(['copy']));
 
   return (
     <MenuTrigger>
-      <MenuButton>Options</MenuButton>
+      <MenuButton>Actions</MenuButton>
       <MenuPopover>
         <Menu
           selectionMode="single"
           selectedKeys={selected}
           onSelectionChange={setSelected}
         >
-          <MenuItem id="new_file">
+          <MenuItem id="copy">
             <Icon>
               <FilePlus2Icon />
             </Icon>
-            <MenuItemLabel>New file</MenuItemLabel>
-            <MenuItemDescription>Create a new file</MenuItemDescription>
-            <Kbd>⌘N</Kbd>
-          </MenuItem>
-
-          <MenuItem id="copy_link">
-            <Icon>
-              <LinkIcon />
-            </Icon>
-            <MenuItemLabel>Copy link</MenuItemLabel>
-            <MenuItemDescription>Copy the file link</MenuItemDescription>
+            <MenuItemLabel>Copy</MenuItemLabel>
+            <MenuItemDescription>Copy the selected text</MenuItemDescription>
             <Kbd>⌘C</Kbd>
           </MenuItem>
-          <MenuItem id="edit_file">
+
+          <MenuItem id="cut">
             <Icon>
-              <FilePenLineIcon />
+              <ScissorsIcon />
             </Icon>
-            <MenuItemLabel>Edit file</MenuItemLabel>
-            <MenuItemDescription>
-              Allows you to edit the file
-            </MenuItemDescription>
-            <Kbd>⌘⇧E</Kbd>
+            <MenuItemLabel>Cut</MenuItemLabel>
+            <MenuItemDescription>Cut the selected text</MenuItemDescription>
+            <Kbd>⌘X</Kbd>
           </MenuItem>
-          <MenuItem id="delete_file">
+          <MenuItem id="paste">
+            <Icon>
+              <ClipboardIcon />
+            </Icon>
+            <MenuItemLabel>Paste</MenuItemLabel>
+            <MenuItemDescription>Paste the selected text</MenuItemDescription>
+            <Kbd>⌘V</Kbd>
+          </MenuItem>
+          <MenuItem id="delete">
             <Icon>
               <FileX2Icon />
             </Icon>
 
-            <MenuItemLabel>Delete file</MenuItemLabel>
-            <MenuItemDescription>
-              Permanently delete the file
-            </MenuItemDescription>
+            <MenuItemLabel>Delete</MenuItemLabel>
+            <MenuItemDescription>Delete the selected text</MenuItemDescription>
             <Kbd>⌘⇧D</Kbd>
           </MenuItem>
         </Menu>
@@ -1034,13 +1019,11 @@ export const MenuWithSingleSelectionAndIcon = () => {
 };
 
 export const MenuWithSingleSelectionAndSection = () => {
-  const [selected, setSelected] = React.useState<Selection>(
-    new Set(['copy_link']),
-  );
+  const [selected, setSelected] = React.useState<Selection>(new Set(['copy']));
 
   return (
     <MenuTrigger>
-      <MenuButton>Options</MenuButton>
+      <MenuButton>Actions</MenuButton>
       <MenuPopover>
         <Menu
           selectionMode="single"
@@ -1048,12 +1031,12 @@ export const MenuWithSingleSelectionAndSection = () => {
           onSelectionChange={setSelected}
         >
           <MenuSection title="Actions">
-            <MenuItem id="new_file">New file</MenuItem>
-            <MenuItem id="copy_link">Copy link</MenuItem>
-            <MenuItem id="edit_file">Edit file</MenuItem>
+            <MenuItem id="copy">Copy</MenuItem>
+            <MenuItem id="cut">Cut</MenuItem>
+            <MenuItem id="edit">Paste</MenuItem>
           </MenuSection>
           <MenuSection title="Danger zone">
-            <MenuItem id="delete_file">Delete file</MenuItem>
+            <MenuItem id="delete">Delete</MenuItem>
           </MenuSection>
         </Menu>
       </MenuPopover>
@@ -1062,13 +1045,11 @@ export const MenuWithSingleSelectionAndSection = () => {
 };
 
 export const MenuWithSingleSelectionWithSectionAndDescription = () => {
-  const [selected, setSelected] = React.useState<Selection>(
-    new Set(['copy_link']),
-  );
+  const [selected, setSelected] = React.useState<Selection>(new Set(['copy']));
 
   return (
     <MenuTrigger>
-      <MenuButton>Options</MenuButton>
+      <MenuButton>Actions</MenuButton>
       <MenuPopover>
         <Menu
           selectionMode="single"
@@ -1076,30 +1057,28 @@ export const MenuWithSingleSelectionWithSectionAndDescription = () => {
           onSelectionChange={setSelected}
         >
           <MenuSection title="Actions">
-            <MenuItem id="new_file">
-              <MenuItemLabel>New file</MenuItemLabel>
-              <MenuItemDescription>Create a new file</MenuItemDescription>
-              <Kbd>⌘N</Kbd>
-            </MenuItem>
-
-            <MenuItem id="copy_link">
-              <MenuItemLabel>Copy link</MenuItemLabel>
-              <MenuItemDescription>Copy the file link</MenuItemDescription>
+            <MenuItem id="copy">
+              <MenuItemLabel>Copy</MenuItemLabel>
+              <MenuItemDescription>Copy the selected text</MenuItemDescription>
               <Kbd>⌘C</Kbd>
             </MenuItem>
-            <MenuItem>
-              <MenuItemLabel id="edit_file">Edit file</MenuItemLabel>
-              <MenuItemDescription>
-                Allows you to edit the file
-              </MenuItemDescription>
-              <Kbd>⌘⇧E</Kbd>
+
+            <MenuItem id="cut">
+              <MenuItemLabel>Cut</MenuItemLabel>
+              <MenuItemDescription>Cut the selected text</MenuItemDescription>
+              <Kbd>⌘X</Kbd>
+            </MenuItem>
+            <MenuItem id="paste">
+              <MenuItemLabel>Paste</MenuItemLabel>
+              <MenuItemDescription>Paste the selected text</MenuItemDescription>
+              <Kbd>⌘V</Kbd>
             </MenuItem>
           </MenuSection>
           <MenuSection title="Danger zone">
-            <MenuItem>
-              <MenuItemLabel id="delete_file">Delete file</MenuItemLabel>
+            <MenuItem id="delete" destructive>
+              <MenuItemLabel>Delete</MenuItemLabel>
               <MenuItemDescription>
-                Permanently delete the file
+                Delete the selected text
               </MenuItemDescription>
               <Kbd>⌘⇧D</Kbd>
             </MenuItem>
@@ -1111,13 +1090,11 @@ export const MenuWithSingleSelectionWithSectionAndDescription = () => {
 };
 
 export const MenuWithSingleSelectionCompleteExample = () => {
-  const [selected, setSelected] = React.useState<Selection>(
-    new Set(['copy_link']),
-  );
+  const [selected, setSelected] = React.useState<Selection>(new Set(['copy']));
 
   return (
     <MenuTrigger>
-      <MenuButton>Options</MenuButton>
+      <MenuButton>Actions</MenuButton>
       <MenuPopover>
         <Menu
           selectionMode="single"
@@ -1125,43 +1102,41 @@ export const MenuWithSingleSelectionCompleteExample = () => {
           onSelectionChange={setSelected}
         >
           <MenuSection title="Actions">
-            <MenuItem id="new_file">
+            <MenuItem id="copy">
               <Icon>
                 <FilePlus2Icon />
               </Icon>
-              <MenuItemLabel>New file</MenuItemLabel>
-              <MenuItemDescription>Create a new file</MenuItemDescription>
-              <Kbd>⌘N</Kbd>
-            </MenuItem>
-
-            <MenuItem id="copy_link">
-              <Icon>
-                <LinkIcon />
-              </Icon>
-              <MenuItemLabel>Copy link</MenuItemLabel>
-              <MenuItemDescription>Copy the file link</MenuItemDescription>
+              <MenuItemLabel>Copy</MenuItemLabel>
+              <MenuItemDescription>Copy the selected text</MenuItemDescription>
               <Kbd>⌘C</Kbd>
             </MenuItem>
-            <MenuItem id="edit_file">
+
+            <MenuItem id="cut">
               <Icon>
-                <FilePenLineIcon />
+                <ScissorsIcon />
               </Icon>
-              <MenuItemLabel>Edit file</MenuItemLabel>
-              <MenuItemDescription>
-                Allows you to edit the file
-              </MenuItemDescription>
-              <Kbd>⌘⇧E</Kbd>
+              <MenuItemLabel>Cut</MenuItemLabel>
+              <MenuItemDescription>Cut the selected text</MenuItemDescription>
+              <Kbd>⌘X</Kbd>
+            </MenuItem>
+            <MenuItem id="paste">
+              <Icon>
+                <ClipboardIcon />
+              </Icon>
+              <MenuItemLabel>Paste</MenuItemLabel>
+              <MenuItemDescription>Paste the selected text</MenuItemDescription>
+              <Kbd>⌘V</Kbd>
             </MenuItem>
           </MenuSection>
           <MenuSection title="Danger zone">
-            <MenuItem id="delete_file">
+            <MenuItem id="delete" destructive>
               <Icon>
                 <FileX2Icon />
               </Icon>
 
-              <MenuItemLabel>Delete file</MenuItemLabel>
+              <MenuItemLabel>Delete</MenuItemLabel>
               <MenuItemDescription>
-                Permanently delete the file
+                Delete the selected text
               </MenuItemDescription>
               <Kbd>⌘⇧D</Kbd>
             </MenuItem>
@@ -1184,7 +1159,7 @@ export const MenuWithMultiSelections = () => {
       </Text>
 
       <MenuTrigger>
-        <MenuButton>Options</MenuButton>
+        <MenuButton>Actions</MenuButton>
         <MenuPopover>
           <Menu
             selectedKeys={selected}
@@ -1221,7 +1196,7 @@ export const MenuWithSectionLevelSelection = () => {
       {placements.map((placement) => {
         return (
           <MenuTrigger key={placement}>
-            <MenuButton>Options</MenuButton>
+            <MenuButton>Actions</MenuButton>
             <MenuPopover>
               <Menu selectedIconPlacement={placement}>
                 <MenuSection title="Clipboard">
@@ -1306,7 +1281,7 @@ export const MenuWithSectionLevelSelection = () => {
 export const MenuWithHeaders = () => {
   return (
     <MenuTrigger>
-      <MenuButton>Options</MenuButton>
+      <MenuButton>Actions</MenuButton>
       <MenuPopover>
         <Menu>
           <MenuSection
@@ -1334,7 +1309,7 @@ export function AccountMenuExample() {
   return (
     <div className="flex items-start">
       <DialogTrigger>
-        <Button isIconOnly aria-label="Account" variant='plain'>
+        <Button isIconOnly aria-label="Account" variant="plain">
           <Avatar
             alt="Marissa Whitaker"
             src="https://i.imgur.com/xIe7Wlb.png"
@@ -1384,7 +1359,7 @@ export const MenuWithControlledOpenState = () => {
 
   return (
     <MenuTrigger>
-      <MenuButton onPress={() => setOpen((prev) => !prev)}>Options</MenuButton>
+      <MenuButton onPress={() => setOpen((prev) => !prev)}>Actions</MenuButton>
       <MenuPopover isOpen={isOpen} onOpenChange={setOpen}>
         <Menu
           onAction={(key) => {

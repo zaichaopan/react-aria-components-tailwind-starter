@@ -139,7 +139,6 @@ export const ButtonVariants = () => {
       <Button>Button</Button>
       <Button variant="outline">Button</Button>
       <Button variant="plain">Button</Button>
-      <Button variant="unstyle">Button</Button>
     </div>
   );
 };
@@ -381,16 +380,9 @@ ButtonWithAvatar.parameters = {
 
 export const ButtonWithBadge = () => {
   return (
-    <Button variant="unstyle">
-      <Avatar
-        alt="L K"
-        src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8aGVhZHNob3R8ZW58MHx8MHx8fDA%3D"
-      />
-      <NotificationBadge
-        variant="numeric"
-        value={6}
-        aria-label="Chat - 6 new messages"
-      />
+    <Button aria-label="Chat - 6 new messages">
+      Messages
+      <NotificationBadge variant="numeric" value={6} />
     </Button>
   );
 };

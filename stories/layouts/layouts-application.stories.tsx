@@ -127,7 +127,7 @@ function Sidebar() {
               <MenuButton
                 tooltip={<Tooltip placement="end">More</Tooltip>}
                 isIconOnly
-                noIndicator
+                buttonArrow={null}
                 variant="plain"
                 className="group/more hover:bg-accent p-2"
               >
@@ -149,7 +149,7 @@ function Sidebar() {
 
       <div className="mt-auto flex justify-center px-2 py-4">
         <MenuTrigger>
-          <MenuButton variant="unstyle" noIndicator>
+          <MenuButton variant="unstyle" buttonArrow={null}>
             <Avatar
               src="https://i.imgur.com/xIe7Wlb.png"
               alt="Marissa Whitaker"

@@ -52,12 +52,7 @@ export function DateInput(props: DateInputProps) {
           'px-3',
           'py-[calc(theme(spacing[2.5])-1px)] sm:py-[calc(theme(spacing[1.5])-1px)]',
           renderProps.isInvalid && 'border-destructive',
-          renderProps.isFocusWithin && [
-            'ring-1',
-            'ring-inset',
-            'ring-ring',
-            'border-ring',
-          ],
+          renderProps.isFocusWithin && 'border-ring ring-1 ring-ring',
           className,
         ),
       )}

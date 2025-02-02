@@ -13,37 +13,14 @@ import { twMerge } from 'tailwind-merge';
 import { composeTailwindRenderProps } from './utils';
 import { XIcon } from './icons';
 
-const colors = ({ isSelected }: { isSelected: boolean }) => {
-  return {
-    default: [
-      'bg-zinc-100',
-      'text-zinc-700',
-      'dark:bg-white/10',
-      'dark:text-zinc-400',
-      isSelected && 'bg-zinc-700 text-white dark:g-white/20',
-    ],
-    success: [
-      'bg-success/15',
-      'text-success',
-      'dark:bg-success/20',
-      isSelected && 'bg-success dark:bg-success text-white',
-    ],
-    warning: [
-      'bg-warning/15',
-      'text-warning',
-      'dark:bg-warning/20',
-      isSelected && 'bg-warning dark:bg-warning text-white',
-    ],
-    destructive: [
-      'bg-destructive/15',
-      'text-destructive',
-      'dark:bg-destructive/20',
-      isSelected && 'bg-destructive dark:bg-destructive text-white',
-    ],
-  };
-};
+const colors = {
+  default: '[--tag:63_63_70]',
+  success: '[--tag:var(--success)]',
+  warning: '[--tag:var(--warning)]',
+  destructive: '[--tag:var(--destructive)]',
+} as const;
 
-type Color = keyof ReturnType<typeof colors>;
+type Color = keyof typeof colors
 
 const ColorContext = React.createContext<Color>('default');
 
@@ -83,6 +60,7 @@ export function TagList<T extends object>(props: TagListProps<T>) {
 export function Tag({ children, color, ...props }: TagProps) {
   const textValue = typeof children === 'string' ? children : undefined;
   const groupColor = React.useContext(ColorContext);
+  const tagColor = color ?? groupColor ?? 'default';
 
   return (
     <AriaTag
@@ -92,10 +70,12 @@ export function Tag({ children, color, ...props }: TagProps) {
         props.className,
         (className, { isFocusVisible, isDisabled, isSelected }) =>
           twMerge(
-            'flex max-w-fit cursor-default items-center gap-x-1 rounded px-2 py-0.5 text-xs/5 font-semibold outline-0 transition',
-            '[&[data-selection-mode]]:cursor-pointer',
-            colors({ isSelected })[color || groupColor],
-            isFocusVisible && 'outline-ring outline outline-2 outline-offset-1',
+            'flex max-w-fit cursor-default items-center gap-x-1 rounded-md px-2 py-0.5 text-xs/5 font-medium outline-0 transition [&[data-selection-mode]]:cursor-pointer',
+            colors[tagColor],
+            isSelected
+              ? 'bg-[rgb(var(--tag))] text-white'
+              : 'bg-[rgb(var(--tag))]/15 text-[rgb(var(--tag))]',
+            isFocusVisible && 'outline outline-2 outline-offset-1 outline-ring',
             isDisabled && 'opacity-50',
             className,
           ),
@@ -116,7 +96,7 @@ export function Tag({ children, color, ...props }: TagProps) {
                       isHovered && 'pressed: bg-black/10 dark:bg-white/10',
                       isPressed && 'bg-black/20 dark:bg-white/20',
                       isFocusVisible &&
-                        'outline-ring outline outline-2 outline-offset-2',
+                        'outline outline-2 outline-offset-2 outline-ring',
                       className,
                     ),
                 )}

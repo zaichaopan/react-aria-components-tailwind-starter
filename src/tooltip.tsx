@@ -21,7 +21,9 @@ export function Tooltip({ children, ...props }: TooltipProps) {
         'group max-w-64 rounded-md px-3 py-1.5',
         'text-wrap text-pretty',
         'shadow-xs dark:border dark:shadow-none',
-        typeof children === 'string'
+        React.Children.toArray(children).every(
+          (child) => typeof child === 'string',
+        )
           ? 'bg-zinc-950 text-xs text-white dark:bg-zinc-800'
           : 'border bg-background',
       ])}

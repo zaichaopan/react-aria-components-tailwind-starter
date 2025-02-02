@@ -56,26 +56,20 @@ export function Tabs({
 
 const tabList = {
   base: {
-    horizontal: ['whitespace-nowrap'],
-    vertical: ['flex-col flex-1 sm:flex-initial'],
+    horizontal: 'whitespace-nowrap',
+    vertical: 'flex-col flex-1 sm:flex-initial',
   },
   underline: {
-    horizontal: ['w-full space-x-4 border-b'],
-    vertical: ['space-y-3.5 self-start border-l'],
+    horizontal: 'w-full space-x-4 border-b',
+    vertical: 'space-y-3.5 self-start border-l',
   },
   pills: {
-    horizontal: ['space-x-4'],
-    vertical: ['space-y-2'],
+    horizontal: 'space-x-4',
+    vertical: 'space-y-2',
   },
   segment: {
-    horizontal: [
-      'gap-x-4',
-      'p-1',
-      'rounded-md',
-      'bg-zinc-100',
-      'dark:bg-zinc-600/45',
-    ],
-    vertical: [],
+    horizontal: 'p-1 rounded-lg bg-zinc-200/75 dark:bg-zinc-600/45 shadow-sm',
+    vertical: '',
   },
 };
 
@@ -151,56 +145,36 @@ const tab = ({
       '[&>[data-ui=icon]:not([class*=size-])]:size-5',
       isDisabled && 'opacity-50',
       isSelected || isHovered ? 'text-foreground' : 'text-muted',
-      isFocusVisible && ['ring-2', 'ring-inset', 'ring-ring'],
+      isFocusVisible && 'ring-2 ring-inset ring-ring',
     ],
     underline: {
-      base: ['before:absolute', 'before:bg-accent'],
+      base: 'before:absolute before:bg-accent',
       horizontal: [
-        'p-2',
-        'before:bottom-[-1.5px]',
-        'before:w-full',
-        'before:inset-x-0',
+        'p-2 before:bottom-[-1.5px] before:w-full before:inset-x-0',
         isSelected && 'before:h-[2px]',
       ],
       vertical: [
         'px-4',
         'before:inset-y-0',
-        isSelected && [
-          'before:bg-accent',
-          'before:left-[-1.5px]',
-          'before:w-[2px]',
-        ],
+        isSelected && 'before:bg-accent before:left-[-1.5px] before:w-[2px]',
       ],
     },
     pills: {
       base: [
-        'flex',
-        'items-center',
-        'px-3',
-        'py-2',
-        'rounded-md',
-        isSelected && ['bg-zinc-100 dark:bg-zinc-600/45'],
+        'flex items-center px-3 py-2 rounded-md',
+        isSelected && 'bg-zinc-100 dark:bg-zinc-600/45',
       ],
-      horizontal: [],
-      vertical: [],
+      horizontal: '',
+      vertical: '',
     },
     segment: {
       base: [
-        'flex-1',
-        'justify-center',
-        'px-6',
-        'py-1',
-        '[&>[data-ui=icon]:not([class*=size-])]:size-4',
-        isSelected && [
-          'bg-background',
-          'dark:bg-zinc-600',
-          'text-foreground',
-          'shadow-xs',
-          'rounded',
-        ],
+        'flex-1 justify-center px-6 py-1 [&>[data-ui=icon]:not([class*=size-])]:size-4',
+        isSelected &&
+          'bg-background dark:bg-zinc-600 text-foreground shadow-xs rounded-md',
       ],
-      horizontal: [],
-      vertical: [],
+      horizontal: '',
+      vertical: '',
     },
   };
 

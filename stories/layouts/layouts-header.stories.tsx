@@ -168,7 +168,7 @@ export const Header = () => {
               <NotificationBadge variant="dot" className="right-2 top-1.5" />
             </Button>
             <MenuTrigger>
-              <MenuButton variant="plain" noIndicator>
+              <MenuButton variant="plain" buttonArrow={null}>
                 <Avatar
                   className="size-8"
                   src="https://i.imgur.com/xIe7Wlb.png"

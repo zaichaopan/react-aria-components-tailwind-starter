@@ -58,7 +58,9 @@ export function DialogHeader({ className, ...props }: DialogHeaderProps) {
     };
   }, []);
 
-  return typeof props.children === 'string' ? (
+  return React.Children.toArray(props.children).every(
+    (child) => typeof child === 'string',
+  ) ? (
     <DialogTitle
       {...props}
       data-ui="dialog-header"
@@ -95,7 +97,13 @@ export function DialogBody({
         className,
       )}
     >
-      {typeof children === 'string' ? <Text>{children}</Text> : children}
+      {React.Children.toArray(children).every(
+        (child) => typeof child === 'string',
+      ) ? (
+        <Text>{children}</Text>
+      ) : (
+        children
+      )}
     </div>
   );
 }

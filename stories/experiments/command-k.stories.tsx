@@ -1,6 +1,6 @@
 import React from 'react';
 import type { Meta } from '@storybook/react';
-import { Button } from '../src/button';
+import { Button } from '../../src/button';
 import {
   ComboBox,
   ComboBoxListBox,
@@ -11,16 +11,15 @@ import {
   ComboBoxInput,
   CommandButton,
   ComboBoxListItem,
-} from '../src/combobox';
-import { docs } from '../.storybook/docs';
+} from '../../src/combobox';
+import { docs } from '../../.storybook/docs';
 import { Search } from 'lucide-react';
-import { Icon } from '../src/icon';
-import { Modal } from '../src/modal';
-import { Dialog } from '../src/dialog';
-import { Text } from '../src/text';
+import { Icon } from '../../src/icon';
+import { Modal } from '../../src/modal';
+import { Dialog } from '../../src/dialog';
+import { Text } from '../../src/text';
 
 const meta: Meta<typeof Button> = {
-  title: 'CommandK',
   parameters: {
     layout: 'fullscreen',
     docs: {

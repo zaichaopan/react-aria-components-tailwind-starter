@@ -127,6 +127,7 @@ export const BasicExample = () => {
     </div>
   );
 };
+
 export const InputWithNativeSelect = () => {
   return (
     <div className="flex w-72 flex-col gap-y-10">
@@ -135,7 +136,7 @@ export const InputWithNativeSelect = () => {
         <Group className="group flex">
           <NativeSelectField>
             <Label className="sr-only">Choose country</Label>
-            <NativeSelect className="min-w-max rounded-e-none border-e-0">
+            <NativeSelect className="w-max min-w-max rounded-e-none border-e-0 focus-visible:border-transparent focus-visible:ring-2">
               <option value="CA">CA</option>
               <option value="US">US</option>
             </NativeSelect>
@@ -144,7 +145,7 @@ export const InputWithNativeSelect = () => {
             <Label className="sr-only">Phone number</Label>
             <Input
               placeholder="123-457-789"
-              className="rounded-s-none group-focus-within:border-s-ring"
+              className="rounded-s-none focus:rounded-s-md"
             />
           </TextField>
         </Group>
@@ -157,13 +158,13 @@ export const InputWithNativeSelect = () => {
             <Label className="sr-only">Phone number</Label>
             <Input
               placeholder="123-457-789"
-              className="rounded-e-none border-e-0"
+              className="rounded-e-none focus:rounded-e-md group-[&:has(select:focus)]:border-e-0"
             />
           </TextField>
 
           <NativeSelectField>
             <Label className="sr-only">Choose country</Label>
-            <NativeSelect className="min-w-max rounded-s-none group-focus-within:border-s-ring">
+            <NativeSelect className="min-w-max rounded-s-none border-s-0 focus-visible:border-s">
               <option value="CA">CA</option>
               <option value="US">US</option>
             </NativeSelect>
@@ -173,7 +174,6 @@ export const InputWithNativeSelect = () => {
 
       <LabeledGroup>
         <Label>Price</Label>
-
         <Group className="group flex">
           <TextField className="flex-1">
             <Label className="sr-only">Price</Label>
@@ -184,14 +184,14 @@ export const InputWithNativeSelect = () => {
 
               <Input
                 placeholder="0.00"
-                className="col-span-full row-start-1 rounded-e-none border-e-0 pe-10 ps-7"
+                className="col-span-full row-start-1 rounded-e-none pe-10 ps-7 focus:rounded-e-md group-[&:has(select:focus)]:border-e-0"
               />
             </div>
           </TextField>
 
           <NativeSelectField>
             <Label className="sr-only">Choose currency</Label>
-            <NativeSelect className="min-w-max rounded-s-none group-focus-within:border-s-ring">
+            <NativeSelect className="min-w-max rounded-s-none border-s-0 focus-visible:border-s">
               <option value="US">US</option>
               <option value="CA">CA</option>
             </NativeSelect>
@@ -210,7 +210,7 @@ export const InputWithSelect = () => {
         <Group className="group flex">
           <Select defaultSelectedKey="ca" className="w-max min-w-max">
             <Label className="sr-only">Country</Label>
-            <SelectButton className="rounded-e-none border-e-0"></SelectButton>
+            <SelectButton className="rounded-e-none border-e-0 focus-visible:border-e"></SelectButton>
 
             <SelectPopover placement="bottom end" className="w-36">
               <SelectListBox>
@@ -232,7 +232,7 @@ export const InputWithSelect = () => {
             <Label className="sr-only">Phone number</Label>
             <Input
               placeholder="+1 (123) 457-7890"
-              className="rounded-s-none group-focus-within:border-s-ring"
+              className="rounded-s-none focus:rounded-s-md group-[&:has(button:focus)]:border-s-0"
             />
           </TextField>
         </Group>
@@ -245,13 +245,13 @@ export const InputWithSelect = () => {
             <Label className="sr-only">Phone number</Label>
             <Input
               placeholder="+1 (123) 457-7890"
-              className="rounded-e-none border-e-0"
+              className="rounded-e-none focus:rounded-e-md group-[&:has(button:focus)]:border-e-0"
             />
           </TextField>
 
           <Select defaultSelectedKey="ca" className="w-max min-w-max">
             <Label className="sr-only">Country</Label>
-            <SelectButton className="rounded-s-none group-has-[[data-ui=text-field]:focus-within]:border-s-ring"></SelectButton>
+            <SelectButton className="rounded-s-none border-s-0 focus-visible:border-s"></SelectButton>
 
             <SelectPopover placement="bottom end" className="w-36">
               <SelectListBox>
@@ -276,7 +276,7 @@ export const InputWithSelect = () => {
         <Group className="group flex">
           <Select defaultSelectedKey="ca" className="w-max min-w-max">
             <Label className="sr-only">Phone Country Code</Label>
-            <SelectButton className="rounded-e-none group-has-[[data-ui=text-field]:focus-within]:border-e-ring"></SelectButton>
+            <SelectButton className="rounded-e-none border-e-0 focus-visible:border-e"></SelectButton>
 
             <SelectPopover className="w-36" placement="bottom start">
               <SelectListBox>
@@ -304,7 +304,7 @@ export const InputWithSelect = () => {
             <Label className="sr-only">Phone number</Label>
             <Input
               placeholder="+1 (123) 457-7890"
-              className="rounded-none border-e-0 border-s-0"
+              className="rounded-none focus:rounded-md group-[&:has(button:focus)]:border-s-0 group-[&:has(select:focus)]:border-e-0"
             />
           </TextField>
 
@@ -312,7 +312,7 @@ export const InputWithSelect = () => {
             <Label className="sr-only">Work phone number type</Label>
             <NativeSelect
               name="work_phone_number_type"
-              className="min-w-max rounded-s-none group-has-[[data-ui=text-field]:focus-within]:border-s-ring"
+              className="min-w-max rounded-s-none border-s-0 focus-visible:border-s"
             >
               <option value="Mobile">Mobile</option>
               <option value="Phone">Phone</option>
@@ -328,7 +328,7 @@ export const InputWithSelect = () => {
 
 export const InputWithButton = () => {
   return (
-    <div className="flex w-72 flex-col gap-y-6">
+    <div className="flex flex-col gap-y-6">
       <div className="group flex">
         <TextField className="flex-1">
           <Label className="sr-only">Email</Label>
@@ -367,6 +367,21 @@ export const InputWithButton = () => {
           </Icon>
           Invite
         </Button>
+      </div>
+
+      <div className="group flex gap-x-2 rounded-lg border p-1.5">
+        <TextField className="flex-1 w-72">
+          <Label className="sr-only">Email</Label>
+
+          <Input
+            type="email"
+            placeholder="Email Address"
+            className="border-transparent focus:border-ring"
+            autoComplete="email"
+          />
+        </TextField>
+
+        <Button>Join Waitlist</Button>
       </div>
 
       <div className="group flex">

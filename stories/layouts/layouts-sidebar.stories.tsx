@@ -77,7 +77,7 @@ export const Sidebar = () => {
             </Icon>
           </Button>
           <MenuTrigger>
-            <MenuButton variant="plain" noIndicator>
+            <MenuButton variant="plain" buttonArrow={null}>
               <Avatar
                 className="size-8"
                 src="https://i.imgur.com/xIe7Wlb.png"

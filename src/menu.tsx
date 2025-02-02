@@ -20,11 +20,11 @@ import { CheckIcon, ChevronDownIcon, ChevronRightIcon } from './icons';
 export { MenuTrigger, SubmenuTrigger } from 'react-aria-components';
 
 type MenuButtonProps = ButtonProps & {
-  noIndicator?: boolean;
+  buttonArrow?: React.ReactNode;
 };
 
 export function MenuButton({
-  noIndicator,
+  buttonArrow,
   variant = 'outline',
   children,
   ...props
@@ -35,7 +35,8 @@ export function MenuButton({
         return (
           <>
             {typeof children === 'function' ? children(renderProps) : children}
-            {!noIndicator && <ChevronDownIcon className='ms-auto' />}
+            {buttonArrow !== null &&
+              (buttonArrow ?? <ChevronDownIcon className="ms-auto" />)}
           </>
         );
       }}
@@ -145,9 +146,14 @@ type MenuItemProps = RACMenuItemProps & {
 };
 
 export function MenuItem({ destructive, ...props }: MenuItemProps) {
+  const textValue =
+    props.textValue ||
+    (typeof props.children === 'string' ? props.children : undefined);
+
   return (
     <RACMenuItem
       {...props}
+      textValue={textValue}
       className={composeRenderProps(
         props.className,
         (className, { isFocused, isDisabled }) => {

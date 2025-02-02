@@ -89,7 +89,7 @@ export const BasicExample = () => {
                 <Input className="col-span-3"></Input>
                 <FieldError className="col-span-3 col-start-2" />
               </TextField>
-              <TextField isRequired className="grid grid-cols-4 gap-4">
+              <TextField isRequired className="grid grid-cols-4 gap-x-4">
                 <Label className="ms-auto">Username</Label>
                 <Input className="col-span-3"></Input>
                 <FieldError className="col-span-3 col-start-2" />
@@ -144,76 +144,6 @@ AlertDialogs.parameters = {
   },
 };
 
-export const NestedDialogs = () => {
-  const [isViewDialogOpen, setIsViewDialogOpen] = React.useState(false);
-  const [isCustomizeDialogOpen, setIsCustomizeDialogOpen] =
-    React.useState(false);
-
-  return (
-    <div>
-      <Button onPress={() => setIsViewDialogOpen(true)} variant="outline">
-        View notifications
-      </Button>
-
-      <Modal isOpen={isViewDialogOpen} isDismissable size="md">
-        <Dialog>
-          <DialogHeader>Notifications</DialogHeader>
-
-          <DialogBody>You are all caught up. Good job!</DialogBody>
-        </Dialog>
-        <DialogFooter className="justify-between">
-          <Button
-            variant="plain"
-            color="accent"
-            onPress={() => {
-              setIsCustomizeDialogOpen(true);
-            }}
-          >
-            Customize
-          </Button>
-          <DialogCloseButton
-            variant="outline"
-            onPress={() => {
-              setIsViewDialogOpen(false);
-            }}
-          >
-            Cancel
-          </DialogCloseButton>
-        </DialogFooter>
-      </Modal>
-      <Modal
-        isDismissable={false}
-        isKeyboardDismissDisabled
-        isOpen={isCustomizeDialogOpen}
-      >
-        <Dialog alert>
-          <DialogHeader>Customize notifications</DialogHeader>
-          <DialogBody>Review your settings here.</DialogBody>
-          <DialogFooter>
-            <Button
-              variant="outline"
-              onPress={() => {
-                setIsCustomizeDialogOpen(false);
-              }}
-            >
-              Close
-            </Button>
-          </DialogFooter>
-        </Dialog>
-      </Modal>
-    </div>
-  );
-};
-
-NestedDialogs.parameters = {
-  docs: {
-    description: {
-      story:
-        'You can nest dialogs within one another normally. Nested Dialog style is inspired by <a href="https://base-ui.com/react/components/dialog#close-confirmation" target="_blank">**BaseUI**</a> and <a href="https://share.cleanshot.com/n7vy5RsH" target="_blank">**Clerk**</a>.',
-    },
-  },
-};
-
 export const CloseConfirmation = () => {
   const [isEditDialogOpen, setIsEditDialogOpen] = React.useState(false);
   const [isConfirmationDialogOpen, setIsConfirmationDialogOpen] =
@@ -229,6 +159,7 @@ export const CloseConfirmation = () => {
       <Modal
         size="md"
         isOpen={isEditDialogOpen}
+        placement="top"
         isDismissable
         onOpenChange={() => {
           if (post !== '') {
@@ -241,7 +172,7 @@ export const CloseConfirmation = () => {
         <Dialog>
           <DialogHeader>New Tweet</DialogHeader>
 
-          <DialogBody>
+          <DialogBody className="py-1">
             <TextField
               autoFocus
               value={post}
@@ -284,6 +215,7 @@ export const CloseConfirmation = () => {
               Go back
             </Button>
             <Button
+              color="destructive"
               onPress={() => {
                 setIsConfirmationDialogOpen(false);
                 setIsEditDialogOpen(false);
@@ -320,10 +252,6 @@ export const NestedLargeDialogs = () => {
 
       <Modal
         placement="top"
-        classNames={{
-          modalOverlay:
-            '[&:has(~[data-ui=modal-overlay]:not([data-exiting]))>[data-ui=modal]]:-translate-y-10 sm:[&:has(~[data-ui=modal-overlay]:not([data-exiting]))>[data-ui=modal]]:-translate-y-8',
-        }}
         isOpen={isInviteDialogOpen}
         isDismissable
         size="md"
@@ -511,14 +439,12 @@ export const DialogSizes = () => {
   return (
     <div className="flex flex-wrap gap-4">
       {sizes.map((size) => {
-        const title = `A \`${size}\` size dialog`;
-
         return (
           <DialogTrigger key={size}>
             <Button variant="outline">{size}</Button>
             <Modal size={size}>
               <Dialog>
-                <DialogHeader>{title}</DialogHeader>
+                <DialogHeader> A {size} size dialog</DialogHeader>
                 <DialogCloseButton />
                 <DialogBody>
                   Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi
@@ -598,7 +524,7 @@ export const DialogHeaderWithNonTextContent = () => {
           </DialogHeader>
           <DialogCloseButton />
           <DialogBody>
-            <Form className="space-y-3">
+            <Form className="space-y-3 py-2">
               <TextField isRequired>
                 <Label className="sr-only">Email</Label>
                 <Input placeholder="Enter your email"></Input>
@@ -1089,7 +1015,7 @@ export const DialogWithIsDismissable = () => {
                 <Input className="col-span-3"></Input>
                 <FieldError className="col-span-3 col-start-2" />
               </TextField>
-              <TextField isRequired className="grid grid-cols-4 gap-4">
+              <TextField isRequired className="grid grid-cols-4 gap-x-4">
                 <Label className="ms-auto">Username</Label>
                 <Input className="col-span-3"></Input>
                 <FieldError className="col-span-3 col-start-2" />
@@ -1139,7 +1065,7 @@ export const DialogWithKeyboardDismissDisabled = () => {
                 <Input className="col-span-3"></Input>
                 <FieldError className="col-span-3 col-start-2" />
               </TextField>
-              <TextField isRequired className="grid grid-cols-4 gap-4">
+              <TextField isRequired className="grid grid-cols-4 gap-x-4">
                 <Label className="ms-auto">Username</Label>
                 <Input className="col-span-3"></Input>
                 <FieldError className="col-span-3 col-start-2" />
@@ -1189,7 +1115,7 @@ export const DialogWithAutoFocusWhenOpen = (args: any) => {
                 <Input className="col-span-3"></Input>
                 <FieldError className="col-span-3 col-start-2" />
               </TextField>
-              <TextField isRequired className="grid grid-cols-4 gap-4">
+              <TextField isRequired className="grid grid-cols-4 gap-x-4">
                 <Label className="ms-auto">Username</Label>
                 <Input className="col-span-3"></Input>
                 <FieldError className="col-span-3 col-start-2" />
@@ -1250,7 +1176,7 @@ export const DialogWithControlledOpenState = () => {
                 <Input className="col-span-3"></Input>
                 <FieldError className="col-span-3 col-start-2" />
               </TextField>
-              <TextField isRequired className="grid grid-cols-4 gap-4">
+              <TextField isRequired className="grid grid-cols-4 gap-x-4">
                 <Label className="ms-auto">Username</Label>
                 <Input className="col-span-3"></Input>
                 <FieldError className="col-span-3 col-start-2" />

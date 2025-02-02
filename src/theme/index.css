@@ -9,19 +9,18 @@
     /* zinc-950 */
     --foreground: 9 9 11;
     /* zinc-900 */
-    --accent: 24 24 27;
+    --accent: 27 23 24;
     /* zinc-300 */
     --border: 212 212 216;
     /** zinc-500 **/
     --muted: 113 113 122;
     /** green-600 **/
-    --success: 22 163 74;
+    --success: 0 166 62;
     /** red-600 **/
-    --destructive: 220 38 38;
+    --destructive: 231 0 11;
     /* yellow-600 */
     --warning: 202 138 4;
-    /* blue-500 */
-    --ring: 43 127 255;
+    --ring: 159 159 169;
   }
 
   .dark {
@@ -36,11 +35,12 @@
     /** zinc-400 **/
     --muted: 161 161 170;
     /** green-600 **/
-    --success: 22 163 74;
+    --success: 0 166 62;
     /** red-600 **/
-    --destructive: 220 38 38;
+    --destructive: 231 0 11;
     /* yellow-600 */
     --warning: 202 138 4;
+    --ring: 159 159 169;
   }
 }
 

@@ -117,3 +117,31 @@ export const Colors = (args: any) => {
     </TagGroup>
   );
 };
+
+export const WithCustomColors = (args: any) => {
+  return (
+    <TagGroup {...args} selectionMode="single">
+      <Label>Status</Label>
+      <TagList>
+        <Tag id="labe1" className="[--tag:125_58_237]">
+          label
+        </Tag>
+        <Tag id="labe2" className="[--tag:101_163_13]">
+          label
+        </Tag>
+        <Tag id="labe3" className="[--tag:6_182_212]">
+          label
+        </Tag>
+        <Tag id="labe4" className="[--tag:192_38_211]">
+          label
+        </Tag>
+        <Tag id="labe5" className="[--tag:219_39_119]">
+          label
+        </Tag>
+        <Tag id="labe6" className="[--tag:161_98_7]">
+          label
+        </Tag>
+      </TagList>
+    </TagGroup>
+  );
+};

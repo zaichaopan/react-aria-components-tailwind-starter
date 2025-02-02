@@ -7,7 +7,6 @@ This project is heavily inspired by below amazing projects.
 - <a href="https://react-spectrum.adobe.com/react-aria-tailwind-starter/?path=/docs/alertdialog--docs" target="_blank">React Aria Tailwind Starter</a>
 - <a href="https://tailwindui.com/templates/catalyst" target="_blank">Tailwind Catalyst</a>
 - <a href="https://ui.shadcn.com/docs" target="_blank">Shadcn UI</a>
-- <a href="https://nextui.org" target="_blank">NextUI</a>
 
 **For TailwindV4, please use https://github.com/zaichaopan/react-aria-components-tailwind-starter/tree/tailwindV4**
 
