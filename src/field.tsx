@@ -17,11 +17,7 @@ import {
   composeRenderProps,
 } from 'react-aria-components';
 import { twMerge } from 'tailwind-merge';
-import {
-  DisplayLevel,
-  displayLevels,
-  inputField,
-} from './utils';
+import { DisplayLevel, displayLevels, inputField } from './utils';
 import { Text } from './text';
 
 // https://react-spectrum.adobe.com/react-aria/Group.html#advanced-customization
@@ -174,12 +170,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
               renderProps.isInvalid && 'border-destructive',
               '[&[readonly]]:bg-zinc-50',
               'dark:[&[readonly]]:bg-white/10',
-              renderProps.isFocused && [
-                'ring-1',
-                'ring-inset',
-                'ring-ring',
-                'border-ring',
-              ],
+              renderProps.isFocused && 'border-ring ring-1 ring-ring',
               className,
             ),
         )}
@@ -195,17 +186,12 @@ export function TextArea(props: RACTextAreaProps) {
       className={composeRenderProps(props.className, (className, renderProps) =>
         twMerge(
           'w-full rounded-md border bg-inherit px-3 py-1 outline-none',
-          'text-base/6 placeholder:text-muted sm:text-sm/6 ',
+          'text-base/6 placeholder:text-muted sm:text-sm/6',
           renderProps.isDisabled && 'opacity-50',
           renderProps.isInvalid && 'border-destructive',
           '[&[readonly]]:bg-zinc-50',
           'dark:[&[readonly]]:bg-white/10',
-          renderProps.isFocused && [
-            'ring-1',
-            'ring-inset',
-            'ring-ring',
-            'border-ring',
-          ],
+          renderProps.isFocused && 'border-ring ring-1 ring-ring',
           className,
         ),
       )}

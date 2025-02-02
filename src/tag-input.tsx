@@ -151,7 +151,7 @@ export function TagsInput({
           'flex min-h-9 items-center rounded-md',
           'border has-[input[data-focused=true]]:border-ring',
           'has-[input[data-invalid=true][data-focused=true]]:border-ring has-[input[data-invalid=true]]:border-destructive',
-          'has-[input[data-focused=true]]:ring-1 has-[input[data-focused=true]]:ring-blue-500',
+          'has-[input[data-focused=true]]:ring-1 has-[input[data-focused=true]]:ring-ring',
         )}
       >
         <div className="inline-flex flex-1 flex-wrap items-center gap-1 px-2 py-[5px]">

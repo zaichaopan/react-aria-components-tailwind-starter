@@ -53,16 +53,11 @@ export function SelectButton(props: {
             'text-base/6 sm:text-sm/6',
             'group-data-[invalid]:border-destructive',
             isDisabled && 'cursor-not-allowed opacity-50',
-            isHovered && ['bg-zinc-50 dark:bg-zinc-800 '],
+            isHovered && ['bg-zinc-50 dark:bg-zinc-800'],
             isPressed && ['bg-zinc-50 dark:bg-zinc-800'],
             isHovered && isPressed && ['dark:bg-zinc-800'],
-            isFocusVisible && [
-              'ring-1',
-              'ring-inset',
-              'ring-ring',
-              'border-ring',
-              'group-data-[invalid]:border-ring',
-            ],
+            isFocusVisible &&
+              'border-ring ring-1 ring-ring group-data-[invalid]:border-ring',
             selectBoxIndicator,
             className,
           ),
@@ -74,7 +69,7 @@ export function SelectButton(props: {
       <SelectValue
         data-ui="select-value"
         className={twMerge([
-          'flex-1 truncate  data-[placeholder]:text-muted dark:data-[placeholder]:text-white',
+          'flex-1 truncate data-[placeholder]:text-muted dark:data-[placeholder]:text-white',
           // Selected Item style
           '[&>[data-ui=content]]:flex',
           '[&>[data-ui=content]]:items-center',

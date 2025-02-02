@@ -447,14 +447,12 @@ export const SegmentsTab = () => {
     <div className="p-4 sm:p-12">
       <Tabs variant="segment">
         <TabList aria-label="Music">
-          <Tab id="Artists">Artists</Tab>
-          <Tab id="Albums">Albums</Tab>
-          <Tab id="Songs">Songs</Tab>
+          <Tab id="Free Apps">Free Apps </Tab>
+          <Tab id="Paid Apps">Paid Apps</Tab>
         </TabList>
 
-        <TabPanel id="Artists"></TabPanel>
-        <TabPanel id="Albums"></TabPanel>
-        <TabPanel id="Songs"></TabPanel>
+        <TabPanel id="Free Apps"></TabPanel>
+        <TabPanel id="Paid Apps"></TabPanel>
       </Tabs>
     </div>
   );

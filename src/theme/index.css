@@ -20,8 +20,7 @@
     --destructive: 220 38 38;
     /* yellow-600 */
     --warning: 202 138 4;
-    /* blue-500 */
-    --ring: 43 127 255;
+    --ring: 159 159 169;
   }
 
   .dark {
@@ -41,6 +40,7 @@
     --destructive: 220 38 38;
     /* yellow-600 */
     --warning: 202 138 4;
+    --ring: 159 159 169;
   }
 }
 

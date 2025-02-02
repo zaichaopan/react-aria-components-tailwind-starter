@@ -168,7 +168,7 @@ export const OneColumn = () => {
               <Group className="group flex">
                 <Select defaultSelectedKey="ca" className="w-max min-w-max">
                   <Label className="sr-only">Phone Country Code</Label>
-                  <SelectButton className="rounded-e-none group-has-[[data-ui=text-field]:focus-within]:border-e-ring"></SelectButton>
+                  <SelectButton className="rounded-e-none border-e-0 focus-visible:border-e"></SelectButton>
 
                   <SelectPopover className="w-36" placement="bottom start">
                     <SelectListBox>
@@ -196,7 +196,7 @@ export const OneColumn = () => {
                   <Label className="sr-only">Phone number</Label>
                   <Input
                     placeholder="+1 (123) 457-7890"
-                    className="rounded-none border-e-0 border-s-0"
+                    className="rounded-none focus:rounded-md group-[&:has(button:focus)]:border-s-0 group-[&:has(select:focus)]:border-e-0"
                   />
                 </TextField>
 
@@ -204,7 +204,7 @@ export const OneColumn = () => {
                   <Label className="sr-only">Work phone number type</Label>
                   <NativeSelect
                     name="work_phone_number_type"
-                    className="min-w-max rounded-s-none group-has-[[data-ui=text-field]:focus-within]:border-s-ring"
+                    className="min-w-max rounded-s-none border-s-0 focus-visible:border-s"
                   >
                     <option value="Mobile">Mobile</option>
                     <option value="Phone">Phone</option>

@@ -17,20 +17,9 @@ export function DropZone(props: DropZoneProps) {
             'flex flex-shrink-0 flex-col items-center justify-center rounded-md',
             'border border-dashed p-2',
             isDisabled && 'opacity-50',
-            isDropTarget && [
-              'border-solid',
-              'bg-accent/20 dark:bg-accent/75',
-              'outline',
-              'outline-2',
-              'outline-ring',
-              'outline-offset-2',
-            ],
-            isFocusVisible && [
-              'outline',
-              'outline-2',
-              'outline-ring',
-              'outline-offset-2',
-            ],
+            isDropTarget && 'bg-accent/15 dark:bg-accent/75',
+            (isDropTarget || isFocusVisible) &&
+              'border-solid border-ring ring-1 ring-ring',
             className,
           ),
       )}

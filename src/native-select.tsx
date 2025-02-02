@@ -35,7 +35,7 @@ export function NativeSelect({
 }: React.JSX.IntrinsicElements['select'] & {
   plain?: boolean;
 }) {
-  const { focusProps } = useFocusRing();
+  const { focusProps, isFocusVisible } = useFocusRing();
   const labelContext = (React.useContext(LabelContext) ?? {}) as {
     id?: string;
   };
@@ -55,14 +55,11 @@ export function NativeSelect({
           'appearance-none bg-transparent',
           'pe-8 ps-3',
           'py-[calc(theme(spacing[2.5])-1px)]',
-          ' sm:py-[calc(theme(spacing[1.5])-1px)]',
+          'sm:py-[calc(theme(spacing[1.5])-1px)]',
           'rounded-md border outline-none',
           'text-base/6 sm:text-sm/6',
           'hover:bg-zinc-100 dark:hover:bg-zinc-800',
-          'focus-visible:ring-1',
-          'focus-visible:ring-inset',
-          'focus-visible:ring-ring',
-          'focus-visible:border-ring',
+          isFocusVisible && 'border-ring ring-1 ring-ring',
           className,
         )}
         {...props}

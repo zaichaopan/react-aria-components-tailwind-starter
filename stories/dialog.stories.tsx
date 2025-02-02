@@ -241,7 +241,7 @@ export const CloseConfirmation = () => {
         <Dialog>
           <DialogHeader>New Tweet</DialogHeader>
 
-          <DialogBody>
+          <DialogBody className='py-1'>
             <TextField
               autoFocus
               value={post}
@@ -598,7 +598,7 @@ export const DialogHeaderWithNonTextContent = () => {
           </DialogHeader>
           <DialogCloseButton />
           <DialogBody>
-            <Form className="space-y-3">
+            <Form className="space-y-3 py-2">
               <TextField isRequired>
                 <Label className="sr-only">Email</Label>
                 <Input placeholder="Enter your email"></Input>
