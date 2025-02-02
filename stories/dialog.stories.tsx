@@ -241,7 +241,7 @@ export const CloseConfirmation = () => {
         <Dialog>
           <DialogHeader>New Tweet</DialogHeader>
 
-          <DialogBody>
+          <DialogBody className='py-1'>
             <TextField
               autoFocus
               value={post}

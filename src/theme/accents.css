@@ -1,6 +1,6 @@
 .blue-theme {
   --accent: 37 99 235;
-  --ring: 37 99 235;
+  --ring: 81 162 255;
 }
 
 .dark.blue-theme {
@@ -9,7 +9,7 @@
 
 .indigo-theme {
   --accent: 79 70 229;
-  --ring: 79 70 229;
+  --ring: 124 134 255;
 }
 
 .dark.indigo-theme {
@@ -18,7 +18,7 @@
 
 .violet-theme {
   --accent: 124 58 237;
-  --ring: 124 58 237;
+  --ring: 166 132 255;
 }
 
 .dark.violet-theme {
@@ -27,7 +27,7 @@
 
 .purple-theme {
   --accent: 147 51 234;
-  --ring: 147 51 234;
+  --ring: 199 122 255;
 }
 
 .dark.purple-theme {

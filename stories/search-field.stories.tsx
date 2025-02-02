@@ -30,7 +30,7 @@ export const BasicExample = () => {
 
 export const SearchFieldWithDescription = () => {
   return (
-    <div className='space-y-12'>
+    <div className="space-y-12">
       <SearchField>
         <Label>Search</Label>
         <Description>Input search. Beep boop.</Description>
@@ -46,7 +46,17 @@ export const SearchFieldWithDescription = () => {
   );
 };
 
-export const SearchFieldWithDisabledState= () => {
+export const SearchFieldWithPendingState = () => {
+  return (
+    <SearchField>
+      <Label>Search</Label>
+      <Description>Input search. Beep boop.</Description>
+      <SearchInput isPending placeholder="Search&hellip;" />
+    </SearchField>
+  );
+};
+
+export const SearchFieldWithDisabledState = () => {
   return (
     <SearchField isDisabled>
       <Label>Search</Label>

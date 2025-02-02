@@ -59,7 +59,7 @@ const buttonStyle = ({
   const base = [
     'relative rounded-md',
     isFocusVisible
-      ? 'outline outline-2 outline-offset-2 outline-ring'
+      ? 'outline outline-2 outline-ring outline-offset-2'
       : 'outline-none',
     isDisabled && 'opacity-50',
   ];

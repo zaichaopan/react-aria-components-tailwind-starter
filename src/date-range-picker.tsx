@@ -12,10 +12,7 @@ import { DateInput } from './date-field';
 import { Dialog } from './dialog';
 import { Popover } from './popover';
 import { RangeCalendar } from './range-calendar';
-import {
-  composeTailwindRenderProps,
-  inputField,
-} from './utils';
+import { composeTailwindRenderProps, inputField } from './utils';
 import { twMerge } from 'tailwind-merge';
 import { CalendarIcon } from './icons';
 
@@ -51,9 +48,8 @@ export function DateRangePickerInput() {
           '[&:has([data-ui=date-segment][aria-readonly])]:bg-zinc-50',
           'dark:[&:has([data-ui=date-segment][aria-readonly])]:bg-white/10',
           formattedValue ? 'min-w-60' : 'min-w-[278px]',
-          'focus-within:ring-1',
-          'focus-within:ring-inset',
-          'focus-within:ring-ring',
+          'focus-within:ring-2',
+          'focus-within:ring-ring/30',
           'focus-within:border-ring',
           'focus-within:invalid:border-ring',
           'focus-within:group-invalid:border-ring',
@@ -85,7 +81,7 @@ export function DateRangePickerInput() {
           variant="plain"
           isIconOnly
           size="sm"
-          className="me-1 justify-self-end text-muted group-hover:text-foreground focus-visible:-outline-offset-1"
+          className="me-1 justify-self-end text-muted focus-visible:-outline-offset-1 group-hover:text-foreground"
         >
           <CalendarIcon />
         </Button>
@@ -167,7 +163,7 @@ export function DateRangePickerButton({
         className={[
           'max-w-none',
           'dark:bg-zinc-800',
-          'dark:ring-zinc-700 ',
+          'dark:ring-zinc-700',
         ].join(' ')}
         placement="bottom"
       >

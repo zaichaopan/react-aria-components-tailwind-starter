@@ -59,9 +59,8 @@ export function NativeSelect({
           'rounded-md border outline-none',
           'text-base/6 sm:text-sm/6',
           'hover:bg-zinc-100 dark:hover:bg-zinc-800',
-          'focus-visible:ring-1',
-          'focus-visible:ring-inset',
-          'focus-visible:ring-ring',
+          'focus-visible:ring-2',
+          'focus-visible:ring-ring/30',
           'focus-visible:border-ring',
           className,
         )}
