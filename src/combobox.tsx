@@ -70,14 +70,14 @@ export function ComboBoxGroup(props: GroupProps) {
           'sm:[&:has([data-ui=icon]+input)>input]:ps-8',
 
           // Trigger button
-          '[&>[data-ui=trigger]]:row-start-1',
-          '[&>[data-ui=trigger]]:-col-end-1',
-          '[&>[data-ui=trigger]]:place-self-center',
+          '*:data-[ui=trigger]:row-start-1',
+          '*:data-[ui=trigger]:-col-end-1',
+          '*:data-[ui=trigger]:place-self-center',
 
           // Clear button
-          '[&>[data-ui=clear]]:row-start-1',
-          '[&>[data-ui=clear]]:-col-end-2',
-          '[&>[data-ui=clear]]:justify-self-end',
+          '*:data-[ui=clear]:row-start-1',
+          '*:data-[ui=clear]:-col-end-2',
+          '*:data-[ui=clear]:justify-self-end',
           '[&>[data-ui=clear]:last-of-type]:-col-end-1',
           '[&>[data-ui=clear]:last-of-type]:place-self-center',
 
@@ -115,7 +115,7 @@ export function ComboBoxClearButton({
     <Button
       className={twMerge(
         '[&:not(:hover)]:text-muted ',
-        '[&:not(:last-child)]:-me-1',
+        'not-last:-me-1',
         state?.inputValue
           ? 'visible focus-visible:-outline-offset-2'
           : 'invisible',
@@ -132,7 +132,7 @@ export function ComboBoxClearButton({
     >
       <XIcon
         aria-label="Clear"
-        className="size-4 sm:size-[calc(theme(spacing[4])-1px)]"
+        className="size-4 sm:size-[calc(--spacing(4)-1px)]"
       />
     </Button>
   );

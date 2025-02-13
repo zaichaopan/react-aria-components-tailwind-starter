@@ -234,7 +234,7 @@ export function MultiSelect<
               items={selectedList.items}
               className={twMerge(
                 selectedList.items.length !== 0 && 'p-1',
-                'outline-none',
+                'outline-hidden',
               )}
             >
               {props.tag}
@@ -302,7 +302,7 @@ export function MultiSelect<
             <ListBox<T>
               renderEmptyState={() => renderEmptyState(fieldState.inputValue)}
               selectionMode="multiple"
-              className="flex max-h-[inherit] flex-col gap-1.5 overflow-auto p-1.5 outline-none has-[header]:pt-0 sm:gap-0"
+              className="flex max-h-[inherit] flex-col gap-1.5 overflow-auto p-1.5 outline-hidden has-[header]:pt-0 sm:gap-0"
             >
               {children}
             </ListBox>
@@ -310,7 +310,7 @@ export function MultiSelect<
         </ComboBox>
         <Button variant="plain" asChild>
           <div
-            className="top-50 absolute end-0 me-1 size-6 rounded p-0.5"
+            className="top-50 absolute end-0 me-1 size-6 rounded-sm p-0.5"
             aria-hidden
           >
             {/* React Aria Button does not allow tabIndex */}

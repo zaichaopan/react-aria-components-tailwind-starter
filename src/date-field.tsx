@@ -50,7 +50,7 @@ export function DateInput(props: DateInputProps) {
           'block min-w-[150px]',
           'text-base/6 sm:text-sm/6',
           'px-3',
-          'py-[calc(theme(spacing[2.5])-1px)] sm:py-[calc(theme(spacing[1.5])-1px)]',
+          'py-[calc(--spacing(2.5)-1px)] sm:py-[calc(--spacing(1.5)-1px)]',
           renderProps.isInvalid && 'border-destructive',
           renderProps.isFocusWithin && 'border-ring ring-1 ring-ring',
           className,
@@ -62,9 +62,9 @@ export function DateInput(props: DateInputProps) {
           data-ui="date-segment"
           segment={segment}
           className={twMerge(
-            'inline rounded px-0.5 caret-transparent outline-0 data-[type=literal]:px-0',
-            'data-[placeholder]:italic data-[placeholder]:text-muted',
-            'focus:bg-accent focus:text-white focus:data-[placeholder]:text-white',
+            'inline rounded-sm px-0.5 caret-transparent outline-0 data-[type=literal]:px-0',
+            'data-placeholder:italic data-placeholder:text-muted',
+            'focus:bg-accent focus:text-white focus:data-placeholder:text-white',
           )}
         />
       )}

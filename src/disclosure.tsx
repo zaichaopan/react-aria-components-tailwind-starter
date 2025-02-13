@@ -16,7 +16,7 @@ export function DisclosureControl(props: ButtonProps) {
         props.className,
         (className, { isFocusVisible }) => {
           return twMerge([
-            'group flex items-center gap-x-1 rounded outline-none',
+            'group flex items-center gap-x-1 rounded-sm outline-hidden',
             isFocusVisible && [
               'outline',
               'outline-2',

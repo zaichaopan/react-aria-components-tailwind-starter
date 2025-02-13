@@ -60,7 +60,7 @@ const buttonStyle = ({
     'relative rounded-md',
     isFocusVisible
       ? 'outline outline-2 outline-ring outline-offset-2'
-      : 'outline-none',
+      : 'outline-hidden',
     isDisabled && 'opacity-50',
   ];
 
@@ -82,7 +82,7 @@ const buttonStyle = ({
       outline: [
         'border border-zinc-950/10 dark:border-white/15 border-b-zinc-950/15 dark:border-b-white/20',
         !isDisabled && 'hover:bg-zinc-50 dark:hover:bg-zinc-800',
-        'shadow-sm',
+        'shadow-xs',
         'text-[var(--btn-color)]',
       ],
       plain: [
@@ -95,8 +95,8 @@ const buttonStyle = ({
       sm: {
         button: [
           'h-8 sm:h-7 text-sm/6 sm:text-xs/6 rounded-md',
-          'px-[calc(theme(spacing[3])-var(--border-with,1px))]',
-          'sm:px-[calc(theme(spacing[2.5])-var(--border-with,1px))]',
+          'px-[calc(--spacing(3)-var(--border-with,1px))]',
+          'sm:px-[calc(--spacing(2.5)-var(--border-with,1px))]',
           '[&_svg[data-ui=icon]:not([class*=size-])]:size-3',
         ],
         iconOnly: [
@@ -108,16 +108,16 @@ const buttonStyle = ({
       md: {
         // H: 44px, sm:36px
         button: [
-          'px-[calc(theme(spacing[3.5])-var(--border-with,1px))]',
-          'sm:px-[calc(theme(spacing[3])-var(--border-with,1px))]',
-          'py-[calc(theme(spacing[2.5])-var(--border-with,1px))]',
-          'sm:py-[calc(theme(spacing[1.5])-var(--border-with,1px))]',
+          'px-[calc(--spacing(3.5)-var(--border-with,1px))]',
+          'sm:px-[calc(--spacing(3)-var(--border-with,1px))]',
+          'py-[calc(--spacing(2.5)-var(--border-with,1px))]',
+          'sm:py-[calc(--spacing(1.5)-var(--border-with,1px))]',
           '[&_svg[data-ui=icon]:not([class*=size-])]:size-5',
           'sm:[&_svg[data-ui=icon]:not([class*=size-])]:size-4',
         ],
         iconOnly: [
-          'p-[calc(theme(spacing[2.5])-var(--border-with,1px))]',
-          'sm:p-[calc(theme(spacing[1.5])-var(--border-with,1px))]',
+          'p-[calc(--spacing(2.5)-var(--border-with,1px))]',
+          'sm:p-[calc(--spacing(1.5)-var(--border-with,1px))]',
 
           // 20+2x2=24px
           '[&_svg[data-ui=icon]:not([class*=size-])]:size-5',
@@ -130,22 +130,22 @@ const buttonStyle = ({
       },
       lg: {
         button: [
-          'px-[calc(theme(spacing[4])-var(--border-with,1px))]',
-          'py-[calc(theme(spacing[2.5])-var(--border-with,1px))]',
+          'px-[calc(--spacing(4)-var(--border-with,1px))]',
+          'py-[calc(--spacing(2.5)-var(--border-with,1px))]',
           '[&_svg[data-ui=icon]:not([class*=size-])]:size-5',
         ],
         iconOnly: [
-          'p-[calc(theme(spacing[2.5])-var(--border-with,1px))]',
+          'p-[calc(--spacing(2.5)-var(--border-with,1px))]',
           '[&_svg[data-ui=icon]:not([class*=size-])]:size-5',
           '[&_svg[data-ui=icon]]:m-0.5',
         ],
       },
     },
     color: {
-      foreground: '[--btn-color:theme(colors.foreground)]',
-      accent: '[--btn-color:theme(colors.accent)]',
-      destructive: '[--btn-color:theme(colors.destructive)]',
-      success: '[--btn-color:theme(colors.success)]',
+      foreground: '[--btn-color:var(--color-foreground)]',
+      accent: '[--btn-color:var(--color-accent)]',
+      destructive: '[--btn-color:var(--color-destructive)]',
+      success: '[--btn-color:var(--color-success)]',
     },
     iconColor: {
       button: {
@@ -163,9 +163,9 @@ const buttonStyle = ({
       },
     },
     backgroundColor: {
-      accent: '[--btn-bg:theme(colors.accent)]',
-      destructive: '[--btn-bg:theme(colors.destructive)]',
-      success: '[--btn-bg:theme(colors.success)]',
+      accent: '[--btn-bg:var(--color-accent)]',
+      destructive: '[--btn-bg:var(--color-destructive)]',
+      success: '[--btn-bg:var(--color-success)]',
     },
   };
 
@@ -366,7 +366,7 @@ const buttonGroupStyle = ({
       '[&>*:last-child]:rounded-s-none',
       '[&>*:not(:last-child)]:border-e-0',
       inline &&
-        'shadow-sm [&>*:not(:first-child)]:border-s-0 [&>*]:shadow-none',
+        'shadow-xs [&>*:not(:first-child)]:border-s-0 *:shadow-none',
     ],
     vertical: [
       'flex-col',
@@ -375,7 +375,7 @@ const buttonGroupStyle = ({
       '[&>*:not(:last-child)]:border-b-0',
 
       inline &&
-        'shadow-sm [&>*:not(:first-child)]:border-t-0 [&>*]:shadow-none',
+        'shadow-xs [&>*:not(:first-child)]:border-t-0 *:shadow-none',
     ],
   };
 

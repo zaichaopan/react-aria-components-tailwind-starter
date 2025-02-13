@@ -54,7 +54,7 @@ export const RoundedAvatars = () => {
 RoundedAvatars.parameters = {
   docs: {
     description: {
-      story: 'Use **className="rounded-full"** to render a rounded avatar.',
+      story: 'Use **className="rounded-full"** to render a rounded-sm avatar.',
     },
   },
 };
@@ -428,7 +428,7 @@ export const AvatarGroups = () => {
           <Avatar className="size-8 rounded-full" alt="M J" />
           <Avatar className="size-8 rounded-full" alt="D P" colorless />
         </AvatarGroup>
-        <div className="relative -ms-1 grid size-8 place-items-center rounded-full bg-zinc-50 text-sm/6 font-medium text-muted outline outline-1 -outline-offset-1 outline-zinc-100 ring ring-2 ring-background hover:text-foreground dark:bg-zinc-600 dark:outline-white/20">
+        <div className="relative -ms-1 grid size-8 place-items-center rounded-full bg-zinc-50 text-sm/6 font-medium text-muted outline outline-1 -outline-offset-1 outline-zinc-100 ring-3 ring-2 ring-background hover:text-foreground dark:bg-zinc-600 dark:outline-white/20">
           +2
         </div>
       </div>

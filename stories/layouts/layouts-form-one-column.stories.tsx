@@ -75,7 +75,7 @@ export const OneColumn = () => {
                 data-ui="control"
                 className="group grid grid-cols-[auto_1fr]"
               >
-                <span className="col-start-1 row-start-1 grid place-content-center px-3 group-has-[:autofill]:z-10">
+                <span className="col-start-1 row-start-1 grid place-content-center px-3 group-has-autofill:z-10">
                   <Icon className="size-5 text-muted/90 sm:size-4">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
