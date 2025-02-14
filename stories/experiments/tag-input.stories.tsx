@@ -1,14 +1,13 @@
 import React from 'react';
 import type { Meta } from '@storybook/react';
-import { docs } from '../.storybook/docs';
-import { TagsInputField, TagsInput } from '../src/tag-input';
-import { Description, FieldError, Label } from '../src/field';
+import { docs } from '../../.storybook/docs';
+import { TagsInputField, TagsInput } from '../../src/tag-input';
+import { Description, FieldError, Label } from '../../src/field';
 import { useListData } from 'react-stately';
-import { Form } from '../src/form';
-import { Button } from '../src/button';
+import { Form } from '../../src/form';
+import { Button } from '../../src/button';
 
 const meta: Meta = {
-  title: 'Tag input',
   parameters: {
     layout: 'centered',
     docs: {

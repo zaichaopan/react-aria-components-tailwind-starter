@@ -328,7 +328,7 @@ export const InputWithSelect = () => {
 
 export const InputWithButton = () => {
   return (
-    <div className="flex w-72 flex-col gap-y-6">
+    <div className="flex flex-col gap-y-6">
       <div className="group flex">
         <TextField className="flex-1">
           <Label className="sr-only">Email</Label>
@@ -367,6 +367,21 @@ export const InputWithButton = () => {
           </Icon>
           Invite
         </Button>
+      </div>
+
+      <div className="group flex gap-x-2 rounded-lg border p-1.5">
+        <TextField className="flex-1 w-72">
+          <Label className="sr-only">Email</Label>
+
+          <Input
+            type="email"
+            placeholder="Email Address"
+            className="border-transparent focus:border-ring"
+            autoComplete="email"
+          />
+        </TextField>
+
+        <Button>Join Waitlist</Button>
       </div>
 
       <div className="group flex">

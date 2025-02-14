@@ -122,7 +122,7 @@ export function CalendarHeader() {
       </Button>
 
       <Heading
-        className="mx-2 flex-1 text-center text-sm/6 font-medium"
+        className="mx-2 flex-1 text-center text-base/6 sm:text-sm/6 font-medium"
         level={2}
         aria-hidden
       />
