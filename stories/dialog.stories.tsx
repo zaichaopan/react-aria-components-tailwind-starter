@@ -144,76 +144,6 @@ AlertDialogs.parameters = {
   },
 };
 
-export const NestedDialogs = () => {
-  const [isViewDialogOpen, setIsViewDialogOpen] = React.useState(false);
-  const [isCustomizeDialogOpen, setIsCustomizeDialogOpen] =
-    React.useState(false);
-
-  return (
-    <div>
-      <Button onPress={() => setIsViewDialogOpen(true)} variant="outline">
-        View notifications
-      </Button>
-
-      <Modal isOpen={isViewDialogOpen} isDismissable size="md">
-        <Dialog>
-          <DialogHeader>Notifications</DialogHeader>
-
-          <DialogBody>You are all caught up. Good job!</DialogBody>
-        </Dialog>
-        <DialogFooter className="justify-between">
-          <Button
-            variant="plain"
-            color="accent"
-            onPress={() => {
-              setIsCustomizeDialogOpen(true);
-            }}
-          >
-            Customize
-          </Button>
-          <DialogCloseButton
-            variant="outline"
-            onPress={() => {
-              setIsViewDialogOpen(false);
-            }}
-          >
-            Cancel
-          </DialogCloseButton>
-        </DialogFooter>
-      </Modal>
-      <Modal
-        isDismissable={false}
-        isKeyboardDismissDisabled
-        isOpen={isCustomizeDialogOpen}
-      >
-        <Dialog alert>
-          <DialogHeader>Customize notifications</DialogHeader>
-          <DialogBody>Review your settings here.</DialogBody>
-          <DialogFooter>
-            <Button
-              variant="outline"
-              onPress={() => {
-                setIsCustomizeDialogOpen(false);
-              }}
-            >
-              Close
-            </Button>
-          </DialogFooter>
-        </Dialog>
-      </Modal>
-    </div>
-  );
-};
-
-NestedDialogs.parameters = {
-  docs: {
-    description: {
-      story:
-        'You can nest dialogs within one another normally. Nested Dialog style is inspired by <a href="https://base-ui.com/react/components/dialog#close-confirmation" target="_blank">**BaseUI**</a> and <a href="https://share.cleanshot.com/n7vy5RsH" target="_blank">**Clerk**</a>.',
-    },
-  },
-};
-
 export const CloseConfirmation = () => {
   const [isEditDialogOpen, setIsEditDialogOpen] = React.useState(false);
   const [isConfirmationDialogOpen, setIsConfirmationDialogOpen] =
@@ -229,6 +159,7 @@ export const CloseConfirmation = () => {
       <Modal
         size="md"
         isOpen={isEditDialogOpen}
+        placement="top"
         isDismissable
         onOpenChange={() => {
           if (post !== '') {
@@ -241,7 +172,7 @@ export const CloseConfirmation = () => {
         <Dialog>
           <DialogHeader>New Tweet</DialogHeader>
 
-          <DialogBody className='py-1'>
+          <DialogBody className="py-1">
             <TextField
               autoFocus
               value={post}
@@ -284,6 +215,7 @@ export const CloseConfirmation = () => {
               Go back
             </Button>
             <Button
+              color="destructive"
               onPress={() => {
                 setIsConfirmationDialogOpen(false);
                 setIsEditDialogOpen(false);
@@ -320,10 +252,6 @@ export const NestedLargeDialogs = () => {
 
       <Modal
         placement="top"
-        classNames={{
-          modalOverlay:
-            '[&:has(~[data-ui=modal-overlay]:not([data-exiting]))>[data-ui=modal]]:-translate-y-10 sm:[&:has(~[data-ui=modal-overlay]:not([data-exiting]))>[data-ui=modal]]:-translate-y-8',
-        }}
         isOpen={isInviteDialogOpen}
         isDismissable
         size="md"

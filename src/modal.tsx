@@ -52,7 +52,6 @@ export function Modal({ classNames, ...props }: ModalProps) {
         'fixed left-0 top-0 isolate z-20',
         'h-[--visual-viewport-height] w-full',
         'bg-zinc-950/25 dark:bg-zinc-950/50',
-        'flex',
         'text-center',
         'data-[entering]:animate-in',
         'data-[entering]:fade-in',
@@ -64,38 +63,26 @@ export function Modal({ classNames, ...props }: ModalProps) {
         'data-[exiting]:ease-in',
 
         drawer
-          ? [
-              'items-start',
-              'p-2 [--visual-viewport-vertical-padding:16px]',
-              '[&:has([data-placement=right])]:justify-end',
-            ]
+          ? 'flex items-start p-2 [--visual-viewport-vertical-padding:16px] [&:has([data-placement=right])]:justify-end'
           : [
-              'justify-center',
+              'grid justify-items-center',
+              placement === 'center'
+                ? 'grid-rows-[1fr_auto_1fr] p-4 [--visual-viewport-vertical-padding:32px]'
+                : [
+                    // Default alert dialog style
+                    '[&:has([role=alertdialog])]:grid-rows-[1fr_auto_1fr] sm:[&:has([role=alertdialog])]:grid-rows-[1fr_auto_3fr]',
+                    '[&:has([role=alertdialog])]:p-4 [&:has([role=alertdialog])]:[--visual-viewport-vertical-padding:32px]',
 
-              placement === 'top'
-                ? [
-                    'items-start',
-                    'pt-16',
-                    'pb-4',
-                    '[--visual-viewport-vertical-padding:80px]',
-                  ]
-                : placement === 'center'
-                  ? [
-                      'items-center',
-                      'p-4',
-                      '[--visual-viewport-vertical-padding:32px]',
-                    ]
-                  : [
-                      // Default modal style
-                      'items-center',
-                      '[&:has([role=dialog])]:items-end',
-                      '[&:has([role=dialog])]:pt-4',
-                      '[&:has([role=dialog])]:[--visual-viewport-vertical-padding:16px]',
-
-                      'sm:[&:has([role=dialog])]:items-center',
-                      'sm:[&:has([role=dialog])]:p-4',
-                      'sm:[&:has([role=dialog])]:[--visual-viewport-vertical-padding:32px]',
-                    ],
+                    // Default dialog style
+                    placement === 'top'
+                      ? 'grid-rows-[1fr_auto_3fr] [&:has([role=dialog])]:p-4 sm:[&:has([role=dialog])]:[--visual-viewport-vertical-padding:32px]'
+                      : [
+                          'grid-rows-[1fr_auto] sm:grid-rows-[1fr_auto_3fr]',
+                          '[&:has([role=dialog])]:pt-4 sm:[&:has([role=dialog])]:p-4',
+                          '[&:has([role=dialog])]:[--visual-viewport-vertical-padding:16px]',
+                          'sm:[&:has([role=dialog])]:[--visual-viewport-vertical-padding:32px]',
+                        ],
+                  ],
 
               /**
                * Style for stack dialogs
@@ -111,8 +98,6 @@ export function Modal({ classNames, ...props }: ModalProps) {
 
               // When the nested dialog is not closing
               '[&:has(~[data-ui=modal-overlay]:not([data-exiting]))>[data-ui=modal]]:scale-90',
-              '[&:has(~[data-ui=modal-overlay]:not([data-exiting]))>[data-ui=modal]]:translate-y-4',
-
               // Remove nested dialog overlay background and fade in effect
               '[&:has(~[data-ui=modal-overlay])~[data-ui=modal-overlay]]:bg-transparent',
               '[&:has(~[data-ui=modal-overlay])~[data-ui=modal-overlay]]:fade-in-100',
@@ -155,6 +140,7 @@ export function Modal({ classNames, ...props }: ModalProps) {
                 'data-[placement=right]:data-[exiting]:slide-out-to-right',
               ]
             : [
+                'row-start-2',
                 'rounded-lg',
                 'data-[entering]:zoom-in-95',
                 'data-[exiting]:zoom-out-95',
