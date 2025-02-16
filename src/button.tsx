@@ -73,72 +73,39 @@ const buttonStyle = ({
     variant: {
       base: 'group inline-flex gap-x-2 justify-center items-center font-semibold text-base/6 sm:text-sm/6 whitespace-nowrap',
       solid: [
-        'border border-black/10 dark:border-none dark:[--border-with:0px]',
-        'bg-[var(--btn-bg)]',
+        'border border-black/10 bg-[var(--btn-bg)] text-white shadow-[inset_0_1px_0_0_rgba(255,255,255,0.1)]',
         !isDisabled && 'hover:opacity-90',
-        'shadow-[inset_0_1px_0_0_rgba(255,255,255,0.1)]',
-        'text-white',
       ],
       outline: [
-        'border border-zinc-950/10 dark:border-white/15 border-b-zinc-950/15 dark:border-b-white/20',
+        'border border-zinc-950/10 dark:border-white/15 border-b-zinc-950/15 dark:border-b-white/20 text-[var(--btn-color)] shadow-sm',
         !isDisabled && 'hover:bg-zinc-50 dark:hover:bg-zinc-800',
-        'shadow-sm',
-        'text-[var(--btn-color)]',
       ],
       plain: [
-        '[--border-with:0px]',
-        !isDisabled && 'hover:bg-zinc-100 dark:hover:bg-zinc-800',
         'text-[var(--btn-color)]',
+        !isDisabled && 'hover:bg-zinc-100 dark:hover:bg-zinc-800',
       ],
     },
     size: {
+      base: '[&_svg[data-ui=icon]:not([class*=size-])]:size-[var(--icon-size)]',
       sm: {
-        button: [
-          'h-8 sm:h-7 text-sm/6 sm:text-xs/6 rounded-md',
-          'px-[calc(theme(spacing[3])-var(--border-with,1px))]',
-          'sm:px-[calc(theme(spacing[2.5])-var(--border-with,1px))]',
-          '[&_svg[data-ui=icon]:not([class*=size-])]:size-3',
-        ],
-        iconOnly: [
-          'size-8 sm:size-7 rounded-md',
-          '[&_svg[data-ui=icon]:not([class*=size-])]:size-5',
-          'sm:[&_svg[data-ui=icon]:not([class*=size-])]:size-4',
-        ],
+        base: '',
+        button:
+          'h-8 sm:h-7 [--icon-size:theme(size.3)] text-sm/6 sm:text-xs/6 px-3 sm:px-2.5',
+        iconOnly:
+          'size-8 sm:size-7 [--icon-size:theme(size.5)] sm:[--icon-size:theme(size.4)]',
       },
       md: {
         // H: 44px, sm:36px
-        button: [
-          'px-[calc(theme(spacing[3.5])-var(--border-with,1px))]',
-          'sm:px-[calc(theme(spacing[3])-var(--border-with,1px))]',
-          'py-[calc(theme(spacing[2.5])-var(--border-with,1px))]',
-          'sm:py-[calc(theme(spacing[1.5])-var(--border-with,1px))]',
-          '[&_svg[data-ui=icon]:not([class*=size-])]:size-5',
-          'sm:[&_svg[data-ui=icon]:not([class*=size-])]:size-4',
-        ],
-        iconOnly: [
-          'p-[calc(theme(spacing[2.5])-var(--border-with,1px))]',
-          'sm:p-[calc(theme(spacing[1.5])-var(--border-with,1px))]',
-
-          // 20+2x2=24px
-          '[&_svg[data-ui=icon]:not([class*=size-])]:size-5',
-          '[&_svg[data-ui=icon]]:m-0.5',
-
-          // 16+4x2=24px
-          'sm:[&_svg[data-ui=icon]:not([class*=size-])]:size-4',
-          'sm:[&_svg[data-ui=icon]]:m-1',
-        ],
+        base: '[--icon-size:theme(size.5)] sm:[--icon-size:theme(size.4)]',
+        button: 'px-3.5 sm:px-3 py-2.5 sm:py-1.5',
+        // make H: 44px, sm:36px
+        iconOnly:
+          'p-2.5 sm:p-1.5 [&_svg[data-ui=icon]]:m-0.5 sm:[&_svg[data-ui=icon]]:m-1',
       },
       lg: {
-        button: [
-          'px-[calc(theme(spacing[4])-var(--border-with,1px))]',
-          'py-[calc(theme(spacing[2.5])-var(--border-with,1px))]',
-          '[&_svg[data-ui=icon]:not([class*=size-])]:size-5',
-        ],
-        iconOnly: [
-          'p-[calc(theme(spacing[2.5])-var(--border-with,1px))]',
-          '[&_svg[data-ui=icon]:not([class*=size-])]:size-5',
-          '[&_svg[data-ui=icon]]:m-0.5',
-        ],
+        base: '[--icon-size:theme(size.5)]',
+        button: 'px-4 py-2.5',
+        iconOnly: 'p-2.5 [&_svg[data-ui=icon]]:m-0.5',
       },
     },
     color: {
@@ -148,13 +115,11 @@ const buttonStyle = ({
       success: '[--btn-color:theme(colors.success)]',
     },
     iconColor: {
+      base: '[&:not(:hover)_svg[data-ui=icon]:not([class*=text-])]:text-[var(--icon-color)]',
       button: {
-        solid:
-          '[&:not(:hover)_svg[data-ui=icon]:not([class*=text-])]:text-zinc-300',
-        outline:
-          '[&:not(:hover)_svg[data-ui=icon]:not([class*=text-])]:text-muted',
-        plain:
-          '[&:not(:hover)_svg[data-ui=icon]:not([class*=text-])]:text-muted',
+        solid: '[--icon-color:theme(colors.zinc.300)]',
+        outline: '[--icon-color:theme(colors.muted)]',
+        plain: '[--icon-color:theme(colors.muted)]',
       },
       iconOnly: {
         solid: '',
@@ -176,8 +141,11 @@ const buttonStyle = ({
     style.base,
     style.variant.base,
     style.variant[variant],
+    style.size.base,
+    style.size[buttonSize].base,
     style.size[buttonSize][buttonType],
     style.color[color ?? 'foreground'],
+    style.iconColor.base,
     style.iconColor[buttonType][variant],
     style.backgroundColor[color ?? 'accent'],
     !isCustomPending && isPending && 'text-transparent',
@@ -357,8 +325,6 @@ const buttonGroupStyle = ({
     base: [
       'group inline-flex w-max items-center',
       '[&>*:not(:first-child):not(:last-child)]:rounded-none',
-      'dark:[&>*[data-variant=solid]]:border-solid',
-      'dark:[&>*[data-variant=solid]]:[--border-with:1px]',
       '[&>*[data-variant=solid]:not(:first-child)]:border-s-black/15',
     ],
     horizontal: [
