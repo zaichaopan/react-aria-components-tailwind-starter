@@ -1317,7 +1317,7 @@ export function AccountMenuExample() {
           ></Avatar>
         </Button>
         <Popover placement="bottom end" className="p-1.5">
-          <Dialog className="outline-none" aria-label="account">
+          <Dialog className="outline-hidden" aria-label="account">
             <div className="mx-3 mt-2 flex items-center gap-2">
               <Avatar
                 alt="Marissa Whitaker"

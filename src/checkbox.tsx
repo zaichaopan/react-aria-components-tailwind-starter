@@ -44,7 +44,7 @@ export function Checkboxes({
         'flex flex-col',
         'group-data-[orientation=horizontal]:flex-row',
         'group-data-[orientation=horizontal]:flex-wrap',
-        '[&_label]:has-[[data-ui=description]]:font-medium',
+        'has-data-[ui=description]:[&_label]:font-medium',
         className,
       )}
       {...props}
@@ -63,10 +63,10 @@ export function CheckboxField({
         data-ui="field"
         className={twMerge(
           'group flex flex-col gap-y-1',
-          '[&_[data-ui=description]:not([class*=pe-])]:has-[label[data-label-placement=start]]:pe-16',
-          '[&_[data-ui=description]:not([class*=ps-])]:has-[label[data-label-placement=end]]:ps-7',
-          '[&_label]:has-[[data-ui=description]]:font-medium',
-          '[&_[data-ui=description]]:has-[label[data-disabled]]:opacity-50',
+          'has-[label[data-label-placement=start]]:[&_[data-ui=description]:not([class*=pe-])]:pe-16',
+          'has-[label[data-label-placement=end]]:[&_[data-ui=description]:not([class*=ps-])]:ps-7',
+          'has-data-[ui=description]:[&_label]:font-medium',
+          'has-[label[data-disabled]]:**:data-[ui=description]:opacity-50',
           className,
         )}
       />
@@ -137,7 +137,7 @@ export function Checkbox(props: CheckboxProps | CustomRenderCheckboxProps) {
           <>
             <div
               className={twMerge([
-                'flex shrink-0 items-center justify-center rounded',
+                'flex shrink-0 items-center justify-center rounded-sm',
                 'size-[1.125rem] sm:size-4',
                 'border border-zinc-400/75 dark:border-[1.5px] dark:border-zinc-600',
                 labelPlacement === 'end' ? 'me-3' : 'ms-3',

@@ -59,7 +59,7 @@ export function Calendar<T extends DateValue>({
                     },
                   ) => {
                     return twMerge(
-                      'relative flex size-9 cursor-default items-center justify-center rounded-md text-[0.85rem] outline-none',
+                      'relative flex size-9 cursor-default items-center justify-center rounded-md text-[0.85rem] outline-hidden',
                       isToday(date, getLocalTimeZone()) && [
                         'bg-zinc-100 dark:bg-zinc-700',
                       ],

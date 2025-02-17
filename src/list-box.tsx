@@ -37,7 +37,7 @@ export function ListBox<T extends object>(props: ListBoxProps<T>) {
     <RACListBox
       {...props}
       ref={ref}
-      className={composeTailwindRenderProps(props.className, ['outline-none'])}
+      className={composeTailwindRenderProps(props.className, ['outline-hidden'])}
     />
   );
 }

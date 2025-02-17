@@ -45,7 +45,7 @@ export function RangeCalendar<T extends DateValue>({
                   { isSelected, isSelectionStart, isSelectionEnd, isInvalid },
                 ) => {
                   return twMerge(
-                    'group size-9 cursor-default text-[0.85rem] outline-none',
+                    'group size-9 cursor-default text-[0.85rem] outline-hidden',
                     isToday(date, getLocalTimeZone()) && [
                       isSelected ? 'rounded-none' : 'rounded-md',
                       'bg-zinc-100 dark:bg-zinc-700',

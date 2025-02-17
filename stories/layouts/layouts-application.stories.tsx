@@ -226,7 +226,7 @@ function SidebarButton({
       className={composeRenderProps(props.className, (className) => {
         return twMerge(
           'group flex w-9 items-center gap-x-2.5 p-2 sm:text-sm/6',
-          'hover:bg-accent hover:text-white [&:not(:hover)>[data-ui=icon]]:text-muted [&>[data-ui=icon]]:size-5',
+          'hover:bg-accent hover:text-white [&:not(:hover)>[data-ui=icon]]:text-muted *:data-[ui=icon]:size-5',
           className,
         );
       })}

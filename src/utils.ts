@@ -55,7 +55,7 @@ export const selectBoxIndicator = [
   'after:border-muted',
   'hover:after:border-foreground',
   "after:content-['']",
-  'after:size-[8px] after:sm:size-[6.5px]',
+  'after:size-[8px] sm:after:size-[6.5px]',
   'after:border-b-[1.5px] after:border-r-[1.5px]',
   'after:bottom-[55%] after:end-2.5 after:-translate-x-1/2 after:translate-y-1/2 after:rotate-45 rtl:after:translate-x-1.5',
 ].join(' ');

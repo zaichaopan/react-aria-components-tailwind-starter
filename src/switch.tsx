@@ -33,7 +33,7 @@ export function Switches({
       className={twMerge(
         'flex flex-col',
         // When any switch item has description, apply all `font-medium` to all switch item labels
-        '[&_label]:has-[[data-ui=description]]:font-medium',
+        'has-data-[ui=description]:[&_label]:font-medium',
         className,
       )}
     />
@@ -51,10 +51,10 @@ export function SwitchField({
         data-ui="field"
         className={twMerge(
           'group flex flex-col gap-y-1',
-          '[&_[data-ui=description]:not([class*=pe-])]:has-[label[data-label-placement=start]]:pe-[calc(theme(width.8)+16px)]',
-          '[&_[data-ui=description]:not([class*=ps-])]:has-[label[data-label-placement=end]]:ps-[calc(theme(width.8)+12px)]',
-          '[&_label]:has-[[data-ui=description]]:font-medium',
-          '[&_[data-ui=description]]:has-[label[data-disabled]]:opacity-50',
+          'has-[label[data-label-placement=start]]:[&_[data-ui=description]:not([class*=pe-])]:pe-[calc(theme(width.8)+16px)]',
+          'has-[label[data-label-placement=end]]:[&_[data-ui=description]:not([class*=ps-])]:ps-[calc(theme(width.8)+12px)]',
+          'has-data-[ui=description]:[&_label]:font-medium',
+          'has-[label[data-disabled]]:**:data-[ui=description]:opacity-50',
           className,
         )}
       />

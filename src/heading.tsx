@@ -37,7 +37,7 @@ export const Heading = React.forwardRef<
             ref={ref}
             {...(autoFocus && { tabIndex: -1 })}
             className={twMerge(
-              [displayLevels[displayLevel], 'outline-none'],
+              [displayLevels[displayLevel], 'outline-hidden'],
               className,
             )}
           />
@@ -64,7 +64,7 @@ export const Heading = React.forwardRef<
           level={level}
           {...(autoFocus && { tabIndex: -1 })}
           className={twMerge(
-            [displayLevels[displayLevel ?? level], 'outline-none'],
+            [displayLevels[displayLevel ?? level], 'outline-hidden'],
             className,
           )}
         />

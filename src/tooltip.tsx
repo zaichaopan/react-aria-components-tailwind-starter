@@ -20,7 +20,7 @@ export function Tooltip({ children, ...props }: TooltipProps) {
       className={composeTailwindRenderProps(props.className, [
         'group max-w-64 rounded-md px-3 py-1.5',
         'text-wrap text-pretty',
-        'shadow-xs dark:border dark:shadow-none',
+        'shadow-2xs dark:border dark:shadow-none',
         React.Children.toArray(children).every(
           (child) => typeof child === 'string',
         )

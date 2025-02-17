@@ -55,9 +55,9 @@ export function MenuPopover({ className, ...props }: PopoverProps) {
           'dark:ring-zinc-700',
           'max-w-72',
           'rounded-md',
-          'min-w-[max(theme(spacing[36]),var(--trigger-width))]',
-          'has-[[data-ui=content]_[data-ui=icon]]:min-w-[max(theme(spacing[48]),var(--trigger-width))]',
-          'has-[[data-ui=content]_kbd]:min-w-[max(theme(spacing[11]),var(--trigger-width))]',
+          'min-w-[max(--spacing(36),var(--trigger-width))]',
+          'has-[[data-ui=content]_[data-ui=icon]]:min-w-[max(--spacing(48),var(--trigger-width))]',
+          'has-[[data-ui=content]_kbd]:min-w-[max(--spacing(11),var(--trigger-width))]',
         ),
       )}
     />
@@ -77,7 +77,7 @@ export function Menu<T extends object>({
       {...props}
       data-selected-icon-placement={selectedIconPlacement}
       className={twMerge(
-        'max-h-[inherit] overflow-auto outline-none',
+        'max-h-[inherit] overflow-auto outline-hidden',
         'flex flex-col',
         'p-1 has-[header]:pt-0',
 
@@ -88,11 +88,11 @@ export function Menu<T extends object>({
           '[&:has(:is([role=menuitemradio],[role=menuitemcheckbox]))_:is(header,[role=menuitem])]:ps-7',
 
         // Menu item content
-        '[&_[data-ui=content]]:flex-1',
-        '[&_[data-ui=content]]:grid',
-        '[&_[data-ui=content]:has([data-ui=label])]:grid-cols-[theme(spacing[4])_1fr_minmax(theme(spacing[12]),max-content)]',
-        '[&_[data-ui=content]]:items-center',
-        '[&_[data-ui=content]]:gap-x-2',
+        '**:data-[ui=content]:flex-1',
+        '**:data-[ui=content]:grid',
+        '[&_[data-ui=content]:has([data-ui=label])]:grid-cols-[--spacing(4)_1fr_minmax(--spacing(12),max-content)]',
+        '**:data-[ui=content]:items-center',
+        '**:data-[ui=content]:gap-x-2',
 
         // Icon
         '[&_[data-ui=content]:not(:hover)>[data-ui=icon]:not([class*=text-])]:text-muted',
@@ -102,20 +102,20 @@ export function Menu<T extends object>({
         '[&_[data-ui=content]>[data-ui=icon]:first-child]:col-start-1',
 
         // Label
-        '[&_[data-ui=label]]:col-span-full',
+        '**:data-[ui=label]:col-span-full',
         '[&:has([data-ui=icon]+[data-ui=label])_[data-ui=label]]:col-start-2',
         '[&:has([data-ui=kbd])_[data-ui=label]]:-col-end-2',
         '[&:has([data-ui=icon]+[data-ui=label])_[data-ui=content]:not(:has(>[data-ui=label]))]:ps-6',
 
         // Kbd
-        '[&_[data-ui=kbd]]:col-span-1',
-        '[&_[data-ui=kbd]]:row-start-1',
-        '[&_[data-ui=kbd]]:col-start-3',
-        '[&_[data-ui=kbd]]:justify-self-end',
+        '**:data-[ui=kbd]:col-span-1',
+        '**:data-[ui=kbd]:row-start-1',
+        '**:data-[ui=kbd]:col-start-3',
+        '**:data-[ui=kbd]:justify-self-end',
         '[&_[data-destructive]>[data-ui=kbd]]:text-destructive',
 
         // Description
-        '[&_[data-ui=description]]:col-span-full',
+        '**:data-[ui=description]:col-span-full',
         '[&:has([data-ui=kbd])_[data-ui=description]]:-col-end-2',
         '[&:has([data-ui=icon]+[data-ui=label])_[data-ui=description]]:col-start-2',
         props.className,
@@ -134,7 +134,7 @@ export function MenuSeparator({ className }: { className?: string }) {
   return (
     <Separator
       className={twMerge(
-        'my-1 w-[calc(100%-theme(spacing[4]))] self-center border-t border-zinc-950/5 dark:border-white/10',
+        'my-1 w-[calc(100%-(--spacing(4)))] self-center border-t border-zinc-950/5 dark:border-white/10',
         className,
       )}
     />
@@ -158,7 +158,7 @@ export function MenuItem({ destructive, ...props }: MenuItemProps) {
         props.className,
         (className, { isFocused, isDisabled }) => {
           return twMerge([
-            'group rounded outline-none',
+            'group rounded-sm outline-hidden',
             'flex items-center gap-x-1.5',
             'px-2 py-2.5 sm:py-1.5',
             'text-base/6 sm:text-sm/6',
@@ -179,7 +179,7 @@ export function MenuItem({ destructive, ...props }: MenuItemProps) {
                 data-ui="icon"
                 className={twMerge(
                   'flex w-4 self-start',
-                  '[[data-selected-icon-placement=end]_&]:hidden',
+                  'in-data-[selected-icon-placement=end]:hidden',
                   isSelected && 'mt-1',
                 )}
               >
@@ -198,7 +198,7 @@ export function MenuItem({ destructive, ...props }: MenuItemProps) {
                 data-ui="icon"
                 className={twMerge(
                   'flex w-4 self-start',
-                  '[[data-selected-icon-placement=start]_&]:hidden',
+                  'in-data-[selected-icon-placement=start]:hidden',
                   isSelected && 'mt-1',
                 )}
               >
@@ -207,7 +207,7 @@ export function MenuItem({ destructive, ...props }: MenuItemProps) {
             )}
 
             {/* Submenu indicator */}
-            <ChevronRightIcon className="hidden size-4 text-muted group-data-[has-submenu]:inline-block" />
+            <ChevronRightIcon className="hidden size-4 text-muted group-data-has-submenu:inline-block" />
           </>
         ),
       )}
@@ -255,9 +255,9 @@ export function MenuSection<T extends object>({
     <RACMenuSection
       {...props}
       className={twMerge(
-        '[&:not(:first-child)]:mt-1.5',
-        '[&:not(:first-child)]:border-t',
-        '[&:not(:first-child)]:border-t-border/40',
+        'not-first:mt-1.5',
+        'not-first:border-t',
+        'not-first:border-t-border/40',
         className,
       )}
     >

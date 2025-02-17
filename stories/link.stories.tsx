@@ -53,7 +53,7 @@ export const LinkWithIcons = () => {
 
 export function NavLinks() {
   return (
-    <nav className="flex w-16 flex-col gap-4 rounded border border-border p-3">
+    <nav className="flex w-16 flex-col gap-4 rounded-sm border border-border p-3">
       <Link
         className="group flex-col p-2 hover:no-underline"
         aria-label="Chat - 6 new messages"

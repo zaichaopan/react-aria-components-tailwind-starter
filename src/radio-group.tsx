@@ -33,7 +33,7 @@ export function Radios({
         'group-aria-[orientation=horizontal]:flex-row',
         'group-aria-[orientation=horizontal]:flex-wrap',
         // When any radio item has description, apply all `font-medium` to all radio item labels
-        '[&_label]:has-[[data-ui=description]]:font-medium',
+        'has-data-[ui=description]:[&_label]:font-medium',
         className,
       )}
       {...props}
@@ -52,10 +52,10 @@ export function RadioField({
         data-ui="field"
         className={twMerge(
           'group flex flex-col gap-y-1',
-          '[&_label]:has-[[data-label-placement=start]]:justify-between',
-          '[&_[data-ui=description]:not([class*=pe-])]:has-[label[data-label-placement=start]]:pe-16',
-          '[&_[data-ui=description]:not([class*=ps-])]:has-[label[data-label-placement=end]]:ps-7',
-          '[&_[data-ui=description]]:has-[label[data-disabled]]:opacity-50',
+          'has-data-[label-placement=start]:[&_label]:justify-between',
+          'has-[label[data-label-placement=start]]:[&_[data-ui=description]:not([class*=pe-])]:pe-16',
+          'has-[label[data-label-placement=end]]:[&_[data-ui=description]:not([class*=ps-])]:ps-7',
+          'has-[label[data-disabled]]:**:data-[ui=description]:opacity-50',
           className,
         )}
       />

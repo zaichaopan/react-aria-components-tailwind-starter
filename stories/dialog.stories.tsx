@@ -514,7 +514,7 @@ export const DialogHeaderWithNonTextContent = () => {
       <Modal size="xs">
         <Dialog>
           <DialogHeader className="flex-col">
-            <div className="mb-3 max-w-max self-center rounded-full border border-border/50 p-3 shadow-sm">
+            <div className="mb-3 max-w-max self-center rounded-full border border-border/50 p-3 shadow-xs">
               <Icon>
                 <FingerprintIcon />
               </Icon>

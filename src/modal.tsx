@@ -50,17 +50,17 @@ export function Modal({ classNames, ...props }: ModalProps) {
       data-ui="modal-overlay"
       className={composeTailwindRenderProps(classNames?.modalOverlay, [
         'fixed left-0 top-0 isolate z-20',
-        'h-[--visual-viewport-height] w-full',
+        'h-(--visual-viewport-height) w-full',
         'bg-zinc-950/25 dark:bg-zinc-950/50',
         'text-center',
-        'data-[entering]:animate-in',
-        'data-[entering]:fade-in',
-        'data-[entering]:duration-300',
-        'data-[entering]:ease-out',
-        'data-[exiting]:animate-out',
-        'data-[exiting]:fade-out',
-        'data-[exiting]:duration-200',
-        'data-[exiting]:ease-in',
+        'data-entering:animate-in',
+        'data-entering:fade-in',
+        'data-entering:duration-300',
+        'data-entering:ease-out',
+        'data-exiting:animate-out',
+        'data-exiting:fade-out',
+        'data-exiting:duration-200',
+        'data-exiting:ease-in',
 
         drawer
           ? 'flex items-start p-2 [--visual-viewport-vertical-padding:16px] [&:has([data-placement=right])]:justify-end'
@@ -123,47 +123,47 @@ export function Modal({ classNames, ...props }: ModalProps) {
             ? sizes[props.size]
             : 'sm:has-[[role=alertdialog]]:max-w-md sm:has-[[role=dialog]]:max-w-lg',
 
-          'data-[entering]:animate-in',
-          'data-[entering]:ease-out',
-          'data-[entering]:duration-200',
-          'data-[exiting]:animate-out',
-          'data-[exiting]:ease-in',
-          'data-[exiting]:duration-200',
+          'data-entering:animate-in',
+          'data-entering:ease-out',
+          'data-entering:duration-200',
+          'data-exiting:animate-out',
+          'data-exiting:ease-in',
+          'data-exiting:duration-200',
 
           drawer
             ? [
                 'h-full',
                 'rounded-lg',
-                'data-[placement=left]:data-[entering]:slide-in-from-left',
-                'data-[placement=right]:data-[entering]:slide-in-from-right',
-                'data-[placement=left]:data-[exiting]:slide-out-to-left',
-                'data-[placement=right]:data-[exiting]:slide-out-to-right',
+                'data-[placement=left]:data-entering:slide-in-from-left',
+                'data-[placement=right]:data-entering:slide-in-from-right',
+                'data-[placement=left]:data-exiting:slide-out-to-left',
+                'data-[placement=right]:data-exiting:slide-out-to-right',
               ]
             : [
                 'row-start-2',
                 'rounded-lg',
-                'data-[entering]:zoom-in-95',
-                'data-[exiting]:zoom-out-95',
+                'data-entering:zoom-in-95',
+                'data-exiting:zoom-out-95',
 
                 // Handle layout shift when toggling scroll lock
                 props.size !== 'fullWidth' &&
-                  'sm:data-[exiting]:-me-[var(--scrollbar-width)]',
-                'sm:data-[exiting]:duration-0',
+                  'sm:data-exiting:-me-(--scrollbar-width)',
+                'sm:data-exiting:duration-0',
 
                 !placement && [
                   'has-[[role=dialog]]:rounded-t-lg',
                   'has-[[role=dialog]]:rounded-b-none',
                   'sm:has-[[role=dialog]]:rounded-lg',
 
-                  'has-[[role=dialog]]:data-[entering]:zoom-in-100',
-                  'has-[[role=dialog]]:data-[entering]:slide-in-from-bottom',
-                  'sm:has-[[role=dialog]]:data-[entering]:zoom-in-95',
-                  'sm:has-[[role=dialog]]:data-[entering]:slide-in-from-bottom-0',
+                  'has-[[role=dialog]]:data-entering:zoom-in-100',
+                  'has-[[role=dialog]]:data-entering:slide-in-from-bottom',
+                  'sm:has-[[role=dialog]]:data-entering:zoom-in-95',
+                  'sm:has-[[role=dialog]]:data-entering:slide-in-from-bottom-0',
 
-                  'has-[[role=dialog]]:data-[exiting]:zoom-out-100',
-                  'has-[[role=dialog]]:data-[exiting]:slide-out-to-bottom',
-                  'sm:has-[[role=dialog]]:data-[exiting]:zoom-out-95',
-                  'sm:has-[[role=dialog]]:data-[exiting]:slide-out-to-bottom-0',
+                  'has-[[role=dialog]]:data-exiting:zoom-out-100',
+                  'has-[[role=dialog]]:data-exiting:slide-out-to-bottom',
+                  'sm:has-[[role=dialog]]:data-exiting:zoom-out-95',
+                  'sm:has-[[role=dialog]]:data-exiting:slide-out-to-bottom-0',
                 ],
               ],
         ])}

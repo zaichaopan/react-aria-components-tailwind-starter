@@ -47,7 +47,7 @@ export const BasicExample = () => {
       <TextField>
         <Label>Email</Label>
         <div className="group grid grid-cols-[auto_1fr]">
-          <span className="col-start-1 row-start-1 grid place-content-center px-3 group-has-[:autofill]:z-10">
+          <span className="col-start-1 row-start-1 grid place-content-center px-3 group-has-autofill:z-10">
             <Icon className="size-5 text-muted/90 sm:size-4">
               <MailIcon />
             </Icon>
@@ -64,7 +64,7 @@ export const BasicExample = () => {
       <TextField>
         <Label>Company website</Label>
         <div className="group grid grid-cols-[auto_1fr]">
-          <span className="col-start-1 row-start-1 grid place-content-center ps-2.5 text-base/6 text-foreground group-has-[:autofill]:z-10 sm:text-sm/6">
+          <span className="col-start-1 row-start-1 grid place-content-center ps-2.5 text-base/6 text-foreground group-has-autofill:z-10 sm:text-sm/6">
             https://
           </span>
           <Input
@@ -111,7 +111,7 @@ export const BasicExample = () => {
       <TextField>
         <Label>Price</Label>
         <div className="group grid grid-cols-[auto_1fr_auto]">
-          <span className="col-start-1 row-start-1 grid place-content-center px-3 text-base/6 text-muted group-has-[:autofill]:z-10 sm:text-sm/6">
+          <span className="col-start-1 row-start-1 grid place-content-center px-3 text-base/6 text-muted group-has-autofill:z-10 sm:text-sm/6">
             €
           </span>
 
@@ -178,7 +178,7 @@ export const InputWithNativeSelect = () => {
           <TextField className="flex-1">
             <Label className="sr-only">Price</Label>
             <div className="group grid grid-cols-[auto_1fr]">
-              <span className="col-start-1 row-start-1 grid place-content-center px-3 text-base/6 text-muted group-has-[:autofill]:z-10 sm:text-sm/6">
+              <span className="col-start-1 row-start-1 grid place-content-center px-3 text-base/6 text-muted group-has-autofill:z-10 sm:text-sm/6">
                 $
               </span>
 
@@ -347,7 +347,7 @@ export const InputWithButton = () => {
         <TextField className="flex-1">
           <Label className="sr-only">Email</Label>
           <div className="group grid grid-cols-[auto_1fr]">
-            <span className="col-start-1 row-start-1 grid place-content-center px-3 group-has-[:autofill]:z-10">
+            <span className="col-start-1 row-start-1 grid place-content-center px-3 group-has-autofill:z-10">
               <Icon className="size-5 text-muted/90 sm:size-4">
                 <MailIcon />
               </Icon>
@@ -388,7 +388,7 @@ export const InputWithButton = () => {
         <TextField className="flex-1">
           <Label>Search</Label>
           <div className="group grid grid-cols-[auto_1fr_auto]">
-            <span className="col-start-1 row-start-1 grid place-content-center px-3 group-has-[:autofill]:z-10">
+            <span className="col-start-1 row-start-1 grid place-content-center px-3 group-has-autofill:z-10">
               <Icon className="size-5 text-muted/90 sm:size-4">
                 <MailIcon />
               </Icon>

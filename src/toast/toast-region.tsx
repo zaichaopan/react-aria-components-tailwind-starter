@@ -64,7 +64,7 @@ function ToastRegion({ state, ...props }: ToastRegionProps) {
       {...regionProps}
       ref={ref}
       className={twMerge(
-        'toast-region fixed isolate z-20 flex flex-col gap-2 outline-none',
+        'toast-region fixed isolate z-20 flex flex-col gap-2 outline-hidden',
         className,
       )}
     >
@@ -130,8 +130,8 @@ function Toast({ state, ...props }: ToastProps) {
       {...toastProps}
       ref={ref}
       className={twMerge(
-        'relative isolate flex w-[min(85vw,360px)] space-x-1 rounded-lg shadow-sm transition',
-        'flex flex-1 rounded-ld bg-zinc-900 outline-none',
+        'relative isolate flex w-[min(85vw,360px)] space-x-1 rounded-lg shadow-xs transition',
+        'flex flex-1 rounded-ld bg-zinc-900 outline-hidden',
         type ? 'px-2.5' : 'px-4',
         'py-2.5',
         !props.toast.content.render &&
@@ -195,7 +195,7 @@ function Toast({ state, ...props }: ToastProps) {
               isIconOnly
               variant="plain"
               {...closeButtonProps}
-              className="p rounded text-zinc-400 hover:bg-transparent hover:text-zinc-50"
+              className="p rounded-sm text-zinc-400 hover:bg-transparent hover:text-zinc-50"
             >
               <XIcon aria-label="Close" />
             </Button>

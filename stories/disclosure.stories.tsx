@@ -68,7 +68,7 @@ export const DisclosureWithToggleIcon = () => {
         <DisclosureControl className="gap-x-2">
           What is web accessibility?
           <ChevronDown
-            className="h-5 w-5 text-muted transition-all group-aria-[expanded=true]:rotate-180"
+            className="h-5 w-5 text-muted transition-all group-aria-expanded:rotate-180"
             strokeWidth={1.5}
           />
         </DisclosureControl>

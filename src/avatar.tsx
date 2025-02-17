@@ -115,10 +115,10 @@ export const AvatarBadge = ({ badge, ...props }: AvatarBadgeProps) => {
         '@[32px]:size-2/5 @[40px]:size-1/3 @[64px]:size-1/4 @[128px]:size-1/5',
         'z-1 absolute bottom-0 end-0 z-10 rounded-full border-2 border-background bg-background',
         'translate-x-[15%] translate-y-[20%]',
-        '[.rounded-full_&]:translate-x-[35%] [.rounded-full_&]:translate-y-[5%] rtl:[.rounded-full_&]:translate-y-[45%]',
-        '@[40px]:[.rounded-full_&]:translate-x-[15%]',
-        '@[64px]:[.rounded-full_&]:-translate-x-[5%] @[64px]:[.rounded-full_&]:-translate-y-[10%]',
-        '@[128px]:[.rounded-full_&]:translate-x-[-20%]',
+        'in-[.rounded-full]:translate-x-[35%] in-[.rounded-full]:translate-y-[5%] in-[.rounded-full]:rtl:translate-y-[45%]',
+        '@-[40px]:in-[.rounded-full]:translate-x-[15%]',
+        '@-[64px]:in-[.rounded-full]:-translate-x-[5%] @-[64px]:in-[.rounded-full]:-translate-y-[10%]',
+        '@-[128px]:in-[.rounded-full]:translate-x-[-20%]',
         props.className,
       ])}
     >

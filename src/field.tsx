@@ -163,8 +163,8 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
           props.className,
           (className, renderProps) =>
             twMerge(
-              'w-full rounded-md border bg-inherit outline-none',
-              'px-3 py-[calc(theme(spacing[2.5])-1px)] sm:py-[calc(theme(spacing[1.5])-1px)]',
+              'w-full rounded-md border bg-inherit outline-hidden',
+              'px-3 py-[calc(--spacing(2.5)-1px)] sm:py-[calc(--spacing(1.5)-1px)]',
               'text-base/6 placeholder:text-muted sm:text-sm/6',
               renderProps.isDisabled && 'opacity-50',
               renderProps.isInvalid && 'border-destructive',
@@ -185,7 +185,7 @@ export function TextArea(props: RACTextAreaProps) {
       {...props}
       className={composeRenderProps(props.className, (className, renderProps) =>
         twMerge(
-          'w-full rounded-md border bg-inherit px-3 py-1 outline-none',
+          'w-full rounded-md border bg-inherit px-3 py-1 outline-hidden',
           'text-base/6 placeholder:text-muted sm:text-sm/6',
           renderProps.isDisabled && 'opacity-50',
           renderProps.isInvalid && 'border-destructive',

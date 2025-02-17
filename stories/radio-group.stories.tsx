@@ -726,7 +726,7 @@ function ThemeOptions() {
             <div className="relative isolate grid place-items-center gap-2">
               <div
                 className={twMerge(
-                  'grid aspect-[4/3] w-32 grid-cols-[12px_1fr] overflow-hidden rounded-md shadow',
+                  'grid aspect-4/3 w-32 grid-cols-[12px_1fr] overflow-hidden rounded-md shadow-sm',
                   'ring-transparent ring-offset-2 ring-offset-background',
                   isSelected && 'ring-2 ring-accent ring-offset-4',
                   isFocusVisible &&
@@ -761,7 +761,7 @@ function ThemeOptions() {
             <div className="relative isolate grid place-items-center gap-2">
               <div
                 className={twMerge(
-                  'grid aspect-[4/3] w-32 grid-cols-[12px_1fr] overflow-hidden rounded-md shadow',
+                  'grid aspect-4/3 w-32 grid-cols-[12px_1fr] overflow-hidden rounded-md shadow-sm',
                   'ring-transparent ring-offset-2 ring-offset-background',
                   isSelected && 'ring-2 ring-accent ring-offset-4',
                   isFocusVisible &&
@@ -796,7 +796,7 @@ function ThemeOptions() {
             <div className="relative isolate grid place-items-center gap-2">
               <div
                 className={twMerge(
-                  'grid aspect-[4/3] w-32 grid-cols-[12px_1fr_1fr] overflow-hidden rounded-md shadow',
+                  'grid aspect-4/3 w-32 grid-cols-[12px_1fr_1fr] overflow-hidden rounded-md shadow-sm',
                   'ring-transparent ring-offset-2 ring-offset-background',
                   isSelected && 'ring-2 ring-accent ring-offset-4',
                   isFocusVisible &&
@@ -884,7 +884,7 @@ function SwitchPlan() {
               'w-1/2',
               'top-0',
               'left-0',
-              'peer-data-[selected]/yearly:left-1/2',
+              'peer-data-selected/yearly:left-1/2',
               'transition-all',
               'ease-in-out',
             ].join(' ')}

@@ -174,7 +174,7 @@ export function OpenInDialog() {
         onOpenChange={setIsModalOpen}
         classNames={{
           modal:
-            'data-[entering]:duration-0 data-[exiting]:duration-0 self-start ring-0 sm:self-start bg-transparent dark:bg-transparent dark:ring-0',
+            'data-entering:duration-0 data-exiting:duration-0 self-start ring-0 sm:self-start bg-transparent dark:bg-transparent dark:ring-0',
         }}
       >
         <Dialog
@@ -210,7 +210,7 @@ export function OpenInDialog() {
             </ComboBoxGroup>
 
             <ComboBoxPopover
-              className="rounded-t-none border border-t-0 ring-0 data-[entering]:duration-0"
+              className="rounded-t-none border border-t-0 ring-0 data-entering:duration-0"
               offset={0}
               isOpen
             >
@@ -285,7 +285,7 @@ export function OpenInDialog() {
 function Extension() {
   return (
     <svg
-      className="size-4 rounded bg-green-500 p-0.5 text-white"
+      className="size-4 rounded-sm bg-green-500 p-0.5 text-white"
       viewBox="0 0 16 16"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
@@ -317,7 +317,7 @@ function Youtube() {
 function Clipboard() {
   return (
     <svg
-      className="size-4 rounded bg-red-500 p-0.5 text-white"
+      className="size-4 rounded-sm bg-red-500 p-0.5 text-white"
       viewBox="0 0 16 16"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"

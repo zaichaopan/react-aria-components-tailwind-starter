@@ -68,7 +68,7 @@ const tabList = {
     vertical: 'space-y-2',
   },
   segment: {
-    horizontal: 'p-1 rounded-lg bg-zinc-200/75 dark:bg-zinc-600/45 shadow-sm',
+    horizontal: 'p-1 rounded-lg bg-zinc-200/75 dark:bg-zinc-600/45 shadow-xs',
     vertical: '',
   },
 };
@@ -119,7 +119,7 @@ export function TabPanel(props: TabPanelProps) {
       {...props}
       className={composeRenderProps(props.className, (className) =>
         twMerge([
-          'flex-1 outline-none',
+          'flex-1 outline-hidden',
           tabPanel[variant][orientation],
           className,
         ]),
@@ -141,7 +141,7 @@ const tab = ({
 } & TabRenderProps) => {
   const style = {
     base: [
-      'outline-none relative flex items-center gap-x-3 rounded font-medium',
+      'outline-hidden relative flex items-center gap-x-3 rounded-sm font-medium',
       '[&>[data-ui=icon]:not([class*=size-])]:size-5',
       isDisabled && 'opacity-50',
       isSelected || isHovered ? 'text-foreground' : 'text-muted',
@@ -171,7 +171,7 @@ const tab = ({
       base: [
         'flex-1 justify-center px-6 py-1 [&>[data-ui=icon]:not([class*=size-])]:size-4',
         isSelected &&
-          'bg-background dark:bg-zinc-600 text-foreground shadow-xs rounded-md',
+          'bg-background dark:bg-zinc-600 text-foreground shadow-2xs rounded-md',
       ],
       horizontal: '',
       vertical: '',
