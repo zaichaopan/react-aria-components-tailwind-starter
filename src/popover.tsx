@@ -9,8 +9,6 @@ import { composeTailwindRenderProps } from './utils';
 
 export interface PopoverProps extends Omit<RACPopoverProps, 'children'> {
   children: React.ReactNode;
-  noEnteringAnimation?: boolean;
-  noExitingAnimation?: boolean;
 }
 
 export function Popover(props: PopoverProps) {
@@ -41,19 +39,9 @@ export function Popover(props: PopoverProps) {
         'data-entering:animate-in',
         'data-entering:ease-out',
         'data-entering:fade-in',
-        'data-[entering]:placement-left:slide-in-from-right-1',
-        'data-[entering]:placement-right:slide-in-from-left-1',
-        'data-[entering]:placement-top:slide-in-from-bottom-1',
-        'data-[entering]:placement-bottom:slide-in-from-top-1',
-        'data-entering:duration-50',
-
         'data-exiting:animate-out',
         'data-exiting:ease-in',
         'data-exiting:fade-out',
-        'data-[exiting]:placement-left:slide-out-to-right-1',
-        'data-[exiting]:placement-right:slide-out-to-left-1',
-        'data-[exiting]:placement-top:slide-out-to-bottom-1',
-        'data-[exiting]:placement-bottom:slide-out-to-top-1',
         'data-exiting:duration-50',
       ])}
     />

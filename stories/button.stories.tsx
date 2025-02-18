@@ -97,7 +97,12 @@ ButtonColors.parameters = {
 export const ButtonWithCustomBackgroundAndColor = () => {
   return (
     <div className="flex flex-col gap-5">
-      <Button className="bg-cyan-400 text-zinc-900">Save changes</Button>
+      <Button className="[--btn-bg:var(--color-cyan-400)]">
+        <Icon>
+          <CloudUploadIcon />
+        </Icon>
+        Save changes
+      </Button>
     </div>
   );
 };
@@ -106,7 +111,7 @@ ButtonWithCustomBackgroundAndColor.parameters = {
   docs: {
     description: {
       story:
-        'Use the **bg-**  and **text-** utility to set the custom button color.',
+        `- Use **[--btn-bg:var(your_custom_color)]**. Text and icon color will auto set based on the background using <a href="https://til.jakelazaroff.com/css/swap-between-black-and-white-text-based-on-background-color" target="_blank">https://til.jakelazaroff.com/css/swap-between-black-and-white-text-based-on-background-color.</a>\n- Use the **bg-**  and **text-** utility to set the custom button color.`,
     },
   },
 };
@@ -114,13 +119,9 @@ ButtonWithCustomBackgroundAndColor.parameters = {
 export const ButtonSizes = () => {
   return (
     <div className="flex items-end gap-3">
-      <Button size="lg" variant="outline">
-        Button
-      </Button>
-      <Button variant="outline">Button</Button>
-      <Button variant="outline" size="sm">
-        Button
-      </Button>
+      <Button size="lg">Button</Button>
+      <Button>Button</Button>
+      <Button size="sm">Button</Button>
     </div>
   );
 };
@@ -447,7 +448,7 @@ export const ToggleButtonWithIconAndTooltip = () => {
       size="lg"
       className="w-16 flex-col gap-y-0.5 text-xs"
     >
-      <Icon aria-label="Mute mic" className="size-6 text-foreground">
+      <Icon aria-label="Mute mic" className="text-foreground size-6">
         {isMicMuted ? (
           <MicOffIcon strokeWidth={1.5} />
         ) : (
@@ -747,7 +748,7 @@ export function ButtonCustomization() {
             <ThumbsUpIcon />
           </Icon>
           Like
-          <span className="border-l border-border/75 py-1 ps-2">86</span>
+          <span className="border-border/75 border-l py-1 ps-2">86</span>
         </Button>
       </div>
     </div>

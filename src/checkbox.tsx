@@ -137,15 +137,14 @@ export function Checkbox(props: CheckboxProps | CustomRenderCheckboxProps) {
           <>
             <div
               className={twMerge([
-                'flex shrink-0 items-center justify-center rounded-sm',
-                'size-[1.125rem] sm:size-4',
-                'border border-zinc-400/75 dark:border-[1.5px] dark:border-zinc-600',
+                'border border-[lch(from_var(--color-border)_calc(l*var(--contrast))_c_h)] [--contrast:0.9] dark:[--contrast:1.35]',
+                'flex size-[1.125rem] shrink-0 items-center justify-center rounded-sm sm:size-4',
                 labelPlacement === 'end' ? 'me-3' : 'ms-3',
                 renderProps.isReadOnly && 'opacity-50',
                 renderProps.isInvalid &&
                   'border-destructive dark:border-destructive',
                 (renderProps.isSelected || renderProps.isIndeterminate) &&
-                  'border border-accent bg-accent shadow-[inset_0_1px_0_0_rgba(255,255,255,0.1)] dark:border-0 dark:border-accent',
+                  'border-accent bg-accent',
                 renderProps.isFocusVisible &&
                   'outline-ring outline outline-2 outline-offset-2',
               ])}

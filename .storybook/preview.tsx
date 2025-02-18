@@ -1,6 +1,4 @@
 import '../src/theme/index.css';
-import '../src/theme/accents.css';
-import '../src/theme/initials.css';
 import './preview.css';
 import type { Preview } from '@storybook/react';
 import React from 'react';

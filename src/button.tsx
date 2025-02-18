@@ -72,11 +72,13 @@ const buttonStyle = ({
     variant: {
       base: 'group inline-flex gap-x-2 justify-center items-center font-semibold text-base/6 sm:text-sm/6 whitespace-nowrap',
       solid: [
-        'border border-black/10 bg-[var(--btn-bg)] text-white shadow-[inset_0_1px_0_0_rgba(255,255,255,0.1)]',
+        'border border-transparent bg-[var(--btn-bg)]',
+        '[--btn-color:lch(from_var(--btn-bg)_calc((49.44_-_l)_*_infinity)_0_0)]',
+        'text-[var(--btn-color)]',
         !isDisabled && 'hover:opacity-90',
       ],
       outline: [
-        'border border-zinc-950/10 dark:border-white/15 border-b-zinc-950/15 dark:border-b-white/20 text-[var(--btn-color)] shadow-xs',
+        'border border-border/80 text-[var(--btn-color)] shadow-xs',
         !isDisabled && 'hover:bg-zinc-50 dark:hover:bg-zinc-800',
       ],
       plain: [
@@ -114,7 +116,9 @@ const buttonStyle = ({
     },
     iconColor: {
       base: '[&:not(:hover)_svg[data-ui=icon]:not([class*=text-])]:text-[var(--icon-color)]',
-      solid: !isIconOnly && '[--icon-color:var(--color-zinc-300)]',
+      solid:
+        !isIconOnly &&
+        '[--icon-color:lch(from_var(--btn-color)_calc(0.85*l)_c_h)]',
       outline: !isIconOnly && '[--icon-color:var(--color-muted)]',
       plain: !isIconOnly && '[--icon-color:var(--color-muted)]',
     },
@@ -127,11 +131,11 @@ const buttonStyle = ({
 
   return [
     style.base,
+    style.color[color ?? 'foreground'],
     style.variant.base,
     style.variant[variant],
     style.size.base,
     style.size[size ?? 'md'],
-    style.color[color ?? 'foreground'],
     style.iconColor.base,
     style.iconColor[variant],
     style.backgroundColor[color ?? 'accent'],
@@ -306,14 +310,13 @@ const buttonGroupStyle = ({
     base: [
       'group inline-flex w-max items-center',
       '[&>*:not(:first-child):not(:last-child)]:rounded-none',
-      '[&>*[data-variant=solid]:not(:first-child)]:border-s-black/15',
+      '[&>*[data-variant=solid]:not(:first-child)]:border-s-[lch(from_var(--btn-bg)_calc(l*0.8)_c_h)]',
     ],
     horizontal: [
       '[&>*:first-child]:rounded-e-none',
       '[&>*:last-child]:rounded-s-none',
       '[&>*:not(:last-child)]:border-e-0',
-      inline &&
-        'shadow-xs [&>*:not(:first-child)]:border-s-0 *:shadow-none',
+      inline && 'shadow-xs [&>*:not(:first-child)]:border-s-0 *:shadow-none',
     ],
     vertical: [
       'flex-col',
@@ -321,8 +324,7 @@ const buttonGroupStyle = ({
       '[&>*:last-child]:rounded-t-none',
       '[&>*:not(:last-child)]:border-b-0',
 
-      inline &&
-        'shadow-xs [&>*:not(:first-child)]:border-t-0 *:shadow-none',
+      inline && 'shadow-xs [&>*:not(:first-child)]:border-t-0 *:shadow-none',
     ],
   };
 
