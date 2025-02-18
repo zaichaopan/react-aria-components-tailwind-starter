@@ -1,0 +1,133 @@
+import { Canvas, Meta } from '@storybook/blocks';
+ 
+import * as ButtonStories from './Button.stories';
+ 
+<Meta of={ButtonStories} />
+
+# Button
+ 
+A <a href="https://react-spectrum.adobe.com/react-aria/Button.html" target="_blank">**button**</a> allows a user to perform an action, with mouse, touch, and keyboard interactions.
+
+<Canvas of={ButtonStories.BasicExample} />
+
+## Button colors
+
+Use the `color` prop to set the button color. The default color is `accent`.
+
+<Canvas of={ButtonStories.ButtonColors} />
+
+
+### Custom background and color
+
+- Use `[--btn-bg:*]`. <a href="https://til.jakelazaroff.com/css/swap-between-black-and-white-text-based-on-background-color" target="_blank">**Text and icon color will be auto swapped based on the background**</a>.
+
+- Use the `bg-*` and `text-*` utility.
+
+<Canvas of={ButtonStories.CustomBackgroundAndColor} />
+
+## Button sizes
+
+Use the `size` prop to set the button size.
+
+<Canvas of={ButtonStories.ButtonSizes} />
+
+## Button variants
+
+Use the `variant` prop to set the button variant. The default variant is `solid`.
+
+<Canvas of={ButtonStories.ButtonVariants} />
+
+## Button with icons
+
+Use the <a href="./?path=/docs/icon--docs" target="_blank">**Icon**</a> component to place a decorative icon at the start or end of a button. The icon size is automatically scaled based on the button size.
+
+<Canvas of={ButtonStories.ButtonWithIcons} />
+
+## Icon only
+
+Use the `isIconOnly` prop to render an `icon-only` button. For non-decorative buttons, use the `aria-label` on the <a href="./?path=/docs/icon--docs" target="_blank">**Icon**</a> component. The icon size is automatically scaled based on the button size.
+
+<Canvas of={ButtonStories.IconOnlyButtons} />
+
+
+## Button with tooltip
+
+The `tooltip` prop accepts tooltip created by <a href="./?path=/docs/tooltip--docs" target="_blank">**Tooltip**</a> component.
+
+<Canvas of={ButtonStories.ButtonWithTooltip} />
+
+
+## Disabled state
+
+Use the `isDisabled` prop to disable buttons.
+
+<Canvas of={ButtonStories.DisabledState} />
+
+### Disabled button with tooltip
+
+The tooltip will not be displayed when the button is disabled to ensure accessibility. If you wan to allow tooltip on disabled button, use the `allowTooltipOnDisabled` prop.
+
+<Canvas of={ButtonStories.DisabledButtonAndTooltip} />
+
+
+## Pending state
+
+Use the `isPending` prop to render a loading spinner and the `pendingLabel` prop to provide an accessible loading status.
+
+<Canvas of={ButtonStories.PendingState} />
+
+## Custom spinner
+
+Use the `isCustomPending` prop if you need a custom pending ui.
+
+<Canvas of={ButtonStories.CustomPendingUI} />
+
+## Avatar buttons
+
+Use the <a href="./?path=/docs/avatar--docs" target="_blank">**Avatar**</a> component along with the `unstyle` prop on the `Button` component to render image buttons.
+
+<Canvas of={ButtonStories.AvatarButton} />
+
+## Button with badge
+
+<Canvas of={ButtonStories.ButtonWithBadge} />
+
+## Button as link
+
+Use the <a href="https://www.jacobparis.com/content/react-as-child" target="_blank">**asChild**</a> prop to render a completely different component, e.g., render the <a href="./?path=/docs/link--docs" target="_blank">**Link**</a> component with button styles.
+
+<Canvas of={ButtonStories.ButtonAsLink} />
+
+## Toggle button
+
+A <a href="https://react-spectrum.adobe.com/react-aria/ToggleButton.html#togglebutton" target="_blank">**toggle button**</a> allows a user to toggle a selection on or off, for example switching between two states or modes. Use the `isSelected` and `onChange` prop to control toggle state and behavior.
+
+<Canvas of={ButtonStories.ButtonToggle} />
+
+## Toggle button with tooltip
+
+<Canvas of={ButtonStories.ToggleButtonWithIconAndTooltip} />
+
+
+## Button groups
+
+Use the `ButtonGroup` and `Button` component to create button groups.
+
+<Canvas of={ButtonStories.ButtonGroups} />
+
+## Toggle button groups
+
+<Canvas of={ButtonStories.ToggleButtonGroups} />
+
+
+### Split buttons
+
+A common use case for the ButtonGroup component is to display a group of two buttons one for the selected value and another for the dropdown.
+
+<Canvas of={ButtonStories.SplitButtons} />
+
+### Button customizations
+
+Button style can be fully customized using TailwindCSS classes.
+
+<Canvas of={ButtonStories.ButtonCustomization} />

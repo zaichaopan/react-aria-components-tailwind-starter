@@ -1,0 +1,23 @@
+import { Meta, Canvas } from '@storybook/addon-docs/blocks';
+
+import * as DisclosureStories from './Disclosure.stories';
+
+<Meta of={DisclosureStories} />
+
+# Disclosure
+
+A <a href="https://react-spectrum.adobe.com/react-aria/Disclosure.html" target="_blank">**disclosure**</a>  is a collapsible section of content. It is composed of a a header with a heading and trigger button, and a panel that contains the content.
+
+<Canvas of={DisclosureStories.BasicExample} />
+
+## Default expanded
+
+<Canvas of={DisclosureStories.DefaultExpanded} />
+
+## Toggle icon
+
+<Canvas of={DisclosureStories.ToggleIcon} />
+
+## Disclosure groups
+
+<Canvas of={DisclosureStories.DisclosureGroups} />

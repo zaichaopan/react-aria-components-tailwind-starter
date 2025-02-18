@@ -1,0 +1,159 @@
+import { Meta, Canvas } from '@storybook/addon-docs/blocks';
+
+import * as MenuStories from './Menu.stories';
+
+<Meta of={MenuStories} />
+
+# Menu
+
+A <a href="https://react-spectrum.adobe.com/react-aria/Menu.html#menu" target="_blank">**menu**</a> displays a list of actions or Actions that a user can choose.
+
+<Canvas of={MenuStories.BasicExample} />
+
+## Menu buttons
+
+Menu Buttons are <a href="./?path=/docs/button--docs" target="_blank">**Buttons**</a>. The default variant is `outline`.
+
+<Canvas of={MenuStories.MenuButtons} />
+
+## Disabled state
+
+<Canvas of={MenuStories.DisabledState} />
+
+## Disabled items
+
+<Canvas of={MenuStories.DisabledItems} />
+
+## Popover placement
+
+Use the <a href="https://react-spectrum.adobe.com/react-aria/Popover.html#placement" target="_blank">**placement**</a> prop on the `MenuPopover` component to position the menu relative to the trigger. The default replacement is `bottom`.
+
+<Canvas of={MenuStories.PopoverPlacements} />
+
+## Popover width
+
+Use `min-w-*` and `max-w-*` utilities on the `MenuPopover` component to set the minimum and maximum width of the menu popover.
+
+<Canvas of={MenuStories.PopoverWidth} />
+
+## Separators
+
+Use the `MenuSeparator` component to add a separator between menu items.
+
+<Canvas of={MenuStories.MenuSeparators} />
+
+## Item with descriptions
+
+<Canvas of={MenuStories.ItemWithDescriptions} />
+
+## Item with icons
+
+<Canvas of={MenuStories.ItemWithIcons} />
+
+## Item with icon and descriptions
+
+<Canvas of={MenuStories.ItemWithIconAndDescriptions} />
+
+## Item with shortcut hints
+
+<Canvas of={MenuStories.ItemWithShortcutHints} />
+
+## Item with shortcut hints and descriptions
+
+<Canvas of={MenuStories.ItemWithShortcutHintsAndDescriptions} />
+
+## Item with icon, shortcut hints and descriptions
+
+<Canvas of={MenuStories.ItemWithIconShortcutHintsAndDescriptions} />
+
+## Destructive items
+
+Use the `destructive` prop on the `MenuItem` component to show a destructive menu item.
+
+<Canvas of={MenuStories.DestructiveItems} />
+
+## Sections
+
+Use the `MenuSection` component with the `title` prop to group menu items into sections.
+
+<Canvas of={MenuStories.Sections} />
+
+## Icon trigger
+
+Add the `Icon` component to the `MenuButton` component with `aria-label` to make an icon-only menu trigger.
+
+<Canvas of={MenuStories.IconTriggers} />
+
+
+## Avatar trigger
+
+Add the `Avatar` component to the `MenuButton` component to use an avatar as the menu trigger.
+
+<Canvas of={MenuStories.AvatarTriggers} />
+
+## Custom trigger
+
+Use `variant="unstyle"` prop on the `MenuButton` component to render your own custom menu trigger.
+
+<Canvas of={MenuStories.CustomTriggers} />
+
+## Item as link
+
+Use the `href` prop on the `MenuItem` component to render a menu item as a link.
+
+<Canvas of={MenuStories.ItemAsLink} />
+
+## Sub menus
+
+Use the `SubmenuTrigger` and `SubMenu` component to render a sub menu.
+
+<Canvas of={MenuStories.SubMenus} />
+
+### Mobile friendly submenus
+
+To show submenu properly small screen, duplicate your `Submenu` with `placement="bottom"` and show it in small screen.
+
+<Canvas of={MenuStories.MobilFriendlySubmenus} />
+
+
+## Single selection
+
+Use `sectionMode="single"` and `defaultSelectedKey` on the `Menu` component to supports single selection.
+
+<Canvas of={MenuStories.SingleSelection} />
+
+### Single selection with icon, descriptions and shortcuts
+
+<Canvas of={MenuStories.SingleSelectionWithIconDescriptionAndShortcut} />
+
+### Single selection with sections
+
+<Canvas of={MenuStories.SingleSelectionWithSections} />
+
+### Single selection complete example
+
+<Canvas of={MenuStories.SingleSelectionCompleteExample} />
+
+## Multiple selections
+
+Use `sectionMode="multiple"` and `defaultSelectedKey` on the `Menu` component to supports multi selections.
+
+<Canvas of={MenuStories.MultiSelections} />
+
+## Check icon placement 
+
+<Canvas of={MenuStories.CheckIconPlacement} />
+
+## Section level selections
+
+<Canvas of={MenuStories.SectionLevelSelections} />
+
+## Headers
+
+<Canvas of={MenuStories.Headers} />
+
+## Controlled open state
+
+Use the `isOpen` and `onOpenChange` props of the `MenuPopover` component to control menu popover open state.
+
+<Canvas of={MenuStories.ControlledOpenState} />

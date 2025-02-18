@@ -14,13 +14,13 @@ import { composeTailwindRenderProps } from './utils';
 import { XIcon } from './icons';
 
 const colors = {
-  default: '[--tag:63_63_70]',
-  success: '[--tag:var(--success)]',
-  warning: '[--tag:var(--warning)]',
+  default: '[--tag:var(--color-accent)]',
+  success: '[--tag:var(--color-success)]',
+  warning: '[--tag:var(--color-warning)]',
   destructive: '[--tag:var(--destructive)]',
 } as const;
 
-type Color = keyof typeof colors
+type Color = keyof typeof colors;
 
 const ColorContext = React.createContext<Color>('default');
 
@@ -73,9 +73,9 @@ export function Tag({ children, color, ...props }: TagProps) {
             'flex max-w-fit cursor-default items-center gap-x-1 rounded-md px-2 py-0.5 text-xs/5 font-medium outline-0 transition data-selection-mode:cursor-pointer',
             colors[tagColor],
             isSelected
-              ? 'bg-[rgb(var(--tag))] text-white'
-              : 'bg-[rgb(var(--tag))]/15 text-[rgb(var(--tag))]',
-            isFocusVisible && 'outline outline-2 outline-offset-1 outline-ring',
+              ? 'bg-(--tag) text-[lch(from_var(--tag)_calc((49.44_-_l)_*_infinity)_0_0)]'
+              : 'bg-(--tag)/15 text-(--tag)',
+            isFocusVisible && 'outline-ring outline outline-2 outline-offset-1',
             isDisabled && 'opacity-50',
             className,
           ),
@@ -96,7 +96,7 @@ export function Tag({ children, color, ...props }: TagProps) {
                       isHovered && 'pressed: bg-black/10 dark:bg-white/10',
                       isPressed && 'bg-black/20 dark:bg-white/20',
                       isFocusVisible &&
-                        'outline outline-2 outline-offset-2 outline-ring',
+                        'outline-ring outline outline-2 outline-offset-2',
                       className,
                     ),
                 )}

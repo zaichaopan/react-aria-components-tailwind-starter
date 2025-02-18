@@ -9,7 +9,7 @@ import {
   composeRenderProps,
 } from 'react-aria-components';
 import { Button } from './button';
-import { Calendar } from './calendar';
+import { Calendar, YearRange } from './calendar';
 import { DateInput, DateInputProps } from './date-field';
 import { Dialog } from './dialog';
 import { Popover } from './popover';
@@ -31,7 +31,10 @@ export function DatePicker<T extends DateValue>(props: DatePickerProps<T>) {
   );
 }
 
-export function DatePickerInput(props: DateInputProps) {
+export function DatePickerInput({
+  yearRange,
+  ...props
+}: DateInputProps & { yearRange?: YearRange }) {
   return (
     <>
       <Group
@@ -73,16 +76,9 @@ export function DatePickerInput(props: DateInputProps) {
         </Button>
       </Group>
 
-      <Popover
-        className={[
-          'max-w-none',
-          'dark:bg-zinc-800',
-          'dark:ring-zinc-700',
-        ].join(' ')}
-        placement="bottom"
-      >
-        <Dialog className="overflow-auto">
-          <Calendar />
+      <Popover placement="bottom" className="rounded-xl">
+        <Dialog>
+          <Calendar yearRange={yearRange} />
         </Dialog>
       </Popover>
     </>
@@ -122,15 +118,8 @@ export function DatePickerButton({
         <DateInput className="hidden" aria-hidden />
       </Group>
 
-      <Popover
-        className={[
-          'max-w-none',
-          'dark:bg-zinc-800',
-          'dark:ring-zinc-700',
-        ].join(' ')}
-        placement="bottom"
-      >
-        <Dialog className="overflow-auto">
+      <Popover placement="bottom" className="rounded-xl">
+        <Dialog>
           <Calendar />
         </Dialog>
       </Popover>

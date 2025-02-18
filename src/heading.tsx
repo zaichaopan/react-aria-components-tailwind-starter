@@ -7,12 +7,7 @@ import { twMerge } from 'tailwind-merge';
 import { FocusScope } from 'react-aria';
 import { DisplayLevel, displayLevels } from './utils';
 
-type BaseHeadingProps = {
-  displayLevel?: DisplayLevel;
-  autoFocus?: boolean;
-};
-
-export type HeadingProps = {
+export type BaseHeadingProps = {
   level?: DisplayLevel;
   elementType?: never;
 } & RACHeadingProps;
@@ -22,9 +17,14 @@ type CustomElement = {
   elementType: 'div';
 } & React.JSX.IntrinsicElements['div'];
 
+export type HeadingTProps = {
+  displayLevel?: DisplayLevel;
+  autoFocus?: boolean;
+} & (BaseHeadingProps | CustomElement);
+
 export const Heading = React.forwardRef<
   HTMLHeadingElement | HTMLDivElement,
-  BaseHeadingProps & (HeadingProps | CustomElement)
+  HeadingTProps
 >(function Heading({ elementType, autoFocus, ...props }, ref) {
   if (elementType) {
     const { displayLevel = 1, className, ...restProps } = props;
@@ -90,10 +90,7 @@ export const SubHeading = React.forwardRef<
     <div
       {...props}
       ref={ref}
-      className={twMerge(
-        'text-base text-muted sm:text-sm/6',
-        className,
-      )}
+      className={twMerge('text-muted mt-2 text-base sm:text-sm/6', className)}
     />
   );
 });

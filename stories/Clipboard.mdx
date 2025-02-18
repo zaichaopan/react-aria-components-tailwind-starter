@@ -1,0 +1,17 @@
+import { Canvas, Meta } from '@storybook/blocks';
+ 
+import * as ClipboardStories from './Clipboard.stories';
+
+<Meta of={ClipboardStories} />
+
+# Clipboard
+
+A clipboard copies given text to clipboard. Use the **CopyButton** component to copy text to clipboard.
+
+<Canvas of={ClipboardStories.BasicExample} />
+
+## Customization
+
+Use the `Clipboard` component to create your custom clipboard component.
+
+<Canvas of={ClipboardStories.Customization} />

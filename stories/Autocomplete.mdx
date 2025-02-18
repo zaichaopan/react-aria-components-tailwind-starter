@@ -1,0 +1,33 @@
+import { Canvas, Meta } from '@storybook/blocks';
+ 
+import * as AutocompleteStories from './Autocomplete.stories';
+ 
+<Meta of={AutocompleteStories} />
+
+# Autocomplete
+ 
+An <a href="https://react-spectrum.adobe.com/react-aria/Autocomplete.html#autocomplete" target="_blank">**autocomplete**</a> combines a TextField or SearchField with a Menu or ListBox, allowing users to search or filter a list of suggestions.
+
+## Command palette 
+
+A Command Palette is an interface that allows users to quickly run commands or navigate to content within an application.
+
+<Canvas of={AutocompleteStories.CommandPalette} />
+
+When menu contains non-text content, add the `textValue` to MenuItem to make it searchable.
+
+<Canvas of={AutocompleteStories.CommandJ} />
+
+## Searchable select
+
+A `Select` component with Autocomplete filtering.
+
+<Canvas of={AutocompleteStories.SearchableSelect} />
+
+
+## Searchable menu
+
+A `Menu` component with Autocomplete filtering.
+
+<Canvas of={AutocompleteStories.SearchableMenu} />
+

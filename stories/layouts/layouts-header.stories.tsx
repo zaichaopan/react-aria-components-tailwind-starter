@@ -55,7 +55,7 @@ export default meta;
 
 export const Header = () => {
   return (
-    <div className="flex min-h-screen w-full flex-col">
+    <div className="flex min-h-svh w-full flex-col">
       <header className="flex h-14 items-center px-2 md:px-6 lg:px-8">
         <HamburgerMenu />
 

@@ -1,0 +1,109 @@
+import { Meta, Canvas } from '@storybook/addon-docs/blocks';
+
+import * as DialogsStories from './Dialog.stories';
+
+<Meta of={DialogsStories} />
+
+# Dialog
+
+A <a href="https://react-spectrum.adobe.com/react-aria/Dialog.html#dialog" target="_blank">**dialog**</a> is an overlay shown above other content in an application.
+
+<Canvas of={DialogsStories.BasicExample} />
+
+
+## Alert dialogs
+
+**Alert dialogs** are a special type of **dialog** that the user must confirm before an action proceeds. Use the `alert` prop on the `Dialog` component to render an alert dialog.
+
+> Use Alert dialogs only when necessary. Use Dialog for low-signal notifications or confirmations.
+
+<Canvas of={DialogsStories.AlertDialogs} />
+
+
+## Nested dialogs
+
+### Close confirmations
+
+A nested confirmation dialog opens if the text entered in the parent dialog is going to be discarded.
+
+<Canvas of={DialogsStories.CloseConfirmation} />
+
+<Canvas of={DialogsStories.NestedDialogs} />
+
+## Drawers
+
+Use the `drawer` and `placement` prop of the `Modal` component to render a dialog out from the edge of the screen. The default placement is `left`.
+
+<Canvas of={DialogsStories.Drawers} />
+
+## Sizes
+
+Use the `size` prop on the `Modal` component to change dialog size. The default dialog size is `lg`. The default alert dialog size is `md`.
+
+<Canvas of={DialogsStories.Sizes} />
+
+## Headers
+
+Use the `DialogHeader` component to add a header to the dialog. Text inside the `DialogHeader` component will be used as the dialog title.
+
+<Canvas of={DialogsStories.Headers} />
+
+### Non-text content headers
+
+Use the `DialogTitle` component to add a header to the dialog which has non-text content. You can use any component inside the `DialogTitle` component.
+
+<Canvas of={DialogsStories.NonTextContentHeaders} />
+
+## Without header
+
+Without `DialogHeader`, dialog trigger button text will be used as dialog header.
+
+<Canvas of={DialogsStories.WithoutHeader} />
+
+## Footers
+
+Use the `DialogFooter` component to add actions to the dialog. `DialogFooter` can contain any components like `Button`, `DialogCloseButton` etc.
+
+<Canvas of={DialogsStories.Footers} />
+
+## Close buttons
+
+`DialogCloseButtons` are <a href="./?path=/docs/button--docs" target="_blank">**Buttons**</a>. By default, they are rendered as <a href="./?path=/docs/button--docs#close%20buttons" target="_blank">**CloseButton**</a> in the top right corner of the dialog. They can be customized by providing children.
+
+<Canvas of={DialogsStories.CloseButtons} />
+
+## Long content
+
+Long content within the `DialogBody` component automatically becomes scrollable.
+
+<Canvas of={DialogsStories.LongContent} />
+
+## Min height
+
+Use `className="h-[min(*,*)]"` to set min-height of the `Dialog` component.
+
+<Canvas of={DialogsStories.MinHeight} />
+
+## Close when clicking outside
+
+Use the `isDismissable` prop of the `Modal` component to control whether the dialog can be closed by clicking outside. The default value is `false`.
+
+<Canvas of={DialogsStories.CloseWhenClickingOutside} />
+
+## Close With ESC key
+
+Use the `isKeyboardDismissDisabled` prop of the `Modal` component to control whether the dialog can be closed with the `ESC` key. The default value is `false`.
+
+<Canvas of={DialogsStories.CloseWithESCKey} />
+
+## Auto focus when open
+
+Add the `autoFocus` prop to any focusable element inside the dialog to automatically focus it when the dialog opens. Use <a href="https://react-spectrum.adobe.com/react-aria/FocusScope.html#focusscope" target="_blank">**FocusScope**</a> if autofocus not working properly in some edge cases.
+
+<Canvas of={DialogsStories.AutoFocusWhenOpen} />
+
+## Controlled open state
+
+Use the `isOpen` and `onOpenChange` prop of the `Modal` component to control dialog open state.
+
+<Canvas of={DialogsStories.ControlledOpenState} />

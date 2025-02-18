@@ -35,7 +35,7 @@ export function PasswordInput({className, ...props}: InputProps) {
         isSelected={isPasswordVisible}
         onChange={setIsPasswordVisible}
         className={[
-          'group',
+          'group/toggle-password',
           'focus-visible:-outline-offset-1',
           'row-start-1',
           '-col-end-1',
@@ -43,9 +43,9 @@ export function PasswordInput({className, ...props}: InputProps) {
         ].join(' ')}
       >
         {isPasswordVisible ? (
-          <EyeOffIcon className="text-muted/75 group-hover:text-foreground" />
+          <EyeOffIcon className="text-muted/75 group-hover/toggle-password:text-foreground" />
         ) : (
-          <EyeIcon className="text-muted/75 group-hover:text-foreground" />
+          <EyeIcon className="text-muted/75 group-hover/toggle-password:text-foreground" />
         )}
       </ToggleButton>
     </Group>

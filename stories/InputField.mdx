@@ -1,0 +1,27 @@
+import {Meta, Canvas}   from '@storybook/addon-docs/blocks';
+
+import * as TextFieldStories from './InputField.stories';
+
+<Meta of={TextFieldStories} />
+
+# Text field (Input)
+
+A <a href="https://react-spectrum.adobe.com/react-aria/TextField.html#textfield" target="_blank">**text field**</a> allows a user to enter a plain text value with a keyboard.
+
+<Canvas of={TextFieldStories.BasicExample} />
+
+## Description
+
+<Canvas of={TextFieldStories.InputFieldDescription} />
+
+## Disabled state
+
+<Canvas of={TextFieldStories.DisabledState} />
+
+## Readonly state
+
+<Canvas of={TextFieldStories.ReadOnlyState} />
+
+## Validation errors
+
+<Canvas of={TextFieldStories.ValidationErrors} />

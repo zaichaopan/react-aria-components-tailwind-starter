@@ -1,0 +1,27 @@
+import { Meta, Canvas } from '@storybook/addon-docs/blocks';
+
+import * as TimeFieldStories from './TimeField.stories';
+
+<Meta of={TimeFieldStories} />
+
+# Time field
+
+A <a href="https://react-spectrum.adobe.com/react-aria/TimeField.html" target="_blank">**time field**</a> allows users to enter and edit time values using a keyboard. Each part of a time value is displayed in an individually editable segment.
+
+<Canvas of={TimeFieldStories.BasicExample} />
+
+## With description
+
+<Canvas of={TimeFieldStories.TimeFieldDescription} />
+
+## Disabled state
+
+<Canvas of={TimeFieldStories.DisabledState} />
+
+## Read only state
+
+<Canvas of={TimeFieldStories.ReadonlyState} />
+
+## Validation errors
+
+<Canvas of={TimeFieldStories.ValidationError} />

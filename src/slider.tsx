@@ -29,14 +29,13 @@ export function Slider<T extends number | number[]>(props: SliderProps<T>) {
 }
 
 const trackStyle = [
-  'absolute top-[50%] translate-y-[-50%] rounded-full',
-  'group-data-[orientation=horizontal]:h-1',
+  'absolute rounded-full',
+  'group-data-[orientation=horizontal]:h-1.5',
   'group-data-[orientation=horizontal]:w-full',
-  'group-data-[orientation=vertical]:left-[50%]',
+  'group-data-[orientation=vertical]:top-1/2',
+  'group-data-[orientation=vertical]:left-1/2',
   'group-data-[orientation=vertical]:h-full',
   'group-data-[orientation=vertical]:w-[6px]',
-  'group-data-[orientation=vertical]:translate-x-[-50%]',
-  'group-data-[orientation=vertical]:translate-y-[-50%]',
   'group-data-disabled:opacity-50',
 ];
 
@@ -47,7 +46,10 @@ export function SliderTack({ thumbLabels }: { thumbLabels?: string[] }) {
         return (
           <>
             <div
-              className={twMerge('bg-zinc-200 dark:bg-zinc-300', trackStyle)}
+              className={twMerge(
+                'bg-zinc-200 group-data-[orientation=vertical]:-translate-x-1/2 group-data-[orientation=vertical]:-translate-y-1/2 dark:bg-zinc-600',
+                trackStyle,
+              )}
             />
             <div
               className={twMerge('bg-accent', trackStyle)}
@@ -62,9 +64,9 @@ export function SliderTack({ thumbLabels }: { thumbLabels?: string[] }) {
                   '',
                   (className, { isFocusVisible, isDragging, isDisabled }) =>
                     twMerge(
-                      'ring-3 size-5 rounded-full bg-white shadow-xl ring-1 ring-zinc-400/45 dark:ring-0',
-                      'group-data-[orientation=horizontal]:top-[50%] group-data-[orientation=vertical]:left-[50%]',
-                      isDragging && ['ring-accent border-accent border-8'],
+                      'border-accent size-4 rounded-full border border-2 bg-[lch(from_var(--color-accent)_calc((49.44_-_l)_*_infinity)_0_0)] shadow-xl dark:border-3',
+                      'group-data-[orientation=horizontal]:top-1/2 group-data-[orientation=vertical]:left-1/2',
+                      isDragging && ['border-4 dark:border-4'],
                       isDisabled && 'cursor-not-allowed opacity-50',
                       isFocusVisible && [
                         'outline',

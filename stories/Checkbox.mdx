@@ -1,0 +1,71 @@
+import { Canvas, Meta } from '@storybook/blocks';
+ 
+import * as CheckboxStories from './Checkbox.stories';
+ 
+<Meta of={CheckboxStories} />
+
+# Checkbox
+ 
+A <a href="https://react-spectrum.adobe.com/react-aria/Checkbox.html#checkbox" target="_blank">**checkbox**</a> allows a user to select multiple items from a list of individual items, or to mark one individual item as selected.
+
+<Canvas of={CheckboxStories.BasicExample} />
+
+
+## Checkbox description
+
+Use the `CheckboxField` and `Description` component to add checkbox description.
+
+
+<Canvas of={CheckboxStories.CheckboxDescription} />
+
+
+## Disabled state
+
+<Canvas of={CheckboxStories.DisabledState} />
+
+
+## Readonly State
+
+<Canvas of={CheckboxStories.ReadonlyState} />
+
+
+## Checkbox group
+
+Use the `CheckboxGroup` and `Label` component to create a checkbox group.
+
+<Canvas of={CheckboxStories.CheckboxGroups} />
+
+
+## Group description
+
+<Canvas of={CheckboxStories.GroupDescription} />
+
+
+## Horizontal layout
+
+<Canvas of={CheckboxStories.HorizontalLayout} />
+
+
+## Label placement
+
+<Canvas of={CheckboxStories.LabelPlacement} />
+
+## Indeterminate state
+
+<Canvas of={CheckboxStories.IndeterminateState} />
+
+## Validation errors
+
+Use the `Form`, `FieldError` and `CheckboxGroup` components to add validation when submitting form.
+
+<Canvas of={CheckboxStories.ValidationErrors} />
+
+## Cards
+
+<Canvas of={CheckboxStories.Cards} />
+
+### Render prop
+
+The `render` prop allows you to customize the rendering of the checkbox.
+
+<Canvas of={CheckboxStories.SmallCards} />

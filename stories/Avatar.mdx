@@ -1,0 +1,73 @@
+import { Canvas, Meta } from '@storybook/blocks';
+ 
+import * as AvatarStories from './Avatar.stories';
+ 
+<Meta of={AvatarStories} />
+
+# Avatar
+ 
+An avatar is a thumbnail representation of an entity, such as a user or an organization.
+
+<Canvas of={AvatarStories.BasicExample} />
+
+## Round avatar
+
+Use `rounded-full` utility to render a rounded avatar.
+
+<Canvas of={AvatarStories.RoundedAvatars} />
+
+
+## Avatar sizes
+
+Use the `size-*` utility to render avatars in different sizes. The default size is **size-10**.
+
+<Canvas of={AvatarStories.AvatarSizes} />
+
+### Initial fallback
+
+The `alt` prop is used to generate initial avatar when image src is not available.
+
+<Canvas of={AvatarStories.InitialFallbacks} />
+
+### Icon fallback
+
+Use the `fallback="icon"` to show a placeholder avatar icon when image src not available.
+
+<Canvas of={AvatarStories.IconFallbacks} />
+
+
+### Single fallback color
+
+Use the `colorless` prop to render avatar fallback with a single background.
+
+<Canvas of={AvatarStories.SingleFallbackColor} />
+
+### Avatar badges
+
+Use the `AvatarBadge` component to add badges. Badges are positioned at the bottom right corner of the avatar.
+
+<Canvas of={AvatarStories.AvatarBadges} />
+
+### Avatar badge sizes
+
+Badge sizes are automatically scaled based on the avatar size.
+
+<Canvas of={AvatarStories.AvatarBadgeSizes} />
+
+### Avatar badge accessibility
+
+Badge icon should be wrapped within the <a href="./?path=/docs/icon--docs" target="_blank">**Icon**</a> component and include an `aria-label` for accessibility. Use `className` to style the badge.
+
+<Canvas of={AvatarStories.AvatarBadgeAccessibility} />
+
+## Avatar groups
+
+Use the `AvatarGroup` component to stack avatars.
+
+<Canvas of={AvatarStories.AvatarGroups} />
+
+## Avatar groups with reverse overlap
+
+Use the `reverseOverlap` prop to reverse the overlap.
+
+<Canvas of={AvatarStories.AvatarGroupsWithReverseOverlap} />

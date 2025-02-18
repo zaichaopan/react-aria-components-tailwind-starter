@@ -136,24 +136,23 @@ export function Checkbox(props: CheckboxProps | CustomRenderCheckboxProps) {
         return (
           <>
             <div
+              data-ui="checkbox"
               className={twMerge([
-                'flex shrink-0 items-center justify-center rounded-sm',
-                'size-[1.125rem] sm:size-4',
-                'border border-zinc-400/75 dark:border-[1.5px] dark:border-zinc-600',
+                'flex size-4.5 shrink-0 items-center justify-center rounded-sm border sm:size-4',
                 labelPlacement === 'end' ? 'me-3' : 'ms-3',
                 renderProps.isReadOnly && 'opacity-50',
                 renderProps.isInvalid &&
                   'border-destructive dark:border-destructive',
                 (renderProps.isSelected || renderProps.isIndeterminate) &&
-                  'border border-accent bg-accent shadow-[inset_0_1px_0_0_rgba(255,255,255,0.1)] dark:border-0 dark:border-accent',
+                  'border-accent bg-accent',
                 renderProps.isFocusVisible &&
                   'outline-ring outline outline-2 outline-offset-2',
               ])}
             >
               {renderProps.isIndeterminate ? (
-                <MinusIcon className="size-4 text-white sm:size-3.5" />
+                <MinusIcon className="size-4 text-[lch(from_var(--color-accent)_calc((49.44_-_l)_*_infinity)_0_0)] sm:size-3.5" />
               ) : renderProps.isSelected ? (
-                <CheckIcon className="size-4 text-white sm:size-3.5" />
+                <CheckIcon className="size-4 text-[lch(from_var(--color-accent)_calc((49.44_-_l)_*_infinity)_0_0)] sm:size-3.5" />
               ) : null}
             </div>
 

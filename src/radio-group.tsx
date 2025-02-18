@@ -65,12 +65,14 @@ export function RadioField({
 
 export interface RadioProps extends RACRadioProps {
   labelPlacement?: 'start' | 'end';
+  radio?: React.ReactElement | ((props: RadioRenderProps) => React.ReactNode);
   render?: never;
 }
 
 export interface CustomRenderRadioProps
   extends Omit<RACRadioProps, 'children'> {
   render: React.ReactElement | ((props: RadioRenderProps) => React.ReactNode);
+  radio?: never;
   children?: never;
 }
 
@@ -99,7 +101,7 @@ export function Radio(props: RadioProps | CustomRenderRadioProps) {
     );
   }
 
-  const { labelPlacement = 'end', ...restProps } = props;
+  const { labelPlacement = 'end', radio, ...restProps } = props;
 
   return (
     <RACRadio
@@ -124,24 +126,32 @@ export function Radio(props: RadioProps | CustomRenderRadioProps) {
             <div
               slot="radio"
               className={twMerge(
-                'grid size-[1.0625rem] shrink-0 place-content-center rounded-full',
-                'border border-zinc-400/75 dark:border-zinc-600',
+                'grid shrink-0 place-content-center rounded-full border',
+                radio ? '' : 'size-4.5 sm:size-4',
                 labelPlacement === 'end' ? 'me-3' : 'ms-3',
                 renderProps.isReadOnly && 'opacity-50',
                 renderProps.isInvalid &&
                   'border-destructive dark:border-destructive',
-                renderProps.isSelected &&
-                  'border-accent bg-accent dark:border-0 dark:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.1)]',
+                renderProps.isSelected && 'border-accent bg-accent',
                 renderProps.isFocusVisible &&
                   'outline-ring outline outline-2 outline-offset-2',
               )}
             >
-              <div
-                className={twMerge(
-                  'rounded-full',
-                  renderProps.isSelected && 'size-1.5 bg-white',
-                )}
-              ></div>
+              {radio ? (
+                typeof radio === 'function' ? (
+                  radio(renderProps)
+                ) : (
+                  radio
+                )
+              ) : (
+                <div
+                  className={twMerge(
+                    'rounded-full',
+                    renderProps.isSelected &&
+                      'size-2 bg-[lch(from_var(--color-accent)_calc((49.44_-_l)_*_infinity)_0_0)] sm:size-1.5',
+                  )}
+                ></div>
+              )}
             </div>
 
             {typeof props.children === 'function'

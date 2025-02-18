@@ -22,7 +22,7 @@ export function Dialog({ role, alert = false, ...props }: DialogProps) {
       {...props}
       role={role ?? alert ? 'alertdialog' : 'dialog'}
       className={twMerge(
-        'relative flex max-h-[inherit] flex-col overflow-hidden outline-hidden',
+        'relative flex max-h-[inherit] flex-col overflow-auto outline-hidden [&:has([data-ui=dialog-body])]:overflow-hidden',
         '[&:not(:has([data-ui=dialog-header]))>[data-ui=dialog-body]:not([class*=pt-])]:pt-6',
         '[&:not(:has([data-ui=dialog-footer]))>[data-ui=dialog-body]:not([class*=pt-])]:pb-6',
         props.className,
@@ -65,14 +65,14 @@ export function DialogHeader({ className, ...props }: DialogHeaderProps) {
       {...props}
       data-ui="dialog-header"
       ref={headerRef}
-      className={twMerge('pb-2 pe-10 ps-6 pt-6', className)}
+      className={twMerge('ps-6 pe-10 pt-6 pb-2', className)}
     />
   ) : (
     <div
       ref={headerRef}
       data-ui="dialog-header"
       className={twMerge(
-        'relative flex w-full flex-col pb-2 pe-10 ps-6 pt-6',
+        'relative flex w-full flex-col ps-6 pe-10 pt-6 pb-2',
         className,
       )}
       {...props}
@@ -173,7 +173,7 @@ export function DialogCloseButton({
       size={size}
       className={composeRenderProps(props.className, (className) =>
         twMerge(
-          'absolute end-2 top-2 p-1.5 text-muted/75 hover:text-foreground',
+          'text-muted/75 hover:text-foreground absolute end-2 top-3 p-1.5',
           className,
         ),
       )}

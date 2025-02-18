@@ -4,7 +4,7 @@ import {
   TooltipProps as RACTooltipProps,
 } from 'react-aria-components';
 import { composeTailwindRenderProps } from './utils';
-import { mergeProps, useFocusable } from 'react-aria';
+import { FocusableOptions, mergeProps, useFocusable } from 'react-aria';
 
 export { TooltipTrigger } from 'react-aria-components';
 
@@ -38,11 +38,11 @@ export function NonFousableTooltipTarget(props: {
   children: React.ReactElement;
 }) {
   const triggerRef = React.useRef(null);
-  const { focusableProps } = useFocusable(props.children.props, triggerRef);
+  const { focusableProps } = useFocusable(props.children.props as FocusableOptions, triggerRef);
 
   return React.cloneElement(
     props.children,
-    mergeProps(focusableProps, { tabIndex: 0 }, props.children.props, {
+    mergeProps(focusableProps, { tabIndex: 0 }, props.children.props as React.HTMLProps<HTMLElement>, {
       ref: triggerRef,
     }),
   );

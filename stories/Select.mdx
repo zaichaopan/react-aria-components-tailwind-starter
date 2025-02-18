@@ -1,0 +1,73 @@
+import { Meta, Canvas } from '@storybook/addon-docs/blocks';
+
+import * as selectStories from './Select.stories';
+
+<Meta of={selectStories} />
+
+# Select
+
+A <a href="https://react-spectrum.adobe.com/react-aria/Select.html#select" target="_blank">**select**</a> displays a collapsible list of options and allows a user to select one of them.
+
+<Canvas of={selectStories.BasicExample} />
+
+## Check icon placement
+
+<Canvas of={selectStories.CheckIconPlacement} />
+
+## Description
+
+<Canvas of={selectStories.SelectDescription} />
+
+## Item with description
+
+<Canvas of={selectStories.ItemWithDescription} />
+
+## Sections
+
+<Canvas of={selectStories.Sections} />
+
+## Disabled state
+
+<Canvas of={selectStories.DisabledState} />
+
+## Disabled items
+
+<Canvas of={selectStories.DisabledItems} />
+
+## Item with icons
+
+<Canvas of={selectStories.ItemWithIcons} />
+
+## Item with icon and descriptions
+
+<Canvas of={selectStories.ItemWithIconAndDescriptions} />
+
+## Item with avatars
+
+<Canvas of={selectStories.ItemWithAvatars} />
+
+## Item with flags
+
+<Canvas of={selectStories.ItemWithFlags} />
+
+## Item with secondary texts
+
+<Canvas of={selectStories.ItemWithSecondaryTexts} />
+
+## Controlled state
+
+<Canvas of={selectStories.ControlledState} />
+
+## Validation errors
+
+<Canvas of={selectStories.ValidationErrors} />
+
+## Custom width
+
+Use `className="min-w-*"` on the `SelectField` component to set select field width.
+
+<Canvas of={selectStories.CustomWidth} />
+
+## Custom layout
+
+<Canvas of={selectStories.CustomLayout} />

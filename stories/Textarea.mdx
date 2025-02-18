@@ -1,0 +1,27 @@
+import { Meta, Canvas } from '@storybook/addon-docs/blocks';
+
+import * as TextareaStories from './Textarea.stories';
+
+<Meta of={TextareaStories} />
+
+# Textarea
+
+<a href="https://react-spectrum.adobe.com/react-spectrum/TextArea.html#textarea" target="_blank">**TextAreas**</a> are multiline text inputs, useful for cases where users have a sizable amount of text to enter. They allow for all customizations that are available to text fields.
+
+<Canvas of={TextareaStories.BasicExample} />
+
+## Description
+
+<Canvas of={TextareaStories.TextareaDescription} />
+
+## Disabled state
+
+<Canvas of={TextareaStories.DisabledState} />
+
+## Readonly state
+
+<Canvas of={TextareaStories.ReadOnlyState} />
+
+## Validation errors
+
+<Canvas of={TextareaStories.ValidationErrors} />

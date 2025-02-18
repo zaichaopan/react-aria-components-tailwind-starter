@@ -1,0 +1,53 @@
+import { Meta, Canvas } from '@storybook/addon-docs/blocks';
+
+import * as TabsStories from './Tabs.stories';
+
+<Meta of={TabsStories} />
+
+# Tabs
+
+<a href="https://react-spectrum.adobe.com/react-aria/Tabs.html#tabs" target="_blank">**Tabs**</a> organize content into multiple sections and allow users to navigate between them.
+
+<Canvas of={TabsStories.BasicExample} />
+
+## Tab with icons
+
+<Canvas of={TabsStories.TabWithIcons} />
+
+## Tab with badges
+
+<Canvas of={TabsStories.TabWithBadges} />
+
+## Vertical orientation
+
+<Canvas of={TabsStories.VerticalOrientation} />
+
+## Pill tabs
+
+<Canvas of={TabsStories.PillTabs} />
+
+### Vertical pill tabs
+
+<Canvas of={TabsStories.VerticalPillTabs} />
+
+### Vertical pill tabs with accent background
+
+<Canvas of={TabsStories.VerticalPillTabsWithAccentBackground} />
+
+### Vertical pill tabs with accent color
+
+<Canvas of={TabsStories.VerticalPillTabsWithAccentColor} />
+
+## Segment tabs
+
+<Canvas of={TabsStories.SegmentTabs} />
+
+### Segment tab with icons
+
+<Canvas of={TabsStories.SegmentTabWithIcons} />
+
+### Mobile friendly tabs
+
+You can scroll tablist on mobile. If this is not what you want, you can show a selector on mobile. Please resize the screen to test.
+
+<Canvas of={TabsStories.MobilFriendlyTabs} />

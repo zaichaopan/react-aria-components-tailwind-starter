@@ -1,0 +1,25 @@
+import {Meta, Canvas } from '@storybook/addon-docs/blocks';
+
+import * as AuthenticationStories from './Authentication.stories';
+
+<Meta of={AuthenticationStories} />
+
+# Authentication
+
+Authentication components
+
+## Sign in
+
+<Canvas of={AuthenticationStories.SignIn} />
+
+## Sign up
+
+<Canvas of={AuthenticationStories.SignUp} />
+
+## Forgot password
+
+<Canvas of={AuthenticationStories.ForgotPassword} />
+
+## Reset password
+
+<Canvas of={AuthenticationStories.ResetPassword} />

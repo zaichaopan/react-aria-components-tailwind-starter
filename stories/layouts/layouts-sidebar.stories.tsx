@@ -27,6 +27,9 @@ import {
   UserIcon,
   Settings2Icon,
   LogOutIcon,
+  HomeIcon,
+  Layers3Icon,
+  MenuIcon,
 } from 'lucide-react';
 import { Modal } from '../../src/modal.tsx';
 import {
@@ -47,6 +50,7 @@ import { Separator } from '../../src/separator.tsx';
 import { NotificationBadge } from '../../src/notification-badge.tsx';
 import { composeRenderProps, LinkProps } from 'react-aria-components';
 import { twMerge } from 'tailwind-merge';
+import { ChevronRightIcon } from '../../src/icons.tsx';
 
 const meta = {
   title: 'Layouts/Sidebar',
@@ -67,132 +71,11 @@ export default meta;
 export const Sidebar = () => {
   return (
     <div className="flex h-dvh w-full flex-col md:flex-row">
-      <header className="sticky left-0 top-0 flex h-14 items-center px-4 md:hidden">
-        <HamburgerMenu />
+      <HamburgerMenu />
 
-        <div className="ml-auto flex items-center gap-4 px-2">
-          <Button isIconOnly variant="plain">
-            <Icon aria-label="Search">
-              <SearchIcon />
-            </Icon>
-          </Button>
-          <MenuTrigger>
-            <MenuButton variant="plain" buttonArrow={null}>
-              <Avatar
-                className="size-8"
-                src="https://i.imgur.com/xIe7Wlb.png"
-                alt="Marissa Whitaker"
-              />
-            </MenuButton>
-            <MenuPopover>
-              <Menu>
-                <MenuItem>Clear status</MenuItem>
-                <MenuSeparator />
-                <MenuItem>
-                  <Icon>
-                    <UserIcon />
-                  </Icon>
-                  <MenuItemLabel>My profile</MenuItemLabel>
-                </MenuItem>
-                <MenuItem>
-                  <Icon>
-                    <Settings2Icon />
-                  </Icon>
-                  <MenuItemLabel>Settings</MenuItemLabel>
-                </MenuItem>
-                <MenuSeparator />
+      <SideNavigation />
 
-                <MenuItem>
-                  <Icon>
-                    <LogOutIcon />
-                  </Icon>
-                  <MenuItemLabel>Sign out</MenuItemLabel>
-                </MenuItem>
-              </Menu>
-            </MenuPopover>
-          </MenuTrigger>
-        </div>
-      </header>
-
-      <div className="group hidden w-64 flex-col overflow-y-auto md:flex">
-        <div className="flex items-center justify-between px-4 pt-4">
-          <div className="flex items-center gap-x-2.5">
-            <Icon>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="1em"
-                height="1em"
-                viewBox="0 0 24 24"
-                className="size-8 text-accent"
-              >
-                <rect width="24" height="24" fill="none" />
-                <path
-                  fill="currentColor"
-                  d="M21 2H9a1 1 0 0 0-1 .999V7h8a1 1 0 0 1 1 .999V16h4a1 1 0 0 0 1-.999V3a1 1 0 0 0-.999-1z"
-                  opacity="0.25"
-                />
-                <path
-                  fill="currentColor"
-                  d="M3 12h8a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-8a1 1 0 0 1 1-1"
-                />
-                <path
-                  fill="currentColor"
-                  d="M16 7H6a1 1 0 0 0-1 .999V12h6a1 1 0 0 1 1 .999V19h4a1 1 0 0 0 1-.999V8a1 1 0 0 0-.999-1z"
-                  opacity="0.5"
-                />
-              </svg>
-            </Icon>
-            <Strong>Company</Strong>
-          </div>
-        </div>
-
-        <MainNavigation />
-
-        <div className="mt-auto flex px-2 py-4">
-          <MenuTrigger>
-            <MenuButton
-              variant="plain"
-              className="flex-1 justify-start overflow-hidden font-normal"
-            >
-              <Avatar
-                src="https://i.imgur.com/xIe7Wlb.png"
-                alt="Marissa Whitaker"
-                className="size-8"
-              />
-
-              <span className="truncate">Marissa Whitaker</span>
-            </MenuButton>
-            <MenuPopover placement="top left" className="min-w-64">
-              <Menu>
-                <MenuItem>Clear status</MenuItem>
-                <MenuSeparator />
-                <MenuItem>
-                  <Icon>
-                    <UserIcon />
-                  </Icon>
-                  <MenuItemLabel>My profile</MenuItemLabel>
-                </MenuItem>
-                <MenuItem>
-                  <Icon>
-                    <Settings2Icon />
-                  </Icon>
-                  <MenuItemLabel>Settings</MenuItemLabel>
-                </MenuItem>
-                <MenuSeparator />
-
-                <MenuItem>
-                  <Icon>
-                    <LogOutIcon />
-                  </Icon>
-                  <MenuItemLabel>Sign out</MenuItemLabel>
-                </MenuItem>
-              </Menu>
-            </MenuPopover>
-          </MenuTrigger>
-        </div>
-      </div>
-
-      <main className="relative flex-1 overflow-y-auto border-s border-border/25 bg-background p-6 dark:bg-zinc-900 lg:p-10">
+      <main className="border-border/45 bg-background relative flex-1 overflow-y-auto border-s p-6 lg:p-10 dark:bg-zinc-900">
         <div>
           <Heading className="relative">Projects</Heading>
           <Separator soft className="my-4" />
@@ -202,88 +85,291 @@ export const Sidebar = () => {
   );
 };
 
+function AvatarMenuPopover() {
+  return (
+    <MenuPopover placement="top left" className="min-w-64">
+      <Menu>
+        <MenuItem>Clear status</MenuItem>
+        <MenuSeparator />
+        <MenuItem>
+          <Icon>
+            <UserIcon />
+          </Icon>
+          <MenuItemLabel>My profile</MenuItemLabel>
+        </MenuItem>
+        <MenuItem>
+          <Icon>
+            <Settings2Icon />
+          </Icon>
+          <MenuItemLabel>Settings</MenuItemLabel>
+        </MenuItem>
+        <MenuSeparator />
+
+        <MenuItem>
+          <Icon>
+            <LogOutIcon />
+          </Icon>
+          <MenuItemLabel>Sign out</MenuItemLabel>
+        </MenuItem>
+      </Menu>
+    </MenuPopover>
+  );
+}
+
 function HamburgerMenu() {
   return (
-    <DialogTrigger>
-      <Button variant="plain" isIconOnly className="text-muted lg:hidden">
-        <Icon aria-label="Open Navigation">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="1em"
-            height="1em"
-            viewBox="0 0 24 24"
-          >
-            <path
-              fill="none"
-              stroke="currentColor"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M4 8h16M4 16h16"
-            ></path>
-          </svg>
-        </Icon>
-      </Button>
-      <Modal drawer size="xs" isDismissable>
-        <Dialog className="h-full">
-          <DialogHeader>
-            <div className="flex items-center gap-2.5">
-              <Icon>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="1em"
-                  height="1em"
-                  viewBox="0 0 24 24"
-                  className="size-8 text-accent"
-                >
-                  <rect width="24" height="24" fill="none" />
-                  <path
-                    fill="currentColor"
-                    d="M21 2H9a1 1 0 0 0-1 .999V7h8a1 1 0 0 1 1 .999V16h4a1 1 0 0 0 1-.999V3a1 1 0 0 0-.999-1z"
-                    opacity="0.25"
-                  />
-                  <path
-                    fill="currentColor"
-                    d="M3 12h8a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-8a1 1 0 0 1 1-1"
-                  />
-                  <path
-                    fill="currentColor"
-                    d="M16 7H6a1 1 0 0 0-1 .999V12h6a1 1 0 0 1 1 .999V19h4a1 1 0 0 0 1-.999V8a1 1 0 0 0-.999-1z"
-                    opacity="0.5"
-                  />
-                </svg>
-              </Icon>
+    <header className="sticky top-0 left-0 flex h-14 items-center px-4 md:hidden">
+      <DialogTrigger>
+        <Button variant="plain" isIconOnly className="text-muted lg:hidden">
+          <Icon aria-label="Open Navigation">
+            <MenuIcon />
+          </Icon>
+        </Button>
+        <Modal drawer size="xs" isDismissable>
+          <Dialog className="h-full">
+            <DialogHeader>
+              <div className="flex items-center gap-x-2.5">
+                <Icon>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    className="-m-1 size-8"
+                  >
+                    <path
+                      fill="currentColor"
+                      d="M12 2c4.713 0 7.07 0 8.535 1.464c.757.758 1.123 1.754 1.3 3.192V10H2.164V6.656c.176-1.438.541-2.434 1.299-3.192C4.928 2 7.285 2 11.999 2"
+                      opacity="0.5"
+                    />
+                    <path
+                      fill="currentColor"
+                      fill-rule="evenodd"
+                      d="M2 14c0-2.8 0-4.2.545-5.27A5 5 0 0 1 4.73 6.545C5.8 6 7.2 6 10 6h4c2.8 0 4.2 0 5.27.545a5 5 0 0 1 2.185 2.185C22 9.8 22 11.2 22 14s0 4.2-.545 5.27a5 5 0 0 1-2.185 2.185C18.2 22 16.8 22 14 22h-4c-2.8 0-4.2 0-5.27-.545a5 5 0 0 1-2.185-2.185C2 18.2 2 16.8 2 14m10.53-3.53a.75.75 0 0 0-1.06 0l-2.5 2.5a.75.75 0 1 0 1.06 1.06l1.22-1.22V17a.75.75 0 0 0 1.5 0v-4.19l1.22 1.22a.75.75 0 1 0 1.06-1.06z"
+                      clip-rule="evenodd"
+                    />
+                  </svg>
+                </Icon>
 
-              <Strong>Company</Strong>
-            </div>
-          </DialogHeader>
-          <DialogCloseButton />
+                <Strong>Acme</Strong>
+              </div>
+            </DialogHeader>
+            <DialogCloseButton />
 
-          <DialogBody className="px-0">
-            <MainNavigation />
-          </DialogBody>
-        </Dialog>
-      </Modal>
-    </DialogTrigger>
+            <DialogBody className="px-0">
+              <MainNavigation />
+            </DialogBody>
+          </Dialog>
+        </Modal>
+      </DialogTrigger>
+
+      <div className="ml-auto flex items-center gap-4 px-2">
+        <Button isIconOnly variant="plain">
+          <Icon aria-label="Search">
+            <SearchIcon />
+          </Icon>
+        </Button>
+        <MenuTrigger>
+          <MenuButton variant="plain" buttonArrow={null}>
+            <Avatar
+              className="size-8"
+              src="https://i.imgur.com/xIe7Wlb.png"
+              alt="Marissa Whitaker"
+            />
+          </MenuButton>
+          <AvatarMenuPopover />
+        </MenuTrigger>
+      </div>
+    </header>
   );
 }
 
-function NavLink({ isActive, ...props }: LinkProps & { isActive?: boolean }) {
+function SideNavigation() {
   return (
-    <Link
-      {...props}
-      className={composeRenderProps(props.className, (className) => {
-        return twMerge(
-          'group w-full gap-x-2.5 overflow-hidden text-nowrap p-2 group-data-[collapsed=true]:w-9  hover:no-underline dark:hover:bg-zinc-800 sm:text-sm/5 [&>[data-ui=icon]:not([class*=size-])]:size-5',
-          isActive
-            ? 'bg-zinc-100 dark:bg-zinc-800'
-            : 'hover:bg-zinc-100 [&:not(:hover)>[data-ui=icon]]:text-muted',
-          className,
-        );
-      })}
-    />
+    <div className="group hidden w-64 flex-col overflow-y-auto bg-zinc-100 md:flex dark:bg-zinc-950">
+      <div className="flex items-center justify-between px-4 pt-4">
+        <div className="flex items-center gap-x-2.5 p-2">
+          <Icon>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              className="-m-1 size-10"
+            >
+              <path
+                fill="currentColor"
+                d="M12 2c4.713 0 7.07 0 8.535 1.464c.757.758 1.123 1.754 1.3 3.192V10H2.164V6.656c.176-1.438.541-2.434 1.299-3.192C4.928 2 7.285 2 11.999 2"
+                opacity="0.5"
+              />
+              <path
+                fill="currentColor"
+                fill-rule="evenodd"
+                d="M2 14c0-2.8 0-4.2.545-5.27A5 5 0 0 1 4.73 6.545C5.8 6 7.2 6 10 6h4c2.8 0 4.2 0 5.27.545a5 5 0 0 1 2.185 2.185C22 9.8 22 11.2 22 14s0 4.2-.545 5.27a5 5 0 0 1-2.185 2.185C18.2 22 16.8 22 14 22h-4c-2.8 0-4.2 0-5.27-.545a5 5 0 0 1-2.185-2.185C2 18.2 2 16.8 2 14m10.53-3.53a.75.75 0 0 0-1.06 0l-2.5 2.5a.75.75 0 1 0 1.06 1.06l1.22-1.22V17a.75.75 0 0 0 1.5 0v-4.19l1.22 1.22a.75.75 0 1 0 1.06-1.06z"
+                clip-rule="evenodd"
+              />
+            </svg>
+          </Icon>
+          <Strong>Acme</Strong>
+        </div>
+      </div>
+
+      <MainNavigation />
+
+      <div className="sticky bottom-0 left-0 flex bg-inherit px-2 py-4">
+        <MenuTrigger>
+          <MenuButton
+            variant="plain"
+            className="flex-1 justify-start overflow-hidden font-normal"
+          >
+            <Avatar
+              src="https://i.imgur.com/xIe7Wlb.png"
+              alt="Marissa Whitaker"
+              className="size-8"
+            />
+
+            <span className="truncate">Marissa Whitaker</span>
+          </MenuButton>
+          <AvatarMenuPopover />
+        </MenuTrigger>
+      </div>
+    </div>
   );
 }
+
+const navLinks: Array<NavLinkProps> = [
+  {
+    href: '/',
+    children: (
+      <>
+        <Icon>
+          <HomeIcon />
+        </Icon>
+        Home
+      </>
+    ),
+  },
+  {
+    href: '/',
+    'aria-label': 'Inbox - 6 new messages',
+    children: (
+      <>
+        <Icon>
+          <InboxIcon />
+        </Icon>
+        Inbox
+        <NotificationBadge
+          className="ms-auto"
+          inline
+          variant="numeric"
+          value={6}
+          aria-label="Inbox - 6 new messages"
+        >
+          10
+        </NotificationBadge>
+      </>
+    ),
+  },
+  {
+    title: 'Workspaces',
+    items: [
+      {
+        href: '/',
+        isActive: true,
+        children: (
+          <>
+            <Icon>
+              <Layers3Icon />
+            </Icon>
+            Projects
+          </>
+        ),
+      },
+      {
+        href: '/',
+        children: (
+          <>
+            <Icon>
+              <ChartBarIncreasingIcon />
+            </Icon>
+            Analyze
+          </>
+        ),
+      },
+      {
+        href: '/',
+        children: (
+          <>
+            <Icon>
+              <WorkflowIcon />
+            </Icon>
+            Workflows
+          </>
+        ),
+      },
+      {
+        href: '/',
+        children: (
+          <>
+            <Icon>
+              <UserCog2Icon />
+            </Icon>
+            Manage Access
+          </>
+        ),
+      },
+    ],
+  },
+  {
+    title: 'Data management',
+    items: [
+      {
+        href: '/',
+        children: (
+          <>
+            <Icon>
+              <ChartNoAxesColumnIcon />
+            </Icon>
+            All charts
+          </>
+        ),
+      },
+      {
+        href: '/',
+        children: (
+          <>
+            <Icon>
+              <CalendarCogIcon />
+            </Icon>
+            Explore events
+          </>
+        ),
+      },
+      {
+        href: '/',
+        children: (
+          <>
+            <Icon>
+              <TagsIcon />
+            </Icon>
+            Visual labels
+          </>
+        ),
+      },
+      {
+        href: '/',
+        children: (
+          <>
+            <Icon>
+              <RadioIcon />
+            </Icon>
+            Live data feed
+          </>
+        ),
+      },
+    ],
+  },
+];
 
 function MainNavigation() {
   return (
@@ -292,161 +378,23 @@ function MainNavigation() {
         <li className="hidden md:block">
           <Button
             variant="unstyle"
-            className="group flex w-full items-center gap-x-2.5 p-2 hover:bg-zinc-100 dark:hover:bg-zinc-800 sm:text-sm/5"
+            className="group/search flex w-full items-center gap-x-2.5 px-2 py-1 hover:bg-zinc-200 sm:text-sm/6 dark:hover:bg-zinc-800"
           >
             <Icon>
-              <SearchIcon className="size-5 text-muted group-hover:text-foreground" />
+              <SearchIcon className="text-muted group-hover/search:text-accent size-4" />
             </Icon>
             Search
           </Button>
         </li>
-        <li>
-          <NavLink href="/">
-            <Icon>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-miterlimit="10"
-                  stroke-width="1.5"
-                  d="M10 21v-9m-7 0h18M5.4 3h13.2A2.4 2.4 0 0 1 21 5.4v13.2a2.4 2.4 0 0 1-2.4 2.4H5.4A2.4 2.4 0 0 1 3 18.6V5.4A2.4 2.4 0 0 1 5.4 3"
-                />
-              </svg>
-            </Icon>
-            Dashboard
-          </NavLink>
-        </li>
-        <li>
-          <NavLink href="/">
-            <Icon>
-              <InboxIcon />
-            </Icon>
-            Inbox
-            <NotificationBadge
-              inline
-              variant="numeric"
-              value={10}
-              className="ms-auto rounded-sm bg-accent"
-            />
-          </NavLink>
-        </li>
-
-        <Separator soft className="my-3" />
-
-        <li className="grid">
-          <Disclosure defaultExpanded>
-            <DisclosureControl className="w-full text-xs/6 text-muted ">
-              Workspaces
-            </DisclosureControl>
-            <DisclosurePanel>
-              <ul className="grid gap-y-0.5 pt-1">
-                <li>
-                  <NavLink isActive>
-                    <Icon>
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="1em"
-                        height="1em"
-                        viewBox="0 0 24 24"
-                        className="size-5"
-                      >
-                        <rect width="24" height="24" fill="none" />
-                        <path
-                          fill="currentColor"
-                          d="M20.99 7.325v-2.15a2.29 2.29 0 0 0-1.66-2.21a2.3 2.3 0 0 0-1-.05l-6.51 1a3.7 3.7 0 0 0-1.09-.87a3.8 3.8 0 0 0-1.81-.46H5.84A3.82 3.82 0 0 0 2 6.425v11.16a3.82 3.82 0 0 0 3.84 3.83h12.33a3.82 3.82 0 0 0 2.71-1.12a3.88 3.88 0 0 0 1.12-2.71v-7.7a3.73 3.73 0 0 0-1.01-2.56m-4.34 9.76H7.4a1 1 0 0 1 0-2h9.25a1 1 0 0 1 0 2m2.88-10.71a3.8 3.8 0 0 0-1.3-.23h-4.4a1 1 0 0 1-.47-.12a1 1 0 0 1-.35-.32l-.23-.34l5.8-.93a.8.8 0 0 1 .34 0a.7.7 0 0 1 .3.16a.6.6 0 0 1 .2.27a.7.7 0 0 1 .07.33z"
-                        />
-                      </svg>
-                    </Icon>
-                    Projects
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink>
-                    <Icon>
-                      <ChartBarIncreasingIcon />
-                    </Icon>
-                    Analyze
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink>
-                    <Icon>
-                      <WorkflowIcon />
-                    </Icon>
-                    Workflows
-                  </NavLink>
-                </li>
-
-                <li>
-                  <NavLink>
-                    <Icon>
-                      <UserCog2Icon />
-                    </Icon>
-                    Manage Access
-                  </NavLink>
-                </li>
-              </ul>
-            </DisclosurePanel>
-          </Disclosure>
-        </li>
-
-        <Separator soft className="my-3" />
-
-        <li className="grid">
-          <Disclosure defaultExpanded>
-            <DisclosureControl className="w-full text-xs/6 text-muted  hover:text-foreground">
-              Data management
-            </DisclosureControl>
-            <DisclosurePanel>
-              <ul className="grid gap-y-0.5 pt-1">
-                <li>
-                  <NavLink>
-                    <Icon>
-                      <ChartNoAxesColumnIcon />
-                    </Icon>
-                    All charts
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink>
-                    <Icon>
-                      <CalendarCogIcon />
-                    </Icon>
-                    Explore events
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink>
-                    <Icon>
-                      <TagsIcon />
-                    </Icon>
-                    Visual labels
-                  </NavLink>
-                </li>
-
-                <li>
-                  <NavLink>
-                    <Icon>
-                      <RadioIcon />
-                    </Icon>
-                    Live data feed
-                  </NavLink>
-                </li>
-              </ul>
-            </DisclosurePanel>
-          </Disclosure>
-        </li>
+        {navLinks.map((link) => (
+          <li>
+            <NavLink {...link} />
+          </li>
+        ))}
       </ul>
       <ul className="mt-auto grid gap-y-0.5 p-4">
         <li>
-          <NavLink>
+          <NavLink href="/">
             <Icon>
               <HelpCircleIcon />
             </Icon>
@@ -454,7 +402,7 @@ function MainNavigation() {
           </NavLink>
         </li>
         <li>
-          <NavLink>
+          <NavLink href="/">
             <Icon>
               <SendIcon />
             </Icon>
@@ -463,5 +411,48 @@ function MainNavigation() {
         </li>
       </ul>
     </nav>
+  );
+}
+
+type NavLinkItem = {
+  isActive?: boolean;
+} & LinkProps;
+
+type NavLinkProps = NavLinkItem | { title: string; items: NavLinkItem[] };
+
+function NavLink(props: NavLinkProps) {
+  if ('items' in props) {
+    return (
+      <Disclosure defaultExpanded>
+        <DisclosureControl className="group/control [&:not(:hover)]:text-muted mt-3 mb-1 w-full text-xs/6">
+          {props.title} <ChevronRightIcon className="hidden group-hover/control:flex size-4 ms-auto transition-all group-aria-expanded:rotate-90"/>
+        </DisclosureControl>
+        <DisclosurePanel>
+          <ul className="grid gap-y-0.5">
+            {props.items.map((item) => (
+              <li>
+                <NavLink {...item} />
+              </li>
+            ))}
+          </ul>
+        </DisclosurePanel>
+      </Disclosure>
+    );
+  }
+
+  const { isActive, ...rest } = props;
+  return (
+    <Link
+      {...rest}
+      className={composeRenderProps(rest.className, (className) => {
+        return twMerge(
+          'group w-full gap-x-2.5 overflow-hidden rounded-lg px-2 py-1 text-nowrap hover:bg-zinc-200 hover:no-underline focus-visible:outline-offset-0 dark:hover:bg-zinc-800',
+          props.isActive
+            ? '[&>[data-ui=icon]]:text-accent bg-zinc-200 dark:bg-zinc-800'
+            : '[&>[data-ui=icon]]:text-muted [&:hover>[data-ui=icon]]:text-accent',
+          className,
+        );
+      })}
+    />
   );
 }

@@ -49,7 +49,7 @@ export function Modal({ classNames, ...props }: ModalProps) {
       {...props}
       data-ui="modal-overlay"
       className={composeTailwindRenderProps(classNames?.modalOverlay, [
-        'fixed left-0 top-0 isolate z-20',
+        'fixed top-0 left-0 isolate z-20',
         'h-(--visual-viewport-height) w-full',
         'bg-zinc-950/25 dark:bg-zinc-950/50',
         'text-center',
@@ -113,12 +113,12 @@ export function Modal({ classNames, ...props }: ModalProps) {
         data-ui="modal"
         data-placement={placement}
         className={composeTailwindRenderProps(classNames?.modal, [
-          'relative max-h-full w-full',
+          'relative max-h-full w-full overflow-hidden',
           'text-left align-middle',
           'shadow-lg',
-          'bg-white dark:bg-zinc-900',
+          'bg-background dark:bg-zinc-900',
           'ring-1 ring-zinc-950/5 dark:ring-zinc-800',
-
+          
           props.size
             ? sizes[props.size]
             : 'sm:has-[[role=alertdialog]]:max-w-md sm:has-[[role=dialog]]:max-w-lg',
@@ -133,7 +133,7 @@ export function Modal({ classNames, ...props }: ModalProps) {
           drawer
             ? [
                 'h-full',
-                'rounded-lg',
+                'rounded-xl',
                 'data-[placement=left]:data-entering:slide-in-from-left',
                 'data-[placement=right]:data-entering:slide-in-from-right',
                 'data-[placement=left]:data-exiting:slide-out-to-left',
@@ -141,7 +141,7 @@ export function Modal({ classNames, ...props }: ModalProps) {
               ]
             : [
                 'row-start-2',
-                'rounded-lg',
+                'rounded-xl',
                 'data-entering:zoom-in-95',
                 'data-exiting:zoom-out-95',
 
@@ -151,9 +151,9 @@ export function Modal({ classNames, ...props }: ModalProps) {
                 'sm:data-exiting:duration-0',
 
                 !placement && [
-                  'has-[[role=dialog]]:rounded-t-lg',
+                  'has-[[role=dialog]]:rounded-t-xl',
                   'has-[[role=dialog]]:rounded-b-none',
-                  'sm:has-[[role=dialog]]:rounded-lg',
+                  'sm:has-[[role=dialog]]:rounded-xl',
 
                   'has-[[role=dialog]]:data-entering:zoom-in-100',
                   'has-[[role=dialog]]:data-entering:slide-in-from-bottom',

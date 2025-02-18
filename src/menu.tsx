@@ -51,10 +51,8 @@ export function MenuPopover({ className, ...props }: PopoverProps) {
       className={composeTailwindRenderProps(
         className,
         twMerge(
-          'dark:bg-zinc-800',
-          'dark:ring-zinc-700',
+          'overflow-hidden',
           'max-w-72',
-          'rounded-md',
           'min-w-[max(--spacing(36),var(--trigger-width))]',
           'has-[[data-ui=content]_[data-ui=icon]]:min-w-[max(--spacing(48),var(--trigger-width))]',
           'has-[[data-ui=content]_kbd]:min-w-[max(--spacing(11),var(--trigger-width))]',
@@ -65,60 +63,64 @@ export function MenuPopover({ className, ...props }: PopoverProps) {
 }
 
 type MenuProps<T> = RACMenuProps<T> & {
-  selectedIconPlacement?: 'start' | 'end';
+  checkIconPlacement?: 'start' | 'end';
 };
 
 export function Menu<T extends object>({
-  selectedIconPlacement = 'end',
+  checkIconPlacement = 'end',
   ...props
 }: MenuProps<T>) {
   return (
     <RACMenu
       {...props}
-      data-selected-icon-placement={selectedIconPlacement}
-      className={twMerge(
-        'max-h-[inherit] overflow-auto outline-hidden',
-        'flex flex-col',
-        'p-1 has-[header]:pt-0',
-
-        // Header, Menu item style when has selectable items
-        '[&_header]:px-2',
-
-        selectedIconPlacement === 'start' &&
-          '[&:has(:is([role=menuitemradio],[role=menuitemcheckbox]))_:is(header,[role=menuitem])]:ps-7',
-
-        // Menu item content
-        '**:data-[ui=content]:flex-1',
-        '**:data-[ui=content]:grid',
-        '[&_[data-ui=content]:has([data-ui=label])]:grid-cols-[--spacing(4)_1fr_minmax(--spacing(12),max-content)]',
-        '**:data-[ui=content]:items-center',
-        '**:data-[ui=content]:gap-x-2',
-
-        // Icon
-        '[&_[data-ui=content]:not(:hover)>[data-ui=icon]:not([class*=text-])]:text-muted',
-        '[&_[data-ui=content][data-destructive]>[data-ui=icon]]:text-destructive',
-        '[&_[data-ui=content][data-destructive]:not(:hover)>[data-ui=icon]]:text-destructive/75',
-        '[&_[data-ui=content]>[data-ui=icon]:not([class*=size-])]:size-4',
-        '[&_[data-ui=content]>[data-ui=icon]:first-child]:col-start-1',
-
-        // Label
-        '**:data-[ui=label]:col-span-full',
-        '[&:has([data-ui=icon]+[data-ui=label])_[data-ui=label]]:col-start-2',
-        '[&:has([data-ui=kbd])_[data-ui=label]]:-col-end-2',
-        '[&:has([data-ui=icon]+[data-ui=label])_[data-ui=content]:not(:has(>[data-ui=label]))]:ps-6',
-
-        // Kbd
-        '**:data-[ui=kbd]:col-span-1',
-        '**:data-[ui=kbd]:row-start-1',
-        '**:data-[ui=kbd]:col-start-3',
-        '**:data-[ui=kbd]:justify-self-end',
-        '[&_[data-destructive]>[data-ui=kbd]]:text-destructive',
-
-        // Description
-        '**:data-[ui=description]:col-span-full',
-        '[&:has([data-ui=kbd])_[data-ui=description]]:-col-end-2',
-        '[&:has([data-ui=icon]+[data-ui=label])_[data-ui=description]]:col-start-2',
+      data-check-icon-placement={checkIconPlacement}
+      className={composeTailwindRenderProps(
         props.className,
+        twMerge(
+          'max-h-[inherit] overflow-auto outline-hidden',
+          'flex flex-col',
+          'p-1 has-[header]:pt-0',
+
+          // Header, Menu item style when has selectable items
+          '[&_header]:px-2',
+
+          checkIconPlacement === 'start' &&
+            '[&:has(:is([role=menuitemradio],[role=menuitemcheckbox]))_:is(header,[role=menuitem])]:ps-7',
+
+          // Menu item content
+          '**:data-[ui=content]:flex-1',
+          '**:data-[ui=content]:grid',
+          '[&_[data-ui=content]:has([data-ui=label])]:grid-cols-[--spacing(4)_1fr_minmax(--spacing(12),max-content)]',
+          '**:data-[ui=content]:items-center',
+          '**:data-[ui=content]:gap-x-2',
+
+          // Icon
+          '[&_[data-ui=content]:not(:hover)>[data-ui=icon]:not([class*=text-])]:text-muted',
+          '[&_[data-ui=content][data-destructive]>[data-ui=icon]]:text-destructive',
+          '[&_[data-ui=content][data-destructive]:not(:hover)>[data-ui=icon]]:text-destructive/75',
+          '[&_[data-ui=content]>[data-ui=icon]:not([class*=size-])]:size-4',
+          '[&_[data-ui=content]>[data-ui=icon]:first-child]:col-start-1',
+
+          // Label
+          '**:data-[ui=label]:col-span-full',
+          '[&:has([data-ui=icon]+[data-ui=label])_[data-ui=label]]:col-start-2',
+          '[&:has([data-ui=kbd])_[data-ui=label]]:-col-end-2',
+          '[&:has([data-ui=icon]+[data-ui=label])_[data-ui=content]:not(:has(>[data-ui=label]))]:ps-6',
+
+          // Kbd
+          '**:data-[ui=kbd]:col-span-1',
+          '**:data-[ui=kbd]:row-start-1',
+          '**:data-[ui=kbd]:col-start-3',
+          '**:data-[ui=kbd]:justify-self-end',
+          '**:data-[ui=kbd]:text-xs/6',
+          '[&_:not([data-destructive])>[data-ui=kbd]:not([class*=bg-])]:text-muted/75',
+          '[&_[data-destructive]>[data-ui=kbd]]:text-destructive',
+
+          // Description
+          '**:data-[ui=description]:col-span-full',
+          '[&:has([data-ui=kbd])_[data-ui=description]]:-col-end-2',
+          '[&:has([data-ui=icon]+[data-ui=label])_[data-ui=description]]:col-start-2',
+        ),
       )}
     />
   );
@@ -134,7 +136,7 @@ export function MenuSeparator({ className }: { className?: string }) {
   return (
     <Separator
       className={twMerge(
-        'my-1 w-[calc(100%-(--spacing(4)))] self-center border-t border-zinc-950/5 dark:border-white/10',
+        'border-border/35 my-1 w-[calc(100%-(--spacing(4)))] self-center border-t dark:border-white/10',
         className,
       )}
     />
@@ -174,40 +176,33 @@ export function MenuItem({ destructive, ...props }: MenuItemProps) {
         props.children,
         (children, { selectionMode, isSelected }) => (
           <>
-            {selectionMode !== 'none' && (
-              <span
-                data-ui="icon"
-                className={twMerge(
-                  'flex w-4 self-start',
-                  'in-data-[selected-icon-placement=end]:hidden',
-                  isSelected && 'mt-1',
-                )}
-              >
-                {isSelected && <CheckIcon className="size-4" />}
-              </span>
-            )}
-
+            <CheckIcon
+              className={twMerge(
+                'flex h-[1lh] w-4 items-center self-start',
+                selectionMode == 'none'
+                  ? 'hidden'
+                  : 'in-data-[check-icon-placement=end]:hidden',
+                isSelected ? 'visible' : 'invisible',
+              )}
+            />
             <div
               data-ui="content"
               data-destructive={destructive ? destructive : undefined}
             >
               {children}
             </div>
-            {selectionMode !== 'none' && (
-              <span
-                data-ui="icon"
-                className={twMerge(
-                  'flex w-4 self-start',
-                  'in-data-[selected-icon-placement=start]:hidden',
-                  isSelected && 'mt-1',
-                )}
-              >
-                {isSelected && <CheckIcon className="size-4" />}
-              </span>
-            )}
+            <CheckIcon
+              className={twMerge(
+                'flex h-[1lh] w-4 items-center self-start',
+                selectionMode == 'none'
+                  ? 'hidden'
+                  : 'in-data-[check-icon-placement=start]:hidden',
+                isSelected ? 'visible' : 'invisible',
+              )}
+            />
 
             {/* Submenu indicator */}
-            <ChevronRightIcon className="hidden size-4 text-muted group-data-has-submenu:inline-block" />
+            <ChevronRightIcon className="text-muted hidden size-4 group-data-has-submenu:inline-block" />
           </>
         ),
       )}
@@ -261,14 +256,7 @@ export function MenuSection<T extends object>({
         className,
       )}
     >
-      <Header
-        className={twMerge(
-          'sticky inset-0 z-10',
-          'pt-2',
-          'truncate text-xs/6 text-muted',
-          'bg-white dark:bg-zinc-800',
-        )}
-      >
+      <Header className="text-muted sticky inset-0 z-10 truncate bg-white pt-2 text-xs/6 dark:bg-zinc-900">
         {props.title}
       </Header>
       <Collection items={props.items}>{props.children}</Collection>

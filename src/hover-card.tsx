@@ -12,6 +12,7 @@ import {
   useHover,
   safePolygon,
   Placement,
+  ReferenceType,
 } from '@floating-ui/react';
 import { Heading, HeadingProps } from './heading';
 import { twMerge } from 'tailwind-merge';
@@ -94,10 +95,16 @@ export function HoverCardTrigger({ children }: { children: React.ReactNode }) {
   const context = useHoverCardContext();
   const child = React.Children.only(children);
 
-  return React.cloneElement(child as React.ReactElement, {
-    ref: context.refs.setReference,
-    ...context.getReferenceProps(),
-  });
+  return React.cloneElement(
+    child as React.ReactElement<{
+      ref: ((node: ReferenceType | null) => void) &
+        ((node: ReferenceType | null) => void);
+    }>,
+    {
+      ref: context.refs.setReference,
+      ...context.getReferenceProps(),
+    },
+  );
 }
 
 export function HoverCardContent({
@@ -130,7 +137,7 @@ export function HoverCardContent({
       <FloatingFocusManager context={floatingContext} modal={modal}>
         <div
           className={twMerge(
-            'max-w-72 rounded-lg bg-background dark:bg-zinc-800 p-1 shadow-lg outline-hidden ring-1 ring-zinc-950/10 dark:ring-white/15',
+            'bg-background max-w-72 rounded-lg p-1 ring-1 shadow-lg ring-zinc-950/10 outline-hidden dark:bg-zinc-800 dark:ring-white/15',
             className,
           )}
           ref={refs.setFloating}

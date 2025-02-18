@@ -1,0 +1,29 @@
+import {Meta, Canvas } from '@storybook/addon-docs/blocks';
+
+import * as InputGroupStories from './InputGroup.stories';
+
+<Meta of={InputGroupStories} />
+
+# Input group
+
+Compose input groups with <a href="./?path=/docs/inputfield--docs" target="_blank">**TextField**</a>, <a href="./?path=/docs/button--docs" target="_blank">**Button**</a>, <a href="./?path=/docs/nativeselect--docs" target="_blank">**NativeSelect**</a> and <a href="./?path=/docs/select--docs" target="_blank">**Select**</a>
+
+
+<Canvas of={InputGroupStories.BasicExample} />
+
+
+## Input with native select
+
+<Canvas of={InputGroupStories.InputWithNativeSelect} />
+
+## Input with select
+
+<Canvas of={InputGroupStories.InputWithSelect} />
+
+## Input with button
+
+<Canvas of={InputGroupStories.InputWithButton} />
+
+## Input with hints
+
+<Canvas of={InputGroupStories.InputWithHints} />

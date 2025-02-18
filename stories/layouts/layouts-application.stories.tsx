@@ -1,5 +1,5 @@
 import { docs } from '../../.storybook/docs.ts';
-import { Button, ButtonProps } from '../../src/button.tsx';
+import { Button } from '../../src/button.tsx';
 import { Icon } from '../../src/icon.tsx';
 import {
   Menu,
@@ -21,12 +21,11 @@ import {
   PhoneIcon,
   CalendarDaysIcon,
   MoreHorizontalIcon,
+  InboxIcon,
 } from 'lucide-react';
 import { Link, LinkProps } from '../../src/link.tsx';
-import { Heading } from '../../src/heading.tsx';
-import { Separator } from '../../src/separator.tsx';
 import { NotificationBadge } from '../../src/notification-badge.tsx';
-import { composeRenderProps } from 'react-aria-components';
+import { composeRenderProps, TooltipTrigger } from 'react-aria-components';
 import { twMerge } from 'tailwind-merge';
 import { Tooltip } from '../../src/tooltip.tsx';
 import { AvailableIcon } from '../../src/icons.tsx';
@@ -51,88 +50,133 @@ export const Application = () => {
   return (
     <div className="flex h-dvh w-full">
       <Sidebar />
-
-      <main className="relative flex-1 overflow-y-auto border-s border-border/45 bg-background dark:bg-zinc-900">
-        <div className="sticky left-0 top-0 pt-4">
-          <Heading className="px-4">Chat</Heading>
-          <Separator soft className="mt-4" />
-        </div>
-        <div className="flex flex-1 p-4"></div>
-      </main>
+      <main className="border-border/45 bg-background relative flex-1 overflow-y-auto border-s dark:bg-zinc-900"></main>
     </div>
   );
 };
 
+type SidebarLinkProps = LinkProps & {
+  isActive?: boolean;
+};
+
+const links: Array<SidebarLinkProps> = [
+  {
+    href: '/',
+    tooltip: <Tooltip placement="end">Inbox</Tooltip>,
+    children: (
+      <>
+        <Icon aria-label="Activity">
+          <InboxIcon />
+        </Icon>
+        <NotificationBadge variant="dot"></NotificationBadge>
+      </>
+    ),
+  },
+  {
+    href: '/',
+    tooltip: <Tooltip placement="end">Activity</Tooltip>,
+    children: (
+      <>
+        <Icon aria-label="Activity">
+          <BellIcon />
+        </Icon>
+      </>
+    ),
+  },
+  {
+    href: '/',
+    isActive: true,
+    tooltip: <Tooltip placement="end">Chat</Tooltip>,
+    children: (
+      <>
+        <Icon aria-label="Chat">
+          <MessageCircleMoreIcon />
+        </Icon>
+
+        <NotificationBadge variant="numeric" value={10}></NotificationBadge>
+      </>
+    ),
+  },
+  {
+    href: '/',
+    tooltip: <Tooltip placement="end">Call</Tooltip>,
+    children: (
+      <>
+        <Icon aria-label="Call">
+          <PhoneIcon />
+        </Icon>
+      </>
+    ),
+  },
+  {
+    href: '/',
+    tooltip: <Tooltip placement="end">Calendar</Tooltip>,
+    children: (
+      <>
+        <Icon aria-label="Calendar">
+          <CalendarDaysIcon />
+        </Icon>
+      </>
+    ),
+  },
+];
+
 function Sidebar() {
   return (
-    <div className="group flex w-16 flex-col">
-      <div className="flex items-center justify-between px-4 pt-4">
-        <div className="flex items-center gap-x-2.5">
-          <CompanyLogo />
-        </div>
+    <div className="group flex w-14 flex-col py-2">
+      <div className="grid place-content-center">
+        <Icon>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            className="size-10"
+          >
+            <path
+              fill="currentColor"
+              d="M12 2c4.713 0 7.07 0 8.535 1.464c.757.758 1.123 1.754 1.3 3.192V10H2.164V6.656c.176-1.438.541-2.434 1.299-3.192C4.928 2 7.285 2 11.999 2"
+              opacity="0.5"
+            />
+            <path
+              fill="currentColor"
+              fill-rule="evenodd"
+              d="M2 14c0-2.8 0-4.2.545-5.27A5 5 0 0 1 4.73 6.545C5.8 6 7.2 6 10 6h4c2.8 0 4.2 0 5.27.545a5 5 0 0 1 2.185 2.185C22 9.8 22 11.2 22 14s0 4.2-.545 5.27a5 5 0 0 1-2.185 2.185C18.2 22 16.8 22 14 22h-4c-2.8 0-4.2 0-5.27-.545a5 5 0 0 1-2.185-2.185C2 18.2 2 16.8 2 14m10.53-3.53a.75.75 0 0 0-1.06 0l-2.5 2.5a.75.75 0 1 0 1.06 1.06l1.22-1.22V17a.75.75 0 0 0 1.5 0v-4.19l1.22 1.22a.75.75 0 1 0 1.06-1.06z"
+              clip-rule="evenodd"
+            />
+          </svg>
+        </Icon>
       </div>
 
       <nav className="flex flex-1 flex-col">
-        <ul className="grid gap-y-1 gap-y-2 p-4">
-          <li>
-            <SidebarButton tooltip={<Tooltip placement="end">Search</Tooltip>}>
-              <Icon aria-label="Search">
-                <SearchIcon />
-              </Icon>
-            </SidebarButton>
+        <ul className="grid place-content-center gap-y-2 p-4 px-1">
+          <li className="grid place-content-center">
+            <TooltipTrigger>
+              <Button
+                variant="unstyle"
+                className="p-2 hover:bg-zinc-200/75 dark:hover:bg-zinc-600"
+              >
+                <SearchIcon aria-label="Search" className="size-4" />
+              </Button>
+              <Tooltip placement='end'>Search</Tooltip>
+            </TooltipTrigger>
           </li>
-          <li>
-            <SidebarLink
-              href="/"
-              tooltip={<Tooltip placement="end">Inbox</Tooltip>}
-            >
-              <Icon aria-label="Activity">
-                <BellIcon />
-              </Icon>
-              <NotificationBadge variant="dot"></NotificationBadge>
-            </SidebarLink>
-          </li>
-
-          <li>
-            <SidebarLink  isActive tooltip={<Tooltip placement="end">Chat</Tooltip>}>
-              <Icon aria-label="Chat">
-                <MessageCircleMoreIcon />
-              </Icon>
-
-              <NotificationBadge
-                variant="numeric"
-                value={10}
-              ></NotificationBadge>
-            </SidebarLink>
-          </li>
-
-          <li>
-            <SidebarLink tooltip={<Tooltip placement="end">Call</Tooltip>}>
-              <Icon aria-label="Phone">
-                <PhoneIcon />
-              </Icon>
-            </SidebarLink>
-          </li>
-
-          <li>
-            <SidebarLink tooltip={<Tooltip placement="end">Calendar</Tooltip>}>
-              <Icon aria-label="Calendars">
-                <CalendarDaysIcon />
-              </Icon>
-            </SidebarLink>
-          </li>
-
-          <li>
+          {links.map((link, index) => (
+            <li key={index} className="grid place-content-center">
+              <SidebarLink {...link} />
+            </li>
+          ))}
+          <li className="grid place-content-center">
             <MenuTrigger>
               <MenuButton
                 tooltip={<Tooltip placement="end">More</Tooltip>}
                 isIconOnly
                 buttonArrow={null}
                 variant="plain"
-                className="group/more hover:bg-accent p-2"
+                className="group/more p-2 hover:bg-zinc-200/75 dark:hover:bg-zinc-600"
               >
                 <Icon>
-                  <MoreHorizontalIcon className="text-muted group-hover/more:text-white" />
+                  <MoreHorizontalIcon />
                 </Icon>
               </MenuButton>
               <MenuPopover placement="end">
@@ -147,13 +191,12 @@ function Sidebar() {
         </ul>
       </nav>
 
-      <div className="mt-auto flex justify-center px-2 py-4">
+      <div className="mt-auto flex justify-center px-2 pt-4">
         <MenuTrigger>
           <MenuButton variant="unstyle" buttonArrow={null}>
             <Avatar
               src="https://i.imgur.com/xIe7Wlb.png"
               alt="Marissa Whitaker"
-              className="size-9"
             >
               <AvatarBadge badge={<AvailableIcon aria-label="Available" />} />
             </Avatar>
@@ -201,66 +244,13 @@ function SidebarLink({
       {...props}
       className={composeRenderProps(props.className, (className) => {
         return twMerge(
-          'w-9 gap-x-2.5 text-nowrap rounded-md p-2 hover:no-underline',
-          '[&>[data-ui=icon]:not([class*=size-])]:size-5',
-
+          'rounded-md p-2 text-nowrap hover:no-underline focus-visible:outline-offset-0',
           isActive
-            ? 'bg-accent text-white'
-            : 'hover:bg-accent hover:text-white [&:not(:hover)>[data-ui=icon]]:text-muted',
+            ? 'bg-zinc-200/75 dark:bg-zinc-600'
+            : 'hover:bg-zinc-200/75 dark:hover:bg-zinc-600',
           className,
         );
       })}
     />
-  );
-}
-
-function SidebarButton({
-  isActive,
-  ...props
-}: ButtonProps & {
-  isActive?: boolean;
-}) {
-  return (
-    <Button
-      variant="unstyle"
-      className={composeRenderProps(props.className, (className) => {
-        return twMerge(
-          'group flex w-9 items-center gap-x-2.5 p-2 sm:text-sm/6',
-          'hover:bg-accent hover:text-white [&:not(:hover)>[data-ui=icon]]:text-muted *:data-[ui=icon]:size-5',
-          className,
-        );
-      })}
-      {...props}
-    />
-  );
-}
-
-function CompanyLogo() {
-  return (
-    <Icon>
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="1em"
-        height="1em"
-        viewBox="0 0 24 24"
-        className="size-8 text-accent"
-      >
-        <rect width="24" height="24" fill="none" />
-        <path
-          fill="currentColor"
-          d="M21 2H9a1 1 0 0 0-1 .999V7h8a1 1 0 0 1 1 .999V16h4a1 1 0 0 0 1-.999V3a1 1 0 0 0-.999-1z"
-          opacity="0.25"
-        />
-        <path
-          fill="currentColor"
-          d="M3 12h8a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-8a1 1 0 0 1 1-1"
-        />
-        <path
-          fill="currentColor"
-          d="M16 7H6a1 1 0 0 0-1 .999V12h6a1 1 0 0 1 1 .999V19h4a1 1 0 0 0 1-.999V8a1 1 0 0 0-.999-1z"
-          opacity="0.5"
-        />
-      </svg>
-    </Icon>
   );
 }

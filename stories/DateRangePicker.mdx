@@ -1,0 +1,44 @@
+import { Meta, Canvas } from '@storybook/addon-docs/blocks';
+
+import * as DateRangePickerStories from './DateRangePicker.stories';
+
+<Meta of={DateRangePickerStories} />
+
+# Date range picker
+
+A <a href="https://react-spectrum.adobe.com/react-aria/DateRangePicker.html#daterangepicker" target="_blank">**date range picker**</a> combines two DateFields and a RangeCalendar popover to allow users to enter or select a date and time range.
+
+<Canvas of={DateRangePickerStories.BasicExample} />
+
+## Description
+
+<Canvas of={DateRangePickerStories.DateRangePickerDescription} />
+
+
+## Minimum and maximum values
+
+<Canvas of={DateRangePickerStories.MinimumAndMaximumValues} />
+
+## Unavailable dates
+
+<Canvas of={DateRangePickerStories.UnavailableDates} />
+
+## Non-contiguous range
+
+<Canvas of={DateRangePickerStories.NonContiguousRange} />
+
+## Disabled state
+
+<Canvas of={DateRangePickerStories.DisabledState} />
+
+## Readonly state
+
+<Canvas of={DateRangePickerStories.ReadOnlyState} />
+
+## Validation errors
+
+<Canvas of={DateRangePickerStories.ValidationErrors} />
+
+## Picker buttons
+
+<Canvas of={DateRangePickerStories.PickerButtons} />

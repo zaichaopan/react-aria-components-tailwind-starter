@@ -64,6 +64,7 @@ export function SwitchField({
 
 interface SwitchProps extends RACSwitchProps {
   labelPlacement?: 'start' | 'end';
+  size?: 'lg';
   render?: never;
 }
 
@@ -71,6 +72,8 @@ export interface CustomRenderSwitchProps
   extends Omit<RACSwitchProps, 'children'> {
   render: React.ReactElement | ((props: SwitchRenderProps) => React.ReactNode);
   children?: never;
+  size?: never;
+  labelPlacement?: never;
 }
 
 export function Switch(props: SwitchProps | CustomRenderSwitchProps) {
@@ -98,7 +101,7 @@ export function Switch(props: SwitchProps | CustomRenderSwitchProps) {
     );
   }
 
-  const { labelPlacement = 'end', children, ...restProps } = props;
+  const { labelPlacement = 'end', size, children, ...restProps } = props;
 
   return (
     <RACSwitch
@@ -120,26 +123,27 @@ export function Switch(props: SwitchProps | CustomRenderSwitchProps) {
         <>
           <div
             className={twMerge(
-              'h-5 w-8',
-              'flex shrink-0 cursor-default items-center rounded-full px-[1px] shadow-inner',
-              'bg-zinc-200 dark:bg-transparent',
-              'border',
+              'dark:border-border flex h-6 w-11 shrink-0 cursor-default items-center rounded-full border border-zinc-200 bg-zinc-200 p-px dark:bg-transparent',
+              size !== 'lg' && 'sm:h-5 sm:w-8',
               labelPlacement === 'end' ? 'me-3' : 'ms-3',
               renderProps.isReadOnly && 'opacity-50',
               renderProps.isSelected &&
-                'border-black/10 bg-accent dark:bg-accent',
+                'border-accent bg-accent dark:bg-accent dark:border-accent',
               renderProps.isDisabled && 'bg-gray-200 dark:bg-zinc-700',
               renderProps.isFocusVisible &&
-                'outline outline-2 outline-offset-2 outline-ring',
+                'outline-ring outline outline-2 outline-offset-2',
             )}
           >
             <span
-              data-ui="thumb"
+              data-ui="handle"
               className={twMerge(
-                'size-4 rounded-full bg-white transition-all ease-in-out',
-                renderProps.isSelected
-                  ? 'translate-x-3 border-accent rtl:-translate-x-3'
-                  : 'translate-x-0',
+                'size-5',
+                size !== 'lg' && 'sm:size-4',
+                'rounded-full bg-white shadow transition-all ease-in-out',
+                renderProps.isSelected && [
+                  'translate-x-5 bg-[lch(from_var(--color-accent)_calc((49.44_-_l)_*_infinity)_0_0)] rtl:-translate-x-5',
+                  size !== 'lg' && 'sm:translate-x-3 sm:rtl:-translate-x-3',
+                ],
               )}
             />
           </div>

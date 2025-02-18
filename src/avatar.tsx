@@ -1,5 +1,5 @@
 import React from 'react';
-import { getInitials, getInitialsToken } from './get-initials';
+import { getInitials, getInitialsToken } from './initials';
 import { twMerge } from 'tailwind-merge';
 import { useImageLoadingStatus } from './hooks/use-image-loading-status';
 
@@ -11,6 +11,7 @@ export type AvatarProps = {
   src?: string;
   alt: string;
   colorless?: boolean;
+  fallback?: 'initials' | 'icon';
 } & React.JSX.IntrinsicElements['div'];
 
 export function Avatar({
@@ -19,6 +20,7 @@ export function Avatar({
   children,
   src,
   alt,
+  fallback = 'initials',
 }: AvatarProps) {
   const badgeId = React.useId();
   const avatarId = React.useId();
@@ -30,16 +32,18 @@ export function Avatar({
       <div
         role="img"
         className={twMerge([
-          'group relative flex size-10 shrink-0 items-center justify-center rounded-lg @container',
-          'outline outline-1 -outline-offset-1 outline-black/5 ring-background dark:outline-white/20',
-          '[&.rounded-full>svg]:rounded-full [&>svg]:size-full [&>svg]:rounded-lg',
-          '[&.rounded-full>img]:rounded-full [&>img]:size-full [&>img]:rounded-lg',
+          'group ring-background @container relative isolate flex size-10 shrink-0 rounded-lg',
+          '[&.rounded-full>:is(svg,img)]:rounded-full [&>:is(svg,img)]:size-full [&>:is(svg,img)]:rounded-lg',
           className,
         ])}
         aria-labelledby={ariaLabelledby}
       >
         {status === 'error' ? (
-          <InitialAvatar alt={alt} id={avatarId} colorless={colorless} />
+          fallback === 'initials' ? (
+            <FallbackInitials alt={alt} id={avatarId} colorless={colorless} />
+          ) : (
+            <FallbackIcon alt={alt} id={avatarId} colorless={colorless} />
+          )
         ) : (
           <img
             aria-hidden
@@ -55,15 +59,34 @@ export function Avatar({
   );
 }
 
-function InitialAvatar({
-  alt,
-  id,
-  colorless,
-}: {
+type AvatarFallback = {
   alt: string;
   id: string;
   colorless: boolean;
-}) {
+};
+
+function FallbackIcon({ alt, id, colorless }: AvatarFallback) {
+  const token = getInitialsToken(alt, colorless);
+
+  return (
+    <svg
+      aria-hidden
+      id={id}
+      aria-label={alt}
+      fill="currentColor"
+      style={{ '--avatar-token': token } as React.CSSProperties}
+      className="bg-(--avatar-token) text-zinc-50"
+      viewBox="0 0 80 80"
+    >
+      <g>
+        <path d="M 8 80 a 28 24 0 0 1 64 0"></path>
+        <circle cx="40" cy="32" r="16"></circle>
+      </g>
+    </svg>
+  );
+}
+
+function FallbackInitials({ alt, id, colorless }: AvatarFallback) {
   const initials = getInitials(alt);
   const token = getInitialsToken(alt, colorless);
 
@@ -72,12 +95,10 @@ function InitialAvatar({
       aria-hidden
       id={id}
       aria-label={alt}
-      style={{
-        background: `var(--${token})`,
-      }}
       fill="currentColor"
       viewBox="0 0 24 24"
-      className="font-medium text-white"
+      style={{ '--avatar-token': token } as React.CSSProperties}
+      className="bg-(--avatar-token) font-medium text-zinc-50"
     >
       <text
         x="50%"
@@ -113,7 +134,7 @@ export const AvatarBadge = ({ badge, ...props }: AvatarBadgeProps) => {
       className={twMerge([
         'grid place-items-center',
         '@[32px]:size-2/5 @[40px]:size-1/3 @[64px]:size-1/4 @[128px]:size-1/5',
-        'z-1 absolute bottom-0 end-0 z-10 rounded-full border-2 border-background bg-background',
+        'border-background bg-background absolute end-0 bottom-0 z-1 z-10 rounded-full border-2',
         'translate-x-[15%] translate-y-[20%]',
         'in-[.rounded-full]:translate-x-[35%] in-[.rounded-full]:translate-y-[5%] in-[.rounded-full]:rtl:translate-y-[45%]',
         '@-[40px]:in-[.rounded-full]:translate-x-[15%]',
@@ -140,10 +161,10 @@ export function AvatarGroup({
     <div
       {...props}
       className={twMerge(
-        'flex items-center -space-x-1 rtl:space-x-reverse',
+        'flex items-center -space-x-2 rtl:space-x-reverse',
         '[&>[role=img]:not([class*=ring-4])]:ring-2',
         reverseOverlap &&
-          'flex-row-reverse justify-end ps-2 [&>[role=img]:first-of-type]:-ms-1',
+          'flex-row-reverse justify-end [&>[role=img]:last-of-type]:-me-2',
         className,
       )}
     />

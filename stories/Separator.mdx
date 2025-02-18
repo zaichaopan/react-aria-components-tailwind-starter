@@ -1,0 +1,34 @@
+import { Meta, Canvas } from '@storybook/addon-docs/blocks';
+
+import * as SeparatorStories from './Separator.stories';
+
+<Meta of={SeparatorStories} />
+
+# Separator
+
+A <a href="https://react-spectrum.adobe.com/react-aria/useSeparator.html#useseparator" target="_blank">**separator**</a> is a visual divider between two groups of content, e.g. groups of menu items or sections of a page.
+
+<Canvas of={SeparatorStories.BasicExample} />
+
+## Vertical orientation
+
+Use `orientation="vertical"` to render vertical separator.
+
+<Canvas of={SeparatorStories.VerticalOrientation} />
+
+
+## Separator texts
+
+<Canvas of={SeparatorStories.SeparatorTexts} />
+
+## Separator icons
+
+<Canvas of={SeparatorStories.SeparatorIcons} />
+
+## Separator buttons
+
+<Canvas of={SeparatorStories.SeparatorButtons} />
+
+## Separator menus
+
+<Canvas of={SeparatorStories.SeparatorMenus} />

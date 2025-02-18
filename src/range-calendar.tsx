@@ -30,7 +30,7 @@ export function RangeCalendar<T extends DateValue>({
     >
       <CalendarHeader />
       <CalendarGrid
-        className="mx-3 border-separate border-spacing-y-0.5 sm:mx-2 [&_td]:px-0"
+        className="border-separate border-spacing-y-1 px-3 sm:px-2"
         weekdayStyle="short"
       >
         <CalendarGridHeader />
@@ -45,21 +45,19 @@ export function RangeCalendar<T extends DateValue>({
                   { isSelected, isSelectionStart, isSelectionEnd, isInvalid },
                 ) => {
                   return twMerge(
-                    'group size-9 cursor-default text-[0.85rem] outline-hidden',
+                    'group grid size-10 cursor-default place-items-center text-sm outline-hidden [td:first-child_&]:rounded-s-lg [td:last-child_&]:rounded-e-lg',
                     isToday(date, getLocalTimeZone()) && [
-                      isSelected ? 'rounded-none' : 'rounded-md',
-                      'bg-zinc-100 dark:bg-zinc-700',
-                    ],
-                    isSelected && [
-                      'bg-accent/[0.07] dark:bg-accent/35 dark:text-white',
+                      isSelected
+                        ? 'rounded-none'
+                        : 'rounded-lg bg-zinc-100 dark:bg-zinc-700',
                     ],
                     isSelected &&
-                      isInvalid && [
-                        'bg-destructive/15 text-destructive dark:bg-destructive/30',
-                      ],
-                    isSelectionStart && 'rounded-s-md',
-                    isSelectionEnd && 'rounded-e-md',
-                    '[td:first-child_&]:rounded-s-md [td:last-child_&]:rounded-e-md',
+                      'bg-accent/[0.07] dark:bg-accent/35 dark:text-white',
+                    isSelected &&
+                      isInvalid &&
+                      'bg-destructive/15 text-destructive dark:bg-destructive/30',
+                    isSelectionStart && 'rounded-s-lg',
+                    isSelectionEnd && 'rounded-e-lg',
                     className,
                   );
                 },
@@ -79,46 +77,27 @@ export function RangeCalendar<T extends DateValue>({
               }) => (
                 <span
                   className={twMerge(
-                    'relative flex size-[calc(theme(size.9)-1px)] items-center justify-center',
+                    'relative flex size-[calc(--spacing(10)-1px)] items-center justify-center',
                     isHovered && [
-                      'rounded-md',
-                      'bg-zinc-100',
-                      'dark:bg-zinc-700',
+                      'rounded-lg bg-zinc-100 dark:bg-zinc-700',
                       isPressed && 'bg-accent/90',
-                      isSelected && [
-                        'bg-accent',
-                        'text-white',
-                        'dark:bg-accent',
-                      ],
-                      isPressed && isSelected && ['bg-accent', 'text-white'],
+                      isSelected &&
+                        'bg-accent dark:bg-accent text-[lch(from_var(--color-accent)_calc((49.44_-_l)_*_infinity)_0_0)]',
                     ],
-                    isDisabled && 'opacity-40',
-                    isUnavailable && [
-                      'text-destructive',
-                      'decoration-destructive',
-                      'line-through',
+                    isDisabled && 'opacity-50',
+                    isUnavailable &&
+                      'text-destructive decoration-destructive line-through',
+                    (isSelectionStart || isSelectionEnd) && [
+                      'bg-accent rounded-lg text-sm text-[lch(from_var(--color-accent)_calc((49.44_-_l)_*_infinity)_0_0)]',
+                      isHovered && 'bg-accent/90 dark:bg-accent/90',
+                      isInvalid &&
+                        'border-destructive bg-destructive text-white',
                     ],
-                    isSelected &&
-                      (isSelectionStart || isSelectionEnd) && [
-                        'text-sm',
-                        'border',
-                        'dark:border-0',
-                        'border-accent',
-                        'rounded-md',
-                        'bg-accent',
-                        'text-white',
-                        'shadow-[inset_0_1px_0_0_rgba(255,255,255,0.1)]',
-                        isHovered && 'bg-accent/90 dark:bg-accent/90',
-                        isInvalid &&
-                          'border-destructive bg-destructive text-white',
-                      ],
                     isFocusVisible && [
-                      'outline',
-                      'outline-2',
-                      'outline-ring',
+                      'outline-ring outline outline-2',
                       (isSelectionStart || isSelectionEnd) &&
                         'outline-offset-1',
-                      'rounded-md',
+                      'rounded-lg',
                     ],
                   )}
                 >
@@ -130,7 +109,7 @@ export function RangeCalendar<T extends DateValue>({
         </CalendarGridBody>
       </CalendarGrid>
       {errorMessage && (
-        <Text slot="errorMessage" className="text-sm text-destructive">
+        <Text slot="errorMessage" className="text-destructive text-sm">
           {errorMessage}
         </Text>
       )}

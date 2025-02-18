@@ -1,0 +1,31 @@
+import { Meta, Canvas } from '@storybook/addon-docs/blocks';
+
+import * as TooltipStories from './Tooltip.stories';
+
+<Meta of={TooltipStories} />
+
+# Tooltip
+
+A <a href="https://react-spectrum.adobe.com/react-aria/Button.html" target="_blank">**tooltip**</a> displays a description of an element on hover or focus. Tooltip target need to be focusable.
+
+
+<Canvas of={TooltipStories.BasicExample} />
+
+## Disabled elements
+
+Use the `NonFousableTooltipTarget` component and `div` to show a tooltip on disabled elements.
+
+<Canvas of={TooltipStories.DisabledElements} />
+
+## Non-focusable elements
+
+Use the `NonFousableTooltipTarge` prop to show a tooltip on <a href="https://argos-ci.com/blog/react-aria-migration" target="_blank">**non-focusable**</a> element
+
+<Canvas of={TooltipStories.NonFocusableElements} />
+
+## Native tooltips
+
+The `NativeTooltip` component uses <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/title" target="_blank">**title**</a> attribute to create a native html tooltip.
+
+
+<Canvas of={TooltipStories.NativeTooltips} />

@@ -1,0 +1,27 @@
+import { Meta, Canvas } from '@storybook/addon-docs/blocks';
+
+import * as SearchFieldStories from './SearchField.stories';
+
+<Meta of={SearchFieldStories} />
+
+# Search field
+
+A <a href="https://react-spectrum.adobe.com/react-aria/SearchField.html#searchfield" target="_blank">**search field**</a> allows a user to enter and clear a search query.
+
+<Canvas of={SearchFieldStories.BasicExample} />
+
+## Description
+
+<Canvas of={SearchFieldStories.SearchFieldDescription} />
+
+## Disabled state
+
+<Canvas of={SearchFieldStories.WithDisabledState} />
+
+## Readonly state
+
+<Canvas of={SearchFieldStories.ReadOnlyState} />
+
+## Pending state
+
+<Canvas of={SearchFieldStories.PendingState} />

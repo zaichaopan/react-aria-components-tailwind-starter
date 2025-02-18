@@ -68,7 +68,7 @@ const tabList = {
     vertical: 'space-y-2',
   },
   segment: {
-    horizontal: 'p-1 rounded-lg bg-zinc-200/75 dark:bg-zinc-600/45 shadow-xs',
+    horizontal: 'p-0.5 rounded-lg bg-zinc-200/75 dark:bg-zinc-700 shadow-xs',
     vertical: '',
   },
 };
@@ -171,7 +171,7 @@ const tab = ({
       base: [
         'flex-1 justify-center px-6 py-1 [&>[data-ui=icon]:not([class*=size-])]:size-4',
         isSelected &&
-          'bg-background dark:bg-zinc-600 text-foreground shadow-2xs rounded-md',
+          'bg-background dark:bg-zinc-500 text-foreground shadow-2xs rounded-md',
       ],
       horizontal: '',
       vertical: '',
