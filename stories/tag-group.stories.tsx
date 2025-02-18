@@ -92,13 +92,9 @@ export const Removable = (args: any) => {
   );
 };
 
-export const Colors = (args: any) => {
+export const Colors = () => {
   return (
-    <TagGroup
-      {...args}
-      defaultSelectedKeys={['in-review']}
-      selectionMode="single"
-    >
+    <TagGroup defaultSelectedKeys={['in-review']} selectionMode="single">
       <Label>Status</Label>
       <TagList>
         <Tag id="in-review" color="default">
@@ -118,27 +114,24 @@ export const Colors = (args: any) => {
   );
 };
 
-export const WithCustomColors = (args: any) => {
+export const WithCustomColors = () => {
   return (
-    <TagGroup {...args} selectionMode="single">
+    <TagGroup selectionMode="single">
       <Label>Status</Label>
       <TagList>
-        <Tag id="labe1" className="[--tag:125_58_237]">
+        <Tag id="labe1" className="[--tag:oklch(.532_.157_131.589)]">
           label
         </Tag>
-        <Tag id="labe2" className="[--tag:101_163_13]">
+        <Tag id="labe2" className="[--tag:oklch(.496_.265_301.924)]">
           label
         </Tag>
-        <Tag id="labe3" className="[--tag:6_182_212]">
+        <Tag id="labe3" className="[--tag:oklch(.518_.253_323.949)]">
           label
         </Tag>
-        <Tag id="labe4" className="[--tag:192_38_211]">
+        <Tag id="labe4" className="[--tag:oklch(.514_.222_16.935)]">
           label
         </Tag>
-        <Tag id="labe5" className="[--tag:219_39_119]">
-          label
-        </Tag>
-        <Tag id="labe6" className="[--tag:161_98_7]">
+        <Tag id="labe5" className="[--tag:oklch(.553_.195_38.402)]">
           label
         </Tag>
       </TagList>

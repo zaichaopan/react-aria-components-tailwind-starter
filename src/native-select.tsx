@@ -1,9 +1,11 @@
 import React from 'react';
 import { useFocusRing } from 'react-aria';
 import { twMerge } from 'tailwind-merge';
-import { selectBoxIndicator, inputField } from './utils';
+import {inputField } from './utils';
 import { DescriptionContext, DescriptionProvider } from './field';
 import { LabelContext } from 'react-aria-components';
+import { Icon } from './icon';
+import { ChevronDownIcon } from './icons';
 
 export function NativeSelectField({
   className,
@@ -44,7 +46,7 @@ export function NativeSelect({
   return (
     <div
       data-ui="control"
-      className={twMerge('relative flex transition', selectBoxIndicator)}
+      className={twMerge('group relative isolate flex transition')}
     >
       <select
         {...focusProps}
@@ -53,17 +55,20 @@ export function NativeSelect({
         className={twMerge(
           'w-full min-w-36',
           'appearance-none bg-transparent',
-          'pe-8 ps-3',
+          'ps-3 pe-8',
           'py-[calc(--spacing(2.5)-1px)]',
           'sm:py-[calc(--spacing(1.5)-1px)]',
           'rounded-md border outline-hidden',
           'text-base/6 sm:text-sm/6',
           'hover:bg-zinc-100 dark:hover:bg-zinc-800',
-          isFocusVisible && 'border-ring ring-1 ring-ring',
+          isFocusVisible && 'border-ring ring-ring ring-1',
           className,
         )}
         {...props}
       />
+      <Icon className="group-[&:not(:hover)]:text-muted absolute end-0 end-2.5 bottom-1/2 size-5 translate-y-1/2 sm:size-4 rtl:translate-x-1.5">
+        <ChevronDownIcon />
+      </Icon>
     </div>
   );
 }

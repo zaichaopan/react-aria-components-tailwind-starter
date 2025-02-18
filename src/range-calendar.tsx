@@ -100,14 +100,7 @@ export function RangeCalendar<T extends DateValue>({
                     ],
                     isSelected &&
                       (isSelectionStart || isSelectionEnd) && [
-                        'text-sm',
-                        'border',
-                        'dark:border-0',
-                        'border-accent',
-                        'rounded-md',
-                        'bg-accent',
-                        'text-white',
-                        'shadow-[inset_0_1px_0_0_rgba(255,255,255,0.1)]',
+                        'bg-accent rounded-md text-sm text-white',
                         isHovered && 'bg-accent/90 dark:bg-accent/90',
                         isInvalid &&
                           'border-destructive bg-destructive text-white',
@@ -130,7 +123,7 @@ export function RangeCalendar<T extends DateValue>({
         </CalendarGridBody>
       </CalendarGrid>
       {errorMessage && (
-        <Text slot="errorMessage" className="text-sm text-destructive">
+        <Text slot="errorMessage" className="text-destructive text-sm">
           {errorMessage}
         </Text>
       )}
