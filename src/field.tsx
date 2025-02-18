@@ -63,7 +63,7 @@ export function Label({
         'group-disabled:opacity-50',
         displayLevels[displayLevel],
         requiredHint &&
-          "after:ms-0.5 after:text-destructive after:content-['*']",
+          "after:text-destructive after:ms-0.5 after:content-['*']",
         props.className,
       )}
     />
@@ -121,7 +121,7 @@ export function Description({ className, ...props }: TextProps) {
       data-ui="description"
       slot="description"
       className={twMerge(
-        'block text-pretty text-base/6 text-muted sm:text-sm/6',
+        'text-muted block text-base/6 text-pretty sm:text-sm/6',
         'group-disabled:opacity-50',
         className,
       )}
@@ -147,7 +147,7 @@ export function FieldError(props: FieldErrorProps) {
       {...props}
       data-ui="errorMessage"
       className={composeRenderProps(props.className, (className) =>
-        twMerge('block text-base/6 text-destructive sm:text-sm/6', className),
+        twMerge('text-destructive block text-base/6 sm:text-sm/6', className),
       )}
     />
   );
@@ -165,12 +165,12 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
             twMerge(
               'w-full rounded-md border bg-inherit outline-hidden',
               'px-3 py-[calc(--spacing(2.5)-1px)] sm:py-[calc(--spacing(1.5)-1px)]',
-              'text-base/6 placeholder:text-muted sm:text-sm/6',
-              renderProps.isDisabled && 'opacity-50',
-              renderProps.isInvalid && 'border-destructive',
+              'placeholder:text-muted text-base/6 sm:text-sm/6',
               '[&[readonly]]:bg-zinc-50',
               'dark:[&[readonly]]:bg-white/10',
-              renderProps.isFocused && 'border-ring ring-1 ring-ring',
+              renderProps.isDisabled && 'opacity-50',
+              renderProps.isInvalid && 'border-destructive',
+              renderProps.isFocused && 'border-ring ring-ring ring-1',
               className,
             ),
         )}
@@ -186,12 +186,12 @@ export function TextArea(props: RACTextAreaProps) {
       className={composeRenderProps(props.className, (className, renderProps) =>
         twMerge(
           'w-full rounded-md border bg-inherit px-3 py-1 outline-hidden',
-          'text-base/6 placeholder:text-muted sm:text-sm/6',
-          renderProps.isDisabled && 'opacity-50',
-          renderProps.isInvalid && 'border-destructive',
+          'placeholder:text-muted text-base/6 sm:text-sm/6',
           '[&[readonly]]:bg-zinc-50',
           'dark:[&[readonly]]:bg-white/10',
-          renderProps.isFocused && 'border-ring ring-1 ring-ring',
+          renderProps.isDisabled && 'opacity-50',
+          renderProps.isInvalid && 'border-destructive',
+          renderProps.isFocused && 'border-ring ring-ring ring-1',
           className,
         ),
       )}

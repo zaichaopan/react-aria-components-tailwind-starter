@@ -67,16 +67,14 @@ export function Calendar<T extends DateValue>({
                       isPressed && 'bg-accent/90 text-white',
                       isDisabled && 'opacity-50',
                       isSelected && [
-                        'text-sm text-white',
-                        'border border-accent dark:border-0',
-                        'bg-accent shadow-[inset_0_1px_0_0_rgba(255,255,255,0.1)]',
+                        'bg-accent text-sm text-white',
                         isHovered && ['bg-accent', 'dark:bg-accent'],
                         isInvalid && [
                           'border-destructive bg-destructive text-white',
                         ],
                       ],
                       isUnavailable && [
-                        'text-destructive line-through decoration-destructive',
+                        'text-destructive decoration-destructive line-through',
                       ],
                       isFocusVisible && [
                         'outline',
@@ -94,7 +92,7 @@ export function Calendar<T extends DateValue>({
         </CalendarGridBody>
       </CalendarGrid>
       {errorMessage && (
-        <Text slot="errorMessage" className="text-sm text-destructive">
+        <Text slot="errorMessage" className="text-destructive text-sm">
           {errorMessage}
         </Text>
       )}
@@ -112,7 +110,7 @@ export function CalendarHeader() {
         variant="plain"
         isIconOnly
         aria-label="Previous"
-        className="focus-visible:-outline-offset-2 [&:not(:hover)]:text-muted"
+        className="[&:not(:hover)]:text-muted focus-visible:-outline-offset-2"
       >
         {direction === 'rtl' ? (
           <ChevronRightIcon className="sm:size-5" strokeWidth="1.5" />
@@ -122,7 +120,7 @@ export function CalendarHeader() {
       </Button>
 
       <Heading
-        className="mx-2 flex-1 text-center text-base/6 sm:text-sm/6 font-medium"
+        className="mx-2 flex-1 text-center text-base/6 font-medium sm:text-sm/6"
         level={2}
         aria-hidden
       />
@@ -132,7 +130,7 @@ export function CalendarHeader() {
         variant="plain"
         isIconOnly
         aria-label="Next"
-        className="focus-visible:-outline-offset-2 [&:not(:hover)]:text-muted"
+        className="[&:not(:hover)]:text-muted focus-visible:-outline-offset-2"
       >
         {direction === 'rtl' ? (
           <ChevronLeftIcon className="sm:size-5" strokeWidth="1.5" />
@@ -148,7 +146,7 @@ export function CalendarGridHeader() {
   return (
     <RACCalendarGridHeader>
       {(day) => (
-        <CalendarHeaderCell className="size-9 text-sm/6 font-normal text-muted">
+        <CalendarHeaderCell className="text-muted size-9 text-sm/6 font-normal">
           {day}
         </CalendarHeaderCell>
       )}

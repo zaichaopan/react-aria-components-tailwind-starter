@@ -121,16 +121,16 @@ export function Switch(props: SwitchProps | CustomRenderSwitchProps) {
           <div
             className={twMerge(
               'h-5 w-8',
-              'flex shrink-0 cursor-default items-center rounded-full px-[1px] shadow-inner',
+              'flex shrink-0 cursor-default items-center rounded-full px-[1px]',
               'bg-zinc-200 dark:bg-transparent',
-              'border',
+              'border border-zinc-200 dark:border-border',
               labelPlacement === 'end' ? 'me-3' : 'ms-3',
               renderProps.isReadOnly && 'opacity-50',
               renderProps.isSelected &&
-                'border-black/10 bg-accent dark:bg-accent',
+                'border-accent bg-accent dark:bg-accent dark:border-white/10',
               renderProps.isDisabled && 'bg-gray-200 dark:bg-zinc-700',
               renderProps.isFocusVisible &&
-                'outline outline-2 outline-offset-2 outline-ring',
+                'outline-ring outline outline-2 outline-offset-2',
             )}
           >
             <span
@@ -138,7 +138,7 @@ export function Switch(props: SwitchProps | CustomRenderSwitchProps) {
               className={twMerge(
                 'size-4 rounded-full bg-white transition-all ease-in-out',
                 renderProps.isSelected
-                  ? 'translate-x-3 border-accent rtl:-translate-x-3'
+                  ? 'border-accent translate-x-3 rtl:-translate-x-3'
                   : 'translate-x-0',
               )}
             />
