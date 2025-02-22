@@ -68,7 +68,7 @@
   }
   
   .dark.blue-theme {
-    --accent: oklch(.546 .245 262.881);;
+    --accent: oklch(.546 .245 262.881);
   }
   
   .indigo-theme {
