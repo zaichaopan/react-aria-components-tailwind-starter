@@ -7,7 +7,7 @@ import {
   PaginationNext,
   PaginationPage,
   PaginationPrevious,
-} from '../src/pgagination';
+} from '../src/pagination';
 
 const meta: Meta = {
   title: 'Pagination',
