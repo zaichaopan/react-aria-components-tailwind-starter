@@ -55,7 +55,6 @@ export function SelectButton(props: {
             isHovered && isPressed && ['dark:bg-zinc-800'],
             isFocusVisible &&
               'border-ring ring-ring group-data-invalid:border-ring ring-1',
-            // selectBoxIndicator,
             className,
           ),
       )}

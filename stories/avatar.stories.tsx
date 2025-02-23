@@ -149,7 +149,7 @@ export const AvatarIconFallbacks = () => {
       <div className="flex items-end gap-4">
         <Avatar alt="A N" className="rounded-full" fallback="icon" />
         <Avatar alt="D P" className="rounded-full" fallback="icon" />
-        <Avatar alt="B O" className="rounded-full" fallback="icon" />
+        <Avatar alt="S W" className="rounded-full" fallback="icon" />
         <Avatar alt="W W" className="rounded-full" fallback="icon" />
       </div>
     </div>
