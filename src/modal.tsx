@@ -113,7 +113,7 @@ export function Modal({ classNames, ...props }: ModalProps) {
         data-ui="modal"
         data-placement={placement}
         className={composeTailwindRenderProps(classNames?.modal, [
-          'relative max-h-full w-full',
+          'relative max-h-full w-full overflow-hidden',
           'text-left align-middle',
           'shadow-lg',
           'bg-white dark:bg-zinc-900',
