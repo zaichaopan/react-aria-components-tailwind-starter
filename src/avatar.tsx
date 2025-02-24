@@ -75,7 +75,7 @@ function FallbackIcon({ alt, id, colorless }: AvatarFallback) {
       aria-label={alt}
       fill="currentColor"
       style={{ '--avatar-token': token } as React.CSSProperties}
-      className="bg-(--avatar-token) text-white dark:bg-[lch(from_var(--avatar-token)_calc(l*1.5)_c_h)]"
+      className="bg-(--avatar-token) text-zinc-50"
       viewBox="0 0 80 80"
     >
       <g>
@@ -98,7 +98,7 @@ function FallbackInitials({ alt, id, colorless }: AvatarFallback) {
       fill="currentColor"
       viewBox="0 0 24 24"
       style={{ '--avatar-token': token } as React.CSSProperties}
-      className="bg-(--avatar-token) font-medium text-white dark:bg-[lch(from_var(--avatar-token)_calc(l*1.5)_c_h)]"
+      className="bg-(--avatar-token) font-medium text-zinc-50"
     >
       <text
         x="50%"
@@ -161,10 +161,10 @@ export function AvatarGroup({
     <div
       {...props}
       className={twMerge(
-        'flex items-center -space-x-1 rtl:space-x-reverse',
+        'flex items-center -space-x-2 rtl:space-x-reverse',
         '[&>[role=img]:not([class*=ring-4])]:ring-2',
         reverseOverlap &&
-          'flex-row-reverse justify-end ps-2 [&>[role=img]:first-of-type]:-ms-1',
+          'flex-row-reverse justify-end [&>[role=img]:last-of-type]:-me-2',
         className,
       )}
     />

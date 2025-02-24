@@ -30,12 +30,11 @@ export function Popover(props: PopoverProps) {
       className={composeTailwindRenderProps(props.className, [
         'bg-white',
         'dark:bg-zinc-900',
-        'shadow-md',
+        'shadow-lg',
         'rounded-md',
         'ring-1',
         'ring-zinc-950/10',
         'dark:ring-zinc-800',
-
         'data-entering:animate-in',
         'data-entering:ease-out',
         'data-entering:fade-in',

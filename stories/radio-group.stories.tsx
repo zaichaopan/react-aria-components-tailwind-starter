@@ -8,6 +8,7 @@ import { FieldError, Label, Description } from '../src/field';
 import { Small, TextLink } from '../src/text';
 import { Icon } from '../src/icon';
 import { twMerge } from 'tailwind-merge';
+import { MonitorIcon, MoonStarIcon, SunIcon } from 'lucide-react';
 
 const meta: Meta = {
   title: 'Radio group',
@@ -492,7 +493,7 @@ function DeliveryOptions() {
               className={({ isSelected }) => {
                 return twMerge(
                   'items-start rounded-lg border px-4 py-3 [&_[slot=radio]]:mt-1.5',
-                  isSelected && 'border-accent',
+                  isSelected && 'border-accent ring-accent ring ring-1',
                 );
               }}
             >
@@ -501,7 +502,7 @@ function DeliveryOptions() {
                   <div className="flex font-medium">{option.name}</div>
                   <div className="text-gray-500">{option.description}</div>
                 </div>
-                <div className="font-medium text-muted">{option.price}</div>
+                <div className="text-muted font-medium">{option.price}</div>
               </div>
             </Radio>
           );
@@ -530,7 +531,7 @@ function DeliveryOptionsRightAlignment() {
               className={({ isSelected }) => {
                 return twMerge(
                   'items-start rounded-lg border px-4 py-3 [&_[slot=radio]]:mt-1.5',
-                  isSelected && 'border-accent',
+                  isSelected && 'border-accent ring-accent ring ring-1',
                 );
               }}
             >
@@ -582,7 +583,7 @@ const accentColors = [
 
 function AccentColors() {
   return (
-    <RadioGroup orientation="horizontal">
+    <RadioGroup orientation="horizontal" defaultValue="blue">
       <Label>Choose a accent color</Label>
       <Radios className="gap-x-2">
         {accentColors.map((color) => {
@@ -596,13 +597,13 @@ function AccentColors() {
                     'grid size-6 place-items-center rounded-full',
                     color.color,
                     isFocusVisible &&
-                      'outline outline-2 outline-offset-2 outline-ring',
+                      'outline-ring outline outline-2 outline-offset-2',
                   )}
                 >
                   <div
                     className={twMerge(
                       'size-0 transition-all',
-                      isSelected ? 'size-2 rounded-full bg-white' : '',
+                      isSelected ? 'size-2.5 rounded-full bg-white' : '',
                     )}
                   ></div>
                 </div>
@@ -641,7 +642,7 @@ function CpuOptions() {
                     'rounded-md border px-4 py-2 font-semibold',
                     isSelected && 'border-accent bg-accent text-white',
                     isFocusVisible &&
-                      'outline outline-2 outline-offset-2 outline-ring',
+                      'outline-ring outline outline-2 outline-offset-2',
                   ].join(' ')}
                 >
                   {option}
@@ -693,7 +694,7 @@ function Rating() {
               aria-label={String(index + 1)}
               className={({ isFocusVisible }) => {
                 return isFocusVisible
-                  ? 'outline outline-2 outline-offset-2 outline-ring'
+                  ? 'outline-ring outline outline-2 outline-offset-2'
                   : '';
               }}
               render={
@@ -716,122 +717,74 @@ function Rating() {
 
 function ThemeOptions() {
   return (
-    <RadioGroup orientation="horizontal" defaultValue="light">
+    <RadioGroup orientation="horizontal" defaultValue="system">
       <Label>Appearance</Label>
       <Description>Customize your application appearance</Description>
-      <Radios className="gap-x-6 gap-y-4">
-        <Radio
-          value="light"
-          render={({ isSelected, isFocusVisible }) => (
-            <div className="relative isolate grid place-items-center gap-2">
+      <Radios className="rounded-lg border p-1">
+        <div className="relative isolate flex flex-1">
+          <Radio
+            className="peer/system z-10 flex-1"
+            value="system"
+            render={({ isFocusVisible, isSelected }) => (
               <div
                 className={twMerge(
-                  'grid aspect-4/3 w-32 grid-cols-[12px_1fr] overflow-hidden rounded-md shadow-sm',
-                  'ring-transparent ring-offset-2 ring-offset-background',
-                  isSelected && 'ring-2 ring-accent ring-offset-4',
+                  'flex items-center justify-center gap-x-2 rounded-md px-4 py-1 text-muted',
+                  isSelected && 'text-white',
                   isFocusVisible &&
-                    'outline outline-2 outline-offset-2 outline-ring',
-                  isFocusVisible && isSelected && 'ring-0',
+                    'outline-ring outline outline-2 outline-offset-2',
                 )}
               >
-                <div className="bg-zinc-100"></div>
-
-                <div className="bg-zinc-100 pt-3">
-                  <div className="flex h-full flex-col overflow-hidden rounded-s border-s border-t border-black/10 bg-white">
-                    <div className="flex h-1.5 items-center gap-x-0.5 overflow-hidden border-b border-black/5 bg-zinc-200/75 ps-1">
-                      <span className="size-0.5 rounded-full bg-red-400"></span>
-                      <span className="size-0.5 rounded-full bg-yellow-400"></span>
-                      <span className="size-0.5 rounded-full bg-green-400"></span>
-                    </div>
-
-                    <div className="ms-2 mt-1.5 h-1 rounded-s-sm bg-accent/40"></div>
-                    <div className="ms-1 mt-0.5 h-0.5 rounded-s-sm bg-accent/15"></div>
-                    <div className="ms-2 mt-[1px] h-0.5 rounded-s-sm bg-accent/15"></div>
-                  </div>
-                </div>
+                <Icon>
+                  <MonitorIcon className="size-4" />
+                </Icon>
+                <span>System</span>
               </div>
-              Light
-            </div>
-          )}
-        ></Radio>
-
-        <Radio
-          value="dark"
-          render={({ isSelected, isFocusVisible }) => (
-            <div className="relative isolate grid place-items-center gap-2">
+            )}
+          ></Radio>
+          <Radio
+            className="peer/light z-10 flex-1"
+            value="light"
+            render={({ isFocusVisible, isSelected }) => (
               <div
                 className={twMerge(
-                  'grid aspect-4/3 w-32 grid-cols-[12px_1fr] overflow-hidden rounded-md shadow-sm',
-                  'ring-transparent ring-offset-2 ring-offset-background',
-                  isSelected && 'ring-2 ring-accent ring-offset-4',
+                  'flex items-center justify-center gap-x-2 rounded-md px-4 py-1 text-muted',
+                  isSelected && 'text-white',
                   isFocusVisible &&
-                    'outline outline-2 outline-offset-2 outline-ring',
-                  isFocusVisible && isSelected && 'ring-0',
+                    'outline-ring outline outline-2 outline-offset-2',
                 )}
               >
-                <div className="bg-zinc-800"></div>
-
-                <div className="bg-zinc-800 pt-3">
-                  <div className="flex h-full flex-col overflow-hidden rounded-s border border-zinc-700">
-                    <div className="flex h-1.5 items-center gap-x-0.5 overflow-hidden border-b border-zinc-700 ps-1">
-                      <span className="size-0.5 rounded-full bg-red-400"></span>
-                      <span className="size-0.5 rounded-full bg-yellow-400"></span>
-                      <span className="size-0.5 rounded-full bg-green-400"></span>
-                    </div>
-
-                    <div className="ms-2 mt-1.5 h-1 rounded-s-sm bg-accent"></div>
-                    <div className="ms-1 mt-0.5 h-0.5 rounded-s-sm bg-accent/75"></div>
-                    <div className="ms-2 mt-[1px] h-0.5 rounded-s-sm bg-accent/75"></div>
-                  </div>
-                </div>
+                <Icon>
+                  <SunIcon className="size-4" />
+                </Icon>
+                <span>Light</span>
               </div>
-              Dark
-            </div>
-          )}
-        ></Radio>
-
-        <Radio
-          value="Auto"
-          render={({ isSelected, isFocusVisible }) => (
-            <div className="relative isolate grid place-items-center gap-2">
+            )}
+          ></Radio>
+          <Radio
+            className="peer/dark z-10 flex-1"
+            value="dark"
+            render={({ isFocusVisible, isSelected }) => (
               <div
                 className={twMerge(
-                  'grid aspect-4/3 w-32 grid-cols-[12px_1fr_1fr] overflow-hidden rounded-md shadow-sm',
-                  'ring-transparent ring-offset-2 ring-offset-background',
-                  isSelected && 'ring-2 ring-accent ring-offset-4',
+                  'flex items-center justify-center gap-x-2 rounded-md px-4 py-1 text-muted',
+                  isSelected && 'text-white',
                   isFocusVisible &&
-                    'outline outline-2 outline-offset-2 outline-ring',
-                  isFocusVisible && isSelected && 'ring-0',
+                    'outline-ring outline outline-2 outline-offset-2',
                 )}
               >
-                <div className="bg-zinc-800"></div>
-
-                <div className="bg-zinc-800 pt-3">
-                  <div className="flex h-full flex-col overflow-hidden rounded-s-md border border-zinc-700">
-                    <div className="flex h-1.5 items-center gap-x-0.5 overflow-hidden border-b border-zinc-700 ps-1">
-                      <span className="size-0.5 rounded-full bg-red-400"></span>
-                      <span className="size-0.5 rounded-full bg-yellow-400"></span>
-                      <span className="size-0.5 rounded-full bg-green-400"></span>
-                    </div>
-
-                    <div className="ms-2 mt-1.5 h-1 rounded-s-sm bg-accent"></div>
-                    <div className="ms-1 mt-0.5 h-0.5 rounded-s-sm bg-accent/75"></div>
-                    <div className="ms-2 mt-[1px] h-0.5 rounded-s-sm bg-accent/75"></div>
-                  </div>
-                </div>
-
-                <div className="bg-white pt-3">
-                  <div className="mt-[1px] flex h-1.5 items-center gap-x-0.5 overflow-hidden border-b border-black/5 bg-zinc-200/75 ps-1"></div>
-
-                  <div className="me-2 mt-1.5 h-1 rounded-e-sm bg-accent/40"></div>
-                  <div className="me-1 mt-0.5 h-0.5 rounded-e-sm bg-accent/15"></div>
-                  <div className="me-2 mt-[1px] h-0.5 rounded-e-sm bg-accent/15"></div>
-                </div>
+                <Icon>
+                  <MoonStarIcon className="size-4" />
+                </Icon>
+                <span>Dark</span>
               </div>
-              Auto
-            </div>
-          )}
-        ></Radio>
+            )}
+          ></Radio>
+          <div
+            className={twMerge(
+              'absolute top-0 left-0 h-full w-1/3 rounded-md bg-accent transition-all ease-in-out peer-data-selected/dark:left-2/3 peer-data-selected/light:left-1/3 dark:bg-zinc-600',
+            )}
+          ></div>
+        </div>
       </Radios>
     </RadioGroup>
   );
@@ -839,7 +792,7 @@ function ThemeOptions() {
 
 function SwitchPlan() {
   return (
-    <RadioGroup orientation="horizontal" defaultValue={'monthly'}>
+    <RadioGroup orientation="horizontal" defaultValue="monthly">
       <Label>Choose plan</Label>
       <Radios className="rounded-lg bg-zinc-200 p-0.5 dark:bg-zinc-800">
         <div className="relative isolate flex flex-1">
@@ -851,7 +804,7 @@ function SwitchPlan() {
                 className={twMerge(
                   'rounded-md px-4 py-1 text-center font-medium',
                   isFocusVisible &&
-                    'outline outline-2 outline-offset-2 outline-ring',
+                    'outline-ring outline outline-2 outline-offset-2',
                 )}
               >
                 Bill Monthly
@@ -864,9 +817,9 @@ function SwitchPlan() {
             render={({ isFocusVisible, isSelected }) => (
               <div
                 className={twMerge(
-                  'rounded-md px-4 py-1 text-center font-medium',
+                  'rounded-lg px-4 py-1 text-center font-medium',
                   isFocusVisible &&
-                    'outline outline-2 outline-offset-2 outline-ring',
+                    'outline-ring outline outline-2 outline-offset-2',
                 )}
               >
                 Bill Yearly{' '}
@@ -875,19 +828,9 @@ function SwitchPlan() {
             )}
           ></Radio>
           <div
-            className={[
-              'absolute',
-              'rounded-md',
-              'bg-white',
-              'dark:bg-zinc-600',
-              'h-full',
-              'w-1/2',
-              'top-0',
-              'left-0',
-              'peer-data-selected/yearly:left-1/2',
-              'transition-all',
-              'ease-in-out',
-            ].join(' ')}
+            className={twMerge(
+              'absolute top-0 left-0 h-full w-1/2 rounded-md bg-white transition-all ease-in-out peer-data-selected/yearly:left-1/2 dark:bg-zinc-600',
+            )}
           ></div>
         </div>
       </Radios>

@@ -64,6 +64,7 @@ export function SwitchField({
 
 interface SwitchProps extends RACSwitchProps {
   labelPlacement?: 'start' | 'end';
+  size?: 'lg';
   render?: never;
 }
 
@@ -71,6 +72,8 @@ export interface CustomRenderSwitchProps
   extends Omit<RACSwitchProps, 'children'> {
   render: React.ReactElement | ((props: SwitchRenderProps) => React.ReactNode);
   children?: never;
+  size?: never;
+  labelPlacement?: never;
 }
 
 export function Switch(props: SwitchProps | CustomRenderSwitchProps) {
@@ -98,7 +101,7 @@ export function Switch(props: SwitchProps | CustomRenderSwitchProps) {
     );
   }
 
-  const { labelPlacement = 'end', children, ...restProps } = props;
+  const { labelPlacement = 'end',  size, children, ...restProps } = props;
 
   return (
     <RACSwitch
@@ -120,10 +123,8 @@ export function Switch(props: SwitchProps | CustomRenderSwitchProps) {
         <>
           <div
             className={twMerge(
-              'h-5 w-8',
-              'flex shrink-0 cursor-default items-center rounded-full px-[1px]',
-              'bg-zinc-200 dark:bg-transparent',
-              'border border-zinc-200 dark:border-border',
+              'dark:border-border flex h-6 w-11 shrink-0 cursor-default items-center rounded-full border border-zinc-200 bg-zinc-200 p-px dark:bg-transparent',
+              size !== 'lg' && 'sm:h-5 sm:w-8',
               labelPlacement === 'end' ? 'me-3' : 'ms-3',
               renderProps.isReadOnly && 'opacity-50',
               renderProps.isSelected &&
@@ -136,10 +137,13 @@ export function Switch(props: SwitchProps | CustomRenderSwitchProps) {
             <span
               data-ui="thumb"
               className={twMerge(
-                'size-4 rounded-full bg-white transition-all ease-in-out',
-                renderProps.isSelected
-                  ? 'border-accent translate-x-3 rtl:-translate-x-3'
-                  : 'translate-x-0',
+                'size-5',
+                size !== 'lg' && 'sm:size-4',
+                'rounded-full bg-white shadow transition-all ease-in-out',
+                renderProps.isSelected && [
+                  'border-accent translate-x-5 rtl:-translate-x-5',
+                  size !== 'lg' && 'sm:translate-x-3 sm:rtl:-translate-x-3',
+                ],
               )}
             />
           </div>

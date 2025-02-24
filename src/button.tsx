@@ -70,7 +70,7 @@ const buttonStyle = ({
   const style = {
     base,
     variant: {
-      base: 'group inline-flex gap-x-2 justify-center items-center font-semibold text-base/6 sm:text-sm/6 whitespace-nowrap',
+      base: 'group inline-flex gap-x-2 justify-center items-center font-semibold text-base/6 sm:text-sm/6',
       solid: [
         'border border-transparent bg-[var(--btn-bg)]',
         '[--btn-color:lch(from_var(--btn-bg)_calc((49.44_-_l)_*_infinity)_0_0)]',

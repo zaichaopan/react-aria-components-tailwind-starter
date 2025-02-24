@@ -14,13 +14,13 @@ import { TextField, Input } from '../src/field';
 import { Menu, MenuItem } from '../src/menu';
 
 const meta: Meta = {
-  title: 'CommandPalette',
+  title: 'Command Palette',
   parameters: {
     layout: 'centered',
     docs: {
       description: {
         component:
-          'A **Command Palette** is an interface that allows users to quickly run commands or navigate to content within an application. It is built on the top of a <a href="https://react-spectrum.adobe.com/react-aria/Autocomplete.html#autocomplete" target="_blank">**Autocomplete**</a>.',
+          'A **Command Palette** is an interface that allows users to quickly run commands or navigate to content within an application. It is built on the top of <a href="https://react-spectrum.adobe.com/react-aria/Autocomplete.html#autocomplete" target="_blank">**Autocomplete**</a>.',
       },
       ...docs,
     },
@@ -62,26 +62,26 @@ export function CommandPaletteExample() {
   });
 
   return (
-    <div>
-      <DialogTrigger isOpen={isOpen} onOpenChange={setOpen}>
-        <Button>
+    <DialogTrigger isOpen={isOpen} onOpenChange={setOpen}>
+      <Button className="text-ellipsis">
+        <div>
           Press here or type{' '}
           <Kbd className="text-(--btn-color)">{isMac ? '⌘' : 'Ctrl'}</Kbd> +{' '}
           <Kbd className="text-(--btn-color)">K</Kbd> to open command palette
-        </Button>
-        <Modal isDismissable>
-          <Dialog className="p-3">
-            <UNSTABLE_Autocomplete filter={contains}>
-              <TextField aria-label="Search commands">
-                <Input autoFocus placeholder="Search commands…" />
-              </TextField>
-              <Menu items={commands} className="mt-1">
-                {({ label }) => <MenuItem>{label}</MenuItem>}
-              </Menu>
-            </UNSTABLE_Autocomplete>
-          </Dialog>
-        </Modal>
-      </DialogTrigger>
-    </div>
+        </div>
+      </Button>
+      <Modal isDismissable>
+        <Dialog className="p-3">
+          <UNSTABLE_Autocomplete filter={contains}>
+            <TextField aria-label="Search commands">
+              <Input autoFocus placeholder="Search commands…" />
+            </TextField>
+            <Menu items={commands} className="mt-1">
+              {({ label }) => <MenuItem>{label}</MenuItem>}
+            </Menu>
+          </UNSTABLE_Autocomplete>
+        </Dialog>
+      </Modal>
+    </DialogTrigger>
   );
 }

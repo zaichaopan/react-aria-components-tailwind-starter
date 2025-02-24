@@ -134,7 +134,7 @@ export function MenuSeparator({ className }: { className?: string }) {
   return (
     <Separator
       className={twMerge(
-        'my-1 w-[calc(100%-(--spacing(4)))] self-center border-t border-zinc-950/5 dark:border-white/10',
+        'border-border/35 my-1 w-[calc(100%-(--spacing(4)))] self-center border-t dark:border-white/10',
         className,
       )}
     />
@@ -207,7 +207,7 @@ export function MenuItem({ destructive, ...props }: MenuItemProps) {
             )}
 
             {/* Submenu indicator */}
-            <ChevronRightIcon className="hidden size-4 text-muted group-data-has-submenu:inline-block" />
+            <ChevronRightIcon className="text-muted hidden size-4 group-data-has-submenu:inline-block" />
           </>
         ),
       )}
@@ -265,7 +265,7 @@ export function MenuSection<T extends object>({
         className={twMerge(
           'sticky inset-0 z-10',
           'pt-2',
-          'truncate text-xs/6 text-muted',
+          'text-muted truncate text-xs/6',
           'bg-white dark:bg-zinc-800',
         )}
       >

@@ -113,16 +113,18 @@ export const InitialFallbacks = () => {
   return (
     <div className="flex flex-col gap-4">
       <div className="flex items-end gap-4">
-        <Avatar alt="M A" />
-        <Avatar alt="A B" />
-        <Avatar alt="B O" />
-        <Avatar alt="T W" />
+        <Avatar alt="Y C" />
+        <Avatar alt="G W" />
+        <Avatar alt="T C" />
+        <Avatar alt="W W" />
+        <Avatar alt="E C" />
       </div>
       <div className="flex items-end gap-4">
-        <Avatar alt="A N" className="rounded-full" />
-        <Avatar alt="D P" className="rounded-full" />
-        <Avatar alt="S W" className="rounded-full" />
+        <Avatar alt="Y C" className="rounded-full" />
+        <Avatar alt="G W" className="rounded-full" />
+        <Avatar alt="T C" className="rounded-full" />
         <Avatar alt="W W" className="rounded-full" />
+        <Avatar alt="E C" className="rounded-full" />
       </div>
     </div>
   );
@@ -141,16 +143,18 @@ export const AvatarIconFallbacks = () => {
   return (
     <div className="flex flex-col gap-4">
       <div className="flex items-end gap-4">
-        <Avatar alt="M A" fallback="icon" />
-        <Avatar alt="A B" fallback="icon" />
-        <Avatar alt="B O" fallback="icon" />
-        <Avatar alt="T W" fallback="icon" />
+        <Avatar alt="Y C" fallback="icon" />
+        <Avatar alt="G W" fallback="icon" />
+        <Avatar alt="T C" fallback="icon" />
+        <Avatar alt="W W" fallback="icon" />
+        <Avatar alt="E C" fallback="icon" />
       </div>
       <div className="flex items-end gap-4">
-        <Avatar alt="A N" className="rounded-full" fallback="icon" />
-        <Avatar alt="D P" className="rounded-full" fallback="icon" />
-        <Avatar alt="S W" className="rounded-full" fallback="icon" />
+        <Avatar alt="Y C" className="rounded-full" fallback="icon" />
+        <Avatar alt="G W" className="rounded-full" fallback="icon" />
+        <Avatar alt="T C" className="rounded-full" fallback="icon" />
         <Avatar alt="W W" className="rounded-full" fallback="icon" />
+        <Avatar alt="E C" className="rounded-full" fallback="icon" />
       </div>
     </div>
   );
@@ -336,7 +340,7 @@ export const AvatarBadgeAccessibility = () => {
         ></AvatarBadge>
       </Avatar>
 
-      <Avatar alt="Jane Doe">
+      <Avatar alt="M A">
         <AvatarBadge
           aria-label="Verified"
           className="border-none bg-blue-500 p-0 text-white"
@@ -360,7 +364,7 @@ export const AvatarBadgeAccessibility = () => {
         ></AvatarBadge>
       </Avatar>
 
-      <Avatar alt="Jane Doe" fallback="icon">
+      <Avatar alt="M A" fallback="icon">
         <AvatarBadge
           aria-label="Verified"
           className="border-none bg-blue-500 p-0 text-white @[40px]:size-4"
@@ -522,8 +526,33 @@ export const AvatarGroups = () => {
           alt="M J"
           src="https://images.unsplash.com/photo-1528763380143-65b3ac89a3ff?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
         />
-        <Avatar className="size-8" alt="M J" fallback="icon" />
-        <Avatar className="size-8" alt="D P" colorless fallback="icon" />
+        <Avatar className="size-8" alt="M A" fallback="icon" />
+        <Avatar className="size-8" alt="G W" fallback="icon" />
+      </AvatarGroup>
+
+      <AvatarGroup>
+        <Avatar
+          className="size-8"
+          alt="D P"
+          src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8aGVhZHNob3R8ZW58MHx8MHx8fDA%3D"
+        />
+        <Avatar
+          className="size-8"
+          alt="M C"
+          src="https://images.unsplash.com/photo-1554151228-14d9def656e4?q=80&w=3386&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+        />
+        <Avatar
+          className="size-8"
+          alt="M H"
+          src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+        />
+        <Avatar
+          className="size-8"
+          alt="M J"
+          src="https://images.unsplash.com/photo-1528763380143-65b3ac89a3ff?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+        />
+        <Avatar className="size-8" alt="M A" />
+        <Avatar className="size-8" alt="G W" />
       </AvatarGroup>
 
       <div className="flex items-center">
@@ -548,15 +577,44 @@ export const AvatarGroups = () => {
             alt="M J"
             src="https://images.unsplash.com/photo-1528763380143-65b3ac89a3ff?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
           />
-          <Avatar className="size-8 rounded-full" alt="M J" fallback="icon" />
+          <Avatar className="size-8 rounded-full" alt="M A" />
+          <Avatar className="size-8 rounded-full" alt="G W" />
+        </AvatarGroup>
+        <div className="ring-background [&:not(:hover)]:text-muted relative -ms-2 grid size-8 place-items-center rounded-full bg-zinc-50 text-sm/6 font-medium ring-2 dark:bg-zinc-600">
+          +2
+        </div>
+      </div>
+
+      <div className="flex items-center">
+        <AvatarGroup>
           <Avatar
             className="size-8 rounded-full"
-            alt="D P"
-            colorless
+            alt="G W"
+            src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8aGVhZHNob3R8ZW58MHx8MHx8fDA%3D"
+          />
+          <Avatar
+            className="size-8 rounded-full"
+            alt="M C"
+            src="https://images.unsplash.com/photo-1554151228-14d9def656e4?q=80&w=3386&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          />
+          <Avatar
+            className="size-8 rounded-full"
+            alt="M H"
+            src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+          />
+          <Avatar
+            className="size-8 rounded-full"
+            alt="M J"
+            src="https://images.unsplash.com/photo-1528763380143-65b3ac89a3ff?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+          />
+          <Avatar className="size-8 rounded-full" alt="M A" fallback="icon" />
+          <Avatar
+            className="size-8 rounded-full"
+            alt="M A"
             fallback="icon"
           />
         </AvatarGroup>
-        <div className="text-muted ring-background hover:text-foreground relative -ms-1 grid size-8 place-items-center rounded-full bg-zinc-50 text-sm/6 font-medium ring-2 ring-3 outline outline-1 -outline-offset-1 outline-zinc-100 dark:bg-zinc-600 dark:outline-white/20">
+        <div className="ring-background [&:not(:hover)]:text-muted relative -ms-2 grid size-8 place-items-center rounded-full bg-zinc-50 text-sm/6 font-medium ring-2 dark:bg-zinc-600">
           +2
         </div>
       </div>
@@ -576,7 +634,7 @@ export const AvatarGroupsWithReverseOverlap = () => {
   return (
     <div className="grid gap-y-6">
       <AvatarGroup reverseOverlap>
-        <Avatar className="size-8" alt="D P" colorless />
+        <Avatar className="size-8" alt="G W" />
         <Avatar
           className="size-8"
           alt="D P"
@@ -597,12 +655,12 @@ export const AvatarGroupsWithReverseOverlap = () => {
           alt="M J"
           src="https://images.unsplash.com/photo-1528763380143-65b3ac89a3ff?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
         />
-        <Avatar className="size-8" alt="M J" />
+        <Avatar className="size-8" alt="M A" />
       </AvatarGroup>
 
       <div className="flex items-center">
         <AvatarGroup reverseOverlap>
-          <Avatar className="size-8 rounded-full" alt="D P" colorless />
+          <Avatar className="size-8 rounded-full" alt="G W"/>
           <Avatar
             className="size-8 rounded-full"
             alt="J C"
@@ -623,9 +681,9 @@ export const AvatarGroupsWithReverseOverlap = () => {
             alt="M J"
             src="https://images.unsplash.com/photo-1528763380143-65b3ac89a3ff?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
           />
-          <Avatar className="size-8 rounded-full" alt="Kurtis Gurrado" />
+          <Avatar className="size-8 rounded-full" alt="M A" />
         </AvatarGroup>
-        <div className="relative flex size-8 items-center justify-center rounded-full text-xs/6">
+        <div className="relative flex size-8 items-center justify-center rounded-full ps-2 text-xs/6">
           +2
         </div>
       </div>

@@ -4,7 +4,8 @@ import { Text, TextLink } from '../src/text';
 import { docs } from '../.storybook/docs';
 import { Description, Label } from '../src/field';
 import { Icon } from '../src/icon';
-import { MoonIcon, SunIcon } from 'lucide-react';
+import { CheckIcon, MoonIcon, SunIcon, XIcon } from 'lucide-react';
+import { twMerge } from 'tailwind-merge';
 
 const meta: Meta<typeof Switch> = {
   title: 'Switch',
@@ -69,6 +70,14 @@ export const SwitchLabelPlacement = () => {
     <SwitchField>
       <Switch labelPlacement="start">Email notifications</Switch>
     </SwitchField>
+  );
+};
+
+export const SwitchSizes = () => {
+  return (
+    <Switch size="lg">
+      Annual billing&nbsp;<Text>(Save 10%)</Text>
+    </Switch>
   );
 };
 
@@ -164,10 +173,6 @@ export const SwitchGroupWithItemDisabled = () => {
 export const SwitchCustomization = () => {
   return (
     <div className="flex flex-col space-y-6">
-      <Switch defaultSelected>
-        Yearly billing&nbsp;<Text>(Save 10%)</Text>
-      </Switch>
-
       <Switch>
         {({ isSelected }) => {
           return isSelected ? 'On' : 'Off';
@@ -191,187 +196,142 @@ export const SwitchCustomization = () => {
       <Switch
         className="inline-flex"
         aria-label="switch with thumb icon"
-        render={
+        render={({ isSelected, isFocusVisible }) => (
           <div
-            className={[
-              'flex',
-              'rounded-full',
-              'border',
-              'border-zinc-200',
-              'p-[0.5px]',
-              'dark:border-border',
-              'group-data-selected:border-accent',
-              'bg-zinc-200',
-              'dark:bg-transparent',
-              'group-data-selected:bg-accent',
-              'transition ease-in-out',
-            ].join(' ')}
+            className={twMerge(
+              'dark:border-border flex rounded-full border border-zinc-200 bg-zinc-200 p-px transition ease-in-out dark:bg-transparent',
+              isSelected && 'border-accent bg-accent',
+              isFocusVisible &&
+                'outline-ring outline outline-2 outline-offset-2',
+            )}
           >
             <div className="relative isolate flex">
               <div
-                className={[
-                  'z-10',
-                  'flex-1',
-                  'p-1',
-                  'grid place-items-center',
-                  'transition ease-in-out',
-                  'opacity-100 group-data-selected:opacity-0',
-                ].join(' ')}
+                className={twMerge(
+                  'z-10 grid size-5 place-items-center opacity-100 transition ease-in-out',
+                  isSelected && 'opacity-0',
+                )}
               >
                 <Icon>
-                  <svg
-                    fill="none"
-                    viewBox="0 0 12 12"
-                    className="size-3 text-muted/75 dark:text-muted/90"
-                  >
-                    <path
-                      d="M4 8l2-2m0 0l2-2M6 6L4 4m2 2l2 2"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    ></path>
-                  </svg>
+                  <XIcon
+                    className="text-muted/75 dark:text-muted/90 size-3"
+                    strokeWidth="3"
+                  />
                 </Icon>
               </div>
 
               <div
-                className={[
-                  'z-10',
-                  'flex-1',
-                  'p-1',
-                  'grid place-items-center',
-                  'transition ease-in-out',
-                  'opacity-0 group-data-selected:opacity-100',
-                ].join(' ')}
+                className={twMerge(
+                  'z-10 grid size-5 place-items-center opacity-0 transition ease-in-out',
+                  isSelected && 'opacity-100',
+                )}
               >
                 <Icon>
-                  <svg
-                    fill="currentColor"
-                    viewBox="0 0 12 12"
-                    className="size-3 text-accent"
-                  >
-                    <path d="M3.707 5.293a1 1 0 00-1.414 1.414l1.414-1.414zM5 8l-.707.707a1 1 0 001.414 0L5 8zm4.707-3.293a1 1 0 00-1.414-1.414l1.414 1.414zm-7.414 2l2 2 1.414-1.414-2-2-1.414 1.414zm3.414 2l4-4-1.414-1.414-4 4 1.414 1.414z"></path>
-                  </svg>
+                  <CheckIcon className="text-accent size-3" strokeWidth="3" />
                 </Icon>
               </div>
 
               <div
-                className={[
-                  'h-full w-1/2 rounded-full bg-white',
-                  'absolute left-0 top-0 group-data-selected:left-1/2',
-                  'transition-all ease-in-out',
-                ].join(' ')}
+                className={twMerge(
+                  'absolute top-0 left-0 h-full w-1/2 rounded-full bg-white transition-all ease-in-out dark:bg-white',
+                  isSelected && 'left-1/2',
+                )}
               ></div>
             </div>
           </div>
-        }
+        )}
       />
 
       <Switch
         aria-label="Dark mode"
         className="inline-flex"
-        render={
+        render={({ isSelected, isFocusVisible }) => (
           <div
-            className={[
-              'flex rounded-full bg-zinc-200 p-0.5 dark:bg-zinc-700',
-              'group-data-selected:bg-accent',
-            ].join(' ')}
+            className={twMerge(
+              'dark:border-border flex rounded-full border border-zinc-200 p-1 transition ease-in-out',
+
+              isFocusVisible &&
+                'outline-ring outline outline-2 outline-offset-2',
+            )}
           >
             <div className="relative isolate flex">
-              <div className="z-10 p-1.5">
+              <div className="z-10 grid size-8 place-items-center">
                 <Icon>
-                  <SunIcon className="size-4 text-foreground transition group-data-selected:text-white" />
+                  <SunIcon
+                    className={twMerge(
+                      'text-foreground size-5 transition',
+                      isSelected && 'text-muted',
+                    )}
+                  />
                 </Icon>
               </div>
 
-              <div className="z-10 p-1.5">
+              <div className="z-10 grid size-8 place-items-center">
                 <Icon>
-                  <MoonIcon className="size-4 text-muted/75 transition group-data-selected:text-foreground" />
+                  <MoonIcon
+                    className={twMerge(
+                      'text-muted/75 size-5 transition',
+                      isSelected && 'text-white',
+                    )}
+                  />
                 </Icon>
               </div>
 
               <div
-                className={[
-                  'h-full w-1/2 rounded-full bg-white dark:bg-zinc-900',
-                  'absolute left-0 top-0 group-data-selected:left-1/2',
-                  'transition-all ease-in-out',
-                ].join(' ')}
+                className={twMerge(
+                  'absolute top-0 left-0 h-full w-1/2 rounded-full transition-all ease-in-out',
+                  isSelected ? 'left-1/2 bg-zinc-700' : 'bg-zinc-200',
+                )}
               ></div>
             </div>
           </div>
-        }
+        )}
       ></Switch>
 
       <Switch
         aria-label="Dark mode"
         className="inline-flex"
-        render={
+        render={({ isSelected, isFocusVisible }) => (
           <div
-            className={[
-              'flex',
-              'p-0.5',
-              'rounded-full',
-              'bg-zinc-200',
-              'dark:bg-zinc-700',
-              'group-data-selected:bg-accent',
-              'group-data-selected:text-white',
-              'transition-[background]',
-              'ease-in-out',
-            ].join(' ')}
+            className={twMerge(
+              'flex rounded-full border border-zinc-200 bg-zinc-200 p-px transition-[background] ease-in-out dark:bg-zinc-700',
+              isSelected && 'bg-accent border-accent text-white',
+              isFocusVisible &&
+                'outline-ring outline outline-2 outline-offset-2',
+            )}
           >
-            <div className="relative isolate flex px-0.5">
+            <div className="relative isolate flex">
               <div
-                className={[
-                  'z-10',
-                  'p-1.5',
-                  'opacity-0',
-                  'group-data-selected:opacity-100',
-                  'translate-x-full',
-                  'group-data-selected:translate-x-0',
-                  'transition-all',
-                  'ease-in-out',
-                ].join(' ')}
+                className={twMerge(
+                  'z-10 grid size-8 translate-x-full place-items-center opacity-0 transition-all ease-in-out',
+                  isSelected && 'translate-x-0 opacity-100',
+                )}
               >
                 <Icon>
-                  <SunIcon className="size-4" />
+                  <SunIcon className="size-5" />
                 </Icon>
               </div>
 
               <div
-                className={[
-                  'z-10',
-                  'p-1.5',
-                  'opacity-100',
-                  'group-data-selected:opacity-0',
-                  'translate-x-0',
-                  'group-data-selected:-translate-x-full',
-                  'transition-all',
-                  'ease-in-out',
-                ].join(' ')}
+                className={twMerge(
+                  'z-10 grid size-8 translate-x-0 place-items-center opacity-100 transition-all ease-in-out',
+                  isSelected && 'translate-x-full opacity-0',
+                )}
               >
                 <Icon>
-                  <MoonIcon className="size-4" />
+                  <MoonIcon className="size-5" />
                 </Icon>
               </div>
 
               <div
-                className={[
-                  'h-full',
-                  'w-1/2',
-                  'rounded-full',
-                  'bg-white',
-                  'absolute',
-                  'top-0',
-                  'left-0',
-                  'group-data-selected:left-1/2',
-                  'transition-all',
-                  'ease-in-out',
-                ].join(' ')}
+                className={twMerge(
+                  'absolute top-0 left-0 h-full w-1/2 rounded-full bg-white transition-all ease-in-out',
+                  isSelected && 'left-1/2',
+                )}
               ></div>
             </div>
           </div>
-        }
+        )}
       ></Switch>
     </div>
   );
