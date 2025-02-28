@@ -11,7 +11,7 @@ export function Kbd({ className, children, ...props }: KeyboardProps) {
       {...props}
       data-ui="kbd"
       className={twMerge(
-        'font-sans text-base/6 tracking-widest text-muted/75 sm:text-sm/6',
+        'font-sans text-base/6 tracking-widest sm:text-sm/6',
         className,
       )}
     >

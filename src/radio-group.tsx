@@ -65,12 +65,14 @@ export function RadioField({
 
 export interface RadioProps extends RACRadioProps {
   labelPlacement?: 'start' | 'end';
+  radio?: React.ReactElement | ((props: RadioRenderProps) => React.ReactNode);
   render?: never;
 }
 
 export interface CustomRenderRadioProps
   extends Omit<RACRadioProps, 'children'> {
   render: React.ReactElement | ((props: RadioRenderProps) => React.ReactNode);
+  radio?: never;
   children?: never;
 }
 
@@ -99,7 +101,7 @@ export function Radio(props: RadioProps | CustomRenderRadioProps) {
     );
   }
 
-  const { labelPlacement = 'end', ...restProps } = props;
+  const { labelPlacement = 'end', radio, ...restProps } = props;
 
   return (
     <RACRadio
@@ -124,7 +126,8 @@ export function Radio(props: RadioProps | CustomRenderRadioProps) {
             <div
               slot="radio"
               className={twMerge(
-                'grid size-4.5 shrink-0 place-content-center rounded-full border sm:size-4',
+                'grid shrink-0 place-content-center rounded-full border',
+                radio ? '' : 'size-4.5 sm:size-4',
                 labelPlacement === 'end' ? 'me-3' : 'ms-3',
                 renderProps.isReadOnly && 'opacity-50',
                 renderProps.isInvalid &&
@@ -134,12 +137,20 @@ export function Radio(props: RadioProps | CustomRenderRadioProps) {
                   'outline-ring outline outline-2 outline-offset-2',
               )}
             >
-              <div
-                className={twMerge(
-                  'rounded-full',
-                  renderProps.isSelected && 'size-2 bg-white sm:size-1.5',
-                )}
-              ></div>
+              {radio ? (
+                typeof radio === 'function' ? (
+                  radio(renderProps)
+                ) : (
+                  radio
+                )
+              ) : (
+                <div
+                  className={twMerge(
+                    'rounded-full',
+                    renderProps.isSelected && 'size-2 bg-white sm:size-1.5',
+                  )}
+                ></div>
+              )}
             </div>
 
             {typeof props.children === 'function'

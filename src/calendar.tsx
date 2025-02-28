@@ -104,10 +104,11 @@ export function CalendarHeader() {
   const { direction } = useLocale();
 
   return (
-    <header className="flex w-full items-center gap-1">
+    <header className="gap-0. flex w-full items-center px-1.5">
       <Button
         slot="previous"
         variant="plain"
+        size="sm"
         isIconOnly
         aria-label="Previous"
         className="[&:not(:hover)]:text-muted focus-visible:-outline-offset-2"
@@ -126,6 +127,7 @@ export function CalendarHeader() {
       />
 
       <Button
+        size="sm"
         slot="next"
         variant="plain"
         isIconOnly

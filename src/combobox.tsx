@@ -138,28 +138,6 @@ export function ComboBoxClearButton({
   );
 }
 
-export function CommandButton() {
-  return (
-    <>
-      <Button
-        variant="outline"
-        data-ui="trigger"
-        size="sm"
-        className="me-1 flex font-normal peer-data-[focused=true]:hidden"
-      >
-        <Keyboard className="font-sans">⌘K</Keyboard>
-      </Button>
-
-      <Keyboard
-        data-ui="trigger"
-        className="me-1 hidden rounded-md p-1 text-xs peer-data-[focused=true]:flex ltr:ms-1"
-      >
-        ESC
-      </Keyboard>
-    </>
-  );
-}
-
 export const ComboBoxPopover = SelectPopover;
 
 export const ComboBoxSection = SelectSection;

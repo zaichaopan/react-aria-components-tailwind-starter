@@ -55,7 +55,7 @@ export function TextLink(props: LinkProps) {
       {...props}
       className={composeTailwindRenderProps(
         props.className,
-        'underline underline-offset-4',
+        'underline underline-offset-4 decoration-zinc-400 dark:decoration-zinc-500',
       )}
     />
   );

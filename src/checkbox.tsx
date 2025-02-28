@@ -136,6 +136,7 @@ export function Checkbox(props: CheckboxProps | CustomRenderCheckboxProps) {
         return (
           <>
             <div
+              data-ui="checkbox"
               className={twMerge([
                 'flex size-4.5 shrink-0 items-center justify-center rounded-sm border sm:size-4',
                 labelPlacement === 'end' ? 'me-3' : 'ms-3',

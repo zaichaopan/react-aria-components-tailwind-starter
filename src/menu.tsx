@@ -112,6 +112,8 @@ export function Menu<T extends object>({
         '**:data-[ui=kbd]:row-start-1',
         '**:data-[ui=kbd]:col-start-3',
         '**:data-[ui=kbd]:justify-self-end',
+        '**:data-[ui=kbd]:text-xs/6',
+        '**:data-[ui=kbd]:text-muted/75',
         '[&_[data-destructive]>[data-ui=kbd]]:text-destructive',
 
         // Description

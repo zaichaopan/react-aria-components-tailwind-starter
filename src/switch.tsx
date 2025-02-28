@@ -135,7 +135,7 @@ export function Switch(props: SwitchProps | CustomRenderSwitchProps) {
             )}
           >
             <span
-              data-ui="thumb"
+              data-ui="handle"
               className={twMerge(
                 'size-5',
                 size !== 'lg' && 'sm:size-4',
