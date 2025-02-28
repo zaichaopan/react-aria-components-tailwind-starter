@@ -87,6 +87,7 @@ export function DateRangePickerInput() {
       </Group>
       <Popover
         className={[
+          'rounded-lg',
           'max-w-none',
           'dark:bg-zinc-800',
           'dark:ring-zinc-700',
@@ -160,6 +161,7 @@ export function DateRangePickerButton({
       </Group>
       <Popover
         className={[
+          'rounded-lg',
           'max-w-none',
           'dark:bg-zinc-800',
           'dark:ring-zinc-700',

@@ -30,7 +30,7 @@ export function RangeCalendar<T extends DateValue>({
     >
       <CalendarHeader />
       <CalendarGrid
-        className="mx-3 border-separate border-spacing-y-0.5 sm:mx-2 [&_td]:px-0"
+        className="px-3 border-separate border-spacing-y-0.5 sm:px-2"
         weekdayStyle="short"
       >
         <CalendarGridHeader />
@@ -45,9 +45,9 @@ export function RangeCalendar<T extends DateValue>({
                   { isSelected, isSelectionStart, isSelectionEnd, isInvalid },
                 ) => {
                   return twMerge(
-                    'group size-9 cursor-default text-[0.85rem] outline-hidden',
+                    'group size-10 cursor-default text-sm outline-hidden',
                     isToday(date, getLocalTimeZone()) && [
-                      isSelected ? 'rounded-none' : 'rounded-md',
+                      isSelected ? 'rounded-none' : 'rounded-lg',
                       'bg-zinc-100 dark:bg-zinc-700',
                     ],
                     isSelected && [
@@ -57,9 +57,9 @@ export function RangeCalendar<T extends DateValue>({
                       isInvalid && [
                         'bg-destructive/15 text-destructive dark:bg-destructive/30',
                       ],
-                    isSelectionStart && 'rounded-s-md',
-                    isSelectionEnd && 'rounded-e-md',
-                    '[td:first-child_&]:rounded-s-md [td:last-child_&]:rounded-e-md',
+                    isSelectionStart && 'rounded-s-lg',
+                    isSelectionEnd && 'rounded-e-lg',
+                    '[td:first-child_&]:rounded-s-lg [td:last-child_&]:rounded-e-lg',
                     className,
                   );
                 },
@@ -79,7 +79,7 @@ export function RangeCalendar<T extends DateValue>({
               }) => (
                 <span
                   className={twMerge(
-                    'relative flex size-[calc(theme(size.9)-1px)] items-center justify-center',
+                    'relative flex size-[calc(theme(size.10)-1px)] items-center justify-center',
                     isHovered && [
                       'rounded-md',
                       'bg-zinc-100',
@@ -100,7 +100,7 @@ export function RangeCalendar<T extends DateValue>({
                     ],
                     isSelected &&
                       (isSelectionStart || isSelectionEnd) && [
-                        'bg-accent rounded-md text-sm text-white',
+                        'bg-accent rounded-lg text-sm text-white',
                         isHovered && 'bg-accent/90 dark:bg-accent/90',
                         isInvalid &&
                           'border-destructive bg-destructive text-white',
@@ -111,7 +111,7 @@ export function RangeCalendar<T extends DateValue>({
                       'outline-ring',
                       (isSelectionStart || isSelectionEnd) &&
                         'outline-offset-1',
-                      'rounded-md',
+                      'rounded-lg',
                     ],
                   )}
                 >

@@ -18,8 +18,8 @@ import { useLocale } from 'react-aria-components';
 const meta = {
   parameters: {
     layout: 'centered',
-    docs
-  }
+    docs,
+  },
 };
 
 export default meta;
@@ -29,6 +29,15 @@ export const BasicExample = () => {
     <DatePicker>
       <Label>Event date</Label>
       <DatePickerInput></DatePickerInput>
+    </DatePicker>
+  );
+};
+
+export const ShowMonthAndYearPickers = () => {
+  return (
+    <DatePicker>
+      <Label>Event date</Label>
+      <DatePickerInput yearRange={[50,10]}></DatePickerInput>
     </DatePicker>
   );
 };
@@ -114,7 +123,7 @@ export const WithReadOnlyState = () => {
 };
 
 export const WithValidation = () => (
-  <Form className='space-y-4'>
+  <Form className="space-y-4">
     <DatePicker isRequired>
       <Label>Event date</Label>
       <Description>Please enter the event date</Description>
