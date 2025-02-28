@@ -1,0 +1,13 @@
+import { Meta, Canvas } from '@storybook/addon-docs/blocks';
+
+import * as HoverCardStories from './HoverCard.stories';
+
+<Meta of={HoverCardStories} />
+
+# HoverCard
+
+<a href="https://developer.microsoft.com/en-us/fluentui#/controls/web/hovercard" target="_blank">**Hover cards**</a> show commands and information, such as metadata and activity, when someone hovers over an item.
+
+**Hover cards are not accessible to anyone not using a mouse with hover capability**. It is strongly suggested that any information or functionality available in the hover card is also easily accessible through another means.
+
+<Canvas of={HoverCardStories.BasicExample} />

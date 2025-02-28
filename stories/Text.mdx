@@ -1,0 +1,17 @@
+import {Meta, Canvas } from '@storybook/addon-docs/blocks';
+
+import * as TextStories from './Text.stories';
+
+<Meta of={TextStories} />
+
+# Text
+
+The <a href="https://catalyst.tailwindui.com/docs/text" target="_blank">**Text**</a> component is the used to render text and paragraphs within an interface. The **Strong** component is used to render text you want to emphasize. The **TextLink** component is used to render a link within a Text component.
+
+<Canvas of={TextStories.BasicExample} />
+
+## Element types
+
+Use the **elementType** prop to render a different html element rather than the default **p** tag.
+
+<Canvas of={TextStories.ElementTypes} />

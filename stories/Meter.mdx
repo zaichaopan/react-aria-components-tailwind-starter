@@ -1,0 +1,19 @@
+import { Meta, Canvas } from '@storybook/addon-docs/blocks';
+
+import * as MeterStories from './Meter.stories';
+
+<Meta of={MeterStories} />
+
+# Meter
+
+A <a href="https://react-spectrum.adobe.com/react-aria/Meter.html#meter" target="_blank">**meter**</a> represents a quantity within a known range, or a fractional value.
+
+<Canvas of={MeterStories.BasicExample} />
+
+##  Positive meter
+
+<Canvas of={MeterStories.PositiveMeter} />
+
+## Informative meter
+
+<Canvas of={MeterStories.InformativeMeter} />

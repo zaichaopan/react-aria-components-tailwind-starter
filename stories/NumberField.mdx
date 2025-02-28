@@ -1,0 +1,28 @@
+import {Meta, Canvas } from '@storybook/addon-docs/blocks';
+
+import * as NumberFieldStories from './NumberField.stories';
+
+<Meta of={NumberFieldStories} />
+
+# Number field
+
+A <a href="https://react-spectrum.adobe.com/react-aria/NumberField.html#numberfield" target="_blank">**number field**</a> allows a user to enter a number, and increment or decrement the value using stepper buttons.
+
+<Canvas of={NumberFieldStories.BasicExample} />
+
+## With description
+
+<Canvas of={NumberFieldStories.WithDescription} />
+
+## Disabled state
+
+<Canvas of={NumberFieldStories.WithDisabledState} />
+
+## Readonly state
+
+<Canvas of={NumberFieldStories.WithReadOnlyState} />
+
+## Validation errors
+
+<Canvas of={NumberFieldStories.WithValidation} />
+```

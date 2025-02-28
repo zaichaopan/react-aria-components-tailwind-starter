@@ -1,0 +1,27 @@
+import { Meta, Canvas } from '@storybook/addon-docs/blocks';
+
+import * as TagGroupStories from './TagGroup.stories';
+
+<Meta of={TagGroupStories} />
+
+# Tag group
+
+A <a href="https://react-spectrum.adobe.com/react-aria/TagGroup.html" target="_blank">**tag group**</a> is a focusable list of labels, categories, keywords, filters, or other items, with support for keyboard navigation, selection, and removal.
+
+<Canvas of={TagGroupStories.BasicExample} />
+
+## Single selection
+
+<Canvas of={TagGroupStories.SingleSelection} />
+
+## Multiple selections
+
+<Canvas of={TagGroupStories.MultipleSelections} />
+
+## Removable
+
+<Canvas of={TagGroupStories.Removable} />
+
+## Colors
+
+<Canvas of={TagGroupStories.Colors} />

@@ -1,0 +1,11 @@
+import {Canvas, Meta} from '@storybook/addon-docs/blocks';
+
+import * as CommandPaletteStories from './CommandPalette.stories';
+
+<Meta of={CommandPaletteStories} />
+
+# Command palette
+
+A **Command Palette** is an interface that allows users to quickly run commands or navigate to content within an application. It is built on the top of <a href="https://react-spectrum.adobe.com/react-aria/Autocomplete.html#autocomplete" target="_blank">**Autocomplete**</a>.
+
+<Canvas of={CommandPaletteStories.BasicExample} />
