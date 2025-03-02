@@ -50,7 +50,7 @@ export function DateRangePickerInput() {
             'dark:[&:has([data-ui=date-segment][aria-readonly])]:bg-white/10',
             formattedValue ? 'min-w-60' : 'min-w-[278px]',
             isFocusWithin &&
-              'border-ring ring-1 ring-ring group-data-invalid:border-ring',
+              'border-ring ring-ring group-data-invalid:border-ring ring-1',
           )
         }
       >
@@ -64,7 +64,7 @@ export function DateRangePickerInput() {
         />
         <span
           aria-hidden="true"
-          className="place-self-center text-muted group-data-disabled:opacity-50"
+          className="text-muted place-self-center group-data-disabled:opacity-50"
         >
           –
         </span>
@@ -80,21 +80,13 @@ export function DateRangePickerInput() {
           variant="plain"
           isIconOnly
           size="sm"
-          className="me-1 justify-self-end text-muted focus-visible:-outline-offset-1 group-hover:text-foreground"
+          className="text-muted group-hover:text-foreground me-1 justify-self-end focus-visible:-outline-offset-1"
         >
           <CalendarIcon />
         </Button>
       </Group>
-      <Popover
-        className={[
-          'rounded-lg',
-          'max-w-none',
-          'dark:bg-zinc-800',
-          'dark:ring-zinc-700',
-        ].join(' ')}
-        placement="bottom"
-      >
-        <Dialog className="overflow-auto">
+      <Popover placement="bottom" className="rounded-lg">
+        <Dialog>
           <RangeCalendar />
         </Dialog>
       </Popover>
@@ -138,7 +130,7 @@ export function DateRangePickerButton({
                 </span>
                 <span
                   aria-hidden="true"
-                  className="place-self-center text-muted group-data-disabled:opacity-50"
+                  className="text-muted place-self-center group-data-disabled:opacity-50"
                 >
                   –
                 </span>
@@ -147,28 +139,20 @@ export function DateRangePickerButton({
                 </span>
               </>
             ) : (
-              <span className="justify-self-start px-3 text-muted">
+              <span className="text-muted justify-self-start px-3">
                 {children}
               </span>
             )}
 
-            <CalendarIcon className="place-self-center text-muted group-hover:text-foreground" />
+            <CalendarIcon className="text-muted group-hover:text-foreground place-self-center" />
           </div>
         </Button>
 
         <DateInput slot="start" aria-hidden className="hidden" />
         <DateInput slot="end" aria-hidden className="hidden" />
       </Group>
-      <Popover
-        className={[
-          'rounded-lg',
-          'max-w-none',
-          'dark:bg-zinc-800',
-          'dark:ring-zinc-700',
-        ].join(' ')}
-        placement="bottom"
-      >
-        <Dialog className="overflow-auto">
+      <Popover placement="bottom" className="rounded-lg">
+        <Dialog>
           <RangeCalendar />
         </Dialog>
       </Popover>

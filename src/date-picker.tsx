@@ -76,11 +76,8 @@ export function DatePickerInput({
         </Button>
       </Group>
 
-      <Popover
-        className="max-w-none"
-        placement="bottom"
-      >
-        <Dialog className="overflow-auto">
+      <Popover placement="bottom" className="rounded-lg">
+        <Dialog>
           <Calendar yearRange={yearRange} />
         </Dialog>
       </Popover>
@@ -121,8 +118,8 @@ export function DatePickerButton({
         <DateInput className="hidden" aria-hidden />
       </Group>
 
-      <Popover className="max-w-none" placement="bottom">
-        <Dialog className="overflow-auto">
+      <Popover placement="bottom" className="rounded-lg">
+        <Dialog>
           <Calendar />
         </Dialog>
       </Popover>

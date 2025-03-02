@@ -28,8 +28,7 @@ export function Popover(props: PopoverProps) {
       {...props}
       offset={offset}
       className={composeTailwindRenderProps(props.className, [
-        'bg-white',
-        'dark:bg-zinc-900',
+        'bg-inherit',
         'shadow-lg',
         'rounded-md',
         'ring-1',
