@@ -67,7 +67,7 @@ export default meta;
 export const Sidebar = () => {
   return (
     <div className="flex h-dvh w-full flex-col md:flex-row">
-      <header className="sticky left-0 top-0 flex h-14 items-center px-4 md:hidden">
+      <header className="sticky top-0 left-0 flex h-14 items-center px-4 md:hidden">
         <HamburgerMenu />
 
         <div className="ml-auto flex items-center gap-4 px-2">
@@ -114,7 +114,7 @@ export const Sidebar = () => {
         </div>
       </header>
 
-      <div className="group hidden w-64 flex-col overflow-y-auto md:flex">
+      <div className="group hidden w-64 flex-col overflow-y-auto md:flex bg-zinc-100 dark:bg-zinc-950">
         <div className="flex items-center justify-between px-4 pt-4">
           <div className="flex items-center gap-x-2.5">
             <Icon>
@@ -123,7 +123,7 @@ export const Sidebar = () => {
                 width="1em"
                 height="1em"
                 viewBox="0 0 24 24"
-                className="size-8 text-accent"
+                className="text-accent size-8"
               >
                 <rect width="24" height="24" fill="none" />
                 <path
@@ -192,7 +192,7 @@ export const Sidebar = () => {
         </div>
       </div>
 
-      <main className="relative flex-1 overflow-y-auto border-s border-border/25 bg-background p-6 dark:bg-zinc-900 lg:p-10">
+      <main className="border-border/25 bg-background relative flex-1 overflow-y-auto border-s p-6 lg:p-10 dark:bg-zinc-900">
         <div>
           <Heading className="relative">Projects</Heading>
           <Separator soft className="my-4" />
@@ -234,7 +234,7 @@ function HamburgerMenu() {
                   width="1em"
                   height="1em"
                   viewBox="0 0 24 24"
-                  className="size-8 text-accent"
+                  className="text-accent size-8"
                 >
                   <rect width="24" height="24" fill="none" />
                   <path
@@ -274,10 +274,10 @@ function NavLink({ isActive, ...props }: LinkProps & { isActive?: boolean }) {
       {...props}
       className={composeRenderProps(props.className, (className) => {
         return twMerge(
-          'group w-full gap-x-2.5 overflow-hidden text-nowrap p-2 group-data-[collapsed=true]:w-9  hover:no-underline dark:hover:bg-zinc-800 sm:text-sm/5 [&>[data-ui=icon]:not([class*=size-])]:size-5',
+          'group w-full rounded-md gap-x-2.5 overflow-hidden p-2 text-nowrap group-data-[collapsed=true]:w-9 hover:no-underline dark:hover:bg-zinc-800 [&>[data-ui=icon]:not([class*=size-])]:size-5',
           isActive
             ? 'bg-zinc-100 dark:bg-zinc-800'
-            : 'hover:bg-zinc-100 [&:not(:hover)>[data-ui=icon]]:text-muted',
+            : '[&:not(:hover)>[data-ui=icon]]:text-muted hover:bg-zinc-200/75',
           className,
         );
       })}
@@ -292,10 +292,10 @@ function MainNavigation() {
         <li className="hidden md:block">
           <Button
             variant="unstyle"
-            className="group flex w-full items-center gap-x-2.5 p-2 hover:bg-zinc-100 dark:hover:bg-zinc-800 sm:text-sm/5"
+            className="group flex w-full items-center gap-x-2.5 p-2 hover:bg-zinc-200/75 sm:text-sm/6 dark:hover:bg-zinc-800"
           >
             <Icon>
-              <SearchIcon className="size-5 text-muted group-hover:text-foreground" />
+              <SearchIcon className="text-muted group-hover:text-foreground size-5" />
             </Icon>
             Search
           </Button>
@@ -333,16 +333,14 @@ function MainNavigation() {
               inline
               variant="numeric"
               value={10}
-              className="ms-auto rounded-sm bg-accent"
+              className="bg-accent ms-auto rounded-sm"
             />
           </NavLink>
         </li>
 
-        <Separator soft className="my-3" />
-
-        <li className="grid">
+        <li className="my-3 grid">
           <Disclosure defaultExpanded>
-            <DisclosureControl className="w-full text-xs/6 text-muted ">
+            <DisclosureControl className="text-muted w-full text-xs/6">
               Workspaces
             </DisclosureControl>
             <DisclosurePanel>
@@ -397,11 +395,9 @@ function MainNavigation() {
           </Disclosure>
         </li>
 
-        <Separator soft className="my-3" />
-
         <li className="grid">
           <Disclosure defaultExpanded>
-            <DisclosureControl className="w-full text-xs/6 text-muted  hover:text-foreground">
+            <DisclosureControl className="text-muted hover:text-foreground w-full text-xs/6">
               Data management
             </DisclosureControl>
             <DisclosurePanel>
