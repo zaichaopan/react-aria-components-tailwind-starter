@@ -243,7 +243,7 @@ export const ButtonWithCustomPendingUI = () => {
       </Button>
 
       <Button isPending={isPending} isCustomPending pendingLabel="Refreshing">
-        {isPending && <SpinnerIcon className="text-zinc-300" />}
+        {isPending && <SpinnerIcon />}
         Refresh
       </Button>
     </div>
@@ -608,7 +608,7 @@ function CloudUploadingIcon(props: React.JSX.IntrinsicElements['svg']) {
       width="1em"
       height="1em"
       viewBox="0 0 24 24"
-      className="size-5 text-white/75"
+      className="size-5"
       {...props}
     >
       <path

@@ -178,7 +178,7 @@ export const WithHandleIcon = () => {
             >
               <Icon>
                 <XIcon
-                  className="text-muted/75 dark:text-muted/90 size-3"
+                  className="text-muted size-3"
                   strokeWidth="3"
                 />
               </Icon>
@@ -191,7 +191,7 @@ export const WithHandleIcon = () => {
               )}
             >
               <Icon>
-                <CheckIcon className="text-accent size-3" strokeWidth="3" />
+                <CheckIcon className="text-muted size-3" strokeWidth="3" />
               </Icon>
             </div>
 

@@ -147,7 +147,8 @@ export function Radio(props: RadioProps | CustomRenderRadioProps) {
                 <div
                   className={twMerge(
                     'rounded-full',
-                    renderProps.isSelected && 'size-2 bg-white sm:size-1.5',
+                    renderProps.isSelected &&
+                      'size-2 bg-[lch(from_var(--color-accent)_calc((49.44_-_l)_*_infinity)_0_0)] sm:size-1.5',
                   )}
                 ></div>
               )}

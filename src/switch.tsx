@@ -101,7 +101,7 @@ export function Switch(props: SwitchProps | CustomRenderSwitchProps) {
     );
   }
 
-  const { labelPlacement = 'end',  size, children, ...restProps } = props;
+  const { labelPlacement = 'end', size, children, ...restProps } = props;
 
   return (
     <RACSwitch
@@ -141,7 +141,7 @@ export function Switch(props: SwitchProps | CustomRenderSwitchProps) {
                 size !== 'lg' && 'sm:size-4',
                 'rounded-full bg-white shadow transition-all ease-in-out',
                 renderProps.isSelected && [
-                  'border-accent translate-x-5 rtl:-translate-x-5',
+                  'border-accent translate-x-5 bg-[lch(from_var(--color-accent)_calc((49.44_-_l)_*_infinity)_0_0)] rtl:-translate-x-5',
                   size !== 'lg' && 'sm:translate-x-3 sm:rtl:-translate-x-3',
                 ],
               )}

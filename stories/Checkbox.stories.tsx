@@ -309,7 +309,7 @@ export function SmallCards() {
                     'rounded-md',
                     'size-10',
                     'border',
-                    isSelected && 'border-accent bg-accent text-white',
+                    isSelected && 'border-accent bg-accent text-[lch(from_var(--color-accent)_calc((49.44_-_l)_*_infinity)_0_0)]',
                     isFocusVisible &&
                       'outline-ring outline outline-2 outline-offset-2',
                   )}

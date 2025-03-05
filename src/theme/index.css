@@ -51,7 +51,7 @@
   .dark {
     --background: oklch(0.141 0.005 285.823);
     --foreground: oklch(1 0 0);
-    --accent: oklch(0.442 0.017 285.786);
+    --accent: oklch(1 0 0);
     --border: oklch(0.37 0.013 285.805);
     --muted: oklch(0.705 0.015 286.067);
     --success: oklch(0.527 0.154 150.069);

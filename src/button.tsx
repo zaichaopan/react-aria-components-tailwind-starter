@@ -195,8 +195,6 @@ export const Button = React.forwardRef<
                   aria-label={pendingLabel}
                   className={twMerge(
                     'absolute',
-                    'text-foreground',
-                    variant == 'solid' && 'text-zinc-300',
                     isCustomPending ? 'sr-only' : 'flex',
                   )}
                 />

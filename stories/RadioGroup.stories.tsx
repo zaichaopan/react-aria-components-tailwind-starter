@@ -607,7 +607,7 @@ export function CpuOptions() {
                     className={[
                       'min-w-[86px]',
                       'rounded-md border px-4 py-2 font-semibold',
-                      isSelected && 'border-accent bg-accent text-white',
+                      isSelected && 'border-accent bg-accent text-[lch(from_var(--color-accent)_calc((49.44_-_l)_*_infinity)_0_0)]',
                       isFocusVisible &&
                         'outline-ring outline outline-2 outline-offset-2',
                     ].join(' ')}
@@ -717,7 +717,7 @@ export function Appearance() {
                   return twMerge(
                     'z-10 grid size-8 place-items-center [&_svg]:size-4',
                     option.className,
-                    isSelected && 'text-white',
+                    isSelected && 'text-[lch(from_var(--color-accent)_calc((49.44_-_l)_*_infinity)_0_0)]',
                     isFocusVisible &&
                       'outline-ring rounded-full outline outline-2 outline-offset-2',
                   );

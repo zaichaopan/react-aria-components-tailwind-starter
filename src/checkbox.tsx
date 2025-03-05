@@ -150,9 +150,9 @@ export function Checkbox(props: CheckboxProps | CustomRenderCheckboxProps) {
               ])}
             >
               {renderProps.isIndeterminate ? (
-                <MinusIcon className="size-4 text-white sm:size-3.5" />
+                <MinusIcon className="size-4 text-[lch(from_var(--color-accent)_calc((49.44_-_l)_*_infinity)_0_0)] sm:size-3.5" />
               ) : renderProps.isSelected ? (
-                <CheckIcon className="size-4 text-white sm:size-3.5" />
+                <CheckIcon className="size-4 text-[lch(from_var(--color-accent)_calc((49.44_-_l)_*_infinity)_0_0)] sm:size-3.5" />
               ) : null}
             </div>
 

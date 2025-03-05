@@ -30,7 +30,7 @@ export function Slider<T extends number | number[]>(props: SliderProps<T>) {
 
 const trackStyle = [
   'absolute rounded-full',
-  'group-data-[orientation=horizontal]:h-1',
+  'group-data-[orientation=horizontal]:h-1.5',
   'group-data-[orientation=horizontal]:w-full',
   'group-data-[orientation=vertical]:top-1/2',
   'group-data-[orientation=vertical]:left-1/2',
@@ -46,7 +46,10 @@ export function SliderTack({ thumbLabels }: { thumbLabels?: string[] }) {
         return (
           <>
             <div
-              className={twMerge('bg-zinc-200 dark:bg-zinc-300 group-data-[orientation=vertical]:-translate-x-1/2 group-data-[orientation=vertical]:-translate-y-1/2', trackStyle)}
+              className={twMerge(
+                'bg-zinc-200 group-data-[orientation=vertical]:-translate-x-1/2 group-data-[orientation=vertical]:-translate-y-1/2 dark:bg-zinc-600',
+                trackStyle,
+              )}
             />
             <div
               className={twMerge('bg-accent', trackStyle)}
@@ -61,9 +64,11 @@ export function SliderTack({ thumbLabels }: { thumbLabels?: string[] }) {
                   '',
                   (className, { isFocusVisible, isDragging, isDisabled }) =>
                     twMerge(
-                      'ring-3 size-5 rounded-full bg-white dark:bg-zinc-50 shadow-xl ring-1 ring-zinc-400/45 dark:ring-0',
+                      'size-5 rounded-full bg-white ring-1 shadow-xl ring-black/20 dark:ring-0',
                       'group-data-[orientation=horizontal]:top-1/2 group-data-[orientation=vertical]:left-1/2',
-                      isDragging && ['ring-accent border-accent border-6'],
+                      isDragging && [
+                        'ring-accent border-accent border-6 bg-[lch(from_var(--color-accent)_calc((49.44_-_l)_*_infinity)_0_0)]',
+                      ],
                       isDisabled && 'cursor-not-allowed opacity-50',
                       isFocusVisible && [
                         'outline',
