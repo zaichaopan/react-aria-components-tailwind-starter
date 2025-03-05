@@ -64,7 +64,7 @@ export function DateInput(props: DateInputProps) {
           className={twMerge(
             'inline rounded-sm px-0.5 caret-transparent outline-0 data-[type=literal]:px-0',
             'data-placeholder:italic data-placeholder:text-muted',
-            'focus:bg-accent focus:text-white focus:data-placeholder:text-white',
+            'focus:bg-accent focus:text-[lch(from_var(--color-accent)_calc((49.44_-_l)_*_infinity)_0_0)] focus:data-placeholder:text-[lch(from_var(--color-accent)_calc((49.44_-_l)_*_infinity)_0_0)]',
           )}
         />
       )}

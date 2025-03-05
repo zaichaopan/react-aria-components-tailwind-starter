@@ -30,7 +30,7 @@ export function RangeCalendar<T extends DateValue>({
     >
       <CalendarHeader />
       <CalendarGrid
-        className="px-3 border-separate border-spacing-y-0.5 sm:px-2"
+        className="border-separate border-spacing-y-0.5 px-3 sm:px-2"
         weekdayStyle="short"
       >
         <CalendarGridHeader />
@@ -87,10 +87,14 @@ export function RangeCalendar<T extends DateValue>({
                       isPressed && 'bg-accent/90',
                       isSelected && [
                         'bg-accent',
-                        'text-white',
+                        'text-[lch(from_var(--color-accent)_calc((49.44_-_l)_*_infinity)_0_0)]',
                         'dark:bg-accent',
                       ],
-                      isPressed && isSelected && ['bg-accent', 'text-white'],
+                      isPressed &&
+                        isSelected && [
+                          'bg-accent',
+                          'text-[lch(from_var(--color-accent)_calc((49.44_-_l)_*_infinity)_0_0)]',
+                        ],
                     ],
                     isDisabled && 'opacity-40',
                     isUnavailable && [
@@ -100,7 +104,7 @@ export function RangeCalendar<T extends DateValue>({
                     ],
                     isSelected &&
                       (isSelectionStart || isSelectionEnd) && [
-                        'bg-accent rounded-lg text-sm text-white',
+                        'bg-accent rounded-lg text-sm text-[lch(from_var(--color-accent)_calc((49.44_-_l)_*_infinity)_0_0)]',
                         isHovered && 'bg-accent/90 dark:bg-accent/90',
                         isInvalid &&
                           'border-destructive bg-destructive text-white',

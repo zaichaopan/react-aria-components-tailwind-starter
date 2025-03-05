@@ -78,10 +78,11 @@ export function Calendar<T extends DateValue>({
                         'bg-zinc-100 dark:bg-zinc-700',
                       ],
                       isHovered && 'bg-zinc-100 dark:bg-zinc-700',
-                      isPressed && 'bg-accent/90 text-white',
+                      isPressed &&
+                        'bg-accent/90 text-[lch(from_var(--color-accent)_calc((49.44_-_l)_*_infinity)_0_0)]',
                       isDisabled && 'opacity-50',
                       isSelected && [
-                        'bg-accent text-sm text-white',
+                        'bg-accent text-sm text-[lch(from_var(--color-accent)_calc((49.44_-_l)_*_infinity)_0_0)]',
                         isHovered && ['bg-accent', 'dark:bg-accent'],
                         isInvalid && [
                           'border-destructive bg-destructive text-white',

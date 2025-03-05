@@ -128,7 +128,7 @@ export function Switch(props: SwitchProps | CustomRenderSwitchProps) {
               labelPlacement === 'end' ? 'me-3' : 'ms-3',
               renderProps.isReadOnly && 'opacity-50',
               renderProps.isSelected &&
-                'border-accent bg-accent dark:bg-accent dark:border-white/10',
+                'border-accent bg-accent dark:bg-accent dark:border-accent',
               renderProps.isDisabled && 'bg-gray-200 dark:bg-zinc-700',
               renderProps.isFocusVisible &&
                 'outline-ring outline outline-2 outline-offset-2',

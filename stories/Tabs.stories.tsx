@@ -231,7 +231,7 @@ export const VerticalPillTabsWithAccentBackground = () => {
           <Tab
             id="General"
             className={({ isSelected }) =>
-              isSelected ? 'bg-accent dark:bg-accent text-white' : ''
+              isSelected ? 'bg-accent dark:bg-accent text-[lch(from_var(--color-accent)_calc((49.44_-_l)_*_infinity)_0_0)]' : ''
             }
           >
             <Icon>
@@ -328,7 +328,7 @@ export const VerticalPillTabsWithAccentColor = () => {
             id="General"
             className={({ isSelected }) =>
               isSelected
-                ? 'bg-accent/10 text-accent dark:bg-accent dark:text-white'
+                ? 'bg-accent/10 text-accent dark:bg-accent dark:text-[lch(from_var(--color-accent)_calc((49.44_-_l)_*_infinity)_0_0)]'
                 : ''
             }
           >
