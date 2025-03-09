@@ -101,7 +101,7 @@ export function DatePickerButton({
       <Group data-ui="control">
         <Button
           className={twMerge(
-            'w-full min-w-52 flex-1 justify-between px-3 font-normal',
+            'border-input w-full min-w-52 flex-1 justify-between px-3 leading-6 font-normal',
             className,
           )}
           variant="outline"
@@ -109,7 +109,7 @@ export function DatePickerButton({
           {formattedDate === '' ? (
             <span className="text-muted">{children}</span>
           ) : (
-            <span className="text-sm">{formattedDate}</span>
+            <span>{formattedDate}</span>
           )}
 
           <CalendarIcon className="text-muted group-hover:text-foreground" />

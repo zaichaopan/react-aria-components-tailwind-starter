@@ -50,7 +50,7 @@ export const Application = () => {
   return (
     <div className="flex h-dvh w-full">
       <Sidebar />
-      <main className="border-border/45 bg-background relative flex-1 overflow-y-auto border-s dark:bg-zinc-900"></main>
+      <main className="border-border/75 bg-background relative flex-1 overflow-y-auto border-s dark:bg-zinc-900"></main>
     </div>
   );
 };

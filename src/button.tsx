@@ -78,7 +78,7 @@ const buttonStyle = ({
         !isDisabled && 'hover:opacity-90',
       ],
       outline: [
-        'border border-border/80 text-[var(--btn-color)] shadow-xs',
+        'border text-[var(--btn-color)] shadow-xs',
         !isDisabled && 'hover:bg-zinc-50 dark:hover:bg-zinc-800',
       ],
       plain: [

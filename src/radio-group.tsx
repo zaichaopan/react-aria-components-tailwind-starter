@@ -126,7 +126,7 @@ export function Radio(props: RadioProps | CustomRenderRadioProps) {
             <div
               slot="radio"
               className={twMerge(
-                'grid shrink-0 place-content-center rounded-full border',
+                'grid shrink-0 place-content-center rounded-full border border-input',
                 radio ? '' : 'size-4.5 sm:size-4',
                 labelPlacement === 'end' ? 'me-3' : 'ms-3',
                 renderProps.isReadOnly && 'opacity-50',

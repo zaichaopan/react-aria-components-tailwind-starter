@@ -43,7 +43,7 @@ export function SelectButton(props: {
         props.className,
         (className, { isFocusVisible, isPressed, isHovered, isDisabled }) =>
           twMerge(
-            'group relative flex w-full cursor-default items-center gap-x-1 rounded-md border text-start outline-hidden transition',
+            'group border-input relative flex w-full cursor-default items-center gap-x-1 rounded-md border text-start outline-hidden transition',
             'ps-3 pe-2.5',
             'py-[calc(--spacing(2.5)-1px)]',
             'sm:py-[calc(--spacing(1.5)-1px)]',
@@ -159,7 +159,7 @@ export function SelectSection<T extends object>(props: SectionProps<T>) {
     <RACListBoxSection
       className={twMerge(
         'not-first:mt-1.5',
-        'not-first:border-t-border/40 not-first:border-t',
+        'border-border/75 not-first:border-t',
         props.className,
       )}
     >

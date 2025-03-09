@@ -75,7 +75,7 @@ export const Sidebar = () => {
 
       <SideNavigation />
 
-      <main className="border-border/45 bg-background relative flex-1 overflow-y-auto border-s p-6 lg:p-10 dark:bg-zinc-900">
+      <main className="border-border/75 bg-background relative flex-1 overflow-y-auto border-s p-6 lg:p-10 dark:bg-zinc-900">
         <div>
           <Heading className="relative">Projects</Heading>
           <Separator soft className="my-4" />

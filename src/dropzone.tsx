@@ -15,11 +15,11 @@ export function DropZone(props: DropZoneProps) {
           twMerge(
             'sm:min-w-96',
             'flex shrink-0 flex-col items-center justify-center rounded-md',
-            'border border-dashed p-2',
+            'border-input border border-dashed p-2',
             isDisabled && 'opacity-50',
             isDropTarget && 'bg-accent/15 dark:bg-accent/75',
             (isDropTarget || isFocusVisible) &&
-              'border-solid border-ring ring-1 ring-ring',
+              'border-ring ring-ring border-solid ring-1',
             className,
           ),
       )}

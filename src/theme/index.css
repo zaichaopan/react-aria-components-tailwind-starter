@@ -13,6 +13,7 @@
   --color-destructive: var(--destructive);
   --color-warning: var(--warning);
   --color-muted: var(--muted);
+  --color-input: var(--input);
   --color-border: var(--border);
   --color-ring: var(--ring);
 }
@@ -40,7 +41,8 @@
     --background: oklch(1 0 0);
     --foreground: oklch(0.141 0.005 285.823);
     --accent: oklch(0.21 0.006 285.885);
-    --border: oklch(0.871 0.006 286.286);
+    --input: oklch(0.871 0.006 286.286);
+    --border: oklch(0.92 0.004 286.32);
     --muted: oklch(0.552 0.016 285.938);
     --success: oklch(0.527 0.154 150.069);
     --destructive: oklch(0.577 0.245 27.325);
@@ -52,7 +54,8 @@
     --background: oklch(0.141 0.005 285.823);
     --foreground: oklch(1 0 0);
     --accent: oklch(1 0 0);
-    --border: oklch(0.37 0.013 285.805);
+    --input: oklch(0.37 0.013 285.805);
+    --border: oklch(0.274 0.006 286.033);
     --muted: oklch(0.705 0.015 286.067);
     --success: oklch(0.527 0.154 150.069);
     --destructive: oklch(0.505 0.213 27.518);

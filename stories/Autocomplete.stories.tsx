@@ -113,7 +113,7 @@ export function CommandPalette() {
             </SearchField>
             <Menu
               items={commands}
-              className="mt-1 border-t border-zinc-950/10 px-2 dark:border-white/10"
+              className="mt-1 border-t px-2"
               renderEmptyState={() => (
                 <EmptyState>
                   <EmptyStateHeading elementType="div" displayLevel={2}>
@@ -205,7 +205,7 @@ export function CommandJ() {
         <Kbd>{isMac ? '⌘' : 'Ctrl'}</Kbd> + <Kbd>J</Kbd>
       </Button>
       <Modal isDismissable>
-        <Dialog className="py-3">
+        <Dialog className="pt-3">
           <Autocomplete filter={contains}>
             <TextField aria-label="Search commands" autoFocus className="px-1">
               <Input
@@ -214,7 +214,7 @@ export function CommandJ() {
               />
             </TextField>
             <Menu
-              className="mt-1 border-t border-zinc-950/10 px-2 dark:border-white/10"
+              className="mt-1 border-t px-2"
               renderEmptyState={() => (
                 <EmptyState>
                   <EmptyStateHeading elementType="div" displayLevel={2}>
@@ -311,7 +311,7 @@ export function SearchableSelect() {
             </SearchField>
             <SelectListBox
               items={languages}
-              className="border-t border-zinc-950/10 dark:border-white/10"
+              className="border-t"
               renderEmptyState={() => (
                 <EmptyState>
                   <EmptyStateHeading elementType="div" displayLevel={3}>
@@ -342,7 +342,7 @@ export function SearchableSelect() {
             </SearchField>
             <SelectListBox
               items={users}
-              className="border-t border-zinc-950/10 dark:border-white/10"
+              className="border-t"
               renderEmptyState={() => (
                 <EmptyState>
                   <EmptyStateHeading elementType="div" displayLevel={3}>
@@ -400,7 +400,7 @@ export const SearchableMenu = () => {
                 </SearchField>
                 <SubMenu
                   aria-label="Email"
-                  className="border-t border-zinc-950/10 dark:border-white/10"
+                  className="border-t"
                   renderEmptyState={() => (
                     <EmptyState>
                       <EmptyStateHeading elementType="div" displayLevel={3}>

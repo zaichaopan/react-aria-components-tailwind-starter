@@ -136,7 +136,7 @@ export function MenuSeparator({ className }: { className?: string }) {
   return (
     <Separator
       className={twMerge(
-        'border-border/35 my-1 w-[calc(100%-(--spacing(4)))] self-center border-t dark:border-white/10',
+        'border-t-border/75 my-1 w-[calc(100%-(--spacing(4)))] self-center border-t',
         className,
       )}
     />
@@ -252,7 +252,7 @@ export function MenuSection<T extends object>({
       className={twMerge(
         'not-first:mt-1.5',
         'not-first:border-t',
-        'not-first:border-t-border/40',
+        'not-first:border-t-border/75',
         className,
       )}
     >

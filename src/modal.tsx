@@ -118,7 +118,7 @@ export function Modal({ classNames, ...props }: ModalProps) {
           'shadow-lg',
           'bg-background dark:bg-zinc-900',
           'ring-1 ring-zinc-950/5 dark:ring-zinc-800',
-          
+
           props.size
             ? sizes[props.size]
             : 'sm:has-[[role=alertdialog]]:max-w-md sm:has-[[role=dialog]]:max-w-lg',

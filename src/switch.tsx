@@ -123,7 +123,7 @@ export function Switch(props: SwitchProps | CustomRenderSwitchProps) {
         <>
           <div
             className={twMerge(
-              'dark:border-border flex h-6 w-11 shrink-0 cursor-default items-center rounded-full border border-zinc-200 bg-zinc-200 p-px dark:bg-transparent',
+              'dark:border-input flex h-6 w-11 shrink-0 cursor-default items-center rounded-full border border-zinc-200 bg-zinc-200 p-px dark:bg-transparent',
               size !== 'lg' && 'sm:h-5 sm:w-8',
               labelPlacement === 'end' ? 'me-3' : 'ms-3',
               renderProps.isReadOnly && 'opacity-50',

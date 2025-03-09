@@ -43,7 +43,7 @@ export function DateRangePickerInput() {
           twMerge(
             '[&:has([aria-valuetext=Empty]:) w-full',
             'grid grid-cols-[max-content_16px_max-content_1fr] items-center',
-            'group relative rounded-md border',
+            'group border-input relative rounded-md border',
             'group-data-invalid:border-destructive',
             '[&:has(_input[data-disabled=true])]:border-border/50',
             '[&:has([data-ui=date-segment][aria-readonly])]:bg-zinc-50',
@@ -111,7 +111,7 @@ export function DateRangePickerButton({
         <Button
           variant="outline"
           className={twMerge(
-            'w-full min-w-64 px-0 font-normal sm:px-0',
+            'border-input w-full min-w-64 px-0 font-normal sm:px-0',
             className,
           )}
         >
