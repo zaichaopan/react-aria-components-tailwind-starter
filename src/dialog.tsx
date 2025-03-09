@@ -5,7 +5,7 @@ import {
 } from 'react-aria-components';
 import { twMerge } from 'tailwind-merge';
 import React from 'react';
-import { Heading, HeadingProps } from './heading';
+import { BaseHeadingProps, Heading } from './heading';
 import { Button, ButtonProps } from './button';
 import { Text } from './text';
 import { XIcon } from './icons';
@@ -31,7 +31,14 @@ export function Dialog({ role, alert = false, ...props }: DialogProps) {
   );
 }
 
-type DialogHeaderProps = HeadingProps;
+type DialogHeaderProps = BaseHeadingProps;
+
+export const DialogTitle = React.forwardRef<
+  HTMLHeadingElement,
+  DialogHeaderProps
+>(function DialogTitle({ level = 2, ...props }, ref) {
+  return <Heading {...props} ref={ref} slot="title" level={level} />;
+});
 
 export function DialogHeader({ className, ...props }: DialogHeaderProps) {
   const headerRef = React.useRef<HTMLHeadingElement>(null);
@@ -182,10 +189,3 @@ export function DialogCloseButton({
     </Button>
   );
 }
-
-export const DialogTitle = React.forwardRef<
-  HTMLHeadingElement,
-  DialogHeaderProps
->(function DialogTitle({ level = 2, ...props }, ref) {
-  return <Heading {...props} ref={ref} slot="title" level={level} />;
-});

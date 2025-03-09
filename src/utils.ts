@@ -33,7 +33,7 @@ export const groupBox = [
   '[&_[data-ui=description]:not([class*=mt-]):has(+[data-ui=box])]:mb-4',
 
   // Group box style
-  '[&:not(:has([data-ui=description]+[data-ui=box]))>[data-ui=box]]:mt-3',
+  '[&:not(:has([data-ui=description]+[data-ui=box]))>[data-ui=box]:not([class*=mt-])]:mt-3',
 
   '[&:has(:is([type=checkbox],[type=radio],[role=switch]))_[data-ui=box]:not([class*=gap-])]:gap-y-3',
 

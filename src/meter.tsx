@@ -59,7 +59,7 @@ export function Meter({
               {' ' + valueText}
             </span>
           </div>
-          <div className="relative h-2 w-64  rounded-full bg-gray-300 outline outline-1 -outline-offset-1 outline-transparent dark:bg-zinc-700">
+          <div className="relative h-2 w-64  rounded-full bg-gray-300 outline outline-1 -outline-offset-1 outline-transparent dark:bg-zinc-800">
             <div
               className={`absolute left-0 top-0 h-full rounded-full ${getColor(percentage, { positive, informative })}`}
               style={{ width: percentage + '%' }}

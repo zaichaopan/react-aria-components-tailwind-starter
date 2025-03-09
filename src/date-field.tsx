@@ -42,7 +42,7 @@ export function DateInput(props: DateInputProps) {
       data-ui="control"
       className={composeRenderProps(props.className, (className, renderProps) =>
         twMerge(
-          'group flex w-full items-center rounded-md border bg-transparent',
+          'group flex w-full items-center rounded-md border border-input bg-transparent',
 
           '[&:has([data-disabled=true])]:opacity-50',
           '[&:has([data-ui=date-segment][aria-readonly])]:bg-zinc-50',

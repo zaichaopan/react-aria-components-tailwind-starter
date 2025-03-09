@@ -1,10 +1,18 @@
 import { NotificationBadge } from '../src/notification-badge';
 import { docs } from '../.storybook/docs';
 import { Icon } from '../src/icon';
-import { BellIcon, MessageCircle } from 'lucide-react';
+import {
+  BellIcon,
+  CreditCardIcon,
+  MessageCircle,
+  MessagesSquareIcon,
+  UserIcon,
+} from 'lucide-react';
 import { Link } from '../src/link';
 import { Button } from '../src/button';
 import React from 'react';
+import { Avatar } from '../src/avatar';
+import { TabList, Tabs, Tab } from '../src/tabs';
 
 const meta = {
   parameters: {
@@ -15,21 +23,17 @@ const meta = {
 
 export default meta;
 
-export const DotBadge = () => {
+export const NotificationBadgeOnLinks = () => {
   return (
-    <Link className="p-2" aria-label="Chat - 6 new messages">
-      <Icon>
-        <MessageCircle />
-      </Icon>
-      <NotificationBadge variant="dot" aria-label="Chat - 6 new messages" />
-    </Link>
-  );
-};
+    <div className="flex gap-4">
+      <Link className="p-2">
+        <Icon>
+          <MessageCircle />
+        </Icon>
+        <NotificationBadge variant="dot" aria-label="Chat - 6 new messages" />
+      </Link>
 
-export const NumberBadge = () => {
-  return (
-    <div className="flex gap-6">
-      <Button aria-label="Chat - 6 new messages" variant="outline">
+      <Link className="p-2">
         <Icon>
           <MessageCircle />
         </Icon>
@@ -38,20 +42,95 @@ export const NumberBadge = () => {
           value={6}
           aria-label="Chat - 6 new messages"
         />
-      </Button>
+      </Link>
 
-      <div className="flex items-center gap-x-1">
-        <Icon>
-          <BellIcon className="text-muted size-5"></BellIcon>
-        </Icon>
-        Notifications
+      <Link>
+        Messages
         <NotificationBadge
           variant="numeric"
+          value={6}
+          aria-label="6 new"
           inline
-          value={8}
-          className="ms-2"
         />
-      </div>
+      </Link>
+
+      <Link>
+        <Avatar alt="J P" aria-hidden colorful />
+        <NotificationBadge
+          variant="numeric"
+          value={6}
+          aria-label="J P 6 new message"
+        />
+      </Link>
+    </div>
+  );
+};
+
+export const NotificationBadgeOnButtons = () => {
+  return (
+    <div className="flex items-center gap-6">
+      <Button variant="outline" isIconOnly>
+        <Icon>
+          <MessagesSquareIcon />
+        </Icon>
+        <NotificationBadge
+          variant="numeric"
+          value={10}
+          aria-label={`Chat- 10 new messages`}
+        />
+      </Button>
+
+      <Button variant="outline" isIconOnly>
+        <Icon>
+          <MessagesSquareIcon />
+        </Icon>
+        <NotificationBadge variant="dot" aria-label={`Chat- 10 new messages`} />
+      </Button>
+
+      <Button variant="plain" isIconOnly>
+        <Avatar alt="J P" aria-hidden colorful />
+        <NotificationBadge
+          variant="numeric"
+          value={10}
+          aria-label={`J P - 10 new messages`}
+        />
+      </Button>
+    </div>
+  );
+};
+
+export const NotificationBadgeOnTabs = () => {
+  return (
+    <div className="p-4 sm:p-12">
+      <Tabs>
+        <TabList aria-label="Navigation" className="px-4">
+          <Tab id="profile">
+            <Icon>
+              <UserIcon />
+            </Icon>
+            Profile
+          </Tab>
+
+          <Tab id="billing">
+            <Icon>
+              <CreditCardIcon />
+            </Icon>
+            Billing
+          </Tab>
+          <Tab id="notifications">
+            <Icon>
+              <BellIcon />
+            </Icon>
+            Notifications
+            <NotificationBadge
+              variant="numeric"
+              inline
+              value={10}
+              aria-label={`10 new messages`}
+            />
+          </Tab>
+        </TabList>
+      </Tabs>
     </div>
   );
 };
@@ -61,19 +140,14 @@ export const BadgeAccessibility = () => {
 
   return (
     <div className="inline-flex flex-col space-y-4">
-      <Link
-        className="relative self-center p-2"
-        aria-label={`Chat - ${value} new messages`}
-      >
-        <Icon>
-          <MessageCircle />
-        </Icon>
+      <Button variant="plain" isIconOnly>
+        <Avatar alt="J P" aria-hidden colorful />
         <NotificationBadge
           variant="numeric"
-          value={value}
-          aria-label={`Chat - ${value} new messages`}
+          value={10}
+          aria-label={`G A - ${value} new messages`}
         />
-      </Link>
+      </Button>
       <Button onPress={() => setValue(value + 1)}>Add</Button>
     </div>
   );

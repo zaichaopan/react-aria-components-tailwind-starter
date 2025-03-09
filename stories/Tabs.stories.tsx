@@ -87,37 +87,6 @@ export const TabWithIcons = () => {
   );
 };
 
-export const TabWithBadges = () => {
-  return (
-    <div className="p-4 sm:p-12">
-      <Tabs>
-        <TabList aria-label="Navigation" className="px-4">
-          <Tab id="profile">
-            <Icon>
-              <UserIcon />
-            </Icon>
-            Profile
-          </Tab>
-
-          <Tab id="billing">
-            <Icon>
-              <CreditCardIcon />
-            </Icon>
-            Billing
-          </Tab>
-          <Tab id="notifications">
-            <Icon>
-              <BellIcon />
-            </Icon>
-            Notifications
-            <span>8</span>
-          </Tab>
-        </TabList>
-      </Tabs>
-    </div>
-  );
-};
-
 export const VerticalOrientation = () => {
   return (
     <div className="p-4 sm:p-12">

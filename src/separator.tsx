@@ -25,8 +25,8 @@ export function Separator({
         children
           ? [
               soft
-                ? 'before:border-border/35 after:border-border/35'
-                : 'before:border-border/75 after:border-border/75',
+                ? 'before:border-border/75 after:border-border/75'
+                : 'before:border-border after:border-border',
               orientation === 'vertical'
                 ? [
                     'mx-4 flex flex-col items-center',
@@ -52,7 +52,7 @@ export function Separator({
                   ],
             ]
           : [
-              soft? 'border-border/35': 'border-border/75',
+              soft ? 'border-border/75' : 'border-border',
               orientation === 'vertical'
                 ? [
                     'h-auto self-stretch border-l',

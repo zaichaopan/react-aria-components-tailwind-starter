@@ -714,14 +714,12 @@ export function Appearance() {
                 key={option.value}
                 aria-label={option.label}
                 data-theme={option.value}
-                className={({ isSelected, isFocusVisible }) => {
+                className={({ isSelected }) => {
                   return twMerge(
-                    'z-10 grid size-8 place-items-center [&_svg]:size-4',
+                    'z-10 grid size-8 place-items-center rounded-full [&_svg]:size-4',
                     option.className,
                     isSelected &&
                       'text-[lch(from_var(--color-accent)_calc((49.44_-_l)_*_infinity)_0_0)]',
-                    isFocusVisible &&
-                      'outline-ring rounded-full outline outline-2 outline-offset-2',
                   );
                 }}
                 value={option.value}
@@ -745,34 +743,18 @@ export function SwitchPlan() {
   return (
     <RadioGroup orientation="horizontal" defaultValue="monthly" className="">
       <Label>Choose plan</Label>
-      <Radios className="rounded-lg bg-zinc-100 p-0.5 dark:bg-zinc-800">
+      <Radios className="rounded-(--card-radius) bg-zinc-100 p-0.5 [--card-padding:--spacing(0.5)] [--card-radius:var(--radius-lg)] dark:bg-zinc-800">
         <div className="relative isolate flex flex-1">
           <Radio
-            className="peer/monthly z-10 flex-1 sm:w-64"
+            className="peer/monthly z-10 flex-1 rounded-[calc(var(--card-radius)-var(--card-padding))] px-4 py-1 text-center font-medium sm:w-64"
             value="monthly"
-            render={({ isFocusVisible }) => (
-              <div
-                className={twMerge(
-                  'rounded-md px-4 py-1 text-center font-medium',
-                  isFocusVisible &&
-                    'outline-ring outline outline-2 outline-offset-2',
-                )}
-              >
-                Bill Monthly
-              </div>
-            )}
+            render="Bill Monthly"
           ></Radio>
           <Radio
-            className="peer/yearly z-10 w-64 flex-1"
+            className="peer/yearly z-10 w-64 flex-1 rounded-[calc(var(--card-radius)-var(--card-padding))] rounded-lg px-4 py-1 text-center font-medium"
             value="yearly"
-            render={({ isFocusVisible, isSelected }) => (
-              <div
-                className={twMerge(
-                  'rounded-lg px-4 py-1 text-center font-medium',
-                  isFocusVisible &&
-                    'outline-ring outline outline-2 outline-offset-2',
-                )}
-              >
+            render={({ isSelected }) => (
+              <div>
                 Bill Yearly{' '}
                 <span className={isSelected ? 'text-success' : ''}>-20%</span>
               </div>
@@ -780,7 +762,7 @@ export function SwitchPlan() {
           ></Radio>
           <div
             className={twMerge(
-              'absolute top-0 left-0 h-full w-1/2 rounded-md bg-white shadow transition-all ease-in-out peer-data-selected/yearly:left-1/2 dark:bg-zinc-600',
+              'absolute top-0 left-0 h-full w-1/2 rounded-[calc(var(--card-radius)-var(--card-padding))] bg-white shadow transition-all ease-in-out peer-data-selected/yearly:left-1/2 dark:bg-zinc-600',
             )}
           ></div>
         </div>

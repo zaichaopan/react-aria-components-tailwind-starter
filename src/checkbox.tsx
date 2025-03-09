@@ -99,13 +99,17 @@ export function Checkbox(props: CheckboxProps | CustomRenderCheckboxProps) {
         aria-describedby={descriptionContext?.['aria-describedby']}
         className={composeRenderProps(
           props.className,
-          (className, renderProps) =>
-            twMerge([
+          (className, renderProps) => {
+            return twMerge([
               'group',
               'text-base/6 sm:text-sm/6',
               renderProps.isDisabled && 'opacity-50',
+              renderProps.isFocusVisible &&
+              'flex outline-ring outline outline-2 outline-offset-2',
               className,
-            ]),
+            ])
+          }
+            
         )}
       >
         {render}
@@ -138,7 +142,7 @@ export function Checkbox(props: CheckboxProps | CustomRenderCheckboxProps) {
             <div
               data-ui="checkbox"
               className={twMerge([
-                'flex size-4.5 shrink-0 items-center justify-center rounded-sm border sm:size-4',
+                'flex size-4.5 shrink-0 items-center justify-center rounded-sm border border-input sm:size-4',
                 labelPlacement === 'end' ? 'me-3' : 'ms-3',
                 renderProps.isReadOnly && 'opacity-50',
                 renderProps.isInvalid &&

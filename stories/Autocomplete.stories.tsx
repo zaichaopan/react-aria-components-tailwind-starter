@@ -113,7 +113,7 @@ export function CommandPalette() {
             </SearchField>
             <Menu
               items={commands}
-              className="mt-1 border-t border-zinc-950/10 px-2 dark:border-white/10"
+              className="mt-1 border-t px-2"
               renderEmptyState={() => (
                 <EmptyState>
                   <EmptyStateHeading elementType="div" displayLevel={2}>
@@ -205,7 +205,7 @@ export function CommandJ() {
         <Kbd>{isMac ? '⌘' : 'Ctrl'}</Kbd> + <Kbd>J</Kbd>
       </Button>
       <Modal isDismissable>
-        <Dialog className="py-3">
+        <Dialog className="pt-3">
           <Autocomplete filter={contains}>
             <TextField aria-label="Search commands" autoFocus className="px-1">
               <Input
@@ -214,7 +214,7 @@ export function CommandJ() {
               />
             </TextField>
             <Menu
-              className="mt-1 border-t border-zinc-950/10 px-2 dark:border-white/10"
+              className="mt-1 border-t px-2"
               renderEmptyState={() => (
                 <EmptyState>
                   <EmptyStateHeading elementType="div" displayLevel={2}>
@@ -301,7 +301,7 @@ export function SearchableSelect() {
       <Select>
         <Label>Language</Label>
         <SelectButton />
-        <SelectPopover>
+        <SelectPopover className="flex !max-h-80 flex-col">
           <Autocomplete filter={contains}>
             <SearchField aria-label="Search" autoFocus>
               <SearchInput
@@ -311,7 +311,7 @@ export function SearchableSelect() {
             </SearchField>
             <SelectListBox
               items={languages}
-              className="border-t border-zinc-950/10 dark:border-white/10"
+              className="flex-1 scroll-pb-1 overflow-auto border-t"
               renderEmptyState={() => (
                 <EmptyState>
                   <EmptyStateHeading elementType="div" displayLevel={3}>
@@ -332,8 +332,8 @@ export function SearchableSelect() {
       <Select placeholder="Assign to" defaultSelectedKey="1">
         <Label>Assignee</Label>
         <SelectButton />
-        <SelectPopover>
-          <Autocomplete filter={contains} data-ui="autocomplete">
+        <SelectPopover className="flex !max-h-80 flex-col">
+          <Autocomplete filter={contains}>
             <SearchField aria-label="Search" autoFocus>
               <SearchInput
                 placeholder="Search assignees"
@@ -342,7 +342,7 @@ export function SearchableSelect() {
             </SearchField>
             <SelectListBox
               items={users}
-              className="border-t border-zinc-950/10 dark:border-white/10"
+              className="flex-1 scroll-pb-1 overflow-auto border-t"
               renderEmptyState={() => (
                 <EmptyState>
                   <EmptyStateHeading elementType="div" displayLevel={3}>
@@ -390,7 +390,7 @@ export const SearchableMenu = () => {
           <MenuItem>Delete</MenuItem>
           <SubmenuTrigger>
             <MenuItem>Add tag...</MenuItem>
-            <MenuPopover>
+            <MenuPopover className="flex !max-h-80 flex-col">
               <Autocomplete filter={contains}>
                 <SearchField aria-label="Search tags" autoFocus>
                   <SearchInput
@@ -400,7 +400,7 @@ export const SearchableMenu = () => {
                 </SearchField>
                 <SubMenu
                   aria-label="Email"
-                  className="border-t border-zinc-950/10 dark:border-white/10"
+                  className="flex-1 scroll-pb-1 overflow-auto border-t"
                   renderEmptyState={() => (
                     <EmptyState>
                       <EmptyStateHeading elementType="div" displayLevel={3}>

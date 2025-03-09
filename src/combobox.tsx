@@ -89,7 +89,11 @@ export function ComboBoxGroup(props: GroupProps) {
 
 export const ComboBoxInput = Input;
 
-export function ComboBoxButton() {
+export function ComboBoxButton({
+  triggerIcon = <ChevronDownIcon />,
+}: {
+  triggerIcon?: React.ReactNode;
+}) {
   return (
     <Button
       isIconOnly
@@ -98,27 +102,33 @@ export function ComboBoxButton() {
       variant="plain"
       className="text-muted group-hover/combobox:text-foreground"
     >
-      <ChevronDownIcon />
+      {triggerIcon}
     </Button>
   );
 }
 
 export function ComboBoxClearButton({
   onPress,
-}: {
-  onPress?: ButtonProps['onPress'];
-}) {
+  ...props
+}: Omit<
+  ButtonProps,
+  'tooltip' | 'slot' | 'variant' | 'size' | 'isIconOnly'
+>) {
   const state = React.useContext(ComboBoxStateContext);
 
   return (
     <Button
-      className={twMerge(
-        '[&:not(:hover)]:text-muted ',
-        'not-last:-me-1',
-        state?.inputValue
-          ? 'visible focus-visible:-outline-offset-2'
-          : 'invisible',
-      )}
+      {...props}
+      className={composeRenderProps(props.className, (className) => {
+        return twMerge(
+          '[&:not(:hover)]:text-muted',
+          'not-last:-me-1',
+          state?.inputValue
+            ? 'visible focus-visible:-outline-offset-2'
+            : 'invisible',
+          className,
+        );
+      })}
       slot={null}
       data-ui="clear"
       size="sm"

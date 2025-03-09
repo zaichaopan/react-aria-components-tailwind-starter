@@ -1,4 +1,4 @@
-import { Meta, Canvas } from '@storybook/addon-docs/blocks';
+import { Meta, Canvas } from '@storybook/blocks';
 
 import * as headingStories from './Heading.stories';
 
@@ -15,13 +15,3 @@ The `Heading` component renders semantic HTML headings (h1–h3). Use the `level
 Use `elementType="div"` to render a div instead of HTML headings
 
 <Canvas of={headingStories.RenderAsDiv} />
-
-## Auto focus heading
-
-Use the `autoFocus` prop to focus the heading. 
-
->This is useful in SPA after navigation. A screen reader will then announce the new heading when it gets focus.
-
-
-<Canvas of={headingStories.AutoFocusHeading} />
-

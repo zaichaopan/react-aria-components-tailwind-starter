@@ -43,12 +43,12 @@ export const RenderAsDiv = () => {
   );
 };
 
-export const AutoFocusHeading = () => {
-  return (
-    <div className="max-w-md space-y-2">
-      <Heading autoFocus>Auto focus heading</Heading>
-    </div>
-  );
-};
+// export const AutoFocusHeading = () => {
+//   return (
+//     <div className="max-w-md space-y-2">
+//       <Heading autoFocus>Auto focus heading</Heading>
+//     </div>
+//   );
+// };
 
 

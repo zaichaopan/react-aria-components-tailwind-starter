@@ -597,7 +597,7 @@ export const CustomTriggers = () => {
             <ChevronsUpDownIcon className="text-muted/75 size-4" />
           </Icon>
         }
-        className="hover:border-border/50 flex items-center border border-transparent py-1 ps-1 pe-2 hover:border"
+        className="hover:border-border flex items-center border border-transparent py-1 ps-1 pe-2 hover:border"
         aria-label="Jane"
       >
         <Avatar

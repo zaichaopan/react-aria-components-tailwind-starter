@@ -49,7 +49,7 @@ export function RangeCalendar<T extends DateValue>({
                     isToday(date, getLocalTimeZone()) && [
                       isSelected
                         ? 'rounded-none'
-                        : 'rounded-lg bg-zinc-100 dark:bg-zinc-700',
+                        : 'rounded-lg bg-zinc-100 dark:bg-zinc-800',
                     ],
                     isSelected &&
                       'bg-accent/[0.07] dark:bg-accent/35 dark:text-white',

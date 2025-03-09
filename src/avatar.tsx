@@ -1,5 +1,5 @@
 import React from 'react';
-import { getInitials, getInitialsToken } from './initials';
+import { getFallbackAvatarDataUrl } from './initials';
 import { twMerge } from 'tailwind-merge';
 import { useImageLoadingStatus } from './hooks/use-image-loading-status';
 
@@ -10,17 +10,18 @@ const AvatarContext = React.createContext<{
 export type AvatarProps = {
   src?: string;
   alt: string;
-  colorless?: boolean;
+  colorful?: boolean;
   fallback?: 'initials' | 'icon';
 } & React.JSX.IntrinsicElements['div'];
 
 export function Avatar({
-  colorless = false,
+  colorful = false,
   className,
   children,
   src,
   alt,
   fallback = 'initials',
+  ...props
 }: AvatarProps) {
   const badgeId = React.useId();
   const avatarId = React.useId();
@@ -30,88 +31,29 @@ export function Avatar({
   return (
     <AvatarContext.Provider value={{ badgeId }}>
       <div
+        {...props}
         role="img"
         className={twMerge([
           'group ring-background @container relative isolate flex size-10 shrink-0 rounded-lg',
-          '[&.rounded-full>:is(svg,img)]:rounded-full [&>:is(svg,img)]:size-full [&>:is(svg,img)]:rounded-lg',
+          '[&.rounded-full>img]:rounded-full [&>img]:size-full [&>img]:rounded-lg',
           className,
         ])}
         aria-labelledby={ariaLabelledby}
       >
-        {status === 'error' ? (
-          fallback === 'initials' ? (
-            <FallbackInitials alt={alt} id={avatarId} colorless={colorless} />
-          ) : (
-            <FallbackIcon alt={alt} id={avatarId} colorless={colorless} />
-          )
-        ) : (
-          <img
-            aria-hidden
-            id={avatarId}
-            src={src}
-            alt={alt}
-            className="object-cover"
-          />
-        )}
+        <img
+          aria-hidden
+          id={avatarId}
+          src={
+            status === 'error'
+              ? getFallbackAvatarDataUrl({ fallback, alt, colorful })
+              : src
+          }
+          alt={alt}
+          className="object-cover"
+        />
         {children}
       </div>
     </AvatarContext.Provider>
-  );
-}
-
-type AvatarFallback = {
-  alt: string;
-  id: string;
-  colorless: boolean;
-};
-
-function FallbackIcon({ alt, id, colorless }: AvatarFallback) {
-  const token = getInitialsToken(alt, colorless);
-
-  return (
-    <svg
-      aria-hidden
-      id={id}
-      aria-label={alt}
-      fill="currentColor"
-      style={{ '--avatar-token': token } as React.CSSProperties}
-      className="bg-(--avatar-token) text-zinc-50"
-      viewBox="0 0 80 80"
-    >
-      <g>
-        <path d="M 8 80 a 28 24 0 0 1 64 0"></path>
-        <circle cx="40" cy="32" r="16"></circle>
-      </g>
-    </svg>
-  );
-}
-
-function FallbackInitials({ alt, id, colorless }: AvatarFallback) {
-  const initials = getInitials(alt);
-  const token = getInitialsToken(alt, colorless);
-
-  return (
-    <svg
-      aria-hidden
-      id={id}
-      aria-label={alt}
-      fill="currentColor"
-      viewBox="0 0 24 24"
-      style={{ '--avatar-token': token } as React.CSSProperties}
-      className="bg-(--avatar-token) font-medium text-zinc-50"
-    >
-      <text
-        x="50%"
-        y="50%"
-        alignmentBaseline="middle"
-        dominantBaseline="middle"
-        textAnchor="middle"
-        dy=".125em"
-        fontSize="60%"
-      >
-        {initials}
-      </text>
-    </svg>
   );
 }
 
@@ -133,13 +75,31 @@ export const AvatarBadge = ({ badge, ...props }: AvatarBadgeProps) => {
       id={context.badgeId}
       className={twMerge([
         'grid place-items-center',
-        '@[32px]:size-2/5 @[40px]:size-1/3 @[64px]:size-1/4 @[128px]:size-1/5',
-        'border-background bg-background absolute end-0 bottom-0 z-1 z-10 rounded-full border-2',
-        'translate-x-[15%] translate-y-[20%]',
-        'in-[.rounded-full]:translate-x-[35%] in-[.rounded-full]:translate-y-[5%] in-[.rounded-full]:rtl:translate-y-[45%]',
-        '@-[40px]:in-[.rounded-full]:translate-x-[15%]',
-        '@-[64px]:in-[.rounded-full]:-translate-x-[5%] @-[64px]:in-[.rounded-full]:-translate-y-[10%]',
-        '@-[128px]:in-[.rounded-full]:translate-x-[-20%]',
+        'bg-background border-background rounded-full border-2 @[128px]:border-4',
+
+        '[&>[data-ui=icon]:not([class*=size-])]:size-full',
+
+        // size
+        '@[28px]:[--badge-size:45%]',
+        '@[32px]:[--badge-size:40%]',
+        '@[40px]:[--badge-size:33.33%]',
+        '@[64px]:[--badge-size:25%]',
+        '@[128px]:[--badge-size:20%]',
+        'size-(--badge-size,55%)',
+
+        // position
+        'absolute end-0 bottom-0 z-10',
+        '[--badge-x:2px]',
+        '@-[64px]:in-[.rounded-full]:[--badge-x:-5%]',
+        '@-[128px]:in-[.rounded-full]:[--badge-x:-20%]',
+        '@-[128px]:[--badge-x:15%]',
+        'translate-x-(--badge-x)',
+
+        '[--badge-y:4px]',
+        '@-[64px]:in-[.rounded-full]:[--badge-y:-10%]',
+        '@-[128px]:in-[.rounded-full]:[--badge-y:-20%]',
+        'translate-y-(--badge-y)',
+
         props.className,
       ])}
     >
@@ -161,7 +121,7 @@ export function AvatarGroup({
     <div
       {...props}
       className={twMerge(
-        'flex items-center -space-x-2 rtl:space-x-reverse',
+        'isolate flex items-center -space-x-2 rtl:space-x-reverse',
         '[&>[role=img]:not([class*=ring-4])]:ring-2',
         reverseOverlap &&
           'flex-row-reverse justify-end [&>[role=img]:last-of-type]:-me-2',

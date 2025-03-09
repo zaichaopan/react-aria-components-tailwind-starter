@@ -1,4 +1,4 @@
-import { Meta, Canvas } from '@storybook/addon-docs/blocks';
+import { Meta, Canvas } from '@storybook/blocks';
 
 import * as NotificationBadgeStories from './NotificationBadge.stories';
 
@@ -6,18 +6,24 @@ import * as NotificationBadgeStories from './NotificationBadge.stories';
 
 # Notification badge
 
-Notification badges show notifications, counts, or status information on navigation items and icons. Add **`aria-label=*`** to its parent to make it accessible.
+Notification badges show notifications, counts, or status information on navigation items and icons. 
 
-## Dot badge
+## Notification badge on links
 
-<Canvas of={NotificationBadgeStories.DotBadge} />
+<Canvas of={NotificationBadgeStories.NotificationBadgeOnLinks} />
 
+## Notification badge on buttons
 
-## Number badge
+<Canvas of={NotificationBadgeStories.NotificationBadgeOnButtons} />
 
-<Canvas of={NotificationBadgeStories.NumberBadge} />
+## Notification badge on tabs
+
+<Canvas of={NotificationBadgeStories.NotificationBadgeOnTabs} />
+
 
 ## Badge notifications
+
+Add **`aria-label=*`** to `NotificationBadge` to make it accessible.
 
 > Add an **aria-label** to both the **badge** and its parent for accessibility. If aria-label is not provided to the badge, the screen reader will not read the value of the badge when it changes. Learn more about <a href="https://www.w3.org/WAI/WCAG21/Techniques/aria/ARIA22" target="_blank">**Status messages**</a>.
 

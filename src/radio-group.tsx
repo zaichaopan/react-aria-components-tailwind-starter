@@ -71,7 +71,10 @@ export interface RadioProps extends RACRadioProps {
 
 export interface CustomRenderRadioProps
   extends Omit<RACRadioProps, 'children'> {
-  render: React.ReactElement | ((props: RadioRenderProps) => React.ReactNode);
+  render:
+    | string
+    | React.ReactElement
+    | ((props: RadioRenderProps) => React.ReactNode);
   radio?: never;
   children?: never;
 }
@@ -79,7 +82,7 @@ export interface CustomRenderRadioProps
 export function Radio(props: RadioProps | CustomRenderRadioProps) {
   const descriptionContext = React.useContext(DescriptionContext);
 
-  if (props.render) {
+  if (props.render !== undefined) {
     const { render, ...restProps } = props;
 
     return (
@@ -88,10 +91,12 @@ export function Radio(props: RadioProps | CustomRenderRadioProps) {
         aria-describedby={descriptionContext?.['aria-describedby']}
         className={composeRenderProps(
           props.className,
-          (className, { isDisabled }) =>
+          (className, { isDisabled, isFocusVisible }) =>
             twMerge(
               'group text-base/6 sm:text-sm/6',
               isDisabled && 'opacity-50',
+              isFocusVisible &&
+                'outline-ring outline outline-2 outline-offset-2',
               className,
             ),
         )}
@@ -126,7 +131,7 @@ export function Radio(props: RadioProps | CustomRenderRadioProps) {
             <div
               slot="radio"
               className={twMerge(
-                'grid shrink-0 place-content-center rounded-full border',
+                'border-input grid shrink-0 place-content-center rounded-full border',
                 radio ? '' : 'size-4.5 sm:size-4',
                 labelPlacement === 'end' ? 'me-3' : 'ms-3',
                 renderProps.isReadOnly && 'opacity-50',

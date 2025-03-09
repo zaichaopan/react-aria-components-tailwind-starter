@@ -73,9 +73,7 @@ const tabList = {
   },
 };
 
-export function TabList<T extends object & { title: string }>(
-  props: TabListProps<T>,
-) {
+export function TabList<T extends object>(props: TabListProps<T>) {
   const { variant, orientation } = React.useContext(TabsContext);
 
   return (
@@ -141,7 +139,7 @@ const tab = ({
 } & TabRenderProps) => {
   const style = {
     base: [
-      'outline-hidden relative flex items-center gap-x-3 rounded-sm font-medium',
+      'outline-hidden relative flex items-center gap-x-3 rounded-md font-medium',
       '[&>[data-ui=icon]:not([class*=size-])]:size-5',
       isDisabled && 'opacity-50',
       isSelected || isHovered ? 'text-foreground' : 'text-muted',
@@ -161,7 +159,7 @@ const tab = ({
     },
     pills: {
       base: [
-        'flex items-center px-3 py-2 rounded-md',
+        'flex items-center px-3 py-2',
         isSelected && 'bg-zinc-100 dark:bg-zinc-600/45',
       ],
       horizontal: '',

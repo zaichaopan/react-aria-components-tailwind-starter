@@ -36,15 +36,15 @@ Use the `fallback="icon"` to show a placeholder avatar icon when image src not a
 <Canvas of={AvatarStories.IconFallbacks} />
 
 
-### Single fallback color
+### Colorful
 
-Use the `colorless` prop to render avatar fallback with a single background.
+An avatar can have the color be automatically picked based on the `alt` prop.
 
-<Canvas of={AvatarStories.SingleFallbackColor} />
+<Canvas of={AvatarStories.Colorful} />
 
 ### Avatar badges
 
-Use the `AvatarBadge` component to add badges. Badges are positioned at the bottom right corner of the avatar.
+Use the `AvatarBadge` component to add badges. Badges are positioned at the bottom right corner of the avatar. Badge icon should be wrapped within the `Icon` component and include an `aria-label` for accessibility.
 
 <Canvas of={AvatarStories.AvatarBadges} />
 
@@ -54,11 +54,12 @@ Badge sizes are automatically scaled based on the avatar size.
 
 <Canvas of={AvatarStories.AvatarBadgeSizes} />
 
-### Avatar badge accessibility
+### Style Avatar badges
 
-Badge icon should be wrapped within the <a href="./?path=/docs/icon--docs" target="_blank">**Icon**</a> component and include an `aria-label` for accessibility. Use `className` to style the badge.
+Use `className` to style the badge.
 
-<Canvas of={AvatarStories.AvatarBadgeAccessibility} />
+<Canvas of={AvatarStories.StyleAvatarBadge} />
+
 
 ## Avatar groups
 

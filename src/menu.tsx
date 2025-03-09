@@ -24,7 +24,7 @@ type MenuButtonProps = ButtonProps & {
 };
 
 export function MenuButton({
-  buttonArrow,
+  buttonArrow = <ChevronDownIcon className="ms-auto" />,
   variant = 'outline',
   children,
   ...props
@@ -35,8 +35,7 @@ export function MenuButton({
         return (
           <>
             {typeof children === 'function' ? children(renderProps) : children}
-            {buttonArrow !== null &&
-              (buttonArrow ?? <ChevronDownIcon className="ms-auto" />)}
+            {buttonArrow}
           </>
         );
       }}
@@ -51,7 +50,6 @@ export function MenuPopover({ className, ...props }: PopoverProps) {
       className={composeTailwindRenderProps(
         className,
         twMerge(
-          'overflow-hidden',
           'max-w-72',
           'min-w-[max(--spacing(36),var(--trigger-width))]',
           'has-[[data-ui=content]_[data-ui=icon]]:min-w-[max(--spacing(48),var(--trigger-width))]',
@@ -136,7 +134,7 @@ export function MenuSeparator({ className }: { className?: string }) {
   return (
     <Separator
       className={twMerge(
-        'border-border/35 my-1 w-[calc(100%-(--spacing(4)))] self-center border-t dark:border-white/10',
+        'border-t-border/75 my-1 w-[calc(100%-(--spacing(4)))] self-center border-t',
         className,
       )}
     />
@@ -165,7 +163,7 @@ export function MenuItem({ destructive, ...props }: MenuItemProps) {
             'px-2 py-2.5 sm:py-1.5',
             'text-base/6 sm:text-sm/6',
             isDisabled && 'opacity-50',
-            isFocused && 'bg-zinc-100 dark:bg-zinc-700',
+            isFocused && 'bg-zinc-100 dark:bg-zinc-800',
             destructive && 'text-destructive',
             className,
           ]);
@@ -252,11 +250,11 @@ export function MenuSection<T extends object>({
       className={twMerge(
         'not-first:mt-1.5',
         'not-first:border-t',
-        'not-first:border-t-border/40',
+        'not-first:border-t-border/75',
         className,
       )}
     >
-      <Header className="text-muted sticky inset-0 z-10 truncate bg-white pt-2 text-xs/6 dark:bg-zinc-900">
+      <Header className="text-muted bg-background sticky inset-0 z-10 truncate pt-2 text-xs/6">
         {props.title}
       </Header>
       <Collection items={props.items}>{props.children}</Collection>

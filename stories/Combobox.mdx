@@ -1,4 +1,4 @@
-import { Canvas, Meta } from '@storybook/addon-docs/blocks';
+import { Canvas, Meta } from '@storybook/blocks';
 
 import * as ComboboxStories from './Combobox.stories';
 
@@ -10,6 +10,9 @@ A <a href="https://react-spectrum.adobe.com/react-aria/ComboBox.html#combobox" t
 
 <Canvas of={ComboboxStories.BasicExample} />
 
+## InputWithSearchIcon
+
+<Canvas of={ComboboxStories.InputWithSearchIcon} />
 
 ## Description
 
@@ -56,3 +59,10 @@ Whether the combo box allows the menu to be open when the collection is empty.
 ## Validation errors
 
 <Canvas of={ComboboxStories.ValidationErrors} />
+
+## Async query
+
+Use combobox with <a href="https://react-spectrum.adobe.com/react-stately/useAsyncList.html#useasynclist" target="_blank">**useAsyncList**</a> to fetch data asynchronously.
+
+<Canvas of={ComboboxStories.AsyncQuery} />
+

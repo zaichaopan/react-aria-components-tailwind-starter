@@ -32,7 +32,7 @@ export const SignIn = () => {
         src="https://vite.dev/logo.svg"
         alt="Your Company"
       ></img>
-      <div className="border-border/50 rounded-xl border p-8 shadow sm:mx-auto sm:w-full sm:max-w-sm">
+      <div className="p-2 sm:p-4 sm:mx-auto sm:w-full sm:max-w-sm">
         <div>
           <Heading level={2} displayLevel={1} className="text-center">
             Sign in to your account
@@ -89,7 +89,7 @@ export const SignUp = () => {
         src="https://vite.dev/logo.svg"
         alt="Your Company"
       ></img>
-      <div className="border-border/50 rounded-xl border p-8 shadow sm:mx-auto sm:w-full sm:max-w-sm">
+      <div className="px-2 sm:p-4 sm:mx-auto sm:w-full sm:max-w-sm">
         <div>
           <Heading level={2} displayLevel={1} className="text-center">
             Create account
@@ -130,7 +130,7 @@ export const SignUp = () => {
 
           <Separator soft className="mt-1" />
 
-          <Text>
+          <Text className='text-center'>
             By creating an account you agree to our
             <TextLink>Teams of Services</TextLink> and{' '}
             <TextLink>Privacy Policy</TextLink>.
@@ -157,7 +157,7 @@ export const ForgotPassword = () => {
         src="https://vite.dev/logo.svg"
         alt="Your Company"
       ></img>
-      <div className="border-border/50 rounded-xl border p-8 shadow sm:mx-auto sm:w-full sm:max-w-sm">
+      <div className="px-2 sm:p-4 sm:mx-auto sm:w-full sm:max-w-sm">
         <div>
           <Heading level={2} displayLevel={1} className="text-center">
             Forgot your password?
@@ -204,7 +204,7 @@ export const ResetPassword = () => {
         src="https://vite.dev/logo.svg"
         alt="Your Company"
       ></img>
-      <div className="border-border/50 rounded-xl border p-8 shadow sm:mx-auto sm:w-full sm:max-w-sm">
+      <div className="px-2 sm:p-4 sm:mx-auto sm:w-full sm:max-w-sm">
         <div>
           <Heading level={2} displayLevel={1} className="text-center">
             Reset password

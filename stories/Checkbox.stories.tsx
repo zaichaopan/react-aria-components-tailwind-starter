@@ -11,11 +11,11 @@ import { Button } from '../src/button';
 import { Label, Description, FieldError, LabeledGroup } from '../src/field';
 import { docs } from '../.storybook/docs';
 import { Group } from 'react-aria-components';
-import { Strong, Text} from '../src/text';
+import { Strong, Text } from '../src/text';
 import { Icon } from '../src/icon';
 import { twMerge } from 'tailwind-merge';
 import { Link } from '../src/link';
-import { ExternalLinkIcon } from 'lucide-react';
+import { ExternalLinkIcon, MoonIcon, SunIcon } from 'lucide-react';
 
 const meta: Meta = {
   parameters: {
@@ -301,7 +301,8 @@ export function SmallCards() {
               value={day.value}
               key={day.label}
               aria-label={day.value}
-              render={({ isSelected, isFocusVisible }) => (
+              className="rounded-lg"
+              render={({ isSelected }) => (
                 <div
                   className={twMerge(
                     'grid',
@@ -309,9 +310,8 @@ export function SmallCards() {
                     'rounded-md',
                     'size-10',
                     'border',
-                    isSelected && 'border-accent bg-accent text-[lch(from_var(--color-accent)_calc((49.44_-_l)_*_infinity)_0_0)]',
-                    isFocusVisible &&
-                      'outline-ring outline outline-2 outline-offset-2',
+                    isSelected &&
+                      'border-accent bg-accent text-[lch(from_var(--color-accent)_calc((49.44_-_l)_*_infinity)_0_0)]',
                   )}
                 >
                   {day.label}
@@ -322,5 +322,23 @@ export function SmallCards() {
         })}
       </Checkboxes>
     </CheckboxGroup>
+  );
+}
+
+export function ToggleDarkMode() {
+  return (
+    <Checkbox
+      aria-label="Toggle dark mode"
+      className="rounded-lg"
+      render={({ isSelected }) => {
+        return (
+          <span className="flex rounded-lg border p-2.5">
+            <Icon className="size-5">
+              {isSelected ? <MoonIcon /> : <SunIcon />}
+            </Icon>
+          </span>
+        );
+      }}
+    ></Checkbox>
   );
 }

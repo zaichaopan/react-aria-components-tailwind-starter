@@ -37,11 +37,46 @@ function sumChars(str: string) {
   return sum;
 }
 
-export function getInitialsToken(name: string, colorless: boolean) {
-  if (colorless) {
-    return tokens[0];
+export function getInitialsToken(name: string, colorful: boolean) {
+  if (colorful) {
+    const i = sumChars(name) % tokens.length;
+    return tokens[i];
   }
 
-  const i = sumChars(name) % tokens.length;
-  return tokens[i];
+  return tokens[0];
+}
+
+export function getFallbackAvatarDataUrl({
+  fallback,
+  alt,
+  colorful = false,
+}: {
+  fallback: 'initials' | 'icon';
+  alt: string;
+  colorful?: boolean;
+}) {
+  const initials = getInitials(alt);
+  const token = getInitialsToken(alt, colorful);
+
+  return fallback === 'icon'
+    ? getFallbackIconDateUrl(token)
+    : getFallbackInitialsDataUrl(token, initials);
+}
+
+function getFallbackIconDateUrl(token: string) {
+  return (
+    'data:image/svg+xml;base64,' +
+    btoa(
+      `<svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 80 80" style="background:${token};color:oklch(0.985 0 0);"><g><path d="M 8 80 a 28 24 0 0 1 64 0"/><circle cx="40" cy="32" r="16"/></g></svg>`,
+    )
+  );
+}
+
+function getFallbackInitialsDataUrl(token: string, initials: string) {
+  return (
+    'data:image/svg+xml;base64,' +
+    btoa(
+      `<svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" style="background:${token};color:oklch(0.985 0 0);font-family:system-ui;"><text x="50%" y="50%" alignment-baseline="middle" dominant-baseline="middle" text-anchor="middle" dy=".125em" font-size="65%">${initials}</text></svg>`,
+    )
+  );
 }

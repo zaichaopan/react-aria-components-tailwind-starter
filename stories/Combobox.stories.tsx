@@ -1,3 +1,4 @@
+import React from 'react';
 import type { Meta } from '@storybook/react';
 import { Form } from '../src/form';
 import { Button } from '../src/button';
@@ -19,6 +20,13 @@ import { docs } from '../.storybook/docs';
 import { Text } from '../src/text';
 import { users } from './users';
 import { Avatar } from '../src/avatar';
+import { SearchIcon, SpinnerIcon } from '../src/icons';
+import { useAsyncList } from 'react-stately';
+import {
+  EmptyState,
+  EmptyStateDescription,
+  EmptyStateHeading,
+} from '../src/empty-state';
 
 const meta: Meta = {
   parameters: {
@@ -35,6 +43,32 @@ export const BasicExample = () => {
       <Label>Favorite Animal</Label>
       <Description>Choose your favorite animal</Description>
       <ComboBoxGroup>
+        <ComboBoxInput />
+        <ComboBoxClearButton />
+        <ComboBoxButton />
+      </ComboBoxGroup>
+
+      <ComboBoxPopover>
+        <ComboBoxListBox>
+          <ComboBoxListItem>Aardvark</ComboBoxListItem>
+          <ComboBoxListItem>Cat</ComboBoxListItem>
+          <ComboBoxListItem>Dog</ComboBoxListItem>
+          <ComboBoxListItem>Kangaroo</ComboBoxListItem>
+          <ComboBoxListItem>Panda</ComboBoxListItem>
+          <ComboBoxListItem>Snake</ComboBoxListItem>
+        </ComboBoxListBox>
+      </ComboBoxPopover>
+    </ComboBox>
+  );
+};
+
+export const InputWithSearchIcon = () => {
+  return (
+    <ComboBox>
+      <Label>Favorite Animal</Label>
+      <Description>Choose your favorite animal</Description>
+      <ComboBoxGroup>
+        <SearchIcon />
         <ComboBoxInput />
         <ComboBoxClearButton />
         <ComboBoxButton />
@@ -384,5 +418,86 @@ export const ValidationErrors = () => {
       </ComboBox>
       <Button type="submit">Submit</Button>
     </Form>
+  );
+};
+
+export const AsyncQuery = () => {
+  const [selectedItem, setSelectedItem] = React.useState<{
+    id: string;
+    name: string;
+  } | null>(null);
+
+  const list = useAsyncList<{
+    id: string;
+    name: string;
+  }>({
+    initialFilterText: '',
+    async load({ signal, filterText }) {
+      if (!filterText) {
+        return { items: [] };
+      }
+
+      if (filterText === selectedItem?.name) {
+        return { items: [selectedItem] };
+      }
+
+      const res = await fetch(
+        `https://api.github.com/search/repositories?q=topic:${filterText}`,
+        { signal },
+      );
+      const json = await res.json();
+      return { items: json.items };
+    },
+  });
+
+  return (
+    <ComboBox
+      inputValue={list.filterText}
+      onInputChange={list.setFilterText}
+      allowsEmptyCollection
+      items={list.items}
+      allowsCustomValue
+      onSelectionChange={(key) => {
+        setSelectedItem(list.items.find((item) => item.id === key) ?? null);
+      }}
+    >
+      <Label>Search Repositories</Label>
+      <Description>Search for repositories by topic</Description>
+      <ComboBoxGroup>
+        {list.isLoading ? <SpinnerIcon /> : <SearchIcon />}
+        <ComboBoxInput placeholder="Search repositories…" />
+        <ComboBoxClearButton
+          isDisabled={list.isLoading}
+          onPress={() => {
+            list.setFilterText('');
+            setSelectedItem(null);
+          }}
+        />
+      </ComboBoxGroup>
+      <ComboBoxPopover
+        className={list.isLoading && list.items.length === 0 ? 'hidden' : ''}
+      >
+        <ComboBoxListBox<{ id: string; name: string }>
+          renderEmptyState={() => {
+            return (
+              <EmptyState>
+                <EmptyStateHeading elementType="div" displayLevel={2}>
+                  No results found
+                </EmptyStateHeading>
+                <EmptyStateDescription>
+                  Try searching for something else
+                </EmptyStateDescription>
+              </EmptyState>
+            );
+          }}
+        >
+          {(item) => (
+            <ComboBoxListItem textValue={item.name}>
+              <ComboBoxListItemLabel>{item.name}</ComboBoxListItemLabel>
+            </ComboBoxListItem>
+          )}
+        </ComboBoxListBox>
+      </ComboBoxPopover>
+    </ComboBox>
   );
 };

@@ -2,6 +2,7 @@ import { twMerge } from 'tailwind-merge';
 
 type DotVariantProps = {
   variant: 'dot';
+  inline?: boolean;
 };
 
 type NumericVariantProps = {
@@ -19,18 +20,22 @@ export function NotificationBadge({
   ...props
 }: NotificationBadgeProps) {
   if (props.variant === 'dot') {
+    const { variant, inline, ...rest } = props;
+
     return (
       <>
         <span
-          aria-hidden
+          {...(ariaLabel
+            ? { 'aria-label': ariaLabel }
+            : { 'aria-hidden': true })}
           className={twMerge(
-            'absolute right-1 top-1 flex size-2 rounded-full bg-red-600',
+            inline ? '' : 'absolute top-1 right-1',
+            'flex size-2 rounded-full bg-red-600',
             className,
           )}
-          {...props}
         />
         {ariaLabel && (
-          <span role="status" className="sr-only">
+          <span role="status" className="sr-only" {...rest}>
             {ariaLabel}
           </span>
         )}
@@ -43,25 +48,25 @@ export function NotificationBadge({
   return (
     <>
       <span
-        aria-hidden
+        {...(ariaLabel ? { 'aria-label': ariaLabel } : { 'aria-hidden': true })}
         className={twMerge([
-          inline
-            ? ''
-            : 'absolute -right-1 -top-1.5',
-          ' flex h-4  items-center justify-center rounded-full bg-red-600 text-[0.65rem] text-white',
+          inline ? '' : 'absolute -top-1.5 -right-1',
+          'flex h-4 items-center justify-center rounded-full bg-red-600 text-[0.65rem] text-white',
           props.value > 0 ? (props.value > 9 ? 'w-5' : 'w-4') : 'hidden',
           className,
         ])}
-        {...rest}
       >
         {Math.min(props.value, 9)}
         {props.value > 9 ? <span className="pb-0.5">+</span> : null}
       </span>
 
       {ariaLabel && (
-        <span role="status" className="sr-only">
-          {ariaLabel}
-        </span>
+        <>
+          <span className="sr-only">{ariaLabel}</span>
+          <span role="status" className="sr-only" {...rest}>
+            {ariaLabel}
+          </span>
+        </>
       )}
     </>
   );
