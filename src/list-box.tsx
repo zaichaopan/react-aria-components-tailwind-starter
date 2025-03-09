@@ -10,9 +10,14 @@ import { composeTailwindRenderProps } from './utils';
 import { twMerge } from 'tailwind-merge';
 
 export interface ListBoxProps<T>
-  extends Omit<RACListBoxProps<T>, 'layout' | 'orientation'> {}
+  extends Omit<RACListBoxProps<T>, 'layout' | 'orientation'> {
+  customScroll?: boolean;
+}
 
-export function ListBox<T extends object>(props: ListBoxProps<T>) {
+export function ListBox<T extends object>({
+  customScroll,
+  ...props
+}: ListBoxProps<T>) {
   return (
     <RACListBox
       {...props}

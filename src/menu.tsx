@@ -51,7 +51,6 @@ export function MenuPopover({ className, ...props }: PopoverProps) {
       className={composeTailwindRenderProps(
         className,
         twMerge(
-          'overflow-hidden',
           'max-w-72',
           'min-w-[max(--spacing(36),var(--trigger-width))]',
           'has-[[data-ui=content]_[data-ui=icon]]:min-w-[max(--spacing(48),var(--trigger-width))]',
