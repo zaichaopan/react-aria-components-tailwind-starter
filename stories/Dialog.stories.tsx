@@ -1009,23 +1009,14 @@ export const AutoFocusWhenOpen = (args: any) => {
   );
 };
 
-
 export const ControlledOpenState = () => {
   const [isOpen, setOpen] = React.useState(false);
 
   return (
     <>
-      <MenuTrigger>
-        <MenuButton>Options</MenuButton>
-        <MenuPopover className="animate-none">
-          <Menu>
-            <MenuItem onAction={() => setOpen(true)}>Edit profile</MenuItem>
-            <MenuItem>Logout</MenuItem>
-          </Menu>
-        </MenuPopover>
-      </MenuTrigger>
+      <Button onPress={() => setOpen(true)}>Open dialog</Button>
 
-      <Modal isOpen={isOpen} onOpenChange={setOpen}>
+      <Modal isOpen={isOpen} onOpenChange={setOpen} size="md">
         <Dialog>
           <DialogHeader>Edit profile</DialogHeader>
           <DialogCloseButton />

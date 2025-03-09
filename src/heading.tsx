@@ -17,14 +17,14 @@ type CustomElement = {
   elementType: 'div';
 } & React.JSX.IntrinsicElements['div'];
 
-export type HeadingTProps = {
+export type HeadingProps = {
   displayLevel?: DisplayLevel;
   autoFocus?: boolean;
 } & (BaseHeadingProps | CustomElement);
 
 export const Heading = React.forwardRef<
   HTMLHeadingElement | HTMLDivElement,
-  HeadingTProps
+  HeadingProps
 >(function Heading({ elementType, autoFocus, ...props }, ref) {
   if (elementType) {
     const { displayLevel = 1, className, ...restProps } = props;

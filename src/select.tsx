@@ -93,9 +93,7 @@ export function SelectPopover({
   return (
     <Popover
       {...props}
-      className={composeTailwindRenderProps(className, [
-        'w-(--trigger-width) overflow-hidden',
-      ])}
+      className={composeTailwindRenderProps(className, ['w-(--trigger-width)'])}
       placement={placement}
     />
   );

@@ -1,4 +1,3 @@
-import React from 'react';
 import {
   ListBox as RACListBox,
   ListBoxItem as RACListBoxItem,
