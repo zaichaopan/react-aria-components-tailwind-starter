@@ -4,7 +4,6 @@ import {
   HeadingProps as RACHeadingProps,
 } from 'react-aria-components';
 import { twMerge } from 'tailwind-merge';
-import { FocusScope } from 'react-aria';
 import { DisplayLevel, displayLevels } from './utils';
 
 export type BaseHeadingProps = {
@@ -19,31 +18,14 @@ type CustomElement = {
 
 export type HeadingProps = {
   displayLevel?: DisplayLevel;
-  autoFocus?: boolean;
 } & (BaseHeadingProps | CustomElement);
 
 export const Heading = React.forwardRef<
   HTMLHeadingElement | HTMLDivElement,
   HeadingProps
->(function Heading({ elementType, autoFocus, ...props }, ref) {
+>(function Heading({ elementType, ...props }, ref) {
   if (elementType) {
     const { displayLevel = 1, className, ...restProps } = props;
-
-    if (autoFocus) {
-      return (
-        <FocusScope autoFocus>
-          <div
-            {...restProps}
-            ref={ref}
-            {...(autoFocus && { tabIndex: -1 })}
-            className={twMerge(
-              [displayLevels[displayLevel], 'outline-hidden'],
-              className,
-            )}
-          />
-        </FocusScope>
-      );
-    }
     return (
       <div
         {...restProps}
@@ -54,23 +36,6 @@ export const Heading = React.forwardRef<
   }
 
   const { level = 1, displayLevel, className, ...restProps } = props;
-
-  if (autoFocus) {
-    return (
-      <FocusScope autoFocus>
-        <RACHeading
-          {...restProps}
-          ref={ref}
-          level={level}
-          {...(autoFocus && { tabIndex: -1 })}
-          className={twMerge(
-            [displayLevels[displayLevel ?? level], 'outline-hidden'],
-            className,
-          )}
-        />
-      </FocusScope>
-    );
-  }
 
   return (
     <RACHeading

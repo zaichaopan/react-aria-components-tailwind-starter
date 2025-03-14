@@ -107,7 +107,7 @@ function FallbackInitials({ alt, id, colorless }: AvatarFallback) {
         dominantBaseline="middle"
         textAnchor="middle"
         dy=".125em"
-        fontSize="60%"
+        fontSize="65%"
       >
         {initials}
       </text>

@@ -73,9 +73,7 @@ const tabList = {
   },
 };
 
-export function TabList<T extends object & { title: string }>(
-  props: TabListProps<T>,
-) {
+export function TabList<T extends object>(props: TabListProps<T>) {
   const { variant, orientation } = React.useContext(TabsContext);
 
   return (

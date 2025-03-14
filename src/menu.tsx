@@ -24,7 +24,7 @@ type MenuButtonProps = ButtonProps & {
 };
 
 export function MenuButton({
-  buttonArrow,
+  buttonArrow = <ChevronDownIcon className="ms-auto" />,
   variant = 'outline',
   children,
   ...props
@@ -35,8 +35,7 @@ export function MenuButton({
         return (
           <>
             {typeof children === 'function' ? children(renderProps) : children}
-            {buttonArrow !== null &&
-              (buttonArrow ?? <ChevronDownIcon className="ms-auto" />)}
+            {buttonArrow}
           </>
         );
       }}

@@ -99,13 +99,17 @@ export function Checkbox(props: CheckboxProps | CustomRenderCheckboxProps) {
         aria-describedby={descriptionContext?.['aria-describedby']}
         className={composeRenderProps(
           props.className,
-          (className, renderProps) =>
-            twMerge([
+          (className, renderProps) => {
+            return twMerge([
               'group',
               'text-base/6 sm:text-sm/6',
               renderProps.isDisabled && 'opacity-50',
+              renderProps.isFocusVisible &&
+              'flex outline-ring outline outline-2 outline-offset-2',
               className,
-            ]),
+            ])
+          }
+            
         )}
       >
         {render}

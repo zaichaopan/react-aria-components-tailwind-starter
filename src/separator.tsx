@@ -52,7 +52,7 @@ export function Separator({
                   ],
             ]
           : [
-              soft? 'border-border/75': 'border-border',
+              soft ? 'border-border/75' : 'border-border',
               orientation === 'vertical'
                 ? [
                     'h-auto self-stretch border-l',
