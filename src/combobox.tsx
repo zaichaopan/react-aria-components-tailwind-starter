@@ -89,7 +89,11 @@ export function ComboBoxGroup(props: GroupProps) {
 
 export const ComboBoxInput = Input;
 
-export function ComboBoxButton() {
+export function ComboBoxButton({
+  triggerIcon = <ChevronDownIcon />,
+}: {
+  triggerIcon?: React.ReactNode;
+}) {
   return (
     <Button
       isIconOnly
@@ -98,7 +102,7 @@ export function ComboBoxButton() {
       variant="plain"
       className="text-muted group-hover/combobox:text-foreground"
     >
-      <ChevronDownIcon />
+      {triggerIcon}
     </Button>
   );
 }
@@ -113,7 +117,7 @@ export function ComboBoxClearButton({
   return (
     <Button
       className={twMerge(
-        '[&:not(:hover)]:text-muted ',
+        '[&:not(:hover)]:text-muted',
         'not-last:-me-1',
         state?.inputValue
           ? 'visible focus-visible:-outline-offset-2'

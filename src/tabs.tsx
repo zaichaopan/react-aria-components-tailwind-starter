@@ -68,7 +68,7 @@ const tabList = {
     vertical: 'space-y-2',
   },
   segment: {
-    horizontal: 'p-0.5 rounded-lg bg-zinc-200/75 dark:bg-zinc-700 shadow-xs',
+    horizontal: 'p-0.5 rounded-lg bg-zinc-200/75 dark:bg-zinc-800 shadow-xs',
     vertical: '',
   },
 };

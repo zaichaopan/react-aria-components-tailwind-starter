@@ -163,7 +163,7 @@ export function MenuItem({ destructive, ...props }: MenuItemProps) {
             'px-2 py-2.5 sm:py-1.5',
             'text-base/6 sm:text-sm/6',
             isDisabled && 'opacity-50',
-            isFocused && 'bg-zinc-100 dark:bg-zinc-700',
+            isFocused && 'bg-zinc-100 dark:bg-zinc-800',
             destructive && 'text-destructive',
             className,
           ]);
@@ -254,7 +254,7 @@ export function MenuSection<T extends object>({
         className,
       )}
     >
-      <Header className="text-muted sticky inset-0 z-10 truncate bg-white pt-2 text-xs/6 dark:bg-zinc-900">
+      <Header className="text-muted bg-background sticky inset-0 z-10 truncate pt-2 text-xs/6">
         {props.title}
       </Header>
       <Collection items={props.items}>{props.children}</Collection>

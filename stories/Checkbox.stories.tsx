@@ -334,7 +334,7 @@ export function ToggleDarkMode() {
         return (
           <span className="flex rounded-lg border p-2.5">
             <Icon className="size-5">
-              {isSelected ? <SunIcon /> : <MoonIcon />}
+              {isSelected ? <MoonIcon /> : <SunIcon />}
             </Icon>
           </span>
         );

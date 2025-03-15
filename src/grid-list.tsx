@@ -40,7 +40,7 @@ export function GridListItem({ children, ...props }: GridListItemProps) {
           twMerge(
             'relative -mb-px flex cursor-default select-none gap-3 rounded-md px-2 py-1.5 text-sm outline-hidden',
             'not-last:mb-0.5',
-            isHovered && ['bg-zinc100 dark:bg-zinc-700'],
+            isHovered && ['bg-zinc100 dark:bg-zinc-800'],
             isSelected && ['z-20'],
             isDisabled && ['opacity-50'],
             isFocusVisible && [

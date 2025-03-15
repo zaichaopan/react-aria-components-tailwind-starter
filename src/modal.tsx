@@ -116,7 +116,7 @@ export function Modal({ classNames, ...props }: ModalProps) {
           'relative max-h-full w-full overflow-hidden',
           'text-left align-middle',
           'shadow-lg',
-          'bg-background dark:bg-zinc-900',
+          'bg-background',
           'ring-1 ring-zinc-950/5 dark:ring-zinc-800',
 
           props.size
