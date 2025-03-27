@@ -78,7 +78,7 @@ const buttonStyle = ({
         !isDisabled && 'hover:opacity-90',
       ],
       outline: [
-        'border text-[var(--btn-color)] shadow-xs',
+        'border border-input/80 text-[var(--btn-color)] shadow-xs',
         !isDisabled && 'hover:bg-zinc-50 dark:hover:bg-zinc-800',
       ],
       plain: [
@@ -116,11 +116,9 @@ const buttonStyle = ({
     },
     iconColor: {
       base: '[&:not(:hover)_svg[data-ui=icon]:not([class*=text-])]:text-[var(--icon-color)]',
-      solid:
-        !isIconOnly &&
-        '[--icon-color:lch(from_var(--btn-color)_calc(0.85*l)_c_h)]',
-      outline: !isIconOnly && '[--icon-color:var(--color-muted)]',
-      plain: !isIconOnly && '[--icon-color:var(--color-muted)]',
+      solid: !isIconOnly && '[--icon-color:var(--btn-color)]/75',
+      outline: !isIconOnly && '[--icon-color:var(--color-muted)]/50',
+      plain: !isIconOnly && '[--icon-color:var(--color-muted)]/50',
     },
     backgroundColor: {
       accent: '[--btn-bg:var(--color-accent)]',

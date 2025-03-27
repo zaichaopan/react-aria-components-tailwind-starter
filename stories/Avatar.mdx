@@ -38,9 +38,16 @@ Use the `fallback="icon"` to show a placeholder avatar icon when image src not a
 
 ### Colorful
 
-An avatar can have the color be automatically picked based on the `alt` prop.
+The `colorful` prop can be used to render colorful avatars.
 
 <Canvas of={AvatarStories.Colorful} />
+
+### Brand Color
+
+Use the `fallbackBackground` prop to set a brand color for the fallback avatar.
+
+<Canvas of={AvatarStories.BrandColor} />
+
 
 ### Avatar badges
 
@@ -48,17 +55,22 @@ Use the `AvatarBadge` component to add badges. Badges are positioned at the bott
 
 <Canvas of={AvatarStories.AvatarBadges} />
 
+`AvatarBadge` use <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/mask" target="_blank">**mask**</a> to make it work with different backgrounds.
+
+<Canvas of={AvatarStories.AvatarBadgesWithBackground} />
+
 ### Avatar badge sizes
 
-Badge sizes are automatically scaled based on the avatar size.
+Badge sizes are automatically scaled based on the avatar size using <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_containment/Container_queries" target="_blank">**container queries**</a>.
 
 <Canvas of={AvatarStories.AvatarBadgeSizes} />
 
 ### Style Avatar badges
 
-Use `className` to style the badge.
+Use `className` to style the badge size, background and position.
 
 <Canvas of={AvatarStories.StyleAvatarBadge} />
+
 
 
 ## Avatar groups

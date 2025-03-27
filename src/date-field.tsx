@@ -42,7 +42,7 @@ export function DateInput(props: DateInputProps) {
       data-ui="control"
       className={composeRenderProps(props.className, (className, renderProps) =>
         twMerge(
-          'group flex w-full items-center rounded-md border border-input bg-transparent',
+          'group border-input flex w-full items-center rounded-md border bg-transparent shadow-xs',
 
           '[&:has([data-disabled=true])]:opacity-50',
           '[&:has([data-ui=date-segment][aria-readonly])]:bg-zinc-50',
@@ -52,7 +52,7 @@ export function DateInput(props: DateInputProps) {
           'px-3',
           'py-[calc(--spacing(2.5)-1px)] sm:py-[calc(--spacing(1.5)-1px)]',
           renderProps.isInvalid && 'border-destructive',
-          renderProps.isFocusWithin && 'border-ring ring-1 ring-ring',
+          renderProps.isFocusWithin && 'border-ring ring-ring ring-1',
           className,
         ),
       )}
@@ -63,7 +63,7 @@ export function DateInput(props: DateInputProps) {
           segment={segment}
           className={twMerge(
             'inline rounded-sm px-0.5 caret-transparent outline-0 data-[type=literal]:px-0',
-            'data-placeholder:italic data-placeholder:text-muted',
+            'data-placeholder:text-muted data-placeholder:italic',
             'focus:bg-accent focus:text-[lch(from_var(--color-accent)_calc((49.44_-_l)_*_infinity)_0_0)] focus:data-placeholder:text-[lch(from_var(--color-accent)_calc((49.44_-_l)_*_infinity)_0_0)]',
           )}
         />

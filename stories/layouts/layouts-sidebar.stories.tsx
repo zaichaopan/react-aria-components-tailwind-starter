@@ -1,6 +1,5 @@
 import { docs } from '../../.storybook/docs.ts';
 import { Button } from '../../src/button.tsx';
-import { Strong } from '../../src/text.tsx';
 import { Icon } from '../../src/icon.tsx';
 import {
   Menu,
@@ -15,21 +14,16 @@ import { Avatar } from '../../src/avatar.tsx';
 import {
   SearchIcon,
   InboxIcon,
-  ChartBarIncreasingIcon,
-  WorkflowIcon,
-  UserCog2Icon,
-  ChartNoAxesColumnIcon,
-  CalendarCogIcon,
-  TagsIcon,
-  RadioIcon,
   HelpCircleIcon,
   SendIcon,
   UserIcon,
   Settings2Icon,
   LogOutIcon,
   HomeIcon,
-  Layers3Icon,
   MenuIcon,
+  ArrowRightLeftIcon,
+  Grid2X2Icon,
+  ProportionsIcon,
 } from 'lucide-react';
 import { Modal } from '../../src/modal.tsx';
 import {
@@ -45,12 +39,11 @@ import {
   DisclosureControl,
   DisclosurePanel,
 } from '../../src/disclosure.tsx';
-import { Heading } from '../../src/heading.tsx';
-import { Separator } from '../../src/separator.tsx';
 import { NotificationBadge } from '../../src/notification-badge.tsx';
 import { composeRenderProps, LinkProps } from 'react-aria-components';
 import { twMerge } from 'tailwind-merge';
-import { ChevronRightIcon } from '../../src/icons.tsx';
+import { CalendarIcon, ChevronRightIcon } from '../../src/icons.tsx';
+import { Separator } from '../../src/separator.tsx';
 
 const meta = {
   title: 'Layouts/Sidebar',
@@ -70,17 +63,10 @@ export default meta;
 
 export const Sidebar = () => {
   return (
-    <div className="flex h-dvh w-full flex-col md:flex-row">
+    <div className="flex h-dvh w-full flex-col md:flex-row dark:bg-zinc-950">
       <HamburgerMenu />
-
       <SideNavigation />
-
-      <main className="border-border/75 bg-background relative flex-1 overflow-y-auto border-s p-6 lg:p-10 dark:bg-zinc-900">
-        <div>
-          <Heading className="relative">Projects</Heading>
-          <Separator soft className="my-4" />
-        </div>
-      </main>
+      <main className="border-border/50 bg-background relative flex-1 overflow-y-auto border-s p-6 lg:p-10"></main>
     </div>
   );
 };
@@ -127,31 +113,27 @@ function HamburgerMenu() {
         </Button>
         <Modal drawer size="xs" isDismissable>
           <Dialog className="h-full">
-            <DialogHeader>
-              <div className="flex items-center gap-x-2.5">
-                <Icon>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    className="-m-1 size-8"
+            <DialogHeader className="p-0 pt-16">
+              <div className="flex flex-1 gap-x-2 px-2.5 pb-3">
+                <MenuTrigger>
+                  <MenuButton
+                    variant="outline"
+                    className="flex-1 gap-x-2.5 overflow-hidden rounded-lg font-semibold sm:px-1.5"
                   >
-                    <path
-                      fill="currentColor"
-                      d="M12 2c4.713 0 7.07 0 8.535 1.464c.757.758 1.123 1.754 1.3 3.192V10H2.164V6.656c.176-1.438.541-2.434 1.299-3.192C4.928 2 7.285 2 11.999 2"
-                      opacity="0.5"
+                    <Avatar
+                      alt="Acme"
+                      className="size-6 [--border-radius:0.25rem]"
+                      fallbackBackground="black"
                     />
-                    <path
-                      fill="currentColor"
-                      fill-rule="evenodd"
-                      d="M2 14c0-2.8 0-4.2.545-5.27A5 5 0 0 1 4.73 6.545C5.8 6 7.2 6 10 6h4c2.8 0 4.2 0 5.27.545a5 5 0 0 1 2.185 2.185C22 9.8 22 11.2 22 14s0 4.2-.545 5.27a5 5 0 0 1-2.185 2.185C18.2 22 16.8 22 14 22h-4c-2.8 0-4.2 0-5.27-.545a5 5 0 0 1-2.185-2.185C2 18.2 2 16.8 2 14m10.53-3.53a.75.75 0 0 0-1.06 0l-2.5 2.5a.75.75 0 1 0 1.06 1.06l1.22-1.22V17a.75.75 0 0 0 1.5 0v-4.19l1.22 1.22a.75.75 0 1 0 1.06-1.06z"
-                      clip-rule="evenodd"
-                    />
-                  </svg>
-                </Icon>
-
-                <Strong>Acme</Strong>
+                    <span className="truncate"> Acme, Inc</span>
+                  </MenuButton>
+                  <MenuPopover placement="bottom left">
+                    <Menu>
+                      <MenuItem>Item 1</MenuItem>
+                      <MenuItem>Item 2</MenuItem>
+                    </Menu>
+                  </MenuPopover>
+                </MenuTrigger>
               </div>
             </DialogHeader>
             <DialogCloseButton />
@@ -186,37 +168,34 @@ function HamburgerMenu() {
 
 function SideNavigation() {
   return (
-    <div className="group hidden w-64 flex-col overflow-y-auto bg-zinc-100 md:flex dark:bg-zinc-950">
-      <div className="flex items-center justify-between px-4 pt-4">
-        <div className="flex items-center gap-x-2.5 p-2">
-          <Icon>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              className="-m-1 size-10"
+    <div className="group isolate hidden w-64 flex-col overflow-y-auto md:flex">
+      <div className="bg-background sticky top-0 left-0 z-10 flex items-center justify-between gap-x-2.5">
+        <div className="flex flex-1 items-center overflow-hidden px-4 pt-4 pb-2">
+          <MenuTrigger>
+            <MenuButton
+              variant="outline"
+              className="flex-1 gap-x-2.5 overflow-hidden rounded-lg font-semibold sm:px-1.5"
             >
-              <path
-                fill="currentColor"
-                d="M12 2c4.713 0 7.07 0 8.535 1.464c.757.758 1.123 1.754 1.3 3.192V10H2.164V6.656c.176-1.438.541-2.434 1.299-3.192C4.928 2 7.285 2 11.999 2"
-                opacity="0.5"
+              <Avatar
+                alt="Acme"
+                className="size-6 [--border-radius:0.25rem]"
+                fallbackBackground="black"
               />
-              <path
-                fill="currentColor"
-                fill-rule="evenodd"
-                d="M2 14c0-2.8 0-4.2.545-5.27A5 5 0 0 1 4.73 6.545C5.8 6 7.2 6 10 6h4c2.8 0 4.2 0 5.27.545a5 5 0 0 1 2.185 2.185C22 9.8 22 11.2 22 14s0 4.2-.545 5.27a5 5 0 0 1-2.185 2.185C18.2 22 16.8 22 14 22h-4c-2.8 0-4.2 0-5.27-.545a5 5 0 0 1-2.185-2.185C2 18.2 2 16.8 2 14m10.53-3.53a.75.75 0 0 0-1.06 0l-2.5 2.5a.75.75 0 1 0 1.06 1.06l1.22-1.22V17a.75.75 0 0 0 1.5 0v-4.19l1.22 1.22a.75.75 0 1 0 1.06-1.06z"
-                clip-rule="evenodd"
-              />
-            </svg>
-          </Icon>
-          <Strong>Acme</Strong>
+              <span className="truncate"> Acme, Inc</span>
+            </MenuButton>
+            <MenuPopover placement="bottom left">
+              <Menu>
+                <MenuItem>Item 1</MenuItem>
+                <MenuItem>Item 2</MenuItem>
+              </Menu>
+            </MenuPopover>
+          </MenuTrigger>
         </div>
       </div>
 
       <MainNavigation />
 
-      <div className="sticky bottom-0 left-0 flex bg-inherit px-2 py-4">
+      <div className="bg-background sticky bottom-0 left-0 flex px-2 py-4">
         <MenuTrigger>
           <MenuButton
             variant="plain"
@@ -228,7 +207,9 @@ function SideNavigation() {
               className="size-8"
             />
 
-            <span className="truncate">Marissa Whitaker</span>
+            <span className="text-foreground/70 truncate font-medium">
+              Marissa Whitaker
+            </span>
           </MenuButton>
           <AvatarMenuPopover />
         </MenuTrigger>
@@ -240,6 +221,7 @@ function SideNavigation() {
 const navLinks: Array<NavLinkProps> = [
   {
     href: '/',
+    isActive: true,
     children: (
       <>
         <Icon>
@@ -251,7 +233,18 @@ const navLinks: Array<NavLinkProps> = [
   },
   {
     href: '/',
-    'aria-label': 'Inbox - 6 new messages',
+    children: (
+      <>
+        <Icon>
+          <CalendarIcon />
+        </Icon>
+        Calendars
+      </>
+    ),
+  },
+  {
+    href: '/',
+    'aria-label': 'Inbox - 5 new messages',
     children: (
       <>
         <Icon>
@@ -259,13 +252,11 @@ const navLinks: Array<NavLinkProps> = [
         </Icon>
         Inbox
         <NotificationBadge
-          className="ms-auto"
-          inline
           variant="numeric"
-          value={6}
-          aria-label="Inbox - 6 new messages"
+          value={5}
+          aria-label="Inbox - 5 new messages"
         >
-          10
+          5
         </NotificationBadge>
       </>
     ),
@@ -275,13 +266,13 @@ const navLinks: Array<NavLinkProps> = [
     items: [
       {
         href: '/',
-        isActive: true,
+
         children: (
           <>
             <Icon>
-              <Layers3Icon />
+              <Grid2X2Icon />
             </Icon>
-            Projects
+            Summary
           </>
         ),
       },
@@ -290,9 +281,9 @@ const navLinks: Array<NavLinkProps> = [
         children: (
           <>
             <Icon>
-              <ChartBarIncreasingIcon />
+              <ArrowRightLeftIcon />
             </Icon>
-            Analyze
+            Transactions
           </>
         ),
       },
@@ -301,69 +292,9 @@ const navLinks: Array<NavLinkProps> = [
         children: (
           <>
             <Icon>
-              <WorkflowIcon />
+              <ProportionsIcon />
             </Icon>
-            Workflows
-          </>
-        ),
-      },
-      {
-        href: '/',
-        children: (
-          <>
-            <Icon>
-              <UserCog2Icon />
-            </Icon>
-            Manage Access
-          </>
-        ),
-      },
-    ],
-  },
-  {
-    title: 'Data management',
-    items: [
-      {
-        href: '/',
-        children: (
-          <>
-            <Icon>
-              <ChartNoAxesColumnIcon />
-            </Icon>
-            All charts
-          </>
-        ),
-      },
-      {
-        href: '/',
-        children: (
-          <>
-            <Icon>
-              <CalendarCogIcon />
-            </Icon>
-            Explore events
-          </>
-        ),
-      },
-      {
-        href: '/',
-        children: (
-          <>
-            <Icon>
-              <TagsIcon />
-            </Icon>
-            Visual labels
-          </>
-        ),
-      },
-      {
-        href: '/',
-        children: (
-          <>
-            <Icon>
-              <RadioIcon />
-            </Icon>
-            Live data feed
+            Reports
           </>
         ),
       },
@@ -374,25 +305,14 @@ const navLinks: Array<NavLinkProps> = [
 function MainNavigation() {
   return (
     <nav className="flex flex-1 flex-col">
-      <ul className="grid gap-y-0.5 p-4">
-        <li className="hidden md:block">
-          <Button
-            variant="unstyle"
-            className="group/search flex w-full items-center gap-x-2.5 px-2 py-1 hover:bg-zinc-200 sm:text-sm/6 dark:hover:bg-zinc-800"
-          >
-            <Icon>
-              <SearchIcon className="text-muted group-hover/search:text-accent size-4" />
-            </Icon>
-            Search
-          </Button>
-        </li>
+      <ul className="grid gap-y-1 p-4">
         {navLinks.map((link) => (
           <li>
             <NavLink {...link} />
           </li>
         ))}
       </ul>
-      <ul className="mt-auto grid gap-y-0.5 p-4">
+      <ul className="mt-auto grid gap-y-1 p-4">
         <li>
           <NavLink href="/">
             <Icon>
@@ -424,11 +344,12 @@ function NavLink(props: NavLinkProps) {
   if ('items' in props) {
     return (
       <Disclosure defaultExpanded>
-        <DisclosureControl className="group/control [&:not(:hover)]:text-muted mt-3 mb-1 w-full text-xs/6">
-          {props.title} <ChevronRightIcon className="hidden group-hover/control:flex size-4 ms-auto transition-all group-aria-expanded:rotate-90"/>
+        <DisclosureControl className="group/control [&:not(:hover)]:text-foreground/50 mt-3 w-full ps-2.5 text-xs/6 font-semibold">
+          {props.title}{' '}
+          <ChevronRightIcon className="ms-auto hidden size-4 transition-all group-hover/control:flex group-aria-expanded:rotate-90" />
         </DisclosureControl>
         <DisclosurePanel>
-          <ul className="grid gap-y-0.5">
+          <ul className="grid gap-y-1">
             {props.items.map((item) => (
               <li>
                 <NavLink {...item} />
@@ -446,10 +367,24 @@ function NavLink(props: NavLinkProps) {
       {...rest}
       className={composeRenderProps(rest.className, (className) => {
         return twMerge(
-          'group w-full gap-x-2.5 overflow-hidden rounded-lg px-2 py-1 text-nowrap hover:bg-zinc-200 hover:no-underline focus-visible:outline-offset-0 dark:hover:bg-zinc-800',
+          'group w-full gap-x-3 overflow-hidden rounded-md px-2.5 py-1 text-nowrap hover:bg-zinc-100/50 hover:no-underline focus-visible:outline-offset-0 dark:hover:bg-zinc-800 [&>[data-ui=icon]:not([class*=size-])]:size-4.5',
+          '[&>[data-ui=notification-badge]]:text-foreground/70',
+          '[&>[data-ui=notification-badge]]:rounded-md',
+          '[&>[data-ui=notification-badge]]:top-1/2',
+          '[&>[data-ui=notification-badge]]:right-1',
+          '[&>[data-ui=notification-badge]]:-translate-y-1/2',
+          '[&>[data-ui=notification-badge]]:bg-zinc-200/40',
+          'dark:[&>[data-ui=notification-badge]]:bg-zinc-900',
+          '[&>[data-ui=notification-badge]]:p-3',
+          '[&>[data-ui=notification-badge]]:text-xs/6',
+          '[&>[data-ui=notification-badge]]:font-semibold',
           props.isActive
-            ? '[&>[data-ui=icon]]:text-accent bg-zinc-200 dark:bg-zinc-800'
-            : '[&>[data-ui=icon]]:text-muted [&:hover>[data-ui=icon]]:text-accent',
+            ? 'bg-zinc-100/50 font-semibold dark:bg-zinc-900 [&>[data-ui=notification-badge]]:bg-transparent'
+            : [
+                'font-medium',
+                'text-foreground/70 [&:not(:hover)>[data-ui=icon]]:text-foreground/35',
+              ],
+
           className,
         );
       })}

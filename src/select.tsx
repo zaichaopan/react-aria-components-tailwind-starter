@@ -44,7 +44,7 @@ export function SelectButton(props: {
         props.className,
         (className, { isFocusVisible, isPressed, isHovered, isDisabled }) =>
           twMerge(
-            'group border-input relative flex w-full cursor-default items-center gap-x-1 rounded-md border text-start outline-hidden transition',
+            'group border-input relative flex w-full cursor-default items-center gap-x-1 rounded-md border text-start shadow-xs outline-hidden transition',
             'ps-3 pe-2.5',
             'py-[calc(--spacing(2.5)-1px)]',
             'sm:py-[calc(--spacing(1.5)-1px)]',
@@ -79,26 +79,30 @@ export function SelectButton(props: {
           'sm:[&>[data-ui=content]_[role=img]]:size-5',
         ])}
       />
-      <Icon className="group-[&:not(:hover)]:text-muted size-5 sm:size-4">
+      <Icon className="group-[&:not(:hover)]:text-muted/50 size-5 sm:size-4">
         <ChevronDownIcon />
       </Icon>
     </Button>
   );
 }
 
-export function SelectPopover({
-  className,
-  placement = 'bottom',
-  ...props
-}: PopoverProps) {
-  return (
-    <Popover
-      {...props}
-      className={composeTailwindRenderProps(className, ['w-(--trigger-width)'])}
-      placement={placement}
-    />
-  );
-}
+export const SelectPopover = React.forwardRef(
+  (
+    { className, placement = 'bottom', ...props }: PopoverProps,
+    ref: React.Ref<HTMLDivElement>,
+  ) => {
+    return (
+      <Popover
+        {...props}
+        ref={ref}
+        className={composeTailwindRenderProps(className, [
+          'w-(--trigger-width)',
+        ])}
+        placement={placement}
+      />
+    );
+  },
+);
 
 export interface SelectListBoxProps<T>
   extends ListBoxProps<T>,

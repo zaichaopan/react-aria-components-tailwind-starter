@@ -163,7 +163,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
           props.className,
           (className, renderProps) =>
             twMerge(
-              'border-input w-full rounded-md border outline-hidden',
+              'border border-input shadow-xs w-full rounded-md border outline-hidden',
               'px-3 py-[calc(--spacing(2.5)-1px)] sm:py-[calc(--spacing(1.5)-1px)]',
               'placeholder:text-muted text-base/6 sm:text-sm/6',
               '[&[readonly]]:bg-zinc-50',
@@ -185,7 +185,7 @@ export function TextArea(props: RACTextAreaProps) {
       {...props}
       className={composeRenderProps(props.className, (className, renderProps) =>
         twMerge(
-          'border-input w-full rounded-md border px-3 py-1 outline-hidden',
+          'border-input w-full shadow-xs rounded-md border px-3 py-1 outline-hidden',
           'placeholder:text-muted text-base/6 sm:text-sm/6',
           '[&[readonly]]:bg-zinc-50',
           'dark:[&[readonly]]:bg-white/10',

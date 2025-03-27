@@ -1,5 +1,5 @@
 import React from 'react';
-import { getFallbackAvatarDataUrl } from './initials';
+import { FallbackAvatarProps, getFallbackAvatarDataUrl } from './initials';
 import { twMerge } from 'tailwind-merge';
 import { useImageLoadingStatus } from './hooks/use-image-loading-status';
 
@@ -10,17 +10,17 @@ const AvatarContext = React.createContext<{
 export type AvatarProps = {
   src?: string;
   alt: string;
-  colorful?: boolean;
-  fallback?: 'initials' | 'icon';
-} & React.JSX.IntrinsicElements['div'];
+} & FallbackAvatarProps &
+  React.JSX.IntrinsicElements['div'];
 
 export function Avatar({
-  colorful = false,
   className,
   children,
   src,
   alt,
   fallback = 'initials',
+  colorful,
+  fallbackBackground,
   ...props
 }: AvatarProps) {
   const badgeId = React.useId();
@@ -34,8 +34,12 @@ export function Avatar({
         {...props}
         role="img"
         className={twMerge([
-          'group ring-background @container relative isolate flex size-10 shrink-0 rounded-lg',
-          '[&.rounded-full>img]:rounded-full [&>img]:size-full [&>img]:rounded-lg',
+          'group ring-background @container relative isolate flex size-10 shrink-0',
+          '[--border-radius:var(--radius-lg)]',
+          '[&.rounded-full]:[--border-radius:calc(infinity_*_1px)]',
+          'rounded-[radius:var(--border-radius)]',
+          '[&>img]:rounded-[var(--border-radius)]',
+          '[&>img]:size-full',
           className,
         ])}
         aria-labelledby={ariaLabelledby}
@@ -45,11 +49,32 @@ export function Avatar({
           id={avatarId}
           src={
             status === 'error'
-              ? getFallbackAvatarDataUrl({ fallback, alt, colorful })
+              ? getFallbackAvatarDataUrl({
+                  fallback,
+                  alt,
+                  ...(colorful === undefined
+                    ? { fallbackBackground }
+                    : { colorful }),
+                })
               : src
           }
           alt={alt}
-          className="object-cover"
+          className={twMerge(
+            'object-cover',
+            // size
+            '[--badge-size:8px] [&+[data-ui=badge]]:[--badge-size:8px]',
+            '@[32px]:[--badge-size:10px] @[32px]:[&+[data-ui=badge]]:[--badge-size:10px]',
+            '@[48px]:[--badge-size:12px] @[48px]:[&+[data-ui=badge]]:[--badge-size:12px]',
+            '@[64px]:[--badge-size:16px] @[64px]:[&+[data-ui=badge]]:[--badge-size:16px]',
+            '@[96px]:[--badge-size:20px] @[96px]:[&+[data-ui=badge]]:[--badge-size:20px]',
+            '@[120px]:[--badge-size:24px] @[120px]:[&+[data-ui=badge]]:[--badge-size:24px]',
+            '@[128px]:[--badge-size:26px] @[128px]:[&+[data-ui=badge]]:[--badge-size:26px]',
+            '[--badge-gap:2px]',
+            '@[120px]:[--badge-gap:3px]',
+            '[&:has(+[data-ui=badge])]:[mask:radial-gradient(circle_at_bottom_calc(var(--badge-size)/2)_right_calc(var(--badge-size)/2),_transparent_calc(var(--badge-size)/2_+_var(--badge-gap)_-_0.25px),_white_calc(var(--badge-size)/2_+_var(--badge-gap)_+_0.25px))]',
+            '[&+[data-ui=badge]:not([class*=size-])]:size-(--badge-size)',
+            '[&+[data-ui=badge]>[data-ui=icon]:not([class*=size-])]:size-full',
+          )}
         />
         {children}
       </div>
@@ -72,34 +97,10 @@ export const AvatarBadge = ({ badge, ...props }: AvatarBadgeProps) => {
   return (
     <span
       aria-hidden
+      data-ui="badge"
       id={context.badgeId}
       className={twMerge([
-        'grid place-items-center',
-        'bg-background border-background rounded-full border-2 @[128px]:border-4',
-
-        '[&>[data-ui=icon]:not([class*=size-])]:size-full',
-
-        // size
-        '@[28px]:[--badge-size:45%]',
-        '@[32px]:[--badge-size:40%]',
-        '@[40px]:[--badge-size:33.33%]',
-        '@[64px]:[--badge-size:25%]',
-        '@[128px]:[--badge-size:20%]',
-        'size-(--badge-size,55%)',
-
-        // position
-        'absolute end-0 bottom-0 z-10',
-        '[--badge-x:2px]',
-        '@-[64px]:in-[.rounded-full]:[--badge-x:-5%]',
-        '@-[128px]:in-[.rounded-full]:[--badge-x:-20%]',
-        '@-[128px]:[--badge-x:15%]',
-        'translate-x-(--badge-x)',
-
-        '[--badge-y:4px]',
-        '@-[64px]:in-[.rounded-full]:[--badge-y:-10%]',
-        '@-[128px]:in-[.rounded-full]:[--badge-y:-20%]',
-        'translate-y-(--badge-y)',
-
+        'bg-background absolute end-0 bottom-0 grid place-items-center rounded-full bg-clip-content',
         props.className,
       ])}
     >

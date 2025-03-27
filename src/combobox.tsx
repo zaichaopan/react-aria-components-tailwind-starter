@@ -100,7 +100,7 @@ export function ComboBoxButton({
       size="sm"
       data-ui="trigger"
       variant="plain"
-      className="text-muted group-hover/combobox:text-foreground"
+      className="text-muted/50 group-hover/combobox:text-foreground"
     >
       {triggerIcon}
     </Button>

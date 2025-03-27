@@ -1,22 +1,31 @@
-const tokens = [
-  'oklch(0.552 0.016 285.938)',
-  'oklch(0.65 0.13 233.58)',
-  'oklch(0.42 0.12 253.27)',
-  'oklch(0.442 0.017 285.786)',
-  'oklch(0.37 0.013 285.805)',
-  'oklch(0.527 0.154 150.069)',
-  'oklch(0.45 0.11 151.32)',
-  'oklch(0.592 0.249 0.584)',
-  'oklch(0.459 0.187 3.815)',
-  'oklch(0.609 0.126 221.723)',
-  'oklch(0.52 0.105 223.128)',
-  'oklch(0.681 0.162 75.834)',
-  'oklch(0.476 0.114 61.907)',
-  'oklch(0.48 0.18 321.36)',
-  'oklch(0.401 0.17 325.612)',
-  'oklch(0.46 0.17 3.82)',
-  'oklch(0.41 0.159 10.272)',
+const GRADIENTS: Array<[string, string]> = [
+  ['oklch(0.55 0.016 285.938)', 'oklch(0.705 0.015 286.067)'],
+  ['oklch(0.4885 0.1834 3.96)', 'oklch(0.7134 0.1638 2.77)'],
+  ['oklch(0.5348 0.2679 282.44)', 'oklch(0.677 0.1533 284.96)'],
+  ['oklch(0.4309 0.1865 281.4)', 'oklch(0.677 0.1533 284.96)'],
+  ['oklch(0.3034 0.0964 306.25)', 'oklch(0.644 0.0971 304.93)'],
+  ['oklch(0.7376 0.081 170.77)', 'oklch(0.8015 0.1603 138.01)'],
+  ['oklch(0.6273 0.0715 205.19)', 'oklch(0.8188 0.0649 173.43)'],
+  ['oklch(0.52 0.0614 123.17)', 'oklch(0.7395 0.1053 118.44)'],
+  ['oklch(0.3496 0.0988 145.03)', 'oklch(0.6515 0.0609 168.71)'],
+  ['oklch(0.6475 0.1768 249.33)', 'oklch(0.813 0.1094 235.78)'],
+  ['oklch(0.5495 0.1202 251.83)', 'oklch(0.7475 0.0724 250.72)'],
+  ['oklch(0.5126 0.0738 237.27)', 'oklch(0.7352 0.0479 227.03)'],
+  ['oklch(0.6368 0.1388 28.08)', 'oklch(0.8143 0.0907 51.75)'],
+  ['oklch(0.7593 0.164 64.36)', 'oklch(0.8769 0.179577 93.1299)'],
+  ['oklch(0.4815 0.0401 14.22)', 'oklch(0.7406 0.0305 77.47)'],
 ];
+
+export type FallbackAvatarProps = { fallback?: 'initials' | 'icon' } & (
+  | {
+      colorful?: boolean;
+      fallbackBackground?: never;
+    }
+  | {
+      colorful?: never;
+      fallbackBackground?: string | [string, string];
+    }
+);
 
 export function getInitials(name: string) {
   return name
@@ -37,46 +46,53 @@ function sumChars(str: string) {
   return sum;
 }
 
-export function getInitialsToken(name: string, colorful: boolean) {
+function getInitialsGradient(
+  name: string,
+  colorful?: boolean,
+): [string, string] {
   if (colorful) {
-    const i = sumChars(name) % tokens.length;
-    return tokens[i];
+    const i = sumChars(name) % GRADIENTS.length;
+    return GRADIENTS[i];
   }
 
-  return tokens[0];
+  return GRADIENTS[0];
 }
 
 export function getFallbackAvatarDataUrl({
-  fallback,
   alt,
-  colorful = false,
+  fallback,
+  colorful,
+  fallbackBackground,
 }: {
-  fallback: 'initials' | 'icon';
   alt: string;
-  colorful?: boolean;
-}) {
+} & FallbackAvatarProps) {
   const initials = getInitials(alt);
-  const token = getInitialsToken(alt, colorful);
+
+  const bg = fallbackBackground
+    ? Array.isArray(fallbackBackground)
+      ? `linear-gradient(135deg, ${fallbackBackground[0]}, ${fallbackBackground[1]})`
+      : fallbackBackground
+    : `linear-gradient(135deg, ${getInitialsGradient(alt, colorful).join(', ')})`;
 
   return fallback === 'icon'
-    ? getFallbackIconDateUrl(token)
-    : getFallbackInitialsDataUrl(token, initials);
+    ? getFallbackIconDateUrl(bg)
+    : getFallbackInitialsDataUrl(bg, initials);
 }
 
-function getFallbackIconDateUrl(token: string) {
+function getFallbackIconDateUrl(bg: string) {
   return (
     'data:image/svg+xml;base64,' +
     btoa(
-      `<svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 80 80" style="background:${token};color:oklch(0.985 0 0);"><g><path d="M 8 80 a 28 24 0 0 1 64 0"/><circle cx="40" cy="32" r="16"/></g></svg>`,
+      `<svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 80 80" style="background:${bg};color:oklch(0.985 0 0);"><g><path d="M 8 80 a 28 24 0 0 1 64 0"/><circle cx="40" cy="32" r="16"/></g></svg>`,
     )
   );
 }
 
-function getFallbackInitialsDataUrl(token: string, initials: string) {
+function getFallbackInitialsDataUrl(bg: string, initials: string) {
   return (
     'data:image/svg+xml;base64,' +
     btoa(
-      `<svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" style="background:${token};color:oklch(0.985 0 0);font-family:system-ui;"><text x="50%" y="50%" alignment-baseline="middle" dominant-baseline="middle" text-anchor="middle" dy=".125em" font-size="65%">${initials}</text></svg>`,
+      `<svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" style="background:${bg};color:oklch(0.985 0 0);font-family:system-ui;"><text x="50%" y="50%" alignment-baseline="middle" dominant-baseline="middle" text-anchor="middle" dy=".125em" font-size="65%">${initials}</text></svg>`,
     )
   );
 }

@@ -10,9 +10,8 @@ import { Form } from '../../src/form.tsx';
 import { PasswordInput } from '../../src/password-input.tsx';
 import { Button } from '../../src/button.tsx';
 import { Heading, SubHeading } from '../../src/heading.tsx';
-import { Strong, Text, TextLink } from '../../src/text.tsx';
+import { Text, TextLink } from '../../src/text.tsx';
 import { ChevronRightIcon } from '../../src/icons.tsx';
-import { Separator } from '../../src/separator.tsx';
 import { Checkbox } from '../../src/checkbox.tsx';
 
 const meta = {
@@ -24,126 +23,121 @@ const meta = {
 
 export default meta;
 
-export const SignIn = () => {
+export const SignUp = () => {
   return (
-    <div className="flex min-h-svh flex-col justify-center gap-6 px-2 py-4">
-      <img
-        className="mx-auto h-10 w-auto"
-        src="https://vite.dev/logo.svg"
-        alt="Your Company"
-      ></img>
-      <div className="p-2 sm:p-4 sm:mx-auto sm:w-full sm:max-w-sm">
-        <div>
-          <Heading level={2} displayLevel={1} className="text-center">
-            Sign in to your account
-          </Heading>
-          <SubHeading className="text-center">
-            Welcome back! Please sign into continue
-          </SubHeading>
-        </div>
-
-        <Form className="mt-6 flex flex-col space-y-4">
-          <TextField isRequired>
-            <Label>Email address</Label>
-            <Input type="email" />
-            <FieldError></FieldError>
-          </TextField>
-
-          <TextField isRequired>
-            <div className="flex">
-              <Label>Password</Label>
-              <TextLink className="text-muted ms-auto mb-1 no-underline">
-                Forgot password?
-              </TextLink>
+    <div className="flex min-h-svh w-full items-center justify-center p-6 md:p-10">
+      <div className="w-full max-w-sm">
+        <div className="flex flex-col gap-6">
+          <img
+            className="mx-auto h-10 w-auto"
+            src="https://vite.dev/logo.svg"
+            alt="Your Company"
+          />
+          <div className="rounded-xl border shadow">
+            <div className="flex flex-col p-6 text-center">
+              <Heading level={2} displayLevel={1}>
+                Create account
+              </Heading>
+              <SubHeading>Join now to unlock all the features.</SubHeading>
             </div>
-            <PasswordInput />
-            <FieldError></FieldError>
-          </TextField>
 
-          <Checkbox>Remember me</Checkbox>
+            <Form method="post" className="p-6 pt-0">
+              <div className="flex flex-col gap-6">
+                <TextField>
+                  <Label>Email</Label>
+                  <Input
+                    name="email"
+                    type="email"
+                    placeholder="m@example.com"
+                    required
+                  />
+                </TextField>
 
-          <Button type="submit">
-            Continue <ChevronRightIcon />
-          </Button>
+                <TextField>
+                  <Label>Password</Label>
+                  <PasswordInput />
+                  <Description>
+                    Must be at least 12 characters in length
+                  </Description>
+                </TextField>
 
-          <Button variant="outline">Sign in with Google</Button>
-        </Form>
-      </div>
-      <div className="text-center">
-        <Text>
-          Do you have account?{' '}
-          <Strong>
-            <TextLink>Register</TextLink>
-          </Strong>
-        </Text>
+                <TextField>
+                  <Label>Confirm Password</Label>
+                  <PasswordInput />
+                </TextField>
+
+                <Button type="submit" className="w-full">
+                  Sign up
+                </Button>
+              </div>
+              <Text className="-mt-2 text-center">
+                By creating an account you agree to our&nbsp;
+                <TextLink>Teams of Services</TextLink> and&nbsp;
+                <TextLink>Privacy Policy</TextLink>.
+              </Text>
+            </Form>
+          </div>
+          <Text className="text-center">
+            Already have an account?{' '}
+            <TextLink className="underline underline-offset-4">Login</TextLink>
+          </Text>
+        </div>
       </div>
     </div>
   );
 };
 
-export const SignUp = () => {
+export const Login = () => {
   return (
-    <div className="flex min-h-svh flex-col justify-center gap-6 px-2 py-4">
-      <img
-        className="mx-auto h-10 w-auto"
-        src="https://vite.dev/logo.svg"
-        alt="Your Company"
-      ></img>
-      <div className="px-2 sm:p-4 sm:mx-auto sm:w-full sm:max-w-sm">
-        <div>
-          <Heading level={2} displayLevel={1} className="text-center">
-            Create account
-          </Heading>
-          <SubHeading className="text-center">
-            Join now to unlock all the features.
-          </SubHeading>
-        </div>
+    <div className="flex min-h-svh w-full items-center justify-center p-6 md:p-10">
+      <div className="w-full max-w-sm">
+        <div className="flex flex-col gap-6">
+          <img
+            className="mx-auto h-10 w-auto"
+            src="https://vite.dev/logo.svg"
+            alt="Your Company"
+          />
+          <div className="rounded-xl border shadow">
+            <div className="flex flex-col p-6 text-center">
+              <Heading level={2} displayLevel={1}>
+                Login
+              </Heading>
+              <SubHeading>Welcome back! Please login continue</SubHeading>
+            </div>
 
-        <Form className="mt-6 flex flex-col space-y-4">
-          <TextField>
-            <Label>Name</Label>
-            <Input />
-          </TextField>
+            <Form method="post" className="p-6 pt-0">
+              <TextField isRequired>
+                <Label>Email</Label>
+                <Input type="email" />
+                <FieldError></FieldError>
+              </TextField>
 
-          <TextField isRequired>
-            <Label>Email address</Label>
-            <Input type="email" />
-            <FieldError></FieldError>
-          </TextField>
+              <TextField isRequired>
+                <div className="flex">
+                  <Label>Password</Label>
+                  <TextLink className="text-muted ms-auto mb-1 no-underline">
+                    Forgot password?
+                  </TextLink>
+                </div>
+                <PasswordInput />
+                <FieldError></FieldError>
+              </TextField>
 
-          <TextField isRequired>
-            <Label>Password</Label>
-            <Description>Must be at least 12 characters in length</Description>
-            <PasswordInput />
-            <FieldError></FieldError>
-          </TextField>
+              <Checkbox>Remember me</Checkbox>
 
-          <TextField isRequired>
-            <Label>Confirm password</Label>
-            <PasswordInput />
-            <FieldError></FieldError>
-          </TextField>
+              <Button type="submit" className="w-full">
+                Continue <ChevronRightIcon />
+              </Button>
 
-          <Button type="submit">
-            Continue <ChevronRightIcon />
-          </Button>
-
-          <Separator soft className="mt-1" />
-
-          <Text className='text-center'>
-            By creating an account you agree to our
-            <TextLink>Teams of Services</TextLink> and{' '}
-            <TextLink>Privacy Policy</TextLink>.
+              <Button variant="outline" className="w-full">
+                Sign in with Google
+              </Button>
+            </Form>
+          </div>
+          <Text className="px-6 text-center">
+            Don&apos;t have an account? <TextLink>Sign up</TextLink>
           </Text>
-        </Form>
-      </div>
-      <div className="text-center">
-        <Text>
-          Already have an account?{' '}
-          <Strong>
-            <TextLink>Sign in</TextLink>
-          </Strong>
-        </Text>
+        </div>
       </div>
     </div>
   );
@@ -151,46 +145,50 @@ export const SignUp = () => {
 
 export const ForgotPassword = () => {
   return (
-    <div className="flex min-h-svh flex-col justify-center gap-6 px-2 py-4">
-      <img
-        className="mx-auto h-10 w-auto"
-        src="https://vite.dev/logo.svg"
-        alt="Your Company"
-      ></img>
-      <div className="px-2 sm:p-4 sm:mx-auto sm:w-full sm:max-w-sm">
-        <div>
-          <Heading level={2} displayLevel={1} className="text-center">
-            Forgot your password?
-          </Heading>
-          <SubHeading>
-            Enter your email address below and we'll send you password reset
-            instructions
-          </SubHeading>
-        </div>
+    <div className="flex min-h-svh w-full items-center justify-center p-6 md:p-10">
+      <div className="w-full max-w-sm">
+        <div className="flex flex-col gap-6">
+          <img
+            className="mx-auto h-10 w-auto"
+            src="https://vite.dev/logo.svg"
+            alt="Your Company"
+          />
+          <div className="rounded-xl border shadow">
+            <div className="flex flex-col p-6 text-center">
+              <Heading level={2} displayLevel={1}>
+                Forgot your password?
+              </Heading>
+              <SubHeading>
+                Enter your email below and we&apos;tll send you password reset
+                instructions
+              </SubHeading>
+            </div>
 
-        <Form className="mt-6 flex flex-col space-y-4">
-          <TextField isRequired>
-            <Label>Email address</Label>
-            <Input type="email" />
-            <FieldError></FieldError>
-          </TextField>
+            <Form method="post" className="p-6 pt-0">
+              <TextField isRequired>
+                <Label>Email</Label>
+                <Input
+                  name="email"
+                  type="email"
+                  placeholder="m@example.com"
+                  required
+                />
+                <FieldError></FieldError>
+              </TextField>
 
-          <Button type="submit">Email me reset instructions</Button>
-
-          <Separator soft className="mt-1" />
-          <Text>
-            <Strong>If you don’t see your reset email</Strong> be sure to check
-            your spam filter for an email from support@acme.com
+              <Button type="submit" className="w-full">
+                Send reset email
+              </Button>
+              <Text className="-mt-2 text-center">
+                If you don&apos;t see reset email be sure to check your spam
+                filter for an email from support@acme.com
+              </Text>
+            </Form>
+          </div>
+          <Text className="text-center">
+            Back to&nbsp;<TextLink>Login</TextLink>
           </Text>
-        </Form>
-      </div>
-      <div className="text-center">
-        <Text>
-          Back to{' '}
-          <Strong>
-            <TextLink>Sign in</TextLink>
-          </Strong>
-        </Text>
+        </div>
       </div>
     </div>
   );
@@ -198,39 +196,48 @@ export const ForgotPassword = () => {
 
 export const ResetPassword = () => {
   return (
-    <div className="flex min-h-svh flex-col justify-center gap-6 px-2 py-4">
-      <img
-        className="mx-auto h-10 w-auto"
-        src="https://vite.dev/logo.svg"
-        alt="Your Company"
-      ></img>
-      <div className="px-2 sm:p-4 sm:mx-auto sm:w-full sm:max-w-sm">
-        <div>
-          <Heading level={2} displayLevel={1} className="text-center">
-            Reset password
-          </Heading>
-          <SubHeading>Please enter your new password below</SubHeading>
+    <div className="flex min-h-svh w-full items-center justify-center p-6 md:p-10">
+      <div className="w-full max-w-sm">
+        <div className="flex flex-col gap-6">
+          <img
+            className="mx-auto h-10 w-auto"
+            src="https://vite.dev/logo.svg"
+            alt="Your Company"
+          />
+          <div className="rounded-xl border shadow">
+            <div className="flex flex-col p-6 text-center">
+              <Heading level={2} displayLevel={1}>
+                Reset your password
+              </Heading>
+              <SubHeading></SubHeading>
+            </div>
+
+            <Form method="post" className="p-6 pt-0">
+              <TextField isRequired>
+                <Label>Email</Label>
+                <Input type="email" />
+                <FieldError></FieldError>
+              </TextField>
+              <TextField isRequired>
+                <Label>Password</Label>
+                <PasswordInput />
+                <FieldError></FieldError>
+              </TextField>
+              <TextField isRequired>
+                <Label>Confirm password</Label>
+                <PasswordInput />
+                <FieldError></FieldError>
+              </TextField>
+
+              <Button type="submit" className="w-full">
+                Reset password
+              </Button>
+            </Form>
+          </div>
+          <Text className="text-center">
+            Back to&nbsp;<TextLink>Login</TextLink>
+          </Text>
         </div>
-
-        <Form className="mt-6 flex flex-col space-y-4">
-          <TextField isRequired>
-            <Label>Email address</Label>
-            <Input type="email" />
-            <FieldError></FieldError>
-          </TextField>
-          <TextField isRequired>
-            <Label>Password</Label>
-            <PasswordInput />
-            <FieldError></FieldError>
-          </TextField>
-          <TextField isRequired>
-            <Label>Confirm password</Label>
-            <PasswordInput />
-            <FieldError></FieldError>
-          </TextField>
-
-          <Button type="submit">Reset password</Button>
-        </Form>
       </div>
     </div>
   );

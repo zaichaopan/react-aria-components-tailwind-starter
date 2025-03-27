@@ -25,6 +25,7 @@ export function NotificationBadge({
     return (
       <>
         <span
+          data-ui="notification-badge"
           {...(ariaLabel
             ? { 'aria-label': ariaLabel }
             : { 'aria-hidden': true })}
@@ -48,6 +49,7 @@ export function NotificationBadge({
   return (
     <>
       <span
+        data-ui="notification-badge"
         {...(ariaLabel ? { 'aria-label': ariaLabel } : { 'aria-hidden': true })}
         className={twMerge([
           inline ? '' : 'absolute -top-1.5 -right-1',
