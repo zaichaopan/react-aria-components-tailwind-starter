@@ -49,7 +49,22 @@ export function Avatar({
               : src
           }
           alt={alt}
-          className="object-cover"
+          className={twMerge(
+            'object-cover',
+            // size
+            '[--badge-size:8px] [&+[data-ui=badge]]:[--badge-size:8px]',
+            '@[32px]:[--badge-size:10px] @[32px]:[&+[data-ui=badge]]:[--badge-size:10px]',
+            '@[48px]:[--badge-size:12px] @[48px]:[&+[data-ui=badge]]:[--badge-size:12px]',
+            '@[64px]:[--badge-size:16px] @[64px]:[&+[data-ui=badge]]:[--badge-size:16px]',
+            '@[96px]:[--badge-size:20px] @[96px]:[&+[data-ui=badge]]:[--badge-size:20px]',
+            '@[120px]:[--badge-size:24px] @[120px]:[&+[data-ui=badge]]:[--badge-size:24px]',
+            '@[128px]:[--badge-size:26px] @[128px]:[&+[data-ui=badge]]:[--badge-size:26px]',
+            '[--badge-gap:2px]',
+            '@[120px]:[--badge-gap:3px]',
+            '[&:has(+[data-ui=badge])]:[mask:radial-gradient(circle_at_bottom_calc(var(--badge-size)/2)_right_calc(var(--badge-size)/2),_transparent_calc(var(--badge-size)/2_+_var(--badge-gap)_-_0.25px),_white_calc(var(--badge-size)/2_+_var(--badge-gap)_+_0.25px))]',
+            '[&+[data-ui=badge]:not([class*=size-])]:size-(--badge-size)',
+            '[&+[data-ui=badge]>[data-ui=icon]:not([class*=size-])]:size-full',
+          )}
         />
         {children}
       </div>
@@ -72,34 +87,10 @@ export const AvatarBadge = ({ badge, ...props }: AvatarBadgeProps) => {
   return (
     <span
       aria-hidden
+      data-ui="badge"
       id={context.badgeId}
       className={twMerge([
-        'grid place-items-center',
-        'bg-background border-background rounded-full border-2 @[128px]:border-4',
-
-        '[&>[data-ui=icon]:not([class*=size-])]:size-full',
-
-        // size
-        '@[28px]:[--badge-size:45%]',
-        '@[32px]:[--badge-size:40%]',
-        '@[40px]:[--badge-size:33.33%]',
-        '@[64px]:[--badge-size:25%]',
-        '@[128px]:[--badge-size:20%]',
-        'size-(--badge-size,55%)',
-
-        // position
-        'absolute end-0 bottom-0 z-10',
-        '[--badge-x:2px]',
-        '@-[64px]:in-[.rounded-full]:[--badge-x:-5%]',
-        '@-[128px]:in-[.rounded-full]:[--badge-x:-20%]',
-        '@-[128px]:[--badge-x:15%]',
-        'translate-x-(--badge-x)',
-
-        '[--badge-y:4px]',
-        '@-[64px]:in-[.rounded-full]:[--badge-y:-10%]',
-        '@-[128px]:in-[.rounded-full]:[--badge-y:-20%]',
-        'translate-y-(--badge-y)',
-
+        'bg-background absolute end-0 bottom-0 grid place-items-center rounded-full bg-clip-content',
         props.className,
       ])}
     >

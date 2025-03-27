@@ -25,7 +25,7 @@ export function Separator({
         children
           ? [
               soft
-                ? 'before:border-border/75 after:border-border/75'
+                ? 'before:border-border/50 after:border-border/50'
                 : 'before:border-border after:border-border',
               orientation === 'vertical'
                 ? [
@@ -52,7 +52,7 @@ export function Separator({
                   ],
             ]
           : [
-              soft ? 'border-border/75' : 'border-border',
+              soft ? 'border-border/50' : 'border-border',
               orientation === 'vertical'
                 ? [
                     'h-auto self-stretch border-l',

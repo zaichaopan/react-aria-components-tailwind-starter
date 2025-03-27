@@ -5,7 +5,8 @@ import { docs } from '../.storybook/docs';
 const meta = {
   parameters: {
     layout: 'centered',
-    docs}
+    docs,
+  },
 };
 
 export default meta;
@@ -28,10 +29,7 @@ export const BasicExample = () => {
 
 export const SingleSelection = () => {
   return (
-    <TagGroup
-      defaultSelectedKeys={['chocolate']}
-      selectionMode="single"
-    >
+    <TagGroup defaultSelectedKeys={['chocolate']} selectionMode="single">
       <Label>Ice cream flavor</Label>
       <TagList>
         <Tag id="chocolate">Chocolate</Tag>
@@ -85,41 +83,63 @@ export const Colors = () => {
     <TagGroup defaultSelectedKeys={['in-review']} selectionMode="single">
       <Label>Status</Label>
       <TagList>
-        <Tag id="in-review" color="default">
-          In Review
-        </Tag>
-        <Tag id="ready-to-merge" color="success">
-          Ready to merge
-        </Tag>
-        <Tag id="experimental" color="warning">
-          Experimental
-        </Tag>
-        <Tag id="breaking-changes" color="destructive">
-          Breaking changes
-        </Tag>
+        <Tag id="in-review">In Review</Tag>
+        <Tag id="ready-to-merge">Ready to merge</Tag>
+        <Tag id="experimental">Experimental</Tag>
+        <Tag id="breaking-changes">Breaking changes</Tag>
       </TagList>
     </TagGroup>
   );
 };
 
-export const WithCustomColors = () => {
+export const CustomColors = () => {
   return (
     <TagGroup selectionMode="single">
       <Label>Status</Label>
       <TagList>
-        <Tag id="labe1" className="[--tag:oklch(.532_.157_131.589)]">
+        <Tag id="labe0" color="red">
           label
         </Tag>
-        <Tag id="labe2" className="[--tag:oklch(.496_.265_301.924)]">
+        <Tag id="labe1" color="yellow">
           label
         </Tag>
-        <Tag id="labe3" className="[--tag:oklch(.518_.253_323.949)]">
+        <Tag id="labe2" color="lime">
           label
         </Tag>
-        <Tag id="labe4" className="[--tag:oklch(.514_.222_16.935)]">
+        <Tag id="labe3" color="green">
           label
         </Tag>
-        <Tag id="labe5" className="[--tag:oklch(.553_.195_38.402)]">
+        <Tag id="labe4" color="emerald">
+          Rejected
+        </Tag>
+        <Tag id="labe5" color="teal">
+          label
+        </Tag>
+        <Tag id="labe6" color="cyan">
+          label
+        </Tag>
+        <Tag id="labe7" color="sky">
+          label
+        </Tag>
+        <Tag id="labe8" color="blue">
+          label
+        </Tag>
+        <Tag id="labe9" color="indigo">
+          label
+        </Tag>
+        <Tag id="labe10" color="violet">
+          label
+        </Tag>
+        <Tag id="labe11" color="purple">
+          label
+        </Tag>
+        <Tag id="labe12" color="fuchsia">
+          label
+        </Tag>
+        <Tag id="labe13" color="pink">
+          label
+        </Tag>
+        <Tag id="labe14" color="rose">
           label
         </Tag>
       </TagList>

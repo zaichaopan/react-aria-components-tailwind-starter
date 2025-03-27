@@ -1,3 +1,4 @@
+import React from 'react';
 import {
   Menu as RACMenu,
   MenuItem as RACMenuItem,
@@ -43,22 +44,25 @@ export function MenuButton({
   );
 }
 
-export function MenuPopover({ className, ...props }: PopoverProps) {
-  return (
-    <Popover
-      {...props}
-      className={composeTailwindRenderProps(
-        className,
-        twMerge(
-          'max-w-72',
-          'min-w-[max(--spacing(36),var(--trigger-width))]',
-          'has-[[data-ui=content]_[data-ui=icon]]:min-w-[max(--spacing(48),var(--trigger-width))]',
-          'has-[[data-ui=content]_kbd]:min-w-[max(--spacing(11),var(--trigger-width))]',
-        ),
-      )}
-    />
-  );
-}
+export const MenuPopover = React.forwardRef(
+  ({ className, ...props }: PopoverProps, ref: React.Ref<HTMLDivElement>) => {
+    return (
+      <Popover
+        {...props}
+        ref={ref}
+        className={composeTailwindRenderProps(
+          className,
+          twMerge(
+            'max-w-72',
+            'min-w-[max(--spacing(36),var(--trigger-width))]',
+            'has-[[data-ui=content]_[data-ui=icon]]:min-w-[max(--spacing(48),var(--trigger-width))]',
+            'has-[[data-ui=content]_kbd]:min-w-[max(--spacing(11),var(--trigger-width))]',
+          ),
+        )}
+      />
+    );
+  },
+);
 
 type MenuProps<T> = RACMenuProps<T> & {
   checkIconPlacement?: 'start' | 'end';
@@ -91,6 +95,7 @@ export function Menu<T extends object>({
           '[&_[data-ui=content]:has([data-ui=label])]:grid-cols-[--spacing(4)_1fr_minmax(--spacing(12),max-content)]',
           '**:data-[ui=content]:items-center',
           '**:data-[ui=content]:gap-x-2',
+          '**:data-[ui=content]:rtl:text-right',
 
           // Icon
           '[&_[data-ui=content]:not(:hover)>[data-ui=icon]:not([class*=text-])]:text-muted',
@@ -134,7 +139,7 @@ export function MenuSeparator({ className }: { className?: string }) {
   return (
     <Separator
       className={twMerge(
-        'border-t-border/75 my-1 w-[calc(100%-(--spacing(4)))] self-center border-t',
+        'border-t-border/50 my-1 w-[calc(100%-(--spacing(4)))] self-center border-t',
         className,
       )}
     />
@@ -254,7 +259,7 @@ export function MenuSection<T extends object>({
         className,
       )}
     >
-      <Header className="text-muted bg-background sticky inset-0 z-10 truncate pt-2 text-xs/6">
+      <Header className="text-muted bg-background sticky inset-0 z-10 truncate pt-2 text-xs/6 rtl:text-right">
         {props.title}
       </Header>
       <Collection items={props.items}>{props.children}</Collection>

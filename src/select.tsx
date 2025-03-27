@@ -86,19 +86,23 @@ export function SelectButton(props: {
   );
 }
 
-export function SelectPopover({
-  className,
-  placement = 'bottom',
-  ...props
-}: PopoverProps) {
-  return (
-    <Popover
-      {...props}
-      className={composeTailwindRenderProps(className, ['w-(--trigger-width)'])}
-      placement={placement}
-    />
-  );
-}
+export const SelectPopover = React.forwardRef(
+  (
+    { className, placement = 'bottom', ...props }: PopoverProps,
+    ref: React.Ref<HTMLDivElement>,
+  ) => {
+    return (
+      <Popover
+        {...props}
+        ref={ref}
+        className={composeTailwindRenderProps(className, [
+          'w-(--trigger-width)',
+        ])}
+        placement={placement}
+      />
+    );
+  },
+);
 
 export interface SelectListBoxProps<T>
   extends ListBoxProps<T>,
