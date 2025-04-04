@@ -72,13 +72,17 @@ const buttonStyle = ({
     variant: {
       base: 'group inline-flex gap-x-2 justify-center items-center font-semibold text-base/6 sm:text-sm/6',
       solid: [
-        'border border-transparent bg-[var(--btn-bg)]',
+        'bg-[var(--btn-bg)]',
         '[--btn-color:lch(from_var(--btn-bg)_calc((49.44_-_l)_*_infinity)_0_0)]',
         'text-[var(--btn-color)]',
         !isDisabled && 'hover:opacity-90',
       ],
       outline: [
-        'border border-input/80 text-[var(--btn-color)] shadow-xs',
+        'text-[var(--btn-color)]',
+        'shadow-outline',
+        'in-[[data-ui=button-group]]:shadow-none',
+        'dark:in-[[data-ui=button-group]]:shadow-none',
+        'dark:bg-white/5',
         !isDisabled && 'hover:bg-zinc-50 dark:hover:bg-zinc-800',
       ],
       plain: [
@@ -97,15 +101,13 @@ const buttonStyle = ({
         // lg: 44px, sm:36px
         '[--icon-size:theme(size.5)] sm:[--icon-size:theme(size.4)]',
         isIconOnly
-          ? 'p-[calc(--spacing(2.5)-1px)] sm:p-[calc(--spacing(1.5)-1px)] [&_svg[data-ui=icon]]:m-0.5 sm:[&_svg[data-ui=icon]]:m-1'
-          : 'px-[calc(--spacing(3.5)-1px)] sm:px-[calc(--spacing(3)-1px)] py-[calc(--spacing(2.5)-1px)] sm:py-[calc(--spacing(1.5)-1px)]',
+          ? 'p-2.5 sm:p-1.5 [&_svg[data-ui=icon]]:m-0.5 sm:[&_svg[data-ui=icon]]:m-1'
+          : 'px-3.5 sm:px-3 py-2.5 sm:py-1.5',
       ],
 
       lg: [
         '[--icon-size:theme(size.5)]',
-        isIconOnly
-          ? 'p-[calc(--spacing(2.5)-1px)] [&_svg[data-ui=icon]]:m-0.5'
-          : 'px-[calc(--spacing(3.5)-1px)] py-[calc(--spacing(2.5)-1px)]',
+        isIconOnly ? 'p-2.5 [&_svg[data-ui=icon]]:m-0.5' : 'px-3.5 py-2.5',
       ],
     },
     color: {
@@ -306,21 +308,26 @@ const buttonGroupStyle = ({
     base: [
       'group inline-flex w-max items-center',
       '[&>*:not(:first-child):not(:last-child)]:rounded-none',
-      '[&>*[data-variant=solid]:not(:first-child)]:border-s-[lch(from_var(--btn-bg)_calc(l*0.85)_c_h)]',
+      '[&>*[data-variant=solid]:not(:first-child)]:border-s',
+      '[&>*[data-variant=solid]:not(:first-child)]:border-s-[oklch(from_var(--btn-bg)_calc(l*0.85)_c_h)]',
+
+      '[&:has([data-variant=outline])]:rounded-md',
+      '[&:has([data-variant=outline])]:shadow-outline',
+      'dark:[&:has([data-variant=outline])]:p-px',
+      'dark:[&:has([data-variant=outline])]:bg-white/5',
+      'dark:[&:has([data-variant=outline])]:rounded-[calc(var(--radius-md)+1px)]',
+      'dark:[&:has([data-variant=outline])>[data-variant=outline]]:[--color-border:oklch(1_0_0_/_0.05)]',
     ],
     horizontal: [
       '[&>*:first-child]:rounded-e-none',
       '[&>*:last-child]:rounded-s-none',
-      '[&>*:not(:last-child)]:border-e-0',
-      inline && 'shadow-xs [&>*:not(:first-child)]:border-s-0 *:shadow-none',
+      !inline && '[&:has([data-variant=outline])>*:not(:first-child)]:border-s',
     ],
     vertical: [
       'flex-col',
       '[&>*:first-child]:rounded-b-none',
       '[&>*:last-child]:rounded-t-none',
-      '[&>*:not(:last-child)]:border-b-0',
-
-      inline && 'shadow-xs [&>*:not(:first-child)]:border-t-0 *:shadow-none',
+      !inline && '[&:has([data-variant=outline])>*:not(:first-child)]:border-t',
     ],
   };
 

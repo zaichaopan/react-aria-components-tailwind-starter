@@ -43,7 +43,6 @@ import { NotificationBadge } from '../../src/notification-badge.tsx';
 import { composeRenderProps, LinkProps } from 'react-aria-components';
 import { twMerge } from 'tailwind-merge';
 import { CalendarIcon, ChevronRightIcon } from '../../src/icons.tsx';
-import { Separator } from '../../src/separator.tsx';
 
 const meta = {
   title: 'Layouts/Sidebar',

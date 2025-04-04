@@ -325,7 +325,7 @@ export const InputWithButton = () => {
 
         <Button
           variant="outline"
-          className="border-border rounded-s-none border-s-0 shadow-none"
+          className="border-input rounded-s-none border border-s-0 !shadow-none py-[9px] sm:py-[5px]"
         >
           Send
         </Button>

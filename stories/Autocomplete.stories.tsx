@@ -108,7 +108,7 @@ export function CommandPalette() {
             >
               <SearchInput
                 placeholder="Search commands…"
-                className="border-transparent ring-0"
+                className="border-transparent shadow-none ring-0"
               />
             </SearchField>
             <Menu
@@ -210,7 +210,7 @@ export function CommandJ() {
             <TextField aria-label="Search commands" autoFocus className="px-1">
               <Input
                 placeholder="Type a command or search…"
-                className="border-transparent ring-0"
+                className="border-transparent shadow-none  ring-0"
               />
             </TextField>
             <Menu

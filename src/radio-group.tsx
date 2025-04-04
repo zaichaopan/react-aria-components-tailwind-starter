@@ -131,13 +131,15 @@ export function Radio(props: RadioProps | CustomRenderRadioProps) {
             <div
               slot="radio"
               className={twMerge(
-                'border-input grid shrink-0 place-content-center rounded-full border',
+                'grid shrink-0 place-content-center rounded-full border',
                 radio ? '' : 'size-4.5 sm:size-4',
                 labelPlacement === 'end' ? 'me-3' : 'ms-3',
                 renderProps.isReadOnly && 'opacity-50',
                 renderProps.isInvalid &&
                   'border-destructive dark:border-destructive',
-                renderProps.isSelected && 'border-accent bg-accent',
+                renderProps.isSelected
+                  ? 'border-accent bg-accent'
+                  : 'dark:[--contract:1.1] border-[oklch(from_var(--color-input)_calc(l*var(--contract,0.9))_c_h)] dark:bg-white/5',
                 renderProps.isFocusVisible &&
                   'outline-ring outline outline-2 outline-offset-2',
               )}
