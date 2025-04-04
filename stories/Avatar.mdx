@@ -44,20 +44,16 @@ The `colorful` prop can be used to render colorful avatars.
 
 ### Brand Color
 
-Use the `background` prop to use a brand color for the fallback avatar background.
+Use the `background` prop to set the fallback avatar background.
 
 <Canvas of={AvatarStories.BrandColor} />
 
 
 ### Avatar badges
 
-Use the `AvatarBadge` component to add badges. Badges are positioned at the bottom right corner of the avatar. Badge icon should be wrapped within the `Icon` component and include an `aria-label` for accessibility.
+Use the `AvatarBadge` component to add badges. Badges are positioned at the bottom right corner of the avatar. Badge icon should be wrapped within the `Icon` component and include an `aria-label` for accessibility. `AvatarBadge` use <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/mask" target="_blank">**mask**</a> to make it work with different backgrounds.
 
 <Canvas of={AvatarStories.AvatarBadges} />
-
-`AvatarBadge` use <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/mask" target="_blank">**mask**</a> to make it work with different backgrounds.
-
-<Canvas of={AvatarStories.AvatarBadgesWithBackground} />
 
 ### Avatar badge sizes
 

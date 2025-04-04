@@ -135,11 +135,11 @@ export function Radio(props: RadioProps | CustomRenderRadioProps) {
                 radio ? '' : 'size-4.5 sm:size-4',
                 labelPlacement === 'end' ? 'me-3' : 'ms-3',
                 renderProps.isReadOnly && 'opacity-50',
-                renderProps.isInvalid &&
-                  'border-destructive dark:border-destructive',
                 renderProps.isSelected
                   ? 'border-accent bg-accent'
-                  : 'dark:[--contract:1.1] border-[oklch(from_var(--color-input)_calc(l*var(--contract,0.9))_c_h)] dark:bg-white/5',
+                  : 'border-[oklch(from_var(--color-input)_calc(l*var(--contract,0.9))_c_h)] dark:bg-white/5 dark:[--contract:1.1]',
+                renderProps.isInvalid &&
+                  'border-destructive dark:border-destructive',
                 renderProps.isFocusVisible &&
                   'outline-ring outline outline-2 outline-offset-2',
               )}

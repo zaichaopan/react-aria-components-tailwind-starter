@@ -58,9 +58,9 @@ export function NativeSelect({
         aria-labelledby={labelContext.id}
         aria-describedby={descriptionContext?.['aria-describedby']}
         className={twMerge(
-          'w-full',
+          'flex-1',
           'appearance-none bg-transparent',
-          'ps-2.5 pe-8 sm:pe-7.5',
+          'ps-2.5 pe-8.5 sm:pe-7.5',
           'py-[calc(--spacing(2.5)-1px)]',
           'sm:py-[calc(--spacing(1.5)-1px)]',
           'border-input rounded-md border shadow-xs outline-hidden',

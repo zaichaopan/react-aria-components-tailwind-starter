@@ -145,11 +145,11 @@ export function Checkbox(props: CheckboxProps | CustomRenderCheckboxProps) {
                 'flex shrink-0 items-center justify-center rounded-sm border shadow-xs',
                 labelPlacement === 'end' ? 'me-3' : 'ms-3',
                 renderProps.isReadOnly && 'opacity-50',
-                renderProps.isInvalid &&
-                  'border-destructive dark:border-destructive',
                 renderProps.isSelected || renderProps.isIndeterminate
                   ? 'border-accent bg-accent'
-                  : 'dark:[--contract:1.05] border-[oklch(from_var(--color-input)_calc(l*var(--contract,0.9))_c_h)] dark:bg-white/5',
+                  : 'border-[oklch(from_var(--color-input)_calc(l*var(--contract,0.9))_c_h)] dark:bg-white/5 dark:[--contract:1.05]',
+                renderProps.isInvalid &&
+                  'border-destructive dark:border-destructive',
                 renderProps.isFocusVisible &&
                   'outline-ring outline outline-2 outline-offset-2',
               ])}

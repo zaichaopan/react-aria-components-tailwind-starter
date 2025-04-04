@@ -71,7 +71,7 @@ export const ReadOnlyState = () => {
 export const ValidationErrors = () => {
   return (
     <Form>
-      <TextField isRequired>
+      <TextField isRequired className="[--space:--spacing(4)]">
         <Label>Email address</Label>
         <Description>
           Enter an email for us to contact you about your order.

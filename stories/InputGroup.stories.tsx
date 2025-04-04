@@ -1,5 +1,12 @@
 import { Group } from 'react-aria-components';
-import { MailIcon, MicIcon, SendHorizonalIcon } from 'lucide-react';
+import {
+  CircleHelpIcon,
+  CreditCardIcon,
+  KeyRoundIcon,
+  MailIcon,
+  MicIcon,
+  SearchIcon,
+} from 'lucide-react';
 import { Button } from '../src/button';
 import { docs } from '../.storybook/docs';
 import { Icon } from '../src/icon';
@@ -19,6 +26,9 @@ import {
   SelectListItemLabel,
   SelectPopover,
 } from '../src/select';
+import { CopyButton } from '../src/clipboard';
+import { Tooltip } from '../src/tooltip';
+import { twMerge } from 'tailwind-merge';
 
 const meta = {
   parameters: {
@@ -36,13 +46,13 @@ export const BasicExample = () => {
         <Label>Email</Label>
         <div className="group grid grid-cols-[auto_1fr]">
           <span className="col-start-1 row-start-1 grid place-content-center px-3 group-has-autofill:z-10">
-            <Icon className="text-muted/90 size-5 sm:size-4">
+            <Icon className="text-muted size-5 sm:size-4">
               <MailIcon />
             </Icon>
           </span>
           <Input
             type="email"
-            placeholder="john@example.com"
+            placeholder="m@example.com"
             className="col-span-full row-start-1 ps-9"
             autoComplete="email"
           />
@@ -56,9 +66,8 @@ export const BasicExample = () => {
             https://
           </span>
           <Input
-            type="text"
             placeholder="www.example.com"
-            className="col-span-full row-start-1 ps-16 sm:ps-[calc(theme(size.14)+4px)]"
+            className="col-span-full row-start-1 ps-16 sm:ps-[--spacing(15)]"
             autoComplete="email"
           />
         </div>
@@ -67,7 +76,7 @@ export const BasicExample = () => {
       <TextField>
         <Label>Company website</Label>
         <div className="flex">
-          <span className="text-foreground flex items-center rounded-s border border-e-0 px-2.5 text-base/6 sm:text-sm/6">
+          <span className="text-foreground border-input flex items-center rounded-s-md border border-e-0 px-2.5 text-base/6 shadow-xs sm:text-sm/6">
             https://
           </span>
           <Input
@@ -80,17 +89,16 @@ export const BasicExample = () => {
       </TextField>
 
       <TextField className="col-span-full row-start-1">
-        <Label>Email</Label>
+        <Label>Label</Label>
         <div className="group grid grid-cols-[1fr_auto]">
           <Input
-            type="email"
-            placeholder="john@example.com"
+            placeholder="4444-4444-4444-4444"
             className="col-span-full row-start-1 pe-10"
             autoComplete="email"
           />
           <span className="-col-end-1 row-start-1 grid place-content-center px-3">
             <Icon className="text-muted/90 size-5 sm:size-4">
-              <MailIcon />
+              <CreditCardIcon />
             </Icon>
           </span>
         </div>
@@ -100,7 +108,7 @@ export const BasicExample = () => {
         <Label>Price</Label>
         <div className="group grid grid-cols-[auto_1fr_auto]">
           <span className="text-muted col-start-1 row-start-1 grid place-content-center px-3 text-base/6 group-has-autofill:z-10 sm:text-sm/6">
-            €
+            $
           </span>
 
           <Input
@@ -108,7 +116,7 @@ export const BasicExample = () => {
             className="col-span-full row-start-1 ps-7 pe-10"
           />
           <span className="text-muted -col-end-1 row-start-1 grid place-content-center px-3 text-base/6 sm:text-sm/6">
-            EUR
+            USD
           </span>
         </div>
       </TextField>
@@ -121,19 +129,33 @@ export const InputWithNativeSelect = () => {
     <div className="flex w-72 flex-col gap-y-10">
       <LabeledGroup>
         <Label>Phone number</Label>
-        <Group className="group flex">
+        <Group
+          className={twMerge(
+            'group isolate flex shadow-xs',
+            '[&:has([data-ui=text-field][data-invalid]:not(:focus-within))_[data-ui=native-select-field]:not(:focus-within)_select]:border-destructive',
+
+            '[&:has([data-ui=text-field]_input:focus)]:ring-2',
+            '[&:has([data-ui=text-field]_input:focus)]:ring-ring',
+            '[&:has([data-ui=text-field]_input:focus)]:rounded-md',
+            '[&:has([data-ui=text-field]_input:focus)_[data-ui=native-select-field]_select]:border-transparent',
+
+            '[&:has([data-ui=text-field]:not([data-invalid])_input:not(:focus))>[data-ui=text-field]_input]:ring-0',
+            '[&:has([data-ui=text-field]:not([data-invalid])_input:not(:focus))>[data-ui=text-field]_input]:border-input',
+          )}
+        >
           <NativeSelectField>
-            <Label className="sr-only">Choose country</Label>
-            <NativeSelect className="w-max min-w-max rounded-e-none border-e-0 focus-visible:border-transparent focus-visible:ring-2">
+            <NativeSelect
+              aria-label="Choose country"
+              className="focus-visible:ring-ring rounded-e-none border-e-0 shadow-none focus-visible:rounded-md focus-visible:border-transparent focus-visible:ring-2"
+            >
               <option value="CA">CA</option>
               <option value="US">US</option>
             </NativeSelect>
           </NativeSelectField>
-          <TextField className="flex-1">
-            <Label className="sr-only">Phone number</Label>
+          <TextField className="flex-1" aria-label="Phone number">
             <Input
               placeholder="123-457-789"
-              className="rounded-s-none focus:rounded-s-md"
+              className="rounded-s-none border-s-0 ps-1 shadow-none focus:border-transparent focus:ring-0"
             />
           </TextField>
         </Group>
@@ -141,18 +163,32 @@ export const InputWithNativeSelect = () => {
 
       <LabeledGroup>
         <Label>Phone number</Label>
-        <Group className="group flex">
-          <TextField className="flex-1">
-            <Label className="sr-only">Phone number</Label>
+        <Group
+          className={twMerge(
+            'group isolate flex shadow-xs',
+            '[&:has([data-ui=text-field][data-invalid]:not(:focus-within))_[data-ui=native-select-field]:not(:focus-within)_select]:border-destructive',
+
+            '[&:has([data-ui=text-field]_input:focus)]:ring-2',
+            '[&:has([data-ui=text-field]_input:focus)]:ring-ring',
+            '[&:has([data-ui=text-field]_input:focus)]:rounded-md',
+
+            '[&:has([data-ui=text-field]_input:focus)_[data-ui=native-select-field]_select]:border-transparent',
+            '[&:has([data-ui=text-field]_input:focus)>[data-ui=text-field]_input]:ring-0',
+            '[&:has([data-ui=text-field]_input:focus)>[data-ui=text-field]_input]:border-transparent',
+          )}
+        >
+          <TextField className="flex-1" aria-label="Phone number">
             <Input
               placeholder="123-457-789"
-              className="rounded-e-none group-[&:has(select:focus)]:border-e-0 focus:rounded-e-md"
+              className="rounded-e-none border-e-0 shadow-none focus:ring-0"
             />
           </TextField>
 
           <NativeSelectField>
-            <Label className="sr-only">Choose country</Label>
-            <NativeSelect className="min-w-max rounded-s-none border-s-0 focus-visible:border-s">
+            <NativeSelect
+              aria-label="Choose country"
+              className="focus-visible:ring-ring rounded-s-none border-s-0 shadow-none focus-visible:rounded-md focus-visible:border-transparent focus-visible:ring-2"
+            >
               <option value="CA">CA</option>
               <option value="US">US</option>
             </NativeSelect>
@@ -162,24 +198,37 @@ export const InputWithNativeSelect = () => {
 
       <LabeledGroup>
         <Label>Price</Label>
-        <Group className="group flex">
-          <TextField className="flex-1">
-            <Label className="sr-only">Price</Label>
+        <Group
+          className={twMerge(
+            'group isolate flex shadow-xs',
+            '[&:has([data-ui=text-field][data-invalid]:not(:focus-within))_[data-ui=native-select-field]:not(:focus-within)_select]:border-destructive',
+
+            '[&:has([data-ui=text-field]_input:focus)]:ring-2',
+            '[&:has([data-ui=text-field]_input:focus)]:ring-ring',
+            '[&:has([data-ui=text-field]_input:focus)]:rounded-md',
+
+            '[&:has([data-ui=text-field]_input:focus)_[data-ui=native-select-field]_select]:border-transparent',
+            '[&:has([data-ui=text-field]_input:focus)>[data-ui=text-field]_input]:ring-0',
+            '[&:has([data-ui=text-field]_input:focus)>[data-ui=text-field]_input]:border-transparent',
+          )}
+        >
+          <TextField className="flex-1" aria-label="Price">
             <div className="group grid grid-cols-[auto_1fr]">
               <span className="text-muted col-start-1 row-start-1 grid place-content-center px-3 text-base/6 group-has-autofill:z-10 sm:text-sm/6">
                 $
               </span>
-
               <Input
                 placeholder="0.00"
-                className="col-span-full row-start-1 rounded-e-none ps-7 pe-10 group-[&:has(select:focus)]:border-e-0 focus:rounded-e-md"
+                className="col-span-full row-start-1 rounded-e-none border-e-0 ps-7 pe-10 shadow-none focus:rounded-e-md focus:ring-0"
               />
             </div>
           </TextField>
 
           <NativeSelectField>
-            <Label className="sr-only">Choose currency</Label>
-            <NativeSelect className="min-w-max rounded-s-none border-s-0 focus-visible:border-s">
+            <NativeSelect
+              aria-label="Choose currency"
+              className="focus-visible:ring-ring min-w-max rounded-s-none border-s-0 shadow-none focus-visible:rounded-md focus-visible:border-transparent focus-visible:ring-2"
+            >
               <option value="US">US</option>
               <option value="CA">CA</option>
             </NativeSelect>
@@ -195,10 +244,27 @@ export const InputWithSelect = () => {
     <div className="flex w-80 flex-col space-y-10">
       <LabeledGroup>
         <Label>Phone</Label>
-        <Group className="group flex">
-          <Select defaultSelectedKey="ca" className="w-max min-w-max">
-            <Label className="sr-only">Country</Label>
-            <SelectButton className="rounded-e-none border-e-0 focus-visible:border-e"></SelectButton>
+
+        <Group
+          className={twMerge(
+            'group isolate flex shadow-xs',
+            '[&:has([data-ui=text-field][data-invalid]:not(:focus-within))_[data-ui=select]_button:not(:focus-visible)]:border-destructive',
+
+            '[&:has([data-ui=text-field]_input:focus)]:ring-2',
+            '[&:has([data-ui=text-field]_input:focus)]:ring-ring',
+            '[&:has([data-ui=text-field]_input:focus)]:rounded-md',
+
+            '[&:has([data-ui=text-field]_input:focus)_[data-ui=select]_button]:border-transparent',
+            '[&:has([data-ui=text-field]_input:focus)>[data-ui=text-field]_input]:ring-0',
+            '[&:has([data-ui=text-field]_input:focus)>[data-ui=text-field]_input]:border-transparent',
+          )}
+        >
+          <Select
+            defaultSelectedKey="ca"
+            className="w-max min-w-max"
+            aria-label="Country"
+          >
+            <SelectButton className="rounded-e-none border-e-0 shadow-none focus-visible:rounded-md focus-visible:border-transparent focus-visible:ring-2"></SelectButton>
 
             <SelectPopover placement="bottom end" className="w-36">
               <SelectListBox>
@@ -216,11 +282,10 @@ export const InputWithSelect = () => {
             </SelectPopover>
           </Select>
 
-          <TextField className="flex-1">
-            <Label className="sr-only">Phone number</Label>
+          <TextField className="flex-1" aria-label="Phone number">
             <Input
               placeholder="+1 (123) 457-7890"
-              className="rounded-s-none group-[&:has(button:focus)]:border-s-0 focus:rounded-s-md"
+              className="rounded-s-none border-s-0 ps-1 shadow-none focus:rounded-s-md focus:ring-0"
             />
           </TextField>
         </Group>
@@ -228,18 +293,31 @@ export const InputWithSelect = () => {
 
       <LabeledGroup>
         <Label>Phone</Label>
-        <Group className="group flex">
+        <Group
+          className={twMerge(
+            'group isolate flex shadow-xs',
+            '[&:has([data-ui=text-field][data-invalid]:not(:focus-within))_[data-ui=select]_button:not(:focus-visible)]:border-destructive',
+
+            '[&:has([data-ui=text-field]_input:focus)]:ring-2',
+            '[&:has([data-ui=text-field]_input:focus)]:ring-ring',
+            '[&:has([data-ui=text-field]_input:focus)]:rounded-md',
+
+            '[&:has([data-ui=text-field]_input:focus)_[data-ui=select]_button]:border-transparent',
+            '[&:has([data-ui=text-field]_input:focus)>[data-ui=text-field]_input]:ring-0',
+            '[&:has([data-ui=text-field]_input:focus)>[data-ui=text-field]_input]:border-transparent',
+          )}
+        >
           <TextField className="flex-1">
             <Label className="sr-only">Phone number</Label>
             <Input
               placeholder="+1 (123) 457-7890"
-              className="rounded-e-none group-[&:has(button:focus)]:border-e-0 focus:rounded-e-md"
+              className="rounded-e-none border-e-0 shadow-none focus:ring-0"
             />
           </TextField>
 
           <Select defaultSelectedKey="ca" className="w-max min-w-max">
             <Label className="sr-only">Country</Label>
-            <SelectButton className="rounded-s-none border-s-0 focus-visible:border-s"></SelectButton>
+            <SelectButton className="rounded-s-none border-s-0 shadow-none focus-visible:rounded-md focus-visible:border-transparent focus-visible:ring-2"></SelectButton>
 
             <SelectPopover placement="bottom end" className="w-36">
               <SelectListBox>
@@ -261,10 +339,30 @@ export const InputWithSelect = () => {
 
       <LabeledGroup>
         <Label>Phone Number</Label>
-        <Group className="group flex">
-          <Select defaultSelectedKey="ca" className="w-max min-w-max">
-            <Label className="sr-only">Phone Country Code</Label>
-            <SelectButton className="rounded-e-none border-e-0 focus-visible:border-e"></SelectButton>
+        <Group
+          // className="group [&:has([data-ui=text-field][data-invalid]:not(:focus-within))_:is([data-ui=select]_button,[data-ui=native-select-field]:not(:focus-within)_select):not(:focus-visible)]:border-destructive isolate flex shadow-xs"
+
+          className={twMerge(
+            'group isolate flex shadow-xs',
+            '[&:has([data-ui=text-field][data-invalid]:not(:focus-within))_:is([data-ui=select]_button,[data-ui=native-select-field]:not(:focus-within)_select):not(:focus-visible)]:border-destructive',
+
+            '[&:has([data-ui=text-field]_input:focus)]:ring-2',
+            '[&:has([data-ui=text-field]_input:focus)]:ring-ring',
+            '[&:has([data-ui=text-field]_input:focus)]:rounded-md',
+
+            '[&:has([data-ui=text-field]_input:focus)_[data-ui=select]_button]:border-transparent',
+            '[&:has([data-ui=text-field]_input:focus)_[data-ui=native-select-field]_select]:border-transparent',
+
+            '[&:has([data-ui=text-field]_input:focus)>[data-ui=text-field]_input]:ring-0',
+            '[&:has([data-ui=text-field]_input:focus)>[data-ui=text-field]_input]:border-transparent',
+          )}
+        >
+          <Select
+            defaultSelectedKey="ca"
+            className="w-max min-w-max"
+            aria-label="Phone Country Code"
+          >
+            <SelectButton className="rounded-e-none border-e-0 shadow-none focus-visible:rounded-md focus-visible:border-transparent focus-visible:ring-2"></SelectButton>
 
             <SelectPopover className="w-36" placement="bottom start">
               <SelectListBox>
@@ -288,19 +386,18 @@ export const InputWithSelect = () => {
             </SelectPopover>
           </Select>
 
-          <TextField>
-            <Label className="sr-only">Phone number</Label>
+          <TextField aria-label="Phone number">
             <Input
               placeholder="+1 (123) 457-7890"
-              className="rounded-none group-[&:has(button:focus)]:border-s-0 group-[&:has(select:focus)]:border-e-0 focus:rounded-md"
+              className="rounded-none border-x-0 ps-0 shadow-none focus:rounded-md focus:ring-0"
             />
           </TextField>
 
           <NativeSelectField>
-            <Label className="sr-only">Work phone number type</Label>
             <NativeSelect
+              aria-label="Work phone number type"
               name="work_phone_number_type"
-              className="min-w-max rounded-s-none border-s-0 focus-visible:border-s"
+              className="min-w-max rounded-s-none border-s-0 shadow-none focus-visible:rounded-md focus-visible:border-transparent focus-visible:ring-2"
             >
               <option value="Mobile">Mobile</option>
               <option value="Phone">Phone</option>
@@ -310,6 +407,57 @@ export const InputWithSelect = () => {
           </NativeSelectField>
         </Group>
       </LabeledGroup>
+
+      <LabeledGroup>
+        <Label>Phone Number</Label>
+        <Group
+          className={twMerge(
+            'group isolate flex shadow-xs',
+            '[&:has([data-ui=text-field][data-invalid]:not(:focus-within))_[data-ui=select]_button:not(:focus-visible)]:border-destructive',
+
+            '[&:has([data-ui=text-field]_input:focus)]:ring-2',
+            '[&:has([data-ui=text-field]_input:focus)]:ring-ring',
+            '[&:has([data-ui=text-field]_input:focus)]:rounded-md',
+
+            '[&:has([data-ui=text-field]_input:focus)_[data-ui=select]_button]:border-transparent',
+            '[&:has([data-ui=text-field]_input:focus)>[data-ui=text-field]_input]:ring-0',
+            '[&:has([data-ui=text-field]_input:focus)>[data-ui=text-field]_input]:border-transparent',
+          )}
+        >
+          <Select
+            defaultSelectedKey="ca"
+            className="w-max min-w-max"
+            aria-label="Phone Country Code"
+          >
+            <SelectButton className="rounded-e-none border-e-0 shadow-none focus-visible:rounded-md focus-visible:border-transparent focus-visible:ring-2"></SelectButton>
+
+            <SelectPopover className="w-36" placement="bottom start">
+              <SelectListBox>
+                <SelectListItem id="ca" textValue="Canada">
+                  CA
+                </SelectListItem>
+                <SelectListItem id="us" textValue="United States">
+                  US
+                </SelectListItem>
+              </SelectListBox>
+            </SelectPopover>
+          </Select>
+
+          <TextField className="flex-1" aria-label="Phone number">
+            <div className="group grid grid-cols-[auto_1fr]">
+              <span className="text-foreground col-start-1 row-start-1 grid place-content-center text-base/6 group-has-autofill:z-10 sm:text-sm/6">
+                +1
+              </span>
+
+              <Input
+                placeholder="Enter your phone number"
+                className="col-span-full row-start-1 rounded-s-none border-s-0 ps-6 shadow-none focus:rounded-md focus:ring-0"
+                autoComplete="email"
+              />
+            </div>
+          </TextField>
+        </Group>
+      </LabeledGroup>
     </div>
   );
 };
@@ -317,68 +465,52 @@ export const InputWithSelect = () => {
 export const InputWithButton = () => {
   return (
     <div className="flex flex-col gap-y-6">
-      <div className="group flex">
-        <TextField className="flex-1">
-          <Label className="sr-only">Email</Label>
-          <Input type="email" placeholder="Email" className="rounded-e-none" />
-        </TextField>
-
-        <Button
-          variant="outline"
-          className="border-input rounded-s-none border border-s-0 !shadow-none py-[9px] sm:py-[5px]"
-        >
-          Send
-        </Button>
-      </div>
-
-      <div className="group flex">
-        <TextField className="flex-1">
-          <Label className="sr-only">Email</Label>
-          <div className="group grid grid-cols-[auto_1fr]">
-            <span className="col-start-1 row-start-1 grid place-content-center px-3 group-has-autofill:z-10">
-              <Icon className="text-muted/90 size-5 sm:size-4">
-                <MailIcon />
-              </Icon>
-            </span>
-            <Input
-              type="email"
-              placeholder="john@example.com"
-              className="col-span-full row-start-1 rounded-e-none ps-9"
-              autoComplete="email"
-            />
-          </div>
-        </TextField>
-
-        <Button className="border-border rounded-s-none border-s-0 shadow-none">
-          <Icon aria-label="Send">
-            <SendHorizonalIcon />
-          </Icon>
-          Invite
-        </Button>
-      </div>
-
-      <div className="group flex gap-x-2 rounded-lg border p-1.5">
-        <TextField className="w-72 flex-1">
-          <Label className="sr-only">Email</Label>
-
+      <div className="group border-input flex gap-x-2 rounded-md border shadow-xs">
+        <TextField className="flex-1" aria-label="Email">
           <Input
             type="email"
-            placeholder="Email Address"
-            className="focus:border-ring border-transparent"
-            autoComplete="email"
+            placeholder="Your email address"
+            className="border-none ring-0 shadow-none"
           />
         </TextField>
 
-        <Button>Join Waitlist</Button>
+        <Button variant="plain" className="rounded-s-none border-s">
+          Subscribe
+        </Button>
       </div>
 
       <div className="group flex">
-        <TextField className="flex-1">
-          <Label>Search</Label>
+        <TextField className="flex-1" aria-label="Key">
           <div className="group grid grid-cols-[auto_1fr_auto]">
             <span className="col-start-1 row-start-1 grid place-content-center px-3 group-has-autofill:z-10">
-              <Icon className="text-muted/90 size-5 sm:size-4">
-                <MailIcon />
+              <Icon className="text-muted size-5 sm:size-4">
+                <KeyRoundIcon />
+              </Icon>
+            </span>
+
+            <Input
+              type="text"
+              className="col-span-full row-start-1 px-9"
+              value="X7K9P2M4Q8R5T3V6W9Y1Z0"
+            />
+
+            <CopyButton
+              size="sm"
+              isIconOnly
+              variant="plain"
+              className="[&:not(:hover)]:text-muted -col-end-1 row-start-1 me-1 self-center"
+              copyValue="X7K9P2M4Q8R5T3V6W9Y1Z0"
+            ></CopyButton>
+          </div>
+        </TextField>
+      </div>
+
+      <div className="group flex">
+        <TextField className="flex-1" aria-label="Search">
+          <div className="group grid grid-cols-[auto_1fr_auto]">
+            <span className="col-start-1 row-start-1 grid place-content-center px-3 group-has-autofill:z-10">
+              <Icon className="text-muted size-5 sm:size-4">
+                <SearchIcon />
               </Icon>
             </span>
 
@@ -392,10 +524,34 @@ export const InputWithButton = () => {
               variant="plain"
               isIconOnly
               size="sm"
-              className="-col-end-1 row-start-1 me-1 self-center"
+              className="[&:not(:hover)]:text-muted -col-end-1 row-start-1 me-1 self-center"
             >
               <Icon aria-label="Announce">
                 <MicIcon />
+              </Icon>
+            </Button>
+          </div>
+        </TextField>
+      </div>
+
+      <div className="group flex">
+        <TextField className="flex-1" aria-label="Account">
+          <div className="group grid grid-cols-[1fr_auto]">
+            <Input
+              type="text"
+              className="col-span-full row-start-1 pe-9"
+              placeholder="Account number"
+            />
+
+            <Button
+              variant="plain"
+              isIconOnly
+              size="sm"
+              tooltip={<Tooltip>This is a simple tooltip</Tooltip>}
+              className="[&:not(:hover)]:text-muted -col-end-1 row-start-1 me-1 self-center"
+            >
+              <Icon aria-label="Help">
+                <CircleHelpIcon />
               </Icon>
             </Button>
           </div>
