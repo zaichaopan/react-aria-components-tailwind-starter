@@ -19,11 +19,11 @@ const GRADIENTS: Array<[string, string]> = [
 export type FallbackAvatarProps = { fallback?: 'initials' | 'icon' } & (
   | {
       colorful?: boolean;
-      fallbackBackground?: never;
+      background?: never;
     }
   | {
       colorful?: never;
-      fallbackBackground?: string | [string, string];
+      background?: string;
     }
 );
 
@@ -62,21 +62,19 @@ export function getFallbackAvatarDataUrl({
   alt,
   fallback,
   colorful,
-  fallbackBackground,
+  background,
 }: {
   alt: string;
 } & FallbackAvatarProps) {
   const initials = getInitials(alt);
 
-  const bg = fallbackBackground
-    ? Array.isArray(fallbackBackground)
-      ? `linear-gradient(135deg, ${fallbackBackground[0]}, ${fallbackBackground[1]})`
-      : fallbackBackground
-    : `linear-gradient(135deg, ${getInitialsGradient(alt, colorful).join(', ')})`;
+  background =
+    background ??
+    `linear-gradient(135deg, ${getInitialsGradient(alt, colorful).join(', ')})`;
 
   return fallback === 'icon'
-    ? getFallbackIconDateUrl(bg)
-    : getFallbackInitialsDataUrl(bg, initials);
+    ? getFallbackIconDateUrl(background)
+    : getFallbackInitialsDataUrl(background, initials);
 }
 
 function getFallbackIconDateUrl(bg: string) {

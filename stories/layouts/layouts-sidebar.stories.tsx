@@ -122,7 +122,7 @@ function HamburgerMenu() {
                     <Avatar
                       alt="Acme"
                       className="size-6 [--border-radius:0.25rem]"
-                      fallbackBackground="black"
+                      background="black"
                     />
                     <span className="truncate"> Acme, Inc</span>
                   </MenuButton>

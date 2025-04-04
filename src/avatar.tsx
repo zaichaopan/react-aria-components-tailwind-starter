@@ -20,7 +20,7 @@ export function Avatar({
   alt,
   fallback = 'initials',
   colorful,
-  fallbackBackground,
+  background,
   ...props
 }: AvatarProps) {
   const badgeId = React.useId();
@@ -52,9 +52,7 @@ export function Avatar({
               ? getFallbackAvatarDataUrl({
                   fallback,
                   alt,
-                  ...(colorful === undefined
-                    ? { fallbackBackground }
-                    : { colorful }),
+                  ...(colorful === undefined ? { background } : { colorful }),
                 })
               : src
           }

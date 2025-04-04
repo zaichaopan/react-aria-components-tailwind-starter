@@ -129,7 +129,7 @@ export const Colorful = () => {
 };
 
 export const BrandColor = () => {
-  return <Avatar alt="A" fallbackBackground="#007bff" />;
+  return <Avatar alt="A" background="#007bff" />;
 };
 
 export const AvatarBadges = () => {
