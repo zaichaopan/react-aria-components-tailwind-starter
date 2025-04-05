@@ -11,7 +11,7 @@ export function EmptyState({
     <div
       {...props}
       className={twMerge(
-        'flex h-full w-full flex-col items-center justify-center gap-1 p-4 text-center @container',
+        '@container flex h-full w-full flex-col items-center justify-center gap-1 p-4 text-center',
         className,
       )}
     />
@@ -28,11 +28,11 @@ export function EmptyStateIcon({
       {...props}
       className={twMerge(
         'mb-2 flex max-w-32 items-center justify-center @md:max-w-40',
-        '[&>svg:not([class*=text-])]:text-muted [&>svg]:h-auto [&>svg]:min-w-12 [&>svg]:max-w-full',
+        '[&>svg:not([class*=text-])]:text-muted [&>svg]:h-auto [&>svg]:max-w-full [&>svg]:min-w-12',
         className,
       )}
     >
-    {children}
+      {children}
     </div>
   );
 }
@@ -40,12 +40,23 @@ export function EmptyStateIcon({
 export function EmptyStateHeading({
   className,
   level = 2,
+  displayLevel,
+  elementType,
   ...props
 }: HeadingProps) {
+  if (elementType && !displayLevel) {
+    displayLevel = 2;
+  }
+  
   return (
     <Heading
       {...props}
-      level={level}
+      displayLevel={displayLevel}
+      {...(elementType
+        ? { elementType }
+        : {
+            level: level,
+          })}
       className={twMerge('text-balance', className)}
     />
   );

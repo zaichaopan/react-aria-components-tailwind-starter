@@ -117,7 +117,9 @@ const buttonStyle = ({
       success: '[--btn-color:var(--color-success)]',
     },
     iconColor: {
-      base: '[&:not(:hover)_svg[data-ui=icon]:not([class*=text-])]:text-[var(--icon-color)]',
+      base: isPending
+        ? '[&_svg[data-ui=icon]:not([class*=text-])]:text-[var(--icon-color)]'
+        : '[&:not(:hover)_svg[data-ui=icon]:not([class*=text-])]:text-[var(--icon-color)]',
       solid: !isIconOnly && '[--icon-color:var(--btn-color)]/75',
       outline: !isIconOnly && '[--icon-color:var(--color-muted)]/50',
       plain: !isIconOnly && '[--icon-color:var(--color-muted)]/50',

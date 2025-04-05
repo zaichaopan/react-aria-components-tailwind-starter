@@ -161,18 +161,20 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
         ref={ref}
         className={composeRenderProps(
           props.className,
-          (className, renderProps) =>
-            twMerge(
-              'border border-input shadow-xs w-full rounded-md border outline-hidden',
+          (className, renderProps) => {
+            return twMerge(
+              'border-input w-full rounded-md border shadow-xs outline-hidden',
               'px-3 py-[calc(--spacing(2.5)-1px)] sm:py-[calc(--spacing(1.5)-1px)]',
               'placeholder:text-muted text-base/6 sm:text-sm/6',
-              '[&[readonly]]:bg-zinc-50',
-              'dark:[&[readonly]]:bg-white/10',
+              'dark:shadow-none [&[readonly]]:bg-zinc-800/5 dark:[&[readonly]]:bg-white/10',
               renderProps.isDisabled && 'opacity-50',
               renderProps.isInvalid && 'border-destructive',
-              renderProps.isFocused && 'border-ring ring-ring ring-1',
+              renderProps.isFocused
+                ? 'border-ring ring-ring ring-1'
+                : '[&[readonly]]:border-transparent',
               className,
-            ),
+            );
+          },
         )}
       />
     );
@@ -185,13 +187,15 @@ export function TextArea(props: RACTextAreaProps) {
       {...props}
       className={composeRenderProps(props.className, (className, renderProps) =>
         twMerge(
-          'border-input w-full shadow-xs rounded-md border px-3 py-1 outline-hidden',
+          'border-input w-full rounded-md border px-3 py-1 shadow-xs outline-hidden',
           'placeholder:text-muted text-base/6 sm:text-sm/6',
           '[&[readonly]]:bg-zinc-50',
-          'dark:[&[readonly]]:bg-white/10',
+          '[&[readonly]]:bg-zinc-800/5 dark:[&[readonly]]:bg-white/10',
           renderProps.isDisabled && 'opacity-50',
           renderProps.isInvalid && 'border-destructive',
-          renderProps.isFocused && 'border-ring ring-ring ring-1',
+          renderProps.isFocused
+            ? 'border-ring ring-ring ring-1'
+            : '[&[readonly]]:border-transparent',
           className,
         ),
       )}

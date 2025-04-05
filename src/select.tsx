@@ -42,10 +42,10 @@ export function SelectButton(props: {
       data-ui="control"
       className={composeRenderProps(
         props.className,
-        (className, { isFocusVisible, isPressed, isHovered, isDisabled }) =>
-          twMerge(
-            'group border-input relative flex w-full cursor-default items-center gap-x-1 rounded-md border text-start shadow-xs outline-hidden transition',
-            'ps-3 pe-2.5',
+        (className, { isFocusVisible, isPressed, isHovered, isDisabled }) => {
+          return twMerge(
+            'group border-input relative flex w-full cursor-default items-center gap-x-2 rounded-md border text-start shadow-xs outline-hidden transition',
+            'ps-3.5 pe-2.5',
             'py-[calc(--spacing(2.5)-1px)]',
             'sm:py-[calc(--spacing(1.5)-1px)]',
             'text-base/6 sm:text-sm/6',
@@ -57,7 +57,8 @@ export function SelectButton(props: {
             isFocusVisible &&
               'border-ring ring-ring group-data-invalid:border-ring ring-1',
             className,
-          ),
+          );
+        },
       )}
     >
       {!!props.children && (
@@ -70,7 +71,7 @@ export function SelectButton(props: {
           // Selected Item style
           '*:data-[ui=content]:flex',
           '*:data-[ui=content]:items-center',
-          '*:data-[ui=content]:gap-x-2',
+          '*:data-[ui=content]:gap-x-1',
           '[&>[data-ui=content]_[data-ui=description]]:sr-only',
           '[&>[data-ui=content]:not(:hover)_[data-ui=icon]:not([class*=text-])]:text-muted',
           '[&>[data-ui=content]_[data-ui=icon]:not([class*=size-])]:size-5',
@@ -79,8 +80,8 @@ export function SelectButton(props: {
           'sm:[&>[data-ui=content]_[role=img]]:size-5',
         ])}
       />
-      <Icon className="group-[&:not(:hover)]:text-muted/50 size-5 sm:size-4">
-        <ChevronDownIcon />
+      <Icon className="group-[&:not(:hover)]:text-muted/50 size-5 sm:size-3.5">
+        <ChevronDownIcon strokeWidth="2.5" />
       </Icon>
     </Button>
   );

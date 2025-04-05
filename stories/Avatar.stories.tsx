@@ -135,7 +135,7 @@ export const BrandColor = () => {
 export const AvatarBadges = () => {
   return (
     <div className="flex flex-col gap-6">
-      <div className="flex gap-4">
+      <div className="flex gap-4 p-6">
         <Avatar
           src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8aGVhZHNob3R8ZW58MHx8MHx8fDA%3D"
           alt="M M"
@@ -166,14 +166,8 @@ export const AvatarBadges = () => {
           />
         </Avatar>
       </div>
-    </div>
-  );
-};
 
-export const AvatarBadgesWithBackground = () => {
-  return (
-    <div className="flex flex-col gap-6 bg-linear-to-bl from-sky-500 to-indigo-500 p-6">
-      <div className="flex gap-4">
+      <div className="flex gap-4 rounded-lg bg-linear-to-bl from-sky-500 to-indigo-500 p-6">
         <Avatar
           src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8aGVhZHNob3R8ZW58MHx8MHx8fDA%3D"
           alt="M M"

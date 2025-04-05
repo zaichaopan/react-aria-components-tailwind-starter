@@ -76,7 +76,7 @@ export const OneColumn = () => {
                 className="group grid grid-cols-[auto_1fr]"
               >
                 <span className="col-start-1 row-start-1 grid place-content-center px-3 group-has-autofill:z-10">
-                  <Icon className="size-5 text-muted/90 sm:size-4">
+                  <Icon className="text-muted/90 size-5 sm:size-4">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="1em"
@@ -127,7 +127,7 @@ export const OneColumn = () => {
             <TextField className="sm:col-span-4" name="company_website">
               <Label>Company website</Label>
               <div className="flex">
-                <span className="flex items-center rounded-s border border-e-0 px-2.5 text-base/6 text-foreground sm:text-sm/6">
+                <span className="text-foreground flex items-center rounded-s border border-e-0 px-2.5 text-base/6 sm:text-sm/6">
                   https://
                 </span>
                 <Input
@@ -168,7 +168,7 @@ export const OneColumn = () => {
               <Group className="group flex">
                 <Select defaultSelectedKey="ca" className="w-max min-w-max">
                   <Label className="sr-only">Phone Country Code</Label>
-                  <SelectButton className="rounded-e-none border-e-0 focus-visible:border-e"></SelectButton>
+                  <SelectButton className="rounded-e-none border-e-0 focus-visible:border-transparent focus-visible:ring-2"></SelectButton>
 
                   <SelectPopover className="w-36" placement="bottom start">
                     <SelectListBox>
@@ -192,19 +192,18 @@ export const OneColumn = () => {
                   </SelectPopover>
                 </Select>
 
-                <TextField>
-                  <Label className="sr-only">Phone number</Label>
+                <TextField aria-label="Phone number">
                   <Input
                     placeholder="+1 (123) 457-7890"
-                    className="rounded-none focus:rounded-md group-[&:has(button:focus)]:border-s-0 group-[&:has(select:focus)]:border-e-0"
+                    className="[&:not(:focus)]:rounded-none"
                   />
                 </TextField>
 
                 <NativeSelectField>
-                  <Label className="sr-only">Work phone number type</Label>
                   <NativeSelect
+                    aria-label="Work phone number type"
                     name="work_phone_number_type"
-                    className="min-w-max rounded-s-none border-s-0 focus-visible:border-s"
+                    className="rounded-s-none border-s-0 data-focus-visible:border-transparent data-focus-visible:ring-2"
                   >
                     <option value="Mobile">Mobile</option>
                     <option value="Phone">Phone</option>
