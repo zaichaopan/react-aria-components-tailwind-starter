@@ -73,7 +73,10 @@ const buttonStyle = ({
       base: 'group inline-flex gap-x-2 justify-center items-center font-semibold text-base/6 sm:text-sm/6',
       solid: [
         'bg-[var(--btn-bg)]',
-        '[--btn-color:lch(from_var(--btn-bg)_calc((49.44_-_l)_*_infinity)_0_0)]',
+
+        color === 'success' || color === 'destructive'
+          ? '[--btn-color:white]'
+          : '[--btn-color:lch(from_var(--btn-bg)_calc((49.44_-_l)_*_infinity)_0_0)]',
         'text-[var(--btn-color)]',
         !isDisabled && 'hover:opacity-90',
       ],
@@ -82,7 +85,7 @@ const buttonStyle = ({
         'shadow-outline',
         'in-[[data-ui=button-group]]:shadow-none',
         'dark:in-[[data-ui=button-group]]:shadow-none',
-        'dark:bg-white/5',
+        'bg-white dark:bg-white/5',
         !isDisabled && 'hover:bg-zinc-50 dark:hover:bg-zinc-800',
       ],
       plain: [
