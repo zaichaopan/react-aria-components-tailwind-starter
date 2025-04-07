@@ -134,6 +134,33 @@ export const ItemWithDescription = () => {
   );
 };
 
+export const DestructiveItem = () => {
+  return (
+    <Select placeholder="Select status&hellip;">
+      <Label>Project status</Label>
+      <Description>
+        This will be visible to clients involved in the project.
+      </Description>
+      <SelectButton />
+      <SelectPopover>
+        <SelectListBox>
+          <SelectListItem id="1" textValue="Backlog">
+            <SelectListItemLabel>Backlog</SelectListItemLabel>
+            <SelectListItemDescription className="block w-full">
+              A backlog is a list of tasks waiting to be prioritized and
+              completed.
+            </SelectListItemDescription>
+          </SelectListItem>
+          <SelectListItem id="2">In Progress</SelectListItem>
+          <SelectListItem id="3">In Review</SelectListItem>
+          <SelectListItem id="4">Done</SelectListItem>
+          <SelectListItem id="5" destructive>Won't do</SelectListItem>
+        </SelectListBox>
+      </SelectPopover>
+    </Select>
+  );
+};
+
 export const Sections = () => {
   const placements = ['start', 'end'] as const;
 

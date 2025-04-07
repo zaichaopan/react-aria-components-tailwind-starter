@@ -13,7 +13,7 @@ import { AsChildProps, Slot } from './slot';
 import { SpinnerIcon } from './icons';
 import { NonFousableTooltipTarget, TooltipTrigger } from './tooltip';
 
-type Color = 'accent' | 'success' | 'destructive';
+type Color = 'accent' | 'red' | 'green';
 
 type Size = 'sm' | 'lg';
 
@@ -73,8 +73,7 @@ const buttonStyle = ({
       base: 'group inline-flex gap-x-2 justify-center items-center font-semibold text-base/6 sm:text-sm/6',
       solid: [
         'bg-[var(--btn-bg)]',
-
-        color === 'success' || color === 'destructive'
+        color === 'red' || color === 'green'
           ? '[--btn-color:white]'
           : '[--btn-color:lch(from_var(--btn-bg)_calc((49.44_-_l)_*_infinity)_0_0)]',
         'text-[var(--btn-color)]',
@@ -116,8 +115,8 @@ const buttonStyle = ({
     color: {
       foreground: '[--btn-color:var(--color-foreground)]',
       accent: '[--btn-color:var(--color-accent)]',
-      destructive: '[--btn-color:var(--color-destructive)]',
-      success: '[--btn-color:var(--color-success)]',
+      red: '[--btn-color:var(--color-red-600)]',
+      green: '[--btn-color:var(--color-green-600)]',
     },
     iconColor: {
       base: isPending
@@ -129,8 +128,8 @@ const buttonStyle = ({
     },
     backgroundColor: {
       accent: '[--btn-bg:var(--color-accent)]',
-      destructive: '[--btn-bg:var(--color-destructive)]',
-      success: '[--btn-bg:var(--color-success)]',
+      red: '[--btn-bg:var(--color-red-600)]',
+      green: '[--btn-bg:var(--color-green-600)]',
     },
   };
 

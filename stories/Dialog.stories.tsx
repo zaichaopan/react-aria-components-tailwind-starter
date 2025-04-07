@@ -105,7 +105,7 @@ export const AlertDialogs = () => {
 
   return (
     <>
-      <Button color="destructive" onPress={() => setIsOpen(true)}>
+      <Button color="red" onPress={() => setIsOpen(true)}>
         Revoke access
       </Button>
       <Modal isOpen={isOpen} onOpenChange={setIsOpen}>
@@ -117,7 +117,7 @@ export const AlertDialogs = () => {
           </DialogBody>
           <DialogFooter>
             <DialogCloseButton>Cancel</DialogCloseButton>
-            <Button color="destructive" onPress={() => setIsOpen(false)}>
+            <Button color="red" onPress={() => setIsOpen(false)}>
               Revoke access
             </Button>
           </DialogFooter>
@@ -198,7 +198,7 @@ export const CloseConfirmation = () => {
               Go back
             </Button>
             <Button
-              color="destructive"
+              color="red"
               onPress={() => {
                 setIsConfirmationDialogOpen(false);
                 setIsEditDialogOpen(false);
@@ -560,7 +560,6 @@ export const Footers = () => {
             <Button
               onPress={() => setIsDialogWithCheckboxOpen(false)}
               variant="solid"
-              color="success"
             >
               Set to Active
             </Button>
@@ -804,7 +803,7 @@ export const MinHeight = () => {
           <DialogCloseButton />
           <DialogBody className="overflow-hidden px-0">
             <Tabs className="overflow-auto p-0 pb-0 text-base/6 sm:text-sm/6">
-              <div className="sticky top-0 bg-background">
+              <div className="bg-background sticky top-0">
                 <TabList
                   aria-label="History of Ancient Rome"
                   className="space-x-4 px-6"

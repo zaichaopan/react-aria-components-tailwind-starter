@@ -63,7 +63,7 @@ export function Label({
         'group-disabled:opacity-50',
         displayLevels[displayLevel],
         requiredHint &&
-          "after:text-destructive after:ms-0.5 after:content-['*']",
+          "after:text-red-600 after:ms-0.5 after:content-['*']",
         props.className,
       )}
     />
@@ -147,7 +147,7 @@ export function FieldError(props: FieldErrorProps) {
       {...props}
       data-ui="errorMessage"
       className={composeRenderProps(props.className, (className) =>
-        twMerge('text-destructive block text-base/6 sm:text-sm/6', className),
+        twMerge('text-red-600 block text-base/6 sm:text-sm/6', className),
       )}
     />
   );
@@ -168,7 +168,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
               'placeholder:text-muted text-base/6 sm:text-sm/6',
               'dark:shadow-none [&[readonly]]:bg-zinc-800/5 dark:[&[readonly]]:bg-white/10',
               renderProps.isDisabled && 'opacity-50',
-              renderProps.isInvalid && 'border-destructive',
+              renderProps.isInvalid && 'border-red-600',
               renderProps.isFocused
                 ? 'border-ring ring-ring ring-1'
                 : '[&[readonly]]:border-transparent',
@@ -192,7 +192,7 @@ export function TextArea(props: RACTextAreaProps) {
           '[&[readonly]]:bg-zinc-50',
           '[&[readonly]]:bg-zinc-800/5 dark:[&[readonly]]:bg-white/10',
           renderProps.isDisabled && 'opacity-50',
-          renderProps.isInvalid && 'border-destructive',
+          renderProps.isInvalid && 'border-red-600',
           renderProps.isFocused
             ? 'border-ring ring-ring ring-1'
             : '[&[readonly]]:border-transparent',

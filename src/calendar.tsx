@@ -82,11 +82,10 @@ export function Calendar<T extends DateValue>({
                       isSelected && [
                         'bg-accent text-sm text-[lch(from_var(--color-accent)_calc((49.44_-_l)_*_infinity)_0_0)]',
                         isHovered && 'bg-accent dark:bg-accent',
-                        isInvalid &&
-                          'border-destructive bg-destructive text-white',
+                        isInvalid && 'border-red-600 bg-red-600 text-white',
                       ],
                       isUnavailable &&
-                        'text-destructive decoration-destructive line-through',
+                        'text-red-600 line-through decoration-red-600',
                       isFocusVisible && [
                         'outline-ring outline outline-2',
                         isSelected && 'outline-offset-1',
@@ -101,7 +100,7 @@ export function Calendar<T extends DateValue>({
         </CalendarGridBody>
       </CalendarGrid>
       {errorMessage && (
-        <Text slot="errorMessage" className="text-destructive text-sm">
+        <Text slot="errorMessage" className="text-sm text-red-600">
           {errorMessage}
         </Text>
       )}

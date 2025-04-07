@@ -55,7 +55,7 @@ export function RangeCalendar<T extends DateValue>({
                       'bg-accent/[0.07] dark:bg-accent/35 dark:text-white',
                     isSelected &&
                       isInvalid &&
-                      'bg-destructive/15 text-destructive dark:bg-destructive/30',
+                      'bg-red-600/15 text-red-600 dark:bg-red-600/30',
                     isSelectionStart && 'rounded-s-lg',
                     isSelectionEnd && 'rounded-e-lg',
                     className,
@@ -86,12 +86,12 @@ export function RangeCalendar<T extends DateValue>({
                     ],
                     isDisabled && 'opacity-50',
                     isUnavailable &&
-                      'text-destructive decoration-destructive line-through',
+                      'text-red-600 decoration-red-600 line-through',
                     (isSelectionStart || isSelectionEnd) && [
                       'bg-accent rounded-lg text-sm text-[lch(from_var(--color-accent)_calc((49.44_-_l)_*_infinity)_0_0)]',
                       isHovered && 'bg-accent/90 dark:bg-accent/90',
                       isInvalid &&
-                        'border-destructive bg-destructive text-white',
+                        'border-red-600 bg-red-600 text-white',
                     ],
                     isFocusVisible && [
                       'outline-ring outline outline-2',
@@ -109,7 +109,7 @@ export function RangeCalendar<T extends DateValue>({
         </CalendarGridBody>
       </CalendarGrid>
       {errorMessage && (
-        <Text slot="errorMessage" className="text-destructive text-sm">
+        <Text slot="errorMessage" className="text-red-600 text-sm">
           {errorMessage}
         </Text>
       )}

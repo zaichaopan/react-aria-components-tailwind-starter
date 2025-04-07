@@ -139,7 +139,7 @@ export function Radio(props: RadioProps | CustomRenderRadioProps) {
                   ? 'border-accent bg-accent'
                   : 'border-[oklch(from_var(--color-input)_calc(l*var(--contract,0.9))_c_h)] dark:bg-white/5 dark:[--contract:1.1]',
                 renderProps.isInvalid &&
-                  'border-destructive dark:border-destructive',
+                  'border-red-600 dark:border-red-600',
                 renderProps.isFocusVisible &&
                   'outline-ring outline outline-2 outline-offset-2',
               )}

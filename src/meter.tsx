@@ -35,7 +35,7 @@ export function Meter({
           <div className="flex justify-between gap-2">
             <Label>{label}</Label>
             <span
-              className={`text-sm ${percentage >= 80 && !positive && !informative && 'text-destructive'}`}
+              className={`text-sm ${percentage >= 80 && !positive && !informative && 'text-red-600'}`}
             >
               {percentage >= 80 && !positive && (
                 <svg
@@ -91,5 +91,5 @@ function getColor(
     return 'bg-yellow-600';
   }
 
-  return 'bg-destructive';
+  return 'bg-red-600';
 }

@@ -51,7 +51,7 @@ export function DateInput(props: DateInputProps) {
           'text-base/6 sm:text-sm/6',
           'px-3',
           'py-[calc(--spacing(2.5)-1px)] sm:py-[calc(--spacing(1.5)-1px)]',
-          renderProps.isInvalid && 'border-destructive',
+          renderProps.isInvalid && 'border-red-600',
           renderProps.isFocusWithin
             ? 'border-ring ring-ring ring-1'
             : '[&:has([data-ui=date-segment][aria-readonly])]:border-transparent',

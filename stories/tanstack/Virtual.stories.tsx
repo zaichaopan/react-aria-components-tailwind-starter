@@ -51,7 +51,6 @@ import {
   DialogHeader,
 } from '../../src/dialog';
 import { Modal } from '../../src/modal';
-import { Radio, RadioGroup, Radios } from '../../src/radio-group';
 import {
   Menu,
   MenuButton,
@@ -469,7 +468,7 @@ function DeleteConfirmation({
         </DialogBody>
         <DialogFooter>
           <DialogCloseButton variant="plain">Cancel</DialogCloseButton>
-          <DialogCloseButton color="destructive" variant="solid">
+          <DialogCloseButton color="red" variant="solid">
             Delete
           </DialogCloseButton>
         </DialogFooter>

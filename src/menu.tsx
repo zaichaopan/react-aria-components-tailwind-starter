@@ -99,8 +99,8 @@ export function Menu<T extends object>({
 
           // Icon
           '[&_[data-ui=content]:not(:hover)>[data-ui=icon]:not([class*=text-])]:text-muted',
-          '[&_[data-ui=content][data-destructive]>[data-ui=icon]]:text-destructive',
-          '[&_[data-ui=content][data-destructive]:not(:hover)>[data-ui=icon]]:text-destructive/75',
+          '[&_[data-ui=content][data-destructive]>[data-ui=icon]]:text-red-600',
+          '[&_[data-ui=content][data-destructive]:not(:hover)>[data-ui=icon]]:text-red-600/75',
           '[&_[data-ui=content]>[data-ui=icon]:not([class*=size-])]:size-4',
           '[&_[data-ui=content]>[data-ui=icon]:first-child]:col-start-1',
 
@@ -117,7 +117,7 @@ export function Menu<T extends object>({
           '**:data-[ui=kbd]:justify-self-end',
           '**:data-[ui=kbd]:text-xs/6',
           '[&_:not([data-destructive])>[data-ui=kbd]:not([class*=bg-])]:text-muted/75',
-          '[&_[data-destructive]>[data-ui=kbd]]:text-destructive',
+          '[&_[data-destructive]>[data-ui=kbd]]:text-red-600',
 
           // Description
           '**:data-[ui=description]:col-span-full',
@@ -169,7 +169,7 @@ export function MenuItem({ destructive, ...props }: MenuItemProps) {
             'text-base/6 sm:text-sm/6',
             isDisabled && 'opacity-50',
             isFocused && 'bg-zinc-100 dark:bg-zinc-800',
-            destructive && 'text-destructive',
+            destructive && 'text-red-600',
             className,
           ]);
         },

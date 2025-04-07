@@ -259,7 +259,7 @@ export const WithAvatars = () => {
           }}
         </MultiSelect>
         {isInvalid && (
-          <Text className="text-destructive">
+          <Text className="text-red-600">
             Please select an item in the list.
           </Text>
         )}

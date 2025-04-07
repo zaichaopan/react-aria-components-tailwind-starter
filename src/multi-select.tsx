@@ -218,7 +218,7 @@ export function MultiSelect<
           'pe-4',
           'flex min-h-9 w-[350px] flex-row flex-wrap items-center rounded-md',
           'border has-[input[data-focused=true]]:border-ring',
-          'has-[input[data-invalid=true][data-focused=true]]:border-ring has-[input[data-invalid=true]]:border-destructive',
+          'has-[input[data-invalid=true][data-focused=true]]:border-ring has-[input[data-invalid=true]]:border-red-600',
           'has-[input[data-focused=true]]:ring-1 has-[input[data-focused=true]]:ring-ring',
           className,
         )}

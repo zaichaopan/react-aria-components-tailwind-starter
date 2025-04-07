@@ -44,7 +44,7 @@ export function DateRangePickerInput() {
             '[&:has([aria-valuetext=Empty]:) w-full',
             'grid grid-cols-[max-content_16px_max-content_1fr] items-center',
             'group border-input relative rounded-md border',
-            'group-data-invalid:border-destructive',
+            'group-data-invalid:border-red-600',
             '[&:has(_input[data-disabled=true])]:border-border/50',
             '[&:has([data-ui=date-segment][aria-readonly])]:bg-zinc-50',
             'dark:[&:has([data-ui=date-segment][aria-readonly])]:bg-white/10',

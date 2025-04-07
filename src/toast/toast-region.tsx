@@ -149,7 +149,7 @@ function Toast({ state, ...props }: ToastProps) {
             )}
 
             {type === 'error' && (
-              <CircleXIcon className="mt-1 size-5 self-start text-destructive" />
+              <CircleXIcon className="mt-1 size-5 self-start text-red-600" />
             )}
 
             {type === 'warning' && (

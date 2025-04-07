@@ -67,8 +67,8 @@ export const ButtonColors = () => {
   return (
     <div className="flex flex-col gap-5">
       <Button>Button</Button>
-      <Button color="destructive">Button</Button>
-      <Button color="success">Button</Button>
+      <Button color="green">Button</Button>
+      <Button color="red">Button</Button>
     </div>
   );
 };
@@ -501,16 +501,11 @@ export const SplitButtons = () => {
 
   return (
     <ButtonGroup>
-      <Button color="success">
+      <Button variant="outline">
         {labelsMap[selectedOptionValue as keyof typeof labelsMap]}
       </Button>
       <MenuTrigger>
-        <MenuButton
-          variant="solid"
-          color="success"
-          isIconOnly
-          aria-label="More merge options"
-        />
+        <MenuButton isIconOnly aria-label="More merge options" />
         <MenuPopover placement="bottom end">
           <Menu
             disallowEmptySelection

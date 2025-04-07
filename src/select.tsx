@@ -49,7 +49,7 @@ export function SelectButton(props: {
             'py-[calc(--spacing(2.5)-1px)]',
             'sm:py-[calc(--spacing(1.5)-1px)]',
             'text-base/6 sm:text-sm/6',
-            'group-data-invalid:border-destructive',
+            'group-data-invalid:border-red-600',
             isDisabled && 'cursor-not-allowed opacity-50',
             isHovered && ['bg-zinc-50 dark:bg-zinc-800'],
             isPressed && ['bg-zinc-50 dark:bg-zinc-800'],
@@ -217,7 +217,7 @@ export const SelectListItem = React.forwardRef(
               'px-2 py-2.5 text-base/6 sm:py-1.5 sm:text-sm/6',
               isDisabled && 'opacity-50',
               (isFocused || isHovered) && 'bg-zinc-100 dark:bg-zinc-800',
-              destructive && 'text-destructive',
+              destructive && 'text-red-600',
               className,
             ),
         )}
