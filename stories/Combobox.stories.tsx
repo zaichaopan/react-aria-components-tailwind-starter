@@ -20,7 +20,8 @@ import { docs } from '../.storybook/docs';
 import { Text } from '../src/text';
 import { users } from './users';
 import { Avatar } from '../src/avatar';
-import { SearchIcon, SpinnerIcon } from '../src/icons';
+import { SearchIcon } from '../src/icons/outline/search';
+import { SpinnerIcon } from '../src/icons/outline/spinner';
 import { useAsyncList } from 'react-stately';
 import {
   EmptyState,

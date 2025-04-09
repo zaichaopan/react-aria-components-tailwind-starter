@@ -3,7 +3,10 @@ import { Text, TextLink } from '../src/text';
 import { docs } from '../.storybook/docs';
 import { Description, Label } from '../src/field';
 import { Icon } from '../src/icon';
-import { CheckIcon, MoonIcon, SunIcon, XIcon } from 'lucide-react';
+import { MoonIcon, SunIcon } from 'lucide-react';
+import { CheckIcon } from '../src/icons/outline/check';
+import { XIcon } from '../src/icons/outline/x';
+
 import { twMerge } from 'tailwind-merge';
 
 const meta = {
@@ -176,9 +179,7 @@ export const HandleIcon = () => {
                 isSelected && 'opacity-0',
               )}
             >
-              <Icon>
-                <XIcon className="text-muted size-3" strokeWidth="3" />
-              </Icon>
+              <XIcon className="text-muted size-3.5" />
             </div>
 
             <div
@@ -187,9 +188,7 @@ export const HandleIcon = () => {
                 isSelected && 'opacity-100',
               )}
             >
-              <Icon>
-                <CheckIcon className="text-muted size-3" strokeWidth="3" />
-              </Icon>
+              <CheckIcon className="text-muted size-4" />
             </div>
 
             <div

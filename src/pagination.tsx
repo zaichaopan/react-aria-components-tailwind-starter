@@ -2,7 +2,8 @@ import { twMerge } from 'tailwind-merge';
 import { Button } from './button';
 import { Link } from './link';
 import { LinkProps } from 'react-aria-components';
-import { ChevronLeftIcon, ChevronRightIcon } from './icons';
+import { ChevronLeftIcon } from './icons/outline/chevron-left';
+import { ChevronRightIcon } from './icons/outline/chevron-right';
 
 export function Pagination({
   className,

@@ -7,13 +7,9 @@ import {
   MicIcon,
   MicOffIcon,
   MoreHorizontalIcon,
-  XIcon,
   DownloadIcon,
   CloudUploadIcon,
   UploadCloudIcon,
-  PlusIcon,
-  MinusIcon,
-  ChevronRightIcon,
   BoldIcon,
   ItalicIcon,
   UnderlineIcon,
@@ -46,9 +42,15 @@ import {
   MenuItemLabel,
   MenuItemDescription,
 } from '../src/menu';
-import { ChevronDownIcon, ChevronUpIcon, SpinnerIcon } from '../src/icons';
 import { Tooltip } from '../src/tooltip';
 import { NotificationBadge } from '../src/notification-badge';
+import { SpinnerIcon } from '../src/icons/outline/spinner';
+import { ChevronDownIcon } from '../src/icons/outline/chevron-down';
+import { ChevronUpIcon } from '../src/icons/outline/chevron-up';
+import { PlusIcon } from '../src/icons/outline/plus';
+import { MinusIcon } from '../src/icons/outline/minus';
+import { ChevronRightIcon } from '../src/icons/outline/chevron-right';
+import { XIcon } from '../src/icons/outline/x';
 
 const meta: Meta = {
   parameters: {
@@ -102,6 +104,8 @@ export const ButtonVariants = () => {
       <Button>Button</Button>
       <Button variant="outline">Button</Button>
       <Button variant="plain">Button</Button>
+      <Button variant="link">Button</Button>
+      <Button variant="unstyle">Button</Button>
     </div>
   );
 };
@@ -130,9 +134,7 @@ export const ButtonWithIcons = () => {
         </Button>
         <Button size="lg" variant="outline">
           Get template
-          <Icon>
-            <ChevronRightIcon />
-          </Icon>
+          <ChevronRightIcon />
         </Button>
       </div>
       <div></div>
@@ -159,9 +161,7 @@ export const IconOnlyButtons = () => {
         </Icon>
       </Button>
       <Button variant="plain" isIconOnly>
-        <Icon aria-label="Close">
-          <XIcon />
-        </Icon>
+        <XIcon aria-label="Close" />
       </Button>
     </div>
   );
@@ -169,12 +169,7 @@ export const IconOnlyButtons = () => {
 
 export const ButtonWithTooltip = () => {
   return (
-    <Button
-      variant="plain"
-      isIconOnly
-      size="lg"
-      tooltip={<Tooltip>Direct message</Tooltip>}
-    >
+    <Button variant="plain" isIconOnly size="lg" tooltip="Direct message">
       <Icon aria-label="Message">
         <MessageCircleMoreIcon />
       </Icon>
@@ -194,7 +189,7 @@ export const DisabledButtonAndTooltip = () => {
       allowTooltipOnDisabled
       variant="plain"
       isIconOnly
-      tooltip={<Tooltip>You don't have the permission to edit</Tooltip>}
+      tooltip="You don't have the permission to edit"
     >
       <Icon aria-label="Edit">
         <Edit3Icon />
@@ -254,8 +249,8 @@ export const AvatarButton = () => {
   return (
     <Button variant="unstyle">
       <Avatar
-        alt="L K"
-        src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8aGVhZHNob3R8ZW58MHx8MHx8fDA%3D"
+        alt="M A"
+        src="https://images.unsplash.com/photo-1717694371848-70ddf2293c7c?q=80&w=2306&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
       />
     </Button>
   );
@@ -273,7 +268,11 @@ export const ButtonWithBadge = () => {
 export const ButtonAsLink = () => {
   return (
     <Button asChild>
-      <Link href="https://example.com" target="_blank">
+      <Link
+        href="https://example.com"
+        target="_blank"
+        className="hover:no-underline"
+      >
         Login
       </Link>
     </Button>
@@ -404,31 +403,23 @@ export const ButtonGroups = () => {
 
       <ButtonGroup inline orientation="vertical">
         <Button isIconOnly variant="outline">
-          <Icon aria-label="Zoom In">
-            <PlusIcon />
-          </Icon>
+          <PlusIcon aria-label="Zoom In" />
         </Button>
         <Button isIconOnly variant="outline">
-          <Icon aria-label="Zoom Out">
-            <MinusIcon aria-label="Zoom Out" />
-          </Icon>
+          <MinusIcon aria-label="Zoom Out" />
         </Button>
       </ButtonGroup>
 
       <ButtonGroup>
         <Button variant="outline" isIconOnly>
-          <Icon aria-label="Increase">
-            <ChevronUpIcon />
-          </Icon>
+          <ChevronUpIcon aria-label="Increase" />
         </Button>
         <Button variant="outline" asChild>
           <div>235</div>
         </Button>
 
         <Button variant="outline" isIconOnly>
-          <Icon aria-label="Decrease">
-            <ChevronDownIcon />
-          </Icon>
+          <ChevronDownIcon aria-label="Decrease" />
         </Button>
       </ButtonGroup>
     </div>
@@ -567,11 +558,11 @@ export function ButtonCustomization() {
 
       <Button className="rounded-full">
         <Avatar
-          alt="L K"
+          alt="Marissa Whitaker"
           className="size-5 rounded-full"
-          src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8aGVhZHNob3R8ZW58MHx8MHx8fDA%3D"
+          src="https://images.unsplash.com/photo-1717694371848-70ddf2293c7c?q=80&w=2306&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
         ></Avatar>
-        @lenoardkrasner
+        @marissawhitaker
       </Button>
 
       <div className="flex justify-center">

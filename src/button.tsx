@@ -10,14 +10,14 @@ import {
 } from 'react-aria-components';
 import { twMerge } from 'tailwind-merge';
 import { AsChildProps, Slot } from './slot';
-import { SpinnerIcon } from './icons';
-import { NonFousableTooltipTarget, TooltipTrigger } from './tooltip';
+import { SpinnerIcon } from './icons/outline/spinner';
+import { NonFousableTooltipTarget, Tooltip, TooltipTrigger } from './tooltip';
 
 type Color = 'accent' | 'red' | 'green';
 
 type Size = 'sm' | 'lg';
 
-type Variant = 'solid' | 'outline' | 'plain' | 'unstyle';
+type Variant = 'solid' | 'outline' | 'plain' | 'link' | 'unstyle';
 
 export type ButtonStyleProps = {
   color?: Color;
@@ -30,7 +30,7 @@ export type ButtonStyleProps = {
 
 export type ButtonWithAsChildProps = AsChildProps<
   RACButtonProps & {
-    tooltip?: React.ReactNode;
+    tooltip?: string | React.ReactElement;
     allowTooltipOnDisabled?: boolean;
   }
 > &
@@ -38,7 +38,7 @@ export type ButtonWithAsChildProps = AsChildProps<
 
 export type ButtonProps = RACButtonProps &
   ButtonStyleProps & {
-    tooltip?: React.ReactNode;
+    tooltip?: string | React.ReactElement;
   };
 
 const buttonStyle = ({
@@ -70,7 +70,7 @@ const buttonStyle = ({
   const style = {
     base,
     variant: {
-      base: 'group inline-flex gap-x-2 justify-center items-center font-semibold text-base/6 sm:text-sm/6',
+      base: 'group inline-flex gap-x-2 justify-center items-center font-semibold',
       solid: [
         'bg-[var(--btn-bg)]',
         color === 'red' || color === 'green'
@@ -91,25 +91,31 @@ const buttonStyle = ({
         'text-[var(--btn-color)]',
         !isDisabled && 'hover:bg-zinc-100 dark:hover:bg-zinc-800',
       ],
+      link: [
+        'text-[var(--btn-color)] underline [&:not(:hover)]:decoration-[var(--btn-color)]/20 underline-offset-4',
+      ],
     },
     size: {
-      base: '[&_svg[data-ui=icon]:not([class*=size-])]:size-[var(--icon-size)]',
+      base: 'text-base/6 sm:text-sm/6 [&_svg[data-ui=icon]:not([class*=size-])]:size-[var(--icon-size)]',
       sm: [
         isIconOnly
           ? 'size-8 sm:size-7 [--icon-size:theme(size.5)] sm:[--icon-size:theme(size.4)]'
-          : 'h-8 sm:h-7 [--icon-size:theme(size.3)] text-sm/6 sm:text-xs/6 px-3 sm:px-2',
+          : variant !== 'link' &&
+            'h-8 sm:h-7 [--icon-size:theme(size.3)] text-sm/6 sm:text-xs/6 px-3 sm:px-2',
       ],
       md: [
         // lg: 44px, sm:36px
         '[--icon-size:theme(size.5)] sm:[--icon-size:theme(size.4)]',
         isIconOnly
           ? 'p-2.5 sm:p-1.5 [&_svg[data-ui=icon]]:m-0.5 sm:[&_svg[data-ui=icon]]:m-1'
-          : 'px-3.5 sm:px-3 py-2.5 sm:py-1.5',
+          : variant !== 'link' && 'px-3.5 sm:px-3 py-2.5 sm:py-1.5',
       ],
 
       lg: [
         '[--icon-size:theme(size.5)]',
-        isIconOnly ? 'p-2.5 [&_svg[data-ui=icon]]:m-0.5' : 'px-3.5 py-2.5',
+        isIconOnly
+          ? 'p-2.5 [&_svg[data-ui=icon]]:m-0.5'
+          : variant !== 'link' && 'px-3.5 py-2.5',
       ],
     },
     color: {
@@ -125,6 +131,7 @@ const buttonStyle = ({
       solid: !isIconOnly && '[--icon-color:var(--btn-color)]/75',
       outline: !isIconOnly && '[--icon-color:var(--color-muted)]/50',
       plain: !isIconOnly && '[--icon-color:var(--color-muted)]/50',
+      link: !isIconOnly && '[--icon-color:var(--btn-color)]',
     },
     backgroundColor: {
       accent: '[--btn-bg:var(--color-accent)]',
@@ -136,13 +143,13 @@ const buttonStyle = ({
   return [
     style.base,
     style.color[color ?? 'foreground'],
-    style.variant.base,
-    style.variant[variant],
     style.size.base,
     style.size[size ?? 'md'],
     style.iconColor.base,
     style.iconColor[variant],
     style.backgroundColor[color ?? 'accent'],
+    style.variant.base,
+    style.variant[variant],
     !isCustomPending && isPending && 'text-transparent',
   ];
 };
@@ -229,7 +236,7 @@ export const Button = React.forwardRef<
           <NonFousableTooltipTarget>
             <div className="content">{button}</div>
           </NonFousableTooltipTarget>
-          {tooltip}
+          {typeof tooltip === 'string' ? <Tooltip>{tooltip}</Tooltip> : tooltip}
         </TooltipTrigger>
       );
     }
@@ -237,7 +244,7 @@ export const Button = React.forwardRef<
     return (
       <TooltipTrigger>
         {button}
-        {tooltip}
+        {typeof tooltip === 'string' ? <Tooltip>{tooltip}</Tooltip> : tooltip}
       </TooltipTrigger>
     );
   }

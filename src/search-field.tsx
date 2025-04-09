@@ -7,7 +7,9 @@ import {
 import { composeTailwindRenderProps, inputField } from './utils';
 import { Button } from './button';
 import { Input } from './field';
-import { SearchIcon, SpinnerIcon, XIcon } from './icons';
+import { SearchIcon } from './icons/outline/search';
+import { SpinnerIcon } from './icons/outline/spinner';
+import { XIcon } from './icons/outline/x';
 
 export interface SearchFieldProps extends RACSearchFieldProps {}
 
@@ -35,16 +37,16 @@ export function SearchInput({
       ].join(' ')}
     >
       {isPending ? (
-        <SpinnerIcon className="z-10 col-start-1 row-start-1 size-5 place-self-center text-muted sm:size-4" />
+        <SpinnerIcon className="text-muted z-10 col-start-1 row-start-1 size-5 place-self-center sm:size-4" />
       ) : (
-        <SearchIcon className="z-10 col-start-1 row-start-1 size-5 place-self-center text-muted sm:size-4" />
+        <SearchIcon className="text-muted z-10 col-start-1 row-start-1 size-5 place-self-center sm:size-4" />
       )}
 
       <Input
         {...props}
         className={composeTailwindRenderProps(props.className, [
           '[&::-webkit-search-cancel-button]:hidden',
-          'col-span-full row-start-1 pe-10 ps-10 sm:pe-9 sm:ps-8',
+          'col-span-full row-start-1 ps-10 pe-10 sm:ps-8 sm:pe-9',
         ])}
       />
       <Button

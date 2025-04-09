@@ -68,7 +68,7 @@ export const Header = () => {
                   width="1em"
                   height="1em"
                   viewBox="0 0 24 24"
-                  className="size-8 text-accent"
+                  className="text-accent size-8"
                 >
                   <rect width="24" height="24" fill="none" />
                   <path
@@ -113,7 +113,7 @@ export const Header = () => {
                 <li className="flex">
                   <Link
                     href="/"
-                    className="p-2 font-medium text-muted hover:bg-zinc-100 hover:text-foreground hover:no-underline dark:hover:bg-zinc-800"
+                    className="text-muted hover:text-foreground p-2 font-medium hover:bg-zinc-100 hover:no-underline dark:hover:bg-zinc-800"
                   >
                     Projects
                   </Link>
@@ -121,7 +121,7 @@ export const Header = () => {
                 <li className="flex">
                   <Link
                     href="/"
-                    className="p-2 font-medium text-muted hover:bg-zinc-100 hover:text-foreground hover:no-underline dark:hover:bg-zinc-800"
+                    className="text-muted hover:text-foreground p-2 font-medium hover:bg-zinc-100 hover:no-underline dark:hover:bg-zinc-800"
                   >
                     Integrations
                   </Link>
@@ -129,7 +129,7 @@ export const Header = () => {
                 <li className="flex">
                   <Link
                     href="/"
-                    className="p-2 font-medium text-muted  hover:bg-zinc-100 hover:text-foreground hover:no-underline dark:hover:bg-zinc-800"
+                    className="text-muted hover:text-foreground p-2 font-medium hover:bg-zinc-100 hover:no-underline dark:hover:bg-zinc-800"
                   >
                     Apps
                   </Link>
@@ -141,7 +141,7 @@ export const Header = () => {
           <div className="ml-auto flex items-center gap-3">
             <Button
               variant="outline"
-              className="justify-start bg-white font-normal text-muted dark:bg-transparent"
+              className="text-muted justify-start bg-white font-normal dark:bg-transparent"
             >
               <Icon>
                 <SearchIcon />
@@ -165,13 +165,13 @@ export const Header = () => {
                 </svg>
               </Icon>
 
-              <NotificationBadge variant="dot" className="right-2 top-1.5" />
+              <NotificationBadge variant="dot" className="top-1.5 right-2" />
             </Button>
             <MenuTrigger>
               <MenuButton variant="plain" buttonArrow={null}>
                 <Avatar
                   className="size-8"
-                  src="https://i.imgur.com/xIe7Wlb.png"
+                  src="https://images.unsplash.com/photo-1717694371848-70ddf2293c7c?q=80&w=2306&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
                   alt="Marissa Whitaker"
                 />
               </MenuButton>
@@ -219,7 +219,7 @@ export const Header = () => {
           </div>
         </div>
       </header>
-      <main className="flex-1 border-t border-border/60 bg-background p-6 dark:bg-zinc-900 lg:p-8">
+      <main className="border-border/60 bg-background flex-1 border-t p-6 lg:p-8 dark:bg-zinc-900">
         <div className="mx-auto max-w-7xl">
           <div>
             <Tabs orientation="vertical" variant="pills">
@@ -316,7 +316,7 @@ function HamburgerMenu() {
                   width="1em"
                   height="1em"
                   viewBox="0 0 24 24"
-                  className="size-8 text-accent"
+                  className="text-accent size-8"
                 >
                   <rect width="24" height="24" fill="none" />
                   <path
@@ -347,7 +347,7 @@ function HamburgerMenu() {
                   <Link
                     href="/"
                     className={[
-                      'w-full gap-x-2.5 p-2 font-medium text-foreground hover:no-underline sm:text-sm/5',
+                      'text-foreground w-full gap-x-2.5 p-2 font-medium hover:no-underline sm:text-sm/5',
                       'before:absolute',
                       'before:-left-1.5',
                       "before:content-['']",
@@ -365,7 +365,7 @@ function HamburgerMenu() {
                 <li>
                   <Link
                     href="/"
-                    className="w-full gap-x-2.5 p-2 font-medium font-medium text-muted hover:text-foreground hover:no-underline sm:text-sm/5"
+                    className="text-muted hover:text-foreground w-full gap-x-2.5 p-2 font-medium hover:no-underline sm:text-sm/5"
                   >
                     Projects
                   </Link>
@@ -374,7 +374,7 @@ function HamburgerMenu() {
                 <li>
                   <Link
                     href="/"
-                    className="w-full gap-x-2.5 p-2 font-medium text-muted hover:text-foreground hover:no-underline sm:text-sm/5"
+                    className="text-muted hover:text-foreground w-full gap-x-2.5 p-2 font-medium hover:no-underline sm:text-sm/5"
                   >
                     Integration
                   </Link>
@@ -383,7 +383,7 @@ function HamburgerMenu() {
                 <li>
                   <Link
                     href="/"
-                    className="w-full gap-x-2.5 p-2 font-medium text-muted hover:text-foreground hover:no-underline sm:text-sm/5"
+                    className="text-muted hover:text-foreground w-full gap-x-2.5 p-2 font-medium hover:no-underline sm:text-sm/5"
                   >
                     Apps
                   </Link>

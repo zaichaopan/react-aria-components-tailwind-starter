@@ -68,6 +68,25 @@ export const ReadOnlyState = () => {
   );
 };
 
+export const InputWithHints = () => {
+  return (
+    <div className="flex w-72 flex-col gap-y-12">
+      <TextField>
+        <Label hint="required">Email</Label>
+        <Input type="email" placeholder="your@example.com" />
+      </TextField>
+
+      <TextField>
+        <Label hint="optional" className="flex gap-x-3">
+          Email
+        </Label>
+        <Input placeholder="your@example.com" />
+        <Description>We won't share your email with anyone</Description>
+      </TextField>
+    </div>
+  );
+};
+
 export const ValidationErrors = () => {
   return (
     <Form>

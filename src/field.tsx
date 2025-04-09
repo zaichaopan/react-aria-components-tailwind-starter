@@ -48,10 +48,13 @@ export function LabeledGroup({
 
 export function Label({
   requiredHint,
+  hint,
   displayLevel = 3,
+  children,
   ...props
 }: LabelProps & {
   requiredHint?: boolean;
+  hint?: 'required' | 'optional';
   displayLevel?: DisplayLevel;
 }) {
   return (
@@ -62,11 +65,16 @@ export function Label({
         'inline-block min-w-max text-pretty',
         'group-disabled:opacity-50',
         displayLevels[displayLevel],
-        requiredHint &&
-          "after:text-red-600 after:ms-0.5 after:content-['*']",
+        hint === 'required' &&
+          "after:ms-0.5 after:text-red-600 after:content-['*']",
         props.className,
       )}
-    />
+    >
+      {children}
+      {hint === 'optional' && (
+        <span className="text-muted ps-0.5 font-normal ms-auto">Optional</span>
+      )}
+    </RACLabel>
   );
 }
 
@@ -147,7 +155,7 @@ export function FieldError(props: FieldErrorProps) {
       {...props}
       data-ui="errorMessage"
       className={composeRenderProps(props.className, (className) =>
-        twMerge('text-red-600 block text-base/6 sm:text-sm/6', className),
+        twMerge('block text-base/6 text-red-600 sm:text-sm/6', className),
       )}
     />
   );
@@ -189,7 +197,6 @@ export function TextArea(props: RACTextAreaProps) {
         twMerge(
           'border-input w-full rounded-md border px-3 py-1 shadow-xs outline-hidden',
           'placeholder:text-muted text-base/6 sm:text-sm/6',
-          '[&[readonly]]:bg-zinc-50',
           '[&[readonly]]:bg-zinc-800/5 dark:[&[readonly]]:bg-white/10',
           renderProps.isDisabled && 'opacity-50',
           renderProps.isInvalid && 'border-red-600',

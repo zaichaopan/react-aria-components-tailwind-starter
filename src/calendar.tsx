@@ -16,7 +16,8 @@ import {
 } from 'react-aria-components';
 import { Button, ButtonGroup } from './button';
 import { twMerge } from 'tailwind-merge';
-import { ChevronLeftIcon, ChevronRightIcon } from './icons';
+import { ChevronLeftIcon } from './icons/outline/chevron-left';
+import { ChevronRightIcon } from './icons/outline/chevron-right';
 import {
   CalendarDate,
   getLocalTimeZone,
@@ -49,7 +50,6 @@ export function Calendar<T extends DateValue>({
     >
       <CalendarHeader yearRange={yearRange} />
       <CalendarGrid
-        weekdayStyle="short"
         className="w-full border-separate border-spacing-y-1 px-2"
       >
         <CalendarGridHeader />

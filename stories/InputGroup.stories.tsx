@@ -1,22 +1,10 @@
 import { Group } from 'react-aria-components';
-import {
-  CircleHelpIcon,
-  CreditCardIcon,
-  KeyRoundIcon,
-  MailIcon,
-  MicIcon,
-} from 'lucide-react';
+import { CreditCardIcon, KeyRoundIcon, MailIcon, MicIcon } from 'lucide-react';
 import { Button } from '../src/button';
 import { docs } from '../.storybook/docs';
 import { Icon } from '../src/icon';
 import { NativeSelect, NativeSelectField } from '../src/native-select';
-import {
-  Description,
-  Input,
-  Label,
-  LabeledGroup,
-  TextField,
-} from '../src/field';
+import { Input, Label, LabeledGroup, TextField } from '../src/field';
 import {
   Select,
   SelectButton,
@@ -25,9 +13,9 @@ import {
   SelectListItemLabel,
   SelectPopover,
 } from '../src/select';
-import { Tooltip } from '../src/tooltip';
-import { SearchIcon } from '../src/icons';
 import { CopyButton } from '../src/clipboard';
+import { SearchIcon } from '../src/icons/outline/search';
+import { QuestionMarkCircle } from '../src/icons/solid/question-mark-circle';
 
 const meta = {
   parameters: {
@@ -310,7 +298,7 @@ export const InputWithSelect = () => {
             <Label className="sr-only">Work phone number type</Label>
             <NativeSelect
               name="work_phone_number_type"
-              className="min-w-max rounded-s-none border-s-0 focus-visible:border-transparent focus-visible:ring-2"
+              className="min-w-max rounded-s-none border-s-0 data-focus-visible:border-transparent data-focus-visible:ring-2"
             >
               <option value="Mobile">Mobile</option>
               <option value="Phone">Phone</option>
@@ -446,36 +434,14 @@ export const InputWithButton = () => {
               variant="plain"
               isIconOnly
               size="sm"
-              tooltip={<Tooltip>This is a simple tooltip</Tooltip>}
-              className="[&:not(:hover)]:text-muted -col-end-1 row-start-1 me-1 self-center"
+              tooltip="This is a simple tooltip"
+              className="[&:not(:hover)]:text-muted/70 -col-end-1 row-start-1 me-1 self-center"
             >
-              <Icon aria-label="Help">
-                <CircleHelpIcon />
-              </Icon>
+              <QuestionMarkCircle aria-label="help" className="size-4.5" />
             </Button>
           </div>
         </TextField>
       </div>
-    </div>
-  );
-};
-
-export const InputWithHints = () => {
-  return (
-    <div className="flex w-72 flex-col gap-y-6">
-      <TextField>
-        <Label requiredHint>Email</Label>
-        <Input type="email" placeholder="your@example.com" />
-      </TextField>
-
-      <TextField>
-        <Label className="flex gap-x-3">
-          Email
-          <span className="text-muted ms-auto font-normal">Optional</span>
-        </Label>
-        <Input placeholder="your@example.com" />
-        <Description>We won't share your email with anyone</Description>
-      </TextField>
     </div>
   );
 };

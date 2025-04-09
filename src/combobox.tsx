@@ -19,7 +19,8 @@ import {
   SelectSection,
 } from './select';
 import { Input } from './field';
-import { ChevronDownIcon, XIcon } from './icons';
+import { ChevronDownIcon } from './icons/outline/chevron-down';
+import { XIcon } from './icons/outline/x';
 
 export function ComboBox(props: RACComboBoxProps<object>) {
   return (
@@ -110,10 +111,7 @@ export function ComboBoxButton({
 export function ComboBoxClearButton({
   onPress,
   ...props
-}: Omit<
-  ButtonProps,
-  'tooltip' | 'slot' | 'variant' | 'size' | 'isIconOnly'
->) {
+}: Omit<ButtonProps, 'tooltip' | 'slot' | 'variant' | 'size' | 'isIconOnly'>) {
   const state = React.useContext(ComboBoxStateContext);
 
   return (

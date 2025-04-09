@@ -12,7 +12,6 @@ import {
 } from '../../src/menu.tsx';
 import { Avatar } from '../../src/avatar.tsx';
 import {
-  SearchIcon,
   InboxIcon,
   HelpCircleIcon,
   SendIcon,
@@ -42,7 +41,9 @@ import {
 import { NotificationBadge } from '../../src/notification-badge.tsx';
 import { composeRenderProps, LinkProps } from 'react-aria-components';
 import { twMerge } from 'tailwind-merge';
-import { CalendarIcon, ChevronRightIcon } from '../../src/icons.tsx';
+import { CalendarIcon } from '../../src/icons/outline/calendar.tsx';
+import { SearchIcon } from '../../src/icons/outline/search.tsx';
+import { ChevronRightIcon } from '../../src/icons/outline/chevron-right.tsx';
 
 const meta = {
   title: 'Layouts/Sidebar',
@@ -146,15 +147,13 @@ function HamburgerMenu() {
 
       <div className="ml-auto flex items-center gap-4 px-2">
         <Button isIconOnly variant="plain">
-          <Icon aria-label="Search">
-            <SearchIcon />
-          </Icon>
+          <SearchIcon aria-label="Search" />
         </Button>
         <MenuTrigger>
           <MenuButton variant="plain" buttonArrow={null}>
             <Avatar
               className="size-8"
-              src="https://i.imgur.com/xIe7Wlb.png"
+              src="https://images.unsplash.com/photo-1717694371848-70ddf2293c7c?q=80&w=2306&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
               alt="Marissa Whitaker"
             />
           </MenuButton>
@@ -178,7 +177,7 @@ function SideNavigation() {
               <Avatar
                 alt="Acme"
                 className="size-6 [--border-radius:0.25rem]"
-                fallbackBackground="black"
+                background="black"
               />
               <span className="truncate"> Acme, Inc</span>
             </MenuButton>
@@ -201,7 +200,7 @@ function SideNavigation() {
             className="flex-1 justify-start overflow-hidden font-normal"
           >
             <Avatar
-              src="https://i.imgur.com/xIe7Wlb.png"
+              src="https://images.unsplash.com/photo-1717694371848-70ddf2293c7c?q=80&w=2306&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
               alt="Marissa Whitaker"
               className="size-8"
             />
@@ -234,9 +233,7 @@ const navLinks: Array<NavLinkProps> = [
     href: '/',
     children: (
       <>
-        <Icon>
-          <CalendarIcon />
-        </Icon>
+        <CalendarIcon />
         Calendars
       </>
     ),

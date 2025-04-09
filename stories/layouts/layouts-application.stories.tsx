@@ -12,7 +12,6 @@ import {
 } from '../../src/menu.tsx';
 import { Avatar, AvatarBadge } from '../../src/avatar.tsx';
 import {
-  SearchIcon,
   UserIcon,
   Settings2Icon,
   LogOutIcon,
@@ -28,7 +27,8 @@ import { NotificationBadge } from '../../src/notification-badge.tsx';
 import { composeRenderProps, TooltipTrigger } from 'react-aria-components';
 import { twMerge } from 'tailwind-merge';
 import { Tooltip } from '../../src/tooltip.tsx';
-import { AvailableIcon } from '../../src/icons.tsx';
+import { AvailableIcon } from '../../src/icons/solid/available.tsx';
+import { SearchIcon } from '../../src/icons/outline/search.tsx';
 
 const meta = {
   title: 'Layouts/Application',
@@ -128,7 +128,7 @@ function Sidebar() {
         <Avatar
           alt="A"
           className="size-8 [--border-radius:0.25rem]"
-          fallbackBackground="black"
+          background="black"
         />
       </div>
 
@@ -179,7 +179,7 @@ function Sidebar() {
         <MenuTrigger>
           <MenuButton variant="unstyle" buttonArrow={null}>
             <Avatar
-              src="https://i.imgur.com/xIe7Wlb.png"
+              src="https://images.unsplash.com/photo-1717694371848-70ddf2293c7c?q=80&w=2306&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
               alt="Marissa Whitaker"
             >
               <AvatarBadge badge={<AvailableIcon aria-label="Available" />} />

@@ -11,7 +11,6 @@ import { PasswordInput } from '../../src/password-input.tsx';
 import { Button } from '../../src/button.tsx';
 import { Heading, SubHeading } from '../../src/heading.tsx';
 import { Text, TextLink } from '../../src/text.tsx';
-import { ChevronRightIcon } from '../../src/icons.tsx';
 import { Checkbox } from '../../src/checkbox.tsx';
 import { Separator } from '../../src/separator.tsx';
 import { Icon } from '../../src/icon.tsx';
@@ -73,7 +72,7 @@ export const SignUp = () => {
                 Continue with Google
               </Button>
               <Separator soft>
-                <Text>or</Text>
+                <Text className='mx-2'>or</Text>
               </Separator>
 
               <TextField>
@@ -108,12 +107,15 @@ export const SignUp = () => {
                 <TextLink>Teams of Services</TextLink> and&nbsp;
                 <TextLink>Privacy Policy</TextLink>.
               </Text>
+
+              <Text className="text-center">
+                Already have an account?{' '}
+                <TextLink className="underline">
+                  Login
+                </TextLink>
+              </Text>
             </Form>
           </div>
-          <Text className="text-center">
-            Already have an account?{' '}
-            <TextLink className="underline underline-offset-4">Login</TextLink>
-          </Text>
         </div>
       </div>
     </div>

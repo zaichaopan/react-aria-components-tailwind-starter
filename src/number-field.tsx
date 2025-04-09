@@ -8,7 +8,9 @@ import { Input } from './field';
 import { composeTailwindRenderProps, inputField } from './utils';
 import { Button } from './button';
 import { Separator } from './separator';
-import { MinusIcon, PlusIcon } from './icons';
+import {MinusIcon} from './icons/outline/minus';
+import { PlusIcon } from './icons/outline/plus';
+
 
 export interface NumberFieldProps extends RACNumberFieldProps {}
 

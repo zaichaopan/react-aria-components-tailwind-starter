@@ -1,0 +1,29 @@
+import { Canvas, Meta } from '@storybook/blocks';
+ 
+import * as CalloutStories from './Callout.stories';
+ 
+<Meta of={CalloutStories} />
+
+# Callout
+
+A callout visually highlights a section of content within an interface. The `Callout`, `CalloutHeading`, `CalloutIcon`, `CalloutDescription`, `CalloutActions` and `CalloutControl` can be used to create a callout with various styles and purposes.
+
+<Canvas of={CalloutStories.BasicExample} />
+
+## Inline callout
+
+<Canvas of={CalloutStories.InlineCallout} />
+
+## Banners
+
+<Canvas of={CalloutStories.Banners} />
+
+## Customization
+
+<Canvas of={CalloutStories.Customization} />
+
+## Accessibility
+
+The `Callout` component has a default role of `note` and is labeled by the `CalloutHeading`. If CalloutHeading is not included, please add the `aria-label` prop to the `Callout` component. Alternatively, the `dialog` role can be used for the Callout component.
+
+<Canvas of={CalloutStories.Accessibility} />

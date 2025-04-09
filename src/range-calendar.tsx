@@ -29,10 +29,7 @@ export function RangeCalendar<T extends DateValue>({
       })}
     >
       <CalendarHeader />
-      <CalendarGrid
-        className="border-separate border-spacing-y-1 px-3 sm:px-2"
-        weekdayStyle="short"
-      >
+      <CalendarGrid className="border-separate border-spacing-y-1 px-3 sm:px-2">
         <CalendarGridHeader />
         <CalendarGridBody>
           {(date) => (
@@ -86,12 +83,11 @@ export function RangeCalendar<T extends DateValue>({
                     ],
                     isDisabled && 'opacity-50',
                     isUnavailable &&
-                      'text-red-600 decoration-red-600 line-through',
+                      'text-red-600 line-through decoration-red-600',
                     (isSelectionStart || isSelectionEnd) && [
                       'bg-accent rounded-lg text-sm text-[lch(from_var(--color-accent)_calc((49.44_-_l)_*_infinity)_0_0)]',
                       isHovered && 'bg-accent/90 dark:bg-accent/90',
-                      isInvalid &&
-                        'border-red-600 bg-red-600 text-white',
+                      isInvalid && 'border-red-600 bg-red-600 text-white',
                     ],
                     isFocusVisible && [
                       'outline-ring outline outline-2',
@@ -109,7 +105,7 @@ export function RangeCalendar<T extends DateValue>({
         </CalendarGridBody>
       </CalendarGrid>
       {errorMessage && (
-        <Text slot="errorMessage" className="text-red-600 text-sm">
+        <Text slot="errorMessage" className="text-sm text-red-600">
           {errorMessage}
         </Text>
       )}

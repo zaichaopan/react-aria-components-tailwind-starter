@@ -10,7 +10,8 @@ import {
 import { groupBox } from './utils';
 import { twMerge } from 'tailwind-merge';
 import { DescriptionContext, DescriptionProvider } from './field';
-import { CheckIcon, MinusIcon } from './icons';
+import { MinusIcon } from './icons/outline/minus';
+import { CheckIcon } from './icons/outline/check';
 
 export interface CheckboxGroupProps
   extends Omit<RACCheckboxGroupProps, 'children'> {
@@ -148,16 +149,15 @@ export function Checkbox(props: CheckboxProps | CustomRenderCheckboxProps) {
                 renderProps.isSelected || renderProps.isIndeterminate
                   ? 'border-accent bg-accent'
                   : 'border-[oklch(from_var(--color-input)_calc(l*var(--contract,0.9))_c_h)] dark:bg-white/5 dark:[--contract:1.05]',
-                renderProps.isInvalid &&
-                  'border-red-600 dark:border-red-600',
+                renderProps.isInvalid && 'border-red-600 dark:border-red-600',
                 renderProps.isFocusVisible &&
                   'outline-ring outline outline-2 outline-offset-2',
               ])}
             >
               {renderProps.isIndeterminate ? (
-                <MinusIcon className="size-4 text-[lch(from_var(--color-accent)_calc((49.44_-_l)_*_infinity)_0_0)] sm:size-3.5" />
+                <MinusIcon className="size-4 text-[lch(from_var(--color-accent)_calc((49.44_-_l)_*_infinity)_0_0)]" />
               ) : renderProps.isSelected ? (
-                <CheckIcon className="size-4 text-[lch(from_var(--color-accent)_calc((49.44_-_l)_*_infinity)_0_0)] sm:size-3.5" />
+                <CheckIcon className="size-4 text-[lch(from_var(--color-accent)_calc((49.44_-_l)_*_infinity)_0_0)]" />
               ) : null}
             </div>
 

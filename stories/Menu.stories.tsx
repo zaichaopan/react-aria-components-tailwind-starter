@@ -531,7 +531,7 @@ export const AvatarTriggers = () => {
       <MenuButton buttonArrow={null} variant="plain">
         <Avatar
           className="rounded-full"
-          src="https://i.imgur.com/xIe7Wlb.png"
+          src="https://images.unsplash.com/photo-1717694371848-70ddf2293c7c?q=80&w=2306&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
           alt="Marissa Whitaker"
         />
       </MenuButton>
@@ -602,7 +602,7 @@ export const CustomTriggers = () => {
       >
         <Avatar
           alt="Marissa Whitaker"
-          src="https://i.imgur.com/xIe7Wlb.png"
+          src="https://images.unsplash.com/photo-1717694371848-70ddf2293c7c?q=80&w=2306&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
         ></Avatar>
         <div className="ms-2 me-12 flex flex-col justify-center">
           <Strong className="self-start sm:leading-5">Marissa</Strong>
@@ -1083,7 +1083,7 @@ export const Headers = () => {
         <Button isIconOnly aria-label="Account" variant="plain">
           <Avatar
             alt="Marissa Whitaker"
-            src="https://i.imgur.com/xIe7Wlb.png"
+            src="https://images.unsplash.com/photo-1717694371848-70ddf2293c7c?q=80&w=2306&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
             className="rounded-full"
           ></Avatar>
         </Button>
@@ -1092,7 +1092,7 @@ export const Headers = () => {
             <div className="mx-3 mt-2 flex items-center gap-2">
               <Avatar
                 alt="Marissa Whitaker"
-                src="https://i.imgur.com/xIe7Wlb.png"
+                src="https://images.unsplash.com/photo-1717694371848-70ddf2293c7c?q=80&w=2306&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
                 className="size-16 rounded-full"
               />
               <div className="flex flex-col">
