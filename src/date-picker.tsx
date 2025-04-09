@@ -15,7 +15,7 @@ import { Dialog } from './dialog';
 import { Popover } from './popover';
 import { inputField } from './utils';
 import { twMerge } from 'tailwind-merge';
-import { CalendarIcon } from './icons';
+import { CalendarIcon } from './icons/outline/calendar';
 
 export interface DatePickerProps<T extends DateValue>
   extends RACDatePickerProps<T> {}

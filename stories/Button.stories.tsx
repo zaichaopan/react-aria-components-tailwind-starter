@@ -7,13 +7,9 @@ import {
   MicIcon,
   MicOffIcon,
   MoreHorizontalIcon,
-  XIcon,
   DownloadIcon,
   CloudUploadIcon,
   UploadCloudIcon,
-  PlusIcon,
-  MinusIcon,
-  ChevronRightIcon,
   BoldIcon,
   ItalicIcon,
   UnderlineIcon,
@@ -46,9 +42,15 @@ import {
   MenuItemLabel,
   MenuItemDescription,
 } from '../src/menu';
-import { ChevronDownIcon, ChevronUpIcon, SpinnerIcon } from '../src/icons';
 import { Tooltip } from '../src/tooltip';
 import { NotificationBadge } from '../src/notification-badge';
+import { SpinnerIcon } from '../src/icons/outline/spinner';
+import { ChevronDownIcon } from '../src/icons/outline/chevron-down';
+import { ChevronUpIcon } from '../src/icons/outline/chevron-up';
+import { PlusIcon } from '../src/icons/outline/plus';
+import { MinusIcon } from '../src/icons/outline/minus';
+import { ChevronRightIcon } from '../src/icons/outline/chevron-right';
+import { XIcon } from '../src/icons/outline/x';
 
 const meta: Meta = {
   parameters: {
@@ -130,9 +132,7 @@ export const ButtonWithIcons = () => {
         </Button>
         <Button size="lg" variant="outline">
           Get template
-          <Icon>
-            <ChevronRightIcon />
-          </Icon>
+          <ChevronRightIcon />
         </Button>
       </div>
       <div></div>
@@ -159,9 +159,7 @@ export const IconOnlyButtons = () => {
         </Icon>
       </Button>
       <Button variant="plain" isIconOnly>
-        <Icon aria-label="Close">
-          <XIcon />
-        </Icon>
+        <XIcon aria-label="Close" />
       </Button>
     </div>
   );
@@ -404,31 +402,23 @@ export const ButtonGroups = () => {
 
       <ButtonGroup inline orientation="vertical">
         <Button isIconOnly variant="outline">
-          <Icon aria-label="Zoom In">
-            <PlusIcon />
-          </Icon>
+          <PlusIcon aria-label="Zoom In" />
         </Button>
         <Button isIconOnly variant="outline">
-          <Icon aria-label="Zoom Out">
-            <MinusIcon aria-label="Zoom Out" />
-          </Icon>
+          <MinusIcon aria-label="Zoom Out" />
         </Button>
       </ButtonGroup>
 
       <ButtonGroup>
         <Button variant="outline" isIconOnly>
-          <Icon aria-label="Increase">
-            <ChevronUpIcon />
-          </Icon>
+          <ChevronUpIcon aria-label="Increase" />
         </Button>
         <Button variant="outline" asChild>
           <div>235</div>
         </Button>
 
         <Button variant="outline" isIconOnly>
-          <Icon aria-label="Decrease">
-            <ChevronDownIcon />
-          </Icon>
+          <ChevronDownIcon aria-label="Decrease" />
         </Button>
       </ButtonGroup>
     </div>

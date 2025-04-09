@@ -10,7 +10,8 @@ import {
 import { groupBox } from './utils';
 import { twMerge } from 'tailwind-merge';
 import { DescriptionContext, DescriptionProvider } from './field';
-import { CheckIcon, MinusIcon } from './icons';
+import { MinusIcon } from './icons/outline/minus';
+import { CheckIcon} from './icons/outline/check';
 
 export interface CheckboxGroupProps
   extends Omit<RACCheckboxGroupProps, 'children'> {

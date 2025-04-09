@@ -27,12 +27,10 @@ import {
   SelectListItem,
   SelectPopover,
 } from '../src/select.tsx';
-import {
-  AvailableIcon,
-  AwayIcon,
-  BusyIcon,
-  DoNotDisturbIcon,
-} from '../src/icons.tsx';
+import { AvailableIcon } from '../src/icons/solid/available.tsx';
+import { BusyIcon } from '../src/icons/solid/busy.tsx';
+import { AwayIcon } from '../src/icons/solid/away.tsx';
+import { DoNotDisturbIcon } from '../src/icons/solid/do-not-disturb.tsx';
 
 const meta = {
   parameters: {

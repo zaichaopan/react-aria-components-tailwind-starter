@@ -12,7 +12,6 @@ import {
 } from '../../src/menu.tsx';
 import { Avatar, AvatarBadge } from '../../src/avatar.tsx';
 import {
-  SearchIcon,
   UserIcon,
   Settings2Icon,
   LogOutIcon,
@@ -28,7 +27,8 @@ import { NotificationBadge } from '../../src/notification-badge.tsx';
 import { composeRenderProps, TooltipTrigger } from 'react-aria-components';
 import { twMerge } from 'tailwind-merge';
 import { Tooltip } from '../../src/tooltip.tsx';
-import { AvailableIcon } from '../../src/icons.tsx';
+import { AvailableIcon } from '../../src/icons/solid/available.tsx';
+import { SearchIcon } from '../../src/icons/outline/search.tsx';
 
 const meta = {
   title: 'Layouts/Application',
@@ -128,7 +128,7 @@ function Sidebar() {
         <Avatar
           alt="A"
           className="size-8 [--border-radius:0.25rem]"
-          fallbackBackground="black"
+          background="black"
         />
       </div>
 

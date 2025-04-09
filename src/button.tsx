@@ -10,7 +10,7 @@ import {
 } from 'react-aria-components';
 import { twMerge } from 'tailwind-merge';
 import { AsChildProps, Slot } from './slot';
-import { SpinnerIcon } from './icons';
+import { SpinnerIcon } from './icons/outline/spinner';
 import { NonFousableTooltipTarget, TooltipTrigger } from './tooltip';
 
 type Color = 'accent' | 'red' | 'green';

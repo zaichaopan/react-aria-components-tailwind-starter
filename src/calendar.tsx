@@ -16,7 +16,8 @@ import {
 } from 'react-aria-components';
 import { Button, ButtonGroup } from './button';
 import { twMerge } from 'tailwind-merge';
-import { ChevronLeftIcon, ChevronRightIcon } from './icons';
+import { ChevronLeftIcon } from './icons/outline/chevron-left';
+import { ChevronRightIcon } from './icons/outline/chevron-right';
 import {
   CalendarDate,
   getLocalTimeZone,

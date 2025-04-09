@@ -36,16 +36,8 @@ export const Popover = React.forwardRef(
           'ring-1',
           'ring-zinc-950/10',
           'dark:ring-zinc-800',
-          'data-entering:animate-in',
-          'data-entering:ease-out',
-          'data-entering:fade-in',
-          'data-exiting:animate-out',
-          'data-exiting:ease-in',
-          'data-exiting:fade-out',
-          'data-exiting:duration-50',
         ])}
       />
     );
   },
 );
-

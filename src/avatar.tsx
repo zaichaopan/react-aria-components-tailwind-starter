@@ -95,7 +95,7 @@ export const AvatarBadge = ({ badge, ...props }: AvatarBadgeProps) => {
   return (
     <span
       aria-hidden
-      data-ui="badge"
+      data-ui="avatar-badge"
       id={context.badgeId}
       className={twMerge([
         'bg-background absolute end-0 bottom-0 grid place-items-center rounded-full bg-clip-content',

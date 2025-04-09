@@ -1,5 +1,7 @@
 import { docs } from '../.storybook/docs.ts';
-import { MailIcon, PlusIcon, ChevronDownIcon } from 'lucide-react';
+import { MailIcon } from 'lucide-react';
+import { ChevronDownIcon } from '../src/icons/outline/chevron-down';
+import { PlusIcon } from '../src/icons/outline/plus.tsx';
 import { Icon } from '../src/icon.tsx';
 import { Separator } from '../src/separator.tsx';
 import { Button } from '../src/button.tsx';
@@ -81,9 +83,7 @@ export const SeparatorButtons = () => {
     <div className="flex flex-col gap-8 p-8">
       <Separator>
         <Button variant="outline">
-          <Icon>
-            <PlusIcon />
-          </Icon>
+          <PlusIcon />
           New Page
         </Button>
       </Separator>
@@ -91,9 +91,7 @@ export const SeparatorButtons = () => {
       <Separator>
         <Button variant="outline">
           Expand
-          <Icon>
-            <ChevronDownIcon />
-          </Icon>
+          <ChevronDownIcon />
         </Button>
       </Separator>
     </div>

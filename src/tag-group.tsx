@@ -10,7 +10,7 @@ import {
 } from 'react-aria-components';
 import { twMerge } from 'tailwind-merge';
 import { composeTailwindRenderProps } from './utils';
-import { XIcon } from './icons';
+import { XIcon } from './icons/outline/x';
 
 const colors = {
   zinc: [

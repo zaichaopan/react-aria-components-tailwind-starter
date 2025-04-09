@@ -16,7 +16,9 @@ import { Popover, PopoverProps } from './popover';
 import { Button, ButtonProps } from './button';
 import { composeTailwindRenderProps } from './utils';
 import { Small } from './text';
-import { CheckIcon, ChevronDownIcon, ChevronRightIcon } from './icons';
+import { CheckIcon } from './icons/outline/check';
+import { ChevronDownIcon } from './icons/outline/chevron-down';
+import { ChevronRightIcon } from './icons/outline/chevron-right';
 
 export { MenuTrigger, SubmenuTrigger } from 'react-aria-components';
 

@@ -2,7 +2,8 @@ import React from 'react';
 import { Button, ButtonProps } from './button';
 import { useCopyToClipboard } from './hooks/use-clipboard';
 import { TooltipTrigger, Tooltip } from './tooltip';
-import { CheckIcon, CopyIcon } from './icons';
+import { CheckIcon} from './icons/outline/check';
+import { CopyIcon } from './icons/outline/copy';
 import { twMerge } from 'tailwind-merge';
 
 export type ClipboardProps = {

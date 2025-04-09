@@ -14,7 +14,7 @@ import { Popover } from './popover';
 import { RangeCalendar } from './range-calendar';
 import { composeTailwindRenderProps, inputField } from './utils';
 import { twMerge } from 'tailwind-merge';
-import { CalendarIcon } from './icons';
+import { CalendarIcon } from './icons/outline/calendar';
 
 export interface DateRangePickerProps<T extends DateValue>
   extends AriaDateRangePickerProps<T> {}
@@ -46,11 +46,12 @@ export function DateRangePickerInput() {
             'group border-input relative rounded-md border',
             'group-data-invalid:border-red-600',
             '[&:has(_input[data-disabled=true])]:border-border/50',
-            '[&:has([data-ui=date-segment][aria-readonly])]:bg-zinc-50',
+            '[&:has([data-ui=date-segment][aria-readonly])]:bg-zinc-800/5',
             'dark:[&:has([data-ui=date-segment][aria-readonly])]:bg-white/10',
             formattedValue ? 'min-w-60' : 'min-w-[278px]',
-            isFocusWithin &&
-              'border-ring ring-ring group-data-invalid:border-ring ring-1',
+            isFocusWithin
+              ? 'border-ring ring-ring group-data-invalid:border-ring ring-1'
+              : '[&:has([data-ui=date-segment][aria-readonly])]:border-transparent',
           )
         }
       >

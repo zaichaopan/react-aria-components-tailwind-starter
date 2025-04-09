@@ -1,14 +1,11 @@
 import type { Meta } from '@storybook/react';
 import { docs } from '../.storybook/docs';
 import { Avatar, AvatarBadge, AvatarGroup } from '../src/avatar';
-import { Icon } from '../src/icon';
-import {
-  AvailableIcon,
-  AwayIcon,
-  BusyIcon,
-  DoNotDisturbIcon,
-} from '../src/icons';
-import { CheckIcon } from 'lucide-react';
+import { AvailableIcon } from '../src/icons/solid/available';
+import { AwayIcon } from '../src/icons/solid/away';
+import { BusyIcon } from '../src/icons/solid/busy';
+import { DoNotDisturbIcon } from '../src/icons/solid/do-not-disturb';
+import { CheckIcon } from '../src/icons/outline/check';
 
 const meta: Meta<typeof Avatar> = {
   parameters: {
@@ -281,11 +278,7 @@ export function StyleAvatarBadge() {
       >
         <AvatarBadge
           className="size-6 translate-x-1 translate-y-1 border-2 border-white bg-green-500"
-          badge={
-            <Icon>
-              <CheckIcon className="size-3.5 text-white" />
-            </Icon>
-          }
+          badge={<CheckIcon className="size-3.5 text-white" />}
         />
       </Avatar>
     </div>

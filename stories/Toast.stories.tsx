@@ -1,13 +1,13 @@
 import React from 'react';
 import { Button } from '../src/button';
 import { docs } from '../.storybook/docs';
-import { GlobalToastRegion, ToastAction } from '../src/toast/toast-region';
+import { GlobalToastRegion } from '../src/toast/toast-region';
 import { toast } from '../src/toast/toast-queue';
 import { TextLink } from '../src/text';
 
 const meta = {
   parameters: {
-    layout: 'center',
+    layout: 'fullscreen',
     docs,
   },
 };
@@ -106,11 +106,17 @@ export const BasicExample = () => {
         onPress={() => {
           toast.add(
             {
+              inline: true,
+              dismissable: true,
               title: 'Payment details saved',
               description: 'Your payment details have been save successfully.',
               type: 'success',
             },
-            { timeout: 5000 },
+            {
+              onClose: () => {
+                toastKey.current = null;
+              },
+            },
           );
         }}
       >
@@ -120,47 +126,20 @@ export const BasicExample = () => {
       <Button
         variant="outline"
         onPress={() => {
-          toast.add(
-            {
-              title: 'Payment details saved',
-              description: (
-                <div>
-                  Your payment details have been save successfully.&nbsp;{' '}
-                  <TextLink href="/">Learn more</TextLink>{' '}
-                </div>
-              ),
-              type: 'success',
-            },
-            { timeout: 5000 },
-          );
-        }}
-      >
-        Link
-      </Button>
-
-      <Button
-        variant="outline"
-        onPress={() => {
-          toastKey.current = toast.add({
-            title: 'Payment details saved',
-            description: 'Your payment details have been save successfully',
-            action: (
-              <ToastAction
-                onPress={() => {
-                  console.log('test', toastKey);
-                  if (toastKey.current) {
-                    toast.close(toastKey.current);
-                  }
-                }}
-              >
-                Dismiss
-              </ToastAction>
-            ),
+          toast.add({
             type: 'success',
+            dismissable: true,
+            title: 'Payment details saved',
+            description: (
+              <div>
+                Your payment details have been save successfully.&nbsp;{' '}
+                <TextLink href="/">Learn more</TextLink>{' '}
+              </div>
+            ),
           });
         }}
       >
-        With Action
+        Link
       </Button>
 
       <GlobalToastRegion aria-label="notification" />

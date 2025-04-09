@@ -12,7 +12,6 @@ import {
 } from '../../src/menu.tsx';
 import { Avatar } from '../../src/avatar.tsx';
 import {
-  SearchIcon,
   InboxIcon,
   HelpCircleIcon,
   SendIcon,
@@ -42,7 +41,9 @@ import {
 import { NotificationBadge } from '../../src/notification-badge.tsx';
 import { composeRenderProps, LinkProps } from 'react-aria-components';
 import { twMerge } from 'tailwind-merge';
-import { CalendarIcon, ChevronRightIcon } from '../../src/icons.tsx';
+import { CalendarIcon } from '../../src/icons/outline/calendar.tsx';
+import { SearchIcon } from '../../src/icons/outline/search.tsx';
+import { ChevronRightIcon } from '../../src/icons/outline/chevron-right.tsx';
 
 const meta = {
   title: 'Layouts/Sidebar',
@@ -146,9 +147,7 @@ function HamburgerMenu() {
 
       <div className="ml-auto flex items-center gap-4 px-2">
         <Button isIconOnly variant="plain">
-          <Icon aria-label="Search">
-            <SearchIcon />
-          </Icon>
+          <SearchIcon aria-label="Search" />
         </Button>
         <MenuTrigger>
           <MenuButton variant="plain" buttonArrow={null}>
@@ -178,7 +177,7 @@ function SideNavigation() {
               <Avatar
                 alt="Acme"
                 className="size-6 [--border-radius:0.25rem]"
-                fallbackBackground="black"
+                background="black"
               />
               <span className="truncate"> Acme, Inc</span>
             </MenuButton>
@@ -234,9 +233,7 @@ const navLinks: Array<NavLinkProps> = [
     href: '/',
     children: (
       <>
-        <Icon>
-          <CalendarIcon />
-        </Icon>
+        <CalendarIcon />
         Calendars
       </>
     ),

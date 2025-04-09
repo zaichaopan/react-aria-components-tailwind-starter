@@ -8,7 +8,7 @@ import {
 } from 'react-aria-components';
 import { twMerge } from 'tailwind-merge';
 import { Link } from './link';
-import { ChevronRightIcon } from './icons';
+import { ChevronRightIcon } from './icons/outline/chevron-right';
 
 export function Breadcrumbs<T extends object>({
   className,
@@ -42,7 +42,7 @@ export function Breadcrumb(props: BreadcrumbProps) {
           );
         }}
       />
-      {props.href && <ChevronRightIcon className="size-4 text-muted" />}
+      {props.href && <ChevronRightIcon className="text-muted size-4" />}
     </RACBreadcrumb>
   );
 }

@@ -26,8 +26,8 @@ import {
   SelectPopover,
 } from '../src/select';
 import { Tooltip } from '../src/tooltip';
-import { SearchIcon } from '../src/icons';
 import { CopyButton } from '../src/clipboard';
+import { SearchIcon } from '../src/icons/outline/search';
 
 const meta = {
   parameters: {
@@ -310,7 +310,7 @@ export const InputWithSelect = () => {
             <Label className="sr-only">Work phone number type</Label>
             <NativeSelect
               name="work_phone_number_type"
-              className="min-w-max rounded-s-none border-s-0 focus-visible:border-transparent focus-visible:ring-2"
+              className="min-w-max rounded-s-none border-s-0 data-focus-visible:border-transparent data-focus-visible:ring-2"
             >
               <option value="Mobile">Mobile</option>
               <option value="Phone">Phone</option>

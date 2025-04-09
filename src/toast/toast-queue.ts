@@ -1,3 +1,4 @@
+import { ToastAria } from '@react-aria/toast';
 import { ToastQueue } from '@react-stately/toast';
 
 type Position =
@@ -14,14 +15,16 @@ export type ToastConfig =
   | {
       position?: Position;
       title?: React.ReactNode;
-      description: React.ReactNode;
+      description?: React.ReactNode;
       action?: React.ReactNode;
+      compact?: boolean;
+      inline?: boolean;
       dismissable?: boolean;
       render?: never;
       type?: Type;
     }
   | {
-      render: () => React.ReactNode;
+      render: (toast: ToastAria) => React.ReactNode;
       position?: Position;
       type?: Type;
     };

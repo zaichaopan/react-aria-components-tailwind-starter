@@ -8,7 +8,8 @@ import { FieldError, Label, Description } from '../src/field';
 import { Small, TextLink } from '../src/text';
 import { Icon } from '../src/icon';
 import { twMerge } from 'tailwind-merge';
-import { CheckIcon, MonitorIcon, MoonStarIcon, SunIcon } from 'lucide-react';
+import { MonitorIcon, MoonStarIcon, SunIcon } from 'lucide-react';
+import { CheckIcon } from '../src/icons/outline/check';
 
 const meta: Meta = {
   parameters: {
@@ -468,9 +469,7 @@ export function CustomRadio() {
                   isSelected ? 'text-white' : 'hidden',
                 )}
               >
-                <Icon>
-                  <CheckIcon className="size-3" />
-                </Icon>
+                <CheckIcon className="size-3" />
               </span>
             );
           }}
@@ -502,9 +501,7 @@ export function CustomRadio() {
                   isSelected ? 'text-white' : 'hidden',
                 )}
               >
-                <Icon>
-                  <CheckIcon className="size-3" />
-                </Icon>
+                <CheckIcon className="size-3" />
               </span>
             );
           }}

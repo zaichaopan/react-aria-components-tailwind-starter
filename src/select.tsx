@@ -17,8 +17,8 @@ import { Popover, PopoverProps } from './popover';
 import { composeTailwindRenderProps, inputField } from './utils';
 import { twMerge } from 'tailwind-merge';
 import { Small } from './text';
-import { CheckIcon, ChevronDownIcon } from './icons';
-import { Icon } from './icon';
+import { CheckIcon } from './icons/outline/check';
+import { ChevronDownIcon } from './icons/outline/chevron-down';
 
 export function Select<T extends object>(props: RACSelectProps<T>) {
   return (
@@ -80,9 +80,11 @@ export function SelectButton(props: {
           'sm:[&>[data-ui=content]_[role=img]]:size-5',
         ])}
       />
-      <Icon className="group-[&:not(:hover)]:text-muted/50 size-5 sm:size-3.5">
-        <ChevronDownIcon strokeWidth="2.5" />
-      </Icon>
+
+      <ChevronDownIcon
+        strokeWidth="2.5"
+        className="group-[&:not(:hover)]:text-muted/50 size-5 sm:size-3.5"
+      />
     </Button>
   );
 }

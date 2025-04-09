@@ -189,7 +189,6 @@ export function TextArea(props: RACTextAreaProps) {
         twMerge(
           'border-input w-full rounded-md border px-3 py-1 shadow-xs outline-hidden',
           'placeholder:text-muted text-base/6 sm:text-sm/6',
-          '[&[readonly]]:bg-zinc-50',
           '[&[readonly]]:bg-zinc-800/5 dark:[&[readonly]]:bg-white/10',
           renderProps.isDisabled && 'opacity-50',
           renderProps.isInvalid && 'border-red-600',

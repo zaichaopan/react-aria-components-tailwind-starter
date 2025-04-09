@@ -20,7 +20,7 @@ import {
 import { twMerge } from 'tailwind-merge';
 import { Checkbox } from './checkbox';
 import { composeTailwindRenderProps } from './utils';
-import { ChevronUpIcon } from './icons';
+import { ChevronUpIcon } from './icons/outline/chevron-up';
 
 export function Table(props: TableProps) {
   return (
