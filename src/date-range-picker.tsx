@@ -31,24 +31,18 @@ export function DateRangePicker<T extends DateValue>({
 }
 
 export function DateRangePickerInput() {
-  const { locale } = useLocale();
-  const state = React.useContext(DateRangePickerStateContext);
-  const formattedValue = state?.formatValue(locale, {});
-
   return (
     <>
       <Group
         data-ui="control"
         className={({ isFocusWithin }) =>
           twMerge(
-            '[&:has([aria-valuetext=Empty]:) w-full',
             'grid grid-cols-[max-content_16px_max-content_1fr] items-center',
             'group border-input relative rounded-md border',
             'group-data-invalid:border-red-600',
             '[&:has(_input[data-disabled=true])]:border-border/50',
             '[&:has([data-ui=date-segment][aria-readonly])]:bg-zinc-800/5',
             'dark:[&:has([data-ui=date-segment][aria-readonly])]:bg-white/10',
-            formattedValue ? 'min-w-60' : 'min-w-[278px]',
             isFocusWithin
               ? 'border-ring ring-ring group-data-invalid:border-ring ring-1'
               : '[&:has([data-ui=date-segment][aria-readonly])]:border-transparent',
@@ -72,7 +66,7 @@ export function DateRangePickerInput() {
         <DateInput
           slot="end"
           className={[
-            'flex min-w-fit flex-1 border-none opacity-100 focus-within:ring-0',
+            'flex min-w-fit border-none opacity-100 focus-within:ring-0',
             '[&:has([data-ui=date-segment][aria-readonly])]:bg-transparent',
             'dark:[&:has([data-ui=date-segment][aria-readonly])]:bg-transparent',
           ].join(' ')}
