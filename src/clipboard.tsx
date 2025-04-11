@@ -77,7 +77,7 @@ export function CopyButton({
 
                   <CheckIcon
                     className={twMerge(
-                      'text-success transition-all',
+                      'text-green-600 transition-all',
                       copied
                         ? 'scale-100 opacity-100'
                         : 'absolute  scale-0 opacity-0',

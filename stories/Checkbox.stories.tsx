@@ -327,18 +327,20 @@ export function SmallCards() {
 
 export function ToggleDarkMode() {
   return (
-    <Checkbox
-      aria-label="Toggle dark mode"
-      className="rounded-lg"
-      render={({ isSelected }) => {
-        return (
-          <span className="flex rounded-lg border p-2.5">
-            <Icon className="size-5">
-              {isSelected ? <MoonIcon /> : <SunIcon />}
-            </Icon>
-          </span>
-        );
-      }}
-    ></Checkbox>
+    <div className="space-y-6">
+      <Checkbox
+        className="rounded-lg"
+        aria-label="Toggle dark mode"
+        render={({ isSelected }) => {
+          return (
+            <span className="flex p-2.5 shadow-outline rounded-lg">
+              <Icon className="size-4">
+                {isSelected ? <MoonIcon /> : <SunIcon />}
+              </Icon>
+            </span>
+          );
+        }}
+      ></Checkbox>
+    </div>
   );
 }

@@ -5,11 +5,12 @@ import { FileTrigger, isFileDropItem } from 'react-aria-components';
 import { Button } from '../src/button';
 import { Text } from '../src/text';
 import { Icon } from '../src/icon';
+import { ImageIcon } from '../src/icons/solid/image';
 
 const meta = {
   parameters: {
     layout: 'centered',
-    docs
+    docs,
   },
 };
 
@@ -45,20 +46,7 @@ export const BasicExample = () => {
       ) : (
         <div className="flex flex-1 flex-col py-6">
           <div className="flex flex-1 justify-center">
-            <Icon>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="1em"
-                height="1em"
-                viewBox="0 0 20 20"
-                className="size-10 text-muted/50"
-              >
-                <path
-                  fill="currentColor"
-                  d="M18 3H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1m-4.75 3.5a1.25 1.25 0 1 1 0 2.5a1.25 1.25 0 0 1 0-2.5M4 14l3.314-7.619l3.769 6.102l3.231-1.605L16 14z"
-                ></path>
-              </svg>
-            </Icon>
+            <ImageIcon className="text-muted/50 size-10" />
           </div>
           <div className="flex flex-1 pt-2">
             <FileTrigger
@@ -77,7 +65,7 @@ export const BasicExample = () => {
             >
               <Button
                 variant="unstyle"
-                className="text-nowrap text-base/6 font-medium text-accent sm:text-sm/6"
+                className="text-accent text-base/6 font-medium text-nowrap sm:text-sm/6"
               >
                 Upload a file
               </Button>

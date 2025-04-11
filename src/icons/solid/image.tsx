@@ -1,6 +1,6 @@
 import { Icon } from '../../icon';
 
-export function ChevronDownIcon({
+export function ImageIcon({
   'aria-label': arialLabel,
   ...props
 }: React.JSX.IntrinsicElements['svg']) {
@@ -8,16 +8,15 @@ export function ChevronDownIcon({
     <Icon aria-label={arialLabel}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 16 16"
+        width="24"
+        height="24"
+        viewBox="0 0 20 20"
         fill="currentColor"
-        width={24}
-        height={24}
         {...props}
       >
         <path
-          fill-rule="evenodd"
-          d="M4.22 6.22a.75.75 0 0 1 1.06 0L8 8.94l2.72-2.72a.75.75 0 1 1 1.06 1.06l-3.25 3.25a.75.75 0 0 1-1.06 0L4.22 7.28a.75.75 0 0 1 0-1.06Z"
-          clip-rule="evenodd"
+          fill="currentColor"
+          d="M18 3H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1m-4.75 3.5a1.25 1.25 0 1 1 0 2.5a1.25 1.25 0 0 1 0-2.5M4 14l3.314-7.619l3.769 6.102l3.231-1.605L16 14z"
         ></path>
       </svg>
     </Icon>

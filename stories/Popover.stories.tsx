@@ -1,5 +1,4 @@
 import React from 'react';
-import { Settings } from 'lucide-react';
 import { Button } from '../src/button.tsx';
 import { Popover } from '../src/popover.tsx';
 import { docs } from '../.storybook/docs.ts';
@@ -7,6 +6,7 @@ import { Avatar, AvatarBadge } from '../src/avatar.tsx';
 import { Separator } from '../src/separator.tsx';
 import { Switch } from '../src/switch.tsx';
 import { Strong, Text } from '../src/text.tsx';
+import { SettingIcon } from '../src/icons/outline/setting.tsx';
 import {
   Menu,
   MenuItem,
@@ -46,9 +46,7 @@ export const BasicExample = () => {
     <DialogTrigger>
       <>
         <Button aria-label="Settings" variant="outline">
-          <Icon>
-            <Settings />
-          </Icon>
+          <SettingIcon />
           Settings
         </Button>
         <Popover className="min-w-56 rounded-xl">

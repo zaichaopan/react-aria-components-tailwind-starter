@@ -1,6 +1,5 @@
 import { Group } from 'react-aria-components';
 import {
-  CircleHelpIcon,
   CreditCardIcon,
   KeyRoundIcon,
   MailIcon,
@@ -28,6 +27,7 @@ import {
 import { Tooltip } from '../src/tooltip';
 import { CopyButton } from '../src/clipboard';
 import { SearchIcon } from '../src/icons/outline/search';
+import { QuestionMarkCircle } from '../src/icons/solid/question-mark-circle';
 
 const meta = {
   parameters: {
@@ -447,11 +447,9 @@ export const InputWithButton = () => {
               isIconOnly
               size="sm"
               tooltip={<Tooltip>This is a simple tooltip</Tooltip>}
-              className="[&:not(:hover)]:text-muted -col-end-1 row-start-1 me-1 self-center"
+              className="[&:not(:hover)]:text-muted/70 -col-end-1 row-start-1 me-1 self-center"
             >
-              <Icon aria-label="Help">
-                <CircleHelpIcon />
-              </Icon>
+              <QuestionMarkCircle aria-label="help" className='size-4.5'/>
             </Button>
           </div>
         </TextField>

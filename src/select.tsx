@@ -81,10 +81,7 @@ export function SelectButton(props: {
         ])}
       />
 
-      <ChevronDownIcon
-        strokeWidth="2.5"
-        className="group-[&:not(:hover)]:text-muted/50 size-5 sm:size-3.5"
-      />
+      <ChevronDownIcon className="group-[&:not(:hover)]:text-muted/50 size-5 sm:size-4" />
     </Button>
   );
 }
@@ -138,8 +135,8 @@ export const SelectListBox = React.forwardRef(
           '**:data-[ui=content]:gap-x-2',
 
           // Icon
-          '[&_[data-ui=content]>[data-ui=icon]:not([class*=size-])]:size-4',
-          '[&_[data-ui=content]:not(:hover)>[data-ui=icon]:not([class*=text-])]:text-muted',
+          // '[&_[data-ui=content]>[data-ui=icon]:not([class*=size-])]:size-4',
+          // '[&_[data-ui=content]:not(:hover)>[data-ui=icon]:not([class*=text-])]:text-muted',
 
           // Label
           '**:data-[ui=label]:col-span-full',
@@ -217,9 +214,13 @@ export const SelectListItem = React.forwardRef(
             twMerge(
               'group flex cursor-default items-center gap-x-1.5 rounded-sm outline-hidden select-none',
               'px-2 py-2.5 text-base/6 sm:py-1.5 sm:text-sm/6',
+              '[&_[data-ui=icon]:not([class*=size-])]:size-4',
               isDisabled && 'opacity-50',
               (isFocused || isHovered) && 'bg-zinc-100 dark:bg-zinc-800',
-              destructive && 'text-red-600',
+              destructive
+                ? 'text-red-600'
+                : '[&:not(:hover)_[data-ui=icon]:not([class*=text-])]:text-muted',
+
               className,
             ),
         )}

@@ -35,6 +35,7 @@ export function Avatar({
         role="img"
         className={twMerge([
           'group ring-background @container relative isolate flex size-10 shrink-0',
+          status ==='loaded' &&  'dark:outline dark:-outline-offset-1 dark:outline-white/10',
           '[--border-radius:var(--radius-lg)]',
           '[&.rounded-full]:[--border-radius:calc(infinity_*_1px)]',
           'rounded-[radius:var(--border-radius)]',
@@ -60,18 +61,18 @@ export function Avatar({
           className={twMerge(
             'object-cover',
             // size
-            '[--badge-size:8px] [&+[data-ui=badge]]:[--badge-size:8px]',
-            '@[32px]:[--badge-size:10px] @[32px]:[&+[data-ui=badge]]:[--badge-size:10px]',
-            '@[48px]:[--badge-size:12px] @[48px]:[&+[data-ui=badge]]:[--badge-size:12px]',
-            '@[64px]:[--badge-size:16px] @[64px]:[&+[data-ui=badge]]:[--badge-size:16px]',
-            '@[96px]:[--badge-size:20px] @[96px]:[&+[data-ui=badge]]:[--badge-size:20px]',
-            '@[120px]:[--badge-size:24px] @[120px]:[&+[data-ui=badge]]:[--badge-size:24px]',
-            '@[128px]:[--badge-size:26px] @[128px]:[&+[data-ui=badge]]:[--badge-size:26px]',
+            '[--badge-size:8px] [&+[data-ui=avatar-badge]]:[--badge-size:8px]',
+            '@[32px]:[--badge-size:10px] @[32px]:[&+[data-ui=avatar-badge]]:[--badge-size:10px]',
+            '@[48px]:[--badge-size:12px] @[48px]:[&+[data-ui=avatar-badge]]:[--badge-size:12px]',
+            '@[64px]:[--badge-size:16px] @[64px]:[&+[data-ui=avatar-badge]]:[--badge-size:16px]',
+            '@[96px]:[--badge-size:20px] @[96px]:[&+[data-ui=avatar-badge]]:[--badge-size:20px]',
+            '@[120px]:[--badge-size:24px] @[120px]:[&+[data-ui=avatar-badge]]:[--badge-size:24px]',
+            '@[128px]:[--badge-size:26px] @[128px]:[&+[data-ui=avatar-badge]]:[--badge-size:26px]',
             '[--badge-gap:2px]',
             '@[120px]:[--badge-gap:3px]',
-            '[&:has(+[data-ui=badge])]:[mask:radial-gradient(circle_at_bottom_calc(var(--badge-size)/2)_right_calc(var(--badge-size)/2),_transparent_calc(var(--badge-size)/2_+_var(--badge-gap)_-_0.25px),_white_calc(var(--badge-size)/2_+_var(--badge-gap)_+_0.25px))]',
-            '[&+[data-ui=badge]:not([class*=size-])]:size-(--badge-size)',
-            '[&+[data-ui=badge]>[data-ui=icon]:not([class*=size-])]:size-full',
+            '[&:has(+[data-ui=avatar-badge])]:[mask:radial-gradient(circle_at_bottom_calc(var(--badge-size)/2)_right_calc(var(--badge-size)/2),_transparent_calc(var(--badge-size)/2_+_var(--badge-gap)_-_0.25px),_white_calc(var(--badge-size)/2_+_var(--badge-gap)_+_0.25px))]',
+            '[&+[data-ui=avatar-badge]:not([class*=size-])]:size-(--badge-size)',
+            '[&+[data-ui=avatar-badge]>[data-ui=icon]:not([class*=size-])]:size-full',
           )}
         />
         {children}

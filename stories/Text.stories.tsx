@@ -37,7 +37,7 @@ export const BasicExample = () => {
 export const ElementTypes = () => {
   return (
     <Text elementType="div">
-      <Strong>TailwindCSS</Strong> is a utility-first CSS framework packed with
+      <TextLink highlight>TailwindCSS</TextLink> is a utility-first CSS framework packed with
       classes like <Strong className="text-sky-500">flex</Strong>,{' '}
       <Strong className="text-sky-500">pt-4</Strong>,{' '}
       <Strong className="text-sky-500">text-center</Strong> and{' '}

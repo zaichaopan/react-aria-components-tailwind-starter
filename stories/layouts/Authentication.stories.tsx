@@ -72,7 +72,7 @@ export const SignUp = () => {
                 Continue with Google
               </Button>
               <Separator soft>
-                <Text>or</Text>
+                <Text className='mx-2'>or</Text>
               </Separator>
 
               <TextField>

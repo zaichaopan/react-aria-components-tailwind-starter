@@ -179,7 +179,7 @@ function Sidebar() {
         <MenuTrigger>
           <MenuButton variant="unstyle" buttonArrow={null}>
             <Avatar
-              src="https://i.imgur.com/xIe7Wlb.png"
+              src="https://images.unsplash.com/photo-1717694371848-70ddf2293c7c?q=80&w=2306&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
               alt="Marissa Whitaker"
             >
               <AvatarBadge badge={<AvailableIcon aria-label="Available" />} />

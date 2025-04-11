@@ -332,7 +332,7 @@ export const ItemWithIcons = () => {
               </Icon>
               <SelectListItemLabel>Right</SelectListItemLabel>
             </SelectListItem>
-            <SelectListItem id="justified" textValue="Justified">
+            <SelectListItem id="justified" textValue="Justified" destructive>
               <Icon>
                 <AlignJustifyIcon />
               </Icon>

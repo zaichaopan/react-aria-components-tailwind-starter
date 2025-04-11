@@ -252,8 +252,8 @@ export const AvatarButton = () => {
   return (
     <Button variant="unstyle">
       <Avatar
-        alt="L K"
-        src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8aGVhZHNob3R8ZW58MHx8MHx8fDA%3D"
+        alt="M A"
+        src="https://images.unsplash.com/photo-1717694371848-70ddf2293c7c?q=80&w=2306&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
       />
     </Button>
   );
@@ -271,7 +271,11 @@ export const ButtonWithBadge = () => {
 export const ButtonAsLink = () => {
   return (
     <Button asChild>
-      <Link href="https://example.com" target="_blank">
+      <Link
+        href="https://example.com"
+        target="_blank"
+        className="hover:no-underline"
+      >
         Login
       </Link>
     </Button>
@@ -557,11 +561,11 @@ export function ButtonCustomization() {
 
       <Button className="rounded-full">
         <Avatar
-          alt="L K"
+          alt="Marissa Whitaker"
           className="size-5 rounded-full"
-          src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8aGVhZHNob3R8ZW58MHx8MHx8fDA%3D"
+          src="https://images.unsplash.com/photo-1717694371848-70ddf2293c7c?q=80&w=2306&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
         ></Avatar>
-        @lenoardkrasner
+        @marissawhitaker
       </Button>
 
       <div className="flex justify-center">

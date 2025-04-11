@@ -153,7 +153,7 @@ function HamburgerMenu() {
           <MenuButton variant="plain" buttonArrow={null}>
             <Avatar
               className="size-8"
-              src="https://i.imgur.com/xIe7Wlb.png"
+              src="https://images.unsplash.com/photo-1717694371848-70ddf2293c7c?q=80&w=2306&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
               alt="Marissa Whitaker"
             />
           </MenuButton>
@@ -200,7 +200,7 @@ function SideNavigation() {
             className="flex-1 justify-start overflow-hidden font-normal"
           >
             <Avatar
-              src="https://i.imgur.com/xIe7Wlb.png"
+              src="https://images.unsplash.com/photo-1717694371848-70ddf2293c7c?q=80&w=2306&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
               alt="Marissa Whitaker"
               className="size-8"
             />
