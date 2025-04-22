@@ -43,8 +43,7 @@ export function DatePickerInput({
         className={[
           'group',
           'grid w-auto min-w-52',
-          'grid-cols-[1fr_calc(theme(size.5)+20px)]',
-          'sm:grid-cols-[1fr_calc(theme(size.4)+20px)]',
+          'grid-cols-[1fr_auto]',
         ].join(' ')}
       >
         <DateInput
@@ -53,8 +52,8 @@ export function DatePickerInput({
             twMerge(
               'col-span-full',
               'row-start-1',
-              'sm:pe-9',
-              'pe-10',
+              'sm:pe-8',
+              'pe-9',
               className,
             ),
           )}
@@ -65,11 +64,13 @@ export function DatePickerInput({
           isIconOnly
           data-ui="trigger"
           className={[
+            'me-1',
             'focus-visible:-outline-offset-1',
             'row-start-1',
             '-col-end-1',
             'place-self-center',
-            'text-muted group-hover:text-foreground',
+            'hover:bg-transparent',
+            'text-muted/75 group-hover:text-foreground',
           ].join(' ')}
         >
           <CalendarIcon />

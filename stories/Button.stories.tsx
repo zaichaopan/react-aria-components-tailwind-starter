@@ -21,6 +21,9 @@ import {
   FlipHorizontal,
   FlipVertical,
   ThumbsUpIcon,
+  GitCommitHorizontalIcon,
+  GitBranchIcon,
+  RefreshCwIcon,
 } from 'lucide-react';
 import {
   Button,
@@ -491,44 +494,80 @@ export const SplitButtons = () => {
   const selectedOptionValue = Array.from(selectedOption)[0];
 
   return (
-    <ButtonGroup>
-      <Button variant="outline">
-        {labelsMap[selectedOptionValue as keyof typeof labelsMap]}
-      </Button>
-      <MenuTrigger>
-        <MenuButton isIconOnly aria-label="More merge options" />
-        <MenuPopover placement="bottom end">
-          <Menu
-            disallowEmptySelection
-            aria-label="Merge options"
-            selectedKeys={selectedOption}
-            selectionMode="single"
-            onSelectionChange={setSelectedOption}
-          >
-            <MenuItem id="merge">
-              <MenuItemLabel> {labelsMap['merge']}</MenuItemLabel>
-              <MenuItemDescription>
-                {descriptionsMap['merge']}
-              </MenuItemDescription>
-            </MenuItem>
-            <MenuSeparator />
-            <MenuItem id="squash">
-              <MenuItemLabel> {labelsMap['squash']}</MenuItemLabel>
-              <MenuItemDescription>
-                {descriptionsMap['squash']}
-              </MenuItemDescription>
-            </MenuItem>
+    <div className="flex flex-col gap-4">
+      <ButtonGroup>
+        <Button variant="outline">
+          {labelsMap[selectedOptionValue as keyof typeof labelsMap]}
+        </Button>
+        <MenuTrigger>
+          <MenuButton isIconOnly aria-label="More merge options" />
+          <MenuPopover placement="bottom end">
+            <Menu
+              disallowEmptySelection
+              aria-label="Merge options"
+              selectedKeys={selectedOption}
+              selectionMode="single"
+              onSelectionChange={setSelectedOption}
+            >
+              <MenuItem id="merge">
+                <MenuItemLabel> {labelsMap['merge']}</MenuItemLabel>
+                <MenuItemDescription>
+                  {descriptionsMap['merge']}
+                </MenuItemDescription>
+              </MenuItem>
+              <MenuSeparator />
+              <MenuItem id="squash">
+                <MenuItemLabel> {labelsMap['squash']}</MenuItemLabel>
+                <MenuItemDescription>
+                  {descriptionsMap['squash']}
+                </MenuItemDescription>
+              </MenuItem>
 
-            <MenuItem id="rebase">
-              <MenuItemLabel> {labelsMap['rebase']}</MenuItemLabel>
-              <MenuItemDescription>
-                {descriptionsMap['rebase']}
-              </MenuItemDescription>
-            </MenuItem>
-          </Menu>
-        </MenuPopover>
-      </MenuTrigger>
-    </ButtonGroup>
+              <MenuItem id="rebase">
+                <MenuItemLabel> {labelsMap['rebase']}</MenuItemLabel>
+                <MenuItemDescription>
+                  {descriptionsMap['rebase']}
+                </MenuItemDescription>
+              </MenuItem>
+            </Menu>
+          </MenuPopover>
+        </MenuTrigger>
+      </ButtonGroup>
+
+      <ButtonGroup>
+        <Button variant="outline">
+          <Icon>
+            <RefreshCwIcon />
+          </Icon>
+          Rebuild
+        </Button>
+        <MenuTrigger>
+          <MenuButton isIconOnly aria-label="More rebuild options" />
+          <MenuPopover placement="bottom end">
+            <Menu aria-label="More rebuild options">
+              <MenuItem>
+                <Icon>
+                  <GitCommitHorizontalIcon />
+                </Icon>
+                <MenuItemLabel>Rebuild this commit</MenuItemLabel>
+              </MenuItem>
+              <MenuItem>
+                <Icon>
+                  <GitBranchIcon />
+                </Icon>
+                <MenuItemLabel>Rebuild this branch</MenuItemLabel>
+              </MenuItem>
+              <MenuItem>
+                <Icon>
+                  <PlusIcon />
+                </Icon>
+                <MenuItemLabel>New build</MenuItemLabel>
+              </MenuItem>
+            </Menu>
+          </MenuPopover>
+        </MenuTrigger>
+      </ButtonGroup>
+    </div>
   );
 };
 

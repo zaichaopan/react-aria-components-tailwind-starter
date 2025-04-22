@@ -149,7 +149,7 @@ export function DialogFooter({
       data-ui="dialog-footer"
       ref={footerRef}
       className={twMerge(
-        'mt-auto flex flex-col flex-col-reverse justify-end gap-3 p-6 sm:flex-row',
+        'mt-auto flex flex-col-reverse justify-end gap-3 p-6 sm:flex-row',
         className,
       )}
     />

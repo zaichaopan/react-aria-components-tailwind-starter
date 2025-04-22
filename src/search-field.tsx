@@ -53,7 +53,7 @@ export function SearchInput({
         isIconOnly
         variant="plain"
         size="sm"
-        className="-col-end-1 row-start-1 place-self-center group-data-empty:invisible"
+        className="-col-end-1 row-start-1 place-self-center group-data-empty:invisible hover:bg-transparent"
       >
         <XIcon aria-label="Clear" />
       </Button>

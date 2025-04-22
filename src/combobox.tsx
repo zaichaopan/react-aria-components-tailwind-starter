@@ -101,7 +101,7 @@ export function ComboBoxButton({
       size="sm"
       data-ui="trigger"
       variant="plain"
-      className="text-muted/50 group-hover/combobox:text-foreground"
+      className="text-muted/75 group-hover/combobox:text-foreground hover:bg-transparent"
     >
       {triggerIcon}
     </Button>
@@ -119,7 +119,7 @@ export function ComboBoxClearButton({
       {...props}
       className={composeRenderProps(props.className, (className) => {
         return twMerge(
-          '[&:not(:hover)]:text-muted',
+          'text-muted hover:text-foreground hover:bg-transparent',
           'not-last:-me-1',
           state?.inputValue
             ? 'visible focus-visible:-outline-offset-2'

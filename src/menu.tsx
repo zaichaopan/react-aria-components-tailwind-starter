@@ -100,7 +100,7 @@ export function Menu<T extends object>({
           '**:data-[ui=content]:rtl:text-right',
 
           // Icon
-          '[&_[data-ui=content]:not(:hover)>[data-ui=icon]:not([class*=text-])]:text-muted',
+          '[&_[data-ui=content]:not(:hover)>[data-ui=icon]:not([class*=text-])]:text-muted/75',
           '[&_[data-ui=content][data-destructive]>[data-ui=icon]]:text-red-600',
           '[&_[data-ui=content][data-destructive]:not(:hover)>[data-ui=icon]]:text-red-600/75',
           '[&_[data-ui=content]>[data-ui=icon]:not([class*=size-])]:size-4',

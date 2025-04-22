@@ -45,13 +45,11 @@ export function Calendar<T extends DateValue>({
     <RACCalendar
       {...props}
       className={composeRenderProps(props.className, (className) => {
-        return twMerge('px-1 py-2.5', className);
+        return twMerge('px-1 pt-3 pb-1', className);
       })}
     >
       <CalendarHeader yearRange={yearRange} />
-      <CalendarGrid
-        className="w-full border-separate border-spacing-y-1 px-2"
-      >
+      <CalendarGrid className="w-full border-separate border-spacing-y-2 px-2">
         <CalendarGridHeader />
         <CalendarGridBody>
           {(date) => {
@@ -74,8 +72,12 @@ export function Calendar<T extends DateValue>({
                   ) => {
                     return twMerge(
                       'relative flex size-10 cursor-default items-center justify-center rounded-lg text-sm outline-hidden',
-                      isToday(date, getLocalTimeZone()) &&
-                        'bg-zinc-100 dark:bg-zinc-800',
+                      isToday(date, getLocalTimeZone()) && [
+                        "before:content-['•']",
+                        'before:absolute',
+                        'before:-bottom-1',
+                        'before:text-xl',
+                      ],
                       isHovered && 'bg-zinc-100 dark:bg-zinc-800',
                       isPressed && 'bg-accent/90 text-white',
                       isDisabled && 'opacity-50',
@@ -116,19 +118,19 @@ export function CalendarHeader({ yearRange }: { yearRange?: YearRange }) {
   return (
     <header
       className={twMerge(
-        'flex w-full items-center py-1 ps-4 pe-2',
-        yearRange ? 'ps-2' : 'ps-4',
+        'flex w-full items-center pe-2',
+        yearRange ? 'ps-2' : 'ps-3',
       )}
     >
       {yearRange ? (
-        <div className="flex flex-1 gap-x-2 text-center text-left text-base/6 sm:text-sm/6 rtl:text-right">
+        <div className="flex flex-1 gap-x-2 text-left text-base/6 sm:text-sm/6 rtl:text-right">
           <MonthDropdown state={state} />
           <YearDropdown state={state} yearRange={yearRange} />
         </div>
       ) : (
         <Heading
           level={2}
-          className="flex flex-1 text-center text-left text-base/6 font-medium sm:text-sm/6 rtl:text-right"
+          className="flex flex-1 text-left text-base/6 font-medium sm:text-sm/6 rtl:text-right"
           aria-hidden
         ></Heading>
       )}
@@ -143,9 +145,9 @@ export function CalendarHeader({ yearRange }: { yearRange?: YearRange }) {
           className="[&:not(:hover)]:text-muted/75 focus-visible:-outline-offset-2"
         >
           {direction === 'rtl' ? (
-            <ChevronRightIcon className="sm:size-5" />
+            <ChevronRightIcon className="size-5" />
           ) : (
-            <ChevronLeftIcon className="sm:size-5" />
+            <ChevronLeftIcon className="size-5" />
           )}
         </Button>
 
@@ -158,9 +160,9 @@ export function CalendarHeader({ yearRange }: { yearRange?: YearRange }) {
           className="[&:not(:hover)]:text-muted/75 focus-visible:-outline-offset-2"
         >
           {direction === 'rtl' ? (
-            <ChevronLeftIcon className="sm:size-5" />
+            <ChevronLeftIcon className="size-5" />
           ) : (
-            <ChevronRightIcon className="sm:size-5" />
+            <ChevronRightIcon className="size-5" />
           )}
         </Button>
       </ButtonGroup>

@@ -6,7 +6,7 @@ import { composeTailwindRenderProps } from './utils';
 import { EyeIcon } from './icons/solid/eye';
 import { EyeOffIcon } from './icons/solid/eye-off';
 
-export function PasswordInput({className, ...props}: InputProps) {
+export function PasswordInput({ className, ...props }: InputProps) {
   const [isPasswordVisible, setIsPasswordVisible] = React.useState(false);
 
   return (
@@ -41,6 +41,7 @@ export function PasswordInput({className, ...props}: InputProps) {
           'row-start-1',
           '-col-end-1',
           'place-self-center',
+          'hover:bg-transparent',
         ].join(' ')}
       >
         {isPasswordVisible ? (

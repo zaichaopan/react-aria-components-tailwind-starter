@@ -22,6 +22,7 @@ const colors = {
   zinc: [
     '[--callout-bg:var(--color-zinc-50)]',
     '[--callout-icon:var(--color-zinc-600)]',
+    '[--callout-description:var(--color-foreground)]/80',
     'dark:[--callout-bg:var(--color-zinc-400)]/10',
     'dark:[--callout-icon:var(--color-zinc-400)]',
   ],
@@ -123,10 +124,11 @@ export default function Callout({
           color
             ? colors[color]
             : [
+                'shadow-xs',
                 '[&:has(>[data-ui=callout-heading])]:[--callout-description:var(--color-muted)]',
               ],
 
-          'group w-full border border-(--callout-border) bg-(--callout-bg) shadow-xs',
+          'group w-full border-(--callout-border) bg-(--callout-bg)',
           'grid grid-cols-[auto_1fr_auto_auto]',
 
           center
@@ -136,7 +138,7 @@ export default function Callout({
                 'sm:[&>:last-child:not([data-ui=callout-control])]:me-auto',
                 'sm:[&>[data-ui=callout-control]]:ms-auto',
               ]
-            : 'max-w-lg rounded-xl border p-4',
+            : 'rounded-lg border p-4',
 
           '[&:has([data-ui=callout-heading]+[data-ui=callout-description])]:[--callout-content-row-end:3]',
           className,
@@ -193,19 +195,26 @@ export function CalloutHeading({
         'self-center',
         inline && ['sm:-col-end-3'],
         'flex gap-x-2 gap-y-1 text-(--callout-heading)',
+        '[&:has(+[data-ui=callout-description])]:pb-0.5',
+        'sm:[&+[data-ui=callout-description]]:leading-5',
         className,
       )}
     />
   );
 }
 
-export function CalloutDescription({ className, id, ...props }: TextProps) {
+export function CalloutDescription({
+  className,
+  id,
+  ...props
+}: Omit<TextProps, 'elementType'>) {
   const { inline, 'aria-describedby': ariaDescribedBy } =
     React.useContext(CalloutContext);
 
   return (
     <Text
       {...props}
+      elementType="div"
       id={id ?? ariaDescribedBy}
       data-ui="callout-description"
       className={twMerge(

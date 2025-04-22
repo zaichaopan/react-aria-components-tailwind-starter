@@ -45,7 +45,7 @@ export function NativeSelect({
         'group relative isolate flex transition',
         'after:pointer-events-none',
         'after:absolute',
-        'after:border-muted/50',
+        'after:border-muted/75',
         'hover:after:border-foreground',
         "after:content-['']",
         'after:size-2 sm:after:size-1.5',

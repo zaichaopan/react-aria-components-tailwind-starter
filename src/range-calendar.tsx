@@ -25,11 +25,11 @@ export function RangeCalendar<T extends DateValue>({
     <RACRangeCalendar
       {...props}
       className={composeRenderProps(props.className, (className) => {
-        return twMerge('px-1.5 py-2.5', className);
+        return twMerge('px-1 pt-3 pb-1', className);
       })}
     >
       <CalendarHeader />
-      <CalendarGrid className="border-separate border-spacing-y-1 px-3 sm:px-2">
+      <CalendarGrid className="border-separate border-spacing-y-2 px-3 sm:px-2">
         <CalendarGridHeader />
         <CalendarGridBody>
           {(date) => (
@@ -43,11 +43,7 @@ export function RangeCalendar<T extends DateValue>({
                 ) => {
                   return twMerge(
                     'group grid size-10 cursor-default place-items-center text-sm outline-hidden [td:first-child_&]:rounded-s-lg [td:last-child_&]:rounded-e-lg',
-                    isToday(date, getLocalTimeZone()) && [
-                      isSelected
-                        ? 'rounded-none'
-                        : 'rounded-lg bg-zinc-100 dark:bg-zinc-800',
-                    ],
+
                     isSelected &&
                       'bg-accent/[0.07] dark:bg-accent/35 dark:text-white',
                     isSelected &&
@@ -75,6 +71,12 @@ export function RangeCalendar<T extends DateValue>({
                 <span
                   className={twMerge(
                     'relative flex size-[calc(--spacing(10)-1px)] items-center justify-center',
+                    isToday(date, getLocalTimeZone()) && [
+                      "before:content-['•']",
+                      'before:absolute',
+                      'before:-bottom-1',
+                      'before:text-xl',
+                    ],
                     isHovered && [
                       'rounded-lg bg-zinc-100 dark:bg-zinc-700',
                       isPressed && 'bg-accent/90',

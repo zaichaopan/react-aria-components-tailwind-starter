@@ -81,7 +81,7 @@ export function SelectButton(props: {
         ])}
       />
 
-      <ChevronDownIcon className="group-[&:not(:hover)]:text-muted/50 size-5 sm:size-4" />
+      <ChevronDownIcon className="group-[&:not(:hover)]:text-muted/75 size-5 sm:size-4" />
     </Button>
   );
 }

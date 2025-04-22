@@ -31,6 +31,7 @@ import { AvailableIcon } from '../src/icons/solid/available.tsx';
 import { BusyIcon } from '../src/icons/solid/busy.tsx';
 import { AwayIcon } from '../src/icons/solid/away.tsx';
 import { DoNotDisturbIcon } from '../src/icons/solid/do-not-disturb.tsx';
+import { SettingsIcon } from 'lucide-react';
 
 const meta = {
   parameters: {
@@ -54,7 +55,7 @@ export const BasicExample = () => {
             <div className="flex flex-col gap-2 overflow-y-auto p-3">
               <div className="flex gap-4">
                 <Avatar
-                  src="https://images.unsplash.com/photo-1578680671705-0965e325b2ba?q=80&w=2306&auto=format&fit=facearea&facepad=3&w=256&h=256&q=80"
+                  src="https://images.unsplash.com/photo-1717694371848-70ddf2293c7c?q=80&w=2306&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
                   alt="Lisa Wilson"
                 >
                   <AvatarBadge
@@ -160,7 +161,7 @@ export const ControlledOpenState = () => {
     <>
       <Button aria-label="Settings" onPress={() => setIsOpen(true)} ref={ref}>
         <Icon>
-          <Settings />
+          <SettingsIcon />
         </Icon>
         Settings
       </Button>
@@ -174,7 +175,7 @@ export const ControlledOpenState = () => {
           <div className="flex flex-col gap-2 p-3">
             <div className="flex gap-4">
               <Avatar
-                src="https://images.unsplash.com/photo-1578680671705-0965e325b2ba?q=80&w=2306&auto=format&fit=facearea&facepad=3&w=256&h=256&q=80"
+                src="https://images.unsplash.com/photo-1717694371848-70ddf2293c7c?q=80&w=2306&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
                 alt="Lisa Wilson"
               >
                 <AvatarBadge badge={<AvailableIcon aria-label="Available" />} />

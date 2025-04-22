@@ -167,7 +167,7 @@ function Toast({ state, ...props }: ToastProps) {
           <CalloutHeading {...toast.titleProps}>{title}</CalloutHeading>
         ) : null}
         {description ? (
-          <CalloutDescription elementType="div" {...toast.descriptionProps}>
+          <CalloutDescription {...toast.descriptionProps}>
             {description}
           </CalloutDescription>
         ) : null}
