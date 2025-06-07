@@ -46,7 +46,7 @@ import { Icon } from '../src/icon';
 import {
   EmptyState,
   EmptyStateDescription,
-  EmptyStateHeading,
+  EmptyStateTitle,
 } from '../src/empty-state';
 
 const meta: Meta = {
@@ -108,7 +108,7 @@ export function CommandPalette() {
             >
               <SearchInput
                 placeholder="Search commands…"
-                className="border-transparent ring-0 shadow-none"
+                className="border-transparent shadow-none ring-0"
               />
             </SearchField>
             <Menu
@@ -116,9 +116,9 @@ export function CommandPalette() {
               className="mt-1 border-t px-2"
               renderEmptyState={() => (
                 <EmptyState>
-                  <EmptyStateHeading elementType="div" displayLevel={2}>
+                  <EmptyStateTitle elementType="div" displayLevel={2}>
                     No results
-                  </EmptyStateHeading>
+                  </EmptyStateTitle>
                   <EmptyStateDescription>
                     Try adjusting your search filters.
                   </EmptyStateDescription>
@@ -210,16 +210,16 @@ export function CommandJ() {
             <TextField aria-label="Search commands" autoFocus className="px-1">
               <Input
                 placeholder="Type a command or search…"
-                className="border-transparent ring-0 shadow-none"
+                className="border-transparent shadow-none ring-0"
               />
             </TextField>
             <Menu
               className="mt-1 border-t px-2"
               renderEmptyState={() => (
                 <EmptyState>
-                  <EmptyStateHeading elementType="div" displayLevel={2}>
+                  <EmptyStateTitle elementType="div" displayLevel={2}>
                     No results
-                  </EmptyStateHeading>
+                  </EmptyStateTitle>
                   <EmptyStateDescription>
                     Try adjusting your search filters.
                   </EmptyStateDescription>
@@ -306,7 +306,7 @@ export function SearchableSelect() {
             <SearchField aria-label="Search" autoFocus>
               <SearchInput
                 placeholder="Search languages"
-                className="border-0 ring-0"
+                className="rounded-none shadow-none ring-0"
               />
             </SearchField>
             <SelectListBox
@@ -314,9 +314,9 @@ export function SearchableSelect() {
               className="flex-1 scroll-pb-1 overflow-auto border-t"
               renderEmptyState={() => (
                 <EmptyState>
-                  <EmptyStateHeading elementType="div" displayLevel={3}>
+                  <EmptyStateTitle elementType="div" displayLevel={3}>
                     No results
-                  </EmptyStateHeading>
+                  </EmptyStateTitle>
                   <EmptyStateDescription>
                     Try adjusting your search filters.
                   </EmptyStateDescription>
@@ -337,7 +337,7 @@ export function SearchableSelect() {
             <SearchField aria-label="Search" autoFocus>
               <SearchInput
                 placeholder="Search assignees"
-                className="border-0 ring-0"
+                className="shadow-none ring-0"
               />
             </SearchField>
             <SelectListBox
@@ -345,9 +345,9 @@ export function SearchableSelect() {
               className="flex-1 scroll-pb-1 overflow-auto border-t"
               renderEmptyState={() => (
                 <EmptyState>
-                  <EmptyStateHeading elementType="div" displayLevel={3}>
+                  <EmptyStateTitle elementType="div" displayLevel={3}>
                     No results
-                  </EmptyStateHeading>
+                  </EmptyStateTitle>
                   <EmptyStateDescription>
                     Try adjusting your search filters.
                   </EmptyStateDescription>
@@ -395,7 +395,7 @@ export const SearchableMenu = () => {
                 <SearchField aria-label="Search tags" autoFocus>
                   <SearchInput
                     placeholder="Search tags"
-                    className="border-0 ring-0"
+                    className="shadow-none ring-0"
                   />
                 </SearchField>
                 <SubMenu
@@ -403,9 +403,9 @@ export const SearchableMenu = () => {
                   className="flex-1 scroll-pb-1 overflow-auto border-t"
                   renderEmptyState={() => (
                     <EmptyState>
-                      <EmptyStateHeading elementType="div" displayLevel={3}>
+                      <EmptyStateTitle elementType="div" displayLevel={3}>
                         No results
-                      </EmptyStateHeading>
+                      </EmptyStateTitle>
                       <EmptyStateDescription>
                         Try adjusting your search filters.
                       </EmptyStateDescription>

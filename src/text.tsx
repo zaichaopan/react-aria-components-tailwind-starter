@@ -49,16 +49,13 @@ export function Small({
   );
 }
 
-export function TextLink({
-  highlight,
-  ...props
-}: LinkProps & { highlight?: boolean }) {
+export function TextLink(props: LinkProps) {
   return (
     <Link
       {...props}
       className={composeTailwindRenderProps(props.className, [
-        highlight && 'text-foreground font-medium',
-        'underline underline-offset-4 [&:not(:hover)]:decoration-zinc-300 dark:[&:not(:hover)]:decoration-zinc-600',
+        '[--link-color:var(--link,var(--foreground))]',
+        'text-(--link-color) underline decoration-(--link-color)/15 underline-offset-4 dark:decoration-(--link-color)/30',
       ])}
     />
   );

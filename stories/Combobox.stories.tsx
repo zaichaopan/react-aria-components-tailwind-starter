@@ -26,7 +26,7 @@ import { useAsyncList } from 'react-stately';
 import {
   EmptyState,
   EmptyStateDescription,
-  EmptyStateHeading,
+  EmptyStateTitle,
 } from '../src/empty-state';
 
 const meta: Meta = {
@@ -42,7 +42,6 @@ export const BasicExample = () => {
   return (
     <ComboBox>
       <Label>Favorite Animal</Label>
-      <Description>Choose your favorite animal</Description>
       <ComboBoxGroup>
         <ComboBoxInput />
         <ComboBoxClearButton />
@@ -67,7 +66,6 @@ export const InputWithSearchIcon = () => {
   return (
     <ComboBox>
       <Label>Favorite Animal</Label>
-      <Description>Choose your favorite animal</Description>
       <ComboBoxGroup>
         <SearchIcon />
         <ComboBoxInput />
@@ -482,9 +480,9 @@ export const AsyncQuery = () => {
           renderEmptyState={() => {
             return (
               <EmptyState>
-                <EmptyStateHeading elementType="div" displayLevel={2}>
+                <EmptyStateTitle elementType="div" displayLevel={2}>
                   No results found
-                </EmptyStateHeading>
+                </EmptyStateTitle>
                 <EmptyStateDescription>
                   Try searching for something else
                 </EmptyStateDescription>

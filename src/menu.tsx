@@ -33,7 +33,19 @@ export function MenuButton({
   ...props
 }: MenuButtonProps) {
   return (
-    <Button {...props} variant={variant}>
+    <Button
+      {...props}
+      variant={variant}
+      className={composeRenderProps(props.className, (className) => {
+        return twMerge(
+          className,
+          variant === 'outline' && [
+            'aria-expanded:bg-zinc-50',
+            'dark:aria-expanded:bg-zinc-800',
+          ],
+        );
+      })}
+    >
       {(renderProps) => {
         return (
           <>

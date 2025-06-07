@@ -21,19 +21,18 @@ import { DisplayLevel, displayLevels, inputField } from './utils';
 import { Text } from './text';
 
 // https://react-spectrum.adobe.com/react-aria/Group.html#advanced-customization
-export function LabeledGroup({
-  className,
-  children,
-}: {
-  className?: string;
-  children: React.ReactNode;
-}) {
+export const LabeledGroup = React.forwardRef<
+  HTMLDivElement,
+  React.JSX.IntrinsicElements['div']
+>(function LabeledGroup({ className, children, ...props }, ref) {
   const labelId = React.useId();
 
   return (
     <LabelContext.Provider value={{ id: labelId, elementType: 'span' }}>
       <GroupContext.Provider value={{ 'aria-labelledby': labelId }}>
         <div
+          {...props}
+          ref={ref}
           className={twMerge(
             ['[&>[data-ui=label]:first-of-type:not([class*=mb])]:mb-2'],
             className,
@@ -44,16 +43,14 @@ export function LabeledGroup({
       </GroupContext.Provider>
     </LabelContext.Provider>
   );
-}
+});
 
 export function Label({
-  requiredHint,
   hint,
   displayLevel = 3,
   children,
   ...props
 }: LabelProps & {
-  requiredHint?: boolean;
   hint?: 'required' | 'optional';
   displayLevel?: DisplayLevel;
 }) {
@@ -63,7 +60,7 @@ export function Label({
       data-ui="label"
       className={twMerge(
         'inline-block min-w-max text-pretty',
-        'group-disabled:opacity-50',
+        'group-data-disabled:opacity-50',
         displayLevels[displayLevel],
         hint === 'required' &&
           "after:ms-0.5 after:text-red-600 after:content-['*']",
@@ -72,7 +69,7 @@ export function Label({
     >
       {children}
       {hint === 'optional' && (
-        <span className="text-muted ps-0.5 font-normal ms-auto">Optional</span>
+        <span className="text-muted ms-auto ps-0.5 font-normal">Optional</span>
       )}
     </RACLabel>
   );
@@ -121,7 +118,7 @@ export function Description({ className, ...props }: TextProps) {
       {...props}
       id={describedby}
       data-ui="description"
-      className={twMerge('block group-disabled:opacity-50', className)}
+      className={twMerge('block group-data-disabled:opacity-50', className)}
     />
   ) : (
     <RACText
@@ -130,7 +127,7 @@ export function Description({ className, ...props }: TextProps) {
       slot="description"
       className={twMerge(
         'text-muted block text-base/6 text-pretty sm:text-sm/6',
-        'group-disabled:opacity-50',
+        'group-data-disabled:opacity-50',
         className,
       )}
     />
@@ -169,17 +166,20 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
         ref={ref}
         className={composeRenderProps(
           props.className,
-          (className, renderProps) => {
+          (className, { isDisabled, isInvalid, isFocused, isHovered }) => {
             return twMerge(
-              'border-input w-full rounded-md border shadow-xs outline-hidden',
-              'px-3 py-[calc(--spacing(2.5)-1px)] sm:py-[calc(--spacing(1.5)-1px)]',
-              'placeholder:text-muted text-base/6 sm:text-sm/6',
-              'dark:shadow-none [&[readonly]]:bg-zinc-800/5 dark:[&[readonly]]:bg-white/10',
-              renderProps.isDisabled && 'opacity-50',
-              renderProps.isInvalid && 'border-red-600',
-              renderProps.isFocused
-                ? 'border-ring ring-ring ring-1'
-                : '[&[readonly]]:border-transparent',
+              'placeholder:text-muted w-full rounded-md text-base/6 shadow-sm outline-none sm:text-sm/6 dark:shadow-none',
+              'px-3 py-2.5 sm:py-1.5',
+              'ring ring-zinc-950/10 dark:ring-white/10',
+              !isFocused &&
+                !isDisabled &&
+                !isInvalid &&
+                isHovered &&
+                '[&:not([readonly])]:ring-zinc-950/20 dark:[&:not([readonly])]:ring-white/20',
+              '[&[readonly]]:bg-zinc-50 dark:[&[readonly]]:bg-white/5',
+              isDisabled && 'opacity-50',
+              isInvalid && 'ring-red-600 dark:ring-red-600',
+              isFocused ? 'dark:ring-ring ring-ring ring-2' : '',
               className,
             );
           },
@@ -193,18 +193,24 @@ export function TextArea(props: RACTextAreaProps) {
   return (
     <RACTextArea
       {...props}
-      className={composeRenderProps(props.className, (className, renderProps) =>
-        twMerge(
-          'border-input w-full rounded-md border px-3 py-1 shadow-xs outline-hidden',
-          'placeholder:text-muted text-base/6 sm:text-sm/6',
-          '[&[readonly]]:bg-zinc-800/5 dark:[&[readonly]]:bg-white/10',
-          renderProps.isDisabled && 'opacity-50',
-          renderProps.isInvalid && 'border-red-600',
-          renderProps.isFocused
-            ? 'border-ring ring-ring ring-1'
-            : '[&[readonly]]:border-transparent',
-          className,
-        ),
+      className={composeRenderProps(
+        props.className,
+        (className, { isDisabled, isInvalid, isFocused, isHovered }) =>
+          twMerge(
+            'placeholder:text-muted w-full rounded-md text-base/6 shadow-sm outline-none sm:text-sm/6 dark:shadow-none',
+            'px-3 py-2.5 sm:py-1.5',
+            'ring ring-zinc-950/10 dark:ring-white/10',
+            !isFocused &&
+              !isDisabled &&
+              !isInvalid &&
+              isHovered &&
+              '[&:not([readonly])]:ring-zinc-950/20 dark:[&:not([readonly])]:ring-white/20',
+            '[&[readonly]]:bg-zinc-50 dark:[&[readonly]]:bg-white/5',
+            isDisabled && 'opacity-50',
+            isInvalid && 'ring-red-600 dark:ring-red-600',
+            isFocused ? 'ring-ring dark:ring-ring ring-2' : '',
+            className,
+          ),
       )}
     />
   );

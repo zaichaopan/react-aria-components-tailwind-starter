@@ -4,7 +4,7 @@ import {
   EmptyState,
   EmptyStateActions,
   EmptyStateDescription,
-  EmptyStateHeading,
+  EmptyStateTitle,
   EmptyStateIcon,
 } from '../src/empty-state';
 import { FolderPlus, Plus } from 'lucide-react';
@@ -25,7 +25,7 @@ export const BasicExample = () => {
       <EmptyStateIcon>
         <FolderPlus strokeWidth="1" />
       </EmptyStateIcon>
-      <EmptyStateHeading>No projects</EmptyStateHeading>
+      <EmptyStateTitle>No projects</EmptyStateTitle>
       <EmptyStateDescription>
         Get started by creating a new project.
       </EmptyStateDescription>

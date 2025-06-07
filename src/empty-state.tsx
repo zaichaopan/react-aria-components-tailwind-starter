@@ -37,7 +37,7 @@ export function EmptyStateIcon({
   );
 }
 
-export function EmptyStateHeading({
+export function EmptyStateTitle({
   className,
   level = 2,
   displayLevel,
