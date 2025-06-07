@@ -306,7 +306,7 @@ export function SearchableSelect() {
             <SearchField aria-label="Search" autoFocus>
               <SearchInput
                 placeholder="Search languages"
-                className="border-0 ring-0"
+                className="ring-0 shadow-none rounded-none"
               />
             </SearchField>
             <SelectListBox
@@ -337,7 +337,7 @@ export function SearchableSelect() {
             <SearchField aria-label="Search" autoFocus>
               <SearchInput
                 placeholder="Search assignees"
-                className="border-0 ring-0"
+                className="ring-0 shadow-none"
               />
             </SearchField>
             <SelectListBox
@@ -395,7 +395,7 @@ export const SearchableMenu = () => {
                 <SearchField aria-label="Search tags" autoFocus>
                   <SearchInput
                     placeholder="Search tags"
-                    className="border-0 ring-0"
+                    className="ring-0 shadow-none"
                   />
                 </SearchField>
                 <SubMenu

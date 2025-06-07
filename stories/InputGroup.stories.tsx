@@ -16,6 +16,7 @@ import {
 import { CopyButton } from '../src/clipboard';
 import { SearchIcon } from '../src/icons/outline/search';
 import { QuestionMarkCircle } from '../src/icons/solid/question-mark-circle';
+import { twMerge } from 'tailwind-merge';
 
 const meta = {
   parameters: {
@@ -55,21 +56,6 @@ export const BasicExample = () => {
           <Input
             placeholder="www.example.com"
             className="col-span-full row-start-1 ps-16 sm:ps-[--spacing(15)]"
-            autoComplete="email"
-          />
-        </div>
-      </TextField>
-
-      <TextField>
-        <Label>Company website</Label>
-        <div className="flex">
-          <span className="text-foreground border-input flex items-center rounded-s-md border-y border-s px-2.5 text-base/6 shadow-xs sm:text-sm/6">
-            https://
-          </span>
-          <Input
-            type="text"
-            placeholder="www.example.com"
-            className="rounded-s-none"
             autoComplete="email"
           />
         </div>
@@ -116,11 +102,23 @@ export const InputWithNativeSelect = () => {
     <div className="flex w-72 flex-col gap-y-10">
       <LabeledGroup>
         <Label>Phone number</Label>
-        <Group className="group flex">
+        <Group
+          className={twMerge(
+            'group flex rounded-md shadow-sm dark:shadow-none',
+            'ring',
+            '[&:has(input[data-focused])]:ring-ring',
+            'ring-zinc-950/10',
+            'dark:ring-white/10',
+            '[&:has([data-invalid])]:ring-red-500',
+            '[&:has(input[data-focused])]:ring-2',
+            '[&:not(:has([data-invalid]))]:hover:ring-zinc-950/20',
+            'dark:[&:not(:has([data-invalid]))]:hover:ring-white/20',
+          )}
+        >
           <NativeSelectField>
             <NativeSelect
               aria-label="Choose country"
-              className="rounded-e-none border-e-0 data-focus-visible:border-transparent data-focus-visible:ring-2"
+              className="ring-0 shadow-none data-focus-visible:ring-2"
             >
               <option value="CA">CA</option>
               <option value="US">US</option>
@@ -129,7 +127,7 @@ export const InputWithNativeSelect = () => {
           <TextField className="flex-1" aria-label="Phone number">
             <Input
               placeholder="123-457-789"
-              className="focus-visible:border-transparent focus-visible:ring-2 [&:not(:focus)]:rounded-s-none"
+              className="ps-0 ring-0 shadow-none"
             />
           </TextField>
         </Group>
@@ -137,18 +135,60 @@ export const InputWithNativeSelect = () => {
 
       <LabeledGroup>
         <Label>Phone number</Label>
-        <Group className="group flex">
-          <TextField className="flex-1" aria-label="Phone number">
+        <Group
+          className={twMerge(
+            'group flex rounded-md shadow-sm dark:shadow-none',
+            'ring',
+            '[&:has(input[data-focused])]:ring-ring',
+            'ring-zinc-950/10',
+            'dark:ring-white/10',
+            '[&:has([data-invalid])]:ring-red-500',
+            '[&:has(input[data-focused])]:ring-2',
+            '[&:not(:has([data-invalid]))]:hover:ring-zinc-950/20',
+            'dark:[&:not(:has([data-invalid]))]:hover:ring-white/20',
+          )}
+        >
+          <NativeSelectField>
+            <NativeSelect
+              aria-label="Choose country"
+              className="ring-0 shadow-none data-focus-visible:ring-2"
+            >
+              <option value="CA">CA</option>
+              <option value="US">US</option>
+            </NativeSelect>
+          </NativeSelectField>
+          <TextField className="flex-1" aria-label="Phone number" isInvalid>
             <Input
               placeholder="123-457-789"
-              className="focus:rounded-e-md [&:not(:focus)]:rounded-e-none"
+              className="ps-0 ring-0 shadow-none"
             />
+          </TextField>
+        </Group>
+      </LabeledGroup>
+
+      <LabeledGroup>
+        <Label>Phone number</Label>
+        <Group
+          className={twMerge(
+            'group flex rounded-md shadow-sm dark:shadow-none',
+            'ring',
+            '[&:has(input[data-focused])]:ring-ring',
+            'ring-zinc-950/10',
+            'dark:ring-white/10',
+            '[&:has([data-invalid])]:ring-red-500',
+            '[&:has(input[data-focused])]:ring-2',
+            '[&:not(:has([data-invalid]))]:hover:ring-zinc-950/20',
+            'dark:[&:not(:has([data-invalid]))]:hover:ring-white/20',
+          )}
+        >
+          <TextField className="flex-1" aria-label="Phone number">
+            <Input placeholder="123-457-789" className="ring-0 shadow-none" />
           </TextField>
 
           <NativeSelectField>
             <NativeSelect
               aria-label="Choose country"
-              className="rounded-s-none border-s-0 data-focus-visible:border-transparent data-focus-visible:ring-2"
+              className="ring-0 shadow-none data-focus-visible:ring-2"
             >
               <option value="CA">CA</option>
               <option value="US">US</option>
@@ -159,7 +199,19 @@ export const InputWithNativeSelect = () => {
 
       <LabeledGroup>
         <Label>Price</Label>
-        <Group className="group flex">
+        <Group
+          className={twMerge(
+            'group flex rounded-md shadow-sm dark:shadow-none',
+            'ring',
+            '[&:has(input[data-focused])]:ring-ring',
+            'ring-zinc-950/10',
+            'dark:ring-white/10',
+            '[&:has([data-invalid])]:ring-red-500',
+            '[&:has(input[data-focused])]:ring-2',
+            '[&:not(:has([data-invalid]))]:hover:ring-zinc-950/20',
+            'dark:[&:not(:has([data-invalid]))]:hover:ring-white/20',
+          )}
+        >
           <TextField className="flex-1" aria-label="Price">
             <div className="group grid grid-cols-[auto_1fr]">
               <span className="text-muted col-start-1 row-start-1 grid place-content-center px-3 group-has-autofill:z-10 sm:text-sm/6">
@@ -168,7 +220,7 @@ export const InputWithNativeSelect = () => {
 
               <Input
                 placeholder="0.00"
-                className="col-span-full row-start-1 ps-7 pe-10 focus:rounded-e-md [&:not(:focus)]:rounded-e-none"
+                className="col-span-full row-start-1 ps-7 pe-10 ring-0 shadow-none"
               />
             </div>
           </TextField>
@@ -176,7 +228,7 @@ export const InputWithNativeSelect = () => {
           <NativeSelectField>
             <NativeSelect
               aria-label="Choose currency"
-              className="rounded-s-none border-s-0 data-focus-visible:border-transparent data-focus-visible:ring-2"
+              className="ring-0 shadow-none data-focus-visible:ring-2"
             >
               <option value="US">US</option>
               <option value="CA">CA</option>
@@ -193,10 +245,21 @@ export const InputWithSelect = () => {
     <div className="flex w-80 flex-col space-y-10">
       <LabeledGroup>
         <Label>Phone</Label>
-        <Group className="group flex">
+        <Group
+          className={twMerge(
+            'group flex rounded-md shadow-sm dark:shadow-none',
+            'ring',
+            '[&:has(input[data-focused])]:ring-ring',
+            'ring-zinc-950/10',
+            'dark:ring-white/10',
+            '[&:has([data-invalid])]:ring-red-500 [&:has(input[data-focused])]:ring-2',
+            '[&:not(:has([data-invalid]))]:hover:ring-zinc-950/20',
+            'dark:[&:not(:has([data-invalid]))]:hover:ring-white/20',
+          )}
+        >
           <Select defaultSelectedKey="ca" className="w-max min-w-max">
             <Label className="sr-only">Country</Label>
-            <SelectButton className="rounded-e-none border-e-0 focus-visible:border-transparent focus-visible:ring-2"></SelectButton>
+            <SelectButton className="ring-0 shadow-none focus-visible:ring-2"></SelectButton>
 
             <SelectPopover placement="bottom end" className="w-36">
               <SelectListBox>
@@ -217,7 +280,7 @@ export const InputWithSelect = () => {
           <TextField className="flex-1" aria-label="Phone number">
             <Input
               placeholder="+1 (123) 457-7890"
-              className="[&:not(:focus)]:rounded-s-none"
+              className="ps-0 ring-0 shadow-none"
             />
           </TextField>
         </Group>
@@ -225,17 +288,71 @@ export const InputWithSelect = () => {
 
       <LabeledGroup>
         <Label>Phone</Label>
-        <Group className="group flex">
+        <Group
+          className={twMerge(
+            'group flex rounded-md shadow-sm dark:shadow-none',
+            'ring',
+            '[&:has(input[data-focused])]:ring-ring',
+            'ring-zinc-950/10',
+            'dark:ring-white/10',
+            '[&:has([data-invalid])]:ring-red-500 [&:has(input[data-focused])]:ring-2',
+            '[&:not(:has([data-invalid]))]:hover:ring-zinc-950/20',
+            'dark:[&:not(:has([data-invalid]))]:hover:ring-white/20',
+          )}
+        >
+          <Select defaultSelectedKey="ca" className="w-max min-w-max">
+            <Label className="sr-only">Country</Label>
+            <SelectButton className="ring-0 shadow-none focus-visible:ring-2"></SelectButton>
+
+            <SelectPopover placement="bottom end" className="w-36">
+              <SelectListBox>
+                <SelectListItem id="ca" textValue="Canada">
+                  <SelectListItemLabel>
+                    &#127464;&#127462; CA
+                  </SelectListItemLabel>
+                </SelectListItem>
+                <SelectListItem id="us" textValue="United States">
+                  <SelectListItemLabel>
+                    &#127482;&#127480; US
+                  </SelectListItemLabel>
+                </SelectListItem>
+              </SelectListBox>
+            </SelectPopover>
+          </Select>
+
+          <TextField className="flex-1" aria-label="Phone number" isInvalid>
+            <Input
+              placeholder="+1 (123) 457-7890"
+              className="ps-0 ring-0 shadow-none"
+            />
+          </TextField>
+        </Group>
+      </LabeledGroup>
+
+      <LabeledGroup>
+        <Label>Phone</Label>
+        <Group
+          className={twMerge(
+            'group flex rounded-md shadow-sm dark:shadow-none',
+            'ring',
+            '[&:has(input[data-focused])]:ring-ring',
+            'ring-zinc-950/10',
+            'dark:ring-white/10',
+            '[&:has([data-invalid])]:ring-red-500 [&:has(input[data-focused])]:ring-2',
+            '[&:not(:has([data-invalid]))]:hover:ring-zinc-950/20',
+            'dark:[&:not(:has([data-invalid]))]:hover:ring-white/20',
+          )}
+        >
           <TextField className="flex-1" aria-label="Phone number">
             <Input
               placeholder="+1 (123) 457-7890"
-              className="[&:not(:focus)]:rounded-e-none"
+              className="ring-0 shadow-none"
             />
           </TextField>
 
           <Select defaultSelectedKey="ca" className="w-max min-w-max">
             <Label className="sr-only">Country</Label>
-            <SelectButton className="rounded-s-none border-s-0 focus-visible:border-transparent focus-visible:ring-2"></SelectButton>
+            <SelectButton className="ring-0 shadow-none focus-visible:ring-2"></SelectButton>
 
             <SelectPopover placement="bottom end" className="w-36">
               <SelectListBox>
@@ -257,13 +374,24 @@ export const InputWithSelect = () => {
 
       <LabeledGroup>
         <Label>Phone Number</Label>
-        <Group className="group flex">
+        <Group
+          className={twMerge(
+            'group flex rounded-md shadow-sm dark:shadow-none',
+            'ring',
+            '[&:has(input[data-focused])]:ring-ring',
+            'ring-zinc-950/10',
+            'dark:ring-white/10',
+            '[&:has([data-invalid])]:ring-red-500 [&:has(input[data-focused])]:ring-2',
+            '[&:not(:has([data-invalid]))]:hover:ring-zinc-950/20',
+            'dark:[&:not(:has([data-invalid]))]:hover:ring-white/20',
+          )}
+        >
           <Select
             defaultSelectedKey="ca"
             className="w-max min-w-max"
             aria-label="Phone Country Code"
           >
-            <SelectButton className="rounded-e-none border-e-0 focus-visible:border-transparent focus-visible:ring-2"></SelectButton>
+            <SelectButton className="ring-0 shadow-none focus-visible:ring-2"></SelectButton>
 
             <SelectPopover className="w-36" placement="bottom start">
               <SelectListBox>
@@ -290,7 +418,7 @@ export const InputWithSelect = () => {
           <TextField aria-label="Phone number">
             <Input
               placeholder="+1 (123) 457-7890"
-              className="[&:not(:focus)]:rounded-none"
+              className="ps-0 ring-0 shadow-none"
             />
           </TextField>
 
@@ -298,7 +426,7 @@ export const InputWithSelect = () => {
             <Label className="sr-only">Work phone number type</Label>
             <NativeSelect
               name="work_phone_number_type"
-              className="min-w-max rounded-s-none border-s-0 data-focus-visible:border-transparent data-focus-visible:ring-2"
+              className="ring-0 shadow-none data-focus-visible:ring-2"
             >
               <option value="Mobile">Mobile</option>
               <option value="Phone">Phone</option>
@@ -311,13 +439,24 @@ export const InputWithSelect = () => {
 
       <LabeledGroup>
         <Label>Phone Number</Label>
-        <Group className="group flex">
+        <Group
+          className={twMerge(
+            'group flex rounded-md shadow-sm dark:shadow-none',
+            'ring',
+            '[&:has(input[data-focused])]:ring-ring',
+            'ring-zinc-950/10',
+            'dark:ring-white/10',
+            '[&:has([data-invalid])]:ring-red-500 [&:has(input[data-focused])]:ring-2',
+            '[&:not(:has([data-invalid]))]:hover:ring-zinc-950/20',
+            'dark:[&:not(:has([data-invalid]))]:hover:ring-white/20',
+          )}
+        >
           <Select
             defaultSelectedKey="ca"
             className="w-max min-w-max"
             aria-label="Phone Country Code"
           >
-            <SelectButton className="rounded-e-none" />
+            <SelectButton className="ring-0 shadow-none focus-visible:ring-2" />
 
             <SelectPopover className="w-36" placement="bottom start">
               <SelectListBox>
@@ -333,12 +472,12 @@ export const InputWithSelect = () => {
 
           <TextField className="flex-1" aria-label="Phone number">
             <div className="flex">
-              <span className="text-foreground border-input flex items-center border-y px-2.5 text-base/6 shadow-xs sm:text-sm/6">
+              <span className="text-foreground flex items-center pe-2.5 text-base/6 sm:text-sm/6">
                 +1
               </span>
               <Input
                 placeholder="Enter your phone number"
-                className="[&:not(:focus)]:rounded-s-none"
+                className="ps-0 ring-0 shadow-none"
                 autoComplete="email"
               />
             </div>
@@ -352,7 +491,7 @@ export const InputWithSelect = () => {
 export const InputWithButton = () => {
   return (
     <div className="flex flex-col gap-y-6">
-      <div className="group border-input flex gap-x-2 rounded-md border shadow-xs">
+      <div className="group flex gap-x-2 rounded-md ring shadow-sm ring-zinc-950/10">
         <TextField className="flex-1" aria-label="Email">
           <Input
             type="email"

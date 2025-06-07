@@ -162,7 +162,7 @@ export const BasicExample = () => {
           <SearchField aria-label="Search" className="p-2">
             <SearchInput
               placeholder="search…"
-              className="border-input ring-0"
+              className="ring-0"
             />
           </SearchField>
           <div

@@ -1,0 +1,36 @@
+import { Meta, Canvas } from '@storybook/addon-docs/blocks';
+
+import *  as StepperStories from './Stepper.stories';
+
+<Meta of={StepperStories} />
+
+# Stepper
+
+A <a href="https://designsystem.digital.gov/components/step-indicator" target="_blank">**stepper**</a> updates users on their progress through a multi-step process.
+
+<Canvas of={StepperStories.BasicExample} />
+
+
+## Step Title Alignment
+
+<Canvas of={StepperStories.StepTitleAlignment} />
+
+
+## No Step Title
+
+<Canvas of={StepperStories.NoStepTitle} />
+
+
+## No Step Counter
+
+<Canvas of={StepperStories.NoStepCounter} />
+
+
+## Step Customization
+
+<Canvas of={StepperStories.Customization} />
+
+
+## Multi Steps Form
+
+<Canvas of={StepperStories.MultiStepsForm} />

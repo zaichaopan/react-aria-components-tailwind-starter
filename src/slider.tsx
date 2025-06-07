@@ -3,8 +3,9 @@ import {
   SliderProps as RACSliderProps,
   SliderThumb,
   SliderTrack as RACSliderTrack,
-  SliderRenderProps,
   composeRenderProps,
+  SliderTrackProps,
+  SliderRenderProps,
 } from 'react-aria-components';
 import { composeTailwindRenderProps } from './utils';
 import { twMerge } from 'tailwind-merge';
@@ -29,31 +30,70 @@ export function Slider<T extends number | number[]>(props: SliderProps<T>) {
 }
 
 const trackStyle = [
-  'absolute rounded-full',
-  'group-data-[orientation=horizontal]:h-1.5',
+  'absolute',
+  'group-data-[orientation=horizontal]:h-full',
   'group-data-[orientation=horizontal]:w-full',
-  'group-data-[orientation=vertical]:top-1/2',
-  'group-data-[orientation=vertical]:left-1/2',
   'group-data-[orientation=vertical]:h-full',
-  'group-data-[orientation=vertical]:w-[6px]',
+  'group-data-[orientation=vertical]:w-full',
   'group-data-disabled:opacity-50',
 ];
 
-export function SliderTack({ thumbLabels }: { thumbLabels?: string[] }) {
+export function SliderTack({
+  thumbLabels,
+  ...props
+}: SliderTrackProps & { thumbLabels?: string[] }) {
   return (
-    <RACSliderTrack className="group relative flex w-full items-center data-[orientation=horizontal]:h-7 data-[orientation=vertical]:h-44 data-[orientation=vertical]:w-7">
+    <RACSliderTrack
+      className={composeRenderProps(
+        props.className,
+        (className, { state, orientation }) => {
+          const { highlightPercentage } = getTrackHighlightState(state);
+
+          return twMerge(
+            'group relative isolate flex w-full items-center [--horizontal-h:--spacing(1)] data-[orientation=horizontal]:h-(--horizontal-h) data-[orientation=vertical]:h-44 data-[orientation=vertical]:w-1',
+            '[--slider-highlight:var(--color-accent)]',
+            'bg-zinc-200 dark:bg-zinc-600',
+            highlightPercentage !== '0%' &&
+              (orientation == 'horizontal'
+                ? 'rounded-s-full'
+                : 'rounded-t-full'),
+            highlightPercentage !== '100%' &&
+              (orientation == 'horizontal'
+                ? 'rounded-e-full'
+                : 'rounded-b-full'),
+            className,
+          );
+        },
+      )}
+    >
       {({ state, orientation }) => {
+        const { highlightPercentage, hasTwoThumbs, highlightStartPosition } =
+          getTrackHighlightState(state);
+
         return (
           <>
             <div
+              data-ui="slider-highlight"
               className={twMerge(
-                'bg-zinc-200 group-data-[orientation=vertical]:-translate-x-1/2 group-data-[orientation=vertical]:-translate-y-1/2 dark:bg-zinc-600',
+                'bg-(--slider-highlight)',
                 trackStyle,
+                !hasTwoThumbs &&
+                  highlightPercentage !== '0%' &&
+                  (orientation == 'horizontal'
+                    ? 'rounded-s-full'
+                    : 'rounded-b-full'),
               )}
-            />
-            <div
-              className={twMerge('bg-accent', trackStyle)}
-              style={getTrackHighlightStyle(state, orientation)}
+              style={
+                orientation === 'horizontal'
+                  ? {
+                      width: highlightPercentage,
+                      left: highlightStartPosition,
+                    }
+                  : {
+                      height: highlightPercentage,
+                      bottom: highlightStartPosition,
+                    }
+              }
             />
             {state.values.map((_, i) => (
               <SliderThumb
@@ -64,15 +104,14 @@ export function SliderTack({ thumbLabels }: { thumbLabels?: string[] }) {
                   '',
                   (className, { isFocusVisible, isDragging, isDisabled }) =>
                     twMerge(
-                      'border-accent size-4 rounded-full border border-2 bg-[lch(from_var(--color-accent)_calc((49.44_-_l)_*_infinity)_0_0)] shadow-xl dark:border-3',
+                      'size-5 rounded-full bg-white ring shadow-sm ring-zinc-950/15',
                       'group-data-[orientation=horizontal]:top-1/2 group-data-[orientation=vertical]:left-1/2',
-                      isDragging && ['border-4 dark:border-4'],
+                      isDragging && ['outline', 'outline-3', 'outline-ring/50'],
                       isDisabled && 'cursor-not-allowed opacity-50',
                       isFocusVisible && [
                         'outline',
                         'outline-2',
                         'outline-ring',
-                        'outline-offset-2',
                       ],
                       className,
                     ),
@@ -86,10 +125,7 @@ export function SliderTack({ thumbLabels }: { thumbLabels?: string[] }) {
   );
 }
 
-function getTrackHighlightStyle(
-  state: SliderRenderProps['state'],
-  orientation: SliderRenderProps['orientation'],
-) {
+function getTrackHighlightState(state: SliderRenderProps['state']) {
   const hasTwoThumbs = state.values.length == 2;
   const highlightPercentage = hasTwoThumbs
     ? (state.getThumbPercent(1) - state.getThumbPercent(0)) * 100 + '%'
@@ -98,15 +134,5 @@ function getTrackHighlightStyle(
     ? state.getThumbPercent(0) * 100 + '%'
     : '0';
 
-  return orientation === 'horizontal'
-    ? {
-        width: highlightPercentage,
-        left: highlightStartPosition,
-      }
-    : {
-        height: highlightPercentage,
-        bottom: highlightStartPosition,
-        top: 'auto',
-        transform: 'translate(-50%,0px)',
-      };
+  return { highlightPercentage, highlightStartPosition, hasTwoThumbs };
 }

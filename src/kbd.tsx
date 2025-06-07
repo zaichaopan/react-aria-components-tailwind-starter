@@ -17,7 +17,7 @@ export function Kbd({ className, children, outline, ...props }: KeyboardProps) {
       className={twMerge(
         'font-sans text-base/6 tracking-widest sm:text-sm/6',
         outline &&
-          'rounded-sm bg-zinc-200 px-1 py-0.5 font-medium dark:bg-white/10',
+          'rounded-sm bg-zinc-100 px-1 py-0.5 font-medium dark:bg-white/10',
         className,
       )}
     >
