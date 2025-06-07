@@ -36,8 +36,16 @@ type DialogHeaderProps = BaseHeadingProps;
 export const DialogTitle = React.forwardRef<
   HTMLHeadingElement,
   DialogHeaderProps
->(function DialogTitle({ level = 2, ...props }, ref) {
-  return <Heading {...props} ref={ref} slot="title" level={level} />;
+>(function DialogTitle({ level = 2, className, ...props }, ref) {
+  return (
+    <Heading
+      {...props}
+      ref={ref}
+      slot="title"
+      level={level}
+      className={twMerge('leading-6', className)}
+    />
+  );
 });
 
 export function DialogHeader({ className, ...props }: DialogHeaderProps) {
