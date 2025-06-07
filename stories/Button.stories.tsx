@@ -28,6 +28,7 @@ import {
 import {
   Button,
   ButtonGroup,
+  getButtonStyles,
   ToggleButton,
   ToggleButtonGroup,
 } from '../src/button';
@@ -270,15 +271,13 @@ export const ButtonWithBadge = () => {
 
 export const ButtonAsLink = () => {
   return (
-    <Button asChild>
-      <Link
-        href="https://example.com"
-        target="_blank"
-        className="hover:no-underline"
-      >
-        Login
-      </Link>
-    </Button>
+    <Link
+      className={getButtonStyles({ variant: 'solid' }, 'hover:no-underline')}
+      href="https://example.com"
+      target="_blank"
+    >
+      Login
+    </Link>
   );
 };
 
@@ -417,9 +416,14 @@ export const ButtonGroups = () => {
         <Button variant="outline" isIconOnly>
           <ChevronUpIcon aria-label="Increase" />
         </Button>
-        <Button variant="outline" asChild>
-          <div>235</div>
-        </Button>
+
+        <div
+          className={getButtonStyles({
+            variant: 'outline',
+          })}
+        >
+          235
+        </div>
 
         <Button variant="outline" isIconOnly>
           <ChevronDownIcon aria-label="Decrease" />

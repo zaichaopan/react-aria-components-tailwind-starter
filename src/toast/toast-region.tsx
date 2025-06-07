@@ -13,13 +13,13 @@ import Callout, {
   CalloutActions,
   CalloutControl,
   CalloutDescription,
-  CalloutHeading,
+  CalloutTitle,
   CalloutIcon,
 } from '../callout';
-import { InformationCircleIcon } from '../icons/solid/information-circle';
-import { XCircleIcon } from '../icons/solid/x-circle';
-import { ExclamationCircleIcon } from '../icons/solid/exclamation-circle';
-import { CheckCircleIcon } from '../icons/solid/check-circle';
+import { InformationCircleIcon } from '../icons/outline/information-circle';
+import { ExclamationCircleIcon } from '../icons/outline/exclamation-circle';
+import { CheckCircleIcon } from '../icons/outline/check-circle';
+import { ExclamationTriangleIcon } from '../icons/outline/exclamation-triangle';
 
 interface ToastRegionProps extends AriaToastRegionProps {
   state: ToastState<ToastConfig>;
@@ -132,11 +132,11 @@ function Toast({ state, ...props }: ToastProps) {
       {...toast.toastProps}
       ref={ref}
       className={twMerge(
-        'relative isolate flex',
+        'relative isolate flex bg-background',
         'group-data-[position=top-left]:w-[min(85vw,360px)]',
         'group-data-[position=top-right]:w-[min(85vw,360px)]',
         'group-data-[position=bottom-left]:w-[min(85vw,360px)]',
-        'group-data-[position=bottom-right]:w-[min(85vw,360px)]',
+        'rounded-xl group-data-[position=bottom-right]:w-[min(85vw,360px)]',
       )}
     >
       <Callout role={null} color={calloutColor} inline={inline}>
@@ -150,12 +150,12 @@ function Toast({ state, ...props }: ToastProps) {
         )}
         {type === 'error' && (
           <CalloutIcon>
-            <XCircleIcon />
+            <ExclamationCircleIcon/>
           </CalloutIcon>
         )}
         {type === 'warning' && (
           <CalloutIcon>
-            <ExclamationCircleIcon />
+            <ExclamationTriangleIcon />
           </CalloutIcon>
         )}
         {type === 'success' && (
@@ -164,7 +164,7 @@ function Toast({ state, ...props }: ToastProps) {
           </CalloutIcon>
         )}
         {title ? (
-          <CalloutHeading {...toast.titleProps}>{title}</CalloutHeading>
+          <CalloutTitle {...toast.titleProps}>{title}</CalloutTitle>
         ) : null}
         {description ? (
           <CalloutDescription {...toast.descriptionProps}>

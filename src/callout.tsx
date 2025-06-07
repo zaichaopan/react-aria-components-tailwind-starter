@@ -20,63 +20,54 @@ const CalloutContext = React.createContext<{
 
 const colors = {
   zinc: [
-    '[--callout-bg:var(--color-zinc-50)]',
-    '[--callout-icon:var(--color-zinc-600)]',
-    '[--callout-description:var(--color-foreground)]/80',
-    'dark:[--callout-bg:var(--color-zinc-400)]/10',
-    'dark:[--callout-icon:var(--color-zinc-400)]',
+    '[--callout-color:var(--color-zinc-400)]',
+    '[--callout-border:oklch(from_var(--callout-color)_l_c_h_/_25%)]',
+    '[--callout-bg:oklch(from_var(--callout-color)_l_c_h_/_5%)]',
+    '[--callout-heading:oklch(from_var(--callout-color)_calc(l_*_0.5)_c_h)]',
+    'dark:[--callout-heading:oklch(from_var(--callout-color)_calc(l_*1.25)_c_h)]',
+    '[--callout-description:oklch(from_var(--callout-color)_calc(l_*_0.75)_c_h)]',
+    'dark:[--callout-description:oklch(from_var(--callout-color)_calc(l_*1)_c_h)]',
+    '[--callout-icon:oklch(from_var(--callout-color)_calc(l_*_0.95)_c_h)]',
   ],
   red: [
-    '[--callout-bg:var(--color-red-50)]',
-    '[--callout-border:var(--color-red-200)]',
-    '[--callout-heading:var(--color-red-700)]',
-    '[--callout-description:var(--color-red-700)]',
-    '[--callout-icon:var(--color-red-600)]',
-
-    'dark:[--callout-bg:var(--color-red-400)]/10',
-    'dark:[--callout-border:var(--color-red-400)]/50',
-    'dark:[--callout-heading:var(--color-red-200)]',
-    'dark:[--callout-description:var(--color-red-300)]',
-    'dark:[--callout-icon:var(--color-red-400)]',
+    '[--callout-color:var(--color-red-400)]',
+    '[--callout-border:oklch(from_var(--callout-color)_l_c_h_/_20%)]',
+    '[--callout-bg:oklch(from_var(--callout-color)_l_c_h_/_10%)]',
+    '[--callout-heading:oklch(from_var(--callout-color)_calc(l_*_0.75)_c_h)]',
+    '[--callout-description:oklch(from_var(--callout-color)_calc(l_*_0.85)_c_h)]',
+    '[--callout-icon:oklch(from_var(--callout-color)_calc(l_*_0.95)_c_h)]',
+    '[--link:oklch(from_var(--callout-color)_calc(l_*_0.5)_c_h)]',
+    'dark:[--link:oklch(from_var(--callout-color)_calc(l_*_1)_c_h)]',
   ],
   blue: [
-    '[--callout-bg:var(--color-blue-50)]',
-    '[--callout-border:var(--color-blue-200)]',
-    '[--callout-heading:var(--color-blue-600)]',
-    '[--callout-description:var(--color-blue-600)]',
-    '[--callout-icon:var(--color-blue-500)]',
-
-    'dark:[--callout-bg:var(--color-blue-400)]/10',
-    'dark:[--callout-border:var(--color-blue-400)]/50',
-    'dark:[--callout-heading:var(--color-blue-200)]',
-    'dark:[--callout-description:var(--color-blue-300)]',
-    'dark:[--callout-icon:var(--color-blue-400)]',
+    '[--callout-color:var(--color-blue-500)]',
+    '[--callout-border:oklch(from_var(--callout-color)_l_c_h_/_20%)]',
+    '[--callout-bg:oklch(from_var(--callout-color)_l_c_h_/_5%)]',
+    '[--callout-heading:oklch(from_var(--callout-color)_calc(l_*_0.75)_c_h)]',
+    '[--callout-description:oklch(from_var(--callout-color)_calc(l_*_0.85)_c_h)]',
+    '[--callout-icon:oklch(from_var(--callout-color)_calc(l_*_0.95)_c_h)]',
+    '[--link:oklch(from_var(--callout-color)_calc(l_*_0.5)_c_h)]',
+    'dark:[--link:oklch(from_var(--callout-color)_calc(l_*_1)_c_h)]',
   ],
   yellow: [
-    '[--callout-bg:var(--color-yellow-50)]',
-    '[--callout-border:var(--color-yellow-300)]',
-    '[--callout-heading:var(--color-yellow-700)]',
-    '[--callout-description:var(--color-yellow-700)]',
-    '[--callout-icon:var(--color-yellow-600)]',
-
-    'dark:[--callout-bg:var(--color-yellow-400)]/10',
-    'dark:[--callout-border:var(--color-yellow-400)]/50',
-    'dark:[--callout-heading:var(--color-yellow-200)]',
-    'dark:[--callout-description:var(--color-yellow-300)]',
-    'dark:[--callout-icon:var(--color-yellow-400)]',
+    '[--callout-color:var(--color-yellow-600)]',
+    '[--callout-border:oklch(from_var(--callout-color)_l_c_h_/_20%)]',
+    '[--callout-bg:oklch(from_var(--callout-color)_l_c_h_/_5%)]',
+    '[--callout-heading:oklch(from_var(--callout-color)_calc(l_*_0.75)_c_h)]',
+    '[--callout-description:oklch(from_var(--callout-color)_calc(l_*_0.85)_c_h)]',
+    '[--callout-icon:oklch(from_var(--callout-color)_calc(l_*_0.95)_c_h)]',
+    '[--link:oklch(from_var(--callout-color)_calc(l_*_0.5)_c_h)]',
+    'dark:[--link:oklch(from_var(--callout-color)_calc(l_*_1)_c_h)]',
   ],
   green: [
-    '[--callout-bg:var(--color-green-50)]',
-    '[--callout-border:var(--color-green-200)]',
-    '[--callout-heading:var(--color-green-700)]',
-    '[--callout-description:var(--color-green-700)]',
-    '[--callout-icon:var(--color-green-600)]',
-
-    'dark:[--callout-bg:var(--color-green-400)]/10',
-    'dark:[--callout-border:var(--color-green-400)]/50',
-    'dark:[--callout-heading:var(--color-green-200)]',
-    'dark:[--callout-description:var(--color-green-300)]',
-    'dark:[--callout-icon:var(--color-green-400)]',
+    '[--callout-color:var(--color-green-600)]',
+    '[--callout-border:oklch(from_var(--callout-color)_l_c_h_/_20%)]',
+    '[--callout-bg:oklch(from_var(--callout-color)_l_c_h_/_5%)]',
+    '[--callout-heading:oklch(from_var(--callout-color)_calc(l_*_0.75)_c_h)]',
+    '[--callout-description:oklch(from_var(--callout-color)_calc(l_*_0.85)_c_h)]',
+    '[--callout-icon:oklch(from_var(--callout-color)_calc(l_*_0.95)_c_h)]',
+    '[--link:oklch(from_var(--callout-color)_calc(l_*_0.5)_c_h)]',
+    'dark:[--link:oklch(from_var(--callout-color)_calc(l_*_1)_c_h)]',
   ],
 };
 
@@ -110,6 +101,7 @@ export default function Callout({
       }}
     >
       <div
+        {...props}
         {...(role !== null && { role: role ?? 'note' })}
         {...(ariaLabel
           ? { 'aria-label': ariaLabel }
@@ -118,32 +110,29 @@ export default function Callout({
           'aria-describedby': `des_${labelId}`,
         })}
         className={twMerge(
-          '[--callout-icon:var(--color-muted)]',
-          '[--callout-border:var(--color-border)]',
+          '[--callout-icon:var(--muted)]',
+          '[--callout-border:var(--border)]',
 
           color
             ? colors[color]
             : [
-                'shadow-xs',
-                '[&:has(>[data-ui=callout-heading])]:[--callout-description:var(--color-muted)]',
+                '[&:has(>[data-ui=callout-heading])]:[--callout-description:var(--muted)]',
               ],
 
           'group w-full border-(--callout-border) bg-(--callout-bg)',
-          'grid grid-cols-[auto_1fr_auto_auto]',
+          'grid grid-cols-[auto_1fr_auto_auto] px-4 py-2',
 
           center
             ? [
-                'grid-cols-[auto_auto_auto_auto] border-y p-2',
+                'grid-cols-[auto_auto_auto_auto]',
                 'sm:flex sm:[&>:first-child]:ms-auto',
                 'sm:[&>:last-child:not([data-ui=callout-control])]:me-auto',
                 'sm:[&>[data-ui=callout-control]]:ms-auto',
               ]
-            : 'rounded-lg border p-4',
-
+            : 'rounded-lg border',
           '[&:has([data-ui=callout-heading]+[data-ui=callout-description])]:[--callout-content-row-end:3]',
           className,
         )}
-        {...props}
       />
     </CalloutContext.Provider>
   );
@@ -158,22 +147,22 @@ export function CalloutIcon({
       {...props}
       data-ui="callout-icon"
       className={twMerge(
-        'flex items-start',
         'col-start-1',
         'sm:row-start-1',
         'sm:row-end-(--callout-content-row-end)',
-        '[&:has(+[data-ui=callout-heading]+[data-ui=callout-description])]:pt-0.5',
-        '[&:not(:has(+[data-ui=callout-heading]+[data-ui=callout-description]))]:self-center',
+        'flex',
+        'py-2',
         'me-2',
         '[&_[data-ui=icon]:not([class*=text-])]:text-(--callout-icon)',
-        '[&_[data-ui=icon]]:size-5',
+        '[&_[data-ui=icon]:not([class*=size-])]:w-5',
+        '[&_[data-ui=icon]:not([class*=size-])]:h-[1lh]',
         className,
       )}
     />
   );
 }
 
-export function CalloutHeading({
+export function CalloutTitle({
   displayLevel = 3,
   className,
   id,
@@ -192,11 +181,11 @@ export function CalloutHeading({
       className={twMerge(
         'col-start-2',
         '-col-end-2',
-        'self-center',
         inline && ['sm:-col-end-3'],
         'flex gap-x-2 gap-y-1 text-(--callout-heading)',
-        '[&:has(+[data-ui=callout-description])]:pb-0.5',
-        'sm:[&+[data-ui=callout-description]]:leading-5',
+        '[&:has(+[data-ui=callout-description])]:pb-0',
+        '[&+[data-ui=callout-description]]:pt-1',
+        'py-2',
         className,
       )}
     />
@@ -220,7 +209,7 @@ export function CalloutDescription({
       className={twMerge(
         'text-(--callout-description)',
         'col-start-2',
-        '-col-end-2',
+        '-col-end-2 py-2',
         inline && ['sm:-col-end-3'],
         className,
       )}
@@ -232,7 +221,7 @@ export function CalloutActions({
   className,
   ...props
 }: React.JSX.IntrinsicElements['div']) {
-  const { inline, center } = React.useContext(CalloutContext);
+  const { inline } = React.useContext(CalloutContext);
 
   return (
     <div
@@ -242,15 +231,13 @@ export function CalloutActions({
         'flex flex-wrap gap-2 ps-(--callout-indent)',
         'col-start-2',
         '-col-end-2',
-        '[&>button]:text-nowrap',
-        '[&:has([data-variant=link]:only-child)]:self-center',
-        center ? 'py-1.5 sm:py-0' : 'pt-3',
+        'py-2',
         '[--description-text:var(--callout-heading,var(--callout-description))]',
-        '[&>[data-variant=plain]:hover]:bg-transparent [&>[data-variant=plain]:hover]:text-(--description-text)',
-        '[&>[data-variant=link]:hover]::text-(--description-text) [&>[data-variant=link]:hover]:decoration-(--description-text)',
+        // '[&>[data-variant=plain]:hover]:bg-transparent [&>[data-variant=plain]:hover]:text-(--description-text)',
+        // '[&>[data-variant=link]:hover]::text-(--description-text) [&>[data-variant=link]:hover]:decoration-(--description-text)',
         inline && [
-          'sm:pt-0',
           'sm:ps-4',
+          'sm:py-0.5',
           'sm:self-start',
           'sm:col-start-3',
           'sm:row-start-1',
@@ -267,8 +254,6 @@ export function CalloutControl({
   ...props
 }: Omit<ButtonProps, 'children' | 'tooltip'>) {
   const { 'aria-label': ariaLabel, isIconOnly = true, ...restProps } = props;
-  const { center } = React.useContext(CalloutContext);
-
   return (
     <div
       data-ui="callout-control"
@@ -276,9 +261,7 @@ export function CalloutControl({
         '-col-start-1',
         'row-start-1',
         'row-end-(--callout-content-row-end)',
-        'self-start',
-        'ps-2',
-        center && 'justify-self-end',
+        'ms-2 -me-2 py-1.5 sm:py-0.5',
       )}
     >
       <Button
@@ -290,12 +273,12 @@ export function CalloutControl({
             'text-(--callout-icon)',
             'hover:bg-transparent',
             'hover:text-(--callout-heading)',
-            'dark:hover:bg-transparent',
+            'px-2 py-1.5 dark:hover:bg-transparent',
             className,
           ),
         )}
       >
-        <XIcon aria-label={ariaLabel ?? 'Close'} />
+        <XIcon aria-label={ariaLabel ?? 'Close'} className="size-4" />
       </Button>
     </div>
   );

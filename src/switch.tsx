@@ -123,14 +123,15 @@ export function Switch(props: SwitchProps | CustomRenderSwitchProps) {
         <>
           <div
             className={twMerge(
-              'flex h-6 w-11 shrink-0 cursor-default items-center rounded-full bg-zinc-200 p-0.5 dark:bg-zinc-700',
+              'flex h-6 w-11 shrink-0 cursor-default items-center rounded-full bg-zinc-200 p-0.5 ring-1 ring-zinc-300/90 dark:bg-zinc-700 dark:inset-ring-1 dark:ring-0 dark:inset-ring-white/10',
               size !== 'lg' && 'sm:h-5 sm:w-8',
               labelPlacement === 'end' ? 'me-3' : 'ms-3',
               renderProps.isReadOnly && 'opacity-50',
-              renderProps.isSelected && 'bg-accent dark:bg-accent',
+              renderProps.isSelected &&
+                'bg-accent dark:bg-accent ring-accent inset-ring-[rgba(255,255,255,0.1)]',
               renderProps.isDisabled && 'bg-gray-200 dark:bg-zinc-700',
               renderProps.isFocusVisible &&
-                'outline-ring outline outline-2 outline-offset-2',
+                'outline-ring outline-2 outline-offset-3',
             )}
           >
             <span
@@ -138,9 +139,9 @@ export function Switch(props: SwitchProps | CustomRenderSwitchProps) {
               className={twMerge(
                 'size-5',
                 size !== 'lg' && 'sm:size-4',
-                'rounded-full bg-white shadow transition-all ease-in-out',
+                'rounded-full bg-white shadow-[0_1px_1px_rgba(0,0,0,0.25)] transition-all ease-in-out',
                 renderProps.isSelected && [
-                  'translate-x-5 bg-[lch(from_var(--color-accent)_calc((49.44_-_l)_*_infinity)_0_0)] rtl:-translate-x-5',
+                  'translate-x-5 bg-[lch(from_var(--accent)_calc((49.44_-_l)_*_infinity)_0_0)] rtl:-translate-x-5',
                   size !== 'lg' && 'sm:translate-x-3 sm:rtl:-translate-x-3',
                 ],
               )}

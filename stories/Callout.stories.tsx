@@ -4,7 +4,7 @@ import Callout, {
   CalloutActions,
   CalloutControl,
   CalloutDescription,
-  CalloutHeading,
+  CalloutTitle,
   CalloutIcon,
 } from '../src/callout';
 import { Strong, TextLink } from '../src/text';
@@ -12,17 +12,17 @@ import { Button } from '../src/button';
 import { Icon } from '../src/icon';
 import {
   BellRingIcon,
-  CloudUploadIcon,
   PlayCircleIcon,
   ShieldCheckIcon,
   SparklesIcon,
 } from 'lucide-react';
-import { ExclamationCircleIcon } from '../src/icons/solid/exclamation-circle';
+import { ExclamationCircleIcon } from '../src/icons/outline/exclamation-circle';
 import { ArrowRightIcon } from '../src/icons/outline/arrow-right';
 import { ArrowUpRightIcon } from '../src/icons/outline/arrow-up-right';
-import { ExclamationTriangleIcon } from '../src/icons/solid/exclamation-triangle';
-import { ProgressBar } from '../src/progress-bar';
-import { Avatar } from '../src/avatar';
+import { InformationCircleIcon } from '../src/icons/outline/information-circle';
+import { CloudOffIcon } from '../src/icons/outline/cloud-off';
+import { CheckCircleIcon } from '../src/icons/outline/check-circle';
+import { ExclamationTriangleIcon } from '../src/icons/outline/exclamation-triangle';
 
 const meta: Meta = {
   parameters: {
@@ -35,66 +35,64 @@ export default meta;
 
 export const BasicExample = () => {
   return (
-    <div className="p-6">
-      <Callout color="blue">
+    <div className="space-y-6 p-6">
+      <Callout>
+        <CalloutTitle>
+          GitHub users are now required to enable two-factor authentication as
+          an additional security measure.
+        </CalloutTitle>
+      </Callout>
+
+      <Callout>
         <CalloutIcon>
-          <Icon>
-            <PlayCircleIcon />
-          </Icon>
+          <InformationCircleIcon />
         </CalloutIcon>
-        <CalloutHeading>
-          Use this Github action with your project
-        </CalloutHeading>
-        <CalloutDescription>
-          Add this action to an existing workflow or create a new one
-        </CalloutDescription>
-        <CalloutActions>
-          <Button variant="outline">View on Marketplace</Button>
-        </CalloutActions>
+        <CalloutTitle>
+          GitHub users are now required to enable two-factor authentication as
+          an additional security measure.
+        </CalloutTitle>
+      </Callout>
+
+      <Callout>
+        <CalloutIcon>
+          <InformationCircleIcon />
+        </CalloutIcon>
+        <CalloutTitle>
+          GitHub users are now required to enable two-factor authentication as
+          an additional security measure.
+        </CalloutTitle>
         <CalloutControl />
       </Callout>
-    </div>
-  );
-};
 
-export const InlineCallout = () => {
-  return (
-    <div className="p-6">
-      <Callout color="blue" inline>
+      <Callout>
         <CalloutIcon>
-          <Icon>
-            <PlayCircleIcon />
-          </Icon>
+          <InformationCircleIcon />
         </CalloutIcon>
-        <CalloutHeading>
-          Use this Github action with your project
-        </CalloutHeading>
+        <CalloutTitle>Info</CalloutTitle>
         <CalloutDescription>
-          Add this action to an existing workflow or create a new one
+          GitHub users are now required to enable two-factor authentication as
+          an additional security measure.
         </CalloutDescription>
-        <CalloutActions>
-          <Button variant="outline">View on Marketplace</Button>
-        </CalloutActions>
         <CalloutControl />
       </Callout>
-    </div>
-  );
-};
 
-export const Banners = () => {
-  return (
-    <div className="w-full space-y-4 py-6">
-      <Callout color="blue" inline center>
+      <Callout>
         <CalloutIcon>
-          <Icon>
-           <BellRingIcon />
-          </Icon>
+          <InformationCircleIcon />
         </CalloutIcon>
-        <CalloutHeading>
-         Slack needs your permissions to enable notifications.
-        </CalloutHeading>
+        <CalloutTitle>Info</CalloutTitle>
+        <CalloutDescription>
+          GitHub users are now required to enable two-factor authentication as
+          an additional security measure.
+        </CalloutDescription>
         <CalloutActions>
-          <Button variant="link">Enable notifications</Button>
+          <Button>Enable 2FA</Button>
+          <Button variant="plain">
+            Learn more
+            <Icon>
+              <ArrowUpRightIcon />
+            </Icon>
+          </Button>
         </CalloutActions>
         <CalloutControl />
       </Callout>
@@ -104,15 +102,92 @@ export const Banners = () => {
 
 export const Colors = () => {
   return (
-    <div className="flex flex-col items-center space-y-6 p-6">
-      <Callout inline>
-        <CalloutControl />
+    <div className="space-y-6 p-6">
+      <Callout color="zinc">
         <CalloutIcon>
-          <ExclamationTriangleIcon />
+          <InformationCircleIcon />
         </CalloutIcon>
-        <CalloutHeading>
+        <CalloutTitle>Info</CalloutTitle>
+        <CalloutDescription>
+          GitHub users are now required to enable two-factor authentication as
+          an additional security measure.
+        </CalloutDescription>
+
+        <CalloutControl />
+      </Callout>
+      <Callout color="blue">
+        <CalloutIcon>
+          <InformationCircleIcon />
+        </CalloutIcon>
+        <CalloutTitle>Info</CalloutTitle>
+        <CalloutDescription>
+          GitHub users are now required to enable two-factor authentication as
+          an additional security measure.
+        </CalloutDescription>
+
+        <CalloutControl />
+      </Callout>
+      <Callout color="green">
+        <CalloutIcon>
+          <InformationCircleIcon />
+        </CalloutIcon>
+        <CalloutTitle>Info</CalloutTitle>
+        <CalloutDescription>
+          GitHub users are now required to enable two-factor authentication as
+          an additional security measure.
+        </CalloutDescription>
+        <CalloutControl />
+      </Callout>
+      <Callout color="yellow">
+        <CalloutIcon>
+          <InformationCircleIcon />
+        </CalloutIcon>
+        <CalloutTitle>Info</CalloutTitle>
+        <CalloutDescription>
+          GitHub users are now required to enable two-factor authentication as
+          an additional security measure.
+        </CalloutDescription>
+        <CalloutControl />
+      </Callout>
+      <Callout color="red">
+        <CalloutIcon>
+          <InformationCircleIcon />
+        </CalloutIcon>
+        <CalloutTitle>Info</CalloutTitle>
+        <CalloutDescription>
+          GitHub users are now required to enable two-factor authentication as
+          an additional security measure.
+        </CalloutDescription>
+        <CalloutControl />
+      </Callout>
+    </div>
+  );
+};
+
+export const InlineCallout = () => {
+  return (
+    <div className="space-y-6 p-2">
+      <Callout inline>
+        <CalloutIcon>
+          <Icon>
+            <PlayCircleIcon />
+          </Icon>
+        </CalloutIcon>
+        <CalloutTitle>Use this Github action with your project</CalloutTitle>
+        <CalloutDescription>
+          Add this action to an existing workflow or create a new one
+        </CalloutDescription>
+        <CalloutActions>
+          <Button variant="outline">View on Marketplace</Button>
+        </CalloutActions>
+        <CalloutControl />
+      </Callout>
+
+      <Callout inline color="zinc">
+        <CalloutControl />
+        <CalloutTitle>
           Free Plan has a fixed upload file size limit of 50 MB.
-        </CalloutHeading>
+        </CalloutTitle>
         <CalloutDescription>
           Upgrade to the Pro plan for a configurable upload file size limit of
           up to 50 GB.
@@ -126,37 +201,52 @@ export const Colors = () => {
         </CalloutActions>
       </Callout>
 
-      <Callout inline color="zinc">
-        <CalloutIcon>
-          <Icon>
-            <SparklesIcon className="text-purple-600" />
-          </Icon>
-        </CalloutIcon>
-        <CalloutHeading>
-          Welcome to the March 2025 release. See what's new in the version 2.0
-        </CalloutHeading>
-        <CalloutActions>
-          <Button variant="plain">
-            Release notes
-            <ArrowUpRightIcon />
-          </Button>
-        </CalloutActions>
-      </Callout>
-
-      <Callout color="blue" inline className="py-2">
+      <Callout color="blue" inline>
         <CalloutIcon>
           <Icon>
             <ShieldCheckIcon />
           </Icon>
         </CalloutIcon>
-        <CalloutHeading>
-          Single sign-on to see results in the acme organization.
-        </CalloutHeading>
+        <CalloutTitle>
+          Single sign-on to see results in the organization.
+        </CalloutTitle>
 
         <CalloutActions>
-          <Button variant="outline" size="sm">
-            Single sign-on
+          <Button variant="outline">Single sign-on</Button>
+        </CalloutActions>
+      </Callout>
+
+      <Callout inline color="green">
+        <CalloutIcon>
+          <Icon>
+            <SparklesIcon />
+          </Icon>
+        </CalloutIcon>
+        <CalloutTitle>
+          Welcome to the March 2025 release. See what's new in the version 2.0
+        </CalloutTitle>
+        <CalloutActions>
+          <Button color="green">Upgrade Now</Button>
+
+          <Button variant="plain">
+            Release notes
+            <ArrowUpRightIcon />
           </Button>
+        </CalloutActions>
+        <CalloutControl />
+      </Callout>
+
+      <Callout color="yellow" inline>
+        <CalloutIcon>
+          <ExclamationTriangleIcon />
+        </CalloutIcon>
+        <CalloutTitle>
+          We can't enable additional Uptime Monitors because you don't have a
+          sufficient on-demand budget.{' '}
+        </CalloutTitle>
+        <CalloutActions>
+          <Button>Request Additional Quota</Button>
+          <Button variant="outline">See Usage</Button>
         </CalloutActions>
       </Callout>
 
@@ -165,109 +255,39 @@ export const Colors = () => {
         <CalloutIcon>
           <ExclamationCircleIcon />
         </CalloutIcon>
-        <CalloutHeading>
-          Something went wrong. Try again or contact support.
-        </CalloutHeading>
+        <CalloutTitle className="inline">
+          Something went wrong. Try again or{' '}
+          <TextLink>contact support</TextLink>.
+        </CalloutTitle>
 
         <CalloutActions>
           <Button variant="outline">Send crash report</Button>
         </CalloutActions>
       </Callout>
-
-      <Callout color="yellow" inline>
-        <CalloutIcon>
-          <ExclamationTriangleIcon />
-        </CalloutIcon>
-        <CalloutHeading>
-          We can't enable additional Uptime Monitors because you don't have a
-          sufficient on-demand budget.
-        </CalloutHeading>
-        <CalloutActions>
-          <Button variant="outline">See Usage</Button>
-          <Button>Request Additional Quota</Button>
-        </CalloutActions>
-      </Callout>
-
-      <Callout
-        inline
-        center
-        className="bg-linear-65 from-pink-200 via-purple-100 to-fuchsia-100 dark:from-pink-600 dark:via-purple-500 dark:to-fuchsia-600"
-      >
-        <CalloutHeading className="inline">
-          <span className="font-semibold text-nowrap">Laracon 2025</span>{' '}
-          &#x2022; The flagship Laravel conference of the year.
-        </CalloutHeading>
-        <CalloutActions>
-          <Button>
-            Register now <ArrowRightIcon />
-          </Button>
-        </CalloutActions>
-        <CalloutControl />
-      </Callout>
     </div>
   );
 };
 
-export const Customization = () => {
+export const Banners = () => {
   return (
-    <div className="flex flex-col items-center space-y-6 p-6">
-      <Callout className="max-w-sm [--callout-bg:var(--color-blue-500)] [--callout-description:var(--color-white)]">
-        <CalloutDescription>
-          Added Environment variable successfully. A new deployment is needed
-          for charges to be take effect. Redeploy now?
-        </CalloutDescription>
-        <CalloutActions className="justify-end">
-          <Button variant="plain" className="text-white">
-            Dismiss
-          </Button>
-          <Button>Redeploy</Button>
-        </CalloutActions>
-      </Callout>
-
-      <Callout className="max-w-sm">
-        <CalloutControl />
-        <CalloutIcon className="me-3">
-          <span className="flex justify-start rounded-md border p-2">
-            <Icon>
-              <CloudUploadIcon className="size-6" />
-            </Icon>
-          </span>
-        </CalloutIcon>
-        <CalloutHeading>Uploading 'xxxxx.jpg'</CalloutHeading>
-        <CalloutDescription>
-          Please wait while we upload your file
-          <ProgressBar value={80} isIndeterminate className="pt-2" />
-        </CalloutDescription>
-        <CalloutActions>
-          <Button variant="plain">Cancel</Button>
-          <Button variant="plain">Upload another</Button>
-        </CalloutActions>
-      </Callout>
-
-      <Callout className="max-w-sm">
-        <CalloutControl />
-        <CalloutIcon className="me-3">
-          <Avatar
-            alt="M A"
-            src="https://images.unsplash.com/photo-1717694371848-70ddf2293c7c?q=80&w=2306&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-          />
-        </CalloutIcon>
-        <CalloutHeading>Maia sent you a friend request</CalloutHeading>
-        <CalloutDescription>
-          Hey, wanna dress up as wizards and ride around on hoverboards?
-        </CalloutDescription>
-        <CalloutActions>
-          <Button>Accept</Button>
-          <Button variant="plain">Decline</Button>
-        </CalloutActions>
-      </Callout>
-    </div>
+    <Callout color="blue" inline center>
+      <CalloutIcon>
+        <Icon>
+          <BellRingIcon />
+        </Icon>
+      </CalloutIcon>
+      <CalloutTitle className="inline">
+        Slack needs your permissions to enable notifications.{' '}
+        <Button variant="link">Enable notifications</Button>
+      </CalloutTitle>
+      <CalloutControl />
+    </Callout>
   );
 };
 
-export const Accessibility = () => {
+export const AsDialog = () => {
   return (
-    <Callout role="dialog" className="max-w-sm" aria-label="Cookies">
+    <Callout role="dialog" className="m-6 max-w-sm" aria-label="Cookies">
       <CalloutControl />
       <CalloutDescription>
         This site uses cookies to deliver its service and to analyze traffic. By
@@ -281,5 +301,123 @@ export const Accessibility = () => {
         <Button variant="plain">Reject all</Button>
       </CalloutActions>
     </Callout>
+  );
+};
+
+export const AsAlert = () => {
+  return (
+    <div className="space-y-6 p-6">
+      <Callout role="alert">
+        <CalloutIcon>
+          <ExclamationTriangleIcon />
+        </CalloutIcon>
+        <CalloutTitle>No Internet Connection</CalloutTitle>
+        <CalloutDescription>
+          Please check your internet connection and try again.
+        </CalloutDescription>
+      </Callout>
+
+      <Callout role="alert" inline>
+        <CalloutIcon>
+          <ExclamationTriangleIcon />
+        </CalloutIcon>
+        <CalloutTitle>No Internet Connection</CalloutTitle>
+        <CalloutActions>
+          <Button variant="outline">Try again</Button>
+        </CalloutActions>
+      </Callout>
+
+      <Callout role="alert">
+        <CalloutControl />
+        <CalloutIcon>
+          <ExclamationTriangleIcon />
+        </CalloutIcon>
+        <CalloutTitle className="inline">
+          You will need <TextLink>admin privileges</TextLink> to install and
+          access this application.
+        </CalloutTitle>
+      </Callout>
+
+      <Callout role="alert" color="yellow">
+        <CalloutIcon>
+          <ExclamationTriangleIcon />
+        </CalloutIcon>
+        <CalloutTitle>No Internet Connection</CalloutTitle>
+        <CalloutDescription>
+          Please check your internet connection and try again.
+        </CalloutDescription>
+      </Callout>
+
+      <Callout role="alert" color="yellow">
+        <CalloutControl />
+        <CalloutIcon>
+          <ExclamationTriangleIcon />
+        </CalloutIcon>
+        <CalloutTitle>Your session is about to expire</CalloutTitle>
+        <CalloutDescription className="inline">
+          You will be logged out in 5 minutes. Please save you work and{' '}
+          <TextLink>refresh</TextLink> the page.
+        </CalloutDescription>
+      </Callout>
+
+      <Callout role="alert" color="red">
+        <CalloutControl />
+        <CalloutIcon>
+          <ExclamationTriangleIcon />
+        </CalloutIcon>
+        <CalloutTitle className="inline">
+          You will need <TextLink>admin privileges</TextLink> to install and
+          access this application.
+        </CalloutTitle>
+      </Callout>
+
+      <Callout role="alert" color="green">
+        <CalloutControl />
+        <CalloutIcon>
+          <CheckCircleIcon />
+        </CalloutIcon>
+        <CalloutTitle>You account has been created</CalloutTitle>
+        <CalloutDescription className="inline">
+          You can now <TextLink>sign in</TextLink> with your new account
+          credentials.
+        </CalloutDescription>
+      </Callout>
+
+      <Callout role="alert" color="blue">
+        <CalloutControl />
+        <CalloutIcon>
+          <ExclamationTriangleIcon />
+        </CalloutIcon>
+        <CalloutTitle>
+          You will need <TextLink>admin privileges</TextLink> to install and
+          access this application.
+        </CalloutTitle>
+      </Callout>
+
+      <Callout inline center role="alert" color="yellow">
+        <CalloutIcon>
+          <CloudOffIcon />
+        </CalloutIcon>
+        <CalloutTitle>
+          You are offline. Your changes will be saved locally until you are back
+          online.
+        </CalloutTitle>
+      </Callout>
+
+      <Callout
+        inline
+        role="alert"
+        className="shadow-outline dark text-foreground mx-auto max-w-lg border-0 bg-zinc-800 sm:rounded-full"
+      >
+        <CalloutIcon>
+          <ExclamationCircleIcon />
+        </CalloutIcon>
+        <CalloutTitle>Notification text</CalloutTitle>
+        <CalloutActions>
+          <Button variant='outline'>Save</Button>
+          <Button variant="plain">Dismiss</Button>
+        </CalloutActions>
+      </Callout>
+    </div>
   );
 };

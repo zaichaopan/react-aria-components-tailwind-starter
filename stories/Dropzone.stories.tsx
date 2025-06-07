@@ -4,8 +4,7 @@ import { DropZone } from '../src/dropzone';
 import { FileTrigger, isFileDropItem } from 'react-aria-components';
 import { Button } from '../src/button';
 import { Text } from '../src/text';
-import { Icon } from '../src/icon';
-import { ImageIcon } from '../src/icons/solid/image';
+import { ImageIcon } from '../src/icons/outline/image';
 
 const meta = {
   parameters: {
@@ -46,7 +45,7 @@ export const BasicExample = () => {
       ) : (
         <div className="flex flex-1 flex-col py-6">
           <div className="flex flex-1 justify-center">
-            <ImageIcon className="text-muted/50 size-10" />
+            <ImageIcon className="text-muted/50 size-10 stroke-1" />
           </div>
           <div className="flex flex-1 pt-2">
             <FileTrigger

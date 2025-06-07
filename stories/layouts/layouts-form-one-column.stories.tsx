@@ -25,7 +25,6 @@ import {
   SelectPopover,
 } from '../../src/select';
 import { Switch, Switches, SwitchField, SwitchGroup } from '../../src/switch';
-import { Icon } from '../../src/icon';
 import {
   ComboBox,
   ComboBoxButton,
@@ -36,6 +35,8 @@ import {
   ComboBoxListItem,
   ComboBoxPopover,
 } from '../../src/combobox';
+import { twMerge } from 'tailwind-merge';
+import { MailIcon } from '../../src/icons/outline/mail';
 
 const meta = {
   title: 'Layouts/Form/One Column',
@@ -63,7 +64,7 @@ export const OneColumn = () => {
 
           <Group className="mt-8 grid gap-x-6 gap-y-8 sm:grid-cols-6">
             <TextField className="sm:col-span-3" name="title" isRequired>
-              <Label requiredHint>Title</Label>
+              <Label hint="required">Title</Label>
               <Input />
               <Description>Let people know what you do.</Description>
               <FieldError />
@@ -76,19 +77,7 @@ export const OneColumn = () => {
                 className="group grid grid-cols-[auto_1fr]"
               >
                 <span className="col-start-1 row-start-1 grid place-content-center px-3 group-has-autofill:z-10">
-                  <Icon className="text-muted/90 size-5 sm:size-4">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="1em"
-                      height="1em"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        fill="currentColor"
-                        d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2m0 4l-8 5l-8-5V6l8 5l8-5z"
-                      ></path>
-                    </svg>
-                  </Icon>
+                  <MailIcon className="text-muted/90 size-5 sm:size-4" />
                 </span>
                 <Input
                   type="email"
@@ -126,14 +115,13 @@ export const OneColumn = () => {
 
             <TextField className="sm:col-span-4" name="company_website">
               <Label>Company website</Label>
-              <div className="flex">
-                <span className="text-foreground flex items-center rounded-s border border-e-0 px-2.5 text-base/6 sm:text-sm/6">
+              <div className="group grid grid-cols-[auto_1fr]">
+                <span className="text-foreground col-start-1 row-start-1 grid place-content-center ps-2.5 text-base/6 group-has-autofill:z-10 sm:text-sm/6">
                   https://
                 </span>
                 <Input
-                  type="text"
                   placeholder="www.example.com"
-                  className="rounded-s-none"
+                  className="col-span-full row-start-1 ps-16 sm:ps-[--spacing(15)]"
                   autoComplete="email"
                 />
               </div>
@@ -165,10 +153,25 @@ export const OneColumn = () => {
 
             <LabeledGroup className="sm:col-span-4">
               <Label>Phone Number</Label>
-              <Group className="group flex">
-                <Select defaultSelectedKey="ca" className="w-max min-w-max">
-                  <Label className="sr-only">Phone Country Code</Label>
-                  <SelectButton className="rounded-e-none border-e-0 focus-visible:border-transparent focus-visible:ring-2"></SelectButton>
+              <Group
+                className={twMerge(
+                  'group flex rounded-md shadow dark:shadow-none',
+                  'ring',
+                  '[&:has(input[data-focused])]:ring-ring',
+                  'ring-zinc-950/10',
+                  'dark:ring-white/10',
+                  '[&:has([data-invalid])]:ring-red-500',
+                  '[&:has(input[data-focused])]:ring-2',
+                  '[&:not(:has([data-invalid]))]:hover:ring-zinc-950/20',
+                  'dark:[&:not(:has([data-invalid]))]:hover:ring-white/20',
+                )}
+              >
+                <Select
+                  defaultSelectedKey="ca"
+                  className="w-max min-w-max"
+                  aria-label="Phone Country Code"
+                >
+                  <SelectButton className="shadow-none ring-0 focus-visible:ring-2"></SelectButton>
 
                   <SelectPopover className="w-36" placement="bottom start">
                     <SelectListBox>
@@ -192,18 +195,18 @@ export const OneColumn = () => {
                   </SelectPopover>
                 </Select>
 
-                <TextField aria-label="Phone number">
+                <TextField aria-label="Phone number" className="flex-1">
                   <Input
                     placeholder="+1 (123) 457-7890"
-                    className="[&:not(:focus)]:rounded-none"
+                    className="ps-0 shadow-none ring-0"
                   />
                 </TextField>
 
                 <NativeSelectField>
+                  <Label className="sr-only">Work phone number type</Label>
                   <NativeSelect
-                    aria-label="Work phone number type"
                     name="work_phone_number_type"
-                    className="rounded-s-none border-s-0 data-focus-visible:border-transparent data-focus-visible:ring-2"
+                    className="shadow-none ring-0 data-focus-visible:ring-2"
                   >
                     <option value="Mobile">Mobile</option>
                     <option value="Phone">Phone</option>
@@ -237,7 +240,7 @@ export const OneColumn = () => {
 
           <Group className="mt-8 grid gap-x-6 gap-y-8 sm:grid-cols-6">
             <TextField className="sm:col-span-3" name="first_name" isRequired>
-              <Label requiredHint>First name</Label>
+              <Label hint="required">First name</Label>
               <Input />
             </TextField>
 

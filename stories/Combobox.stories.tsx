@@ -26,7 +26,7 @@ import { useAsyncList } from 'react-stately';
 import {
   EmptyState,
   EmptyStateDescription,
-  EmptyStateHeading,
+  EmptyStateTitle,
 } from '../src/empty-state';
 
 const meta: Meta = {
@@ -482,9 +482,9 @@ export const AsyncQuery = () => {
           renderEmptyState={() => {
             return (
               <EmptyState>
-                <EmptyStateHeading elementType="div" displayLevel={2}>
+                <EmptyStateTitle elementType="div" displayLevel={2}>
                   No results found
-                </EmptyStateHeading>
+                </EmptyStateTitle>
                 <EmptyStateDescription>
                   Try searching for something else
                 </EmptyStateDescription>

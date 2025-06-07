@@ -6,9 +6,14 @@ import * as CalloutStories from './Callout.stories';
 
 # Callout
 
-A callout visually highlights a section of content within an interface. The `Callout`, `CalloutHeading`, `CalloutIcon`, `CalloutDescription`, `CalloutActions` and `CalloutControl` can be used to create a callout with various styles and purposes.
+A callout visually highlights a section of content within an interface. It can be used to create a callout with various styles and purposes.
 
 <Canvas of={CalloutStories.BasicExample} />
+
+## Colors
+
+<Canvas of={CalloutStories.Colors} />
+
 
 ## Inline callout
 
@@ -18,16 +23,13 @@ A callout visually highlights a section of content within an interface. The `Cal
 
 <Canvas of={CalloutStories.Banners} />
 
-## Colors
-
-<Canvas of={CalloutStories.Colors} />
-
-## Customization
-
-<Canvas of={CalloutStories.Customization} />
-
 ## Accessibility
 
-The `Callout` component has a default role of `note` and is labeled by the `CalloutHeading`. If CalloutHeading is not included, please add the `aria-label` prop to the `Callout` component. Alternatively, the `dialog` role can be used for the Callout component.
+The `Callout` component has a default role of `note` and is labeled by the `CalloutTitle`. If CalloutTitle is not included, please add the `aria-label` prop to the `Callout` component. Alternatively, the `dialog` or `alert` role can be used for the Callout component.
 
-<Canvas of={CalloutStories.Accessibility} />
+### As Dialog
+<Canvas of={CalloutStories.AsDialog} />
+
+### As Alert
+
+<Canvas of={CalloutStories.AsAlert} />
