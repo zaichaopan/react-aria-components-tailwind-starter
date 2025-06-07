@@ -69,15 +69,15 @@ export function DatePickerInput({
             'row-start-1',
             '-col-end-1',
             'place-self-center',
-            'hover:bg-transparent',
-            'text-muted/75 group-hover:text-foreground',
+            'not-disabled:hover:bg-transparent',
+            'not-disabled:not-hover:text-muted',
           ].join(' ')}
         >
           <CalendarIcon />
         </Button>
       </Group>
 
-      <Popover placement="bottom" className="rounded-xl">
+      <Popover placement="bottom" className="rounded-lg">
         <Dialog>
           <Calendar yearRange={yearRange} />
         </Dialog>
@@ -102,7 +102,7 @@ export function DatePickerButton({
       <Group data-ui="control">
         <Button
           className={twMerge(
-            'border-input w-full min-w-52 flex-1 justify-between px-3 leading-6 font-normal',
+            'w-full min-w-52 flex-1 justify-between px-3 leading-6 font-normal',
             className,
           )}
           variant="outline"
@@ -119,7 +119,7 @@ export function DatePickerButton({
         <DateInput className="hidden" aria-hidden />
       </Group>
 
-      <Popover placement="bottom" className="rounded-xl">
+      <Popover placement="bottom" className="rounded-lg">
         <Dialog>
           <Calendar />
         </Dialog>

@@ -26,7 +26,18 @@ export const BasicExample = () => {
       <Disclosure>
         <DisclosureControl>System Requirements</DisclosureControl>
         <DisclosurePanel>
-          <Text>Details about system requirements here.</Text>
+          System Requirements refer to the set of minimum and recommended
+          hardware and software specifications that a computer system must meet
+          in order to successfully install, run, and operate a particular
+          application, operating system, or video game. These specifications are
+          outlined by developers or manufacturers to ensure that the software
+          functions as intended without performance issues, compatibility
+          errors, or system crashes. Meeting the minimum requirements guarantees
+          basic usability, while meeting the recommended requirements ensures
+          optimal performance, smoother operation, faster processing, and access
+          to all available features. By adhering to these guidelines, users can
+          avoid technical problems and enjoy a stable and efficient user
+          experience.
         </DisclosurePanel>
       </Disclosure>
     </div>
@@ -35,43 +46,27 @@ export const BasicExample = () => {
 
 export const DefaultExpanded = () => {
   return (
-    <div className="p-6">
+    <div className="mx-auto max-w-2xl p-6">
       <Disclosure defaultExpanded>
-        <DisclosureControl>System Requirements</DisclosureControl>
-        <DisclosurePanel>
-          <Text>Details about system requirements here.</Text>
-        </DisclosurePanel>
-      </Disclosure>
-    </div>
-  );
-};
-
-export const ToggleIcon = () => {
-  return (
-    <div className="space-y-6 p-6">
-      <Disclosure defaultExpanded>
-        <DisclosureControl className="w-full gap-x-2 sm:w-86">
+        <DisclosureControl className="w-full justify-between">
           System Requirements
           <Icon>
-            <ChevronDown className="transition-all group-aria-expanded:rotate-180" />
+            <ChevronDown className="duration-300 group-aria-expanded:rotate-180" />
           </Icon>
         </DisclosureControl>
-
         <DisclosurePanel>
-          Details about system requirements here.
-        </DisclosurePanel>
-      </Disclosure>
-
-      <Disclosure defaultExpanded>
-        <DisclosureControl className="gap-x-2">
-          <Icon>
-            <ChevronDown className="transition-all group-aria-expanded:rotate-180" />
-          </Icon>
-          System Requirements
-        </DisclosureControl>
-
-        <DisclosurePanel className="ps-7">
-          Details about system requirements here.
+          System Requirements refer to the set of minimum and recommended
+          hardware and software specifications that a computer system must meet
+          in order to successfully install, run, and operate a particular
+          application, operating system, or video game. These specifications are
+          outlined by developers or manufacturers to ensure that the software
+          functions as intended without performance issues, compatibility
+          errors, or system crashes. Meeting the minimum requirements guarantees
+          basic usability, while meeting the recommended requirements ensures
+          optimal performance, smoother operation, faster processing, and access
+          to all available features. By adhering to these guidelines, users can
+          avoid technical problems and enjoy a stable and efficient user
+          experience.
         </DisclosurePanel>
       </Disclosure>
     </div>

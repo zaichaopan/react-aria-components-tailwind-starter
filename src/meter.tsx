@@ -4,6 +4,7 @@ import {
 } from 'react-aria-components';
 import { Label } from './field';
 import { composeTailwindRenderProps } from './utils';
+import { ExclamationTriangleIcon } from './icons/outline/exclamation-triangle';
 
 export interface MeterProps extends AriaMeterProps {
   label?: string;
@@ -27,7 +28,7 @@ export function Meter({
       {...props}
       className={composeTailwindRenderProps(
         props.className,
-        'flex flex-col gap-1',
+        'flex flex-col gap-2',
       )}
     >
       {({ percentage, valueText }) => (
@@ -38,30 +39,14 @@ export function Meter({
               className={`text-sm ${percentage >= 80 && !positive && !informative && 'text-red-600'}`}
             >
               {percentage >= 80 && !positive && (
-                <svg
-                  aria-label="Alert"
-                  className="inline-block size-5 align-text-bottom"
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3" />
-                  <path d="M12 9v4" />
-                  <path d="M12 17h.01" />
-                </svg>
+                <ExclamationTriangleIcon className="inline-block size-5 align-text-bottom" />
               )}
               {' ' + valueText}
             </span>
           </div>
-          <div className="relative h-2 w-64  rounded-full bg-gray-300 outline outline-1 -outline-offset-1 outline-transparent dark:bg-zinc-800">
+          <div className="relative h-2 w-64 rounded-full bg-zinc-200 outline -outline-offset-1 outline-transparent dark:bg-zinc-700">
             <div
-              className={`absolute left-0 top-0 h-full rounded-full ${getColor(percentage, { positive, informative })}`}
+              className={`absolute top-0 left-0 h-full rounded-full ${getColor(percentage, { positive, informative })}`}
               style={{ width: percentage + '%' }}
             />
           </div>
@@ -76,15 +61,15 @@ function getColor(
   { positive, informative }: { positive?: boolean; informative?: boolean },
 ) {
   if (positive) {
-    return 'bg-success';
+    return 'bg-green-600';
   }
 
   if (informative) {
-    return 'bg-blue-500';
+    return 'bg-blue-600';
   }
 
   if (percentage < 70) {
-    return 'bg-success';
+    return 'bg-green-600';
   }
 
   if (percentage < 80) {

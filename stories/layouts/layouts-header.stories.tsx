@@ -1,5 +1,5 @@
 import { docs } from '../../.storybook/docs.ts';
-import { Button } from '../../src/button.tsx';
+import { Button } from '../../src/button';
 import { Strong } from '../../src/text.tsx';
 import { Icon } from '../../src/icon.tsx';
 import {
@@ -235,10 +235,10 @@ export const Header = () => {
                       <path
                         fill="none"
                         stroke="currentColor"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-miterlimit="10"
-                        stroke-width="1.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeMiterlimit="10"
+                        strokeWidth="1.5"
                         d="M10 21v-9m-7 0h18M5.4 3h13.2A2.4 2.4 0 0 1 21 5.4v13.2a2.4 2.4 0 0 1-2.4 2.4H5.4A2.4 2.4 0 0 1 3 18.6V5.4A2.4 2.4 0 0 1 5.4 3"
                       />
                     </svg>

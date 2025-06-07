@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button } from '../src/button.tsx';
+import { Button } from '../src/button';
 import { Popover } from '../src/popover.tsx';
 import { docs } from '../.storybook/docs.ts';
 import { Avatar, AvatarBadge } from '../src/avatar.tsx';

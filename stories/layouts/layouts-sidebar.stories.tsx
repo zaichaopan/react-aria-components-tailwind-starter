@@ -1,5 +1,5 @@
 import { docs } from '../../.storybook/docs.ts';
-import { Button } from '../../src/button.tsx';
+import { Button } from '../../src/button';
 import { Icon } from '../../src/icon.tsx';
 import {
   Menu,
@@ -340,7 +340,7 @@ function NavLink(props: NavLinkProps) {
   if ('items' in props) {
     return (
       <Disclosure defaultExpanded>
-        <DisclosureControl className="group/control [&:not(:hover)]:text-foreground/50 mt-3 w-full ps-2.5 text-xs/6 font-semibold">
+        <DisclosureControl className="group/control not-hover:text-foreground/50 mt-3 w-full ps-2.5 text-xs/6 font-semibold">
           {props.title}{' '}
           <ChevronRightIcon className="ms-auto hidden size-4 transition-all group-hover/control:flex group-aria-expanded:rotate-90" />
         </DisclosureControl>

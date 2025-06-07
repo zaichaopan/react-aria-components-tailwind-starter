@@ -95,13 +95,14 @@ export function ComboBoxButton({
 }: {
   triggerIcon?: React.ReactNode;
 }) {
+  // Disable not working
   return (
     <Button
       isIconOnly
       size="sm"
       data-ui="trigger"
       variant="plain"
-      className="text-muted/75 group-hover/combobox:text-foreground hover:bg-transparent"
+      className="text-muted [&:not(:disabled)]:hover:bg-transparent"
     >
       {triggerIcon}
     </Button>

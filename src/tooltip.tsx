@@ -12,14 +12,14 @@ export interface TooltipProps extends Omit<RACTooltipProps, 'children'> {
   children: React.ReactNode;
 }
 
-export function Tooltip({ children, ...props }: TooltipProps) {
+export function Tooltip({ children, offset = 6, ...props }: TooltipProps) {
   return (
     <RACTooltip
       {...props}
-      offset={6}
+      offset={offset}
       className={composeTailwindRenderProps(props.className, [
         'group max-w-64 rounded-md px-3 py-1.5',
-        'text-wrap text-pretty',
+        'text-pretty',
         'shadow-2xs dark:border dark:shadow-none',
         React.Children.toArray(children).every(
           (child) => typeof child === 'string',

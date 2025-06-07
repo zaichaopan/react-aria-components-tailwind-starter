@@ -311,7 +311,7 @@ export function SmallCards() {
                     'size-10',
                     'border',
                     isSelected &&
-                      'border-accent bg-accent text-[lch(from_var(--color-accent)_calc((49.44_-_l)_*_infinity)_0_0)]',
+                      'border-accent bg-accent text-[lch(from_var(--accent)_calc((49.44_-_l)_*_infinity)_0_0)]',
                   )}
                 >
                   {day.label}

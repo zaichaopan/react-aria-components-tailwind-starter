@@ -1,7 +1,6 @@
-import '../src/theme/index.css';
+import '../src/styles/index.css';
 import './preview.css';
 import type { Preview } from '@storybook/react-vite';
-import React from 'react';
 
 const preview: Preview = {
   globalTypes: {
@@ -27,29 +26,29 @@ const preview: Preview = {
     },
     theme: {
       description: 'Accent Color',
-      defaultValue: 'zinc-theme',
+      defaultValue: 'theme-zinc',
       toolbar: {
         title: 'Accent Color',
         dynamicTitle: true,
         items: [
           {
-            value: 'zinc-theme',
+            value: 'theme-zinc',
             title: 'Zinc',
           },
           {
-            value: 'blue-theme',
+            value: 'theme-blue',
             title: 'Blue',
           },
           {
-            value: 'indigo-theme',
+            value: 'theme-indigo',
             title: 'Indigo',
           },
           {
-            value: 'violet-theme',
+            value: 'theme-violet',
             title: 'Violet',
           },
           {
-            value: 'purple-theme',
+            value: 'theme-purple',
             title: 'Purple',
           },
         ],
@@ -81,10 +80,10 @@ const preview: Preview = {
         ...(document
           .querySelector('html')
           ?.className.split(' ')
-          .filter((name) => name.includes('-theme')) ?? []),
+          .filter((name) => name.includes('theme-')) ?? []),
       ].forEach((name) => {
         if (name === '') {
-          name = 'zinc-theme';
+          name = 'theme-zinc';
         }
 
         document.querySelector('html')?.classList.toggle(name);

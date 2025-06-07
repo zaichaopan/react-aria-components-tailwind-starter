@@ -28,6 +28,7 @@ import {
 import {
   Button,
   ButtonGroup,
+  getButtonStyles,
   ToggleButton,
   ToggleButtonGroup,
 } from '../src/button';
@@ -250,7 +251,7 @@ export const CustomPendingUI = () => {
 
 export const AvatarButton = () => {
   return (
-    <Button variant="unstyle">
+    <Button variant="unstyle" className="hover:opacity-75">
       <Avatar
         alt="M A"
         src="https://images.unsplash.com/photo-1717694371848-70ddf2293c7c?q=80&w=2306&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
@@ -270,15 +271,18 @@ export const ButtonWithBadge = () => {
 
 export const ButtonAsLink = () => {
   return (
-    <Button asChild>
-      <Link
-        href="https://example.com"
-        target="_blank"
-        className="hover:no-underline"
-      >
-        Login
-      </Link>
-    </Button>
+    <Link
+      className={(renderProps) => {
+        return getButtonStyles(
+          { variant: 'solid', ...renderProps },
+          'hover:no-underline',
+        );
+      }}
+      href="https://example.com"
+      target="_blank"
+    >
+      Login
+    </Link>
   );
 };
 
@@ -417,9 +421,14 @@ export const ButtonGroups = () => {
         <Button variant="outline" isIconOnly>
           <ChevronUpIcon aria-label="Increase" />
         </Button>
-        <Button variant="outline" asChild>
-          <div>235</div>
-        </Button>
+
+        <div
+          className={getButtonStyles({
+            variant: 'outline',
+          })}
+        >
+          235
+        </div>
 
         <Button variant="outline" isIconOnly>
           <ChevronDownIcon aria-label="Decrease" />

@@ -14,7 +14,7 @@ import {
   composeRenderProps,
   CalendarStateContext,
 } from 'react-aria-components';
-import { Button, ButtonGroup } from './button';
+import { Button } from './button';
 import { twMerge } from 'tailwind-merge';
 import { ChevronLeftIcon } from './icons/outline/chevron-left';
 import { ChevronRightIcon } from './icons/outline/chevron-right';
@@ -45,11 +45,11 @@ export function Calendar<T extends DateValue>({
     <RACCalendar
       {...props}
       className={composeRenderProps(props.className, (className) => {
-        return twMerge('px-1 pt-3 pb-1', className);
+        return twMerge('px-1 py-2', className);
       })}
     >
       <CalendarHeader yearRange={yearRange} />
-      <CalendarGrid className="w-full border-separate border-spacing-y-2 px-2">
+      <CalendarGrid className="w-full border-separate border-spacing-0.5 px-1">
         <CalendarGridHeader />
         <CalendarGridBody>
           {(date) => {
@@ -71,7 +71,7 @@ export function Calendar<T extends DateValue>({
                     },
                   ) => {
                     return twMerge(
-                      'relative flex size-10 cursor-default items-center justify-center rounded-lg text-sm outline-hidden',
+                      'relative flex size-9.5 cursor-default items-center justify-center rounded-lg text-sm outline-hidden',
                       isToday(date, getLocalTimeZone()) && [
                         "before:content-['•']",
                         'before:absolute',
@@ -82,14 +82,14 @@ export function Calendar<T extends DateValue>({
                       isPressed && 'bg-accent/90 text-white',
                       isDisabled && 'opacity-50',
                       isSelected && [
-                        'bg-accent text-sm text-[lch(from_var(--color-accent)_calc((49.44_-_l)_*_infinity)_0_0)]',
+                        'bg-accent text-sm text-[lch(from_var(--accent)_calc((49.44_-_l)_*_infinity)_0_0)]',
                         isHovered && 'bg-accent dark:bg-accent',
                         isInvalid && 'border-red-600 bg-red-600 text-white',
                       ],
                       isUnavailable &&
                         'text-red-600 line-through decoration-red-600',
                       isFocusVisible && [
-                        'outline-ring outline outline-2',
+                        'outline-ring outline-2',
                         isSelected && 'outline-offset-1',
                       ],
                       className,
@@ -116,56 +116,48 @@ export function CalendarHeader({ yearRange }: { yearRange?: YearRange }) {
   const state = React.use(CalendarStateContext)!;
 
   return (
-    <header
-      className={twMerge(
-        'flex w-full items-center pe-2',
-        yearRange ? 'ps-2' : 'ps-3',
-      )}
-    >
+    <header className={twMerge('flex w-full items-center px-2 pt-1')}>
+      <Button
+        slot="previous"
+        variant="plain"
+        size="sm"
+        isIconOnly
+        aria-label="Previous"
+        className="not-hover:text-muted/75 focus-visible:-outline-offset-2"
+      >
+        {direction === 'rtl' ? (
+          <ChevronRightIcon className="size-5" />
+        ) : (
+          <ChevronLeftIcon className="size-5" />
+        )}
+      </Button>
       {yearRange ? (
-        <div className="flex flex-1 gap-x-2 text-left text-base/6 sm:text-sm/6 rtl:text-right">
+        <div className="flex flex-1 justify-center gap-x-2 text-base/6 sm:text-sm/6">
           <MonthDropdown state={state} />
           <YearDropdown state={state} yearRange={yearRange} />
         </div>
       ) : (
         <Heading
           level={2}
-          className="flex flex-1 text-left text-base/6 font-medium sm:text-sm/6 rtl:text-right"
+          className="flex flex-1 justify-center text-base/6 font-medium sm:text-sm/6"
           aria-hidden
         ></Heading>
       )}
 
-      <ButtonGroup>
-        <Button
-          slot="previous"
-          variant="plain"
-          size="sm"
-          isIconOnly
-          aria-label="Previous"
-          className="[&:not(:hover)]:text-muted/75 focus-visible:-outline-offset-2"
-        >
-          {direction === 'rtl' ? (
-            <ChevronRightIcon className="size-5" />
-          ) : (
-            <ChevronLeftIcon className="size-5" />
-          )}
-        </Button>
-
-        <Button
-          size="sm"
-          slot="next"
-          variant="plain"
-          isIconOnly
-          aria-label="Next"
-          className="[&:not(:hover)]:text-muted/75 focus-visible:-outline-offset-2"
-        >
-          {direction === 'rtl' ? (
-            <ChevronLeftIcon className="size-5" />
-          ) : (
-            <ChevronRightIcon className="size-5" />
-          )}
-        </Button>
-      </ButtonGroup>
+      <Button
+        size="sm"
+        slot="next"
+        variant="plain"
+        isIconOnly
+        aria-label="Next"
+        className="not-hover:text-muted/75 focus-visible:-outline-offset-2"
+      >
+        {direction === 'rtl' ? (
+          <ChevronLeftIcon className="size-5" />
+        ) : (
+          <ChevronRightIcon className="size-5" />
+        )}
+      </Button>
     </header>
   );
 }
@@ -174,7 +166,7 @@ export function CalendarGridHeader() {
   return (
     <RACCalendarGridHeader>
       {(day) => (
-        <CalendarHeaderCell className="text-muted size-10 text-sm/6 font-normal">
+        <CalendarHeaderCell className="text-muted size-9.5 text-sm/6 font-normal">
           {day}
         </CalendarHeaderCell>
       )}
@@ -225,7 +217,11 @@ function YearDropdown({
   return (
     <NativeSelectField>
       <Label className="sr-only">Year</Label>
-      <NativeSelect onChange={onChange} value={yearsBefore}>
+      <NativeSelect
+        onChange={onChange}
+        value={yearsBefore}
+        className="py-1 sm:py-1"
+      >
         {years.map((year, i) => (
           // use the index as the value so we can retrieve the full
           // date object from the list in onChange. We cannot only
@@ -268,7 +264,11 @@ function MonthDropdown({ state }: { state: CalendarState }) {
   return (
     <NativeSelectField>
       <Label className="sr-only">Month</Label>
-      <NativeSelect onChange={onChange} value={state.focusedDate.month}>
+      <NativeSelect
+        onChange={onChange}
+        value={state.focusedDate.month}
+        className="py-1 sm:py-1"
+      >
         {months.map((month, i) => (
           <option key={i} value={i + 1}>
             {month}

@@ -68,7 +68,8 @@ const tabList = {
     vertical: 'space-y-2',
   },
   segment: {
-    horizontal: 'p-0.5 rounded-lg bg-zinc-200/75 dark:bg-zinc-700 shadow-xs',
+    horizontal:
+      '[--border-radius:var(--radius-lg)] p-0.5 rounded-(--border-radius) bg-zinc-100 dark:bg-zinc-700 dark:border border-zinc-600/90',
     vertical: '',
   },
 };
@@ -139,7 +140,7 @@ const tab = ({
 } & TabRenderProps) => {
   const style = {
     base: [
-      'outline-hidden relative flex items-center gap-x-3 rounded-md font-medium',
+      'outline-hidden relative flex items-center gap-x-3 rounded-[var(--border-radius,var(--radius-lg))] font-medium',
       '[&>[data-ui=icon]:not([class*=size-])]:size-5',
       isDisabled && 'opacity-50',
       isSelected || isHovered ? 'text-foreground' : 'text-muted',
@@ -149,7 +150,7 @@ const tab = ({
       base: 'before:absolute before:bg-accent',
       horizontal: [
         'p-2 before:bottom-[-1.5px] before:w-full before:inset-x-0',
-        isSelected && 'before:h-[2px]',
+        isSelected && 'before:h-0.5',
       ],
       vertical: [
         'px-4',
@@ -160,7 +161,7 @@ const tab = ({
     pills: {
       base: [
         'flex items-center px-3 py-2',
-        isSelected && 'bg-zinc-100 dark:bg-zinc-600/45',
+        isSelected && 'bg-zinc-100 dark:bg-zinc-500 dark:shadow-outline',
       ],
       horizontal: '',
       vertical: '',
@@ -169,7 +170,7 @@ const tab = ({
       base: [
         'flex-1 justify-center px-6 py-1 [&>[data-ui=icon]:not([class*=size-])]:size-4',
         isSelected &&
-          'bg-background dark:bg-zinc-500 text-foreground shadow-2xs rounded-md',
+          'bg-background dark:bg-zinc-500 text-foreground rounded-[calc(var(--border-radius)-2px)] shadow dark:shadow-outline',
       ],
       horizontal: '',
       vertical: '',

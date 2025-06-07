@@ -20,8 +20,8 @@ const sizes = {
   64: '[--size:--spacing(16)] [--badge-size:16px]',
   72: '[--size:--spacing(18)] [--badge-size:16px]',
   96: '[--size:--spacing(24)] [--badge-size:20px]',
-  120: '[--size:--spacing(30)] [--badge-size:24px]',
-  128: '[--size:--spacing(34)] [--badge-size:26px]',
+  120: '[--size:--spacing(30)] [--badge-size:24px] [--badge-gap:3px]',
+  128: '[--size:--spacing(34)] [--badge-size:26px] [--badge-gap:3px]',
 };
 
 export type AvatarProps = {
@@ -36,7 +36,7 @@ export function Avatar({
   children,
   src,
   alt,
-  size,
+  size = 40,
   fallback = 'initials',
   colorful,
   background,
@@ -46,24 +46,21 @@ export function Avatar({
   const avatarId = React.useId();
   const ariaLabelledby = [avatarId, children ? badgeId : ''].join(' ');
   const status = useImageLoadingStatus(src);
-
+  
   return (
     <AvatarContext.Provider value={{ badgeId }}>
       <div
         {...props}
+        aria-labelledby={ariaLabelledby}
         role="img"
         className={twMerge([
-          '@container relative isolate flex size-10 shrink-0',
+          'relative isolate flex size-(--size) shrink-0 rounded-lg [--badge-gap:2px] [--badge-size:8px]',
           status === 'loaded' &&
             'dark:outline dark:-outline-offset-1 dark:outline-white/10',
-          '[--border-radius:var(--radius-lg)]',
-          '[&.rounded-full]:[--border-radius:calc(infinity_*_1px)]',
-          'rounded-[radius:var(--border-radius)]',
-          'size-(--size) [--badge-size:8px]',
-          sizes[size ?? 40],
+          status === 'loading' && 'skeleton',
+          sizes[size],
           className,
         ])}
-        aria-labelledby={ariaLabelledby}
       >
         <img
           aria-hidden
@@ -79,11 +76,8 @@ export function Avatar({
           }
           alt={alt}
           className={twMerge(
-            'size-full rounded-[var(--border-radius)] object-cover',
-            '[--badge-gap:2px] @[120px]:[--badge-gap:3px]',
+            'size-full rounded-lg object-cover in-[.rounded-full]:rounded-full',
             '[&:has(+[data-ui=avatar-badge])]:[mask:radial-gradient(circle_at_bottom_calc(var(--badge-size)/2)_right_calc(var(--badge-size)/2),_transparent_calc(var(--badge-size)/2_+_var(--badge-gap)_-_0.25px),_white_calc(var(--badge-size)/2_+_var(--badge-gap)_+_0.25px))]',
-            '[&+[data-ui=avatar-badge]:not([class*=size-])]:size-(--badge-size)',
-            '[&+[data-ui=avatar-badge]>[data-ui=icon]:not([class*=size-])]:size-full',
           )}
         />
         {children}
@@ -110,7 +104,7 @@ export const AvatarBadge = ({ badge, ...props }: AvatarBadgeProps) => {
       data-ui="avatar-badge"
       id={context.badgeId}
       className={twMerge([
-        'bg-background absolute end-0 bottom-0 grid place-items-center rounded-full bg-clip-content',
+        'bg-background absolute end-0 bottom-0 grid size-(--badge-size) place-items-center rounded-full bg-clip-content [&>[data-ui=icon]:not([class*=size-])]:size-full',
         props.className,
       ])}
     >
@@ -127,10 +121,13 @@ export function AvatarGroup({
   reverse = false,
   className,
   ...props
-}: AvatarGroupProps) {
+}: AvatarGroupProps & {
+  'aria-label': string;
+}) {
   return (
     <div
       {...props}
+      role="group"
       className={twMerge(
         'isolate flex items-center -space-x-2 rtl:space-x-reverse',
         '[&>[role=img]:not([class*=ring-4])]:ring-2',

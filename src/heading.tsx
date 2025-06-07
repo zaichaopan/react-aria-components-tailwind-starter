@@ -9,16 +9,16 @@ import { DisplayLevel, displayLevels } from './utils';
 export type BaseHeadingProps = {
   level?: DisplayLevel;
   elementType?: never;
+  displayLevel?: DisplayLevel;
 } & RACHeadingProps;
 
 type CustomElement = {
   level?: never;
+   displayLevel?: DisplayLevel;
   elementType: 'div';
 } & React.JSX.IntrinsicElements['div'];
 
-export type HeadingProps = {
-  displayLevel?: DisplayLevel;
-} & (BaseHeadingProps | CustomElement);
+export type HeadingProps = BaseHeadingProps | CustomElement;
 
 export const Heading = React.forwardRef<
   HTMLHeadingElement | HTMLDivElement,

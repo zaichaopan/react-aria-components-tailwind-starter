@@ -8,9 +8,8 @@ import { Input } from './field';
 import { composeTailwindRenderProps, inputField } from './utils';
 import { Button } from './button';
 import { Separator } from './separator';
-import {MinusIcon} from './icons/outline/minus';
+import { MinusIcon } from './icons/outline/minus';
 import { PlusIcon } from './icons/outline/plus';
-
 
 export interface NumberFieldProps extends RACNumberFieldProps {}
 
@@ -31,15 +30,13 @@ export function NumberInput(props: InputProps) {
         'group isolate grid grid-cols-[auto_auto_1fr_auto_auto]',
         '[&>div:has([role=separator])]:h-full',
         '[&>div:has([role=separator])]:z-10',
-        '[&>div:has([role=separator])]:py-[1px]',
-        '[&:focus-within>div:has([role=separator])]:py-[2px]',
       ].join(' ')}
     >
       <Button
         slot="decrement"
         isIconOnly
         variant="plain"
-        className="z-10 col-start-1 row-start-1 rounded-none hover:bg-transparent pressed:bg-transparent text-muted hover:text-foreground"
+        className="z-10 col-start-1 row-start-1 rounded-e-none"
       >
         <MinusIcon />
       </Button>
@@ -63,11 +60,11 @@ export function NumberInput(props: InputProps) {
 
       <Button
         slot="increment"
-        className="-col-end-1 row-start-1 rounded-none text-muted hover:text-foreground hover:bg-transparent pressed:bg-transparent"
+        className="-col-end-1 row-start-1 rounded-s-none"
         isIconOnly
         variant="plain"
       >
-        <PlusIcon/>
+        <PlusIcon />
       </Button>
     </Group>
   );

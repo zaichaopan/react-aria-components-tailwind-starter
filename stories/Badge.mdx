@@ -1,0 +1,23 @@
+import { Meta, Canvas } from '@storybook/addon-docs/blocks';
+
+import * as BadgeStories from './Badge.stories';
+
+<Meta of={BadgeStories} />
+
+# Badge 
+
+Badges are used for showing a small amount of color-categorized metadata, ideal for getting a user's attention. For selectable badge, use <a href="./?path=/docs/taggroup--docs" target="_blank">**TagGroup**</a> component.
+
+<Canvas of={BadgeStories.BasicExample} />
+
+## Colors
+
+<Canvas of={BadgeStories.Colors} />
+
+## Solid
+
+<Canvas of={BadgeStories.Solid} />
+
+## With icons
+
+<Canvas of={BadgeStories.WithIcons} />

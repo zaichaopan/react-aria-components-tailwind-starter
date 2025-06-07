@@ -77,9 +77,7 @@ export const InputWithHints = () => {
       </TextField>
 
       <TextField>
-        <Label hint="optional" className="flex gap-x-3">
-          Email
-        </Label>
+        <Label hint="optional">Email</Label>
         <Input placeholder="your@example.com" />
         <Description>We won't share your email with anyone</Description>
       </TextField>

@@ -35,24 +35,34 @@ export function DateRangePickerInput() {
     <>
       <Group
         data-ui="control"
-        className={({ isFocusWithin }) =>
+        className={({ isFocusWithin, isDisabled, isInvalid, isHovered }) =>
           twMerge(
-            'grid grid-cols-[auto_16px_auto_1fr] items-center',
-            'group border-input relative rounded-md border shadow-xs',
-            'group-data-invalid:border-red-600',
-            '[&:has(_input[data-disabled=true])]:border-border/50',
-            '[&:has([data-ui=date-segment][aria-readonly])]:bg-zinc-800/5',
+            'rounded-md text-base/6 shadow-sm outline-none sm:text-sm/6 dark:shadow-none',
+            'group relative grid grid-cols-[auto_16px_auto_1fr] items-center',
+            'group-data-invalid:ring-red-600 dark:group-data-invalid:ring-red-600',
+            '[&:has(_input[data-disabled=true])]:opacity-50',
+            '[&:has([data-ui=date-segment][aria-readonly])]:bg-zinc-950/5',
             'dark:[&:has([data-ui=date-segment][aria-readonly])]:bg-white/10',
+
+            'ring ring-zinc-950/10 dark:ring-white/10',
+            !isFocusWithin &&
+              !isDisabled &&
+              !isInvalid &&
+              isHovered &&
+              '[&:not([readonly])]:ring-zinc-950/20 dark:[&:not([readonly])]:ring-white/20',
+            '[&[readonly]]:bg-zinc-50 dark:[&[readonly]]:bg-white/5',
+
             isFocusWithin
-              ? 'border-ring ring-ring group-data-invalid:border-ring ring-1'
-              : '[&:has([data-ui=date-segment][aria-readonly])]:border-transparent',
+              ? 'ring-ring dark:ring-ring group-data-invalid:ring-ring dark:group-data-invalid:ring-ring ring-2'
+              : '',
           )
         }
       >
         <DateInput
           slot="start"
           className={[
-            'flex min-w-fit border-none shadow-none focus-within:ring-0',
+            'flex min-w-fit shadow-none ring-0 focus-within:ring-0',
+            '[&:has([data-disabled=true])]:opacity-100',
             '[&:has([data-ui=date-segment][aria-readonly])]:bg-transparent',
             'dark:[&:has([data-ui=date-segment][aria-readonly])]:bg-transparent',
           ].join(' ')}
@@ -66,7 +76,8 @@ export function DateRangePickerInput() {
         <DateInput
           slot="end"
           className={[
-            'flex min-w-fit border-none opacity-100 shadow-none focus-within:ring-0',
+            'flex min-w-fit opacity-100 shadow-none ring-0 focus-within:ring-0',
+            '[&:has([data-disabled=true])]:opacity-100',
             '[&:has([data-ui=date-segment][aria-readonly])]:bg-transparent',
             'dark:[&:has([data-ui=date-segment][aria-readonly])]:bg-transparent',
           ].join(' ')}
@@ -75,12 +86,12 @@ export function DateRangePickerInput() {
           variant="plain"
           isIconOnly
           size="sm"
-          className="text-muted/75 group-hover:text-foreground me-1 justify-self-end focus-visible:-outline-offset-1 hover:bg-transparent"
+          className="not-disabled:not-hover:text-muted me-1 justify-self-end not-disabled:hover:bg-transparent focus-visible:-outline-offset-1"
         >
           <CalendarIcon />
         </Button>
       </Group>
-      <Popover placement="bottom" className="rounded-xl">
+      <Popover placement="bottom" className="rounded-lg">
         <Dialog>
           <RangeCalendar />
         </Dialog>
@@ -106,7 +117,7 @@ export function DateRangePickerButton({
         <Button
           variant="outline"
           className={twMerge(
-            'border-input w-full min-w-64 px-0 font-normal sm:px-0',
+            'w-full min-w-64 px-0 font-normal sm:px-0',
             className,
           )}
         >
@@ -139,14 +150,14 @@ export function DateRangePickerButton({
               </span>
             )}
 
-            <CalendarIcon className="text-muted group-hover:text-foreground place-self-center" />
+            <CalendarIcon className="text-muted place-self-center" />
           </div>
         </Button>
 
         <DateInput slot="start" aria-hidden className="hidden" />
         <DateInput slot="end" aria-hidden className="hidden" />
       </Group>
-      <Popover placement="bottom" className="rounded-xl">
+      <Popover placement="bottom" className="rounded-lg">
         <Dialog>
           <RangeCalendar />
         </Dialog>

@@ -25,11 +25,11 @@ export function RangeCalendar<T extends DateValue>({
     <RACRangeCalendar
       {...props}
       className={composeRenderProps(props.className, (className) => {
-        return twMerge('px-1 pt-3 pb-1', className);
+        return twMerge('px-1 py-2', className);
       })}
     >
       <CalendarHeader />
-      <CalendarGrid className="border-separate border-spacing-y-2 px-3 sm:px-2">
+      <CalendarGrid className="border-separate border-spacing-y-0.5 px-1">
         <CalendarGridHeader />
         <CalendarGridBody>
           {(date) => (
@@ -81,18 +81,18 @@ export function RangeCalendar<T extends DateValue>({
                       'rounded-lg bg-zinc-100 dark:bg-zinc-700',
                       isPressed && 'bg-accent/90',
                       isSelected &&
-                        'bg-accent dark:bg-accent text-[lch(from_var(--color-accent)_calc((49.44_-_l)_*_infinity)_0_0)]',
+                        'bg-accent dark:bg-accent text-[lch(from_var(--accent)_calc((49.44_-_l)_*_infinity)_0_0)]',
                     ],
                     isDisabled && 'opacity-50',
                     isUnavailable &&
                       'text-red-600 line-through decoration-red-600',
                     (isSelectionStart || isSelectionEnd) && [
-                      'bg-accent rounded-lg text-sm text-[lch(from_var(--color-accent)_calc((49.44_-_l)_*_infinity)_0_0)]',
+                      'bg-accent rounded-lg text-sm text-[lch(from_var(--accent)_calc((49.44_-_l)_*_infinity)_0_0)]',
                       isHovered && 'bg-accent/90 dark:bg-accent/90',
                       isInvalid && 'border-red-600 bg-red-600 text-white',
                     ],
                     isFocusVisible && [
-                      'outline-ring outline outline-2',
+                      'outline-ring outline-2',
                       (isSelectionStart || isSelectionEnd) &&
                         'outline-offset-1',
                       'rounded-lg',

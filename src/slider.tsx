@@ -1,22 +1,21 @@
+import React from 'react';
 import {
   Slider as RACSlider,
   SliderProps as RACSliderProps,
-  SliderThumb,
+  SliderThumb as RACSliderThumb,
   SliderTrack as RACSliderTrack,
-  SliderRenderProps,
   composeRenderProps,
+  SliderTrackProps,
+  SliderRenderProps,
+  SliderStateContext,
+  SliderThumbProps,
 } from 'react-aria-components';
 import { composeTailwindRenderProps } from './utils';
 import { twMerge } from 'tailwind-merge';
 
 export { SliderOutput } from 'react-aria-components';
 
-export interface SliderProps<T> extends RACSliderProps<T> {
-  label?: string;
-  thumbLabels?: string[];
-}
-
-export function Slider<T extends number | number[]>(props: SliderProps<T>) {
+export function Slider<T extends number | number[]>(props: RACSliderProps<T>) {
   return (
     <RACSlider
       {...props}
@@ -28,57 +27,90 @@ export function Slider<T extends number | number[]>(props: SliderProps<T>) {
   );
 }
 
-const trackStyle = [
-  'absolute rounded-full',
-  'group-data-[orientation=horizontal]:h-1.5',
-  'group-data-[orientation=horizontal]:w-full',
-  'group-data-[orientation=vertical]:top-1/2',
-  'group-data-[orientation=vertical]:left-1/2',
-  'group-data-[orientation=vertical]:h-full',
-  'group-data-[orientation=vertical]:w-[6px]',
-  'group-data-disabled:opacity-50',
-];
+const SliderThumbContext = React.createContext<{
+  index: number;
+  label?: string;
+  orientation: 'horizontal' | 'vertical';
+} | null>(null);
 
-export function SliderTack({ thumbLabels }: { thumbLabels?: string[] }) {
+export function SliderThumb(props: SliderThumbProps) {
+  const { index, label, orientation } = React.useContext(SliderThumbContext)!;
+
   return (
-    <RACSliderTrack className="group relative flex w-full items-center data-[orientation=horizontal]:h-7 data-[orientation=vertical]:h-44 data-[orientation=vertical]:w-7">
-      {({ state, orientation }) => {
+    <RACSliderThumb
+      {...props}
+      index={index}
+      data-ui="slider-thumb"
+      aria-label={label}
+      className={composeRenderProps(
+        props.className,
+        (className, { isFocusVisible, isDragging, isDisabled }) => {
+          return twMerge(
+            'size-5 rounded-full bg-white ring shadow-[0_1px_1px_rgba(0,0,0,0.2)] ring-zinc-950/10 dark:shadow-none',
+            orientation === 'horizontal' ? 'top-1/2' : 'left-1/2',
+            isDragging && ['outline', 'outline-3', 'outline-ring/50'],
+            isDisabled && 'cursor-not-allowed opacity-50',
+            isFocusVisible && ['outline', 'outline-2', 'outline-ring'],
+            className,
+          );
+        },
+      )}
+    />
+  );
+}
+
+export function SliderTack({
+  thumbLabels,
+  sliderTrackHighlight = <SliderTrackHighlight />,
+  sliderThumb = <SliderThumb />,
+  ...props
+}: SliderTrackProps & {
+  thumbLabels?: string[];
+  sliderTrackHighlight?: React.ReactElement;
+  sliderThumb?: React.ReactElement;
+}) {
+  return (
+    <RACSliderTrack
+      {...props}
+      className={composeRenderProps(
+        props.className,
+        (className, { state, orientation }) => {
+          const { highlightPercentage } = getTrackHighlightState(state);
+          return twMerge(
+            'group relative isolate flex w-full items-center',
+            orientation == 'horizontal' ? 'h-1' : 'h-44 w-1',
+            'bg-zinc-200 dark:bg-zinc-600',
+            highlightPercentage !== '0%' &&
+              (orientation == 'horizontal'
+                ? 'rounded-s-full'
+                : 'rounded-t-full'),
+            highlightPercentage !== '100%' &&
+              (orientation == 'horizontal'
+                ? 'rounded-e-full'
+                : 'rounded-b-full'),
+            className,
+          );
+        },
+      )}
+    >
+      {({ state }) => {
         return (
           <>
-            <div
-              className={twMerge(
-                'bg-zinc-200 group-data-[orientation=vertical]:-translate-x-1/2 group-data-[orientation=vertical]:-translate-y-1/2 dark:bg-zinc-600',
-                trackStyle,
-              )}
-            />
-            <div
-              className={twMerge('bg-accent', trackStyle)}
-              style={getTrackHighlightStyle(state, orientation)}
-            />
-            {state.values.map((_, i) => (
-              <SliderThumb
-                key={i}
-                index={i}
-                aria-label={thumbLabels?.[i]}
-                className={composeRenderProps(
-                  '',
-                  (className, { isFocusVisible, isDragging, isDisabled }) =>
-                    twMerge(
-                      'border-accent size-4 rounded-full border border-2 bg-[lch(from_var(--color-accent)_calc((49.44_-_l)_*_infinity)_0_0)] shadow-xl dark:border-3',
-                      'group-data-[orientation=horizontal]:top-1/2 group-data-[orientation=vertical]:left-1/2',
-                      isDragging && ['border-4 dark:border-4'],
-                      isDisabled && 'cursor-not-allowed opacity-50',
-                      isFocusVisible && [
-                        'outline',
-                        'outline-2',
-                        'outline-ring',
-                        'outline-offset-2',
-                      ],
-                      className,
-                    ),
-                )}
-              />
-            ))}
+            {sliderTrackHighlight}
+            {state.values.map((_, i) => {
+              return (
+                <SliderThumbContext.Provider
+                  key={i}
+                  value={{
+                    index: i,
+                    label: thumbLabels?.[i],
+                    orientation: state.orientation,
+                  }}
+                >
+                  {sliderThumb}
+                </SliderThumbContext.Provider>
+              );
+            })}
           </>
         );
       }}
@@ -86,10 +118,67 @@ export function SliderTack({ thumbLabels }: { thumbLabels?: string[] }) {
   );
 }
 
-function getTrackHighlightStyle(
-  state: SliderRenderProps['state'],
-  orientation: SliderRenderProps['orientation'],
-) {
+export function SliderTrackHighlight({
+  className,
+  ...props
+}: Omit<React.JSX.IntrinsicElements['div'], 'className'> & {
+  className?:
+    | string
+    | ((renderProps: {
+        isDisabled: boolean;
+        hasTwoThumbs: boolean;
+        highlightPercentage: string;
+        highlightStartPosition: string;
+        orientation: 'horizontal' | 'vertical';
+      }) => string);
+}) {
+  const state = React.useContext(SliderStateContext)!;
+  const { orientation, isDisabled } = state;
+  const { highlightPercentage, hasTwoThumbs, highlightStartPosition } =
+    getTrackHighlightState(state);
+
+  return (
+    <div
+      {...props}
+      data-ui="slider-highlight"
+      className={twMerge(
+        'bg-accent',
+        'absolute',
+        'w-full',
+        'h-full',
+        isDisabled && 'opacity-50',
+        !hasTwoThumbs &&
+          highlightPercentage !== '0%' &&
+          (state.orientation == 'horizontal'
+            ? 'rounded-s-full'
+            : 'rounded-b-full'),
+
+        typeof className === 'function'
+          ? className({
+              isDisabled,
+              hasTwoThumbs,
+              highlightPercentage,
+              highlightStartPosition,
+              orientation,
+            })
+          : className,
+      )}
+      style={
+        orientation === 'horizontal'
+          ? {
+              width: highlightPercentage,
+              left: highlightStartPosition,
+            }
+          : {
+              height: highlightPercentage,
+              bottom: highlightStartPosition,
+            }
+      }
+    />
+  );
+}
+
+function getTrackHighlightState(state: SliderRenderProps['state']) {
   const hasTwoThumbs = state.values.length == 2;
   const highlightPercentage = hasTwoThumbs
     ? (state.getThumbPercent(1) - state.getThumbPercent(0)) * 100 + '%'
@@ -98,15 +187,5 @@ function getTrackHighlightStyle(
     ? state.getThumbPercent(0) * 100 + '%'
     : '0';
 
-  return orientation === 'horizontal'
-    ? {
-        width: highlightPercentage,
-        left: highlightStartPosition,
-      }
-    : {
-        height: highlightPercentage,
-        bottom: highlightStartPosition,
-        top: 'auto',
-        transform: 'translate(-50%,0px)',
-      };
+  return { highlightPercentage, highlightStartPosition, hasTwoThumbs };
 }

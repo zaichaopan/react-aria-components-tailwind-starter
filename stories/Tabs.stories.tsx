@@ -20,6 +20,7 @@ import {
   DiscAlbumIcon,
   MicVocalIcon,
 } from 'lucide-react';
+import { twMerge } from 'tailwind-merge';
 
 const meta = {
   parameters: {
@@ -199,10 +200,13 @@ export const VerticalPillTabsWithAccentBackground = () => {
         <TabList aria-label="Settings">
           <Tab
             id="General"
-            className={({ isSelected }) =>
-              isSelected
-                ? 'bg-accent dark:bg-accent text-[lch(from_var(--color-accent)_calc((49.44_-_l)_*_infinity)_0_0)]'
-                : ''
+            className={({ isSelected, isFocusVisible }) =>
+              twMerge(
+                isSelected
+                  ? 'bg-accent dark:bg-accent text-[lch(from_var(--accent)_calc((49.44_-_l)_*_infinity)_0_0)]'
+                  : '',
+                isSelected && isFocusVisible && 'bg-accent/80',
+              )
             }
           >
             <Icon>
@@ -299,7 +303,7 @@ export const VerticalPillTabsWithAccentColor = () => {
             id="General"
             className={({ isSelected }) =>
               isSelected
-                ? 'bg-accent/10 text-accent dark:bg-accent dark:text-[lch(from_var(--color-accent)_calc((49.44_-_l)_*_infinity)_0_0)]'
+                ? 'bg-accent/10 text-accent dark:bg-accent dark:text-[lch(from_var(--accent)_calc((49.44_-_l)_*_infinity)_0_0)]'
                 : ''
             }
           >
@@ -402,15 +406,31 @@ export const VerticalPillTabsWithAccentColor = () => {
 
 export const SegmentTabs = () => {
   return (
-    <div className="p-4 sm:p-12">
+    <div className="space-y-12 p-4 sm:p-12">
       <Tabs variant="segment">
         <TabList aria-label="Music">
           <Tab id="Free Apps">Free Apps </Tab>
           <Tab id="Paid Apps">Paid Apps</Tab>
         </TabList>
-
         <TabPanel id="Free Apps"></TabPanel>
         <TabPanel id="Paid Apps"></TabPanel>
+      </Tabs>
+
+      <Tabs variant="segment">
+        <TabList
+          aria-label="Music"
+          className="w-full max-w-lg [--border-radius:var(--radius-md)]"
+        >
+          <Tab id="Last 24 Hours" className="py-0">
+            Last 24 Hours
+          </Tab>
+          <Tab id="Last 10 Days" className="py-0">
+            Last 10 Days
+          </Tab>
+        </TabList>
+
+        <TabPanel id="Last 24 Hours"></TabPanel>
+        <TabPanel id="Last 10 Days"></TabPanel>
       </Tabs>
     </div>
   );

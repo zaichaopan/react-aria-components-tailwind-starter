@@ -5,12 +5,14 @@ import { SeparatorProps as RACSeparatorProps } from 'react-aria-components';
 export type SeparatorProps = RACSeparatorProps & {
   children?: React.ReactNode;
   soft?: boolean;
-} & React.JSX.IntrinsicElements['div'];
+  role?: null;
+} & Omit<React.JSX.IntrinsicElements['div'], 'role'>;
 
 export function Separator({
   orientation = 'horizontal',
   className,
   soft = false,
+  role,
   children,
   ...props
 }: SeparatorProps) {
@@ -18,7 +20,8 @@ export function Separator({
 
   return (
     <div
-      {...separatorProps}
+      {...(role !== null && separatorProps)}
+      {...props}
       className={twMerge(
         'text-sm/6',
         '[&>svg:not([class*=size])]:size-5',
@@ -65,7 +68,6 @@ export function Separator({
             ],
         className,
       )}
-      {...props}
     >
       {children}
     </div>

@@ -41,7 +41,7 @@ import { Button, ButtonGroup } from '../../src/button';
 import {
   EmptyState,
   EmptyStateDescription,
-  EmptyStateHeading,
+  EmptyStateTitle,
 } from '../../src/empty-state';
 import {
   Dialog,
@@ -162,7 +162,7 @@ export const BasicExample = () => {
           <SearchField aria-label="Search" className="p-2">
             <SearchInput
               placeholder="search…"
-              className="border-input ring-0"
+              className=""
             />
           </SearchField>
           <div
@@ -201,9 +201,9 @@ export const BasicExample = () => {
                 renderEmptyState={() => {
                   return (
                     <EmptyState className="justify-start">
-                      <EmptyStateHeading elementType="div" displayLevel={2}>
+                      <EmptyStateTitle elementType="div" displayLevel={2}>
                         No results
-                      </EmptyStateHeading>
+                      </EmptyStateTitle>
                       <EmptyStateDescription>
                         Try adjusting your search filters.
                       </EmptyStateDescription>

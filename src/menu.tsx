@@ -33,7 +33,19 @@ export function MenuButton({
   ...props
 }: MenuButtonProps) {
   return (
-    <Button {...props} variant={variant}>
+    <Button
+      {...props}
+      variant={variant}
+      className={composeRenderProps(props.className, (className) => {
+        return twMerge(
+          className,
+          variant === 'outline' && [
+            'aria-expanded:bg-zinc-50',
+            'dark:aria-expanded:bg-zinc-800',
+          ],
+        );
+      })}
+    >
       {(renderProps) => {
         return (
           <>
@@ -141,7 +153,7 @@ export function MenuSeparator({ className }: { className?: string }) {
   return (
     <Separator
       className={twMerge(
-        'border-t-border/50 my-1 w-[calc(100%-(--spacing(4)))] self-center border-t',
+        'border-t-border/75 my-1 w-full self-center border-t',
         className,
       )}
     />

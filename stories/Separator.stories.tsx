@@ -4,7 +4,7 @@ import { ChevronDownIcon } from '../src/icons/outline/chevron-down';
 import { PlusIcon } from '../src/icons/outline/plus.tsx';
 import { Icon } from '../src/icon.tsx';
 import { Separator } from '../src/separator.tsx';
-import { Button } from '../src/button.tsx';
+import { Button } from '../src/button';
 import {
   MenuItem,
   MenuTrigger,

@@ -19,21 +19,81 @@ export function Clipboard({ timeout, children }: ClipboardProps) {
   return children({ copied, copy });
 }
 
+export type CopyButtonProps = (
+  | {
+      label?: string;
+      labelAfterCopied?: string;
+      children?: never;
+    }
+  | {
+      label?: never;
+      labelAfterCopied?: never;
+      children?: React.ReactNode;
+    }
+) & {
+  copyValue: string;
+  icon?: React.JSX.Element;
+} & Omit<ButtonProps, 'tooltip' | 'children' | 'isIconOnly'>;
+
 export function CopyButton({
   copyValue,
-  label = 'Copy',
-  labelAfterCopied = 'Copied to clipboard',
   icon,
-  variant = 'plain',
-  children,
+  variant,
   ...props
-}: {
-  copyValue: string;
-  label?: string;
-  labelAfterCopied?: string;
-  icon?: React.JSX.Element;
-} & Omit<ButtonProps, 'tooltip'>) {
+}: CopyButtonProps) {
   const [showTooltip, setShowTooltip] = React.useState(false);
+
+  if (props.children) {
+    const { children, ...rest } = props;
+    return (
+      <Clipboard>
+        {({ copied, copy }) => {
+          return (
+            <Button
+              {...rest}
+              variant={variant ?? 'outline'}
+              onPress={() => {
+                copy(copyValue);
+              }}
+            >
+              <>
+                {icon ? (
+                  React.cloneElement(icon, {
+                    className: twMerge(
+                      'transition-all',
+                      copied
+                        ? 'absolute left-3.5 scale-0 opacity-0'
+                        : 'scale-100 opacity-100',
+                    ),
+                  })
+                ) : (
+                  <CopyIcon
+                    className={twMerge(
+                      'transition-all',
+                      copied
+                        ? 'absolute left-3.5 scale-0 opacity-0'
+                        : 'scale-100 opacity-100',
+                    )}
+                  />
+                )}
+                <CheckIcon
+                  className={twMerge(
+                    'text-green-600 transition-all',
+                    copied
+                      ? 'scale-100 opacity-100'
+                      : 'absolute left-3.5 scale-0 opacity-0',
+                  )}
+                />
+                {children}
+              </>
+            </Button>
+          );
+        }}
+      </Clipboard>
+    );
+  }
+
+  const { label = 'Copy', labelAfterCopied = 'Copied', ...rest } = props;
 
   return (
     <Clipboard>
@@ -41,50 +101,45 @@ export function CopyButton({
         return (
           <TooltipTrigger isOpen={copied || showTooltip}>
             <Button
-              variant={variant}
-              {...(!children && {
-                isIconOnly: true,
-              })}
+              {...rest}
+              variant={variant ?? 'plain'}
+              isIconOnly
               aria-label={label}
-              {...props}
               onHoverChange={setShowTooltip}
               onPress={() => {
                 copy(copyValue);
                 setShowTooltip(false);
               }}
             >
-              {children ?? (
-                <>
-                  {icon ? (
-                    React.cloneElement(icon, {
-                      className: twMerge(
-                        'transition-all',
-                        copied
-                          ? 'absolute scale-0 opacity-0'
-                          : 'scale-100 opacity-100',
-                      ),
-                    })
-                  ) : (
-                    <CopyIcon
-                      className={twMerge(
-                        'transition-all',
-                        copied
-                          ? 'absolute scale-0 opacity-0'
-                          : 'scale-100 opacity-100',
-                      )}
-                    />
-                  )}
-
-                  <CheckIcon
-                    className={twMerge(
-                      'text-green-600 transition-all',
+              <>
+                {icon ? (
+                  React.cloneElement(icon, {
+                    className: twMerge(
+                      'transition-all',
                       copied
-                        ? 'scale-100 opacity-100'
-                        : 'absolute scale-0 opacity-0',
+                        ? 'absolute scale-0 opacity-0'
+                        : 'scale-100 opacity-100',
+                    ),
+                  })
+                ) : (
+                  <CopyIcon
+                    className={twMerge(
+                      'transition-all',
+                      copied
+                        ? 'absolute scale-0 opacity-0'
+                        : 'scale-100 opacity-100',
                     )}
                   />
-                </>
-              )}
+                )}
+                <CheckIcon
+                  className={twMerge(
+                    'text-green-600 transition-all',
+                    copied
+                      ? 'scale-100 opacity-100'
+                      : 'absolute scale-0 opacity-0',
+                  )}
+                />
+              </>
             </Button>
             <Tooltip>{copied ? labelAfterCopied : label}</Tooltip>
           </TooltipTrigger>
