@@ -57,8 +57,7 @@ export function TextLink({
     <Link
       {...props}
       className={composeTailwindRenderProps(props.className, [
-        highlight && 'text-foreground font-medium',
-        'underline underline-offset-4 [&:not(:hover)]:decoration-zinc-300 dark:[&:not(:hover)]:decoration-zinc-600',
+        'text-foreground underline underline-offset-4 [&:not(:hover)]:decoration-zinc-300 dark:[&:not(:hover)]:decoration-zinc-600',
       ])}
     />
   );

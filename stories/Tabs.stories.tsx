@@ -402,7 +402,7 @@ export const VerticalPillTabsWithAccentColor = () => {
 
 export const SegmentTabs = () => {
   return (
-    <div className="p-4 sm:p-12">
+    <div className="space-y-12 p-4 sm:p-12">
       <Tabs variant="segment">
         <TabList aria-label="Music">
           <Tab id="Free Apps">Free Apps </Tab>
@@ -411,6 +411,16 @@ export const SegmentTabs = () => {
 
         <TabPanel id="Free Apps"></TabPanel>
         <TabPanel id="Paid Apps"></TabPanel>
+      </Tabs>
+
+      <Tabs variant="segment">
+        <TabList aria-label="Music" className="w-full max-w-lg">
+          <Tab id="Last 24 Hours" className="py-0">Last 24 Hours</Tab>
+          <Tab id="Last 10 Days"  className="py-0">Last 10 Days</Tab>
+        </TabList>
+
+        <TabPanel id="Last 24 Hours"></TabPanel>
+        <TabPanel id="Last 10 Days"></TabPanel>
       </Tabs>
     </div>
   );

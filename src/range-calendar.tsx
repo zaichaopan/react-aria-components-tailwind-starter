@@ -25,11 +25,11 @@ export function RangeCalendar<T extends DateValue>({
     <RACRangeCalendar
       {...props}
       className={composeRenderProps(props.className, (className) => {
-        return twMerge('px-1 pt-3 pb-1', className);
+        return twMerge('px-1 py-2', className);
       })}
     >
       <CalendarHeader />
-      <CalendarGrid className="border-separate border-spacing-y-2 px-3 sm:px-2">
+      <CalendarGrid className="border-separate border-spacing-y-0.5 px-1">
         <CalendarGridHeader />
         <CalendarGridBody>
           {(date) => (
@@ -92,7 +92,7 @@ export function RangeCalendar<T extends DateValue>({
                       isInvalid && 'border-red-600 bg-red-600 text-white',
                     ],
                     isFocusVisible && [
-                      'outline-ring outline outline-2',
+                      'outline-ring outline-2',
                       (isSelectionStart || isSelectionEnd) &&
                         'outline-offset-1',
                       'rounded-lg',

@@ -44,18 +44,18 @@ export function SelectButton(props: {
         props.className,
         (className, { isFocusVisible, isPressed, isHovered, isDisabled }) => {
           return twMerge(
-            'group border-input relative flex w-full cursor-default items-center gap-x-2 rounded-md border text-start shadow-xs outline-hidden transition',
-            'ps-3.5 pe-2.5',
-            'py-[calc(--spacing(2.5)-1px)]',
-            'sm:py-[calc(--spacing(1.5)-1px)]',
-            'text-base/6 sm:text-sm/6',
-            'group-data-invalid:border-red-600',
+            'w-full rounded-md text-base/6 shadow-sm outline-none sm:text-sm/6 dark:shadow-none',
+            'group relative flex cursor-default items-center gap-x-2 text-start transition',
+            'px-2.5 py-2.5 sm:py-1.5',
+            'group-data-invalid:ring-red-600 dark:group-data-invalid:ring-red-600',
             isDisabled && 'cursor-not-allowed opacity-50',
-            isHovered && ['bg-zinc-50 dark:bg-zinc-800'],
-            isPressed && ['bg-zinc-50 dark:bg-zinc-800'],
-            isHovered && isPressed && ['dark:bg-zinc-800'],
+            'ring ring-zinc-950/10 dark:ring-white/10',
+            !isFocusVisible &&
+              !isDisabled &&
+              (isHovered || isPressed) &&
+              'ring-zinc-950/20 dark:ring-white/20',
             isFocusVisible &&
-              'border-ring ring-ring group-data-invalid:border-ring ring-1',
+              'ring-ring dark:ring-ring group-data-invalid:ring-ring dark:group-data-invalid:ring-ring ring-2',
             className,
           );
         },
@@ -81,7 +81,7 @@ export function SelectButton(props: {
         ])}
       />
 
-      <ChevronDownIcon className="group-[&:not(:hover)]:text-muted/75 size-5 sm:size-4" />
+      <ChevronDownIcon className="text-muted size-5 sm:size-4" />
     </Button>
   );
 }
@@ -134,10 +134,6 @@ export const SelectListBox = React.forwardRef(
           '**:data-[ui=content]:items-center',
           '**:data-[ui=content]:gap-x-2',
 
-          // Icon
-          // '[&_[data-ui=content]>[data-ui=icon]:not([class*=size-])]:size-4',
-          // '[&_[data-ui=content]:not(:hover)>[data-ui=icon]:not([class*=text-])]:text-muted',
-
           // Label
           '**:data-[ui=label]:col-span-full',
           '[&:has(:is([data-ui=icon],[role=img])+[data-ui=label])_[data-ui=label]]:col-start-2',
@@ -148,8 +144,8 @@ export const SelectListBox = React.forwardRef(
           '[&:has(:is([data-ui=icon],[role=img])+[data-ui=label])_[data-ui=description]]:col-start-2',
 
           // Image
-          '[&_[role=img]]:[--size:spacing(5)]',
-          '[&:has([data-ui=description])_[role=img]]:[--size:spacing(7)]',
+          '[&_[role=img]]:[--size:--spacing(5)]',
+          '[&:has([data-ui=description])_[role=img]]:[--size:--spacing(7)]',
           '[&_[role=img]]:self-start',
           '[&_[role=img]]:mt-0.5',
           '[&_[role=img]]:row-start-1',

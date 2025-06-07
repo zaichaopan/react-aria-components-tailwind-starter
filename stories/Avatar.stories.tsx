@@ -118,9 +118,10 @@ export const AvatarBadges = () => {
           <BusyIcon aria-label="Busy" />,
           <AwayIcon aria-label="Away" />,
           <DoNotDisturbIcon aria-label="Do not disturb" />,
-        ].map((icon) => {
+        ].map((icon, index) => {
           return (
             <Avatar
+              key={index}
               src="https://images.unsplash.com/photo-1717694371848-70ddf2293c7c?q=80&w=2306&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
               alt="M A"
             >
@@ -136,9 +137,10 @@ export const AvatarBadges = () => {
           <BusyIcon aria-label="Busy" />,
           <AwayIcon aria-label="Away" />,
           <DoNotDisturbIcon aria-label="Do not disturb" />,
-        ].map((icon) => {
+        ].map((icon, index) => {
           return (
             <Avatar
+              key={index}
               src="https://images.unsplash.com/photo-1717694371848-70ddf2293c7c?q=80&w=2306&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
               alt="M A"
             >
@@ -191,7 +193,7 @@ export function StyleAvatarBadge() {
   return (
     <div className="flex gap-4">
       <Avatar
-        className="size-20"
+        size={72}
         alt="M A"
         src="https://images.unsplash.com/photo-1717694371848-70ddf2293c7c?q=80&w=2306&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
       >
@@ -200,7 +202,7 @@ export function StyleAvatarBadge() {
           badge={
             <Avatar
               alt="MM"
-              className="size-9"
+              size={36}
               src="https://images.unsplash.com/photo-1646589391794-566792b13cae?q=80&w=3386&auto=format&fit=facearea&facepad=3&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
             />
           }
@@ -208,7 +210,7 @@ export function StyleAvatarBadge() {
       </Avatar>
 
       <Avatar
-        className="size-20"
+        size={72}
         alt="M A"
         src="https://images.unsplash.com/photo-1717694371848-70ddf2293c7c?q=80&w=2306&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
       >
@@ -247,12 +249,12 @@ export const AvatarGroups = () => {
   return (
     <div className="flex flex-col gap-6">
       <div className="flex items-center">
-        <AvatarGroup>
+        <AvatarGroup aria-label="Online users">
           {users.map((user) => {
             return (
               <Avatar
                 key={user.name}
-                className="size-8"
+                size={32}
                 alt={user.name}
                 src={user.src}
               />
@@ -265,12 +267,13 @@ export const AvatarGroups = () => {
       </div>
 
       <div className="flex items-center">
-        <AvatarGroup>
+        <AvatarGroup aria-label="Online users">
           {users.map((user) => {
             return (
               <Avatar
                 key={user.name}
-                className="size-8 rounded-full"
+                size={32}
+                className="rounded-full"
                 alt={user.name}
                 src={user.src}
               />
@@ -289,12 +292,12 @@ export const AvatarGroupsWithReverseOverlap = () => {
   return (
     <div className="grid gap-y-6">
       <div className="flex items-center">
-        <AvatarGroup reverse>
+        <AvatarGroup reverse aria-label="Online users">
           {users.map((user) => {
             return (
               <Avatar
                 key={user.name}
-                className="size-8"
+                size={32}
                 alt={user.name}
                 src={user.src}
               />
@@ -307,12 +310,13 @@ export const AvatarGroupsWithReverseOverlap = () => {
       </div>
 
       <div className="flex items-center">
-        <AvatarGroup reverse>
+        <AvatarGroup reverse aria-label="Online users">
           {users.map((user) => {
             return (
               <Avatar
                 key={user.name}
-                className="size-8 rounded-full"
+                size={32}
+                className="rounded-full"
                 alt={user.name}
                 src={user.src}
               />
