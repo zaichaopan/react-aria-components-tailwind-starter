@@ -8,7 +8,7 @@ import {
 } from '../../src/field.tsx';
 import { Form } from '../../src/form.tsx';
 import { PasswordInput } from '../../src/password-input.tsx';
-import { Button } from '../../src/button.tsx';
+import { Button } from '../../src/button';
 import { Heading, SubHeading } from '../../src/heading.tsx';
 import { Text, TextLink } from '../../src/text.tsx';
 import { Checkbox } from '../../src/checkbox.tsx';

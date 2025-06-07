@@ -60,21 +60,6 @@ export const BasicExample = () => {
         </div>
       </TextField>
 
-      <TextField>
-        <Label>Company website</Label>
-        <div className="flex">
-          <span className="text-foreground border-input flex items-center rounded-s-md border-y border-s px-2.5 text-base/6 shadow-xs sm:text-sm/6">
-            https://
-          </span>
-          <Input
-            type="text"
-            placeholder="www.example.com"
-            className="rounded-s-none"
-            autoComplete="email"
-          />
-        </div>
-      </TextField>
-
       <TextField className="col-span-full row-start-1">
         <Label>Label</Label>
         <div className="group grid grid-cols-[1fr_auto]">
@@ -116,39 +101,33 @@ export const InputWithNativeSelect = () => {
     <div className="flex w-72 flex-col gap-y-10">
       <LabeledGroup>
         <Label>Phone number</Label>
-        <Group className="group flex">
+        <Group className="group [&:has(input[data-focused])]:ring-ring flex rounded-md ring shadow ring-zinc-950/10 dark:shadow-none dark:ring-white/10 [&:has([data-invalid])]:ring-red-500 [&:has(input[data-focused])]:ring-2">
           <NativeSelectField>
             <NativeSelect
               aria-label="Choose country"
-              className="rounded-e-none border-e-0 data-focus-visible:border-transparent data-focus-visible:ring-2"
+              className="ring-0 shadow-none data-focus-visible:ring-2"
             >
               <option value="CA">CA</option>
               <option value="US">US</option>
             </NativeSelect>
           </NativeSelectField>
           <TextField className="flex-1" aria-label="Phone number">
-            <Input
-              placeholder="123-457-789"
-              className="focus-visible:border-transparent focus-visible:ring-2 [&:not(:focus)]:rounded-s-none"
-            />
+            <Input placeholder="123-457-789" className="ring-0 ps-0 shadow-none" />
           </TextField>
         </Group>
       </LabeledGroup>
 
       <LabeledGroup>
         <Label>Phone number</Label>
-        <Group className="group flex">
+        <Group className="group [&:has(input[data-focused])]:ring-ring flex rounded-md ring shadow ring-zinc-950/10 dark:shadow-none dark:ring-white/10 [&:has([data-invalid])]:ring-red-500 [&:has(input[data-focused])]:ring-2">
           <TextField className="flex-1" aria-label="Phone number">
-            <Input
-              placeholder="123-457-789"
-              className="focus:rounded-e-md [&:not(:focus)]:rounded-e-none"
-            />
+            <Input placeholder="123-457-789" className="ring-0 shadow-none" />
           </TextField>
 
           <NativeSelectField>
             <NativeSelect
               aria-label="Choose country"
-              className="rounded-s-none border-s-0 data-focus-visible:border-transparent data-focus-visible:ring-2"
+              className="ring-0 shadow-none data-focus-visible:ring-2"
             >
               <option value="CA">CA</option>
               <option value="US">US</option>
@@ -159,7 +138,7 @@ export const InputWithNativeSelect = () => {
 
       <LabeledGroup>
         <Label>Price</Label>
-        <Group className="group flex">
+        <Group className="group [&:has(input[data-focused])]:ring-ring flex rounded-md ring shadow ring-zinc-950/10 dark:shadow-none dark:ring-white/10 [&:has([data-invalid])]:ring-red-500 [&:has(input[data-focused])]:ring-2">
           <TextField className="flex-1" aria-label="Price">
             <div className="group grid grid-cols-[auto_1fr]">
               <span className="text-muted col-start-1 row-start-1 grid place-content-center px-3 group-has-autofill:z-10 sm:text-sm/6">
@@ -168,7 +147,7 @@ export const InputWithNativeSelect = () => {
 
               <Input
                 placeholder="0.00"
-                className="col-span-full row-start-1 ps-7 pe-10 focus:rounded-e-md [&:not(:focus)]:rounded-e-none"
+                className="col-span-full row-start-1 ps-7 pe-10 ring-0 shadow-none"
               />
             </div>
           </TextField>
@@ -176,7 +155,7 @@ export const InputWithNativeSelect = () => {
           <NativeSelectField>
             <NativeSelect
               aria-label="Choose currency"
-              className="rounded-s-none border-s-0 data-focus-visible:border-transparent data-focus-visible:ring-2"
+              className="ring-0 shadow-none data-focus-visible:ring-2"
             >
               <option value="US">US</option>
               <option value="CA">CA</option>
@@ -193,10 +172,10 @@ export const InputWithSelect = () => {
     <div className="flex w-80 flex-col space-y-10">
       <LabeledGroup>
         <Label>Phone</Label>
-        <Group className="group flex">
+        <Group className="group [&:has(input[data-focused])]:ring-ring flex rounded-md ring shadow ring-zinc-950/10 dark:shadow-none dark:ring-white/10 [&:has([data-invalid])]:ring-red-500 [&:has(input[data-focused])]:ring-2">
           <Select defaultSelectedKey="ca" className="w-max min-w-max">
             <Label className="sr-only">Country</Label>
-            <SelectButton className="rounded-e-none border-e-0 focus-visible:border-transparent focus-visible:ring-2"></SelectButton>
+            <SelectButton className="ring-0 shadow-none focus-visible:ring-2"></SelectButton>
 
             <SelectPopover placement="bottom end" className="w-36">
               <SelectListBox>
@@ -217,7 +196,7 @@ export const InputWithSelect = () => {
           <TextField className="flex-1" aria-label="Phone number">
             <Input
               placeholder="+1 (123) 457-7890"
-              className="[&:not(:focus)]:rounded-s-none"
+              className="ring-0 shadow-none ps-0"
             />
           </TextField>
         </Group>
@@ -225,17 +204,17 @@ export const InputWithSelect = () => {
 
       <LabeledGroup>
         <Label>Phone</Label>
-        <Group className="group flex">
+        <Group className="group [&:has(input[data-focused])]:ring-ring flex rounded-md ring shadow ring-zinc-950/10 dark:shadow-none dark:ring-white/10 [&:has([data-invalid])]:ring-red-500 [&:has(input[data-focused])]:ring-2">
           <TextField className="flex-1" aria-label="Phone number">
             <Input
               placeholder="+1 (123) 457-7890"
-              className="[&:not(:focus)]:rounded-e-none"
+              className="ring-0 shadow-none"
             />
           </TextField>
 
           <Select defaultSelectedKey="ca" className="w-max min-w-max">
             <Label className="sr-only">Country</Label>
-            <SelectButton className="rounded-s-none border-s-0 focus-visible:border-transparent focus-visible:ring-2"></SelectButton>
+            <SelectButton className="ring-0 shadow-none focus-visible:ring-2"></SelectButton>
 
             <SelectPopover placement="bottom end" className="w-36">
               <SelectListBox>
@@ -257,13 +236,13 @@ export const InputWithSelect = () => {
 
       <LabeledGroup>
         <Label>Phone Number</Label>
-        <Group className="group flex">
+        <Group className="group [&:has(input[data-focused])]:ring-ring flex rounded-md ring shadow ring-zinc-950/10 dark:shadow-none dark:ring-white/10 [&:has([data-invalid])]:ring-red-500 [&:has(input[data-focused])]:ring-2">
           <Select
             defaultSelectedKey="ca"
             className="w-max min-w-max"
             aria-label="Phone Country Code"
           >
-            <SelectButton className="rounded-e-none border-e-0 focus-visible:border-transparent focus-visible:ring-2"></SelectButton>
+            <SelectButton className="ring-0 shadow-none focus-visible:ring-2"></SelectButton>
 
             <SelectPopover className="w-36" placement="bottom start">
               <SelectListBox>
@@ -290,7 +269,7 @@ export const InputWithSelect = () => {
           <TextField aria-label="Phone number">
             <Input
               placeholder="+1 (123) 457-7890"
-              className="[&:not(:focus)]:rounded-none"
+              className="ring-0 shadow-none ps-0"
             />
           </TextField>
 
@@ -298,7 +277,7 @@ export const InputWithSelect = () => {
             <Label className="sr-only">Work phone number type</Label>
             <NativeSelect
               name="work_phone_number_type"
-              className="min-w-max rounded-s-none border-s-0 data-focus-visible:border-transparent data-focus-visible:ring-2"
+              className="ring-0 shadow-none data-focus-visible:ring-2"
             >
               <option value="Mobile">Mobile</option>
               <option value="Phone">Phone</option>
@@ -311,13 +290,13 @@ export const InputWithSelect = () => {
 
       <LabeledGroup>
         <Label>Phone Number</Label>
-        <Group className="group flex">
+        <Group className="group [&:has(input[data-focused])]:ring-ring flex rounded-md ring shadow ring-zinc-950/10 dark:shadow-none dark:ring-white/10 [&:has([data-invalid])]:ring-red-500 [&:has(input[data-focused])]:ring-2">
           <Select
             defaultSelectedKey="ca"
             className="w-max min-w-max"
             aria-label="Phone Country Code"
           >
-            <SelectButton className="rounded-e-none" />
+            <SelectButton className="ring-0 shadow-none focus-visible:ring-2" />
 
             <SelectPopover className="w-36" placement="bottom start">
               <SelectListBox>
@@ -333,12 +312,12 @@ export const InputWithSelect = () => {
 
           <TextField className="flex-1" aria-label="Phone number">
             <div className="flex">
-              <span className="text-foreground border-input flex items-center border-y px-2.5 text-base/6 shadow-xs sm:text-sm/6">
+              <span className="text-foreground flex items-center pe-2.5 text-base/6 sm:text-sm/6">
                 +1
               </span>
               <Input
                 placeholder="Enter your phone number"
-                className="[&:not(:focus)]:rounded-s-none"
+                className="ring-0 ps-0 shadow-none"
                 autoComplete="email"
               />
             </div>
@@ -352,7 +331,7 @@ export const InputWithSelect = () => {
 export const InputWithButton = () => {
   return (
     <div className="flex flex-col gap-y-6">
-      <div className="group border-input flex gap-x-2 rounded-md border shadow-xs">
+      <div className="group ring ring-zinc-950/10 flex gap-x-2 rounded-md shadow">
         <TextField className="flex-1" aria-label="Email">
           <Input
             type="email"

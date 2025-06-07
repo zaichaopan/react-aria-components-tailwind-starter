@@ -106,7 +106,7 @@ export function Checkbox(props: CheckboxProps | CustomRenderCheckboxProps) {
               'text-base/6 sm:text-sm/6',
               renderProps.isDisabled && 'opacity-50',
               renderProps.isFocusVisible &&
-                'outline-ring flex outline outline-2 outline-offset-2',
+                'outline-ring flex outline-2 outline-offset-2',
               className,
             ]);
           },
@@ -143,15 +143,15 @@ export function Checkbox(props: CheckboxProps | CustomRenderCheckboxProps) {
               data-ui="checkbox"
               className={twMerge([
                 'size-4.5 sm:size-4',
-                'flex shrink-0 items-center justify-center rounded-sm border shadow-xs',
+                'flex shrink-0 items-center justify-center rounded-sm ring shadow ring-zinc-950/20 dark:ring-white/20',
                 labelPlacement === 'end' ? 'me-3' : 'ms-3',
                 renderProps.isReadOnly && 'opacity-50',
                 renderProps.isSelected || renderProps.isIndeterminate
-                  ? 'border-accent bg-accent'
-                  : 'border-[oklch(from_var(--color-input)_calc(l*var(--contract,0.9))_c_h)] dark:bg-white/5 dark:[--contract:1.05]',
-                renderProps.isInvalid && 'border-red-600 dark:border-red-600',
+                  ? 'ring-accent dark:ring-accent bg-accent shadow-[inset_0_1px_0_0_rgba(255,255,255,0.1)] dark:ring-0'
+                  : 'dark:bg-white/5 dark:[--contract:1.05]',
+                renderProps.isInvalid && 'ring-red-600 dark:ring-red-600',
                 renderProps.isFocusVisible &&
-                  'outline-ring outline outline-2 outline-offset-2',
+                  'outline-ring outline-2 outline-offset-2',
               ])}
             >
               {renderProps.isIndeterminate ? (
