@@ -148,8 +148,8 @@ export const SelectListBox = React.forwardRef(
           '[&:has(:is([data-ui=icon],[role=img])+[data-ui=label])_[data-ui=description]]:col-start-2',
 
           // Image
-          '[&_[role=img]]:size-5',
-          '[&:has([data-ui=description])_[role=img]]:size-7',
+          '[&_[role=img]]:[--size:spacing(5)]',
+          '[&:has([data-ui=description])_[role=img]]:[--size:spacing(7)]',
           '[&_[role=img]]:self-start',
           '[&_[role=img]]:mt-0.5',
           '[&_[role=img]]:row-start-1',

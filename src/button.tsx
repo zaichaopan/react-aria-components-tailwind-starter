@@ -72,15 +72,15 @@ const buttonStyle = ({
     variant: {
       base: 'group inline-flex gap-x-2 justify-center items-center font-semibold',
       solid: [
-        'bg-[var(--btn-bg)]',
+        'bg-(--btn-bg)',
         color === 'red' || color === 'green'
           ? '[--btn-color:white]'
           : '[--btn-color:lch(from_var(--btn-bg)_calc((49.44_-_l)_*_infinity)_0_0)]',
-        'text-[var(--btn-color)]',
+        'text-(--btn-color)',
         !isDisabled && 'hover:opacity-90',
       ],
       outline: [
-        'text-[var(--btn-color)]',
+        'text-(--btn-color)',
         'shadow-outline',
         'in-[[data-ui=button-group]]:shadow-none',
         'dark:in-[[data-ui=button-group]]:shadow-none',
@@ -88,31 +88,31 @@ const buttonStyle = ({
         !isDisabled && 'hover:bg-zinc-50 dark:hover:bg-zinc-800',
       ],
       plain: [
-        'text-[var(--btn-color)]',
+        'text-(--btn-color)',
         !isDisabled && 'hover:bg-zinc-100 dark:hover:bg-zinc-800',
       ],
       link: [
-        'text-[var(--btn-color)] underline [&:not(:hover)]:decoration-[var(--btn-color)]/20 underline-offset-4',
+        'text-(--btn-color) underline [&:not(:hover)]:decoration-(--btn-color)/30 underline-offset-4',
       ],
     },
     size: {
-      base: 'text-base/6 sm:text-sm/6 [&_svg[data-ui=icon]:not([class*=size-])]:size-[var(--icon-size)]',
+      base: 'text-base/6 sm:text-sm/6 [&_svg[data-ui=icon]:not([class*=size-])]:size-(--icon-size)',
       sm: [
         isIconOnly
-          ? 'size-8 sm:size-7 [--icon-size:theme(size.5)] sm:[--icon-size:theme(size.4)]'
+          ? 'size-8 sm:size-7 [--icon-size:--spacing(5)] sm:[--icon-size:--spacing(4)]'
           : variant !== 'link' &&
-            'h-8 sm:h-7 [--icon-size:theme(size.3)] text-sm/6 sm:text-xs/6 px-3 sm:px-2',
+            'h-8 sm:h-7 [--icon-size:--spacing(3)] text-sm/6 sm:text-xs/6 px-3 sm:px-2',
       ],
       md: [
         // lg: 44px, sm:36px
-        '[--icon-size:theme(size.5)] sm:[--icon-size:theme(size.4)]',
+        '[--icon-size:--spacing(5) sm:[--icon-size:--spacing(4)]',
         isIconOnly
           ? 'p-2.5 sm:p-1.5 [&_svg[data-ui=icon]]:m-0.5 sm:[&_svg[data-ui=icon]]:m-1'
           : variant !== 'link' && 'px-3.5 sm:px-3 py-2.5 sm:py-1.5',
       ],
 
       lg: [
-        '[--icon-size:theme(size.5)]',
+        '[--icon-size:--spacing(5)]',
         isIconOnly
           ? 'p-2.5 [&_svg[data-ui=icon]]:m-0.5'
           : variant !== 'link' && 'px-3.5 py-2.5',
@@ -126,8 +126,8 @@ const buttonStyle = ({
     },
     iconColor: {
       base: isPending
-        ? '[&_svg[data-ui=icon]:not([class*=text-])]:text-[var(--icon-color)]'
-        : '[&:not(:hover)_svg[data-ui=icon]:not([class*=text-])]:text-[var(--icon-color)]',
+        ? '[&_svg[data-ui=icon]:not([class*=text-])]:text-(--icon-color)'
+        : '[&:not(:hover)_svg[data-ui=icon]:not([class*=text-])]:text-(--icon-color)',
       solid: !isIconOnly && '[--icon-color:var(--btn-color)]/75',
       outline: !isIconOnly && '[--icon-color:var(--color-muted)]/50',
       plain: !isIconOnly && '[--icon-color:var(--color-muted)]/50',

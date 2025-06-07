@@ -7,9 +7,27 @@ const AvatarContext = React.createContext<{
   badgeId: string;
 } | null>(null);
 
+const sizes = {
+  16: '[--size:--spacing(4)]',
+  20: '[--size:--spacing(5)]',
+  24: '[--size:--spacing(6)]',
+  28: '[--size:--spacing(7)]',
+  32: '[--size:--spacing(8)] [--badge-size:10px]',
+  36: '[--size:--spacing(9)] [--badge-size:10px]',
+  40: '[--size:--spacing(10)] [--badge-size:10px]',
+  48: '[--size:--spacing(12)] [--badge-size:10px]',
+  56: '[--size:--spacing(14)] [--badge-size:10px]',
+  64: '[--size:--spacing(16)] [--badge-size:16px]',
+  72: '[--size:--spacing(18)] [--badge-size:16px]',
+  96: '[--size:--spacing(24)] [--badge-size:20px]',
+  120: '[--size:--spacing(30)] [--badge-size:24px]',
+  128: '[--size:--spacing(34)] [--badge-size:26px]',
+};
+
 export type AvatarProps = {
   src?: string;
   alt: string;
+  size?: keyof typeof sizes;
 } & FallbackAvatarProps &
   React.JSX.IntrinsicElements['div'];
 
@@ -18,6 +36,7 @@ export function Avatar({
   children,
   src,
   alt,
+  size,
   fallback = 'initials',
   colorful,
   background,
@@ -34,13 +53,14 @@ export function Avatar({
         {...props}
         role="img"
         className={twMerge([
-          'group ring-background @container relative isolate flex size-10 shrink-0',
-          status ==='loaded' &&  'dark:outline dark:-outline-offset-1 dark:outline-white/10',
+          '@container relative isolate flex size-10 shrink-0',
+          status === 'loaded' &&
+            'dark:outline dark:-outline-offset-1 dark:outline-white/10',
           '[--border-radius:var(--radius-lg)]',
           '[&.rounded-full]:[--border-radius:calc(infinity_*_1px)]',
           'rounded-[radius:var(--border-radius)]',
-          '[&>img]:rounded-[var(--border-radius)]',
-          '[&>img]:size-full',
+          'size-(--size) [--badge-size:8px]',
+          sizes[size ?? 40],
           className,
         ])}
         aria-labelledby={ariaLabelledby}
@@ -59,17 +79,8 @@ export function Avatar({
           }
           alt={alt}
           className={twMerge(
-            'object-cover',
-            // size
-            '[--badge-size:8px] [&+[data-ui=avatar-badge]]:[--badge-size:8px]',
-            '@[32px]:[--badge-size:10px] @[32px]:[&+[data-ui=avatar-badge]]:[--badge-size:10px]',
-            '@[48px]:[--badge-size:12px] @[48px]:[&+[data-ui=avatar-badge]]:[--badge-size:12px]',
-            '@[64px]:[--badge-size:16px] @[64px]:[&+[data-ui=avatar-badge]]:[--badge-size:16px]',
-            '@[96px]:[--badge-size:20px] @[96px]:[&+[data-ui=avatar-badge]]:[--badge-size:20px]',
-            '@[120px]:[--badge-size:24px] @[120px]:[&+[data-ui=avatar-badge]]:[--badge-size:24px]',
-            '@[128px]:[--badge-size:26px] @[128px]:[&+[data-ui=avatar-badge]]:[--badge-size:26px]',
-            '[--badge-gap:2px]',
-            '@[120px]:[--badge-gap:3px]',
+            'size-full rounded-[var(--border-radius)] object-cover',
+            '[--badge-gap:2px] @[120px]:[--badge-gap:3px]',
             '[&:has(+[data-ui=avatar-badge])]:[mask:radial-gradient(circle_at_bottom_calc(var(--badge-size)/2)_right_calc(var(--badge-size)/2),_transparent_calc(var(--badge-size)/2_+_var(--badge-gap)_-_0.25px),_white_calc(var(--badge-size)/2_+_var(--badge-gap)_+_0.25px))]',
             '[&+[data-ui=avatar-badge]:not([class*=size-])]:size-(--badge-size)',
             '[&+[data-ui=avatar-badge]>[data-ui=icon]:not([class*=size-])]:size-full',
@@ -123,6 +134,7 @@ export function AvatarGroup({
       className={twMerge(
         'isolate flex items-center -space-x-2 rtl:space-x-reverse',
         '[&>[role=img]:not([class*=ring-4])]:ring-2',
+        '[&>[role=img]:not([class*=ring-])]:ring-background',
         reverse &&
           'flex-row-reverse justify-end [&>[role=img]:last-of-type]:-me-2',
         className,

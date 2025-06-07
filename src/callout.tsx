@@ -244,7 +244,7 @@ export function CalloutActions({
         '-col-end-2',
         '[&>button]:text-nowrap',
         '[&:has([data-variant=link]:only-child)]:self-center',
-        center ? 'py-1 sm:py-0' : 'pt-3',
+        center ? 'py-1.5 sm:py-0' : 'pt-3',
         '[--description-text:var(--callout-heading,var(--callout-description))]',
         '[&>[data-variant=plain]:hover]:bg-transparent [&>[data-variant=plain]:hover]:text-(--description-text)',
         '[&>[data-variant=link]:hover]::text-(--description-text) [&>[data-variant=link]:hover]:decoration-(--description-text)',

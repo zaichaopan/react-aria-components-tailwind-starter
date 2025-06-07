@@ -41,21 +41,23 @@ export const RoundedAvatars = () => {
   );
 };
 
+const sizes = [
+  16, 20, 24, 28, 32, 36, 40, 48, 56, 64, 72, 96, 120, 128,
+] as const;
+
 export const AvatarSizes = () => {
   return (
     <div className="flex items-end gap-6">
-      {['size-8', 'size-9', 'size-10', 'size-12', 'size-14', 'size-16'].map(
-        (size) => {
-          return (
-            <Avatar
-              key={size}
-              className={size}
-              alt="M A"
-              src="https://images.unsplash.com/photo-1717694371848-70ddf2293c7c?q=80&w=2306&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-            />
-          );
-        },
-      )}
+      {sizes.map((size) => {
+        return (
+          <Avatar
+            key={size}
+            size={size}
+            alt="M A"
+            src="https://images.unsplash.com/photo-1717694371848-70ddf2293c7c?q=80&w=2306&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+          />
+        );
+      })}
     </div>
   );
 };
@@ -149,23 +151,6 @@ export const AvatarBadges = () => {
   );
 };
 
-const sizes = [
-  'size-4',
-  'size-5',
-  'size-6',
-  'size-7',
-  'size-8',
-  'size-9',
-  'size-10',
-  'size-12',
-  'size-14',
-  'size-16',
-  'size-18',
-  'size-24',
-  'size-30',
-  'size-32',
-];
-
 export const AvatarBadgeSizes = () => {
   return (
     <div className="grid gap-y-12">
@@ -174,7 +159,7 @@ export const AvatarBadgeSizes = () => {
           return (
             <Avatar
               key={size}
-              className={size}
+              size={size}
               alt="M A"
               src="https://images.unsplash.com/photo-1717694371848-70ddf2293c7c?q=80&w=2306&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
             >
@@ -188,7 +173,8 @@ export const AvatarBadgeSizes = () => {
           return (
             <Avatar
               key={size}
-              className={`${size} rounded-full`}
+              className="rounded-full"
+              size={size}
               alt="M A"
               src="https://images.unsplash.com/photo-1717694371848-70ddf2293c7c?q=80&w=2306&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
             >
@@ -273,7 +259,7 @@ export const AvatarGroups = () => {
             );
           })}
         </AvatarGroup>
-        <div className="ring-background text-foreground/70 relative -ms-2 flex size-8 place-items-center items-center justify-center rounded-lg bg-zinc-100 text-xs/6 font-medium ring-2 dark:bg-zinc-700">
+        <div className="ring-background relative -ms-2 grid size-8 place-items-center rounded-lg bg-zinc-100 text-xs/6 font-medium ring-2 dark:bg-zinc-700">
           +3
         </div>
       </div>
@@ -291,7 +277,7 @@ export const AvatarGroups = () => {
             );
           })}
         </AvatarGroup>
-        <div className="ring-background text-foreground/70 relative -ms-2 flex size-8 place-items-center items-center justify-center rounded-full bg-zinc-100 text-xs/6 font-medium ring-2 dark:bg-zinc-700">
+        <div className="ring-background relative -ms-2 grid size-8 place-items-center rounded-full bg-zinc-100 text-xs/6 font-medium ring-2 dark:bg-zinc-700">
           +3
         </div>
       </div>
@@ -315,7 +301,7 @@ export const AvatarGroupsWithReverseOverlap = () => {
             );
           })}
         </AvatarGroup>
-        <div className="ring-background text-foreground/75 relative -z-10 ms-0.5 flex size-8 items-center justify-center rounded-lg bg-zinc-100 text-xs/6 font-medium ring-1 dark:bg-zinc-700">
+        <div className="ring-background relative -z-10 ms-0.5 grid size-8 place-items-center rounded-lg bg-zinc-100 text-xs/6 font-medium ring-1 dark:bg-zinc-700">
           +2
         </div>
       </div>
@@ -333,7 +319,7 @@ export const AvatarGroupsWithReverseOverlap = () => {
             );
           })}
         </AvatarGroup>
-        <div className="ring-background text-foreground/75 relative -z-10 ms-0.5 flex size-8 items-center justify-center rounded-full bg-zinc-100 text-xs/6 font-medium ring-1 dark:bg-zinc-700">
+        <div className="ring-background relative -z-10 ms-0.5 grid size-8 place-items-center rounded-full bg-zinc-100 text-xs/6 font-medium ring-1 dark:bg-zinc-700">
           +2
         </div>
       </div>

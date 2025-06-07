@@ -11,6 +11,7 @@ import { Strong, TextLink } from '../src/text';
 import { Button } from '../src/button';
 import { Icon } from '../src/icon';
 import {
+  BellRingIcon,
   CloudUploadIcon,
   PlayCircleIcon,
   ShieldCheckIcon,
@@ -86,14 +87,14 @@ export const Banners = () => {
       <Callout color="blue" inline center>
         <CalloutIcon>
           <Icon>
-            <ShieldCheckIcon />
+           <BellRingIcon />
           </Icon>
         </CalloutIcon>
         <CalloutHeading>
-          Attack Challenge Mode is enabled for this project
+         Slack needs your permissions to enable notifications.
         </CalloutHeading>
         <CalloutActions>
-          <Button variant="link">Disabled</Button>
+          <Button variant="link">Enable notifications</Button>
         </CalloutActions>
         <CalloutControl />
       </Callout>

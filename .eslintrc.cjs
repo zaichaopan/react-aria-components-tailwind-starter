@@ -11,6 +11,20 @@ module.exports = {
   parser: '@typescript-eslint/parser',
   plugins: ['react-refresh'],
   rules: {
+    "indent": [
+      "error",
+      2,
+      {
+        "SwitchCase": 1,
+        "ignoredNodes": [
+          "ConditionalExpression",
+          "TemplateLiteral",
+          "ObjectExpression",
+          "ArrayExpression",
+          "LogicalExpression"
+        ]
+      }
+    ],
     'react-refresh/only-export-components': [
       'warn',
       { allowConstantExport: true },
