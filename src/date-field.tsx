@@ -40,23 +40,22 @@ export function DateInput(props: DateInputProps) {
     <RACDateInput
       {...props}
       data-ui="control"
-      className={composeRenderProps(props.className, (className, renderProps) =>
-        twMerge(
-          'group border-input flex w-full items-center rounded-md border bg-transparent shadow-xs',
-
-          '[&:has([data-disabled=true])]:opacity-50',
-          '[&:has([data-ui=date-segment][aria-readonly])]:bg-zinc-800/5',
-          'dark:[&:has([data-ui=date-segment][aria-readonly])]:bg-white/10',
-          'block min-w-[150px]',
-          'text-base/6 sm:text-sm/6',
-          'px-3',
-          'py-[calc(--spacing(2.5)-1px)] sm:py-[calc(--spacing(1.5)-1px)]',
-          renderProps.isInvalid && 'border-red-600',
-          renderProps.isFocusWithin
-            ? 'border-ring ring-ring ring-1'
-            : '[&:has([data-ui=date-segment][aria-readonly])]:border-transparent',
-          className,
-        ),
+      className={composeRenderProps(
+        props.className,
+        (className, { isInvalid, isFocusWithin }) =>
+          twMerge(
+            'group flex min-w-[150px] items-center',
+            'w-full rounded-md text-base/6 ring shadow ring-zinc-950/10 outline-none sm:text-sm/6 dark:shadow-none dark:ring-white/10',
+            'px-2.5 py-2.5 sm:py-1.5',
+            '[&:has([data-disabled=true])]:opacity-50',
+            '[&:has([data-ui=date-segment][aria-readonly])]:bg-zinc-950/5',
+            'dark:[&:has([data-ui=date-segment][aria-readonly])]:bg-white/10',
+            isInvalid && 'ring-red-600 dark:ring-red-600',
+            isFocusWithin
+              ? 'ring-ring dark:ring-ring ring-2'
+              : '[&:has([data-ui=date-segment][aria-readonly])]:shadow-none [&:has([data-ui=date-segment][aria-readonly])]:ring-transparent',
+            className,
+          ),
       )}
     >
       {(segment) => (

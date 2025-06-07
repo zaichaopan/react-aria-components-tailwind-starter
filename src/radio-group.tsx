@@ -95,8 +95,7 @@ export function Radio(props: RadioProps | CustomRenderRadioProps) {
             twMerge(
               'group text-base/6 sm:text-sm/6',
               isDisabled && 'opacity-50',
-              isFocusVisible &&
-                'outline-ring outline outline-2 outline-offset-2',
+              isFocusVisible && 'outline-ring outline-2 outline-offset-2',
               className,
             ),
         )}
@@ -131,17 +130,16 @@ export function Radio(props: RadioProps | CustomRenderRadioProps) {
             <div
               slot="radio"
               className={twMerge(
-                'grid shrink-0 place-content-center rounded-full border',
+                'grid shrink-0 place-content-center rounded-full ring shadow ring-zinc-950/20 dark:shadow-none dark:ring-white/20',
                 radio ? '' : 'size-4.5 sm:size-4',
                 labelPlacement === 'end' ? 'me-3' : 'ms-3',
                 renderProps.isReadOnly && 'opacity-50',
                 renderProps.isSelected
-                  ? 'border-accent bg-accent'
-                  : 'border-[oklch(from_var(--color-input)_calc(l*var(--contract,0.9))_c_h)] dark:bg-white/5 dark:[--contract:1.1]',
-                renderProps.isInvalid &&
-                  'border-red-600 dark:border-red-600',
+                  ? 'bg-accent ring-accent dark:ring-accent'
+                  : 'dark:bg-white/5 dark:[--contract:1.1]',
+                renderProps.isInvalid && 'ring-red-600 dark:ring-red-600',
                 renderProps.isFocusVisible &&
-                  'outline-ring outline outline-2 outline-offset-2',
+                  'outline-ring outline-2 outline-offset-2',
               )}
             >
               {radio ? (

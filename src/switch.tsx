@@ -130,7 +130,7 @@ export function Switch(props: SwitchProps | CustomRenderSwitchProps) {
               renderProps.isSelected && 'bg-accent dark:bg-accent',
               renderProps.isDisabled && 'bg-gray-200 dark:bg-zinc-700',
               renderProps.isFocusVisible &&
-                'outline-ring outline outline-2 outline-offset-2',
+                'outline-ring outline-2 outline-offset-2',
             )}
           >
             <span

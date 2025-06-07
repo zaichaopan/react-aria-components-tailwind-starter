@@ -126,14 +126,13 @@ export const OneColumn = () => {
 
             <TextField className="sm:col-span-4" name="company_website">
               <Label>Company website</Label>
-              <div className="flex">
-                <span className="text-foreground flex items-center rounded-s border border-e-0 px-2.5 text-base/6 sm:text-sm/6">
+              <div className="group grid grid-cols-[auto_1fr]">
+                <span className="text-foreground col-start-1 row-start-1 grid place-content-center ps-2.5 text-base/6 group-has-autofill:z-10 sm:text-sm/6">
                   https://
                 </span>
                 <Input
-                  type="text"
                   placeholder="www.example.com"
-                  className="rounded-s-none"
+                  className="col-span-full row-start-1 ps-16 sm:ps-[--spacing(15)]"
                   autoComplete="email"
                 />
               </div>
@@ -165,10 +164,13 @@ export const OneColumn = () => {
 
             <LabeledGroup className="sm:col-span-4">
               <Label>Phone Number</Label>
-              <Group className="group flex">
-                <Select defaultSelectedKey="ca" className="w-max min-w-max">
-                  <Label className="sr-only">Phone Country Code</Label>
-                  <SelectButton className="rounded-e-none border-e-0 focus-visible:border-transparent focus-visible:ring-2"></SelectButton>
+              <Group className="group [&:has(input[data-focused])]:ring-ring flex rounded-md ring shadow ring-zinc-950/10 dark:shadow-none dark:ring-white/10 [&:has([data-invalid])]:ring-red-500 [&:has(input[data-focused])]:ring-2">
+                <Select
+                  defaultSelectedKey="ca"
+                  className="w-max min-w-max"
+                  aria-label="Phone Country Code"
+                >
+                  <SelectButton className="ring-0 shadow-none focus-visible:ring-2"></SelectButton>
 
                   <SelectPopover className="w-36" placement="bottom start">
                     <SelectListBox>
@@ -195,15 +197,15 @@ export const OneColumn = () => {
                 <TextField aria-label="Phone number">
                   <Input
                     placeholder="+1 (123) 457-7890"
-                    className="[&:not(:focus)]:rounded-none"
+                    className="ring-0 shadow-none"
                   />
                 </TextField>
 
                 <NativeSelectField>
+                  <Label className="sr-only">Work phone number type</Label>
                   <NativeSelect
-                    aria-label="Work phone number type"
                     name="work_phone_number_type"
-                    className="rounded-s-none border-s-0 data-focus-visible:border-transparent data-focus-visible:ring-2"
+                    className="ring-0 shadow-none data-focus-visible:ring-2"
                   >
                     <option value="Mobile">Mobile</option>
                     <option value="Phone">Phone</option>

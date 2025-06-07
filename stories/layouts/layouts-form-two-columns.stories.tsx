@@ -89,7 +89,7 @@ export const TwoColumns = () => {
                         width="1em"
                         height="1em"
                         viewBox="0 0 20 20"
-                        className="size-10 text-muted/50"
+                        className="text-muted/50 size-10"
                       >
                         <path
                           fill="currentColor"
@@ -102,7 +102,7 @@ export const TwoColumns = () => {
                     <FileTrigger>
                       <Button
                         variant="unstyle"
-                        className="text-nowrap text-base/6 font-semibold text-accent sm:text-sm/6"
+                        className="text-accent text-base/6 font-semibold text-nowrap sm:text-sm/6"
                       >
                         Upload a file
                       </Button>
@@ -119,7 +119,7 @@ export const TwoColumns = () => {
               </DropZone>
             </div>
 
-            <TextField className="sm:col-span-4" name="company_website">
+            {/* <TextField className="sm:col-span-4" name="company_website">
               <Label>Company website</Label>
               <div className="flex">
                 <span className="flex items-center rounded-s border border-e-0 px-2.5 text-base/6 text-foreground sm:text-sm/6">
@@ -129,6 +129,20 @@ export const TwoColumns = () => {
                   type="text"
                   placeholder="www.example.com"
                   className="rounded-s-none"
+                  autoComplete="email"
+                />
+              </div>
+            </TextField> */}
+
+            <TextField className="sm:col-span-4" name="company_website">
+              <Label>Company website</Label>
+              <div className="group grid grid-cols-[auto_1fr]">
+                <span className="text-foreground col-start-1 row-start-1 grid place-content-center ps-2.5 text-base/6 group-has-autofill:z-10 sm:text-sm/6">
+                  https://
+                </span>
+                <Input
+                  placeholder="www.example.com"
+                  className="col-span-full row-start-1 ps-16 sm:ps-[--spacing(15)]"
                   autoComplete="email"
                 />
               </div>

@@ -59,16 +59,12 @@ export function NativeSelect({
         aria-labelledby={labelContext.id}
         aria-describedby={descriptionContext?.['aria-describedby']}
         className={twMerge(
-          'flex-1',
-          'appearance-none bg-transparent',
-          'ps-2.5 pe-8',
-          'py-[calc(--spacing(2.5)-1px)]',
-          'sm:py-[calc(--spacing(1.5)-1px)]',
-          'border-input rounded-md border shadow-xs outline-hidden',
-          'text-base/6 sm:text-sm/6',
+          'rounded-md text-base/6 ring shadow ring-zinc-950/10 outline-none sm:text-sm/6 dark:shadow-none dark:ring-white/10',
+          'flex-1 appearance-none bg-transparent',
+          'py-2.5 ps-2.5 pe-8 sm:py-1.5',
           'hover:bg-zinc-100 hover:dark:bg-zinc-800',
           'hover:bg-zinc-100 dark:hover:bg-zinc-800',
-          isFocusVisible && 'border-ring ring-ring ring-1',
+          isFocusVisible && 'ring-ring dark:ring-ring ring-2',
           className,
         )}
         {...props}

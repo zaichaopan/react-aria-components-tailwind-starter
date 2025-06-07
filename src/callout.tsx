@@ -128,7 +128,7 @@ export default function Callout({
                 '[&:has(>[data-ui=callout-heading])]:[--callout-description:var(--color-muted)]',
               ],
 
-          'group w-full border-(--callout-border) bg-(--callout-bg)',
+          'group w-full ring ring-(--callout-border) bg-(--callout-bg) shadow',
           'grid grid-cols-[auto_1fr_auto_auto]',
 
           center
@@ -138,7 +138,7 @@ export default function Callout({
                 'sm:[&>:last-child:not([data-ui=callout-control])]:me-auto',
                 'sm:[&>[data-ui=callout-control]]:ms-auto',
               ]
-            : 'rounded-lg border p-4',
+            : 'rounded-lg p-4',
 
           '[&:has([data-ui=callout-heading]+[data-ui=callout-description])]:[--callout-content-row-end:3]',
           className,

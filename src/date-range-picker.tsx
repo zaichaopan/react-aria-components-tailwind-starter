@@ -37,22 +37,23 @@ export function DateRangePickerInput() {
         data-ui="control"
         className={({ isFocusWithin }) =>
           twMerge(
-            'grid grid-cols-[auto_16px_auto_1fr] items-center',
-            'group border-input relative rounded-md border shadow-xs',
-            'group-data-invalid:border-red-600',
-            '[&:has(_input[data-disabled=true])]:border-border/50',
-            '[&:has([data-ui=date-segment][aria-readonly])]:bg-zinc-800/5',
+            'rounded-md text-base/6 ring shadow ring-zinc-950/10 outline-none sm:text-sm/6 dark:shadow-none dark:ring-white/10',
+            'group relative grid grid-cols-[auto_16px_auto_1fr] items-center',
+            'group-data-invalid:ring-red-600 dark:group-data-invalid:ring-red-600',
+            '[&:has(_input[data-disabled=true])]:opacity-50',
+            '[&:has([data-ui=date-segment][aria-readonly])]:bg-zinc-950/5',
             'dark:[&:has([data-ui=date-segment][aria-readonly])]:bg-white/10',
             isFocusWithin
-              ? 'border-ring ring-ring group-data-invalid:border-ring ring-1'
-              : '[&:has([data-ui=date-segment][aria-readonly])]:border-transparent',
+              ? 'ring-ring dark:ring-ring group-data-invalid:ring-ring dark:group-data-invalid:ring-ring ring-2'
+              : '[&:has([data-ui=date-segment][aria-readonly])]:shadow-none [&:has([data-ui=date-segment][aria-readonly])]:ring-transparent',
           )
         }
       >
         <DateInput
           slot="start"
           className={[
-            'flex min-w-fit border-none shadow-none focus-within:ring-0',
+            'flex min-w-fit ring-0 shadow-none focus-within:ring-0',
+            '[&:has([data-disabled=true])]:opacity-100',
             '[&:has([data-ui=date-segment][aria-readonly])]:bg-transparent',
             'dark:[&:has([data-ui=date-segment][aria-readonly])]:bg-transparent',
           ].join(' ')}
@@ -66,7 +67,8 @@ export function DateRangePickerInput() {
         <DateInput
           slot="end"
           className={[
-            'flex min-w-fit border-none opacity-100 shadow-none focus-within:ring-0',
+            'flex min-w-fit opacity-100 ring-0 shadow-none focus-within:ring-0',
+            '[&:has([data-disabled=true])]:opacity-100',
             '[&:has([data-ui=date-segment][aria-readonly])]:bg-transparent',
             'dark:[&:has([data-ui=date-segment][aria-readonly])]:bg-transparent',
           ].join(' ')}
@@ -75,7 +77,7 @@ export function DateRangePickerInput() {
           variant="plain"
           isIconOnly
           size="sm"
-          className="text-muted/75 group-hover:text-foreground me-1 justify-self-end focus-visible:-outline-offset-1 hover:bg-transparent"
+          className="text-muted/75 group-hover:text-foreground me-1 justify-self-end hover:bg-transparent focus-visible:-outline-offset-1"
         >
           <CalendarIcon />
         </Button>
@@ -106,7 +108,7 @@ export function DateRangePickerButton({
         <Button
           variant="outline"
           className={twMerge(
-            'border-input w-full min-w-64 px-0 font-normal sm:px-0',
+            'w-full min-w-64 px-0 font-normal sm:px-0',
             className,
           )}
         >

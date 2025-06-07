@@ -72,7 +72,7 @@ export function Label({
     >
       {children}
       {hint === 'optional' && (
-        <span className="text-muted ps-0.5 font-normal ms-auto">Optional</span>
+        <span className="text-muted ms-auto ps-0.5 font-normal">Optional</span>
       )}
     </RACLabel>
   );
@@ -169,17 +169,16 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
         ref={ref}
         className={composeRenderProps(
           props.className,
-          (className, renderProps) => {
+          (className, { isDisabled, isInvalid, isFocused }) => {
             return twMerge(
-              'border-input w-full rounded-md border shadow-xs outline-hidden',
-              'px-3 py-[calc(--spacing(2.5)-1px)] sm:py-[calc(--spacing(1.5)-1px)]',
-              'placeholder:text-muted text-base/6 sm:text-sm/6',
-              'dark:shadow-none [&[readonly]]:bg-zinc-800/5 dark:[&[readonly]]:bg-white/10',
-              renderProps.isDisabled && 'opacity-50',
-              renderProps.isInvalid && 'border-red-600',
-              renderProps.isFocused
-                ? 'border-ring ring-ring ring-1'
-                : '[&[readonly]]:border-transparent',
+              'placeholder:text-muted w-full rounded-md text-base/6 ring shadow ring-zinc-950/10 outline-none sm:text-sm/6 dark:shadow-none dark:ring-white/10',
+              'px-3 py-2.5 sm:py-1.5',
+              '[&[readonly]]:bg-zinc-800/5 dark:[&[readonly]]:bg-white/10',
+              isDisabled && 'opacity-50',
+              isInvalid && 'ring-red-600 dark:ring-red-600',
+              isFocused
+                ? 'dark:ring-ring ring-ring ring-2'
+                : '[&[readonly]]:shadow-none [&[readonly]]:ring-transparent',
               className,
             );
           },
@@ -193,18 +192,20 @@ export function TextArea(props: RACTextAreaProps) {
   return (
     <RACTextArea
       {...props}
-      className={composeRenderProps(props.className, (className, renderProps) =>
-        twMerge(
-          'border-input w-full rounded-md border px-3 py-1 shadow-xs outline-hidden',
-          'placeholder:text-muted text-base/6 sm:text-sm/6',
-          '[&[readonly]]:bg-zinc-800/5 dark:[&[readonly]]:bg-white/10',
-          renderProps.isDisabled && 'opacity-50',
-          renderProps.isInvalid && 'border-red-600',
-          renderProps.isFocused
-            ? 'border-ring ring-ring ring-1'
-            : '[&[readonly]]:border-transparent',
-          className,
-        ),
+      className={composeRenderProps(
+        props.className,
+        (className, { isDisabled, isInvalid, isFocused }) =>
+          twMerge(
+            'placeholder:text-muted w-full rounded-md text-base/6 ring shadow ring-zinc-950/10 outline-none sm:text-sm/6 dark:shadow-none dark:ring-white/10',
+            'px-3 py-2.5 sm:py-1.5',
+            '[&[readonly]]:bg-zinc-800/5 dark:[&[readonly]]:bg-white/10',
+            isDisabled && 'opacity-50',
+            isInvalid && 'ring-red-600 dark:ring-red-600',
+            isFocused
+              ? 'ring-ring dark:ring-ring ring-2'
+              : '[&[readonly]]:shadow-none [&[readonly]]:ring-transparent',
+            className,
+          ),
       )}
     />
   );

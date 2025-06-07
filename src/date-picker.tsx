@@ -102,7 +102,7 @@ export function DatePickerButton({
       <Group data-ui="control">
         <Button
           className={twMerge(
-            'border-input w-full min-w-52 flex-1 justify-between px-3 leading-6 font-normal',
+            'w-full min-w-52 flex-1 justify-between px-3 leading-6 font-normal',
             className,
           )}
           variant="outline"

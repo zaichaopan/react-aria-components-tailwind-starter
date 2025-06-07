@@ -1,5 +1,5 @@
 import { docs } from '../../.storybook/docs.ts';
-import { Button } from '../../src/button.tsx';
+import { Button } from '../../src/button';
 import { Strong } from '../../src/text.tsx';
 import { Icon } from '../../src/icon.tsx';
 import {

@@ -1,5 +1,5 @@
 import { twMerge } from 'tailwind-merge';
-import { Button } from './button';
+import { getButtonStyles } from './button';
 import { Link } from './link';
 import { LinkProps } from 'react-aria-components';
 import { ChevronLeftIcon } from './icons/outline/chevron-left';
@@ -28,10 +28,7 @@ export function PaginationList({
   ...props
 }: React.JSX.IntrinsicElements['div']) {
   return (
-    <div
-      {...props}
-      className={twMerge('flex hidden gap-x-1 sm:flex', className)}
-    />
+    <div {...props} className={twMerge('hidden gap-x-1 sm:flex', className)} />
   );
 }
 
@@ -41,19 +38,16 @@ export function PaginationPrevious({
   ...props
 }: LinkProps & { className?: string; label?: string }) {
   return (
-    <Button asChild variant="plain">
-      <Link
-        {...props}
-        className={twMerge(
-          'px-3.5 outline-offset-0 hover:no-underline',
-          className,
-        )}
-      >
-        <ChevronLeftIcon />
-
-        {label}
-      </Link>
-    </Button>
+    <Link
+      {...props}
+      className={getButtonStyles({ variant: 'plain' }, [
+        'px-3.5 outline-offset-0 hover:no-underline',
+        className,
+      ])}
+    >
+      <ChevronLeftIcon />
+      {label}
+    </Link>
   );
 }
 
@@ -63,18 +57,16 @@ export function PaginationNext({
   ...props
 }: LinkProps & { className?: string; label?: string }) {
   return (
-    <Button asChild variant="plain">
-      <Link
-        {...props}
-        className={twMerge(
-          'px-3.5 outline-offset-1 hover:no-underline',
-          className,
-        )}
-      >
-        {label}
-        <ChevronRightIcon />
-      </Link>
-    </Button>
+    <Link
+      {...props}
+      className={getButtonStyles({ variant: 'plain' }, [
+        'px-3.5 outline-offset-1 hover:no-underline',
+        className,
+      ])}
+    >
+      {label}
+      <ChevronRightIcon />
+    </Link>
   );
 }
 
@@ -85,16 +77,15 @@ export function PaginationPage({
   ...props
 }: LinkProps & { className?: string; current?: boolean; children: string }) {
   return (
-    <Button asChild {...(!current && { variant: 'plain' })}>
-      <Link
-        {...props}
-        aria-label={arialLabel ?? `Page ${props.children}`}
-        className={twMerge(
-          'min-w-9 outline-offset-1 hover:no-underline',
-          className,
-        )}
-      />
-    </Button>
+    <Link
+      {...props}
+      aria-label={arialLabel ?? `Page ${props.children}`}
+      className={getButtonStyles({ variant: 'plain' }, [
+        'min-w-9 outline-offset-1 hover:no-underline',
+        !current && '[&:not(:hover)]:text-muted',
+        className,
+      ])}
+    />
   );
 }
 
@@ -103,7 +94,11 @@ export function PaginationGap({
   ...props
 }: React.JSX.IntrinsicElements['span']) {
   return (
-    <span {...props} aria-hidden className={twMerge('h-9 px-3.5', className)}>
+    <span
+      {...props}
+      aria-hidden
+      className={twMerge('[&:not(:hover)]:text-muted h-9 px-3.5', className)}
+    >
       &hellip;
     </span>
   );

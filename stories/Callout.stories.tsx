@@ -36,7 +36,7 @@ export default meta;
 export const BasicExample = () => {
   return (
     <div className="p-6">
-      <Callout color="blue">
+      <Callout>
         <CalloutIcon>
           <Icon>
             <PlayCircleIcon />
@@ -87,11 +87,11 @@ export const Banners = () => {
       <Callout color="blue" inline center>
         <CalloutIcon>
           <Icon>
-           <BellRingIcon />
+            <BellRingIcon />
           </Icon>
         </CalloutIcon>
         <CalloutHeading>
-         Slack needs your permissions to enable notifications.
+          Slack needs your permissions to enable notifications.
         </CalloutHeading>
         <CalloutActions>
           <Button variant="link">Enable notifications</Button>
