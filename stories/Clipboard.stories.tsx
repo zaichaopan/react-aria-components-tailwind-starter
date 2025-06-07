@@ -1,4 +1,4 @@
-import type { Meta } from '@storybook/react';
+import type { Meta } from '@storybook/react-vite';
 import { Button } from '../src/button';
 import { CopyButton, Clipboard } from '../src/clipboard';
 import { docs } from '../.storybook/docs';

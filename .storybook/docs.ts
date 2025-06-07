@@ -1,4 +1,4 @@
-import { StoryContext } from '@storybook/react';
+import { StoryContext } from '@storybook/react-vite';
 
 export const docs =  {
   source: {

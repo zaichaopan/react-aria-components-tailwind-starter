@@ -1,5 +1,5 @@
 import React from 'react';
-import type { Meta } from '@storybook/react';
+import type { Meta } from '@storybook/react-vite';
 import { RadioField, RadioGroup, Radio, Radios } from '../src/radio-group';
 import { Form } from '../src/form';
 import { Button } from '../src/button';

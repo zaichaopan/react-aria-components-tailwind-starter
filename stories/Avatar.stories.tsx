@@ -1,4 +1,4 @@
-import type { Meta } from '@storybook/react';
+import type { Meta } from '@storybook/react-vite';
 import { docs } from '../.storybook/docs';
 import { Avatar, AvatarBadge, AvatarGroup } from '../src/avatar';
 import { AvailableIcon } from '../src/icons/solid/available';

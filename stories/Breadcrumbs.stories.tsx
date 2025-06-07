@@ -1,7 +1,7 @@
 import { docs } from '../.storybook/docs';
 import { Breadcrumb, Breadcrumbs } from '../src/breadcrumbs';
 
-import type { Meta } from '@storybook/react';
+import type { Meta } from '@storybook/react-vite';
 
 const meta: Meta = {
   parameters: {
