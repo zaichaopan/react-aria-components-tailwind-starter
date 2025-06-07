@@ -91,7 +91,7 @@ export const BasicExample = () => {
           <DialogFooter>
             <DialogCloseButton>Cancel</DialogCloseButton>
             <Button form="edit-profile-form" type="submit">
-              Save changes
+              Add connection
             </Button>
           </DialogFooter>
         </Dialog>
@@ -447,6 +447,55 @@ export const Headers = () => {
           </DialogBody>
           <DialogFooter>
             <DialogCloseButton>OK</DialogCloseButton>
+          </DialogFooter>
+        </Dialog>
+      </Modal>
+    </DialogTrigger>
+  );
+};
+
+export const SubHeader = () => {
+  return (
+    <DialogTrigger>
+      <Button>Configure</Button>
+      <Modal>
+        <Dialog className='bg-zinc-100 dark:bg-zinc-900'>
+          <DialogHeader className='bg-background'>
+            <DialogTitle className='text-xl'>Configure SAML</DialogTitle>
+            <SubHeading>
+              Specify the basic details of this connection
+            </SubHeading>
+          </DialogHeader>
+
+          <DialogCloseButton />
+          <DialogBody className='border-b border-zinc-300 dark:border-zinc-800 rounded-b-lg bg-background pb-5'>
+            <Form className="py-4" id="edit-profile-form">
+              <TextField isRequired>
+                <Label>Domain</Label>
+                <Input placeholder="acme.com"></Input>
+                <FieldError />
+              </TextField>
+              <TextField isRequired>
+                <Label>Name</Label>
+                <Input placeholder="Acme SSO"></Input>
+                <FieldError />
+              </TextField>
+
+              <TextField>
+                <Label hint="optional">Organization</Label>
+                <Input placeholder="Acme Inc"></Input>
+                <FieldError />
+              </TextField>
+            </Form>
+          </DialogBody>
+          <DialogFooter>
+            <Button variant="outline" className="sm:me-auto">
+              Back
+            </Button>
+            <DialogCloseButton>Cancel</DialogCloseButton>
+            <Button form="edit-profile-form" type="submit">
+              Add connection
+            </Button>
           </DialogFooter>
         </Dialog>
       </Modal>

@@ -4,11 +4,11 @@ import {
   EmptyState,
   EmptyStateActions,
   EmptyStateDescription,
-  EmptyStateHeading,
+  EmptyStateTitle,
   EmptyStateIcon,
 } from '../src/empty-state';
-import { FolderPlus, Plus } from 'lucide-react';
-import { Icon } from '../src/icon';
+import { FolderPlus} from 'lucide-react';
+import { PlusIcon } from '../src/icons/outline/plus';
 
 const meta = {
   parameters: {
@@ -25,15 +25,13 @@ export const BasicExample = () => {
       <EmptyStateIcon>
         <FolderPlus strokeWidth="1" />
       </EmptyStateIcon>
-      <EmptyStateHeading>No projects</EmptyStateHeading>
+      <EmptyStateTitle>No projects</EmptyStateTitle>
       <EmptyStateDescription>
         Get started by creating a new project.
       </EmptyStateDescription>
       <EmptyStateActions>
         <Button>
-          <Icon>
-            <Plus />
-          </Icon>
+          <PlusIcon />
           New Project
         </Button>
       </EmptyStateActions>

@@ -49,9 +49,9 @@ export const groupBox = [
 ].join(' ');
 
 export const displayLevels = {
-  1: 'font-semibold text-2xl',
-  2: 'font-semibold text-base',
-  3: 'font-medium text-base sm:text-sm/6',
+  1: 'font-semibold text-2xl/8',
+  2: 'font-semibold text-base/7',
+  3: 'font-medium text-base/6 sm:text-sm/6',
 };
 
 export type DisplayLevel = keyof typeof displayLevels;

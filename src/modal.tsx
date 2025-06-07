@@ -133,7 +133,7 @@ export function Modal({ classNames, ...props }: ModalProps) {
           drawer
             ? [
                 'h-full',
-                'rounded-xl',
+                'rounded-lg',
                 'data-[placement=left]:data-entering:slide-in-from-left',
                 'data-[placement=right]:data-entering:slide-in-from-right',
                 'data-[placement=left]:data-exiting:slide-out-to-left',
@@ -141,7 +141,7 @@ export function Modal({ classNames, ...props }: ModalProps) {
               ]
             : [
                 'row-start-2',
-                'rounded-xl',
+                'rounded-lg',
                 'data-entering:zoom-in-95',
                 'data-exiting:zoom-out-95',
 
@@ -151,9 +151,9 @@ export function Modal({ classNames, ...props }: ModalProps) {
                 'sm:data-exiting:duration-0',
 
                 !placement && [
-                  'has-[[role=dialog]]:rounded-t-xl',
+                  'has-[[role=dialog]]:rounded-t-lg',
                   'has-[[role=dialog]]:rounded-b-none',
-                  'sm:has-[[role=dialog]]:rounded-xl',
+                  'sm:has-[[role=dialog]]:rounded-lg',
 
                   'has-[[role=dialog]]:data-entering:zoom-in-100',
                   'has-[[role=dialog]]:data-entering:slide-in-from-bottom',

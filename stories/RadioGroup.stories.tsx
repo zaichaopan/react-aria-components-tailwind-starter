@@ -10,6 +10,7 @@ import { Icon } from '../src/icon';
 import { twMerge } from 'tailwind-merge';
 import { MonitorIcon, MoonStarIcon, SunIcon } from 'lucide-react';
 import { CheckIcon } from '../src/icons/outline/check';
+import { Badge } from '../src/badge';
 
 const meta: Meta = {
   parameters: {
@@ -423,12 +424,13 @@ export function Shipping() {
         ].map((option) => {
           return (
             <Radio
+              key={option.name}
               labelPlacement="start"
               value={option.name}
               className={({ isSelected }) => {
                 return twMerge(
-                  'items-start rounded-lg border px-4 py-3 [&_[slot=radio]]:mt-1.5',
-                  isSelected && 'border-accent ring-accent ring ring-1',
+                  'items-start rounded-lg px-4 py-3 [&_[slot=radio]]:mt-1.5',
+                  isSelected ? 'ring-ring ring-2' : 'shadow-outline',
                 );
               }}
             >
@@ -457,8 +459,8 @@ export function CustomRadio() {
           value="yearly"
           className={({ isSelected }) => {
             return twMerge(
-              'rounded-lg border px-3 py-1',
-              isSelected && 'border-accent ring-accent ring ring-1',
+              'rounded-lg px-3 py-1',
+              isSelected ? 'ring-ring ring-2' : 'shadow-outline',
             );
           }}
           radio={({ isSelected }) => {
@@ -476,11 +478,12 @@ export function CustomRadio() {
         >
           <div className="flex flex-col">
             <div className="text-muted flex flex-1 flex-col">Yearly</div>
-            <div className="flex items-center gap-x-2 font-semibold">
+            <div className="flex items-center gap-x-2 pb-1.5 font-semibold">
               <div>$6/month</div>
-              <div className="rounded bg-emerald-100 px-2 text-xs font-medium text-zinc-950">
+
+              <Badge color="emerald" variant='solid'>
                 Save 40%
-              </div>
+              </Badge>
             </div>
           </div>
         </Radio>
@@ -489,8 +492,8 @@ export function CustomRadio() {
           value="monthly"
           className={({ isSelected }) => {
             return twMerge(
-              'rounded-lg border px-3 py-1',
-              isSelected && 'border-accent ring-accent ring ring-1',
+              'rounded-lg px-3 py-1',
+              isSelected ? 'ring-ring ring-2' : 'shadow-outline',
             );
           }}
           radio={({ isSelected }) => {
@@ -508,7 +511,7 @@ export function CustomRadio() {
         >
           <div className="flex flex-col">
             <div className="text-muted flex flex-1 flex-col">Monthly</div>
-            <div className="flex items-center gap-x-2 font-semibold">
+            <div className="flex items-center gap-x-2 pb-1.5 font-semibold">
               $10/month
             </div>
           </div>
@@ -555,14 +558,14 @@ export function AccentColors() {
           return (
             <Radio
               value={color.value}
+              key={color.value}
               aria-label={color.value}
-              render={({ isSelected, isFocusVisible }) => (
+              className="rounded-full"
+              render={({ isSelected }) => (
                 <div
                   className={twMerge(
                     'grid size-6 place-items-center rounded-full',
                     color.color,
-                    isFocusVisible &&
-                      'outline-ring outline outline-2 outline-offset-2',
                   )}
                 >
                   <div
@@ -605,9 +608,9 @@ export function CpuOptions() {
                       'min-w-[86px]',
                       'rounded-md border px-4 py-2 font-semibold',
                       isSelected &&
-                        'border-accent bg-accent text-[lch(from_var(--color-accent)_calc((49.44_-_l)_*_infinity)_0_0)]',
+                        'border-accent bg-accent text-[lch(from_var(--accent)_calc((49.44_-_l)_*_infinity)_0_0)]',
                       isFocusVisible &&
-                        'outline-ring outline outline-2 outline-offset-2',
+                        'outline-ring outline-2 outline-offset-2',
                     ].join(' ')}
                   >
                     {option}
@@ -658,7 +661,7 @@ export function Rating() {
               aria-label={String(index + 1)}
               className={({ isFocusVisible }) => {
                 return isFocusVisible
-                  ? 'outline-ring outline outline-2 outline-offset-2'
+                  ? 'outline-ring outline-2 outline-offset-2'
                   : '';
               }}
               render={
@@ -684,7 +687,7 @@ export function Appearance() {
     <RadioGroup orientation="horizontal" defaultValue="system">
       <Label>Appearance</Label>
       <Description>Customize your application appearance</Description>
-      <Radios className="size-fit rounded-full border p-1">
+      <Radios className="shadow-outline size-fit rounded-full p-1">
         <div className="relative isolate flex">
           {[
             {
@@ -716,7 +719,7 @@ export function Appearance() {
                     'z-10 grid size-8 place-items-center rounded-full [&_svg]:size-4',
                     option.className,
                     isSelected &&
-                      'text-[lch(from_var(--color-accent)_calc((49.44_-_l)_*_infinity)_0_0)]',
+                      'text-[lch(from_var(--accent)_calc((49.44_-_l)_*_infinity)_0_0)]',
                   );
                 }}
                 value={option.value}
@@ -748,7 +751,7 @@ export function SwitchPlan() {
             render="Bill Monthly"
           ></Radio>
           <Radio
-            className="peer/yearly z-10 w-64 flex-1 rounded-[calc(var(--card-radius)-var(--card-padding))] rounded-lg px-4 py-1 text-center font-medium"
+            className="peer/yearly z-10 w-64 flex-1 rounded-[calc(var(--card-radius)-var(--card-padding))] px-4 py-1 text-center font-medium"
             value="yearly"
             render={({ isSelected }) => (
               <div>

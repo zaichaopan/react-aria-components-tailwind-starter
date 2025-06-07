@@ -5,18 +5,11 @@ import {
   LinkProps as RACLinkProps,
 } from 'react-aria-components';
 import { twMerge } from 'tailwind-merge';
-import { AsChildProps, Slot } from './slot';
 import { TooltipTrigger } from './tooltip';
 
 export type LinkProps = RACLinkProps & {
   tooltip?: React.ReactNode;
 };
-
-export type LinkWithAsChild = AsChildProps<
-  RACLinkProps & {
-    tooltip?: React.ReactNode;
-  }
->;
 
 const linkStyle = [
   'relative inline-flex cursor-pointer items-center gap-1 rounded-sm outline-hidden hover:underline',
@@ -26,13 +19,9 @@ const linkStyle = [
   'data-disabled:no-underline data-disabled:opacity-50 data-disabled:cursor-default',
 ].join(' ');
 
-export const Link = React.forwardRef<HTMLAnchorElement, LinkWithAsChild>(
+export const Link = React.forwardRef<HTMLAnchorElement, LinkProps>(
   function Link(props, ref) {
-    if (props.asChild) {
-      return <Slot className={linkStyle}>{props.children}</Slot>;
-    }
-
-    const { asChild, tooltip, ...rest } = props;
+    const { tooltip, ...rest } = props;
 
     const link = (
       <RACLink
@@ -43,8 +32,7 @@ export const Link = React.forwardRef<HTMLAnchorElement, LinkWithAsChild>(
           (className, { isFocusVisible }) =>
             twMerge(
               linkStyle,
-              isFocusVisible &&
-                'outline outline-2 outline-offset-2 outline-ring',
+              isFocusVisible && 'outline-ring outline-2 outline-offset-2',
               className,
             ),
         )}

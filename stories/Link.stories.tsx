@@ -6,16 +6,17 @@ import {
   Video,
 } from 'lucide-react';
 import { docs } from '../.storybook/docs';
-import { Button } from '../src/button';
 import { NotificationBadge } from '../src/notification-badge';
 import { Avatar } from '../src/avatar';
 import { Icon } from '../src/icon';
+import { getButtonStyles } from '../src/button';
+import { twMerge } from 'tailwind-merge';
 
 const meta = {
   parameters: {
     layout: 'centered',
-    docs
-    },
+    docs,
+  },
 };
 
 export default meta;
@@ -52,7 +53,7 @@ export const DisabledState = () => {
 
 export function NavLinks() {
   return (
-    <nav className="flex w-16 flex-col gap-4 rounded-sm border border-border p-3">
+    <nav className="border-border flex w-16 flex-col gap-4 rounded-sm border p-3">
       <Link
         className="group flex-col p-2 hover:no-underline"
         aria-label="Chat - 6 new messages"
@@ -106,7 +107,7 @@ export function NavLinks() {
   );
 }
 
-export const AsAvatars = () => {
+export const WithAvatars = () => {
   return (
     <Link>
       <Avatar alt="Jane Doe" />
@@ -114,10 +115,10 @@ export const AsAvatars = () => {
   );
 };
 
-export const AsChild = () => {
+export const WithButtonStyle = () => {
   return (
-    <Link asChild>
-      <Button variant="unstyle">Edit Profile</Button>
+    <Link className={twMerge(getButtonStyles({}), 'hover:no-underline')}>
+      Sign in
     </Link>
   );
 };

@@ -3,8 +3,8 @@ import { InputProps, Group } from 'react-aria-components';
 import { Input } from './field';
 import { ToggleButton } from './button';
 import { composeTailwindRenderProps } from './utils';
-import { EyeIcon } from './icons/solid/eye';
-import { EyeOffIcon } from './icons/solid/eye-off';
+import { EyeIcon } from './icons/outline/eye';
+import { EyeOffIcon } from './icons/outline/eye-off';
 
 export function PasswordInput({ className, ...props }: InputProps) {
   const [isPasswordVisible, setIsPasswordVisible] = React.useState(false);
