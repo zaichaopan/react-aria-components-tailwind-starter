@@ -82,7 +82,7 @@ export function DateRangePickerInput() {
           <CalendarIcon />
         </Button>
       </Group>
-      <Popover placement="bottom" className="rounded-xl">
+      <Popover placement="bottom" className="rounded-lg">
         <Dialog>
           <RangeCalendar />
         </Dialog>
@@ -148,7 +148,7 @@ export function DateRangePickerButton({
         <DateInput slot="start" aria-hidden className="hidden" />
         <DateInput slot="end" aria-hidden className="hidden" />
       </Group>
-      <Popover placement="bottom" className="rounded-xl">
+      <Popover placement="bottom" className="rounded-lg">
         <Dialog>
           <RangeCalendar />
         </Dialog>

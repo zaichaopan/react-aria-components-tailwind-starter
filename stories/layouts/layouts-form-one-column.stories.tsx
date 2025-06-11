@@ -194,10 +194,10 @@ export const OneColumn = () => {
                   </SelectPopover>
                 </Select>
 
-                <TextField aria-label="Phone number">
+                <TextField aria-label="Phone number" className="flex-1">
                   <Input
                     placeholder="+1 (123) 457-7890"
-                    className="ring-0 shadow-none"
+                    className="ring-0 shadow-none ps-0"
                   />
                 </TextField>
 

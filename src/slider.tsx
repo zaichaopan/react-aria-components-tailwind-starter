@@ -64,9 +64,9 @@ export function SliderTack({ thumbLabels }: { thumbLabels?: string[] }) {
                   '',
                   (className, { isFocusVisible, isDragging, isDisabled }) =>
                     twMerge(
-                      'border-accent size-4 rounded-full border border-2 bg-[lch(from_var(--color-accent)_calc((49.44_-_l)_*_infinity)_0_0)] shadow-xl dark:border-3',
+                      'size-4 rounded-full ring ring-accent bg-[lch(from_var(--color-accent)_calc((49.44_-_l)_*_infinity)_0_0)] shadow',
                       'group-data-[orientation=horizontal]:top-1/2 group-data-[orientation=vertical]:left-1/2',
-                      isDragging && ['border-4 dark:border-4'],
+                      isDragging && ['bg-accent'],
                       isDisabled && 'cursor-not-allowed opacity-50',
                       isFocusVisible && [
                         'outline',

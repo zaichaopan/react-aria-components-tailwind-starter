@@ -43,7 +43,7 @@ export function getButtonStyles(
     variant: {
       base: 'group inline-flex gap-x-2 justify-center items-center font-semibold',
       solid: [
-        'bg-(--btn-bg) text-(--btn-color) [&:not(:disabled)]:hover:opacity-90',
+        'bg-(--btn-bg) text-(--btn-color) [&:not(:disabled)]:hover:opacity-85',
         color === 'red' || color === 'green'
           ? '[--btn-color:white]'
           : '[--btn-color:lch(from_var(--btn-bg)_calc((49.44_-_l)_*_infinity)_0_0)]',

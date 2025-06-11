@@ -130,7 +130,7 @@ export function Radio(props: RadioProps | CustomRenderRadioProps) {
             <div
               slot="radio"
               className={twMerge(
-                'grid shrink-0 place-content-center rounded-full ring shadow ring-zinc-950/20 dark:shadow-none dark:ring-white/20',
+                'grid shrink-0 place-content-center rounded-full ring ring-zinc-950/20 dark:shadow-none dark:ring-white/20',
                 radio ? '' : 'size-4.5 sm:size-4',
                 labelPlacement === 'end' ? 'me-3' : 'ms-3',
                 renderProps.isReadOnly && 'opacity-50',
@@ -153,7 +153,7 @@ export function Radio(props: RadioProps | CustomRenderRadioProps) {
                   className={twMerge(
                     'rounded-full',
                     renderProps.isSelected &&
-                      'size-2 bg-[lch(from_var(--color-accent)_calc((49.44_-_l)_*_infinity)_0_0)] sm:size-1.5',
+                      'size-2 bg-white shadow-[0_1px_1px_rgba(0,0,0,0.25)] dark:bg-[lch(from_var(--color-accent)_calc((49.44_-_l)_*_infinity)_0_0)]',
                   )}
                 ></div>
               )}

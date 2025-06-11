@@ -68,7 +68,8 @@ const tabList = {
     vertical: 'space-y-2',
   },
   segment: {
-    horizontal: 'p-0.5 rounded-lg bg-zinc-200/60 dark:bg-zinc-700 shadow-xs',
+    horizontal:
+      'p-0.5 rounded-lg bg-zinc-100 dark:bg-zinc-700 dark:border border-zinc-600/90',
     vertical: '',
   },
 };
@@ -160,7 +161,7 @@ const tab = ({
     pills: {
       base: [
         'flex items-center px-3 py-2',
-        isSelected && 'bg-zinc-100 dark:bg-zinc-600/45',
+        isSelected && 'bg-zinc-100 dark:bg-zinc-500 dark:shadow-outline',
       ],
       horizontal: '',
       vertical: '',
@@ -169,7 +170,7 @@ const tab = ({
       base: [
         'flex-1 justify-center px-6 py-1 [&>[data-ui=icon]:not([class*=size-])]:size-4',
         isSelected &&
-          'bg-background dark:bg-zinc-500 text-foreground shadow-2xs rounded-md',
+          'bg-background dark:bg-zinc-500 text-foreground rounded-md shadow dark:shadow-outline',
       ],
       horizontal: '',
       vertical: '',

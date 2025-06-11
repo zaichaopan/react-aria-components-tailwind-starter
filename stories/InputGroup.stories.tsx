@@ -112,7 +112,7 @@ export const InputWithNativeSelect = () => {
             </NativeSelect>
           </NativeSelectField>
           <TextField className="flex-1" aria-label="Phone number">
-            <Input placeholder="123-457-789" className="ring-0 shadow-none" />
+            <Input placeholder="123-457-789" className="ring-0 ps-0 shadow-none" />
           </TextField>
         </Group>
       </LabeledGroup>
@@ -196,7 +196,7 @@ export const InputWithSelect = () => {
           <TextField className="flex-1" aria-label="Phone number">
             <Input
               placeholder="+1 (123) 457-7890"
-              className="ring-0 shadow-none"
+              className="ring-0 shadow-none ps-0"
             />
           </TextField>
         </Group>
@@ -269,7 +269,7 @@ export const InputWithSelect = () => {
           <TextField aria-label="Phone number">
             <Input
               placeholder="+1 (123) 457-7890"
-              className="ring-0 shadow-none"
+              className="ring-0 shadow-none ps-0"
             />
           </TextField>
 
@@ -312,12 +312,12 @@ export const InputWithSelect = () => {
 
           <TextField className="flex-1" aria-label="Phone number">
             <div className="flex">
-              <span className="text-foreground flex items-center border-x px-2.5 text-base/6 sm:text-sm/6">
+              <span className="text-foreground flex items-center pe-2.5 text-base/6 sm:text-sm/6">
                 +1
               </span>
               <Input
                 placeholder="Enter your phone number"
-                className="ring-0 shadow-none"
+                className="ring-0 ps-0 shadow-none"
                 autoComplete="email"
               />
             </div>

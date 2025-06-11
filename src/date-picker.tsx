@@ -77,7 +77,7 @@ export function DatePickerInput({
         </Button>
       </Group>
 
-      <Popover placement="bottom" className="rounded-xl">
+      <Popover placement="bottom" className="rounded-lg">
         <Dialog>
           <Calendar yearRange={yearRange} />
         </Dialog>
@@ -119,7 +119,7 @@ export function DatePickerButton({
         <DateInput className="hidden" aria-hidden />
       </Group>
 
-      <Popover placement="bottom" className="rounded-xl">
+      <Popover placement="bottom" className="rounded-lg">
         <Dialog>
           <Calendar />
         </Dialog>

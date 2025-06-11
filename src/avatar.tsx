@@ -46,9 +46,7 @@ export function Avatar({
   const avatarId = React.useId();
   const ariaLabelledby = [avatarId, children ? badgeId : ''].join(' ');
   const status = useImageLoadingStatus(src);
-
-  console.log('sr', status)
-
+  
   return (
     <AvatarContext.Provider value={{ badgeId }}>
       <div

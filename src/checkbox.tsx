@@ -147,7 +147,7 @@ export function Checkbox(props: CheckboxProps | CustomRenderCheckboxProps) {
                 labelPlacement === 'end' ? 'me-3' : 'ms-3',
                 renderProps.isReadOnly && 'opacity-50',
                 renderProps.isSelected || renderProps.isIndeterminate
-                  ? 'ring-accent dark:ring-accent bg-accent shadow-none'
+                  ? 'ring-accent dark:ring-accent bg-accent shadow-[inset_0_1px_0_0_rgba(255,255,255,0.1)] dark:ring-0'
                   : 'dark:bg-white/5 dark:[--contract:1.05]',
                 renderProps.isInvalid && 'ring-red-600 dark:ring-red-600',
                 renderProps.isFocusVisible &&
