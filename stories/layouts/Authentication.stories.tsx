@@ -3,7 +3,6 @@ import {
   TextField,
   Label,
   Input,
-  Description,
   FieldError,
 } from '../../src/field.tsx';
 import { Form } from '../../src/form.tsx';

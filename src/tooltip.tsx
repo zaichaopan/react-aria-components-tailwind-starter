@@ -12,7 +12,7 @@ export interface TooltipProps extends Omit<RACTooltipProps, 'children'> {
   children: React.ReactNode;
 }
 
-export function Tooltip({ children, offset = 6, ...props }: TooltipProps) {
+export function Tooltip({ children, offset = 8, ...props }: TooltipProps) {
   return (
     <RACTooltip
       {...props}

@@ -123,7 +123,7 @@ export function StepList({
         '[&.gap-x-0]:rounded-full',
         '[--counter-size:--spacing(6)]',
         '[--counter-padding:--spacing(1)]',
-        '[--counter:var(--color-zinc-200)]',
+        '[--counter:var(--color-zinc-200)]/75',
         'dark:[--counter:var(--color-zinc-700)]',
         '[--counter-text:var(--muted)]',
         '[--counter-highlight:var(--accent)]',

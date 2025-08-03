@@ -26,13 +26,15 @@ export function getButtonStyles(
     isDisabled,
     isFocusVisible,
     isHovered,
+    isPressed,
   }: ButtonStyleProps & {
     isPending?: boolean;
     isDisabled?: boolean;
     isFocusVisible?: boolean;
     isHovered?: boolean;
+    isPressed?: boolean;
   },
-  className?: string | ClassNameValue[],
+  className?: ClassNameValue,
 ) {
   const base = [
     'relative rounded-lg',
@@ -52,7 +54,9 @@ export function getButtonStyles(
       base: [
         'group inline-flex gap-x-2 justify-center items-center font-semibold',
         'text-base/6 text-(--btn-color) sm:text-sm/6 [&_svg[data-ui=icon]:not([class*=size-])]:size-(--icon-size)',
+        isPressed && 'scale-[0.98]',
         !isHovered &&
+          !isPressed &&
           '[&_svg[data-ui=icon]:not([class*=text-])]:text-(--icon-color)',
         variant === 'solid'
           ? [
@@ -117,9 +121,9 @@ export function getButtonStyles(
 
   return twMerge([
     style.base,
-    style.size[size],
     style.variant.base,
     style.variant[variant],
+    style.size[size],
     !isCustomPending && isPending && 'text-transparent',
     className,
   ]);

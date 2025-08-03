@@ -201,7 +201,10 @@ export const CloseConfirmation = () => {
               color="red"
               onPress={() => {
                 setIsConfirmationDialogOpen(false);
-                setIsEditDialogOpen(false);
+
+                setTimeout(() => {
+                  setIsEditDialogOpen(false);
+                }, 300);
               }}
             >
               Discard
@@ -454,21 +457,45 @@ export const Headers = () => {
   );
 };
 
+export const HeaderLevel = () => {
+  return (
+    <DialogTrigger>
+      <Button>Open</Button>
+      <Modal>
+        <Dialog>
+          <DialogCloseButton />
+          <DialogHeader displayLevel={3}>
+            Reach more shoppers with Instagram product tags
+          </DialogHeader>
+          <DialogBody>
+            Use Instagram posts to share your products with millions of people.
+            Let shoppers buy from your store without leaving Instagram.
+          </DialogBody>
+          <DialogFooter>
+            <Button variant="plain">Learn more</Button>
+            <Button>Add Instagram</Button>
+          </DialogFooter>
+        </Dialog>
+      </Modal>
+    </DialogTrigger>
+  );
+};
+
 export const SubHeader = () => {
   return (
     <DialogTrigger>
       <Button>Configure</Button>
       <Modal>
-        <Dialog className='bg-zinc-100 dark:bg-zinc-900'>
-          <DialogHeader className='bg-background'>
-            <DialogTitle className='text-xl'>Configure SAML</DialogTitle>
+        <Dialog className="bg-zinc-100 dark:bg-zinc-900">
+          <DialogHeader className="bg-background">
+            <DialogTitle className="text-xl">Configure SAML</DialogTitle>
             <SubHeading>
               Specify the basic details of this connection
             </SubHeading>
           </DialogHeader>
 
           <DialogCloseButton />
-          <DialogBody className='border-b border-zinc-300 dark:border-zinc-800 rounded-b-lg bg-background pb-5'>
+          <DialogBody className="bg-background rounded-b-lg border-b border-zinc-300 pb-5 dark:border-zinc-800">
             <Form className="py-4" id="edit-profile-form">
               <TextField isRequired>
                 <Label>Domain</Label>
@@ -633,7 +660,7 @@ export const CloseButtons = () => {
               create a new one.
             </Text>
 
-            <TextField isReadOnly>
+            <TextField>
               <Label className="sr-only">Install command</Label>
 
               <div className="group grid grid-cols-[auto_1fr_auto]">

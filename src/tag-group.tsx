@@ -11,7 +11,7 @@ import {
 import { twMerge } from 'tailwind-merge';
 import { composeTailwindRenderProps } from './utils';
 import { XIcon } from './icons/outline/x';
-import { BadgeColor,getBadgeStyles } from './badge';
+import { BadgeColor, getBadgeStyles } from './badge';
 
 export interface TagProps extends AriaTagProps {
   color?: BadgeColor;
@@ -48,9 +48,12 @@ export function Tag({ children, color = 'zinc', variant, ...props }: TagProps) {
       {...props}
       className={composeRenderProps(
         props.className,
-        (className, { isFocusVisible, isDisabled, isSelected }) => {
+        (className, { isFocusVisible, isDisabled, isSelected, isPressed }) => {
           return twMerge(
-            getBadgeStyles({ color, variant: isSelected ? 'solid' : variant }),
+            getBadgeStyles(
+              { color, variant: isSelected ? 'solid' : variant },
+              isPressed && 'scale-[0.98]',
+            ),
             isFocusVisible && 'outline-ring outline-2 outline-offset-1',
             isDisabled && 'opacity-50',
             className,

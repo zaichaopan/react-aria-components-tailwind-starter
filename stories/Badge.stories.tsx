@@ -32,6 +32,9 @@ export const Colors = () => {
 export const Solid = () => {
   return (
     <div className="flex gap-x-2">
+      <Badge color="zinc" variant="solid">
+        Default
+      </Badge>
       <Badge color="green" variant="solid">
         Success
       </Badge>

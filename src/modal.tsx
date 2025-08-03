@@ -1,4 +1,3 @@
-import React from 'react';
 import {
   ModalOverlay as RACModalOverlay,
   ModalOverlayProps as RACModalOverlayProps,
@@ -34,15 +33,6 @@ type ModalProps = Omit<RACModalOverlayProps, 'className'> & {
 export function Modal({ classNames, ...props }: ModalProps) {
   const drawer = props.drawer;
   const placement = props.drawer ? props.placement ?? 'left' : props.placement;
-
-  React.useEffect(() => {
-    document
-      .querySelector<HTMLElement>(':root')
-      ?.style.setProperty(
-        '--scrollbar-width',
-        `${window.innerWidth - document.documentElement.clientWidth}px`,
-      );
-  }, []);
 
   return (
     <RACModalOverlay
@@ -144,11 +134,6 @@ export function Modal({ classNames, ...props }: ModalProps) {
                 'rounded-lg',
                 'data-entering:zoom-in-95',
                 'data-exiting:zoom-out-95',
-
-                // Handle layout shift when toggling scroll lock
-                props.size !== 'fullWidth' &&
-                  'sm:data-exiting:-me-(--scrollbar-width)',
-                'sm:data-exiting:duration-0',
 
                 !placement && [
                   'has-[[role=dialog]]:rounded-t-lg',

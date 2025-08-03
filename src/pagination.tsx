@@ -1,7 +1,5 @@
 import { twMerge } from 'tailwind-merge';
-import { ButtonVariant, getButtonStyles } from './button';
-import { Link } from './link';
-import { LinkProps } from 'react-aria-components';
+import { Link, LinkProps } from './link';
 import { ChevronLeftIcon } from './icons/outline/chevron-left';
 import { ChevronRightIcon } from './icons/outline/chevron-right';
 
@@ -33,22 +31,18 @@ export function PaginationList({
 
 export function PaginationPrevious({
   className,
-  isIconOnly,
   variant = 'plain',
   children,
   ...props
-}: LinkProps & {
+}: Omit<LinkProps, 'isIconOnly'> & {
   className?: string;
   isIconOnly?: boolean;
-  variant?: ButtonVariant;
 }) {
   return (
     <Link
       {...props}
-      className={getButtonStyles({ variant, isIconOnly }, [
-        'px-3.5 outline-offset-0 hover:no-underline',
-        className,
-      ])}
+      variant={variant}
+      className={twMerge('px-3.5 outline-offset-0', className)}
     >
       {children ? (
         children
@@ -64,22 +58,18 @@ export function PaginationPrevious({
 
 export function PaginationNext({
   className,
-  isIconOnly = false,
   variant = 'plain',
   children,
   ...props
-}: LinkProps & {
+}: Omit<LinkProps, 'isIconOnly'> & {
   className?: string;
   isIconOnly?: boolean;
-  variant?: ButtonVariant;
 }) {
   return (
     <Link
       {...props}
-      className={getButtonStyles({ variant, isIconOnly }, [
-        'px-3.5 outline-offset-1 hover:no-underline',
-        className,
-      ])}
+      variant={variant}
+      className={twMerge('px-3.5 outline-offset-1', className)}
     >
       {children ? (
         children
@@ -99,24 +89,20 @@ export function PaginationPage({
   'aria-label': arialLabel,
   variant = 'outline',
   ...props
-}: LinkProps & {
+}: Omit<LinkProps, 'isIconOnly'> & {
   className?: string;
   current?: boolean;
   children: string;
-  variant?: ButtonVariant;
 }) {
+  variant = current ? variant : 'plain';
+
   return (
     <Link
       {...props}
+      variant={variant}
+      isIconOnly
       aria-label={arialLabel ?? `Page ${props.children}`}
-      className={getButtonStyles(
-        { variant: current ? variant : 'plain', isIconOnly: true },
-        [
-          'min-w-9 outline-offset-1 hover:no-underline',
-          !current && 'not-hover:text-muted',
-          className,
-        ],
-      )}
+      className={twMerge('min-w-9 outline-offset-1', className)}
     />
   );
 }

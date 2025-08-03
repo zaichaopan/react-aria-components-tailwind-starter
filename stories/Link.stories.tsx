@@ -9,8 +9,6 @@ import { docs } from '../.storybook/docs';
 import { NotificationBadge } from '../src/notification-badge';
 import { Avatar } from '../src/avatar';
 import { Icon } from '../src/icon';
-import { getButtonStyles } from '../src/button';
-import { twMerge } from 'tailwind-merge';
 
 const meta = {
   parameters: {
@@ -117,7 +115,7 @@ export const WithAvatars = () => {
 
 export const WithButtonStyle = () => {
   return (
-    <Link className={twMerge(getButtonStyles({}), 'hover:no-underline')}>
+    <Link variant='solid' href="#">
       Sign in
     </Link>
   );

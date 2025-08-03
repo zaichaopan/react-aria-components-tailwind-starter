@@ -7,8 +7,10 @@ import {
   EmptyStateTitle,
   EmptyStateIcon,
 } from '../src/empty-state';
-import { FolderPlus} from 'lucide-react';
+import { FolderPlus } from 'lucide-react';
 import { PlusIcon } from '../src/icons/outline/plus';
+import { Link } from '../src/link';
+import { ArrowUpRightIcon } from '../src/icons/outline/arrow-up-right';
 
 const meta = {
   parameters: {
@@ -27,13 +29,17 @@ export const BasicExample = () => {
       </EmptyStateIcon>
       <EmptyStateTitle>No projects</EmptyStateTitle>
       <EmptyStateDescription>
-        Get started by creating a new project.
+        Get started by creating a new project. You can add tasks, set deadlines,
+        and collaborate with your team.
       </EmptyStateDescription>
       <EmptyStateActions>
         <Button>
           <PlusIcon />
-          New Project
+          Add new project
         </Button>
+        <Link variant="outline">
+          Read more <ArrowUpRightIcon />
+        </Link>
       </EmptyStateActions>
     </EmptyState>
   );

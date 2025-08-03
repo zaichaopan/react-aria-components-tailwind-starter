@@ -128,7 +128,7 @@ export function Switch(props: SwitchProps | CustomRenderSwitchProps) {
               labelPlacement === 'end' ? 'me-3' : 'ms-3',
               renderProps.isReadOnly
                 ? 'opacity-50'
-                : renderProps.isHovered && 'ring-zinc-400/60 dark:inset-ring-white/15',
+                : renderProps.isHovered && 'ring-zinc-400/70 dark:inset-ring-white/15',
               renderProps.isSelected &&
                 'bg-accent dark:bg-accent ring-accent inset-ring-[rgba(255,255,255,0.1)]',
               renderProps.isDisabled && 'bg-gray-200 dark:bg-zinc-700',

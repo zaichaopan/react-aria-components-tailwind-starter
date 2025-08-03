@@ -249,15 +249,14 @@ export const OneColumn = () => {
             </TextField>
 
             <TextField className="sm:col-span-3">
-              <Label className="flex justify-between">
-                Last name
-                <span className="text-muted">Optional</span>
+              <Label hint='optional'>
+                Last name 
               </Label>
               <Input />
             </TextField>
 
             <NativeSelectField className="sm:col-span-3">
-              <Label>Pronouns</Label>
+              <Label hint='optional'>Pronouns</Label>
               <NativeSelect name="pronouns">
                 <option value="Don't specify">Don't specify</option>
                 <option value="they/Them">they/Them</option>

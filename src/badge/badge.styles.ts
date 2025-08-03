@@ -1,3 +1,5 @@
+import { ClassNameValue } from 'tailwind-merge';
+
 const colors = {
   zinc: '[--badge:var(--color-zinc-500)]',
   red: '[--badge:var(--color-red-500)]',
@@ -23,13 +25,16 @@ export type BadgeColor = keyof typeof colors | 'white';
 
 export type BadgeVariant = 'solid';
 
-export function getBadgeStyles({
-  color = 'zinc',
-  variant,
-}: {
-  color?: BadgeColor;
-  variant?: BadgeVariant;
-}) {
+export function getBadgeStyles(
+  {
+    color = 'zinc',
+    variant,
+  }: {
+    color?: BadgeColor;
+    variant?: BadgeVariant;
+  },
+  className?: ClassNameValue,
+) {
   const base = [
     'inline-flex max-w-fit cursor-default items-center gap-x-1 rounded-md px-2 py-0.5 text-xs/5 font-medium outline-0 transition [&>[data-ui=icon]:not([class*=size-])]:size-3.5',
   ];
@@ -40,6 +45,7 @@ export function getBadgeStyles({
       variant === 'solid'
         ? 'border border-accent bg-accent text-[--btn-color:lch(from_var(--accent)_calc((49.44_-_l)_*_infinity)_0_0)] hover:opacity-85'
         : 'border hover:bg-zinc-100 dark:hover:bg-zinc-700 dark:border-zinc-700',
+      className,
     ];
   }
 
@@ -52,7 +58,7 @@ export function getBadgeStyles({
       ? [
           '[--bg:color-mix(in_oklab,_var(--badge)_90%,_black)]',
           '[--color:color-mix(in_oklab,_var(--badge)_5%,_white)]',
-          'data-selection-mode:hover:[--bg:color-mix(in_oklab,_var(--badge)_85%,_black)]',
+          'data-selection-mode:hover:[--bg:color-mix(in_oklab,_var(--badge)_80%,_black)]',
         ]
       : [
           // light
@@ -66,5 +72,6 @@ export function getBadgeStyles({
 
           'data-selection-mode:hover:dark:[--bg:color-mix(in_oklab,_var(--badge)_40%,_black)]',
         ],
+    className,
   ];
 }

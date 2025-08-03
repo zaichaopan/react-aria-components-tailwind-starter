@@ -11,7 +11,7 @@ export function EmptyState({
     <div
       {...props}
       className={twMerge(
-        '@container flex h-full w-full flex-col items-center justify-center gap-1 p-4 text-center',
+        '@container mx-auto flex h-full w-full max-w-prose flex-col items-center justify-center gap-1 p-4 text-center',
         className,
       )}
     />
@@ -47,7 +47,7 @@ export function EmptyStateTitle({
   if (elementType && !displayLevel) {
     displayLevel = 2;
   }
-  
+
   return (
     <Heading
       {...props}
@@ -63,12 +63,7 @@ export function EmptyStateTitle({
 }
 
 export function EmptyStateDescription({ className, ...props }: TextProps) {
-  return (
-    <Text
-      {...props}
-      className={twMerge('max-w-prose text-balance', className)}
-    />
-  );
+  return <Text {...props} className={twMerge('text-balance', className)} />;
 }
 
 export function EmptyStateActions({
@@ -79,7 +74,7 @@ export function EmptyStateActions({
     <div
       {...props}
       className={twMerge(
-        'mt-3 flex flex-col items-center justify-center gap-4 p-2',
+        'mt-3 flex flex-wrap items-center justify-center gap-4 py-2',
         className,
       )}
     />
