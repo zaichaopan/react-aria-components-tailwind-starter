@@ -486,16 +486,16 @@ export const SubHeader = () => {
     <DialogTrigger>
       <Button>Configure</Button>
       <Modal>
-        <Dialog className="bg-zinc-100 dark:bg-zinc-900">
-          <DialogHeader className="bg-background">
-            <DialogTitle className="text-xl">Configure SAML</DialogTitle>
+        <Dialog>
+          <DialogHeader>
+            <DialogTitle displayLevel={1}>Configure SAML</DialogTitle>
             <SubHeading>
               Specify the basic details of this connection
             </SubHeading>
           </DialogHeader>
 
           <DialogCloseButton />
-          <DialogBody className="bg-background rounded-b-lg border-b border-zinc-300 pb-5 dark:border-zinc-800">
+          <DialogBody>
             <Form className="py-4" id="edit-profile-form">
               <TextField isRequired>
                 <Label>Domain</Label>

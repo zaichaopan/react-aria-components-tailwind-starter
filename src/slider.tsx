@@ -44,12 +44,14 @@ export function SliderThumb(props: SliderThumbProps) {
       aria-label={label}
       className={composeRenderProps(
         props.className,
-        (className, { isFocusVisible, isDragging, isDisabled }) => {
+        (className, { isFocusVisible, isDragging, isDisabled, isHovered }) => {
           return twMerge(
-            'size-5 rounded-full bg-white ring shadow-[0_1px_1px_rgba(0,0,0,0.2)] ring-zinc-950/10 dark:shadow-none',
+            'size-6 rounded-full bg-white shadow-[0_1px_1px_rgba(0,0,0,0.2)] ring ring-zinc-950/10 sm:size-5 dark:shadow-none',
             orientation === 'horizontal' ? 'top-1/2' : 'left-1/2',
             isDragging && ['outline', 'outline-3', 'outline-ring/50'],
-            isDisabled && 'cursor-not-allowed opacity-50',
+            isDisabled
+              ? 'cursor-not-allowed opacity-50'
+              : isHovered && 'ring-zinc-950/15',
             isFocusVisible && ['outline', 'outline-2', 'outline-ring'],
             className,
           );
