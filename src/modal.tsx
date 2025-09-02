@@ -30,13 +30,24 @@ type ModalProps = Omit<RACModalOverlayProps, 'className'> & {
   };
 } & ModalType;
 
-export function Modal({ classNames, ...props }: ModalProps) {
+export function Modal({
+  classNames,
+  isOpen,
+  onOpenChange,
+  ...props
+}: ModalProps) {
   const drawer = props.drawer;
   const placement = props.drawer ? props.placement ?? 'left' : props.placement;
 
   return (
     <RACModalOverlay
       {...props}
+      {...(isOpen !== undefined && {
+        isOpen,
+      })}
+      {...(onOpenChange !== undefined && {
+        onOpenChange,
+      })}
       data-ui="modal-overlay"
       className={composeTailwindRenderProps(classNames?.modalOverlay, [
         'fixed top-0 left-0 isolate z-20',
@@ -49,7 +60,7 @@ export function Modal({ classNames, ...props }: ModalProps) {
         'data-entering:ease-out',
         'data-exiting:animate-out',
         'data-exiting:fade-out',
-        'data-exiting:duration-200',
+        'data-exiting:duration-[210ms]',
         'data-exiting:ease-in',
 
         drawer
