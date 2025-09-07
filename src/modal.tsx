@@ -56,11 +56,10 @@ export function Modal({
         'text-center',
         'data-entering:animate-in',
         'data-entering:fade-in',
-        'data-entering:duration-300',
+        'data-entering:duration-150',
         'data-entering:ease-out',
         'data-exiting:animate-out',
         'data-exiting:fade-out',
-        'data-exiting:duration-[210ms]',
         'data-exiting:ease-in',
 
         drawer
@@ -126,10 +125,9 @@ export function Modal({
 
           'data-entering:animate-in',
           'data-entering:ease-out',
-          'data-entering:duration-200',
+          'data-entering:duration-150',
           'data-exiting:animate-out',
           'data-exiting:ease-in',
-          'data-exiting:duration-200',
 
           drawer
             ? [
