@@ -71,6 +71,7 @@ export const MenuPopover = React.forwardRef(
             'min-w-[max(--spacing(36),var(--trigger-width))]',
             'has-[[data-ui=content]_[data-ui=icon]]:min-w-[max(--spacing(48),var(--trigger-width))]',
             'has-[[data-ui=content]_kbd]:min-w-[max(--spacing(11),var(--trigger-width))]',
+            'outline-0',
           ),
         )}
       />
