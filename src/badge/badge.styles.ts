@@ -43,8 +43,8 @@ export function getBadgeStyles(
     return [
       base,
       variant === 'solid'
-        ? 'border border-accent bg-accent text-[--btn-color:lch(from_var(--accent)_calc((49.44_-_l)_*_infinity)_0_0)] hover:opacity-85'
-        : 'border hover:bg-zinc-100 dark:hover:bg-zinc-700 dark:border-zinc-700',
+        ? 'border border-accent bg-accent text-[--btn-color:lch(from_var(--accent)_calc((49.44_-_l)_*_infinity)_0_0)] data-selection-mode:hover:opacity-85'
+        : 'border data-selection-mode:hover:bg-zinc-100 data-selection-mode:dark:hover:bg-zinc-700',
       className,
     ];
   }

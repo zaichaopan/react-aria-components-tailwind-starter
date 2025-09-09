@@ -14,12 +14,13 @@ const meta = {
 export default meta;
 
 export const BasicExample = () => {
-  return <Badge>Default</Badge>;
+  return <Badge>Badge</Badge>;
 };
 
 export const Colors = () => {
   return (
     <div className="flex gap-x-2">
+      <Badge color="white">Badge</Badge>
       <Badge color="green">Success</Badge>
       <Badge color="blue">Info</Badge>
       <Badge color="red">Remove</Badge>
@@ -32,6 +33,9 @@ export const Colors = () => {
 export const Solid = () => {
   return (
     <div className="flex gap-x-2">
+      <Badge color="white" variant="solid">
+        Badge
+      </Badge>
       <Badge color="zinc" variant="solid">
         Default
       </Badge>
@@ -57,6 +61,11 @@ export const Solid = () => {
 export const WithIcons = () => {
   return (
     <div className="flex gap-x-2">
+      <Badge color="white">
+        <CheckCircleIcon />
+        Badge
+      </Badge>
+
       <Badge color="green">
         <CheckCircleIcon />
         Success
