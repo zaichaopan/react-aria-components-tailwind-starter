@@ -179,6 +179,7 @@ export const Header = () => {
                 placement="bottom end"
                 className="min-w-64"
                 offset={4}
+                noAnimation
               >
                 <Menu>
                   <MenuItem>

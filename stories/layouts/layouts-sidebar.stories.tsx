@@ -73,7 +73,7 @@ export const Sidebar = () => {
 
 function AvatarMenuPopover() {
   return (
-    <MenuPopover placement="top left" className="min-w-64">
+    <MenuPopover placement="top left" className="min-w-64" noAnimation>
       <Menu>
         <MenuItem>Clear status</MenuItem>
         <MenuSeparator />

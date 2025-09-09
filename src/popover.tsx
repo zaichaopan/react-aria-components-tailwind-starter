@@ -3,16 +3,18 @@ import {
   PopoverProps as RACPopoverProps,
   useSlottedContext,
   PopoverContext,
+  composeRenderProps,
 } from 'react-aria-components';
 import React from 'react';
-import { composeTailwindRenderProps } from './utils';
+import { twMerge } from 'tailwind-merge';
 
 export interface PopoverProps extends Omit<RACPopoverProps, 'children'> {
   children: React.ReactNode;
+  noAnimation?: boolean;
 }
 
 export const Popover = React.forwardRef(
-  (props: PopoverProps, ref: React.Ref<HTMLDivElement>) => {
+  ({ noAnimation, ...props }: PopoverProps, ref: React.Ref<HTMLDivElement>) => {
     const popoverContext = useSlottedContext(PopoverContext)!;
     const isSubmenu = popoverContext?.trigger === 'SubmenuTrigger';
 
@@ -29,14 +31,30 @@ export const Popover = React.forwardRef(
         {...props}
         ref={ref}
         offset={offset}
-        className={composeTailwindRenderProps(props.className, [
-          'bg-background',
-          'shadow-lg',
-          'rounded-md',
-          'ring-1',
-          'ring-zinc-950/10',
-          'dark:ring-zinc-800',
-        ])}
+        className={composeRenderProps(
+          props.className,
+          (className, renderProps) => {
+            return twMerge([
+              'bg-background',
+              'shadow-lg',
+              'rounded-md',
+              'ring-1',
+              'ring-zinc-950/10',
+              'dark:ring-zinc-800',
+
+              !noAnimation && [
+                'origin-(--trigger-anchor-point)',
+                renderProps.isEntering &&
+                  'animate-in fade-in placement-bottom:slide-in-from-top-1 placement-top:slide-in-from-bottom-1 placement-left:slide-in-from-right-1 placement-right:slide-in-from-left-1 zoom-in-95 duration-200 ease-out',
+
+                renderProps.isExiting &&
+                  'animate-out fade-out placement-bottom:slide-out-to-top-1 placement-top:slide-out-to-bottom-1 placement-left:slide-out-to-right-1 placement-right:slide-out-to-left-1 zoom-out-95 duration-150 ease-in',
+              ],
+
+              className,
+            ]);
+          },
+        )}
       />
     );
   },
