@@ -18,7 +18,7 @@ export const Popover = React.forwardRef(
     const popoverContext = useSlottedContext(PopoverContext)!;
     const isSubmenu = popoverContext?.trigger === 'SubmenuTrigger';
 
-    let offset = 8;
+    let offset = 10;
     offset =
       props.offset !== undefined
         ? props.offset
@@ -45,10 +45,10 @@ export const Popover = React.forwardRef(
               !noAnimation && [
                 'origin-(--trigger-anchor-point)',
                 renderProps.isEntering &&
-                  'animate-in fade-in placement-bottom:slide-in-from-top-1 placement-top:slide-in-from-bottom-1 placement-left:slide-in-from-right-1 placement-right:slide-in-from-left-1 zoom-in-95 duration-200 ease-out',
+                  'animate-in fade-in zoom-in-95 duration-200 ease-out',
 
                 renderProps.isExiting &&
-                  'animate-out fade-out placement-bottom:slide-out-to-top-1 placement-top:slide-out-to-bottom-1 placement-left:slide-out-to-right-1 placement-right:slide-out-to-left-1 zoom-out-95 duration-150 ease-in',
+                  'animate-out fade-out zoom-out-95 duration-150 ease-in',
               ],
 
               className,

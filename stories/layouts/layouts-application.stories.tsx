@@ -163,7 +163,7 @@ function Sidebar() {
                   <MoreHorizontalIcon />
                 </Icon>
               </MenuButton>
-              <MenuPopover placement="end" noAnimation>
+              <MenuPopover placement="right">
                 <Menu>
                   <MenuItem>Option1</MenuItem>
                   <MenuItem>Option2</MenuItem>
@@ -185,7 +185,7 @@ function Sidebar() {
               <AvatarBadge badge={<AvailableIcon aria-label="Available" />} />
             </Avatar>
           </MenuButton>
-          <MenuPopover placement="end" className="min-w-64" noAnimation>
+          <MenuPopover placement='right' noAnimation>
             <Menu>
               <MenuItem>Clear status</MenuItem>
               <MenuSeparator />

@@ -68,9 +68,7 @@ export const MenuPopover = React.forwardRef(
           className,
           twMerge(
             'max-w-72',
-            'min-w-[max(--spacing(36),var(--trigger-width))]',
-            'has-[[data-ui=content]_[data-ui=icon]]:min-w-[max(--spacing(48),var(--trigger-width))]',
-            'has-[[data-ui=content]_kbd]:min-w-[max(--spacing(11),var(--trigger-width))]',
+            'min-w-[max(--spacing(40),var(--trigger-width))]',
             'outline-0',
           ),
         )}

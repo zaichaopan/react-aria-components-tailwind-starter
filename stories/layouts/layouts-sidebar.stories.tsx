@@ -71,9 +71,9 @@ export const Sidebar = () => {
   );
 };
 
-function AvatarMenuPopover() {
+function AvatarMenuPopover({ placement }: { placement?: 'bottom' | 'right' }) {
   return (
-    <MenuPopover placement="top left" className="min-w-64" noAnimation>
+    <MenuPopover placement={placement} className="min-w-64" noAnimation>
       <Menu>
         <MenuItem>Clear status</MenuItem>
         <MenuSeparator />
@@ -127,7 +127,7 @@ function HamburgerMenu() {
                     />
                     <span className="truncate"> Acme, Inc</span>
                   </MenuButton>
-                  <MenuPopover placement="bottom left">
+                  <MenuPopover>
                     <Menu>
                       <MenuItem>Item 1</MenuItem>
                       <MenuItem>Item 2</MenuItem>
@@ -157,7 +157,7 @@ function HamburgerMenu() {
               alt="Marissa Whitaker"
             />
           </MenuButton>
-          <AvatarMenuPopover />
+          <AvatarMenuPopover placement="bottom" />
         </MenuTrigger>
       </div>
     </header>
@@ -181,7 +181,7 @@ function SideNavigation() {
               />
               <span className="truncate"> Acme, Inc</span>
             </MenuButton>
-            <MenuPopover placement="bottom left">
+            <MenuPopover>
               <Menu>
                 <MenuItem>Item 1</MenuItem>
                 <MenuItem>Item 2</MenuItem>
@@ -209,7 +209,7 @@ function SideNavigation() {
               Marissa Whitaker
             </span>
           </MenuButton>
-          <AvatarMenuPopover />
+          <AvatarMenuPopover placement="right" />
         </MenuTrigger>
       </div>
     </div>
