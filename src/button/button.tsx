@@ -63,6 +63,7 @@ const StyledButton = React.forwardRef<
             {renderProps.isPending ? (
               <>
                 <SpinnerIcon
+                  data-spinner
                   aria-label={pendingLabel}
                   className={twMerge(
                     'absolute',

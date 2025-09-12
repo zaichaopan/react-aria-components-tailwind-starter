@@ -12,7 +12,7 @@ A <a href="https://react-spectrum.adobe.com/react-aria/Menu.html#menu" target="_
 
 ## Menu buttons
 
-Menu buttons are <a href="./?path=/docs/button--docs" target="_blank">**Buttons**</a> with default `outline` variant.
+Menu buttons are <a href="./?path=/docs/button--docs" target="_blank">**Buttons**</a> with default `outline` variant. It supports all the props, including `variant` of the `Button` component.
 
 <Canvas of={MenuStories.MenuButtons} />
 
@@ -144,6 +144,13 @@ Use `sectionMode="multiple"` and `defaultSelectedKey` on the `Menu` component to
 
 <Canvas of={MenuStories.CheckIconPlacement} />
 
+
+## Check indicators 
+
+`CheckToggle`, `RadioToggle`, and `RadioMark` components can be used to customize the check indicators of single and multiple selection menus.
+
+<Canvas of={MenuStories.CheckIndicators} />
+
 ## Section level selections
 
 <Canvas of={MenuStories.SectionLevelSelections} />
@@ -157,3 +164,5 @@ Use `sectionMode="multiple"` and `defaultSelectedKey` on the `Menu` component to
 Use the `isOpen` and `onOpenChange` props of the `MenuPopover` component to control menu popover open state.
 
 <Canvas of={MenuStories.ControlledOpenState} />
+
+

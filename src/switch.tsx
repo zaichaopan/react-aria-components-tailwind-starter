@@ -121,37 +121,88 @@ export function Switch(props: SwitchProps | CustomRenderSwitchProps) {
     >
       {(renderProps) => (
         <>
-          <div
-            className={twMerge(
-              'flex h-6 w-11 shrink-0 cursor-default items-center rounded-full bg-zinc-200 p-0.5 ring-1 ring-zinc-300/90 dark:bg-zinc-700 dark:ring-0 dark:inset-ring-1 dark:inset-ring-white/10',
-              size !== 'lg' && 'sm:h-5 sm:w-8',
+          <SwitchToggle
+            className={twMerge([
+              'h-6 w-11',
               labelPlacement === 'end' ? 'me-3' : 'ms-3',
-              renderProps.isReadOnly
-                ? 'opacity-50'
-                : renderProps.isHovered && 'ring-zinc-400/70 dark:inset-ring-white/15',
+
+              '[&>[data-ui=handle]]:size-5',
               renderProps.isSelected &&
-                'bg-accent dark:bg-accent ring-accent inset-ring-[rgba(255,255,255,0.1)]',
-              renderProps.isDisabled && 'bg-gray-200 dark:bg-zinc-700',
-              renderProps.isFocusVisible &&
-                'outline-ring outline-2 outline-offset-3',
-            )}
-          >
-            <span
-              data-ui="handle"
-              className={twMerge(
-                'size-5',
-                size !== 'lg' && 'sm:size-4',
-                'rounded-full bg-white shadow-[0_1px_1px_rgba(0,0,0,0.25)] transition-all ease-in-out',
-                renderProps.isSelected && [
-                  'translate-x-5 bg-[lch(from_var(--accent)_calc((49.44_-_l)_*_infinity)_0_0)] rtl:-translate-x-5',
-                  size !== 'lg' && 'sm:translate-x-3 sm:rtl:-translate-x-3',
-                ],
-              )}
-            />
-          </div>
+                'rtl:[&>[data-ui=handle]]-translate-x-5 [&>[data-ui=handle]]:translate-x-5',
+
+              size === 'lg'
+                ? []
+                : [
+                    'sm:h-5 sm:w-8',
+                    'sm:[&>[data-ui=handle]]:size-4',
+                    renderProps.isSelected &&
+                      'sm:[&>[data-ui=handle]]:translate-x-3 sm:rtl:[&>[data-ui=handle]]:-translate-x-3',
+                  ],
+            ])}
+            renderProps={renderProps}
+          />
           {typeof children === 'function' ? children(renderProps) : children}
         </>
       )}
     </RACSwitch>
+  );
+}
+
+type SwitchToggleProps = {
+  renderProps?: Partial<SwitchRenderProps>;
+} & Omit<React.JSX.IntrinsicElements['div'], 'children'>;
+
+export function SwitchToggle({
+  renderProps,
+  className,
+  ...props
+}: SwitchToggleProps) {
+  return (
+    <div
+      {...props}
+      data-check-indicator
+      className={twMerge(
+        'flex h-5 w-8 shrink-0 cursor-default items-center rounded-full bg-zinc-200 p-0.5 ring-1 ring-zinc-300/90 dark:bg-zinc-700 dark:ring-0 dark:inset-ring-1 dark:inset-ring-white/10',
+
+        renderProps?.isReadOnly
+          ? 'opacity-50'
+          : renderProps?.isHovered &&
+              'ring-zinc-400/70 dark:inset-ring-white/15',
+        renderProps?.isSelected &&
+          'bg-accent dark:bg-accent ring-accent inset-ring-[rgba(255,255,255,0.1)]',
+        renderProps?.isDisabled && 'bg-gray-200 dark:bg-zinc-700',
+        renderProps?.isFocusVisible &&
+          'outline-ring outline-2 outline-offset-3',
+
+        // When it is inside menu item and the item is selected
+        'in-[&[data-ui=content][data-hovered=true]]:ring-zinc-400/70',
+        'in-[&[data-ui=content][data-hovered=true]]:dark:inset-ring-white/15',
+
+
+        'in-[&[data-ui=content][data-selected=true]]:bg-accent',
+        'in-[&[data-ui=content][data-selected=true]]:dark:bg-accent',
+        'in-[&[data-ui=content][data-selected=true]]:ring-accent',
+        'in-[&[data-ui=content][data-selected=true]]:inset-ring-[rgba(255,255,255,0.1)]',
+
+        className,
+      )}
+    >
+      <span
+        data-ui="handle"
+        className={twMerge(
+          'size-4',
+          'rounded-full bg-white shadow-[0_1px_1px_rgba(0,0,0,0.25)] transition-all ease-in-out',
+
+          // When it is inside menu item and the item is selected
+          'in-[&[data-ui=content][data-selected=true]]:translate-x-3',
+          'in-[&[data-ui=content][data-selected=true]]:rtl:-translate-x-3',
+          'in-[&[data-ui=content][data-selected=true]]:bg-[lch(from_var(--accent)_calc((49.44_-_l)_*_infinity)_0_0)]',
+
+          renderProps?.isSelected && [
+            'translate-x-3 bg-[lch(from_var(--accent)_calc((49.44_-_l)_*_infinity)_0_0)] rtl:-translate-x-3',
+          ],
+        )}
+      />
+    </div>
   );
 }

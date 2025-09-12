@@ -63,9 +63,13 @@ export function RadioField({
   );
 }
 
+type LabelPlacement = 'start' | 'end';
+
 export interface RadioProps extends RACRadioProps {
-  labelPlacement?: 'start' | 'end';
-  radio?: React.ReactElement | ((props: RadioRenderProps) => React.ReactNode);
+  labelPlacement?: LabelPlacement;
+  radio?:
+    | React.ReactElement
+    | ((props: Partial<RadioRenderProps>) => React.ReactNode);
   render?: never;
 }
 
@@ -127,40 +131,15 @@ export function Radio(props: RadioProps | CustomRenderRadioProps) {
       {(renderProps) => {
         return (
           <>
-            <div
+            <RadioToggle
               data-slot="radio"
+              radio={radio}
+              renderProps={renderProps}
               className={twMerge(
-                'grid shrink-0 place-content-center rounded-full shadow-sm ring ring-zinc-950/15 dark:shadow-none dark:ring-white/20',
-                radio ? '' : 'size-4.5 sm:size-4',
                 labelPlacement === 'end' ? 'me-3' : 'ms-3',
-                renderProps.isReadOnly
-                  ? 'opacity-50'
-                  : renderProps.isHovered &&
-                      'ring-zinc-950/25 dark:ring-white/25',
-                renderProps.isSelected
-                  ? 'bg-accent ring-accent dark:ring-accent'
-                  : 'dark:bg-white/5 dark:[--contract:1.1]',
-                renderProps.isInvalid && 'ring-red-600 dark:ring-red-600',
-                renderProps.isFocusVisible &&
-                  'outline-ring outline-2 outline-offset-3',
+                !radio && 'size-4.5 sm:size-4',
               )}
-            >
-              {radio ? (
-                typeof radio === 'function' ? (
-                  radio(renderProps)
-                ) : (
-                  radio
-                )
-              ) : (
-                <div
-                  className={twMerge(
-                    'rounded-full',
-                    renderProps.isSelected &&
-                      'size-2 bg-white shadow-[0_1px_1px_rgba(0,0,0,0.25)] dark:bg-[lch(from_var(--accent)_calc((49.44_-_l)_*_infinity)_0_0)]',
-                  )}
-                ></div>
-              )}
-            </div>
+            />
 
             {typeof props.children === 'function'
               ? props.children(renderProps)
@@ -169,5 +148,70 @@ export function Radio(props: RadioProps | CustomRenderRadioProps) {
         );
       }}
     </RACRadio>
+  );
+}
+
+type RadioBoxProps = Partial<RadioRenderProps> & {
+  radio?: RadioProps['radio'];
+  renderProps?: Partial<RadioRenderProps>;
+} & Omit<React.JSX.IntrinsicElements['div'], 'children'>;
+
+export function RadioToggle({
+  radio,
+  renderProps,
+  className,
+  ...props
+}: RadioBoxProps) {
+  return (
+    <div
+      {...props}
+      data-check-indicator
+      className={twMerge(
+        'grid shrink-0 place-content-center rounded-full shadow-sm ring ring-zinc-950/15 dark:shadow-none dark:ring-white/20',
+        radio ? '' : 'size-4',
+
+        renderProps?.isReadOnly
+          ? 'opacity-50'
+          : renderProps?.isHovered && 'ring-zinc-950/25 dark:ring-white/25',
+        renderProps?.isSelected
+          ? 'bg-accent ring-accent dark:ring-accent'
+          : 'dark:bg-white/5 dark:[--contract:1.1]',
+
+        // When it is inside menu item and the item is selected
+        'in-[&[data-ui=content][data-hovered=true]]:ring-zinc-950/25',
+        'in-[&[data-ui=content][data-hovered=true]]:dark:ring-white/25',
+
+        'in-[&[data-ui=content][data-selected=true]]:bg-accent',
+        'in-[&[data-ui=content][data-selected=true]]:dark:bg-accent',
+        'in-[&[data-ui=content][data-selected=true]]:ring-accent',
+        'in-[&[data-ui=content][data-selected=true]]:dark:ring-accent',
+
+        renderProps?.isInvalid && 'ring-red-600 dark:ring-red-600',
+        renderProps?.isFocusVisible &&
+          'outline-ring outline-2 outline-offset-3',
+        className,
+      )}
+    >
+      {radio && renderProps ? (
+        typeof radio === 'function' ? (
+          radio(renderProps)
+        ) : (
+          radio
+        )
+      ) : (
+        <div
+          className={twMerge(
+            'rounded-full',
+            renderProps?.isSelected &&
+              'size-2 bg-white shadow-[0_1px_1px_rgba(0,0,0,0.25)] dark:bg-[lch(from_var(--accent)_calc((49.44_-_l)_*_infinity)_0_0)]',
+
+            // when it is inside menu item and the item is selected
+            'in-[&[data-ui=content][data-selected=true]]:size-2',
+            'in-[&[data-ui=content][data-selected=true]]:bg-white',
+            'in-[&[data-ui=content][data-selected=true]]:shadow-[0_1px_1px_rgba(0,0,0,0.25)] dark:bg-[lch(from_var(--accent)_calc((49.44_-_l)_*_infinity)_0_0)]',
+          )}
+        ></div>
+      )}
+    </div>
   );
 }

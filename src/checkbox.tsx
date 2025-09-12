@@ -75,8 +75,10 @@ export function CheckboxField({
   );
 }
 
+type LabelPlacement = 'start' | 'end';
+
 interface CheckboxProps extends RACCheckboxProps {
-  labelPlacement?: 'start' | 'end';
+  labelPlacement?: LabelPlacement;
   render?: never;
 }
 
@@ -139,30 +141,13 @@ export function Checkbox(props: CheckboxProps | CustomRenderCheckboxProps) {
       {(renderProps) => {
         return (
           <>
-            <div
-              data-ui="checkbox"
-              className={twMerge([
-                'size-4.5 sm:size-4',
-                'flex shrink-0 items-center justify-center rounded-sm shadow ring ring-zinc-950/15 dark:ring-white/20',
+            <CheckToggle
+              {...renderProps}
+              className={twMerge(
                 labelPlacement === 'end' ? 'me-3' : 'ms-3',
-                renderProps.isReadOnly
-                  ? 'opacity-50'
-                  : renderProps.isHovered &&
-                    'ring-zinc-950/25 dark:ring-white/25',
-                renderProps.isSelected || renderProps.isIndeterminate
-                  ? 'ring-accent dark:ring-accent bg-accent shadow-[inset_0_1px_0_0_rgba(255,255,255,0.1)] dark:ring-0'
-                  : 'dark:bg-white/5 dark:[--contract:1.05]',
-                renderProps.isInvalid && 'ring-red-600 dark:ring-red-600',
-                renderProps.isFocusVisible &&
-                  'outline-ring outline-2 outline-offset-3',
-              ])}
-            >
-              {renderProps.isIndeterminate ? (
-                <MinusIcon className="size-4 text-[lch(from_var(--accent)_calc((49.44_-_l)_*_infinity)_0_0)]" />
-              ) : renderProps.isSelected ? (
-                <CheckIcon className="size-4 text-[lch(from_var(--accent)_calc((49.44_-_l)_*_infinity)_0_0)]" />
-              ) : null}
-            </div>
+                'size-4.5 sm:size-4',
+              )}
+            />
 
             {typeof props.children === 'function'
               ? props.children(renderProps)
@@ -171,5 +156,65 @@ export function Checkbox(props: CheckboxProps | CustomRenderCheckboxProps) {
         );
       }}
     </RACCheckbox>
+  );
+}
+
+type BoxProps = Partial<CheckboxRenderProps> &
+  Omit<React.JSX.IntrinsicElements['div'], 'children'>;
+
+export function CheckToggle({
+  isReadOnly,
+  isHovered,
+  isSelected,
+  isIndeterminate,
+  isInvalid,
+  isFocusVisible,
+  className,
+  ...props
+}: BoxProps) {
+  return (
+    <div
+      {...props}
+      data-check-indicator
+      className={twMerge([
+        'size-4',
+        'flex shrink-0 items-center justify-center rounded-sm shadow ring ring-zinc-950/15 dark:ring-white/20',
+        isReadOnly
+          ? 'opacity-50'
+          : isHovered && 'ring-zinc-950/25 dark:ring-white/25',
+        isSelected || isIndeterminate
+          ? 'ring-accent bg-accent shadow-[inset_0_1px_0_0_rgba(255,255,255,0.1)] dark:ring-0'
+          : 'dark:bg-white/5 dark:[--contract:1.05]',
+
+        isInvalid && 'ring-red-600 dark:ring-red-600',
+        isFocusVisible && 'outline-ring outline-2 outline-offset-3',
+
+        // when used in menu item as the selected indicator
+        'in-[&[data-ui=content][data-hovered=true]]:ring-zinc-950/25',
+        'in-[&[data-ui=content][data-hovered=true]]:dark:ring-white/25',
+        'in-[&[data-ui=content][data-selected=true]]:ring-accent',
+        'in-[&[data-ui=content][data-selected=true]]:dark:ring-0',
+        'in-[&[data-ui=content][data-selected=true]]:bg-accent',
+        'in-[&[data-ui=content][data-selected=true]]:dark:bg-accent',
+        'in-[&[data-ui=content][data-selected=true]]:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.1)]',
+
+        className,
+      ])}
+    >
+      <CheckIcon
+        className={twMerge(
+          'hidden size-4 text-[lch(from_var(--accent)_calc((49.44_-_l)_*_infinity)_0_0)]',
+          isSelected && !isIndeterminate && 'inline',
+          'in-[&[data-ui=content][data-selected=true]]:inline',
+        )}
+      />
+
+      <MinusIcon
+        className={twMerge(
+          'hidden size-4 text-[lch(from_var(--accent)_calc((49.44_-_l)_*_infinity)_0_0)]',
+          isIndeterminate && 'inline',
+        )}
+      />
+    </div>
   );
 }

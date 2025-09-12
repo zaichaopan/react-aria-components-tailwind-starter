@@ -12,10 +12,9 @@ import { ButtonStyleProps } from './button/button.styles';
 export type LinkProps =
   | (RACLinkProps & {
       tooltip?: React.ReactNode;
-      variant: Extract<
-        ButtonStyleProps['variant'],
-        'solid' | 'outline' | 'plain'
-      >;
+      variant:
+        | Extract<ButtonStyleProps['variant'], 'solid' | 'outline' | 'plain'>
+        | 'text';
       size?: ButtonStyleProps['size'];
       color?: ButtonStyleProps['color'];
       isIconOnly?: boolean;
@@ -46,8 +45,17 @@ export const Link = React.forwardRef<HTMLAnchorElement, LinkProps>(
         ref={ref}
         className={composeRenderProps(
           props.className,
-          (className, { isFocusVisible, isDisabled, isHovered, isPressed }) =>
-            variant
+          (className, { isFocusVisible, isDisabled, isHovered, isPressed }) => {
+            if (variant === 'text') {
+              return twMerge(
+                linkStyle,
+                'hover:no-underline not-hover:text-muted',
+                isFocusVisible && 'outline-ring outline-2 outline-offset-2',
+                className,
+              );
+            }
+
+            return variant
               ? getButtonStyles(
                   {
                     variant,
@@ -57,7 +65,7 @@ export const Link = React.forwardRef<HTMLAnchorElement, LinkProps>(
                     size,
                     color,
                     isIconOnly,
-                    isPressed
+                    isPressed,
                   },
                   twMerge(
                     'cursor-pointer data-disabled:cursor-default',
@@ -68,7 +76,8 @@ export const Link = React.forwardRef<HTMLAnchorElement, LinkProps>(
                   linkStyle,
                   isFocusVisible && 'outline-ring outline-2 outline-offset-2',
                   className,
-                ),
+                );
+          },
         )}
       />
     );

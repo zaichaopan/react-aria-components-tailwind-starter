@@ -70,6 +70,11 @@ export const MenuPopover = React.forwardRef(
             'max-w-72',
             'min-w-[max(--spacing(40),var(--trigger-width))]',
             'outline-0',
+
+            '[&>[role=menu]]:max-h-[inherit]',
+            '[&>[role=menu]]:overflow-auto',
+            '[&>*:has(>[role=menu])]:max-h-[inherit]',
+            '[&>*:has(>[role=menu])]:overflow-auto',
           ),
         )}
       />
@@ -92,9 +97,9 @@ export function Menu<T extends object>({
       className={composeTailwindRenderProps(
         props.className,
         twMerge(
-          'max-h-[inherit] overflow-auto outline-hidden',
+          'outline-hidden',
           'flex flex-col',
-          'p-1 has-[header]:pt-0',
+          'p-1 has-[>section:first-child]:pt-0',
 
           // Header, Menu item style when has selectable items
           '[&_header]:px-2',
@@ -117,10 +122,14 @@ export function Menu<T extends object>({
           '[&_[data-ui=content]>[data-ui=icon]:not([class*=size-])]:size-4',
           '[&_[data-ui=content]>[data-ui=icon]:first-child]:col-start-1',
 
+          // Check indicator
+          '[&_[data-ui=content]>[data-check-indicator]:first-child]:col-start-1',
+
           // Label
           '**:data-[ui=label]:col-span-full',
           '[&:has([data-ui=icon]+[data-ui=label])_[data-ui=label]]:col-start-2',
           '[&:has([data-ui=kbd])_[data-ui=label]]:-col-end-2',
+          '[&:has([data-check-indicator])_[data-ui=label]]:-col-end-2',
           '[&:has([data-ui=icon]+[data-ui=label])_[data-ui=content]:not(:has(>[data-ui=label]))]:ps-6',
 
           // Kbd
@@ -132,6 +141,12 @@ export function Menu<T extends object>({
           '[&_:not([data-destructive])>[data-ui=kbd]:not([class*=bg-])]:text-muted/75',
           '[&_[data-destructive]>[data-ui=kbd]]:text-red-600',
 
+          // Check indicator
+          '[&_[data-ui=content]>[data-check-indicator]:last-child]:col-span-1',
+          '[&_[data-ui=content]>[data-check-indicator]:last-child]:row-start-1',
+          '[&_[data-ui=content]>[data-check-indicator]:last-child]:col-start-3',
+          '[&_[data-ui=content]>[data-check-indicator]:last-child]:justify-self-end',
+
           // Description
           '**:data-[ui=description]:col-span-full',
           '[&:has([data-ui=kbd])_[data-ui=description]]:-col-end-2',
@@ -142,17 +157,23 @@ export function Menu<T extends object>({
   );
 }
 
-export function SubMenu<T extends object>(
-  props: MenuProps<T> & { 'aria-label': string },
-) {
-  return <Menu {...props} />;
+export function SubMenu<T extends object>({
+  className,
+  ...props
+}: MenuProps<T> & { 'aria-label': string }) {
+  return (
+    <Menu
+      {...props}
+      className={composeTailwindRenderProps(className, 'min-w-32')}
+    />
+  );
 }
 
 export function MenuSeparator({ className }: { className?: string }) {
   return (
     <Separator
       className={twMerge(
-        'border-t-border/75 my-1 w-full self-center border-t',
+        'border-t-border/60 my-1 w-full self-center border-t',
         className,
       )}
     />
@@ -183,6 +204,7 @@ export function MenuItem({ destructive, ...props }: MenuItemProps) {
             isDisabled && 'opacity-50',
             isFocused && 'bg-zinc-100 dark:bg-zinc-800',
             destructive && 'text-red-600',
+
             className,
           ]);
         },
@@ -190,19 +212,22 @@ export function MenuItem({ destructive, ...props }: MenuItemProps) {
     >
       {composeRenderProps(
         props.children,
-        (children, { selectionMode, isSelected }) => (
+        (children, { selectionMode, isSelected, isHovered }) => (
           <>
             <CheckIcon
               className={twMerge(
                 'flex h-[1lh] w-4 items-center self-start',
                 selectionMode == 'none'
                   ? 'hidden'
-                  : 'in-data-[check-icon-placement=end]:hidden',
+                  : // when placement is end or has check indicator
+                    'in-data-[check-icon-placement=end]:hidden in-[&:has(_[data-check-indicator])]:hidden',
                 isSelected ? 'visible' : 'invisible',
               )}
             />
             <div
               data-ui="content"
+              {...(isSelected && { 'data-selected': true })}
+              {...(isHovered && { 'data-hovered': true })}
               data-destructive={destructive ? destructive : undefined}
             >
               {children}
@@ -212,7 +237,9 @@ export function MenuItem({ destructive, ...props }: MenuItemProps) {
                 'flex h-[1lh] w-4 items-center self-start',
                 selectionMode == 'none'
                   ? 'hidden'
-                  : 'in-data-[check-icon-placement=start]:hidden',
+                  : // when placement is start or has check indicator
+                    'in-data-[check-icon-placement=start]:hidden in-[&:has(_[data-check-indicator])]:hidden',
+
                 isSelected ? 'visible' : 'invisible',
               )}
             />
@@ -268,7 +295,7 @@ export function MenuSection<T extends object>({
       className={twMerge(
         'not-first:mt-1.5',
         'not-first:border-t',
-        'not-first:border-t-border/75',
+        'not-first:border-t-border/60',
         className,
       )}
     >

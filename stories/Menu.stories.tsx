@@ -13,7 +13,7 @@ import {
   MenuItemLabel,
   MenuItemDescription,
 } from '../src/menu';
-import { Switch } from '../src/switch';
+import { Switch, SwitchToggle } from '../src/switch';
 import { docs } from '../.storybook/docs';
 import { Icon } from '../src/icon';
 import { Small, Strong, Text } from '../src/text';
@@ -41,12 +41,18 @@ import {
   UnderlineIcon,
   ItalicIcon,
   BoldIcon,
-  Settings2Icon,
+  RefreshCcwIcon,
+  BellOffIcon,
+  Users2Icon,
 } from 'lucide-react';
-import { Popover } from '../src/popover';
-import { Dialog, DialogTrigger } from '../src/dialog';
 import { Separator } from '../src/separator';
-import { Button } from '../src/button';
+import { CheckToggle } from '../src/checkbox';
+import { RadioToggle } from '../src/radio-group';
+import { TrashIcon } from '../src/icons/outline/trash';
+import { ArrowRightIcon } from '../src/icons/outline/arrow-right';
+import { Link } from '../src/link';
+import { ChevronRightIcon } from '../src/icons/outline/chevron-right';
+import { Badge } from '../src/badge';
 
 const meta = {
   parameters: {
@@ -961,6 +967,68 @@ export const CheckIconPlacement = () => {
   );
 };
 
+export const CheckIndicators = () => {
+  return (
+    <MenuTrigger>
+      <MenuButton>Actions</MenuButton>
+      <MenuPopover placement="bottom">
+        <Menu className="min-w-56">
+          <MenuSection
+            title="Notify me about"
+            selectionMode="multiple"
+            defaultSelectedKeys={new Set(['Comments'])}
+          >
+            <MenuItem id="Comments">
+              <CheckToggle />
+              <MenuItemLabel>Comments</MenuItemLabel>
+            </MenuItem>
+            <MenuItem id="Mentions">
+              <CheckToggle />
+              <MenuItemLabel>Mentions</MenuItemLabel>
+            </MenuItem>
+          </MenuSection>
+          <MenuSection
+            title="Starting chats"
+            selectionMode="single"
+            defaultSelectedKeys={new Set(['main_window'])}
+          >
+            <MenuItem id="main_window">
+              <RadioToggle />
+              <MenuItemLabel>Main window</MenuItemLabel>
+            </MenuItem>
+            <MenuItem id="new_window">
+              <RadioToggle />
+              <MenuItemLabel>New window</MenuItemLabel>
+            </MenuItem>
+          </MenuSection>
+
+          <MenuSection
+            aria-label="Subscribe to"
+            selectionMode="multiple"
+            defaultSelectedKeys={new Set(['sync'])}
+          >
+            <MenuItem id="dark">
+              <Icon>
+                <MoonIcon />
+              </Icon>
+              <MenuItemLabel>Dark Mode</MenuItemLabel>
+              <SwitchToggle />
+            </MenuItem>
+
+            <MenuItem id="sync">
+              <Icon>
+                <RefreshCcwIcon />
+              </Icon>
+              <MenuItemLabel>Sync Settings</MenuItemLabel>
+              <SwitchToggle />
+            </MenuItem>
+          </MenuSection>
+        </Menu>
+      </MenuPopover>
+    </MenuTrigger>
+  );
+};
+
 export const SectionLevelSelections = () => {
   const placements = ['start', 'end'] as const;
   const [style, setStyle] = React.useState<Selection>(new Set(['bold']));
@@ -1055,72 +1123,124 @@ export const SectionLevelSelections = () => {
 
 export const Headers = () => {
   return (
-    <div className="flex flex-col items-center gap-6">
-      <MenuTrigger>
-        <MenuButton>Actions</MenuButton>
-        <MenuPopover>
-          <Menu>
-            <MenuSection
-              title={
-                <div className="border-border/45 flex flex-col border-b pb-2">
-                  <Small>Signed in as Tony Reichert</Small>
-                  <Strong>@tonyreichert</Strong>
-                </div>
-              }
-            >
-              <MenuItem>Team Settings</MenuItem>
-              <MenuItem>Analytics</MenuItem>
-              <MenuItem>System</MenuItem>
-              <MenuItem>Configuration</MenuItem>
-              <MenuItem> Help & Feedback</MenuItem>
-              <MenuItem>Log Out</MenuItem>
-            </MenuSection>
-          </Menu>
-        </MenuPopover>
-      </MenuTrigger>
-
-      <DialogTrigger>
-        <Button isIconOnly aria-label="Account" variant="plain">
-          <Avatar
-            alt="Marissa Whitaker"
-            src="https://images.unsplash.com/photo-1717694371848-70ddf2293c7c?q=80&w=2306&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-            className="rounded-full"
-          ></Avatar>
-        </Button>
-        <Popover placement="bottom end" className="p-1.5">
-          <Dialog className="outline-hidden" aria-label="account">
-            <div className="mx-3 mt-2 flex items-center gap-2">
-              <Avatar
-                alt="Marissa Whitaker"
-                src="https://images.unsplash.com/photo-1717694371848-70ddf2293c7c?q=80&w=2306&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                className="size-16 rounded-full"
-              />
-              <div className="flex flex-col">
-                <Strong className="sm:text-base/4">Marissa Whitaker</Strong>
-                <Text className="pb-1">user@example.com</Text>
-                <Switch>Dark Mode</Switch>
-              </div>
+    <MenuTrigger>
+      <MenuButton buttonArrow={null} variant="plain" isIconOnly>
+        <Avatar
+          src="https://images.unsplash.com/photo-1717694371848-70ddf2293c7c?q=80&w=2306&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+          alt="Marissa Whitaker"
+          className="rounded-full"
+        />
+      </MenuButton>
+      <MenuPopover placement="bottom">
+        <div>
+          <div className="flex items-center gap-x-2 p-2">
+            <Avatar
+              src="https://images.unsplash.com/photo-1717694371848-70ddf2293c7c?q=80&w=2306&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+              alt="Marissa Whitaker"
+              className="rounded-full"
+            />
+            <div className="flex flex-col">
+              <Strong>
+                Marissa Whitaker
+                <Badge color="sky" className="ms-2.5">
+                  Pro
+                </Badge>
+              </Strong>
+              <Link variant="text">
+                View Profile
+                <ChevronRightIcon />
+              </Link>
             </div>
-            <Separator className="my-3" />
+          </div>
 
-            <Menu aria-label="account">
-              <MenuItem id="account-settings">
+          <Separator soft className="px-2" />
+
+          <Menu className="min-w-56">
+            <SubmenuTrigger>
+              <MenuItem>
                 <Icon>
-                  <Settings2Icon></Settings2Icon>
+                  <BellOffIcon />
                 </Icon>
-                <MenuItemLabel>Account Settings</MenuItemLabel>
+                <MenuItemLabel>Pause notifications</MenuItemLabel>
               </MenuItem>
-              <MenuItem id="support">Support</MenuItem>
-              <MenuSeparator />
-              <MenuItem id="legal-notice">Legal notices</MenuItem>
-              <MenuItem id="about">About</MenuItem>
-              <MenuSeparator />
-              <MenuItem id="sign-out">Sign out</MenuItem>
-            </Menu>
-          </Dialog>
-        </Popover>
-      </DialogTrigger>
-    </div>
+              <MenuPopover>
+                <SubMenu aria-label="Visibility">
+                  <MenuItem>For 30 minutes</MenuItem>
+                  <MenuItem>For 1 hour</MenuItem>
+                  <MenuItem>For 2 hours</MenuItem>
+                  <MenuItem>Until I turn it back on</MenuItem>
+                </SubMenu>
+              </MenuPopover>
+            </SubmenuTrigger>
+
+            <MenuSeparator />
+            <MenuItem href="https://adobe.com/" target="_blank">
+              <Icon>
+                <Users2Icon />
+              </Icon>
+              <MenuItemLabel>Add another account</MenuItemLabel>
+              <ArrowRightIcon className="ms-auto" />
+            </MenuItem>
+            <MenuSection
+              title="Notify me about"
+              selectionMode="multiple"
+              defaultSelectedKeys={new Set(['Comments'])}
+            >
+              <MenuItem id="Comments">
+                <CheckToggle />
+                <MenuItemLabel>Comments</MenuItemLabel>
+              </MenuItem>
+              <MenuItem id="Mentions">
+                <CheckToggle />
+                <MenuItemLabel>Mentions</MenuItemLabel>
+              </MenuItem>
+            </MenuSection>
+            <MenuSection
+              title="Starting chats"
+              selectionMode="single"
+              defaultSelectedKeys={new Set(['main_window'])}
+            >
+              <MenuItem id="main_window">
+                <RadioToggle />
+                <MenuItemLabel>Main window</MenuItemLabel>
+              </MenuItem>
+              <MenuItem id="new_window">
+                <RadioToggle />
+                <MenuItemLabel>New window</MenuItemLabel>
+              </MenuItem>
+            </MenuSection>
+
+            <MenuSection
+              aria-label="Subscribe to"
+              selectionMode="multiple"
+              defaultSelectedKeys={new Set(['sync'])}
+            >
+              <MenuItem id="dark">
+                <Icon>
+                  <MoonIcon />
+                </Icon>
+                <MenuItemLabel>Dark Mode</MenuItemLabel>
+                <SwitchToggle />
+              </MenuItem>
+
+              <MenuItem id="sync">
+                <Icon>
+                  <RefreshCcwIcon />
+                </Icon>
+                <MenuItemLabel>Sync Settings</MenuItemLabel>
+                <SwitchToggle />
+              </MenuItem>
+            </MenuSection>
+            <MenuSeparator />
+            <MenuItem destructive>
+              <TrashIcon />
+              <MenuItemLabel>Deactivate</MenuItemLabel>
+              <Kbd>⌘⇧D</Kbd>
+            </MenuItem>
+          </Menu>
+        </div>
+      </MenuPopover>
+    </MenuTrigger>
   );
 };
 

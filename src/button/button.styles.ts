@@ -83,11 +83,11 @@ export function getButtonStyles(
         'bg-white dark:bg-white/5',
         'shadow-outline in-[[data-ui=button-group]]:shadow-none dark:in-[[data-ui=button-group]]:shadow-none',
         isHovered && !isDisabled && 'bg-zinc-50 dark:bg-zinc-800',
-        !isIconOnly && '[--icon-color:var(--muted)]/75',
+        !isIconOnly && '[--icon-color:var(--btn-color)]/75',
       ],
       plain: [
         isHovered && !isDisabled && 'bg-zinc-200/50 dark:bg-zinc-800/95',
-        !isIconOnly && '[--icon-color:var(--muted)]/75',
+        !isIconOnly && '[--icon-color:var(--btn-color)]/75',
       ],
       link: [
         'underline underline-offset-4 decoration-(--btn-color)/25',
@@ -124,7 +124,9 @@ export function getButtonStyles(
     style.variant.base,
     style.variant[variant],
     style.size[size],
-    !isCustomPending && isPending && 'text-transparent',
+    !isCustomPending &&
+      isPending &&
+      'text-transparent [&_svg[data-ui=icon]:not([data-spinner])]:text-transparent',
     className,
   ]);
 }

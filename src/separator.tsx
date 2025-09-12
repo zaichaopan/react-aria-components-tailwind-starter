@@ -23,12 +23,12 @@ export function Separator({
       {...(role !== null && separatorProps)}
       {...props}
       className={twMerge(
-        'text-sm/6',
+        'box-border text-sm/6',
         '[&>svg:not([class*=size])]:size-5',
         children
           ? [
               soft
-                ? 'before:border-border/50 after:border-border/50'
+                ? 'before:border-border/60 after:border-border/60'
                 : 'before:border-border after:border-border',
               orientation === 'vertical'
                 ? [
@@ -55,7 +55,7 @@ export function Separator({
                   ],
             ]
           : [
-              soft ? 'border-border/50' : 'border-border',
+              soft ? 'border-border/60' : 'border-border',
               orientation === 'vertical'
                 ? [
                     'h-auto self-stretch border-l',

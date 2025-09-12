@@ -37,6 +37,44 @@ export const LinkWithIcons = () => {
   );
 };
 
+export const LinkVariants = () => {
+  return (
+    <div className="flex gap-4">
+      <Link
+        href="https://react-spectrum.adobe.com/react-aria/routing.html"
+        target="_blank"
+        variant="solid"
+      >
+        Sign in
+      </Link>
+
+      <Link
+        href="https://react-spectrum.adobe.com/react-aria/routing.html"
+        target="_blank"
+        variant="outline"
+      >
+        Sign in
+      </Link>
+
+      <Link
+        href="https://react-spectrum.adobe.com/react-aria/routing.html"
+        target="_blank"
+        variant="plain"
+      >
+        Sign in
+      </Link>
+
+      <Link
+        href="https://react-spectrum.adobe.com/react-aria/routing.html"
+        target="_blank"
+        variant="text"
+      >
+        Sign in
+      </Link>
+    </div>
+  );
+};
+
 export const DisabledState = () => {
   return (
     <Link
@@ -115,7 +153,7 @@ export const WithAvatars = () => {
 
 export const WithButtonStyle = () => {
   return (
-    <Link variant='solid' href="#">
+    <Link variant="solid" href="#">
       Sign in
     </Link>
   );
