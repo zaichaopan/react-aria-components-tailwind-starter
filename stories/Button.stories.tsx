@@ -270,20 +270,7 @@ export const ButtonWithBadge = () => {
 };
 
 export const ButtonAsLink = () => {
-  return (
-    <Link
-      className={(renderProps) => {
-        return getButtonStyles(
-          { variant: 'solid', ...renderProps },
-          'hover:no-underline',
-        );
-      }}
-      href="https://example.com"
-      target="_blank"
-    >
-      Login
-    </Link>
-  );
+  return <Link variant="solid">Login</Link>;
 };
 
 export function ButtonToggle() {

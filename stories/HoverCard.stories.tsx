@@ -73,19 +73,19 @@ export const BasicExample = () => {
           <div className="flex gap-x-3">
             <AvatarGroup aria-label="followers">
               <Avatar
-                size={32}
+                size={28}
                 className="rounded-full"
                 alt="Mery"
                 src="https://pbs.twimg.com/profile_images/1825609068767027200/L_4CGvSB_400x400.jpg"
               />
               <Avatar
-                size={32}
+                size={28}
                 className="rounded-full"
                 alt="Another User"
                 src="https://pbs.twimg.com/profile_images/1907688428398850048/zAuYRr83_400x400.jpg"
               />
               <Avatar
-                size={32}
+                size={28}
                 className="rounded-full"
                 alt="Kent C. Dodds"
                 src="https://pbs.twimg.com/profile_images/1567269493608714241/6ACZo99k_400x400.jpg"

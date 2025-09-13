@@ -69,7 +69,7 @@ const tabList = {
   },
   segment: {
     horizontal:
-      '[--border-radius:var(--radius-lg)] p-0.5 rounded-(--border-radius) bg-zinc-100 dark:bg-zinc-700 dark:border border-zinc-600/90',
+      '[--border-radius:var(--radius-lg)] p-px rounded-(--border-radius) bg-zinc-100 dark:bg-zinc-700',
     vertical: '',
   },
 };
@@ -169,8 +169,10 @@ const tab = ({
     segment: {
       base: [
         'flex-1 justify-center px-6 py-1 [&>[data-ui=icon]:not([class*=size-])]:size-4',
-        isSelected &&
-          'bg-background dark:bg-zinc-500 text-foreground rounded-[calc(var(--border-radius)-2px)] shadow dark:shadow-outline',
+        isSelected && [
+          'bg-background dark:bg-zinc-500 text-foreground rounded-[calc(var(--border-radius)-2px)] ring shadow-sm dark:shadow-none',
+          isFocusVisible ? 'ring-ring' : 'ring-zinc-950/10',
+        ],
       ],
       horizontal: '',
       vertical: '',

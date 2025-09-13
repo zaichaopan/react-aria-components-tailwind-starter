@@ -95,28 +95,22 @@ export const GroupDescription = () => {
 
 export const LabelPlacement = () => {
   return (
-    <RadioGroup className="max-w-md">
+    <RadioGroup className="max-w-md" labelPlacement="start">
       <Label>Autoplay animated images</Label>
       <Radios>
         <RadioField>
-          <Radio value="system" labelPlacement="start">
-            Sync with system
-          </Radio>
+          <Radio value="system">Sync with system</Radio>
           <Description>
             Adopts your system preference for reduced motion
           </Description>
         </RadioField>
 
         <RadioField>
-          <Radio value="enable" labelPlacement="start">
-            Approve
-          </Radio>
+          <Radio value="enable">Approve</Radio>
           <Description>Automatically plays animated images</Description>
         </RadioField>
 
-        <Radio value="disabled" labelPlacement="start">
-          Disabled
-        </Radio>
+        <Radio value="disabled">Disabled</Radio>
       </Radios>
     </RadioGroup>
   );
@@ -400,126 +394,137 @@ export function Reviews() {
   );
 }
 
-export function Shipping() {
+export function RadioCards() {
   return (
-    <RadioGroup defaultValue="Standard" className="w-72">
-      <Label>Shipping</Label>
-      <Radios className="grid grid-cols-1 gap-4">
-        {[
-          {
-            name: 'Standard',
-            description: ' 4-6 business days',
-            price: ' $4.99',
-          },
-          {
-            name: 'Express',
-            description: ' 2-5 business days',
-            price: ' $15.99',
-          },
-          {
-            name: 'Lightning',
-            description: ' 1 business day',
-            price: ' $24.99',
-          },
-        ].map((option) => {
-          return (
-            <Radio
-              key={option.name}
-              labelPlacement="start"
-              value={option.name}
-              className={({ isSelected }) => {
-                return twMerge(
-                  'items-start rounded-lg px-4 py-3 [&_[slot=radio]]:mt-1.5',
-                  isSelected ? 'ring-ring ring-2' : 'shadow-outline',
-                );
-              }}
-            >
-              <div className="flex w-full flex-col gap-3">
-                <div className="flex flex-1 flex-col">
-                  <div className="flex font-medium">{option.name}</div>
-                  <div className="text-gray-500">{option.description}</div>
+    <div className="flex flex-col space-y-16">
+      <RadioGroup
+        defaultValue="Standard"
+        orientation="horizontal"
+        variant="card"
+      >
+        <Label>Shipping</Label>
+        <Radios>
+          {[
+            {
+              name: 'Standard',
+              description: ' 4-6 business days',
+              price: ' $4.99',
+            },
+            {
+              name: 'Express',
+              description: ' 2-5 business days',
+              price: ' $15.99',
+            },
+            {
+              name: 'Lightning',
+              description: ' 1 business day',
+              price: ' $24.99',
+            },
+          ].map((option) => {
+            return (
+              <Radio key={option.name} value={option.name} className="w-48">
+                <div className="flex w-full flex-col gap-3">
+                  <div className="flex flex-1 flex-col">
+                    <div className="flex font-medium">{option.name}</div>
+                    <div className="text-gray-500">{option.description}</div>
+                  </div>
+                  <div className="font-medium">{option.price}</div>
                 </div>
-                <div className="font-medium">{option.price}</div>
+              </Radio>
+            );
+          })}
+        </Radios>
+      </RadioGroup>
+
+      <RadioGroup
+        defaultValue="Standard"
+        labelPlacement="start"
+        orientation="vertical"
+        variant="card"
+        className="mx-auto"
+      >
+        <Label>Shipping</Label>
+        <Radios>
+          {[
+            {
+              name: 'Standard',
+              description: ' 4-6 business days',
+              price: ' $4.99',
+            },
+            {
+              name: 'Express',
+              description: ' 2-5 business days',
+              price: ' $15.99',
+            },
+            {
+              name: 'Lightning',
+              description: ' 1 business day',
+              price: ' $24.99',
+            },
+          ].map((option) => {
+            return (
+              <Radio key={option.name} value={option.name}>
+                <div className="flex w-full flex-col gap-3">
+                  <div className="flex flex-1 flex-col">
+                    <div className="flex font-medium">{option.name}</div>
+                    <div className="text-gray-500">{option.description}</div>
+                  </div>
+                  <div className="font-medium">{option.price}</div>
+                </div>
+              </Radio>
+            );
+          })}
+        </Radios>
+      </RadioGroup>
+
+      <RadioGroup
+        defaultValue="yearly"
+        labelPlacement="start"
+        orientation="horizontal"
+        variant="card"
+      >
+        <Label>Radio cards with custom radio icon</Label>
+        <Radios>
+          <Radio
+            value="yearly"
+            radio={
+              <span className="hidden size-4 place-items-center rounded-full group-data-selected:grid group-data-selected:text-white">
+                <CheckIcon className="size-3" />
+              </span>
+            }
+          >
+            <div className="flex flex-col">
+              <div className="text-muted flex flex-1 flex-col">Yearly</div>
+              <div className="flex items-center gap-x-2 pb-1.5 font-semibold">
+                <div>$6/month</div>
+
+                <Badge color="emerald" variant="solid">
+                  Save 40%
+                </Badge>
               </div>
-            </Radio>
-          );
-        })}
-      </Radios>
-    </RadioGroup>
+            </div>
+          </Radio>
+          <Radio
+            value="monthly"
+            radio={
+              <span className="hidden size-4 place-items-center rounded-full group-data-selected:grid group-data-selected:text-white">
+                <CheckIcon className="size-3" />
+              </span>
+            }
+          >
+            <div className="flex flex-col">
+              <div className="text-muted flex flex-1 flex-col">Monthly</div>
+              <div className="flex items-center gap-x-2 pb-1.5 font-semibold">
+                $10/month
+              </div>
+            </div>
+          </Radio>
+        </Radios>
+      </RadioGroup>
+    </div>
   );
 }
 
-export function CustomRadio() {
-  return (
-    <RadioGroup defaultValue="yearly" className="w-72">
-      <Label>Upgrade plan</Label>
-      <Radios className="grid grid-cols-1 gap-4">
-        <Radio
-          labelPlacement="start"
-          value="yearly"
-          className={({ isSelected }) => {
-            return twMerge(
-              'rounded-lg px-3 py-1',
-              isSelected ? 'ring-ring ring-2' : 'shadow-outline',
-            );
-          }}
-          radio={({ isSelected }) => {
-            return (
-              <span
-                className={twMerge(
-                  'grid size-4 place-items-center rounded-full',
-                  isSelected ? 'text-white' : 'hidden',
-                )}
-              >
-                <CheckIcon className="size-3" />
-              </span>
-            );
-          }}
-        >
-          <div className="flex flex-col">
-            <div className="text-muted flex flex-1 flex-col">Yearly</div>
-            <div className="flex items-center gap-x-2 pb-1.5 font-semibold">
-              <div>$6/month</div>
-
-              <Badge color="emerald" variant='solid'>
-                Save 40%
-              </Badge>
-            </div>
-          </div>
-        </Radio>
-        <Radio
-          labelPlacement="start"
-          value="monthly"
-          className={({ isSelected }) => {
-            return twMerge(
-              'rounded-lg px-3 py-1',
-              isSelected ? 'ring-ring ring-2' : 'shadow-outline',
-            );
-          }}
-          radio={({ isSelected }) => {
-            return (
-              <span
-                className={twMerge(
-                  'grid size-4 place-items-center rounded-full',
-                  isSelected ? 'text-white' : 'hidden',
-                )}
-              >
-                <CheckIcon className="size-3" />
-              </span>
-            );
-          }}
-        >
-          <div className="flex flex-col">
-            <div className="text-muted flex flex-1 flex-col">Monthly</div>
-            <div className="flex items-center gap-x-2 pb-1.5 font-semibold">
-              $10/month
-            </div>
-          </div>
-        </Radio>
-      </Radios>
-    </RadioGroup>
-  );
-}
 export function AccentColors() {
   return (
     <RadioGroup orientation="horizontal" defaultValue="blue">
@@ -584,9 +589,13 @@ export function AccentColors() {
   );
 }
 
-export function CpuOptions() {
+export function RadioButtons() {
   return (
-    <RadioGroup orientation="horizontal" defaultValue={'6 CPU'}>
+    <RadioGroup
+      orientation="horizontal"
+      defaultValue={'6 CPU'}
+      variant="button"
+    >
       <Label className="flex justify-between">
         CPU
         <TextLink className="text-muted no-underline">
@@ -602,21 +611,9 @@ export function CpuOptions() {
                 isDisabled={option === '16 CPU'}
                 key={option}
                 value={option}
-                render={({ isSelected, isFocusVisible }) => (
-                  <div
-                    className={[
-                      'min-w-[86px]',
-                      'rounded-md border px-4 py-2 font-semibold',
-                      isSelected &&
-                        'border-accent bg-accent text-[lch(from_var(--accent)_calc((49.44_-_l)_*_infinity)_0_0)]',
-                      isFocusVisible &&
-                        'outline-ring outline-2 outline-offset-2',
-                    ].join(' ')}
-                  >
-                    {option}
-                  </div>
-                )}
-              />
+              >
+                {option}
+              </Radio>
             );
           },
         )}
@@ -682,92 +679,99 @@ export function Rating() {
   );
 }
 
-export function Appearance() {
+export function SegmentRadios() {
   return (
-    <RadioGroup orientation="horizontal" defaultValue="system">
-      <Label>Appearance</Label>
-      <Description>Customize your application appearance</Description>
-      <Radios className="shadow-outline size-fit rounded-full p-1">
-        <div className="relative isolate flex">
-          {[
-            {
-              value: 'system',
-              label: 'System',
-              icon: MonitorIcon,
-              className: 'peer/system',
-            },
-            {
-              value: 'light',
-              label: 'Light mode',
-              icon: SunIcon,
-              className: 'peer/light',
-            },
-            {
-              value: 'dark',
-              label: 'Dark mode',
-              icon: MoonStarIcon,
-              className: 'peer/dark',
-            },
-          ].map((option) => {
-            return (
-              <Radio
-                key={option.value}
-                aria-label={option.label}
-                data-theme={option.value}
-                className={({ isSelected }) => {
-                  return twMerge(
-                    'z-10 grid size-8 place-items-center rounded-full [&_svg]:size-4',
-                    option.className,
-                    isSelected &&
-                      'text-[lch(from_var(--accent)_calc((49.44_-_l)_*_infinity)_0_0)]',
-                  );
-                }}
-                value={option.value}
-                render={<option.icon />}
-              ></Radio>
-            );
-          })}
-
-          <div
-            className={twMerge(
-              'bg-accent absolute top-0 left-0 h-full w-1/3 rounded-full transition-all ease-in-out peer-data-selected/dark:left-2/3 peer-data-selected/light:left-1/3',
-            )}
-          ></div>
-        </div>
-      </Radios>
-    </RadioGroup>
-  );
-}
-
-export function SwitchPlan() {
-  return (
-    <RadioGroup orientation="horizontal" defaultValue="monthly" className="">
-      <Label>Choose plan</Label>
-      <Radios className="rounded-(--card-radius) bg-zinc-100 p-0.5 [--card-padding:--spacing(0.5)] [--card-radius:var(--radius-lg)] dark:bg-zinc-800">
-        <div className="relative isolate flex flex-1">
+    <div className="space-y-16">
+      <RadioGroup variant="segment" defaultValue="system">
+        <Label>Appearance</Label>
+        <Description>Customize your application appearance</Description>
+        <Radios>
           <Radio
-            className="peer/monthly z-10 flex-1 rounded-[calc(var(--card-radius)-var(--card-padding))] px-4 py-1 text-center font-medium sm:w-64"
-            value="monthly"
-            render="Bill Monthly"
+            aria-label="System"
+            value="system"
+            render={
+              <Icon>
+                <MonitorIcon />
+              </Icon>
+            }
           ></Radio>
           <Radio
-            className="peer/yearly z-10 w-64 flex-1 rounded-[calc(var(--card-radius)-var(--card-padding))] px-4 py-1 text-center font-medium"
+            aria-label="Light mode"
+            value="light"
+            render={
+              <Icon>
+                <SunIcon />
+              </Icon>
+            }
+          ></Radio>
+
+          <Radio
+            aria-label="Dark mode"
+            value="dark"
+            render={
+              <Icon>
+                <MoonStarIcon />
+              </Icon>
+            }
+          ></Radio>
+        </Radios>
+      </RadioGroup>
+
+      <RadioGroup
+        variant="segment"
+        defaultValue="system"
+        className="[--segment-radius:9999px]"
+      >
+        <Label>Appearance</Label>
+        <Description>Customize your application appearance</Description>
+        <Radios>
+          <Radio
+            aria-label="System"
+            value="system"
+            render={
+              <Icon>
+                <MonitorIcon />
+              </Icon>
+            }
+          ></Radio>
+          <Radio
+            aria-label="Light mode"
+            value="light"
+            render={
+              <Icon>
+                <SunIcon />
+              </Icon>
+            }
+          ></Radio>
+
+          <Radio
+            aria-label="Dark mode"
+            value="dark"
+            render={
+              <Icon>
+                <MoonStarIcon />
+              </Icon>
+            }
+          ></Radio>
+        </Radios>
+      </RadioGroup>
+
+      <RadioGroup variant="segment" defaultValue="yearly">
+        <Label>Choose plan</Label>
+        <Radios>
+          <Radio value="monthly" render="Bill Monthly"></Radio>
+          <Radio
             value="yearly"
-            render={({ isSelected }) => (
+            render={
               <div>
                 Bill Yearly{' '}
-                <span className={isSelected ? 'text-green-600' : ''}>-20%</span>
+                <span className="group-data-selected:text-green-600">-20%</span>
               </div>
-            )}
+            }
           ></Radio>
-          <div
-            className={twMerge(
-              'absolute top-0 left-0 h-full w-1/2 rounded-[calc(var(--card-radius)-var(--card-padding))] bg-white shadow transition-all ease-in-out peer-data-selected/yearly:left-1/2 dark:bg-zinc-600',
-            )}
-          ></div>
-        </div>
-      </Radios>
-    </RadioGroup>
+        </Radios>
+      </RadioGroup>
+    </div>
   );
 }
 

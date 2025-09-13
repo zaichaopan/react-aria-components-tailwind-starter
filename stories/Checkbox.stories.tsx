@@ -128,30 +128,24 @@ export const LabelPlacement = () => {
         I accept the terms and conditions
       </Checkbox>
 
-      <CheckboxGroup>
+      <CheckboxGroup labelPlacement="start">
         <Label>Notifications</Label>
         <Description>
           Please select your preferred method of communication.
         </Description>
         <Checkboxes>
           <CheckboxField>
-            <Checkbox value="email" labelPlacement="start">
-              Notify via email
-            </Checkbox>
+            <Checkbox value="email">Notify via email</Checkbox>
             <Description>We'll send you a confirmation email</Description>
           </CheckboxField>
 
           <CheckboxField>
-            <Checkbox value="sms" labelPlacement="start">
-              Notify via SMS
-            </Checkbox>
+            <Checkbox value="sms">Notify via SMS</Checkbox>
             <Description>We'll send you a confirmation SMS</Description>
           </CheckboxField>
 
           <CheckboxField>
-            <Checkbox value="telegram" labelPlacement="start">
-              Notify via telegram
-            </Checkbox>
+            <Checkbox value="telegram">Notify via telegram</Checkbox>
             <Description>We'll send you a confirmation telegram</Description>
           </CheckboxField>
         </Checkboxes>
@@ -233,7 +227,7 @@ export const ValidationErrors = () => {
 
 export function Cards() {
   return (
-    <CheckboxGroup orientation="horizontal">
+    <CheckboxGroup orientation="horizontal" labelPlacement="start">
       <Label>Notifications</Label>
       <Description>
         Please select your preferred method of communication.
@@ -242,7 +236,6 @@ export function Cards() {
         <CheckboxField>
           <Checkbox
             value="email"
-            labelPlacement="start"
             className="w-68 rounded-lg border p-4 [&>[data-ui=checkbox]]:self-start"
           >
             <div className="flex flex-col gap-y-1">
@@ -255,7 +248,6 @@ export function Cards() {
         <CheckboxField>
           <Checkbox
             value="sms"
-            labelPlacement="start"
             className="w-68 rounded-lg border p-4 [&>[data-ui=checkbox]]:self-start"
           >
             <div className="flex flex-col gap-y-1">
@@ -268,7 +260,6 @@ export function Cards() {
         <CheckboxField>
           <Checkbox
             value="telegram"
-            labelPlacement="start"
             className="w-68 rounded-lg border p-4 [&>[data-ui=checkbox]]:self-start"
           >
             <div className="flex flex-col gap-y-1">
@@ -333,7 +324,7 @@ export function ToggleDarkMode() {
         aria-label="Toggle dark mode"
         render={({ isSelected }) => {
           return (
-            <span className="flex p-2.5 shadow-outline rounded-lg">
+            <span className="shadow-outline flex rounded-lg p-2.5">
               <Icon className="size-4">
                 {isSelected ? <MoonIcon /> : <SunIcon />}
               </Icon>

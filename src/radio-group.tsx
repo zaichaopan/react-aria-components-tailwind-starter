@@ -11,12 +11,60 @@ import { twMerge } from 'tailwind-merge';
 import { DescriptionContext, DescriptionProvider } from './field';
 import { composeTailwindRenderProps, groupBox } from './utils';
 
-export function RadioGroup(props: RACRadioGroupProps) {
+type RadioGroupVariant = {
+  variant?: 'radio' | 'segment' | 'card' | 'button';
+  orientation?: 'vertical' | 'horizontal';
+  labelPlacement?: 'start' | 'end';
+};
+
+const RadioGroupVariantContext = React.createContext<RadioGroupVariant | null>(
+  null,
+);
+
+const useRadioGroupVariantContext = () => {
+  const {
+    labelPlacement = 'end',
+    orientation = 'vertical',
+    variant = 'radioGroup',
+  } = React.useContext(RadioGroupVariantContext) ?? {};
+
+  return {
+    labelPlacement,
+    orientation,
+    variant,
+  };
+};
+
+export function RadioGroup({
+  children,
+  variant = 'radio',
+  orientation,
+  labelPlacement = 'end',
+  ...props
+}: RACRadioGroupProps & Pick<RadioGroupVariant, 'variant' | 'labelPlacement'>) {
+  if (variant === 'segment') {
+    orientation = orientation ?? 'horizontal';
+  }
+
   return (
-    <RACRadioGroup
-      {...props}
-      className={composeTailwindRenderProps(props.className, groupBox)}
-    />
+    <RadioGroupVariantContext.Provider
+      value={{ variant, orientation, labelPlacement }}
+    >
+      <RACRadioGroup
+        {...props}
+        orientation={orientation}
+        className={composeTailwindRenderProps(props.className, [
+          groupBox,
+          variant === 'segment' && [
+            orientation === 'vertical' && ['items-start'],
+            '[--segment-padding:--spacing(0.5)]',
+            '[--segment-radius:var(--radius-lg)]',
+          ],
+        ])}
+      >
+        {children}
+      </RACRadioGroup>
+    </RadioGroupVariantContext.Provider>
   );
 }
 
@@ -24,16 +72,22 @@ export function Radios({
   className,
   ...props
 }: React.JSX.IntrinsicElements['div']) {
+  const { variant, orientation } = useRadioGroupVariantContext();
+
   return (
     <div
       data-ui="box"
       className={twMerge(
         'flex',
         'flex-col',
-        'group-aria-[orientation=horizontal]:flex-row',
-        'group-aria-[orientation=horizontal]:flex-wrap',
-        // When any radio item has description, apply all `font-medium` to all radio item labels
-        'has-data-[ui=description]:[&_label]:font-medium',
+        'has([data-ui=description]):not([class*=gap-y])]:gap-y-4 gap-y-3',
+        orientation === 'horizontal' && ['flex-row flex-wrap gap-x-4 gap-y-2'],
+        variant === 'card' && ['gap-x-6, gap-y-6'],
+        variant === 'segment' && [
+          'bg-zinc-100 p-0.5 dark:bg-zinc-800',
+          'rounded-(--segment-radius)',
+          orientation === 'horizontal' && ['min-w-sm'],
+        ],
         className,
       )}
       {...props}
@@ -45,17 +99,21 @@ export function RadioField({
   className,
   ...props
 }: React.JSX.IntrinsicElements['div']) {
+  const { labelPlacement } = useRadioGroupVariantContext();
+
   return (
     <DescriptionProvider>
       <div
         {...props}
         data-ui="field"
         className={twMerge(
-          'group flex flex-col gap-y-1',
-          'has-data-[label-placement=start]:[&_label]:justify-between',
-          'has-[label[data-label-placement=start]]:[&_[data-ui=description]:not([class*=pe-])]:pe-16',
-          'has-[label[data-label-placement=end]]:[&_[data-ui=description]:not([class*=ps-])]:ps-7',
-          'has-[label[data-disabled]]:**:data-[ui=description]:opacity-50',
+          'group flex flex-col gap-y-1 has-[label[data-disabled]]:**:data-[ui=description]:opacity-50',
+          labelPlacement === 'start' && [
+            '[&_[data-ui=description]:not([class*=pe-])]:pe-16 [&_label]:justify-between',
+          ],
+          labelPlacement === 'end' && [
+            '[&_[data-ui=description]:not([class*=ps-])]:ps-7',
+          ],
           className,
         )}
       />
@@ -63,10 +121,7 @@ export function RadioField({
   );
 }
 
-type LabelPlacement = 'start' | 'end';
-
 export interface RadioProps extends RACRadioProps {
-  labelPlacement?: LabelPlacement;
   radio?:
     | React.ReactElement
     | ((props: Partial<RadioRenderProps>) => React.ReactNode);
@@ -83,8 +138,44 @@ export interface CustomRenderRadioProps
   children?: never;
 }
 
+const radioStyle = {
+  card: {
+    base: [
+      'flex-1 rounded-lg px-4 py-3 items-start [&>[data-slot=radio]:not([class*=mt-])]:mt-1.5',
+      'data-selected:ring-ring',
+      'data-selected:ring-2',
+      'ring ring-border',
+    ],
+  },
+  segment: {
+    base: [
+      'flex',
+      'justify-center',
+      'items-center',
+      'flex-1 text-center font-medium rounded-[calc(var(--segment-radius)-var(--segment-padding))]',
+      'transition-all ease-in-out',
+      'data-selected:bg-white  dark:data-selected:bg-zinc-600',
+      '[&:not(:is([data-selected],[data-hovered]))]:text-muted',
+      'data-selected:shadow-sm dark:data-selected:shadow-none',
+      'data-selected:ring data-selected:ring-zinc-950/10',
+      '[&_[data-ui=icon]:not([class*=size-])]:size-4',
+    ],
+    horizontal: ['px-4 py-1'],
+    vertical: ['p-2'],
+  },
+  button: {
+    base: [
+      'rounded-md border px-4 py-2 font-semibold',
+      'data-selected:border-accent data-selected:bg-accent data-selected:text-[lch(from_var(--accent)_calc((49.44_-_l)_*_infinity)_0_0)]',
+      'data-focus-visible:outline-ring data-focus-visible:outline-2 data-focus-visible:outline-offset-2'
+    ],
+  },
+};
+
 export function Radio(props: RadioProps | CustomRenderRadioProps) {
   const descriptionContext = React.useContext(DescriptionContext);
+  const { variant, orientation, labelPlacement } =
+    useRadioGroupVariantContext();
 
   if (props.render !== undefined) {
     const { render, ...restProps } = props;
@@ -97,9 +188,15 @@ export function Radio(props: RadioProps | CustomRenderRadioProps) {
           props.className,
           (className, { isDisabled, isFocusVisible }) =>
             twMerge(
-              'group text-base/6 sm:text-sm/6',
               isDisabled && 'opacity-50',
               isFocusVisible && 'outline-ring outline-2 outline-offset-3',
+              'group text-base/6 sm:text-sm/6',
+              variant === 'card' && [radioStyle.card['base']],
+              variant === 'segment' && [
+                radioStyle.segment['base'],
+                radioStyle.segment[orientation],
+              ],
+              variant === 'button' && [radioStyle.button['base']],
               className,
             ),
         )}
@@ -109,20 +206,25 @@ export function Radio(props: RadioProps | CustomRenderRadioProps) {
     );
   }
 
-  const { labelPlacement = 'end', radio, ...restProps } = props;
+  const { radio, ...restProps } = props;
 
   return (
     <RACRadio
       {...restProps}
       aria-describedby={descriptionContext?.['aria-describedby']}
-      data-label-placement={labelPlacement}
       className={composeRenderProps(
         props.className,
         (className, { isDisabled }) =>
           twMerge(
             'group flex items-center text-base/6 sm:text-sm/6',
-            'group-aria-[orientation=horizontal]:text-nowrap',
+            orientation === 'horizontal' && 'text-nowrap',
             labelPlacement === 'start' && 'flex-row-reverse justify-between',
+            variant === 'card' && [radioStyle.card['base']],
+            variant === 'segment' && [
+              radioStyle.segment['base'],
+              radioStyle.segment[orientation],
+            ],
+            variant === 'button' && [radioStyle.button['base']],
             isDisabled && 'opacity-50',
             className,
           ),
@@ -131,15 +233,17 @@ export function Radio(props: RadioProps | CustomRenderRadioProps) {
       {(renderProps) => {
         return (
           <>
-            <RadioToggle
-              data-slot="radio"
-              radio={radio}
-              renderProps={renderProps}
-              className={twMerge(
-                labelPlacement === 'end' ? 'me-3' : 'ms-3',
-                !radio && 'size-4.5 sm:size-4',
-              )}
-            />
+            {variant !== 'button' && (
+              <RadioToggle
+                data-slot="radio"
+                radio={radio}
+                renderProps={renderProps}
+                className={twMerge(
+                  labelPlacement === 'end' ? 'me-3' : 'ms-3',
+                  !radio && 'size-4.5 sm:size-4',
+                )}
+              />
+            )}
 
             {typeof props.children === 'function'
               ? props.children(renderProps)

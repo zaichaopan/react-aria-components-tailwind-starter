@@ -17,20 +17,50 @@ export interface CheckboxGroupProps
   extends Omit<RACCheckboxGroupProps, 'children'> {
   children?: ReactNode;
   orientation?: 'vertical' | 'horizontal';
+  variant?: 'checkbox' | 'card' | 'button';
+  labelPlacement?: 'start' | 'end';
 }
+
+type CheckBoxGroupVariant = Pick<
+  CheckboxGroupProps,
+  'orientation' | 'variant' | 'labelPlacement'
+>;
+
+const CheckboxVariantContext = React.createContext<CheckBoxGroupVariant | null>(
+  null,
+);
+
+const useCheckboxGroupVariantContext = () => {
+  const {
+    labelPlacement = 'end',
+    orientation = 'vertical',
+    variant = 'checkbox',
+  } = React.useContext(CheckboxVariantContext) ?? {};
+
+  return {
+    labelPlacement,
+    orientation,
+    variant,
+  };
+};
 
 export function CheckboxGroup({
   orientation = 'vertical',
+  variant = 'checkbox',
+  labelPlacement = 'end',
   ...props
 }: CheckboxGroupProps) {
   return (
-    <RACCheckboxGroup
-      {...props}
-      data-orientation={orientation}
-      className={composeRenderProps(props.className, (className) => {
-        return twMerge(groupBox, className);
-      })}
-    />
+    <CheckboxVariantContext.Provider
+      value={{ variant, orientation, labelPlacement }}
+    >
+      <RACCheckboxGroup
+        {...props}
+        className={composeRenderProps(props.className, (className) => {
+          return twMerge(groupBox, className);
+        })}
+      />
+    </CheckboxVariantContext.Provider>
   );
 }
 
@@ -38,14 +68,19 @@ export function Checkboxes({
   className,
   ...props
 }: React.JSX.IntrinsicElements['div']) {
+  const { orientation } = useCheckboxGroupVariantContext();
   return (
     <div
       data-ui="box"
       className={twMerge(
         'flex flex-col',
-        'group-data-[orientation=horizontal]:flex-row',
-        'group-data-[orientation=horizontal]:flex-wrap',
+        orientation === 'horizontal' && [
+          'flex-row flex-wrap',
+          'gap-x-4 gap-y-2',
+          'has([data-ui=description]):not([class*=gap-y])]:gap-y-4',
+        ],
         'has-data-[ui=description]:[&_label]:font-medium',
+
         className,
       )}
       {...props}
@@ -75,11 +110,9 @@ export function CheckboxField({
   );
 }
 
-type LabelPlacement = 'start' | 'end';
-
 interface CheckboxProps extends RACCheckboxProps {
-  labelPlacement?: LabelPlacement;
   render?: never;
+  labelPlacement?: CheckboxGroupProps['labelPlacement'];
 }
 
 export interface CustomRenderCheckboxProps
@@ -92,6 +125,7 @@ export interface CustomRenderCheckboxProps
 
 export function Checkbox(props: CheckboxProps | CustomRenderCheckboxProps) {
   const descriptionContext = React.useContext(DescriptionContext);
+  const { labelPlacement, orientation } = useCheckboxGroupVariantContext();
 
   if (props.render) {
     const { render, ...restProps } = props;
@@ -119,7 +153,8 @@ export function Checkbox(props: CheckboxProps | CustomRenderCheckboxProps) {
     );
   }
 
-  const { labelPlacement = 'end', ...restProps } = props;
+  const { labelPlacement: itemLabelPlacement, ...restProps } = props;
+  const placement = itemLabelPlacement ?? labelPlacement;
 
   return (
     <RACCheckbox
@@ -130,8 +165,9 @@ export function Checkbox(props: CheckboxProps | CustomRenderCheckboxProps) {
         props.className,
         (className, renderProps) => {
           return twMerge(
-            'group flex items-center text-base/6 group-data-[orientation=horizontal]:text-nowrap sm:text-sm/6',
-            labelPlacement === 'start' && 'flex-row-reverse justify-between',
+            'group flex items-center text-base/6 sm:text-sm/6',
+            orientation === 'horizontal' && ['text-nowrap'],
+            placement === 'start' && 'flex-row-reverse justify-between',
             renderProps.isDisabled && 'opacity-50',
             className,
           );
@@ -142,9 +178,9 @@ export function Checkbox(props: CheckboxProps | CustomRenderCheckboxProps) {
         return (
           <>
             <CheckToggle
-              {...renderProps}
+              renderProps={renderProps}
               className={twMerge(
-                labelPlacement === 'end' ? 'me-3' : 'ms-3',
+                placement === 'end' ? 'me-3' : 'ms-3',
                 'size-4.5 sm:size-4',
               )}
             />
@@ -159,19 +195,11 @@ export function Checkbox(props: CheckboxProps | CustomRenderCheckboxProps) {
   );
 }
 
-type BoxProps = Partial<CheckboxRenderProps> &
-  Omit<React.JSX.IntrinsicElements['div'], 'children'>;
+type BoxProps = {
+  renderProps?: Partial<CheckboxRenderProps>;
+} & Omit<React.JSX.IntrinsicElements['div'], 'children'>;
 
-export function CheckToggle({
-  isReadOnly,
-  isHovered,
-  isSelected,
-  isIndeterminate,
-  isInvalid,
-  isFocusVisible,
-  className,
-  ...props
-}: BoxProps) {
+export function CheckToggle({ renderProps, className, ...props }: BoxProps) {
   return (
     <div
       {...props}
@@ -179,15 +207,16 @@ export function CheckToggle({
       className={twMerge([
         'size-4',
         'flex shrink-0 items-center justify-center rounded-sm shadow ring ring-zinc-950/15 dark:ring-white/20',
-        isReadOnly
+        renderProps?.isReadOnly
           ? 'opacity-50'
-          : isHovered && 'ring-zinc-950/25 dark:ring-white/25',
-        isSelected || isIndeterminate
+          : renderProps?.isHovered && 'ring-zinc-950/25 dark:ring-white/25',
+        renderProps?.isSelected || renderProps?.isIndeterminate
           ? 'ring-accent bg-accent shadow-[inset_0_1px_0_0_rgba(255,255,255,0.1)] dark:ring-0'
           : 'dark:bg-white/5 dark:[--contract:1.05]',
 
-        isInvalid && 'ring-red-600 dark:ring-red-600',
-        isFocusVisible && 'outline-ring outline-2 outline-offset-3',
+        renderProps?.isInvalid && 'ring-red-600 dark:ring-red-600',
+        renderProps?.isFocusVisible &&
+          'outline-ring outline-2 outline-offset-3',
 
         // when used in menu item as the selected indicator
         'in-[&[data-ui=content][data-hovered=true]]:ring-zinc-950/25',
@@ -204,7 +233,7 @@ export function CheckToggle({
       <CheckIcon
         className={twMerge(
           'hidden size-4 text-[lch(from_var(--accent)_calc((49.44_-_l)_*_infinity)_0_0)]',
-          isSelected && !isIndeterminate && 'inline',
+          renderProps?.isSelected && !renderProps.isIndeterminate && 'inline',
           'in-[&[data-ui=content][data-selected=true]]:inline',
         )}
       />
@@ -212,7 +241,7 @@ export function CheckToggle({
       <MinusIcon
         className={twMerge(
           'hidden size-4 text-[lch(from_var(--accent)_calc((49.44_-_l)_*_infinity)_0_0)]',
-          isIndeterminate && 'inline',
+          renderProps?.isIndeterminate && 'inline',
         )}
       />
     </div>

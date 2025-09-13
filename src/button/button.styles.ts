@@ -55,6 +55,7 @@ export function getButtonStyles(
         'group inline-flex gap-x-2 justify-center items-center font-semibold',
         'text-base/6 text-(--btn-color) sm:text-sm/6 [&_svg[data-ui=icon]:not([class*=size-])]:size-(--icon-size)',
         isPressed && 'scale-[0.98]',
+        !isIconOnly && '[--icon-color:var(--btn-color)]/50',
         !isHovered &&
           !isPressed &&
           '[&_svg[data-ui=icon]:not([class*=text-])]:text-(--icon-color)',
@@ -74,25 +75,16 @@ export function getButtonStyles(
               color === 'green' && '[--btn-color:var(--color-green-600)]',
             ],
       ],
-      solid: [
-        'bg-(--btn-bg)',
-        isHovered && !isDisabled && 'opacity-85',
-        !isIconOnly && '[--icon-color:var(--btn-color)]/75',
-      ],
+      solid: ['bg-(--btn-bg)', isHovered && !isDisabled && 'opacity-85'],
       outline: [
         'bg-white dark:bg-white/5',
         'shadow-outline in-[[data-ui=button-group]]:shadow-none dark:in-[[data-ui=button-group]]:shadow-none',
         isHovered && !isDisabled && 'bg-zinc-50 dark:bg-zinc-800',
-        !isIconOnly && '[--icon-color:var(--btn-color)]/75',
       ],
-      plain: [
-        isHovered && !isDisabled && 'bg-zinc-200/50 dark:bg-zinc-800/95',
-        !isIconOnly && '[--icon-color:var(--btn-color)]/75',
-      ],
+      plain: [isHovered && !isDisabled && 'bg-zinc-200/50 dark:bg-zinc-800/95'],
       link: [
         'underline underline-offset-4 decoration-(--btn-color)/25',
         isHovered && !isDisabled && 'decoration-(--btn-color)',
-        !isIconOnly && '[--icon-color:var(--btn-color)]',
       ],
     },
     size: {
@@ -147,7 +139,7 @@ export function getButtonGroupStyles(
       '[&>button:focus-visible]:z-10',
       '[&>*:not(:first-child):not(:last-child)]:rounded-none',
       '[&>*[data-variant=solid]:not(:first-child)]:border-s',
-      '[&>*[data-variant=solid]:not(:first-child)]:border-s-[oklch(from_var(--btn-bg)_calc(l*0.85)_c_h)]',
+      '[&>*[data-variant=solid]:not(:first-child)]:border-s-[oklch(from_var(--btn-color)_calc(l*0.4)_c_h)]',
 
       '[&:has([data-variant=outline])]:rounded-lg',
       '[&:has([data-variant=outline])]:shadow-outline',
