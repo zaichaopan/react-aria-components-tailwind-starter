@@ -5,12 +5,20 @@ import { Form } from '../src/form';
 import { Button } from '../src/button';
 import { docs } from '../.storybook/docs';
 import { FieldError, Label, Description } from '../src/field';
-import { Small, TextLink } from '../src/text';
+import { Small, Strong, Text, TextLink } from '../src/text';
 import { Icon } from '../src/icon';
 import { twMerge } from 'tailwind-merge';
-import { MonitorIcon, MoonStarIcon, SunIcon } from 'lucide-react';
+import {
+  BoxIcon,
+  ClockIcon,
+  MonitorIcon,
+  MoonStarIcon,
+  SunIcon,
+  TruckIcon,
+} from 'lucide-react';
 import { CheckIcon } from '../src/icons/outline/check';
 import { Badge } from '../src/badge';
+import { Separator } from '../src/separator';
 
 const meta: Meta = {
   parameters: {
@@ -105,10 +113,14 @@ export const LabelPlacement = () => {
           </Description>
         </RadioField>
 
+        <Separator soft className="my-2" />
+
         <RadioField>
           <Radio value="enable">Approve</Radio>
           <Description>Automatically plays animated images</Description>
         </RadioField>
+
+        <Separator soft className="my-2" />
 
         <Radio value="disabled">Disabled</Radio>
       </Radios>
@@ -422,7 +434,12 @@ export function RadioCards() {
             },
           ].map((option) => {
             return (
-              <Radio key={option.name} value={option.name} className="w-48">
+              <Radio
+                radio={null}
+                key={option.name}
+                value={option.name}
+                className="w-48"
+              >
                 <div className="flex w-full flex-col gap-3">
                   <div className="flex flex-1 flex-col">
                     <div className="flex font-medium">{option.name}</div>
@@ -436,14 +453,8 @@ export function RadioCards() {
         </Radios>
       </RadioGroup>
 
-      <RadioGroup
-        defaultValue="Standard"
-        labelPlacement="start"
-        orientation="vertical"
-        variant="card"
-        className="mx-auto"
-      >
-        <Label>Shipping</Label>
+      <RadioGroup defaultValue="Standard" variant="card" compact>
+        <Label>Shipping (compact)</Label>
         <Radios>
           {[
             {
@@ -467,9 +478,102 @@ export function RadioCards() {
                 <div className="flex w-full flex-col gap-3">
                   <div className="flex flex-1 flex-col">
                     <div className="flex font-medium">{option.name}</div>
+                    <div className="text-muted group-data-selected:text-accent">
+                      {option.description}
+                    </div>
+                  </div>
+                  <div className="font-medium">{option.price}</div>
+                </div>
+              </Radio>
+            );
+          })}
+        </Radios>
+      </RadioGroup>
+
+      <RadioGroup
+        defaultValue="Standard"
+        labelPlacement="start"
+        orientation="vertical"
+        variant="card"
+      >
+        <Label>Shipping</Label>
+        <Radios>
+          {[
+            {
+              name: 'Standard',
+              description: ' 4-6 business days',
+              price: ' $4.99',
+            },
+            {
+              name: 'Express',
+              description: ' 2-5 business days',
+              price: ' $15.99',
+            },
+            {
+              name: 'Lightning',
+              description: ' 1 business day',
+              price: ' $24.99',
+            },
+          ].map((option) => {
+            return (
+              <Radio key={option.name} value={option.name} className="w-64">
+                <div className="flex w-full flex-col gap-3">
+                  <div className="flex flex-1 flex-col">
+                    <div className="flex font-medium">{option.name}</div>
                     <div className="text-gray-500">{option.description}</div>
                   </div>
                   <div className="font-medium">{option.price}</div>
+                </div>
+              </Radio>
+            );
+          })}
+        </Radios>
+      </RadioGroup>
+
+      <RadioGroup
+        defaultValue="Standard"
+        orientation="horizontal"
+        variant="card"
+      >
+        <Label>Shipping</Label>
+        <Radios>
+          {[
+            {
+              name: 'Standard',
+              description: ' 4-6 business days',
+              price: ' $4.99',
+              icon: <TruckIcon />,
+            },
+            {
+              name: 'Express',
+              description: ' 2-5 business days',
+              price: ' $15.99',
+              icon: <BoxIcon />,
+            },
+            {
+              name: 'Lightning',
+              description: ' 1 business day',
+              price: ' $24.99',
+              icon: <ClockIcon />,
+            },
+          ].map((option) => {
+            return (
+              <Radio
+                key={option.name}
+                value={option.name}
+                radio={null}
+                className="w-56"
+              >
+                <div className="flex gap-2.5">
+                  <Icon>{option.icon}</Icon>
+
+                  <div>
+                    <Strong>{option.name}</Strong>
+                    <div>
+                      <Text>{option.description}</Text>
+                      <Strong>{option.price}</Strong>
+                    </div>
+                  </div>
                 </div>
               </Radio>
             );
@@ -489,7 +593,7 @@ export function RadioCards() {
             value="yearly"
             radio={
               <span className="hidden size-4 place-items-center rounded-full group-data-selected:grid group-data-selected:text-white">
-                <CheckIcon className="size-3" />
+                <CheckIcon className="size-3 text-white" />
               </span>
             }
           >
@@ -508,7 +612,7 @@ export function RadioCards() {
             value="monthly"
             radio={
               <span className="hidden size-4 place-items-center rounded-full group-data-selected:grid group-data-selected:text-white">
-                <CheckIcon className="size-3" />
+                <CheckIcon className="size-3 text-white" />
               </span>
             }
           >
@@ -525,100 +629,141 @@ export function RadioCards() {
   );
 }
 
-export function AccentColors() {
+export function CustomRender() {
   return (
-    <RadioGroup orientation="horizontal" defaultValue="blue">
-      <Label>Choose a accent color</Label>
-      <Radios className="gap-x-2">
-        {[
-          {
-            value: 'blue',
-            color: 'bg-blue-500',
-          },
-          {
-            value: 'purple',
-            color: 'bg-purple-500',
-          },
-          {
-            value: 'pink',
-            color: 'bg-pink-500',
-          },
-          {
-            value: 'red',
-            color: 'bg-red-500',
-          },
-          {
-            value: 'orange',
-            color: 'bg-orange-500',
-          },
-          {
-            value: 'yellow',
-            color: 'bg-yellow-500',
-          },
-          {
-            value: 'green',
-            color: 'bg-green-500',
-          },
-        ].map((color) => {
-          return (
-            <Radio
-              value={color.value}
-              key={color.value}
-              aria-label={color.value}
-              className="rounded-full"
-              render={({ isSelected }) => (
-                <div
-                  className={twMerge(
-                    'grid size-6 place-items-center rounded-full',
-                    color.color,
-                  )}
+    <div className="flex flex-col space-y-12">
+      <RadioGroup orientation="horizontal" defaultValue={'6 CPU'}>
+        <Label className="flex justify-between">
+          CPU
+          <TextLink className="text-muted no-underline">
+            See performance specs
+          </TextLink>
+        </Label>
+
+        <Radios>
+          {['2 CPU', '4 CPU', '6 CPU', '8 CPU', '12 CPU', '16 CPU'].map(
+            (option) => {
+              return (
+                <Radio
+                  isDisabled={option === '16 CPU'}
+                  key={option}
+                  value={option}
+                  radio={null}
+                  className="rounded-md"
                 >
-                  <div
-                    className={twMerge(
-                      'size-0 transition-all',
-                      isSelected ? 'size-2.5 rounded-full bg-white' : '',
-                    )}
-                  ></div>
-                </div>
-              )}
-            />
-          );
-        })}
-      </Radios>
-    </RadioGroup>
-  );
-}
+                  {({ isSelected }) => {
+                    return (
+                      <Badge
+                        data-selection-mode="single"
+                        color="white"
+                        {...(isSelected && {
+                          variant: 'solid',
+                        })}
+                        className={twMerge('px-4 py-2 text-sm/6')}
+                      >
+                        {option}
+                      </Badge>
+                    );
+                  }}
+                </Radio>
+              );
+            },
+          )}
+        </Radios>
+      </RadioGroup>
 
-export function RadioButtons() {
-  return (
-    <RadioGroup
-      orientation="horizontal"
-      defaultValue={'6 CPU'}
-      variant="button"
-    >
-      <Label className="flex justify-between">
-        CPU
-        <TextLink className="text-muted no-underline">
-          See performance specs
-        </TextLink>
-      </Label>
+      <RadioGroup orientation="horizontal" defaultValue={'High'}>
+        <Label className="flex justify-between">Priority</Label>
 
-      <Radios>
-        {['2 CPU', '4 CPU', '6 CPU', '8 CPU', '12 CPU', '16 CPU'].map(
-          (option) => {
+        <Radios>
+          {['Low', 'Medium', 'High', 'Critical'].map((option) => {
             return (
               <Radio
-                isDisabled={option === '16 CPU'}
                 key={option}
                 value={option}
+                radio={null}
+                className="rounded-full"
               >
-                {option}
+                {({ isSelected }) => {
+                  return (
+                    <Badge
+                      data-selection-mode="single"
+                      color="black"
+                      {...(isSelected && {
+                        variant: 'solid',
+                      })}
+                      className="rounded-full"
+                    >
+                      {option}
+                    </Badge>
+                  );
+                }}
               </Radio>
             );
-          },
-        )}
-      </Radios>
-    </RadioGroup>
+          })}
+        </Radios>
+      </RadioGroup>
+
+      <RadioGroup orientation="horizontal" defaultValue="blue">
+        <Label>Choose a accent color</Label>
+        <Radios className="gap-x-2">
+          {[
+            {
+              value: 'blue',
+              color: 'bg-blue-500',
+            },
+            {
+              value: 'purple',
+              color: 'bg-purple-500',
+            },
+            {
+              value: 'pink',
+              color: 'bg-pink-500',
+            },
+            {
+              value: 'red',
+              color: 'bg-red-500',
+            },
+            {
+              value: 'orange',
+              color: 'bg-orange-500',
+            },
+            {
+              value: 'yellow',
+              color: 'bg-yellow-500',
+            },
+            {
+              value: 'green',
+              color: 'bg-green-500',
+            },
+          ].map((color) => {
+            return (
+              <Radio
+                value={color.value}
+                key={color.value}
+                aria-label={color.value}
+                className="rounded-full"
+                render={({ isSelected }) => (
+                  <div
+                    className={twMerge(
+                      'grid size-6 place-items-center rounded-full',
+                      color.color,
+                    )}
+                  >
+                    <div
+                      className={twMerge(
+                        'size-0 transition-all',
+                        isSelected ? 'size-2.5 rounded-full bg-white' : '',
+                      )}
+                    ></div>
+                  </div>
+                )}
+              />
+            );
+          })}
+        </Radios>
+      </RadioGroup>
+    </div>
   );
 }
 

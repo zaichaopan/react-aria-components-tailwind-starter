@@ -35,15 +35,6 @@ export const groupBox = [
   // Group box style
   '[&:not(:has([data-ui=description]+[data-ui=box]))>[data-ui=box]:not([class*=mt-])]:mt-3',
 
-  '[&:has(:is([type=checkbox],[role=switch]))_[data-ui=box]:not([class*=gap-])]:gap-y-3',
-
-  // Box item description inside
-  '[&:has(:is([role=switch]))_[data-ui=box]:has([data-ui=description]):not([class*=gap-y])]:gap-y-4',
-
-  // Horizontal
-  '[&[data-orientation=horizontal]:has(:is([role=switch]))_[data-ui=box]:not([class*=gap-x-])]:gap-x-4',
-  '[&[data-orientation=horizontal]:has(:is([role=switch]))_[data-ui=box]:not([class*=gap-y-])]:gap-y-2',
-
   // Error
   '[&:has([data-ui=box]+[data-ui=errorMessage])_[data-ui=errorMessage]]:mt-2',
 ].join(' ');

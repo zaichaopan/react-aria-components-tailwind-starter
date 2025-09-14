@@ -11,14 +11,35 @@ import {
 import { groupBox, composeTailwindRenderProps } from './utils';
 import { DescriptionProvider, DescriptionContext, LabeledGroup } from './field';
 
-export function SwitchGroup(props: GroupProps) {
+type SwitchGroupVariant = {
+  labelPlacement?: 'start' | 'end';
+};
+
+const SwitchGroupVariantContext =
+  React.createContext<SwitchGroupVariant | null>(null);
+
+const useSwitchGroupVariantContext = () => {
+  const { labelPlacement = 'end' } =
+    React.useContext(SwitchGroupVariantContext) ?? {};
+
+  return {
+    labelPlacement,
+  } as SwitchGroupVariant;
+};
+
+export function SwitchGroup({
+  labelPlacement = 'end',
+  ...props
+}: GroupProps & SwitchGroupVariant) {
   return (
-    <LabeledGroup>
-      <Group
-        {...props}
-        className={composeTailwindRenderProps(props.className, groupBox)}
-      ></Group>
-    </LabeledGroup>
+    <SwitchGroupVariantContext.Provider value={{ labelPlacement }}>
+      <LabeledGroup>
+        <Group
+          {...props}
+          className={composeTailwindRenderProps(props.className, groupBox)}
+        ></Group>
+      </LabeledGroup>
+    </SwitchGroupVariantContext.Provider>
   );
 }
 
@@ -32,6 +53,8 @@ export function Switches({
       data-ui="box"
       className={twMerge(
         'flex flex-col',
+        'gap-y-3',
+        'has-data-[ui=description]:gap-y-4',
         // When any switch item has description, apply all `font-medium` to all switch item labels
         'has-data-[ui=description]:[&_label]:font-medium',
         className,
@@ -78,6 +101,7 @@ export interface CustomRenderSwitchProps
 
 export function Switch(props: SwitchProps | CustomRenderSwitchProps) {
   const descriptionContext = React.useContext(DescriptionContext);
+  const { labelPlacement } = useSwitchGroupVariantContext();
 
   if (props.render) {
     const { render, ...restProps } = props;
@@ -101,19 +125,25 @@ export function Switch(props: SwitchProps | CustomRenderSwitchProps) {
     );
   }
 
-  const { labelPlacement = 'end', size, children, ...restProps } = props;
+  const {
+    labelPlacement: itemLabelPlacement,
+    size,
+    children,
+    ...restProps
+  } = props;
+  const placement = itemLabelPlacement ?? labelPlacement;
 
   return (
     <RACSwitch
       {...restProps}
       aria-describedby={descriptionContext?.['aria-describedby']}
-      data-label-placement={labelPlacement}
+      data-label-placement={placement}
       className={composeRenderProps(
         props.className,
         (className, { isDisabled }) =>
           twMerge(
             'group flex items-center text-base/6 sm:text-sm/6',
-            labelPlacement === 'start' && 'flex-row-reverse justify-between',
+            placement === 'start' && 'flex-row-reverse justify-between',
             isDisabled && 'opacity-50',
             className,
           ),
@@ -124,7 +154,7 @@ export function Switch(props: SwitchProps | CustomRenderSwitchProps) {
           <SwitchToggle
             className={twMerge([
               'h-6 w-11',
-              labelPlacement === 'end' ? 'me-3' : 'ms-3',
+              placement === 'end' ? 'me-3' : 'ms-3',
 
               '[&>[data-ui=handle]]:size-5',
               renderProps.isSelected &&
@@ -177,7 +207,6 @@ export function SwitchToggle({
         // When it is inside menu item and the item is selected
         'in-[&[data-ui=content][data-hovered=true]]:ring-zinc-400/70',
         'in-[&[data-ui=content][data-hovered=true]]:dark:inset-ring-white/15',
-
 
         'in-[&[data-ui=content][data-selected=true]]:bg-accent',
         'in-[&[data-ui=content][data-selected=true]]:dark:bg-accent',

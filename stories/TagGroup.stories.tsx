@@ -88,7 +88,11 @@ export const Colors = () => {
         <Tag id="white" color="white">
           label
         </Tag>
+
         <Tag id="zinc" color="zinc">
+          label
+        </Tag>
+        <Tag id="black" color="black">
           label
         </Tag>
         <Tag id="red" color="red">
@@ -212,7 +216,6 @@ export function TagInput() {
   const [inputValue, setInputValue] = React.useState('');
 
   function handleKeyDown(e: React.KeyboardEvent) {
-    console.log(e.key);
     if (e.key === 'Enter' || e.key === ',' || e.key === ';') {
       e.preventDefault();
       addTag();
@@ -237,10 +240,6 @@ export function TagInput() {
       );
 
       if (!hasTagExists) {
-        console.log('adding tag', formattedName, [
-          ...Array.from(skillIds),
-          formattedName,
-        ]);
         return setSkillIds(new Set([...Array.from(skillIds), formattedName]));
       }
     });

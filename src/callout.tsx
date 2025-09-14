@@ -130,7 +130,8 @@ export default function Callout({
         className={twMerge(
           '[--callout-icon:var(--muted)]',
           '[--callout-border:var(--border)]',
-
+          'px-4 py-2',
+          
           color
             ? [
                 colors[color],
@@ -141,7 +142,7 @@ export default function Callout({
               ],
 
           'group w-full border-(--callout-border) bg-(--callout-bg)',
-          'grid grid-cols-[auto_1fr_auto_auto] px-4 py-2',
+          'grid grid-cols-[auto_1fr_auto_auto]',
 
           center
             ? [
@@ -152,6 +153,7 @@ export default function Callout({
               ]
             : 'rounded-lg border',
           '[&:has([data-ui=callout-heading]+[data-ui=callout-description])]:[--callout-content-row-end:3]',
+
           className,
         )}
       />
