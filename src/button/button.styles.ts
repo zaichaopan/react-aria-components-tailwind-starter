@@ -55,7 +55,11 @@ export function getButtonStyles(
         'group inline-flex gap-x-2 justify-center items-center font-semibold',
         'text-base/6 text-(--btn-color) sm:text-sm/6 [&_svg[data-ui=icon]:not([class*=size-])]:size-(--icon-size)',
         isPressed && 'scale-[0.98]',
-        !isIconOnly && '[--icon-color:var(--btn-color)]/50',
+        !isIconOnly && [
+          variant === 'solid'
+            ? '[--icon-color:var(--btn-color)]/75'
+            : '[--icon-color:var(--btn-color)]/50',
+        ],
         !isHovered &&
           !isPressed &&
           '[&_svg[data-ui=icon]:not([class*=text-])]:text-(--icon-color)',

@@ -44,3 +44,29 @@ export const BasicExample = () => {
     </EmptyState>
   );
 };
+
+export const StartAlignment = () => {
+  return (
+    <EmptyState className="h-screen" align='start'>
+      <EmptyStateIcon>
+        <FolderPlus strokeWidth="1" />
+      </EmptyStateIcon>
+      <div className="flex flex-col">
+        {/* <EmptyStateTitle>No projects</EmptyStateTitle> */}
+        <EmptyStateDescription>
+          Get started by creating a new project. You can add tasks, set
+          deadlines, and collaborate with your team.
+        </EmptyStateDescription>
+        <EmptyStateActions>
+          <Button>
+            <PlusIcon />
+            Add new project
+          </Button>
+          <Link variant="outline">
+            Read more <ArrowUpRightIcon />
+          </Link>
+        </EmptyStateActions>
+      </div>
+    </EmptyState>
+  );
+};

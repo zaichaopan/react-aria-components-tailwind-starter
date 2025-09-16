@@ -5,13 +5,20 @@ import { Heading, HeadingProps } from './heading';
 
 export function EmptyState({
   className,
+  align = 'center',
   ...props
-}: React.JSX.IntrinsicElements['div']) {
+}: React.JSX.IntrinsicElements['div'] & {
+  align?: 'start' | 'center';
+}) {
   return (
     <div
       {...props}
+      data-align={align}
       className={twMerge(
-        '@container mx-auto flex h-full w-full max-w-prose flex-col items-center justify-center gap-1 p-4 text-center',
+        '@container mx-auto flex h-full w-full flex-col justify-center gap-1 p-4',
+        align === 'start'
+          ? 'max-w-96 items-start'
+          : 'max-w-prose items-center text-center',
         className,
       )}
     />
@@ -57,13 +64,18 @@ export function EmptyStateTitle({
         : {
             level: level,
           })}
-      className={twMerge('text-balance', className)}
+      className={twMerge('in-data-[align=center]:text-balance', className)}
     />
   );
 }
 
 export function EmptyStateDescription({ className, ...props }: TextProps) {
-  return <Text {...props} className={twMerge('text-balance', className)} />;
+  return (
+    <Text
+      {...props}
+      className={twMerge('in-data-[align=center]:text-balance', className)}
+    />
+  );
 }
 
 export function EmptyStateActions({
@@ -74,7 +86,7 @@ export function EmptyStateActions({
     <div
       {...props}
       className={twMerge(
-        'mt-3 flex flex-wrap items-center justify-center gap-4 py-2',
+        'mt-3 flex flex-wrap items-center gap-4 py-2 in-data-[align=center]:justify-center',
         className,
       )}
     />
