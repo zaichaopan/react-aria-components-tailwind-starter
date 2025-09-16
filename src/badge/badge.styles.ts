@@ -21,7 +21,7 @@ const colors = {
   rose: '[--badge:var(--color-rose-500)]',
 };
 
-export type BadgeColor = keyof typeof colors | 'white';
+export type BadgeColor = keyof typeof colors | 'white' | 'black';
 
 export type BadgeVariant = 'solid';
 
@@ -49,6 +49,24 @@ export function getBadgeStyles(
     ];
   }
 
+  if (color === 'black') {
+    return [
+      base,
+      variant === 'solid'
+        ? 'bg-zinc-950 text-white dark:bg-white dark:text-zinc-950 data-selection-mode:hover:opacity-75'
+        : [
+            'bg-zinc-200',
+            'text-zinc-900',
+            'data-selection-mode:hover:bg-zinc-950',
+            'data-selection-mode:hover:text-white ',
+            'dark:bg-zinc-600',
+            'dark:text-white',
+            'data-selection-mode:dark:hover:bg-zinc-700',
+          ],
+      className,
+    ];
+  }
+
   return [
     base,
     'text-(--color)',
@@ -70,7 +88,7 @@ export function getBadgeStyles(
           'dark:[--bg:color-mix(in_oklab,_var(--badge)_40%,_black)]',
           'dark:[--color:color-mix(in_oklab,_var(--badge)_98%,_black)]',
 
-          'data-selection-mode:hover:dark:[--bg:color-mix(in_oklab,_var(--badge)_40%,_black)]',
+          'data-selection-mode:hover:dark:[--bg:color-mix(in_oklab,_var(--badge)_30%,_black)]',
         ],
     className,
   ];
