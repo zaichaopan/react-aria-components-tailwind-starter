@@ -93,7 +93,111 @@ export const BasicExample = () => {
   );
 };
 
-export function StepTitleAlignment() {
+export const LabelPlacement = () => {
+  const steps = 3;
+  const [value, setValue] = React.useState(0);
+
+  return (
+    <div className="flex flex-col p-8">
+      <Stepper value={value} steps={steps} onStepChange={setValue}>
+        {({ isFirstStep, isCompleted, prev, next }) => {
+          return (
+            <div className="space-y-12">
+              <StepList className="mx-auto max-w-xl" labelPlacement="top">
+                <Step step={1} counter={<StepCounter />}>
+                  Personal information
+                </Step>
+                <Step step={2} counter={<StepCounter />}>
+                  Household status
+                </Step>
+                <Step step={3} counter={<StepCounter />}>
+                  Supporting documents
+                </Step>
+              </StepList>
+
+              <div className="flex justify-center gap-x-4">
+                <Button
+                  variant="outline"
+                  type="button"
+                  className="min-w-24"
+                  isDisabled={isFirstStep}
+                  onPress={prev}
+                >
+                  Previous
+                </Button>
+                <Button
+                  variant="outline"
+                  type="button"
+                  className="min-w-24"
+                  isDisabled={isCompleted}
+                  onPress={next}
+                >
+                  Next
+                </Button>
+              </div>
+            </div>
+          );
+        }}
+      </Stepper>
+    </div>
+  );
+};
+
+export const CounterVariant = () => {
+  const steps = 3;
+  const [value, setValue] = React.useState(0);
+
+  return (
+    <div className="flex flex-col p-8">
+      <Stepper value={value} steps={steps} onStepChange={setValue}>
+        {({ isFirstStep, isCompleted, prev, next }) => {
+          return (
+            <div className="space-y-12">
+              <StepList
+                className="mx-auto max-w-xl"
+                labelPlacement="top"
+                compact
+              >
+                <Step step={1} counter={<StepCounter variant="dot" />}>
+                  Personal information
+                </Step>
+                <Step step={2} counter={<StepCounter variant="dot" />}>
+                  Household status
+                </Step>
+                <Step step={3} counter={<StepCounter variant="dot" />}>
+                  Supporting documents
+                </Step>
+              </StepList>
+
+              <div className="flex justify-center gap-x-4">
+                <Button
+                  variant="outline"
+                  type="button"
+                  className="min-w-24"
+                  isDisabled={isFirstStep}
+                  onPress={prev}
+                >
+                  Previous
+                </Button>
+                <Button
+                  variant="outline"
+                  type="button"
+                  className="min-w-24"
+                  isDisabled={isCompleted}
+                  onPress={next}
+                >
+                  Next
+                </Button>
+              </div>
+            </div>
+          );
+        }}
+      </Stepper>
+    </div>
+  );
+};
+
+export function StepLabelAlignment() {
   const steps = 3;
   const [value, setValue] = React.useState(0);
   return (
@@ -102,7 +206,7 @@ export function StepTitleAlignment() {
         {({ isFirstStep, isCompleted, prev, next }) => {
           return (
             <div className="space-y-12">
-              <StepList centered={false}>
+              <StepList alignment="start" compact>
                 <Step step={1} counter={<StepCounter />}>
                   Personal information
                 </Step>
@@ -142,7 +246,7 @@ export function StepTitleAlignment() {
   );
 }
 
-export function NoStepTitle() {
+export function NoStepLabel() {
   const steps = 3;
   const [value, setValue] = React.useState(0);
 
@@ -219,7 +323,7 @@ export function NoStepCounter() {
                 <Step step={3}>Supporting documents</Step>
               </StepList>
 
-              <StepList className="gap-x-0">
+              <StepList compact>
                 <Step step={1} aria-label="Personal information" />
                 <Step step={2} aria-label="Household status" />
                 <Step step={3} aria-label="Supporting documents" />

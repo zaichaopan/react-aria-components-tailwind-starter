@@ -2,6 +2,7 @@ import React from 'react';
 import { ClassNameValue, twMerge } from 'tailwind-merge';
 import { CheckIcon } from './icons/outline/check';
 import { flushSync } from 'react-dom';
+import { Icon } from './icon';
 
 type StepperContextType = {
   value: number;
@@ -103,36 +104,48 @@ export function Stepper({
   );
 }
 
+type StepListContextType = {
+  alignment: 'center' | 'start';
+  compact: boolean;
+  labelPlacement: 'top' | 'bottom';
+};
+
+const StepListContext = React.createContext<StepListContextType>({
+  alignment: 'center',
+  compact: false,
+  labelPlacement: 'bottom',
+});
+
 export function StepList({
   className,
-  centered = true,
+  alignment = 'center',
+  compact = false,
+  labelPlacement = 'bottom',
   ...props
-}: React.JSX.IntrinsicElements['ol'] & {
-  centered?: boolean;
-}) {
+}: React.JSX.IntrinsicElements['ol'] & Partial<StepListContextType>) {
   return (
-    <ol
-      {...props}
-      {...(centered && {
-        'data-centered': true,
-      })}
-      className={twMerge(
-        'flex w-full gap-x-2 overflow-x-auto',
-        '[--separator-radius:calc(infinity_*_1px)]',
-        '[&.gap-x-0]:[--separator-radius:0]',
-        '[&.gap-x-0]:rounded-full',
-        '[--counter-size:--spacing(6)]',
-        '[--counter-padding:--spacing(1)]',
-        '[--counter:var(--color-zinc-200)]/75',
-        'dark:[--counter:var(--color-zinc-700)]',
-        '[--counter-text:var(--muted)]',
-        '[--counter-highlight:var(--accent)]',
-        '[--counter-highlight-text:lch(from_var(--counter-highlight)_calc((49.44_-_l)_*_infinity)_0_0)]',
-        '[--separator-h:--spacing(0.5)]',
+    <StepListContext.Provider value={{ alignment, compact, labelPlacement }}>
+      <ol
+        {...props}
+        className={twMerge(
+          'flex w-full overflow-x-auto',
+          !compact && 'gap-x-2',
+          '[--separator-radius:calc(infinity_*_1px)]',
+          '[&.gap-x-0]:[--separator-radius:0]',
+          '[&.gap-x-0]:rounded-full',
+          '[--counter-size:--spacing(6)]',
+          '[--counter-padding:--spacing(1)]',
+          '[--counter:var(--color-zinc-200)]/75',
+          'dark:[--counter:var(--color-zinc-700)]',
+          '[--counter-text:var(--muted)]',
+          '[--counter-highlight:var(--accent)]',
+          '[--counter-highlight-text:lch(from_var(--counter-highlight)_calc((49.44_-_l)_*_infinity)_0_0)]',
+          '[--separator-h:--spacing(0.5)]',
 
-        className,
-      )}
-    />
+          className,
+        )}
+      />
+    </StepListContext.Provider>
   );
 }
 
@@ -163,6 +176,8 @@ export function Step({
   const { value, steps } = useStepIndicator();
   const completed = value >= step;
   const current = value === step - 1;
+  const { alignment, labelPlacement, compact } =
+    React.useContext(StepListContext);
 
   return (
     <StepContext.Provider
@@ -172,7 +187,12 @@ export function Step({
         {...props}
         className={twMerge(
           'relative isolate flex flex-1 shrink-0 flex-col gap-2 text-sm/6',
-          'in-[[data-centered]]:items-center in-[[data-centered]]:text-center',
+          alignment === 'center' && ['items-center', 'text-center'],
+          ariaLabel && ['[&>[data-ui=label]]:sr-only'],
+          labelPlacement === 'top' && [
+            'min-w-0 [&>[data-ui=label]]:w-full [&>[data-ui=label]]:truncate',
+          ],
+          compact && ['[&>[data-ui=label]]:px-1'],
           typeof className == 'function'
             ? className({ completed, current })
             : className,
@@ -180,27 +200,50 @@ export function Step({
       >
         {counter ? (
           <>
+            {labelPlacement === 'top' && (
+              <span
+                data-ui="label"
+                {...(ariaLabel && { 'aria-label': ariaLabel })}
+              >
+                {children}
+              </span>
+            )}
+
             {typeof counter === 'function'
               ? counter({ completed, step })
               : counter}
-            <span
-              {...(ariaLabel && { 'aria-label': ariaLabel })}
-              className="contents"
-            >
-              {children}
-            </span>
+
+            {labelPlacement === 'bottom' && (
+              <span
+                data-ui="label"
+                {...(ariaLabel && { 'aria-label': ariaLabel })}
+              >
+                {children}
+              </span>
+            )}
 
             {step < steps && (separator ? separator : <StepSeparator />)}
           </>
         ) : (
           <>
+            {labelPlacement === 'top' && (
+              <span
+                data-ui="label"
+                {...(ariaLabel && { 'aria-label': ariaLabel })}
+              >
+                {children}
+              </span>
+            )}
             {separator ? separator : <StepSeparator />}
-            <span
-              {...(ariaLabel && { 'aria-label': ariaLabel })}
-              className="contents"
-            >
-              {children}
-            </span>
+
+            {labelPlacement === 'bottom' && (
+              <span
+                data-ui="label"
+                {...(ariaLabel && { 'aria-label': ariaLabel })}
+              >
+                {children}
+              </span>
+            )}
           </>
         )}
 
@@ -212,13 +255,17 @@ export function Step({
   );
 }
 
+type CounterVariant = 'dot' | 'number';
+
 export function StepCounter({
   className,
   children,
   checkIcon = true,
+  variant = 'number',
   ...props
 }: React.JSX.IntrinsicElements['div'] & {
   checkIcon?: boolean;
+  variant?: CounterVariant;
 }) {
   const { step, completed, current } = useStepContext();
 
@@ -227,14 +274,54 @@ export function StepCounter({
       {...props}
       aria-hidden
       className={twMerge(
-        'flex size-(--counter-size) shrink-0 items-center justify-center rounded-full p-(--counter-padding) text-sm/6 font-medium transition-colors duration-300 ease-in-out [&_svg[data-ui=icon]:not([class*=size-])]:size-full',
-        'bg-(--counter) text-(--counter-text)',
-        (completed || current) &&
-          'bg-(--counter-highlight) text-(--counter-highlight-text)',
+        'flex size-(--counter-size) shrink-0 items-center justify-center rounded-full p-(--counter-padding) text-sm/6 font-medium [&_svg[data-ui=icon]:not([class*=size-])]:size-full',
+
+        variant === 'number' && [
+          'transition-colors duration-300 ease-in-out',
+          'bg-(--counter) text-(--counter-text)',
+          (completed || current) && [
+            'bg-(--counter-highlight) text-(--counter-highlight-text)',
+          ],
+        ],
+
+        variant === 'dot' && [
+          completed
+            ? 'bg-(--counter-highlight) text-(--counter-highlight-text)'
+            : [
+                'border-2',
+                current ? 'border-(--counter-highlight)' : 'border-(--counter)',
+              ],
+        ],
+
         className,
       )}
     >
-      {completed && checkIcon ? <CheckIcon /> : children ? children : step}
+      {completed && checkIcon ? (
+        <CheckIcon />
+      ) : children ? (
+        children
+      ) : variant === 'number' ? (
+        step
+      ) : current ? (
+        <Icon>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width={24}
+            height={24}
+            viewBox="0 0 48 48"
+            fill="currentColor"
+          >
+            <path
+              fill="currentColor"
+              stroke="currentColor"
+              strokeWidth={4}
+              d="M24 33a9 9 0 1 0 0-18a9 9 0 0 0 0 18Z"
+            ></path>
+          </svg>
+        </Icon>
+      ) : (
+        <></>
+      )}
     </div>
   );
 }
@@ -244,6 +331,8 @@ export function StepSeparator({
   ...props
 }: Omit<React.JSX.IntrinsicElements['div'], 'children'>) {
   const { hasCounter, completed, current } = useStepContext();
+  const { alignment, labelPlacement, compact } =
+    React.useContext(StepListContext);
 
   return hasCounter ? (
     <div
@@ -252,11 +341,30 @@ export function StepSeparator({
       aria-hidden
       className={twMerge(
         'transition-colors duration-300 ease-in-out',
-        'absolute top-[calc(var(--counter-size)/2)] h-(--separator-h) -translate-y-1/2 rounded-(--separator-radius)',
-        'left-[calc(var(--counter-size,0)+0.25rem)]',
+        'absolute h-(--separator-h) rounded-(--separator-radius)',
+
+        labelPlacement === 'top'
+          ? ['bottom-[calc(var(--counter-size)/2)]', 'translate-y-1/2']
+          : ['top-[calc(var(--counter-size)/2)]', '-translate-y-1/2'],
+
         'w-[calc(100%-var(--counter-size,0))]',
-        'in-[[data-centered]]:left-[calc(50%+calc(var(--counter-size,0)/2)+0.125rem)]',
-        'in-[[data-centered]]:w-[calc(100%-var(--counter-size,0)+0.5rem-0.25rem)]',
+
+        compact
+          ? [
+              'left-[calc(var(--counter-size,0))]',
+              alignment === 'center' && [
+                'left-[calc(50%+calc(var(--counter-size,0)/2))]',
+                'w-[calc(100%-var(--counter-size,0))]',
+              ],
+            ]
+          : [
+              'left-[calc(var(--counter-size,0)+0.25rem)]',
+              alignment === 'center' && [
+                'left-[calc(50%+calc(var(--counter-size,0)/2)+0.125rem)]',
+                'w-[calc(100%-var(--counter-size,0)+0.5rem-0.25rem)]',
+              ],
+            ],
+
         'in-[.gap-x-0]:rounded-0',
         'bg-(--counter)',
         completed && 'bg-(--counter-highlight)',
