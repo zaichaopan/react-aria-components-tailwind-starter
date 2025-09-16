@@ -88,14 +88,14 @@ export const SwitchGroups = () => {
 
 export const GroupDescription = () => {
   return (
-    <SwitchGroup className="max-w-2xl">
+    <SwitchGroup className="max-w-2xl" labelPlacement='start'>
       <Label>Audience and tagging</Label>
       <Description>
         Manage what information you allow other people on X to see
       </Description>
       <Switches>
         <SwitchField>
-          <Switch labelPlacement="start">Protect your posts</Switch>
+          <Switch>Protect your posts</Switch>
           <Description elementType="div">
             <Text>
               When selected, your posts and other account information are only
@@ -106,7 +106,7 @@ export const GroupDescription = () => {
         </SwitchField>
 
         <SwitchField>
-          <Switch labelPlacement="start">Protect your videos</Switch>
+          <Switch>Protect your videos</Switch>
           <Description>
             If selected, videos in your posts will not be downloadable by
             default. This setting applies to posts going forward and is not
@@ -115,7 +115,7 @@ export const GroupDescription = () => {
         </SwitchField>
 
         <SwitchField>
-          <Switch labelPlacement="start">Photo tagging</Switch>
+          <Switch>Photo tagging</Switch>
         </SwitchField>
       </Switches>
     </SwitchGroup>
@@ -169,7 +169,7 @@ export const HandleIcon = () => {
           className={twMerge(
             'dark:border-border flex rounded-full border border-zinc-200 bg-zinc-200 p-px transition ease-in-out dark:bg-transparent',
             isSelected && 'border-accent bg-accent',
-            isFocusVisible && 'outline-ring outline outline-2 outline-offset-2',
+            isFocusVisible && 'outline-ring outline-2 outline-offset-2',
           )}
         >
           <div className="relative isolate flex">
