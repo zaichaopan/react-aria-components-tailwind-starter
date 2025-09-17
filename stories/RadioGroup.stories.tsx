@@ -5,12 +5,21 @@ import { Form } from '../src/form';
 import { Button } from '../src/button';
 import { docs } from '../.storybook/docs';
 import { FieldError, Label, Description } from '../src/field';
-import { Small, TextLink } from '../src/text';
+import { Small, Strong, Text, TextLink } from '../src/text';
 import { Icon } from '../src/icon';
 import { twMerge } from 'tailwind-merge';
-import { MonitorIcon, MoonStarIcon, SunIcon } from 'lucide-react';
+import {
+  BoxIcon,
+  ClockIcon,
+  MonitorIcon,
+  MoonStarIcon,
+  SunIcon,
+  TruckIcon,
+} from 'lucide-react';
 import { CheckIcon } from '../src/icons/outline/check';
 import { Badge } from '../src/badge';
+import { Separator } from '../src/separator';
+import { Link } from '../src/link';
 
 const meta: Meta = {
   parameters: {
@@ -50,7 +59,7 @@ export const RadioDescription = () => {
         </RadioField>
 
         <RadioField>
-          <Radio value="enable">Approve</Radio>
+          <Radio value="enable">Enable</Radio>
           <Description>Automatically plays animated images</Description>
         </RadioField>
 
@@ -78,7 +87,7 @@ export const GroupDescription = () => {
         </RadioField>
 
         <RadioField>
-          <Radio value="enable">Approve</Radio>
+          <Radio value="enable">Enable</Radio>
           <Description>Automatically plays animated images</Description>
         </RadioField>
 
@@ -105,10 +114,14 @@ export const LabelPlacement = () => {
           </Description>
         </RadioField>
 
+        <Separator soft />
+
         <RadioField>
-          <Radio value="enable">Approve</Radio>
+          <Radio value="enable">Enable</Radio>
           <Description>Automatically plays animated images</Description>
         </RadioField>
+
+        <Separator soft />
 
         <Radio value="disabled">Disabled</Radio>
       </Radios>
@@ -132,7 +145,7 @@ export const DisabledState = () => {
         </RadioField>
 
         <RadioField>
-          <Radio value="enable">Approve</Radio>
+          <Radio value="enable">Enable</Radio>
           <Description>Automatically plays animated images</Description>
         </RadioField>
 
@@ -165,7 +178,7 @@ export const GroupDisabledState = () => {
         </RadioField>
 
         <RadioField>
-          <Radio value="enable">Approve</Radio>
+          <Radio value="enable">Enable</Radio>
           <Description>Automatically plays animated images</Description>
         </RadioField>
 
@@ -196,7 +209,7 @@ export const ReadonlyState = () => {
         </RadioField>
 
         <RadioField>
-          <Radio value="enable">Approve</Radio>
+          <Radio value="enable">Enable</Radio>
           <Description>Automatically plays animated images</Description>
         </RadioField>
 
@@ -228,7 +241,7 @@ export const ValidationErrors = () => {
           </RadioField>
 
           <RadioField>
-            <Radio value="enable">Approve</Radio>
+            <Radio value="enable">Enable</Radio>
             <Description>Automatically plays animated images</Description>
           </RadioField>
 
@@ -398,37 +411,80 @@ export function RadioCards() {
   return (
     <div className="flex flex-col space-y-16">
       <RadioGroup
-        defaultValue="Standard"
+        defaultValue="NAVDIA H100"
         orientation="horizontal"
         variant="card"
+        className="self-start"
       >
-        <Label>Shipping</Label>
+        <Label displayLevel={2}>GPU type</Label>
         <Radios>
           {[
             {
-              name: 'Standard',
-              description: ' 4-6 business days',
-              price: ' $4.99',
+              name: 'NAVDIA H100',
+              description: 'SXM5 80GB VRAM',
             },
             {
-              name: 'Express',
-              description: ' 2-5 business days',
-              price: ' $15.99',
-            },
-            {
-              name: 'Lightning',
-              description: ' 1 business day',
-              price: ' $24.99',
+              name: 'NAVDIA H200',
+              description: 'SXM5 141GB VRAM',
             },
           ].map((option) => {
             return (
-              <Radio key={option.name} value={option.name} className="w-48">
-                <div className="flex w-full flex-col gap-3">
+              <Radio
+                radio={null}
+                key={option.name}
+                value={option.name}
+                className="w-48"
+              >
+                <div className="text-muted group-data-selected:text-accent flex w-full flex-col gap-3">
                   <div className="flex flex-1 flex-col">
                     <div className="flex font-medium">{option.name}</div>
-                    <div className="text-gray-500">{option.description}</div>
+                    <div className="">{option.description}</div>
                   </div>
-                  <div className="font-medium">{option.price}</div>
+                </div>
+              </Radio>
+            );
+          })}
+        </Radios>
+        <Link className="text-muted mt-2">Need B100, B200 or other GPUs?</Link>
+      </RadioGroup>
+
+      <RadioGroup
+        defaultValue="Kubernetes"
+        orientation="horizontal"
+        variant="card"
+        className="self-start"
+      >
+        <Label displayLevel={2}>Compute environment</Label>
+        <Radios>
+          {[
+            {
+              name: 'Kubernetes',
+              description: 'Run GPU workloads with your K8s configurations',
+              icon: <KubernetesIcon />,
+            },
+            {
+              name: 'Virtual Machine',
+              description:
+                'Access a virtual machine via SSH to run your own software',
+              icon: <ServerIcon />,
+            },
+          ].map((option) => {
+            return (
+              <Radio
+                radio={null}
+                key={option.name}
+                value={option.name}
+                className="w-56"
+              >
+                <div className="text-muted group-data-selected:text-accent flex w-full flex-col gap-3">
+                  <div className="flex flex-1 flex-col">
+                    <div className="flex gap-x-2 font-medium">
+                      <Icon>{option.icon}</Icon>
+
+                      {option.name}
+                    </div>
+                    <div className="">{option.description}</div>
+                  </div>
                 </div>
               </Radio>
             );
@@ -437,39 +493,31 @@ export function RadioCards() {
       </RadioGroup>
 
       <RadioGroup
-        defaultValue="Standard"
-        labelPlacement="start"
-        orientation="vertical"
+        defaultValue="Pick up your order at your local store"
         variant="card"
-        className="mx-auto"
       >
-        <Label>Shipping</Label>
+        <Label>Shipping method</Label>
+        <Description>How would you like your order delivered?</Description>
         <Radios>
           {[
             {
-              name: 'Standard',
-              description: ' 4-6 business days',
-              price: ' $4.99',
+              name: 'Pick up your order at your local store',
+              description: '2-5 business days',
             },
             {
-              name: 'Express',
-              description: ' 2-5 business days',
-              price: ' $15.99',
+              name: 'Delivery to GLS collection store',
+              description: 'Arrives before Monday, Nov 6',
             },
             {
-              name: 'Lightning',
-              description: ' 1 business day',
-              price: ' $24.99',
+              name: 'GLS delivery to selected address',
+              description: 'Arrives before Monday, Nov 6',
             },
           ].map((option) => {
             return (
               <Radio key={option.name} value={option.name}>
-                <div className="flex w-full flex-col gap-3">
-                  <div className="flex flex-1 flex-col">
-                    <div className="flex font-medium">{option.name}</div>
-                    <div className="text-gray-500">{option.description}</div>
-                  </div>
-                  <div className="font-medium">{option.price}</div>
+                <div className="flex flex-1 flex-col">
+                  <div className="flex font-medium">{option.name}</div>
+                  <div className="text-gray-500">{option.description}</div>
                 </div>
               </Radio>
             );
@@ -478,6 +526,82 @@ export function RadioCards() {
       </RadioGroup>
 
       <RadioGroup
+        defaultValue="Pick up your order at your local store"
+        variant="card"
+        compact
+      >
+        <Label>Shipping method</Label>
+        <Description>How would you like your order delivered?</Description>
+        <Radios>
+          {[
+            {
+              name: 'Pick up your order at your local store',
+              description: '2-5 business days',
+            },
+            {
+              name: 'Delivery to GLS collection store',
+              description: 'Arrives before Monday, Nov 6',
+            },
+            {
+              name: 'GLS delivery to selected address',
+              description: 'Arrives before Monday, Nov 6',
+            },
+          ].map((option) => {
+            return (
+              <Radio key={option.name} value={option.name}>
+                <div className="flex flex-1 flex-col">
+                  <div className="flex font-medium">{option.name}</div>
+                  <div className="text-gray-500">{option.description}</div>
+                </div>
+              </Radio>
+            );
+          })}
+        </Radios>
+      </RadioGroup>
+
+      <RadioGroup
+        defaultValue="Pick up your order at your local store"
+        variant="card"
+        labelPlacement="start"
+      >
+        <Label>Shipping method</Label>
+        <Description>How would you like your order delivered?</Description>
+        <Radios>
+          {[
+            {
+              name: 'Pick up your order at your local store',
+              description: '2-5 business days',
+            },
+            {
+              name: 'Delivery to GLS collection store',
+              description: 'Arrives before Monday, Nov 6',
+            },
+            {
+              name: 'GLS delivery to selected address',
+              description: 'Arrives before Monday, Nov 6',
+            },
+          ].map((option) => {
+            return (
+              <Radio
+                key={option.name}
+                value={option.name}
+                radio={
+                  <span className="hidden rounded-full group-data-selected:flex">
+                    <CheckIcon className="size-3 text-white dark:text-black" />
+                  </span>
+                }
+              >
+                <div className="flex flex-1 flex-col">
+                  <div className="flex font-medium">{option.name}</div>
+                  <div className="text-gray-500">{option.description}</div>
+                </div>
+              </Radio>
+            );
+          })}
+        </Radios>
+      </RadioGroup>
+
+      {/* <RadioGroup
         defaultValue="yearly"
         labelPlacement="start"
         orientation="horizontal"
@@ -489,7 +613,7 @@ export function RadioCards() {
             value="yearly"
             radio={
               <span className="hidden size-4 place-items-center rounded-full group-data-selected:grid group-data-selected:text-white">
-                <CheckIcon className="size-3" />
+                <CheckIcon className="size-3 text-white" />
               </span>
             }
           >
@@ -508,7 +632,7 @@ export function RadioCards() {
             value="monthly"
             radio={
               <span className="hidden size-4 place-items-center rounded-full group-data-selected:grid group-data-selected:text-white">
-                <CheckIcon className="size-3" />
+                <CheckIcon className="size-3 text-white" />
               </span>
             }
           >
@@ -520,105 +644,146 @@ export function RadioCards() {
             </div>
           </Radio>
         </Radios>
-      </RadioGroup>
+      </RadioGroup> */}
     </div>
   );
 }
 
-export function AccentColors() {
+export function CustomRender() {
   return (
-    <RadioGroup orientation="horizontal" defaultValue="blue">
-      <Label>Choose a accent color</Label>
-      <Radios className="gap-x-2">
-        {[
-          {
-            value: 'blue',
-            color: 'bg-blue-500',
-          },
-          {
-            value: 'purple',
-            color: 'bg-purple-500',
-          },
-          {
-            value: 'pink',
-            color: 'bg-pink-500',
-          },
-          {
-            value: 'red',
-            color: 'bg-red-500',
-          },
-          {
-            value: 'orange',
-            color: 'bg-orange-500',
-          },
-          {
-            value: 'yellow',
-            color: 'bg-yellow-500',
-          },
-          {
-            value: 'green',
-            color: 'bg-green-500',
-          },
-        ].map((color) => {
-          return (
-            <Radio
-              value={color.value}
-              key={color.value}
-              aria-label={color.value}
-              className="rounded-full"
-              render={({ isSelected }) => (
-                <div
-                  className={twMerge(
-                    'grid size-6 place-items-center rounded-full',
-                    color.color,
-                  )}
+    <div className="flex flex-col space-y-12">
+      <RadioGroup orientation="horizontal" defaultValue={'6 CPU'}>
+        <Label className="flex justify-between">
+          CPU
+          <TextLink className="text-muted no-underline">
+            See performance specs
+          </TextLink>
+        </Label>
+
+        <Radios>
+          {['2 CPU', '4 CPU', '6 CPU', '8 CPU', '12 CPU', '16 CPU'].map(
+            (option) => {
+              return (
+                <Radio
+                  isDisabled={option === '16 CPU'}
+                  key={option}
+                  value={option}
+                  radio={null}
+                  className="rounded-md"
                 >
-                  <div
-                    className={twMerge(
-                      'size-0 transition-all',
-                      isSelected ? 'size-2.5 rounded-full bg-white' : '',
-                    )}
-                  ></div>
-                </div>
-              )}
-            />
-          );
-        })}
-      </Radios>
-    </RadioGroup>
-  );
-}
+                  {({ isSelected }) => {
+                    return (
+                      <Badge
+                        data-selection-mode="single"
+                        color="white"
+                        {...(isSelected && {
+                          variant: 'solid',
+                        })}
+                        className={twMerge('px-4 py-2 text-sm/6')}
+                      >
+                        {option}
+                      </Badge>
+                    );
+                  }}
+                </Radio>
+              );
+            },
+          )}
+        </Radios>
+      </RadioGroup>
 
-export function RadioButtons() {
-  return (
-    <RadioGroup
-      orientation="horizontal"
-      defaultValue={'6 CPU'}
-      variant="button"
-    >
-      <Label className="flex justify-between">
-        CPU
-        <TextLink className="text-muted no-underline">
-          See performance specs
-        </TextLink>
-      </Label>
+      <RadioGroup orientation="horizontal" defaultValue={'High'}>
+        <Label className="flex justify-between">Priority</Label>
 
-      <Radios>
-        {['2 CPU', '4 CPU', '6 CPU', '8 CPU', '12 CPU', '16 CPU'].map(
-          (option) => {
+        <Radios>
+          {['Low', 'Medium', 'High', 'Critical'].map((option) => {
             return (
               <Radio
-                isDisabled={option === '16 CPU'}
                 key={option}
                 value={option}
+                radio={null}
+                className="rounded-full"
               >
-                {option}
+                {({ isSelected }) => {
+                  return (
+                    <Badge
+                      data-selection-mode="single"
+                      color="black"
+                      {...(isSelected && {
+                        variant: 'solid',
+                      })}
+                      className="rounded-full"
+                    >
+                      {option}
+                    </Badge>
+                  );
+                }}
               </Radio>
             );
-          },
-        )}
-      </Radios>
-    </RadioGroup>
+          })}
+        </Radios>
+      </RadioGroup>
+
+      <RadioGroup orientation="horizontal" defaultValue="blue">
+        <Label>Choose a accent color</Label>
+        <Radios className="gap-x-2">
+          {[
+            {
+              value: 'blue',
+              color: 'bg-blue-500',
+            },
+            {
+              value: 'purple',
+              color: 'bg-purple-500',
+            },
+            {
+              value: 'pink',
+              color: 'bg-pink-500',
+            },
+            {
+              value: 'red',
+              color: 'bg-red-500',
+            },
+            {
+              value: 'orange',
+              color: 'bg-orange-500',
+            },
+            {
+              value: 'yellow',
+              color: 'bg-yellow-500',
+            },
+            {
+              value: 'green',
+              color: 'bg-green-500',
+            },
+          ].map((color) => {
+            return (
+              <Radio
+                value={color.value}
+                key={color.value}
+                aria-label={color.value}
+                className="rounded-full"
+                render={({ isSelected }) => (
+                  <div
+                    className={twMerge(
+                      'grid size-6 place-items-center rounded-full',
+                      color.color,
+                    )}
+                  >
+                    <div
+                      className={twMerge(
+                        'size-0 transition-all',
+                        isSelected ? 'size-2.5 rounded-full bg-white' : '',
+                      )}
+                    ></div>
+                  </div>
+                )}
+              />
+            );
+          })}
+        </Radios>
+      </RadioGroup>
+    </div>
   );
 }
 
@@ -784,6 +949,42 @@ function StarFillIcon(props: React.JSX.IntrinsicElements['svg']) {
       {...props}
     >
       <path d="M12.0006 18.26L4.94715 22.2082L6.52248 14.2799L0.587891 8.7918L8.61493 7.84006L12.0006 0.5L15.3862 7.84006L23.4132 8.7918L17.4787 14.2799L19.054 22.2082L12.0006 18.26Z"></path>
+    </svg>
+  );
+}
+
+function ServerIcon(props: React.JSX.IntrinsicElements['svg']) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={24}
+      height={24}
+      viewBox="0 0 512 512"
+      {...props}
+    >
+      <path
+        fill="currentColor"
+        d="M480 160H32c-17.673 0-32-14.327-32-32V64c0-17.673 14.327-32 32-32h448c17.673 0 32 14.327 32 32v64c0 17.673-14.327 32-32 32m-48-88c-13.255 0-24 10.745-24 24s10.745 24 24 24s24-10.745 24-24s-10.745-24-24-24m-64 0c-13.255 0-24 10.745-24 24s10.745 24 24 24s24-10.745 24-24s-10.745-24-24-24m112 248H32c-17.673 0-32-14.327-32-32v-64c0-17.673 14.327-32 32-32h448c17.673 0 32 14.327 32 32v64c0 17.673-14.327 32-32 32m-48-88c-13.255 0-24 10.745-24 24s10.745 24 24 24s24-10.745 24-24s-10.745-24-24-24m-64 0c-13.255 0-24 10.745-24 24s10.745 24 24 24s24-10.745 24-24s-10.745-24-24-24m112 248H32c-17.673 0-32-14.327-32-32v-64c0-17.673 14.327-32 32-32h448c17.673 0 32 14.327 32 32v64c0 17.673-14.327 32-32 32m-48-88c-13.255 0-24 10.745-24 24s10.745 24 24 24s24-10.745 24-24s-10.745-24-24-24m-64 0c-13.255 0-24 10.745-24 24s10.745 24 24 24s24-10.745 24-24s-10.745-24-24-24"
+      ></path>
+    </svg>
+  );
+}
+
+function KubernetesIcon(props: React.JSX.IntrinsicElements['svg']) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={24}
+      height={24}
+      viewBox="0 0 512 512"
+      {...props}
+    >
+      <path
+        fill="currentColor"
+        fillRule="evenodd"
+        d="M.8 309.892L44.722 118.82c2.266-9.847 9.243-18.52 18.417-22.904l178.029-85.06c9.162-4.426 18.887-4.202 29.552 0L448.77 95.87c9.174 4.383 16.15 13.056 18.42 22.908l43.986 191.07c2.27 9.854-.224 20.676-6.577 28.574L381.42 491.653c-6.358 7.887-16.436 12.69-26.618 12.682l-197.604.046c-10.186.004-20.264-4.81-26.619-12.704L7.357 338.467C.427 329.8-1.212 320.177.8 309.892m245.99 17.53l-29.963 54.135c26.587 8.509 52.79 8.946 78.553.075L265.367 327.4c-5.397-7.606-14.561-6.833-18.576.024m-44.757-30.414l-60.884 10.33c9.395 25.997 26.96 47.186 49.016 61.338l23.586-57.006c2.598-8.503-2.987-15.46-11.719-14.664m96.194 14.313l23.842 57.585c22.98-14.64 40.176-36.518 49.166-61.77l-61.416-10.38c-8.955-.857-14.314 6.562-11.592 14.565m-63.558-50.35l4.236 18.396l17.087 8.215l17.034-8.19l4.232-18.397l-11.793-14.743H246.49zm83.34.15l59.675 17.187c2.72-27.396-3.984-52.783-17.766-76.662l-46.067 41.227c-5.402 6.322-4.971 14.161 4.158 18.248m-119.956-18.07l-46.319-41.429a121.48 121.48 0 0 0-17.24 76.887l59.376-17.136c7.98-3.229 10.593-11.415 4.183-18.322m92.991-28.781l50.402-35.734c-19.014-18.622-43.83-30.77-70.661-34.073l3.5 61.77c1.33 10.37 9.255 12.025 16.76 8.037m-120.913-35.758l50.729 35.963c8.297 5.13 16.174-.353 16.86-8.143l3.5-61.869c-27.73 3.791-52.166 15.26-71.09 34.049m274.691 142.386c-5.047-1.632-20.746-8.588-31.148-10.131c-3.2-.252-4.831 1.275-6.603 2.444l-5.04-.882c-11.3 35.515-35.367 66.268-67.992 85.53l1.965 4.766c-.748 1.987-1.866 3.894-.91 6.953c4.442 10.71 11.052 19.138 16.787 28.126c10.645 17.827-10.283 30.183-20.554 12.267c-3.944-11.015-7.349-24.747-12.208-32.68c-1.8-2.657-4.004-2.995-6.024-3.654l-2.52-4.536c-36.787 13.552-73.058 13.218-108.841-.28l-2.673 4.84c-1.99.532-3.907 1.075-5.084 2.477c-5.57 7.087-10.1 26.445-13.995 34.999c-8.173 15.739-28.41 4.976-21.318-10.058c4.699-9.666 10.806-14.647 18.515-31.784c.575-1.973.075-4.992-1.051-6.67l2.142-5.144c-31.396-18.6-56.186-48.247-68.016-84.927l-5.142.882c-1.2-1.304-4.15-2.599-6.78-2.394c-6.297.913-13.446 1.797-20.563 6.048c-32.849 19.621-44.674-22.478-4.536-19.857c15.642 1.021 21.987-1.302 26.209-8.593l4.937-1.436c-5.532-38.33 3.832-75.946 24.067-106.4l-3.78-3.375c-.24-1.473-.555-4.875-2.367-6.804c-14.875-12.707-21.086-12.681-29.764-20.01c-13.667-10.701.874-29.275 14.542-18.575c8.094 6.4 12.573 14.432 26.284 24.697c2.772 1.614 4.902.965 7.008.682l4.257 3.024c21.971-23.14 55.366-43.273 98.386-47.304l.276-4.988c1.572-1.52 3.332-3.706 3.832-6.1c1.202-12.156-2.896-26.617-2.922-35.963c.21-16.96 22.954-17.924 23.587 0c.266 10.456-3.18 16.021-2.922 35.963c.464 3.173 2.319 4.43 3.854 5.898l.276 5.265c37.503 3.332 72.327 20.48 97.906 47.303l4.485-3.201c1.52.09 4.871.551 7.16-.78c5.928-3.807 14.8-13.202 23.688-22.63c13.198-13.615 31.939 2.488 17.314 16.353c-7.319 6.294-16.7 8.824-29.938 20.138c-2.194 2.343-2.028 4.563-2.221 6.678l-4.182 3.756c21.627 33.692 30.05 67.216 24.571 106.144l4.764 1.386c.855 1.213 2.615 4.158 5.088 5.119c10.27 3.274 20.58 3.352 34.175 4.787c20.534 2.167 12.75 28.717-6.981 22.63"
+        clipRule="evenodd"
+      ></path>
     </svg>
   );
 }

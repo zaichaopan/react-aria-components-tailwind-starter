@@ -27,7 +27,7 @@ export const SwitchDescription = () => {
     <SwitchField>
       <Switch>Email notifications</Switch>
       <Description>
-        Get email to find out what's going on when you'are not online.
+        Get email to find out what's going on when you're not online.
       </Description>
     </SwitchField>
   );
@@ -38,7 +38,7 @@ export const DisabledState = () => {
     <SwitchField>
       <Switch isDisabled>Email notifications</Switch>
       <Description>
-        Get email to find out what's going on when you'are not online.
+        Get email to find out what's going on when you're not online.
       </Description>
     </SwitchField>
   );
@@ -49,7 +49,7 @@ export const ReadonlyState = () => {
     <SwitchField>
       <Switch isReadOnly>Email notifications</Switch>
       <Description>
-        Get email to find out what's going on when you'are not online.
+        Get email to find out what's going on when you're not online.
       </Description>
     </SwitchField>
   );
@@ -88,34 +88,37 @@ export const SwitchGroups = () => {
 
 export const GroupDescription = () => {
   return (
-    <SwitchGroup className="max-w-2xl" labelPlacement='start'>
-      <Label>Audience and tagging</Label>
+    <SwitchGroup className="max-w-2xl" labelPlacement="start">
+      <Label>Notifications</Label>
       <Description>
-        Manage what information you allow other people on X to see
+        Applies across all your desktop devices with notifications enabled.
       </Description>
       <Switches>
         <SwitchField>
-          <Switch>Protect your posts</Switch>
+          <Switch>Assignments</Switch>
           <Description elementType="div">
             <Text>
-              When selected, your posts and other account information are only
-              visible to people who follow you.{' '}
+              Assignments, unassignments, and membership changes.{' '}
               <TextLink className="inline">Learn more</TextLink>
             </Text>
           </Description>
         </SwitchField>
 
         <SwitchField>
-          <Switch>Protect your videos</Switch>
+          <Switch>Status changes</Switch>
           <Description>
-            If selected, videos in your posts will not be downloadable by
-            default. This setting applies to posts going forward and is not
-            retroactive.
+            Changes to the status, priority, and blocking relationships of
+            issues
           </Description>
         </SwitchField>
 
         <SwitchField>
-          <Switch>Photo tagging</Switch>
+          <Switch>Comments and replies</Switch>
+          <Description>Comments, replies and thread resolutions</Description>
+        </SwitchField>
+
+        <SwitchField>
+          <Switch>Mentions</Switch>
         </SwitchField>
       </Switches>
     </SwitchGroup>
@@ -124,36 +127,37 @@ export const GroupDescription = () => {
 
 export const DisabledItems = () => {
   return (
-    <SwitchGroup className="max-w-2xl">
-      <Label>Audience and tagging</Label>
+    <SwitchGroup className="max-w-2xl" labelPlacement="start">
+      <Label>Notifications</Label>
       <Description>
-        Manage what information you allow other people on X to see
+        Applies across all your desktop devices with notifications enabled.
       </Description>
       <Switches>
         <SwitchField>
-          <Switch labelPlacement="start" isDisabled>
-            Protect your posts
-          </Switch>
+          <Switch isDisabled>Assignments</Switch>
           <Description elementType="div">
             <Text>
-              When selected, your posts and other account information are only
-              visible to people who follow you.{' '}
+              Assignments, unassignments, and membership changes.{' '}
               <TextLink className="inline">Learn more</TextLink>
             </Text>
           </Description>
         </SwitchField>
 
         <SwitchField>
-          <Switch labelPlacement="start">Protect your videos</Switch>
+          <Switch>Status changes</Switch>
           <Description>
-            If selected, videos in your posts will not be downloadable by
-            default. This setting applies to posts going forward and is not
-            retroactive.
+            Changes to the status, priority, and blocking relationships of
+            issues
           </Description>
         </SwitchField>
 
         <SwitchField>
-          <Switch labelPlacement="start">Photo tagging</Switch>
+          <Switch>Comments and replies</Switch>
+          <Description>Comments, replies and thread resolutions</Description>
+        </SwitchField>
+
+        <SwitchField>
+          <Switch>Mentions</Switch>
         </SwitchField>
       </Switches>
     </SwitchGroup>
@@ -240,7 +244,7 @@ export const AnimatedHandleIcons = () => {
           className={twMerge(
             'flex rounded-full border border-zinc-200 bg-zinc-200 p-px transition-[background] ease-in-out dark:border-zinc-700 dark:bg-zinc-700',
             isSelected && 'bg-accent border-accent text-white',
-            isFocusVisible && 'outline-ring outline outline-2 outline-offset-2',
+            isFocusVisible && 'outline-ring outline-2 outline-offset-2',
           )}
         >
           <div className="relative isolate flex">

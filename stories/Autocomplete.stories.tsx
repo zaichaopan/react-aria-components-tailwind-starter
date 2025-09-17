@@ -209,7 +209,7 @@ export function CommandJ() {
           <Autocomplete filter={contains}>
             <TextField aria-label="Search commands" autoFocus className="px-1">
               <Input
-                placeholder="Type a command or search…"
+                placeholder="Open settings…"
                 className="border-transparent shadow-none ring-0"
               />
             </TextField>

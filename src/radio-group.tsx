@@ -12,27 +12,27 @@ import { DescriptionContext, DescriptionProvider } from './field';
 import { composeTailwindRenderProps, groupBox } from './utils';
 
 type RadioGroupVariant = {
-  variant?: 'radio' | 'segment' | 'card' | 'button';
   orientation?: 'vertical' | 'horizontal';
   labelPlacement?: 'start' | 'end';
-};
-
-const RadioGroupVariantContext = React.createContext<RadioGroupVariant | null>(
-  null,
+} & (
+  | {
+      variant?: 'card';
+      compact?: true;
+    }
+  | {
+      variant?: 'radio' | 'segment';
+      compact?: never;
+    }
 );
 
-const useRadioGroupVariantContext = () => {
-  const {
-    labelPlacement = 'end',
-    orientation = 'vertical',
-    variant = 'radioGroup',
-  } = React.useContext(RadioGroupVariantContext) ?? {};
+const RadioGroupVariantContext = React.createContext<RadioGroupVariant>({
+  labelPlacement: 'end',
+  orientation: 'vertical',
+  variant: 'radio',
+});
 
-  return {
-    labelPlacement,
-    orientation,
-    variant,
-  };
+const useRadioGroupVariantContext = () => {
+  return React.useContext(RadioGroupVariantContext) ?? {};
 };
 
 export function RadioGroup({
@@ -40,15 +40,29 @@ export function RadioGroup({
   variant = 'radio',
   orientation,
   labelPlacement = 'end',
+  compact,
   ...props
-}: RACRadioGroupProps & Pick<RadioGroupVariant, 'variant' | 'labelPlacement'>) {
+}: RACRadioGroupProps & Exclude<RadioGroupVariant, 'variant'>) {
   if (variant === 'segment') {
     orientation = orientation ?? 'horizontal';
   }
 
   return (
     <RadioGroupVariantContext.Provider
-      value={{ variant, orientation, labelPlacement }}
+      value={
+        variant === 'card'
+          ? {
+              variant,
+              orientation,
+              labelPlacement,
+              compact,
+            }
+          : {
+              variant,
+              orientation,
+              labelPlacement,
+            }
+      }
     >
       <RACRadioGroup
         {...props}
@@ -72,17 +86,26 @@ export function Radios({
   className,
   ...props
 }: React.JSX.IntrinsicElements['div']) {
-  const { variant, orientation } = useRadioGroupVariantContext();
+  const { variant, orientation, compact } = useRadioGroupVariantContext();
 
   return (
     <div
       data-ui="box"
       className={twMerge(
+        'isolate',
         'flex',
         'flex-col',
-        'has([data-ui=description]):not([class*=gap-y])]:gap-y-4 gap-y-3',
+        'gap-y-3',
+        'has-data-[ui=description]:gap-y-4',
+        'has-data-[ui=description]:[&_label]:font-medium',
         orientation === 'horizontal' && ['flex-row flex-wrap gap-x-4 gap-y-2'],
-        variant === 'card' && ['gap-x-6, gap-y-6'],
+        variant === 'card' && [
+          compact ? ['gap-x-0 gap-y-0'] : ['gap-x-6, gap-y-2.5'],
+
+          orientation === 'horizontal' && [
+            compact ? 'flex-row flex-nowrap' : 'flex-col sm:flex-row',
+          ],
+        ],
         variant === 'segment' && [
           'bg-zinc-100 p-0.5 dark:bg-zinc-800',
           'rounded-(--segment-radius)',
@@ -124,6 +147,7 @@ export function RadioField({
 export interface RadioProps extends RACRadioProps {
   radio?:
     | React.ReactElement
+    | null
     | ((props: Partial<RadioRenderProps>) => React.ReactNode);
   render?: never;
 }
@@ -138,47 +162,92 @@ export interface CustomRenderRadioProps
   children?: never;
 }
 
-const radioStyle = {
-  card: {
-    base: [
-      'flex-1 rounded-lg px-4 py-3 items-start [&>[data-slot=radio]:not([class*=mt-])]:mt-1.5',
-      'data-selected:ring-ring',
-      'data-selected:ring-2',
+function getRadioStyle({
+  isSelected,
+  isHovered,
+  variant,
+  orientation = 'vertical',
+  compact,
+}: Partial<RadioRenderProps> & {
+  variant: RadioGroupVariant['variant'];
+  orientation?: RadioGroupVariant['orientation'];
+  compact?: boolean;
+}) {
+  console.log(variant, isSelected);
+  const style = {
+    radio: [],
+    card: [
+      'text-wrap text-balance flex-1 rounded-lg px-4 py-3 items-start [&>[data-slot=radio]:not([class*=mt-])]:mt-1.5',
+      '[&_[data-ui=icon]:not([class*=size-])]:w-4',
+      '[&_[data-ui=icon]:not([class*=size-])]:h-[1lh]',
       'ring ring-border',
+      isHovered && !isSelected && 'bg-zinc-50 dark:bg-zinc-800/75',
+      '[&_[data-ui=icon]:not([class*=text-])]:text-muted',
+      isSelected && [
+        '[&_[data-ui=icon]:not([class*=text-])]:text-accent',
+        'bg-[color-mix(in_oklab,_var(--accent)_5%,_white)]',
+        'dark:bg-[color-mix(in_oklab,_var(--accent)_25%,_black)] border-accent/50',
+      ],
+      compact
+        ? [
+            '[&:not(:first-child):not(:last-child)]:rounded-none',
+            orientation === 'horizontal' && [
+              'first:rounded-e-none',
+              'last:rounded-s-none',
+              'not-first:ms-px',
+            ],
+
+            orientation === 'vertical' && [
+              'first:rounded-b-none',
+              'last:rounded-t-none',
+              'not-first:mt-px',
+            ],
+
+            isSelected && [
+              'ring-accent/75 dark:ring-ring/50 z-10',
+              'bg-[color-mix(in_oklab,_var(--accent)_5%,_white)]',
+              'dark:bg-[color-mix(in_oklab,_var(--accent)_25%,_black)] border-accent/50',
+            ],
+          ]
+        : [
+            isSelected && ['ring-ring dark:ring-ring/50', 'ring-inset'],
+            !isSelected &&
+              isHovered && [
+                'ring-[oklch(from_var(--border)_calc(l*0.95)_c_h)]  dark:ring-[oklch(from_var(--border)_calc(l*1.2)_c_h)]',
+              ],
+          ],
     ],
-  },
-  segment: {
-    base: [
+    segment: [
       'flex',
       'justify-center',
       'items-center',
       'flex-1 text-center font-medium rounded-[calc(var(--segment-radius)-var(--segment-padding))]',
       'transition-all ease-in-out',
-      'data-selected:bg-white  dark:data-selected:bg-zinc-600',
-      '[&:not(:is([data-selected],[data-hovered]))]:text-muted',
-      'data-selected:shadow-sm dark:data-selected:shadow-none',
-      'data-selected:ring data-selected:ring-zinc-950/10',
+
+      isSelected && [
+        'bg-white dark:bg-zinc-600',
+        'shadow-sm dark:shadow-none',
+        'ring ring-zinc-950/10',
+      ],
+
+      !isSelected && !isHovered && ['text-muted'],
+
       '[&_[data-ui=icon]:not([class*=size-])]:size-4',
+      orientation === 'horizontal' && ['px-4 py-1'],
+      orientation === 'vertical' && ['p-2'],
     ],
-    horizontal: ['px-4 py-1'],
-    vertical: ['p-2'],
-  },
-  button: {
-    base: [
-      'rounded-md border px-4 py-2 font-semibold',
-      'data-selected:border-accent data-selected:bg-accent data-selected:text-[lch(from_var(--accent)_calc((49.44_-_l)_*_infinity)_0_0)]',
-      'data-focus-visible:outline-ring data-focus-visible:outline-2 data-focus-visible:outline-offset-2'
-    ],
-  },
-};
+  };
+
+  return style[variant ?? 'radio'];
+}
 
 export function Radio(props: RadioProps | CustomRenderRadioProps) {
   const descriptionContext = React.useContext(DescriptionContext);
-  const { variant, orientation, labelPlacement } =
+  const { variant, compact, orientation, labelPlacement } =
     useRadioGroupVariantContext();
 
   if (props.render !== undefined) {
-    const { render, ...restProps } = props;
+    const { render, radio, ...restProps } = props;
 
     return (
       <RACRadio
@@ -186,17 +255,14 @@ export function Radio(props: RadioProps | CustomRenderRadioProps) {
         aria-describedby={descriptionContext?.['aria-describedby']}
         className={composeRenderProps(
           props.className,
-          (className, { isDisabled, isFocusVisible }) =>
+          (className, renderProps) =>
             twMerge(
-              isDisabled && 'opacity-50',
-              isFocusVisible && 'outline-ring outline-2 outline-offset-3',
+              renderProps.isDisabled && 'opacity-50',
+              renderProps.isFocusVisible &&
+                'outline-ring outline-2 outline-offset-3',
               'group text-base/6 sm:text-sm/6',
-              variant === 'card' && [radioStyle.card['base']],
-              variant === 'segment' && [
-                radioStyle.segment['base'],
-                radioStyle.segment[orientation],
-              ],
-              variant === 'button' && [radioStyle.button['base']],
+
+              getRadioStyle({ variant, orientation, compact, ...renderProps }),
               className,
             ),
         )}
@@ -207,33 +273,32 @@ export function Radio(props: RadioProps | CustomRenderRadioProps) {
   }
 
   const { radio, ...restProps } = props;
+  const noRadioToggle = radio === null;
 
   return (
     <RACRadio
       {...restProps}
+      data-ui="radio-label"
       aria-describedby={descriptionContext?.['aria-describedby']}
-      className={composeRenderProps(
-        props.className,
-        (className, { isDisabled }) =>
-          twMerge(
-            'group flex items-center text-base/6 sm:text-sm/6',
-            orientation === 'horizontal' && 'text-nowrap',
-            labelPlacement === 'start' && 'flex-row-reverse justify-between',
-            variant === 'card' && [radioStyle.card['base']],
-            variant === 'segment' && [
-              radioStyle.segment['base'],
-              radioStyle.segment[orientation],
-            ],
-            variant === 'button' && [radioStyle.button['base']],
-            isDisabled && 'opacity-50',
-            className,
-          ),
+      className={composeRenderProps(props.className, (className, renderProps) =>
+        twMerge(
+          'group flex items-center text-base/6 sm:text-sm/6',
+          orientation === 'horizontal' && 'text-nowrap',
+          labelPlacement === 'start' && 'flex-row-reverse justify-between',
+          renderProps.isDisabled && 'opacity-50',
+          noRadioToggle && [
+            renderProps.isFocusVisible &&
+              'outline-ring outline-2 outline-offset-2',
+          ],
+          getRadioStyle({ variant, orientation, compact, ...renderProps }),
+          className,
+        ),
       )}
     >
       {(renderProps) => {
         return (
           <>
-            {variant !== 'button' && (
+            {!noRadioToggle && (
               <RadioToggle
                 data-slot="radio"
                 radio={radio}
