@@ -146,24 +146,6 @@
     flex-shrink: 0;
   }
 
-  ::-webkit-scrollbar {
-    width: 5px;
-  }
-
-  ::-webkit-scrollbar-track {
-    background: transparent;
-  }
-
-  ::-webkit-scrollbar-thumb {
-    background: var(--color-border);
-    border-radius: 5px;
-  }
-
-  * {
-    scrollbar-width: thin;
-    scrollbar-color: var(--color-border) transparent;
-  }
-
   .skeleton {
     color: transparent;
     line-height: 1.4em;
