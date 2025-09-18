@@ -4,6 +4,7 @@ import {
   Modal as RACModal,
 } from 'react-aria-components';
 import { composeTailwindRenderProps } from './utils';
+import { twMerge } from 'tailwind-merge';
 
 const sizes = {
   xs: 'sm:max-w-xs',
@@ -50,9 +51,7 @@ export function Modal({
       })}
       data-ui="modal-overlay"
       className={composeTailwindRenderProps(classNames?.modalOverlay, [
-        'fixed top-0 left-0 isolate z-20',
-        'h-(--visual-viewport-height) w-full',
-        'bg-zinc-950/25 dark:bg-zinc-950/50',
+        'absolute inset-0 isolate z-20 bg-zinc-950/25 dark:bg-zinc-950/50',
         'text-center',
         'data-entering:animate-in',
         'data-entering:fade-in',
@@ -61,43 +60,27 @@ export function Modal({
         'data-exiting:animate-out',
         'data-exiting:fade-out',
         'data-exiting:ease-in',
-
+        
         drawer
-          ? 'flex items-start p-2 [--visual-viewport-vertical-padding:16px] [&:has([data-placement=right])]:justify-end'
+          ? []
           : [
-              'grid justify-items-center',
-              placement === 'center'
-                ? 'grid-rows-[1fr_auto_1fr] p-4 [--visual-viewport-vertical-padding:32px]'
-                : [
-                    // Default alert dialog style
-                    '[&:has([role=alertdialog])]:grid-rows-[1fr_auto_1fr] sm:[&:has([role=alertdialog])]:grid-rows-[1fr_auto_3fr]',
-                    '[&:has([role=alertdialog])]:p-4 [&:has([role=alertdialog])]:[--visual-viewport-vertical-padding:32px]',
-
-                    // Default dialog style
-                    placement === 'top'
-                      ? 'grid-rows-[1fr_auto_3fr] [&:has([role=dialog])]:p-4 sm:[&:has([role=dialog])]:[--visual-viewport-vertical-padding:32px]'
-                      : [
-                          'grid-rows-[1fr_auto] sm:grid-rows-[1fr_auto_3fr]',
-                          '[&:has([role=dialog])]:pt-4 sm:[&:has([role=dialog])]:p-4',
-                          '[&:has([role=dialog])]:[--visual-viewport-vertical-padding:16px]',
-                          'sm:[&:has([role=dialog])]:[--visual-viewport-vertical-padding:32px]',
-                        ],
-                  ],
-
               /**
                * Style for stack dialogs
                */
               // First dialog
-              '[&:has(~[data-ui=modal-overlay]:not([data-exiting]))>[data-ui=modal]>section]:opacity-75',
-              '[&:has(~[data-ui=modal-overlay]:not([data-exiting]))>[data-ui=modal]]:bg-zinc-100',
-              'dark:[&:has(~[data-ui=modal-overlay]:not([data-exiting]))>[data-ui=modal]]:bg-zinc-900',
+              '[&:has(~[data-ui=modal-overlay]:not([data-exiting]))_[data-ui=modal]>section]:opacity-75',
 
-              '[&:has(~[data-ui=modal-overlay])>[data-ui=modal]]:transform-[scale,y]',
-              '[&:has(~[data-ui=modal-overlay])>[data-ui=modal]]:ease-in-out',
-              '[&:has(~[data-ui=modal-overlay])>[data-ui=modal]]:duration-200',
+              '[&:has(~[data-ui=modal-overlay]:not([data-exiting]))_[data-ui=modal]>section]:opacity-75',
+
+              '[&:has(~[data-ui=modal-overlay]:not([data-exiting]))_[data-ui=modal]]:bg-zinc-100',
+              'dark:[&:has(~[data-ui=modal-overlay]:not([data-exiting]))_[data-ui=modal]]:bg-zinc-900',
+
+              '[&:has(~[data-ui=modal-overlay])_[data-ui=modal]]:transform-[scale,y]',
+              '[&:has(~[data-ui=modal-overlay])_[data-ui=modal]]:ease-in-out',
+              '[&:has(~[data-ui=modal-overlay])_[data-ui=modal]]:duration-200',
 
               // When the nested dialog is not closing
-              '[&:has(~[data-ui=modal-overlay]:not([data-exiting]))>[data-ui=modal]]:scale-90',
+              '[&:has(~[data-ui=modal-overlay]:not([data-exiting]))_[data-ui=modal]]:scale-90',
               // Remove nested dialog overlay background and fade in effect
               '[&:has(~[data-ui=modal-overlay])~[data-ui=modal-overlay]]:bg-transparent',
               '[&:has(~[data-ui=modal-overlay])~[data-ui=modal-overlay]]:fade-in-100',
@@ -108,60 +91,88 @@ export function Modal({
             ],
       ])}
     >
-      <RACModal
-        {...props}
-        data-ui="modal"
-        data-placement={placement}
-        className={composeTailwindRenderProps(classNames?.modal, [
-          'relative max-h-full w-full overflow-hidden',
-          'text-left align-middle',
-          'shadow-lg',
-          'bg-background',
-          'ring-1 ring-zinc-950/5 dark:ring-zinc-800',
-
-          props.size
-            ? sizes[props.size]
-            : 'sm:has-[[role=alertdialog]]:max-w-md sm:has-[[role=dialog]]:max-w-lg',
-
-          'data-entering:animate-in',
-          'data-entering:ease-out',
-          'data-entering:duration-150',
-          'data-exiting:animate-out',
-          'data-exiting:ease-in',
-
+      <div
+        className={twMerge(
+          'sticky top-0 left-0 flex h-(--visual-viewport-height) w-full',
           drawer
-            ? [
-                'h-full',
-                'rounded-lg',
-                'data-[placement=left]:data-entering:slide-in-from-left',
-                'data-[placement=right]:data-entering:slide-in-from-right',
-                'data-[placement=left]:data-exiting:slide-out-to-left',
-                'data-[placement=right]:data-exiting:slide-out-to-right',
-              ]
+            ? 'flex items-start p-2 [--visual-viewport-vertical-padding:16px] [&:has([data-placement=right])]:justify-end'
             : [
-                'row-start-2',
-                'rounded-lg',
-                'data-entering:zoom-in-95',
-                'data-exiting:zoom-out-95',
+                'grid justify-items-center',
+                placement === 'center'
+                  ? 'grid-rows-[1fr_auto_1fr] p-4 [--visual-viewport-vertical-padding:32px]'
+                  : [
+                      // Default alert dialog style
+                      '[&:has([role=alertdialog])]:grid-rows-[1fr_auto_1fr] sm:[&:has([role=alertdialog])]:grid-rows-[1fr_auto_3fr]',
+                      '[&:has([role=alertdialog])]:p-4 [&:has([role=alertdialog])]:[--visual-viewport-vertical-padding:32px]',
 
-                !placement && [
-                  'has-[[role=dialog]]:rounded-t-lg',
-                  'has-[[role=dialog]]:rounded-b-none',
-                  'sm:has-[[role=dialog]]:rounded-lg',
-
-                  'has-[[role=dialog]]:data-entering:zoom-in-100',
-                  'has-[[role=dialog]]:data-entering:slide-in-from-bottom',
-                  'sm:has-[[role=dialog]]:data-entering:zoom-in-95',
-                  'sm:has-[[role=dialog]]:data-entering:slide-in-from-bottom-0',
-
-                  'has-[[role=dialog]]:data-exiting:zoom-out-100',
-                  'has-[[role=dialog]]:data-exiting:slide-out-to-bottom',
-                  'sm:has-[[role=dialog]]:data-exiting:zoom-out-95',
-                  'sm:has-[[role=dialog]]:data-exiting:slide-out-to-bottom-0',
-                ],
+                      // Default dialog style
+                      placement === 'top'
+                        ? 'grid-rows-[1fr_auto_3fr] [&:has([role=dialog])]:p-4 [&:has([role=dialog])]:[--visual-viewport-vertical-padding:32px]'
+                        : [
+                            'grid-rows-[1fr_auto] sm:grid-rows-[1fr_auto_3fr]',
+                            '[&:has([role=dialog])]:pt-4 sm:[&:has([role=dialog])]:p-4',
+                            '[&:has([role=dialog])]:[--visual-viewport-vertical-padding:16px]',
+                            'sm:[&:has([role=dialog])]:[--visual-viewport-vertical-padding:32px]',
+                          ],
+                    ],
               ],
-        ])}
-      />
+        )}
+      >
+        <RACModal
+          {...props}
+          data-ui="modal"
+          data-placement={placement}
+          className={composeTailwindRenderProps(classNames?.modal, [
+            'relative max-h-full w-full overflow-hidden',
+            'text-left align-middle',
+            'shadow-lg',
+            'bg-background',
+            'ring-1 ring-zinc-950/5 dark:ring-zinc-800',
+
+            props.size
+              ? sizes[props.size]
+              : 'sm:has-[[role=alertdialog]]:max-w-md sm:has-[[role=dialog]]:max-w-lg',
+
+            'data-entering:animate-in',
+            'data-entering:ease-out',
+            'data-entering:duration-150',
+            'data-exiting:animate-out',
+            'data-exiting:ease-in',
+
+            drawer
+              ? [
+                  'h-full',
+                  'rounded-lg',
+                  'data-[placement=left]:data-entering:slide-in-from-left',
+                  'data-[placement=right]:data-entering:slide-in-from-right',
+                  'data-[placement=left]:data-exiting:slide-out-to-left',
+                  'data-[placement=right]:data-exiting:slide-out-to-right',
+                ]
+              : [
+                  'row-start-2',
+                  'rounded-lg',
+                  'data-entering:zoom-in-95',
+                  'data-exiting:zoom-out-95',
+
+                  !placement && [
+                    'has-[[role=dialog]]:rounded-t-lg',
+                    'has-[[role=dialog]]:rounded-b-none',
+                    'sm:has-[[role=dialog]]:rounded-lg',
+
+                    'has-[[role=dialog]]:data-entering:zoom-in-100',
+                    'has-[[role=dialog]]:data-entering:slide-in-from-bottom',
+                    'sm:has-[[role=dialog]]:data-entering:zoom-in-95',
+                    'sm:has-[[role=dialog]]:data-entering:slide-in-from-bottom-0',
+
+                    'has-[[role=dialog]]:data-exiting:zoom-out-100',
+                    'has-[[role=dialog]]:data-exiting:slide-out-to-bottom',
+                    'sm:has-[[role=dialog]]:data-exiting:zoom-out-95',
+                    'sm:has-[[role=dialog]]:data-exiting:slide-out-to-bottom-0',
+                  ],
+                ],
+          ])}
+        />
+      </div>
     </RACModalOverlay>
   );
 }
