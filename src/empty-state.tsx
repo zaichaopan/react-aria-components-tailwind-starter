@@ -35,7 +35,7 @@ export function EmptyStateIcon({
       {...props}
       className={twMerge(
         'mb-2 flex max-w-32 items-center justify-center @md:max-w-40',
-        '[&>svg:not([class*=text-])]:text-muted [&>svg]:h-auto [&>svg]:max-w-full [&>svg]:min-w-12',
+        '[&>[data-ui=icon]:not([class*=text-])]:text-muted [&>[data-ui=icon]]:h-auto [&>[data-ui=icon]]:max-w-full [&>[data-ui=icon]:not([class*=size-])]:min-w-12',
         className,
       )}
     >

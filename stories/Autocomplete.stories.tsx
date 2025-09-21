@@ -22,7 +22,12 @@ import { SearchField, SearchInput } from '../src/search-field';
 import { Button } from '../src/button';
 import { Kbd } from '../src/kbd';
 import { Modal } from '../src/modal';
-import { Dialog } from '../src/dialog';
+import {
+  Dialog,
+  DialogBody,
+  DialogCloseButton,
+  DialogHeader,
+} from '../src/dialog';
 import {
   Menu,
   MenuButton,
@@ -35,27 +40,23 @@ import {
 import { users } from './users';
 import { Avatar } from '../src/avatar';
 import {
-  CalculatorIcon,
-  CalendarIcon,
   CircleUserIcon,
   CogIcon,
-  CreditCardIcon,
   FingerprintIcon,
   FlameIcon,
   KanbanIcon,
   MessageSquareDotIcon,
-  SettingsIcon,
   SlidersHorizontalIcon,
-  SmileIcon,
   TagIcon,
-  UserIcon,
 } from 'lucide-react';
 import { Icon } from '../src/icon';
 import {
   EmptyState,
   EmptyStateDescription,
+  EmptyStateIcon,
   EmptyStateTitle,
 } from '../src/empty-state';
+import { ExclamationTriangleIcon } from '../src/icons/outline/exclamation-triangle';
 
 const meta: Meta = {
   parameters: {
@@ -107,34 +108,37 @@ export function CommandPalette() {
         </span>
       </Button>
       <Modal isDismissable>
-        <Dialog className="py-3">
+        <Dialog>
           <Autocomplete filter={contains}>
-            <SearchField
-              aria-label="Search commands"
-              autoFocus
-              className="px-1"
-            >
-              <SearchInput
-                placeholder="Search commands…"
-                className="border-transparent shadow-none ring-0"
-              />
-            </SearchField>
-            <Menu
-              items={commands}
-              className="mt-1 border-t px-2"
-              renderEmptyState={() => (
-                <EmptyState>
-                  <EmptyStateTitle elementType="div" displayLevel={2}>
-                    No results
-                  </EmptyStateTitle>
-                  <EmptyStateDescription>
-                    Try adjusting your search filters.
-                  </EmptyStateDescription>
-                </EmptyState>
-              )}
-            >
-              {({ label }) => <MenuItem>{label}</MenuItem>}
-            </Menu>
+            <DialogHeader className="ps-0 pt-2">
+              <SearchField
+                aria-label="Search commands"
+                autoFocus
+                className="px-1"
+              >
+                <SearchInput
+                  placeholder="Search commands…"
+                  className="border-transparent shadow-none ring-0"
+                />
+              </SearchField>
+            </DialogHeader>
+            <DialogBody className="border-t px-1 pt-1 pb-1">
+              <Menu
+                items={commands}
+                renderEmptyState={() => (
+                  <EmptyState>
+                    <EmptyStateTitle elementType="div" displayLevel={2}>
+                      No results
+                    </EmptyStateTitle>
+                    <EmptyStateDescription>
+                      Try adjusting your search filters.
+                    </EmptyStateDescription>
+                  </EmptyState>
+                )}
+              >
+                {({ label }) => <MenuItem>{label}</MenuItem>}
+              </Menu>
+            </DialogBody>
           </Autocomplete>
         </Dialog>
       </Modal>
@@ -220,41 +224,57 @@ export function CommandJ() {
         <Kbd>{isMac ? '⌘' : 'Ctrl'}</Kbd> + <Kbd>J</Kbd>
       </Button>
       <Modal isDismissable>
-        <Dialog className="pt-3">
+        <Dialog>
           <Autocomplete filter={contains}>
-            <TextField aria-label="Search commands" autoFocus className="px-1">
-              <Input
-                placeholder="Open settings…"
-                className="border-transparent shadow-none ring-0"
-              />
-            </TextField>
-            <Menu
-              className="mt-1 border-t px-2"
-              renderEmptyState={() => (
-                <EmptyState>
-                  <EmptyStateTitle elementType="div" displayLevel={2}>
-                    No results
-                  </EmptyStateTitle>
-                  <EmptyStateDescription>
-                    Try adjusting your search filters.
-                  </EmptyStateDescription>
-                </EmptyState>
-              )}
-            >
-              {commands2.map((group, index) => {
-                return (
-                  <MenuSection key={index} title={group.label}>
-                    {group.items.map(({ label, icon, shortcut }) => (
-                      <MenuItem key={label} textValue={label}>
-                        <Icon>{icon}</Icon>
-                        <MenuItemLabel>{label}</MenuItemLabel>
-                        {shortcut && <Kbd>{shortcut}</Kbd>}
-                      </MenuItem>
-                    ))}
-                  </MenuSection>
-                );
-              })}
-            </Menu>
+            <DialogHeader className="flex-row ps-1 pt-2 pe-4">
+              <TextField
+                aria-label="Search commands"
+                autoFocus
+                className="flex-1"
+              >
+                <Input
+                  placeholder="Open settings…"
+                  className="border-transparent shadow-none ring-0"
+                />
+              </TextField>
+
+              <DialogCloseButton className="self-center" variant="outline" size="sm">
+                ESC
+              </DialogCloseButton>
+            </DialogHeader>
+            <DialogBody className="border-t px-1 pt-1 pb-1">
+              <Menu
+                className=""
+                renderEmptyState={() => (
+                  <EmptyState className="py-4">
+                    <EmptyStateIcon>
+                      <ExclamationTriangleIcon className="size-6" />
+                    </EmptyStateIcon>
+                    <EmptyStateTitle elementType="div">
+                      No results found
+                    </EmptyStateTitle>
+                    <EmptyStateDescription>
+                      We couldn’t find anything with that term. Please try
+                      again..
+                    </EmptyStateDescription>
+                  </EmptyState>
+                )}
+              >
+                {commands2.map((group, index) => {
+                  return (
+                    <MenuSection key={index} title={group.label}>
+                      {group.items.map(({ label, icon, shortcut }) => (
+                        <MenuItem key={label} textValue={label}>
+                          <Icon>{icon}</Icon>
+                          <MenuItemLabel>{label}</MenuItemLabel>
+                          {shortcut && <Kbd>{shortcut}</Kbd>}
+                        </MenuItem>
+                      ))}
+                    </MenuSection>
+                  );
+                })}
+              </Menu>
+            </DialogBody>
           </Autocomplete>
         </Dialog>
       </Modal>

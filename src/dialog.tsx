@@ -24,7 +24,7 @@ export function Dialog({ role, alert = false, ...props }: DialogProps) {
       className={twMerge(
         'relative flex max-h-[inherit] flex-col overflow-auto outline-hidden [&:has([data-ui=dialog-body])]:overflow-hidden',
         '[&:not(:has([data-ui=dialog-header]))>[data-ui=dialog-body]:not([class*=pt-])]:pt-6',
-        '[&:not(:has([data-ui=dialog-footer]))>[data-ui=dialog-body]:not([class*=pt-])]:pb-6',
+        '[&:not(:has([data-ui=dialog-footer]))>[data-ui=dialog-body]:not([class*=pb-])]:pb-6',
         props.className,
       )}
     />

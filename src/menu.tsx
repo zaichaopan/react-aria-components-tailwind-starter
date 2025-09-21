@@ -99,7 +99,7 @@ export function Menu<T extends object>({
         twMerge(
           'outline-hidden',
           'flex flex-col',
-          'p-1 has-[>section:first-child]:pt-0',
+          'p-1 has-[>section:first-child>header]:pt-0',
 
           // Header, Menu item style when has selectable items
           '[&_header]:px-2',
@@ -138,7 +138,7 @@ export function Menu<T extends object>({
           '**:data-[ui=kbd]:col-start-3',
           '**:data-[ui=kbd]:justify-self-end',
           '**:data-[ui=kbd]:text-xs/6',
-          '[&_:not([data-destructive])>[data-ui=kbd]:not([class*=bg-])]:text-muted/75',
+          '[&_:not([data-destructive]):not(:hover)>[data-ui=kbd]:not([class*=bg-])]:text-muted/75',
           '[&_[data-destructive]>[data-ui=kbd]]:text-red-600',
 
           // Check indicator
@@ -197,7 +197,7 @@ export function MenuItem({ destructive, ...props }: MenuItemProps) {
         props.className,
         (className, { isFocused, isDisabled }) => {
           return twMerge([
-            'group rounded-sm outline-hidden text-(--foreground)',
+            'group rounded-sm text-(--foreground) outline-hidden',
             'flex items-center gap-x-1.5',
             'px-2 py-2.5 sm:py-1.5',
             'text-base/6 sm:text-sm/6',
@@ -299,9 +299,12 @@ export function MenuSection<T extends object>({
         className,
       )}
     >
-      <Header className="text-muted bg-background sticky inset-0 z-10 truncate pt-2 text-xs/6 rtl:text-right">
-        {props.title}
-      </Header>
+      {props.title && (
+        <Header className="text-muted bg-background sticky inset-0 z-10 truncate pt-2 text-xs/6 rtl:text-right">
+          {props.title}
+        </Header>
+      )}
+
       <Collection items={props.items}>{props.children}</Collection>
     </RACMenuSection>
   );
