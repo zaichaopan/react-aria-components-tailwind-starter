@@ -67,7 +67,7 @@ export const BasicExample = () => {
   return (
     <MenuTrigger>
       <MenuButton>Actions</MenuButton>
-      <MenuPopover>
+      <MenuPopover className="">
         <Menu>
           <MenuItem>Copy</MenuItem>
           <MenuItem>Cut</MenuItem>
@@ -84,6 +84,22 @@ export const MenuButtons = () => {
     <MenuTrigger>
       <MenuButton variant="solid">Actions</MenuButton>
       <MenuPopover>
+        <Menu>
+          <MenuItem>Copy</MenuItem>
+          <MenuItem>Cut</MenuItem>
+          <MenuItem>Paste</MenuItem>
+          <MenuItem>Delete</MenuItem>
+        </Menu>
+      </MenuPopover>
+    </MenuTrigger>
+  );
+};
+
+export const DarkDropdownOnLightMode = () => {
+  return (
+    <MenuTrigger>
+      <MenuButton>Actions</MenuButton>
+      <MenuPopover className="dark">
         <Menu>
           <MenuItem>Copy</MenuItem>
           <MenuItem>Cut</MenuItem>
@@ -349,7 +365,7 @@ export const ItemWithIconShortcutHintsAndDescriptions = () => {
   return (
     <MenuTrigger>
       <MenuButton>Actions</MenuButton>
-      <MenuPopover>
+      <MenuPopover className="dark">
         <Menu>
           <MenuItem>
             <Icon>

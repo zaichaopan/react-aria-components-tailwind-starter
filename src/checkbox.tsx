@@ -160,7 +160,7 @@ function getCheckboxStyle({
   const style = {
     checkbox: [],
     card: [
-      'flex-1 rounded-lg px-4 py-3 items-start',
+      'text-wrap text-balance flex-1 rounded-lg px-4 py-3 items-start',
       '[&>[data-check-indicator]:not([class*=mt-])]:mt-1',
       '[&_[data-ui=icon]:not([class*=size-])]:w-4 [&_[data-ui=icon]:not([class*=size-])]:h-[1lh]',
       'ring ring-border',

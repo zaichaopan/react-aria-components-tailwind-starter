@@ -197,7 +197,7 @@ export function MenuItem({ destructive, ...props }: MenuItemProps) {
         props.className,
         (className, { isFocused, isDisabled }) => {
           return twMerge([
-            'group rounded-sm outline-hidden',
+            'group rounded-sm outline-hidden text-(--foreground)',
             'flex items-center gap-x-1.5',
             'px-2 py-2.5 sm:py-1.5',
             'text-base/6 sm:text-sm/6',

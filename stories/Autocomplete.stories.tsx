@@ -37,9 +37,17 @@ import { Avatar } from '../src/avatar';
 import {
   CalculatorIcon,
   CalendarIcon,
+  CircleUserIcon,
+  CogIcon,
   CreditCardIcon,
+  FingerprintIcon,
+  FlameIcon,
+  KanbanIcon,
+  MessageSquareDotIcon,
   SettingsIcon,
+  SlidersHorizontalIcon,
   SmileIcon,
+  TagIcon,
   UserIcon,
 } from 'lucide-react';
 import { Icon } from '../src/icon';
@@ -135,7 +143,7 @@ export function CommandPalette() {
 }
 
 const commands2: Array<{
-  label: string;
+  label?: string;
   items: Array<{
     label: string;
     icon: React.ReactNode;
@@ -143,37 +151,44 @@ const commands2: Array<{
   }>;
 }> = [
   {
-    label: 'Suggestions',
     items: [
       {
-        label: 'Calendar',
-        icon: <CalendarIcon />,
+        label: 'Preferences',
+        icon: <SlidersHorizontalIcon />,
       },
       {
-        label: 'Search Emoji',
-        icon: <SmileIcon />,
+        label: 'Profile',
+        icon: <CircleUserIcon />,
       },
       {
-        label: 'Calculator',
-        icon: <CalculatorIcon />,
+        label: 'Notifications',
+        icon: <MessageSquareDotIcon />,
+      },
+      {
+        label: 'Security & access',
+        icon: <FingerprintIcon />,
+      },
+      {
+        label: 'Connected accounts',
+        icon: <CogIcon />,
+        shortcut: '⌘,',
       },
     ],
   },
   {
-    label: 'Settings',
+    label: 'Issues',
     items: [
       {
-        label: 'Profile',
-        icon: <UserIcon />,
+        label: 'Label',
+        icon: <TagIcon />,
       },
       {
-        label: 'Billing',
-        icon: <CreditCardIcon />,
+        label: 'Template',
+        icon: <KanbanIcon />,
       },
       {
-        label: 'Settings',
-        icon: <SettingsIcon />,
-        shortcut: '⌘,',
+        label: 'SLAs',
+        icon: <FlameIcon />,
       },
     ],
   },
@@ -226,17 +241,19 @@ export function CommandJ() {
                 </EmptyState>
               )}
             >
-              {commands2.map((group) => (
-                <MenuSection key={group.label} title={group.label}>
-                  {group.items.map(({ label, icon, shortcut }) => (
-                    <MenuItem key={label} textValue={label}>
-                      <Icon>{icon}</Icon>
-                      <MenuItemLabel>{label}</MenuItemLabel>
-                      {shortcut && <Kbd outline>{shortcut}</Kbd>}
-                    </MenuItem>
-                  ))}
-                </MenuSection>
-              ))}
+              {commands2.map((group, index) => {
+                return (
+                  <MenuSection key={index} title={group.label}>
+                    {group.items.map(({ label, icon, shortcut }) => (
+                      <MenuItem key={label} textValue={label}>
+                        <Icon>{icon}</Icon>
+                        <MenuItemLabel>{label}</MenuItemLabel>
+                        {shortcut && <Kbd>{shortcut}</Kbd>}
+                      </MenuItem>
+                    ))}
+                  </MenuSection>
+                );
+              })}
             </Menu>
           </Autocomplete>
         </Dialog>

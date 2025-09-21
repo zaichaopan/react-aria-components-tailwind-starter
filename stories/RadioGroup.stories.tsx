@@ -503,20 +503,29 @@ export function RadioCards() {
             {
               name: 'Pick up your order at your local store',
               description: '2-5 business days',
+              default: true,
             },
             {
               name: 'Delivery to GLS collection store',
               description: 'Arrives before Monday, Nov 6',
+              default: false,
             },
             {
               name: 'GLS delivery to selected address',
               description: 'Arrives before Monday, Nov 6',
+              default: false,
             },
           ].map((option) => {
             return (
               <Radio key={option.name} value={option.name}>
                 <div className="flex flex-1 flex-col">
-                  <div className="flex font-medium">{option.name}</div>
+                  <div className="flex font-medium">
+                    {option.name}
+
+                    {option.default && (
+                      <Badge className="ms-auto">Default</Badge>
+                    )}
+                  </div>
                   <div className="text-gray-500">{option.description}</div>
                 </div>
               </Radio>
