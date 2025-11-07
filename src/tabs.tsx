@@ -10,6 +10,7 @@ import {
   TabsProps as RACTabProps,
   composeRenderProps,
   TabRenderProps,
+  SelectionIndicator,
 } from 'react-aria-components';
 import { twMerge } from 'tailwind-merge';
 
@@ -140,29 +141,19 @@ const tab = ({
 } & TabRenderProps) => {
   const style = {
     base: [
-      'outline-hidden relative flex items-center gap-x-3 rounded-[var(--border-radius,var(--radius-lg))] font-medium',
+      'outline-hidden transition relative flex items-center gap-x-3 rounded-[var(--border-radius,var(--radius-lg))] font-medium',
       '[&>[data-ui=icon]:not([class*=size-])]:size-5',
       isDisabled && 'opacity-50',
       isSelected || isHovered ? 'text-foreground' : 'text-muted',
       isFocusVisible && 'ring-2 ring-inset ring-ring',
     ],
     underline: {
-      base: 'before:absolute before:bg-accent',
-      horizontal: [
-        'p-2 before:bottom-[-1.5px] before:w-full before:inset-x-0',
-        isSelected && 'before:h-0.5',
-      ],
-      vertical: [
-        'px-4',
-        'before:inset-y-0',
-        isSelected && 'before:bg-accent before:left-[-1.5px] before:w-[2px]',
-      ],
+      base: '',
+      horizontal: ['p-2'],
+      vertical: ['px-4'],
     },
     pills: {
-      base: [
-        'flex items-center px-3 py-2',
-        isSelected && 'bg-zinc-100 dark:bg-zinc-500 dark:shadow-outline',
-      ],
+      base: ['flex items-center px-3 py-2'],
       horizontal: '',
       vertical: '',
     },
@@ -170,9 +161,43 @@ const tab = ({
       base: [
         'flex-1 justify-center px-6 py-1 [&>[data-ui=icon]:not([class*=size-])]:size-4',
         isSelected && [
-          'bg-background dark:bg-zinc-500 text-foreground rounded-[calc(var(--border-radius)-2px)] ring shadow-sm dark:shadow-none',
-          isFocusVisible ? 'ring-ring' : 'ring-zinc-950/10',
+          'z-0 text-foreground rounded-[calc(var(--border-radius)-2px)]',
         ],
+      ],
+      horizontal: '',
+      vertical: '',
+    },
+  };
+
+  return [style.base, style[variant].base, style[variant][orientation]];
+};
+
+const tabIndicator = ({
+  variant,
+  orientation,
+  isFocusVisible,
+}: {
+  variant: Variant;
+  orientation: Orientation;
+} & TabRenderProps) => {
+  const style = {
+    base: 'absolute -z-1 transition-[translate,width,height] duration-200',
+    underline: {
+      base: 'bg-accent',
+      horizontal: ['bottom-0 h-0.5 w-full'],
+      vertical: ['left-0 h-full w-0.5'],
+    },
+    pills: {
+      base: [
+        'h-full w-full left-0 top-0 bg-zinc-100 dark:bg-zinc-500 dark:shadow-outline rounded-[var(--border-radius,var(--radius-lg))]',
+      ],
+      horizontal: '',
+      vertical: '',
+    },
+    segment: {
+      base: [
+        'h-full w-full left-0 top-0  bg-background -z-1 dark:bg-zinc-500 text-foreground rounded-[calc(var(--border-radius)-2px)] ring shadow-sm dark:shadow-none',
+        isFocusVisible ? 'ring-ring' : 'ring-zinc-950/10',
       ],
       horizontal: '',
       vertical: '',
@@ -201,6 +226,19 @@ export function Tab(props: TabProps) {
           );
         },
       )}
-    />
+    >
+      {composeRenderProps(props.children, (children, renderProps) => {
+        return (
+          <>
+            {children}
+            <SelectionIndicator
+              className={twMerge(
+                tabIndicator({ variant, orientation, ...renderProps }),
+              )}
+            />
+          </>
+        );
+      })}
+    </RACTab>
   );
 }

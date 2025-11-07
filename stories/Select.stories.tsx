@@ -154,7 +154,9 @@ export const DestructiveItem = () => {
           <SelectListItem id="2">In Progress</SelectListItem>
           <SelectListItem id="3">In Review</SelectListItem>
           <SelectListItem id="4">Done</SelectListItem>
-          <SelectListItem id="5" destructive>Won't do</SelectListItem>
+          <SelectListItem id="5" destructive>
+            Won't do
+          </SelectListItem>
         </SelectListBox>
       </SelectPopover>
     </Select>
@@ -209,8 +211,8 @@ export const DisabledItems = () => {
   return (
     <Select
       placeholder="Select status&hellip;"
-      selectedKey={statusId}
-      onSelectionChange={setStatusId}
+      value={statusId}
+      onChange={(value) => setStatusId(value as Key)}
       disabledKeys={['5']}
     >
       <Label>Project status</Label>
@@ -258,8 +260,8 @@ export const ControlledState = () => {
   return (
     <Select
       placeholder="Select status&hellip;"
-      selectedKey={statusId}
-      onSelectionChange={setStatusId}
+      value={statusId}
+      onChange={(value) => setStatusId(value as Key)}
     >
       <Label>Project status</Label>
       <Description>

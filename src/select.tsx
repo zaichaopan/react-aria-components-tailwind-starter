@@ -21,7 +21,7 @@ import { Small } from './text';
 import { CheckIcon } from './icons/outline/check';
 import { ChevronDownIcon } from './icons/outline/chevron-down';
 
-export function Select<T extends object>(props: RACSelectProps<T>) {
+export function Select<T extends object>(props: RACSelectProps<T, 'single' | 'multiple'>) {
   return (
     <RACSelect
       {...props}

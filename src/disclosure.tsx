@@ -34,8 +34,7 @@ export function DisclosurePanel({ children, ...props }: DisclosurePanelProps) {
       {...props}
       className={composeRenderProps(props.className, (className) => {
         return twMerge(
-          'grid grid-rows-[0fr]',
-          'transition-[grid-template-rows] duration-300 ease-in [&>*]:overflow-hidden',
+          'h-(--disclosure-panel-height) overflow-clip transition-[height]',
           className,
         );
       })}

@@ -46,7 +46,7 @@ export function BasicExample() {
 
   return (
     <div className="w-80 space-y-4">
-      {skillIds!=='all' && skillIds.size>0 ? (
+      {skillIds !== 'all' && skillIds.size > 0 ? (
         <TagGroup
           aria-label="Selected skills"
           onRemove={(value) => {
@@ -75,7 +75,11 @@ export function BasicExample() {
         </TagGroup>
       ) : null}
 
-      <Select placeholder="Select skills&hellip;" aria-label="Skills">
+      <Select
+        selectionMode="multiple"
+        placeholder="Select skills&hellip;"
+        aria-label="Skills"
+      >
         <SelectButton onPress={() => setOpen((val) => !val)}></SelectButton>
         <SelectPopover
           className="flex !max-h-80 flex-col"
@@ -169,7 +173,7 @@ export function Inline() {
           );
         }}
       >
-        {skillIds!=='all' && skillIds.size>0 ? (
+        {skillIds !== 'all' && skillIds.size > 0 ? (
           <TagGroup
             aria-label="Selected skills"
             className="contents"
@@ -203,6 +207,7 @@ export function Inline() {
           placeholder="Select skills&hellip;"
           aria-label="Skills"
           className="peer min-w-fit flex-1 self-center"
+          selectionMode="multiple"
         >
           <SelectButton
             buttonArrow={null}
@@ -227,7 +232,6 @@ export function Inline() {
                 aria-label="Search skills"
                 autoFocus
                 className="px-1"
-              
               >
                 <SearchInput
                   placeholder="Select skills&hellip;"
