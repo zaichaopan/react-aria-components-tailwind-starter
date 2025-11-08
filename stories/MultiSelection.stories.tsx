@@ -4,13 +4,19 @@ import { docs } from '../.storybook/docs';
 import {
   Autocomplete,
   Group,
-  Selection,
+  Key,
   useFilter,
 } from 'react-aria-components';
-import { Select, SelectButton, SelectPopover } from '../src/select';
+import {
+  Select,
+  SelectButton,
+  SelectListBox,
+  SelectListItem,
+  SelectListItemLabel,
+  SelectPopover,
+} from '../src/select';
 import { SearchField, SearchInput } from '../src/search-field';
-
-import { Menu, MenuItem } from '../src/menu';
+import { users } from './users';
 import {
   EmptyState,
   EmptyStateDescription,
@@ -20,6 +26,7 @@ import { Tag, TagGroup, TagList } from '../src/tag-group';
 import { twMerge } from 'tailwind-merge';
 import { ChevronDownIcon } from '../src/icons/outline/chevron-down';
 import { Label, LabeledGroup } from '../src/field';
+import { Avatar } from '../src/avatar';
 
 const meta: Meta = {
   parameters: {
@@ -30,104 +37,10 @@ const meta: Meta = {
 
 export default meta;
 
-const skills = [
-  { id: 'javascript', label: 'Javascript' },
-  { id: 'typescript', label: 'Typescript' },
-  { id: 'react', label: 'React' },
-  { id: 'node.js', label: 'Node.js' },
-  { id: 'graphQL', label: 'GraphQL' },
-  { id: 'postgreSQL', label: 'PostgreSQL' },
-];
-
 export function BasicExample() {
-  const [open, setOpen] = React.useState(false);
-  const [skillIds, setSkillIds] = React.useState<Selection>(new Set([]));
-  const { contains } = useFilter({ sensitivity: 'base' });
+  const [attendeeIds, setAttendeeIds] = React.useState<Array<Key>>([]);
 
-  return (
-    <div className="w-80 space-y-4">
-      {skillIds !== 'all' && skillIds.size > 0 ? (
-        <TagGroup
-          aria-label="Selected skills"
-          onRemove={(value) => {
-            setSkillIds((prev) => {
-              if (prev !== 'all') {
-                return new Set(
-                  Array.from(prev).filter(
-                    (id) => id !== value.values().next().value,
-                  ),
-                );
-              }
-              return value;
-            });
-          }}
-        >
-          <TagList>
-            {Array.from(skillIds).map((id) => {
-              const skill = skills.find((s) => s.id === id);
-              return (
-                <Tag key={id} id={id}>
-                  {skill?.label}
-                </Tag>
-              );
-            })}
-          </TagList>
-        </TagGroup>
-      ) : null}
-
-      <Select
-        selectionMode="multiple"
-        placeholder="Select skills&hellip;"
-        aria-label="Skills"
-      >
-        <SelectButton onPress={() => setOpen((val) => !val)}></SelectButton>
-        <SelectPopover
-          className="flex !max-h-80 flex-col"
-          isOpen={open}
-          onOpenChange={setOpen}
-        >
-          <Autocomplete filter={contains}>
-            <SearchField aria-label="Search skills" autoFocus className="px-1">
-              <SearchInput
-                placeholder="Select skills&hellip;"
-                className="border-transparent shadow-none ring-0"
-              />
-            </SearchField>
-            <Menu
-              items={skills}
-              defaultSelectedKeys={skillIds}
-              selectionMode="multiple"
-              onSelectionChange={(value) => {
-                setSkillIds(value);
-                setOpen(false);
-              }}
-              className="mt-1 border-t px-2"
-              renderEmptyState={() => (
-                <EmptyState>
-                  <EmptyStateTitle elementType="div" displayLevel={2}>
-                    No results
-                  </EmptyStateTitle>
-                  <EmptyStateDescription>
-                    Try adjusting your search filters.
-                  </EmptyStateDescription>
-                </EmptyState>
-              )}
-            >
-              {({ label }) => <MenuItem>{label}</MenuItem>}
-            </Menu>
-          </Autocomplete>
-        </SelectPopover>
-      </Select>
-    </div>
-  );
-}
-
-export function Inline() {
-  const [skillIds, setSkillIds] = React.useState<Selection>(
-    new Set(['javascript', 'react']),
-  );
-
-  const [open, setOpen] = React.useState(false);
+  const buttonRef = React.useRef<HTMLButtonElement>(null);
   const { contains } = useFilter({ sensitivity: 'base' });
 
   const triggerRef = React.useRef<HTMLDivElement | null>(null);
@@ -152,14 +65,14 @@ export function Inline() {
   }, [triggerRef]);
 
   return (
-    <LabeledGroup ref={triggerRef}>
-      <Label>Skills</Label>
+    <LabeledGroup>
+      <Label>Attendees</Label>
       <Group
         ref={triggerRef}
         className={({ isHovered }) => {
           return twMerge(
-            'relative isolate flex w-80 flex-row flex-wrap rounded-md pe-8.5',
-            skillIds !== 'all' && skillIds.size === 0
+            'relative isolate flex w-72 sm:w-96 flex-row flex-wrap rounded-md pe-8.5',
+            attendeeIds.length === 0
               ? 'py-2.5 ps-2.5 sm:py-1.5'
               : 'py-1.5 ps-2 sm:py-1',
 
@@ -173,29 +86,32 @@ export function Inline() {
           );
         }}
       >
-        {skillIds !== 'all' && skillIds.size > 0 ? (
+        {attendeeIds.length > 0 ? (
           <TagGroup
-            aria-label="Selected skills"
+            aria-label="Selected attendees"
             className="contents"
-            onRemove={(value) => {
-              setSkillIds((prev) => {
-                if (prev !== 'all') {
-                  return new Set(
-                    Array.from(prev).filter(
-                      (id) => id !== value.values().next().value,
-                    ),
-                  );
-                }
-                return value;
+            onRemove={(keys) => {
+              setAttendeeIds((prev) => {
+                return prev.filter((k) => !keys.has(k));
               });
             }}
           >
             <TagList className="contents">
-              {Array.from(skillIds).map((id) => {
-                const skill = skills.find((s) => s.id === id);
+              {Array.from(attendeeIds).map((id) => {
+                const attendee = users.find((u) => u.id === id);
+                if (attendee == null) {
+                  return null;
+                }
+
                 return (
                   <Tag key={id} id={id} className="m-0.5 h-fit self-center">
-                    {skill?.label}
+                    <Avatar
+                      className="rounded-full"
+                      size={16}
+                      src={attendee.avatar}
+                      alt={attendee.name}
+                    />
+                    {attendee.name}
                   </Tag>
                 );
               })}
@@ -204,52 +120,50 @@ export function Inline() {
         ) : null}
 
         <Select
-          placeholder="Select skills&hellip;"
-          aria-label="Skills"
+          placeholder="Add attendees&hellip;"
+          aria-label="attendees"
           className="peer min-w-fit flex-1 self-center"
           selectionMode="multiple"
+          onChange={(selected) => {
+            setAttendeeIds(selected as Key[]);
+          }}
         >
           <SelectButton
+            ref={buttonRef}
+            selectValue={null}
             buttonArrow={null}
-            onPress={() => setOpen((val) => !val)}
             className={({ isDisabled }) => {
               return twMerge(
-                'py-0 pe-0 shadow-none ring-0 sm:py-0',
-                skillIds !== 'all' && skillIds.size === 0 ? 'ps-0' : 'ps-2.5',
+                'text-muted py-0 pe-0 shadow-none ring-0 sm:py-0',
+                attendeeIds.length === 0 ? 'ps-0' : 'ps-2.5',
                 isDisabled && 'opacity-100',
               );
             }}
-          ></SelectButton>
+          >
+            Add attendees&hellip;
+          </SelectButton>
           <SelectPopover
-            className="flex !max-h-80 flex-col"
-            isOpen={open}
-            onOpenChange={setOpen}
-            style={{ width: `${width}px` }}
             triggerRef={triggerRef}
+            placement="bottom end"
+            style={{ width: `${width}px` }}
+            className="flex !max-h-80 flex-col"
           >
             <Autocomplete filter={contains}>
               <SearchField
-                aria-label="Search skills"
+                aria-label="Search states"
                 autoFocus
-                className="px-1"
+                className="border-b px-1"
               >
                 <SearchInput
-                  placeholder="Select skills&hellip;"
+                  placeholder="Add attendees&hellip;"
                   className="border-transparent shadow-none ring-0"
                 />
               </SearchField>
-              <Menu
-                items={skills}
-                defaultSelectedKeys={skillIds}
-                selectionMode="multiple"
-                onSelectionChange={(value) => {
-                  setSkillIds(value);
-                  setOpen(false);
-                }}
-                className="mt-1 border-t px-2"
+              <SelectListBox
+                items={users}
                 renderEmptyState={() => (
                   <EmptyState>
-                    <EmptyStateTitle elementType="div" displayLevel={2}>
+                    <EmptyStateTitle elementType="div" displayLevel={3}>
                       No results
                     </EmptyStateTitle>
                     <EmptyStateDescription>
@@ -258,8 +172,17 @@ export function Inline() {
                   </EmptyState>
                 )}
               >
-                {({ label }) => <MenuItem>{label}</MenuItem>}
-              </Menu>
+                {(user) => (
+                  <SelectListItem textValue={user.name}>
+                    <Avatar
+                      className="rounded-full"
+                      src={user.avatar}
+                      alt={user.name}
+                    />
+                    <SelectListItemLabel>{user.name}</SelectListItemLabel>
+                  </SelectListItem>
+                )}
+              </SelectListBox>
             </Autocomplete>
           </SelectPopover>
         </Select>
@@ -267,7 +190,7 @@ export function Inline() {
         <button
           aria-hidden
           onClick={() => {
-            setOpen((val) => !val);
+            buttonRef.current?.click();
           }}
           tabIndex={-1}
           className="text-muted absolute top-1/2 right-1 z-10 -translate-y-1/2 px-2 peer-data-disabled:hidden hover:bg-transparent"

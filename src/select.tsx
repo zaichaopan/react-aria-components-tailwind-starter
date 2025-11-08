@@ -6,12 +6,13 @@ import {
   Button,
   ButtonProps as RACButtonProps,
   ListBoxItemProps,
-  SelectValue,
+  SelectValue as RACSelectValue,
   composeRenderProps,
   Collection,
   ListBoxSectionProps as RACListBoxSectionProps,
   ListBoxSection as RACListBoxSection,
   ListBoxItem as RACListBoxItem,
+  SelectValueProps,
 } from 'react-aria-components';
 import { ListBoxProps, ListBox } from './list-box';
 import { Popover, PopoverProps } from './popover';
@@ -21,7 +22,9 @@ import { Small } from './text';
 import { CheckIcon } from './icons/outline/check';
 import { ChevronDownIcon } from './icons/outline/chevron-down';
 
-export function Select<T extends object>(props: RACSelectProps<T, 'single' | 'multiple'>) {
+export function Select<T extends object>(
+  props: RACSelectProps<T, 'single' | 'multiple'>,
+) {
   return (
     <RACSelect
       {...props}
@@ -36,15 +39,20 @@ export function Select<T extends object>(props: RACSelectProps<T, 'single' | 'mu
 
 export function SelectButton({
   children,
+  ref,
   buttonArrow = <ChevronDownIcon className="text-muted size-5 sm:size-4" />,
+  selectValue,
   ...props
 }: RACButtonProps & {
+  ref?: React.ForwardedRef<HTMLButtonElement>;
   children?: React.ReactNode;
   buttonArrow?: React.ReactNode;
+  selectValue?: React.ReactNode;
 }) {
   return (
     <Button
       {...props}
+      ref={ref}
       data-ui="control"
       className={composeRenderProps(
         props.className,
@@ -70,9 +78,22 @@ export function SelectButton({
       {!!children && (
         <span className="flex items-center gap-x-2">{children}</span>
       )}
-      <SelectValue
-        data-ui="select-value"
-        className={twMerge([
+      {selectValue === undefined ? <SelectValue /> : selectValue}
+
+      {buttonArrow}
+    </Button>
+  );
+}
+
+export function SelectValue<T extends object>({
+  className,
+  ...props
+}: SelectValueProps<T>) {
+  return (
+    <RACSelectValue
+      data-ui="select-value"
+      className={composeRenderProps(className, (className) => {
+        return twMerge([
           'data-placeholder:text-muted flex-1 truncate dark:data-placeholder:text-white',
           // Selected Item style
           '*:data-[ui=content]:flex',
@@ -84,11 +105,11 @@ export function SelectButton({
           '[&>[data-ui=content]_[role=img]]:size-6',
           'sm:[&>[data-ui=content]_[data-ui=icon]:not([class*=size-])]:size-4',
           'sm:[&>[data-ui=content]_[role=img]]:size-5',
-        ])}
-      />
-
-      {buttonArrow}
-    </Button>
+          className,
+        ]);
+      })}
+      {...props}
+    />
   );
 }
 

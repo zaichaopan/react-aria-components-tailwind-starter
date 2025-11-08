@@ -49,7 +49,7 @@ export const ListBoxItem = React.forwardRef(
               'group relative flex outline-0',
               isDisabled && 'opacity-50',
               isFocusVisible &&
-                'outline-ring outline outline-2 outline-offset-2',
+                'outline-ring outline-2 outline-offset-2',
               className,
             ),
         )}
