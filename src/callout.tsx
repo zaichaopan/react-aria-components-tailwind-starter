@@ -146,9 +146,9 @@ export default function Callout({
           center
             ? [
                 'grid-cols-[auto_auto_auto_auto]',
-                'sm:flex sm:[&>:first-child]:ms-auto',
+                'sm:flex sm:*:first:ms-auto',
                 'sm:[&>:last-child:not([data-ui=callout-control])]:me-auto',
-                'sm:[&>[data-ui=callout-control]]:ms-auto',
+                'sm:*:data-[ui=callout-control]:ms-auto',
               ]
             : 'rounded-lg border',
           '[&:has([data-ui=callout-heading]+[data-ui=callout-description])]:[--callout-content-row-end:3]',
@@ -176,7 +176,7 @@ export function CalloutIcon({
         'me-2',
         '[&_[data-ui=icon]:not([class*=text-])]:text-(--callout-icon)',
         '[&_[data-ui=icon]:not([class*=size-])]:w-5',
-        '[&_[data-ui=icon]:not([class*=size-])]:h-[1lh]',
+        '[&_[data-ui=icon]:not([class*=size-])]:h-lh',
         className,
       )}
     />

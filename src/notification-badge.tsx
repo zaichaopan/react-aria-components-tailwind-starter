@@ -1,24 +1,20 @@
 import { twMerge } from 'tailwind-merge';
 
-type DotVariantProps = {
-  variant: 'dot';
-  inline?: boolean;
-};
-
-type NumericVariantProps = {
-  variant: 'numeric';
+export type NotificationBadgeProps = {
+  variant: 'numeric' | 'dot';
   value: number;
   inline?: boolean;
-};
-
-export type NotificationBadgeProps = (DotVariantProps | NumericVariantProps) &
-  React.JSX.IntrinsicElements['span'];
+} & React.JSX.IntrinsicElements['span'];
 
 export function NotificationBadge({
   className,
   'aria-label': ariaLabel,
   ...props
 }: NotificationBadgeProps) {
+  if (props.value === 0) {
+    return null;
+  }
+
   if (props.variant === 'dot') {
     const { variant, inline, ...rest } = props;
 
@@ -54,7 +50,7 @@ export function NotificationBadge({
         className={twMerge([
           inline ? '' : 'absolute -top-1.5 -right-1',
           'flex h-4 items-center justify-center rounded-full bg-red-600 text-[0.65rem] text-white',
-          props.value > 0 ? (props.value > 9 ? 'w-5' : 'w-4') : 'hidden',
+          props.value > 9 ? 'w-5' : 'w-4',
           className,
         ])}
       >

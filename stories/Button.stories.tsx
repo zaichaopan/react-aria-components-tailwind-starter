@@ -242,7 +242,7 @@ export const CustomPendingUI = () => {
       </Button>
 
       <Button isPending={isPending} isCustomPending pendingLabel="Refreshing">
-        {isPending && <SpinnerIcon />}
+        {isPending && <SpinnerIcon  className='size-4'/>}
         Refresh
       </Button>
     </div>

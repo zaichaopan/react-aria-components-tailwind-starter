@@ -70,7 +70,7 @@ export function getFallbackAvatarDataUrl({
 
   background =
     background ??
-    `linear-gradient(135deg, ${getInitialsGradient(alt, colorful).join(', ')})`;
+    `linear-gradient(to top, ${getInitialsGradient(alt, colorful).join(', ')})`;
 
   return fallback === 'icon'
     ? getFallbackIconDateUrl(background)

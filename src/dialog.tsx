@@ -188,7 +188,7 @@ export function DialogCloseButton({
       size={size}
       className={composeRenderProps(props.className, (className) =>
         twMerge(
-          'text-muted/75 hover:text-foreground absolute end-2 top-3 p-1.5',
+          'text-muted hover:text-foreground absolute end-2 top-3 p-1.5',
           className,
         ),
       )}

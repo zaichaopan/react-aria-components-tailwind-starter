@@ -184,7 +184,7 @@ const tabIndicator = ({
     base: 'absolute -z-1 transition-[translate,width,height] duration-200',
     underline: {
       base: 'bg-accent',
-      horizontal: ['bottom-0 h-0.5 w-full'],
+      horizontal: ['bottom-0 left-0 h-0.5 w-full'],
       vertical: ['left-0 h-full w-0.5'],
     },
     pills: {

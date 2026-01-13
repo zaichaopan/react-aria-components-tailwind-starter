@@ -40,9 +40,9 @@ export const BasicExample = () => {
           </span>
           <Input
             type="email"
+            name="email"
             placeholder="m@example.com"
             className="col-span-full row-start-1 ps-9"
-            autoComplete="email"
           />
         </div>
       </TextField>
@@ -50,7 +50,7 @@ export const BasicExample = () => {
       <TextField>
         <Label>Company website</Label>
         <div className="group grid grid-cols-[auto_1fr]">
-          <span className="text-foreground col-start-1 row-start-1 grid place-content-center ps-2.5 text-base/6 group-has-autofill:z-10 sm:text-sm/6">
+          <span className="col-start-1 row-start-1 grid place-content-center ps-2.5 text-base/6 group-has-autofill:z-10 sm:text-sm/6">
             https://
           </span>
           <Input
@@ -58,6 +58,23 @@ export const BasicExample = () => {
             className="col-span-full row-start-1 ps-16 sm:ps-[--spacing(15)]"
             autoComplete="email"
           />
+        </div>
+      </TextField>
+
+      <TextField>
+        <Label>Company website</Label>
+        <div className="group grid grid-cols-[auto_1fr_auto]">
+          <span className="col-start-1 row-start-1 grid place-content-center ps-2.5 text-base/6 group-has-autofill:z-10 sm:text-sm/6">
+            https://
+          </span>
+
+          <Input
+            placeholder="www.example"
+            className="col-span-full row-start-1 ps-16 sm:ps-[--spacing(15)] pe-12"
+          />
+          <span className="-z-1 -col-end-1 row-start-1 grid place-content-center pe-2.5 text-base/6 group-has-autofill:z-10 sm:text-sm/6">
+            .com
+          </span>
         </div>
       </TextField>
 
@@ -69,7 +86,7 @@ export const BasicExample = () => {
             className="col-span-full row-start-1 pe-10"
             autoComplete="email"
           />
-          <span className="-col-end-1 row-start-1 grid place-content-center px-3">
+          <span className="-z-1 -col-end-1 row-start-1 grid place-content-center px-3 group-has-autofill:z-10">
             <Icon className="text-muted/90 size-5 sm:size-4">
               <CreditCardIcon />
             </Icon>
@@ -87,8 +104,10 @@ export const BasicExample = () => {
           <Input
             placeholder="0.00"
             className="col-span-full row-start-1 ps-7 pe-10"
+            type="email"
+            name="email"
           />
-          <span className="text-muted -col-end-1 row-start-1 grid place-content-center px-3 text-base/6 sm:text-sm/6">
+          <span className="text-muted -z-1 -col-end-1 row-start-1 grid place-content-center px-3 text-base/6 group-has-autofill:z-10 sm:text-sm/6">
             USD
           </span>
         </div>
@@ -582,11 +601,7 @@ export const InputWithButton = () => {
               variant="plain"
               isIconOnly
               size="sm"
-              tooltip={
-                <Tooltip offset={10}>
-                  This is a tooltip
-                </Tooltip>
-              }
+              tooltip={<Tooltip offset={10}>This is a tooltip</Tooltip>}
               className="not-hover:text-muted/70 -col-end-1 row-start-1 me-1 self-center"
             >
               <QuestionMarkCircleIcon aria-label="help" className="size-4.5" />

@@ -71,8 +71,8 @@ export const MenuPopover = React.forwardRef(
             'min-w-[max(--spacing(40),var(--trigger-width))]',
             'outline-0',
 
-            '[&>[role=menu]]:max-h-[inherit]',
-            '[&>[role=menu]]:overflow-auto',
+            '*:[[role=menu]]:max-h-[inherit]',
+            '*:[[role=menu]]:overflow-auto',
             '[&>*:has(>[role=menu])]:max-h-[inherit]',
             '[&>*:has(>[role=menu])]:overflow-auto',
           ),
@@ -116,7 +116,7 @@ export function Menu<T extends object>({
           '**:data-[ui=content]:rtl:text-right',
 
           // Icon
-          '[&_[data-ui=content]:not(:hover)>[data-ui=icon]:not([class*=text-])]:text-muted/75',
+          '[&_[data-ui=content]:not(:hover)>[data-ui=icon]:not([class*=text-])]:text-muted',
           '[&_[data-ui=content][data-destructive]>[data-ui=icon]]:text-red-600',
           '[&_[data-ui=content][data-destructive]:not(:hover)>[data-ui=icon]]:text-red-600/75',
           '[&_[data-ui=content]>[data-ui=icon]:not([class*=size-])]:size-4',
@@ -138,7 +138,7 @@ export function Menu<T extends object>({
           '**:data-[ui=kbd]:col-start-3',
           '**:data-[ui=kbd]:justify-self-end',
           '**:data-[ui=kbd]:text-xs/6',
-          '[&_:not([data-destructive]):not(:hover)>[data-ui=kbd]:not([class*=bg-])]:text-muted/75',
+          '[&_:not([data-destructive]):not(:hover)>[data-ui=kbd]:not([class*=bg-])]:text-muted',
           '[&_[data-destructive]>[data-ui=kbd]]:text-red-600',
 
           // Check indicator
@@ -197,7 +197,7 @@ export function MenuItem({ destructive, ...props }: MenuItemProps) {
         props.className,
         (className, { isFocused, isDisabled }) => {
           return twMerge([
-            'group rounded-sm text-(--foreground) outline-hidden',
+            'group text-foreground rounded-sm outline-hidden',
             'flex items-center gap-x-1.5',
             'px-2 py-2.5 sm:py-1.5',
             'text-base/6 sm:text-sm/6',
@@ -216,11 +216,11 @@ export function MenuItem({ destructive, ...props }: MenuItemProps) {
           <>
             <CheckIcon
               className={twMerge(
-                'flex h-[1lh] w-4 items-center self-start',
+                'flex h-lh w-4 items-center self-start',
                 selectionMode == 'none'
                   ? 'hidden'
                   : // when placement is end or has check indicator
-                    'in-data-[check-icon-placement=end]:hidden in-[&:has(_[data-check-indicator])]:hidden',
+                    'in-data-[check-icon-placement=end]:hidden in-[&:has([data-check-indicator])]:hidden',
                 isSelected ? 'visible' : 'invisible',
               )}
             />
@@ -234,11 +234,11 @@ export function MenuItem({ destructive, ...props }: MenuItemProps) {
             </div>
             <CheckIcon
               className={twMerge(
-                'flex h-[1lh] w-4 items-center self-start',
+                'flex h-lh w-4 items-center self-start',
                 selectionMode == 'none'
                   ? 'hidden'
                   : // when placement is start or has check indicator
-                    'in-data-[check-icon-placement=start]:hidden in-[&:has(_[data-check-indicator])]:hidden',
+                    'in-data-[check-icon-placement=start]:hidden in-[&:has([data-check-indicator])]:hidden',
 
                 isSelected ? 'visible' : 'invisible',
               )}

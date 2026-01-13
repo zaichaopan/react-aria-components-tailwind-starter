@@ -173,7 +173,6 @@ function getRadioStyle({
   orientation?: RadioGroupVariant['orientation'];
   compact?: boolean;
 }) {
-  console.log(variant, isSelected);
   const style = {
     radio: [],
     card: [
@@ -225,7 +224,7 @@ function getRadioStyle({
       'transition-all ease-in-out',
 
       isSelected && [
-        'bg-white dark:bg-zinc-600',
+        'bg-white dark:bg-zinc-700/80',
         'shadow-sm dark:shadow-none',
         'ring ring-zinc-950/10',
       ],
@@ -372,12 +371,12 @@ export function RadioToggle({
           className={twMerge(
             'rounded-full',
             renderProps?.isSelected &&
-              'size-2 bg-white shadow-[0_1px_1px_rgba(0,0,0,0.25)] dark:bg-[lch(from_var(--accent)_calc((49.44_-_l)_*_infinity)_0_0)]',
+              'size-2 bg-white shadow-[0_1px_1px_rgba(0,0,0,0.25)] dark:bg-[lch(from_var(--accent)_calc((49.44-l)*infinity)_0_0)]',
 
             // when it is inside menu item and the item is selected
             'in-[&[data-ui=content][data-selected=true]]:size-2',
             'in-[&[data-ui=content][data-selected=true]]:bg-white',
-            'in-[&[data-ui=content][data-selected=true]]:shadow-[0_1px_1px_rgba(0,0,0,0.25)] dark:bg-[lch(from_var(--accent)_calc((49.44_-_l)_*_infinity)_0_0)]',
+            'in-[&[data-ui=content][data-selected=true]]:shadow-[0_1px_1px_rgba(0,0,0,0.25)] dark:bg-[lch(from_var(--accent)_calc((49.44-l)*infinity)_0_0)]',
           )}
         ></div>
       )}

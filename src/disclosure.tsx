@@ -59,7 +59,7 @@ export function DisclosureControl(props: ButtonProps) {
         props.className,
         (className, { isFocusVisible }) => {
           return twMerge([
-            'group [&_svg[data-ui=icon]:not(:hover)]:text-muted mb-2 flex items-center gap-x-2 rounded-sm outline-hidden [&_svg[data-ui=icon]:not([class*=size-])]:size-5',
+            'group [&:not([aria-expanded=true]):not(:hover)_svg[data-ui=icon]]:text-muted mb-2 flex w-full items-center gap-x-3 rounded-sm outline-hidden [&_svg[data-ui=icon]:not([class*=size-])]:size-5',
             '[&[aria-expanded=true]+[data-ui=disclosure-panel]]:grid-rows-[1fr]',
             isFocusVisible && [
               'outline',

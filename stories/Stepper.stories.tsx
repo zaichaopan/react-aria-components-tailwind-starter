@@ -4,7 +4,6 @@ import { Button } from '../src/button';
 import {
   Step,
   StepCounter,
-  StepIndicatorHeading,
   StepList,
   StepPanel,
   Stepper,
@@ -99,11 +98,16 @@ export const LabelPlacement = () => {
 
   return (
     <div className="flex flex-col p-8">
-      <Stepper value={value} steps={steps} onStepChange={setValue}>
+      <Stepper
+        value={value}
+        steps={steps}
+        onStepChange={setValue}
+        labelPlacement="top"
+      >
         {({ isFirstStep, isCompleted, prev, next }) => {
           return (
             <div className="space-y-12">
-              <StepList className="mx-auto max-w-xl" labelPlacement="top">
+              <StepList className="mx-auto max-w-xl">
                 <Step step={1} counter={<StepCounter />}>
                   Personal information
                 </Step>
@@ -142,109 +146,6 @@ export const LabelPlacement = () => {
     </div>
   );
 };
-
-export const CounterVariant = () => {
-  const steps = 3;
-  const [value, setValue] = React.useState(0);
-
-  return (
-    <div className="flex flex-col p-8">
-      <Stepper value={value} steps={steps} onStepChange={setValue}>
-        {({ isFirstStep, isCompleted, prev, next }) => {
-          return (
-            <div className="space-y-12">
-              <StepList
-                className="mx-auto max-w-xl"
-                labelPlacement="top"
-                compact
-              >
-                <Step step={1} counter={<StepCounter variant="dot" />}>
-                  Personal information
-                </Step>
-                <Step step={2} counter={<StepCounter variant="dot" />}>
-                  Household status
-                </Step>
-                <Step step={3} counter={<StepCounter variant="dot" />}>
-                  Supporting documents
-                </Step>
-              </StepList>
-
-              <div className="flex justify-center gap-x-4">
-                <Button
-                  variant="outline"
-                  type="button"
-                  className="min-w-24"
-                  isDisabled={isFirstStep}
-                  onPress={prev}
-                >
-                  Previous
-                </Button>
-                <Button
-                  variant="outline"
-                  type="button"
-                  className="min-w-24"
-                  isDisabled={isCompleted}
-                  onPress={next}
-                >
-                  Next
-                </Button>
-              </div>
-            </div>
-          );
-        }}
-      </Stepper>
-    </div>
-  );
-};
-
-export function StepLabelAlignment() {
-  const steps = 3;
-  const [value, setValue] = React.useState(0);
-  return (
-    <div className="flex flex-col p-8">
-      <Stepper value={value} steps={steps} onStepChange={setValue}>
-        {({ isFirstStep, isCompleted, prev, next }) => {
-          return (
-            <div className="space-y-12">
-              <StepList alignment="start" compact>
-                <Step step={1} counter={<StepCounter />}>
-                  Personal information
-                </Step>
-                <Step step={2} counter={<StepCounter />}>
-                  Household status
-                </Step>
-                <Step step={3} counter={<StepCounter />}>
-                  Supporting documents
-                </Step>
-              </StepList>
-
-              <div className="flex justify-center gap-x-4">
-                <Button
-                  variant="outline"
-                  type="button"
-                  className="min-w-24"
-                  isDisabled={isFirstStep}
-                  onPress={prev}
-                >
-                  Previous
-                </Button>
-                <Button
-                  variant="outline"
-                  type="button"
-                  className="min-w-24"
-                  isDisabled={isCompleted}
-                  onPress={next}
-                >
-                  Next
-                </Button>
-              </div>
-            </div>
-          );
-        }}
-      </Stepper>
-    </div>
-  );
-}
 
 export function NoStepLabel() {
   const steps = 3;
@@ -323,7 +224,7 @@ export function NoStepCounter() {
                 <Step step={3}>Supporting documents</Step>
               </StepList>
 
-              <StepList compact>
+              <StepList>
                 <Step step={1} aria-label="Personal information" />
                 <Step step={2} aria-label="Household status" />
                 <Step step={3} aria-label="Supporting documents" />
@@ -526,14 +427,12 @@ export function MultiStepsForm() {
                   })}
                 </StepList>
 
-                <StepIndicatorHeading>
-                  <Heading displayLevel={2} elementType="div">
-                    {steps[value].title}
-                  </Heading>
-                  <SubHeading className="mt-0">
-                    {steps[value].description}
-                  </SubHeading>
-                </StepIndicatorHeading>
+                <Heading displayLevel={2} elementType="div">
+                  {steps[value].title}
+                </Heading>
+                <SubHeading className="mt-0">
+                  {steps[value].description}
+                </SubHeading>
 
                 <Form
                   onSubmit={(e) => {

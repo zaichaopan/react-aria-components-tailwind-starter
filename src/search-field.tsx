@@ -37,9 +37,9 @@ export function SearchInput({
       ].join(' ')}
     >
       {isPending ? (
-        <SpinnerIcon className="text-muted z-10 col-start-1 row-start-1 size-5 place-self-center sm:size-4" />
+        <SpinnerIcon className="text-muted group-has-autofill:z-10 col-start-1 row-start-1 size-5 place-self-center sm:size-4" />
       ) : (
-        <SearchIcon className="text-muted z-10 col-start-1 row-start-1 size-5 place-self-center sm:size-4" />
+        <SearchIcon className="text-muted group-has-autofill:z-10 col-start-1 row-start-1 size-5 place-self-center sm:size-4" />
       )}
 
       <Input

@@ -2,25 +2,26 @@ import React from 'react';
 import { ClassNameValue, twMerge } from 'tailwind-merge';
 import { CheckIcon } from './icons/outline/check';
 import { flushSync } from 'react-dom';
-import { Icon } from './icon';
+
+type OrientationAndLabelPlacement =
+  | {
+      orientation: 'horizontal';
+      labelPlacement?: 'top';
+    }
+  | {
+      orientation: 'vertical';
+    };
 
 type StepperContextType = {
   value: number;
   steps: number;
   stepHeadingRef: React.RefObject<HTMLDivElement | null>;
   onStepChange: (step: number) => void;
-};
+} & OrientationAndLabelPlacement;
 
 const StepperContextType = React.createContext<StepperContextType | null>(null);
 
-const StepContext = React.createContext<{
-  step: number;
-  completed: boolean;
-  current: boolean;
-  hasCounter: boolean;
-} | null>(null);
-
-function useStepIndicator() {
+function useStepperContext() {
   const stepIndicatorContext = React.useContext(StepperContextType);
 
   if (!stepIndicatorContext) {
@@ -29,6 +30,15 @@ function useStepIndicator() {
 
   return stepIndicatorContext;
 }
+
+type StepContextType = {
+  step: number;
+  completed: boolean;
+  current: boolean;
+  hasCounter: boolean;
+};
+
+const StepContext = React.createContext<StepContextType | null>(null);
 
 function useStepContext() {
   const stepContext = React.useContext(StepContext);
@@ -40,25 +50,32 @@ function useStepContext() {
   return stepContext;
 }
 
-export function Stepper({
-  value,
-  steps,
-  onStepChange,
-  children,
-}: {
-  value: number;
-  steps: number;
-  onStepChange: React.Dispatch<React.SetStateAction<number>>;
-  children:
-    | React.ReactNode
-    | ((props: {
-        prev: () => void;
-        next: () => void;
-        isFirstStep: boolean;
-        isLastStep: boolean;
-        isCompleted: boolean;
-      }) => React.ReactNode);
-}) {
+export function Stepper(
+  props: {
+    value: number;
+    steps: number;
+    onStepChange: React.Dispatch<React.SetStateAction<number>>;
+    children:
+      | React.ReactNode
+      | ((props: {
+          prev: () => void;
+          next: () => void;
+          isFirstStep: boolean;
+          isLastStep: boolean;
+          isCompleted: boolean;
+        }) => React.ReactNode);
+  } & Partial<OrientationAndLabelPlacement>,
+) {
+  const {
+    value,
+    steps,
+    onStepChange,
+    children,
+    orientation = 'horizontal',
+    ...rest
+  } = props;
+  const labelPlacement =
+    'labelPlacement' in rest ? rest.labelPlacement : undefined;
   const stepHeadingRef = React.useRef<HTMLDivElement | null>(null);
   const isCompleted = value === steps;
   const isFirstStep = value === 0;
@@ -89,7 +106,14 @@ export function Stepper({
 
   return (
     <StepperContextType.Provider
-      value={{ value, steps, stepHeadingRef, onStepChange }}
+      value={{
+        value,
+        steps,
+        stepHeadingRef,
+        onStepChange,
+        orientation,
+        labelPlacement,
+      }}
     >
       {typeof children === 'function'
         ? children({
@@ -104,48 +128,37 @@ export function Stepper({
   );
 }
 
-type StepListContextType = {
-  alignment: 'center' | 'start';
-  compact: boolean;
-  labelPlacement: 'top' | 'bottom';
-};
-
-const StepListContext = React.createContext<StepListContextType>({
-  alignment: 'center',
-  compact: false,
-  labelPlacement: 'bottom',
-});
-
 export function StepList({
   className,
-  alignment = 'center',
-  compact = false,
-  labelPlacement = 'bottom',
   ...props
-}: React.JSX.IntrinsicElements['ol'] & Partial<StepListContextType>) {
-  return (
-    <StepListContext.Provider value={{ alignment, compact, labelPlacement }}>
-      <ol
-        {...props}
-        className={twMerge(
-          'flex w-full overflow-x-auto',
-          !compact && 'gap-x-2',
-          '[--separator-radius:calc(infinity_*_1px)]',
-          '[&.gap-x-0]:[--separator-radius:0]',
-          '[&.gap-x-0]:rounded-full',
-          '[--counter-size:--spacing(6)]',
-          '[--counter-padding:--spacing(1)]',
-          '[--counter:var(--color-zinc-200)]/75',
-          'dark:[--counter:var(--color-zinc-700)]',
-          '[--counter-text:var(--muted)]',
-          '[--counter-highlight:var(--accent)]',
-          '[--counter-highlight-text:lch(from_var(--counter-highlight)_calc((49.44_-_l)_*_infinity)_0_0)]',
-          '[--separator-h:--spacing(0.5)]',
+}: React.JSX.IntrinsicElements['div']) {
+  const { orientation } = useStepperContext();
 
-          className,
-        )}
-      />
-    </StepListContext.Provider>
+  return (
+    <div
+      {...props}
+      role="group"
+      className={twMerge(
+        'flex',
+        orientation === 'horizontal'
+          ? 'w-full flex-row overflow-x-auto'
+          : 'flex-col gap-y-(--step-gap-y) [--step-gap-y:--spacing(10)]',
+        'gap-x-2',
+        '[--separator-radius:calc(infinity*1px)]',
+        '[&.gap-x-0]:[--separator-radius:0]',
+        '[&.gap-x-0]:rounded-full',
+        '[--counter-size:--spacing(6)]',
+        '[--counter-padding:--spacing(1)]',
+        '[--counter:var(--color-zinc-200)]/75',
+        'dark:[--counter:var(--color-zinc-700)]',
+        '[--counter-text:var(--muted)]',
+        '[--counter-highlight:var(--accent)]',
+        '[--counter-highlight-text:lch(from_var(--counter-highlight)_calc((49.44-l)*infinity)_0_0)]',
+        '[--separator-h:--spacing(0.5)]',
+
+        className,
+      )}
+    />
   );
 }
 
@@ -157,7 +170,7 @@ export function Step({
   counter,
   separator,
   ...props
-}: Omit<React.JSX.IntrinsicElements['li'], 'className'> & {
+}: Omit<React.JSX.IntrinsicElements['div'], 'className'> & {
   className?:
     | string
     | ((renderProps: {
@@ -173,26 +186,39 @@ export function Step({
     | { children?: never; 'aria-label': string }
     | { children: React.ReactNode }
   )) {
-  const { value, steps } = useStepIndicator();
+  const { value, steps, orientation, stepHeadingRef } = useStepperContext();
   const completed = value >= step;
   const current = value === step - 1;
-  const { alignment, labelPlacement, compact } =
-    React.useContext(StepListContext);
+  const context = useStepperContext();
+  const labelPlacement =
+    context.orientation === 'horizontal' ? context.labelPlacement : undefined;
 
   return (
     <StepContext.Provider
       value={{ step, hasCounter: !!counter, completed, current }}
     >
-      <li
+      <div
         {...props}
+
+        tabIndex={-1}
+        {...(current && {
+          ref: stepHeadingRef,
+        })}
         className={twMerge(
-          'relative isolate flex flex-1 shrink-0 flex-col gap-2 text-sm/6',
-          alignment === 'center' && ['items-center', 'text-center'],
-          ariaLabel && ['[&>[data-ui=label]]:sr-only'],
-          labelPlacement === 'top' && [
-            'min-w-0 [&>[data-ui=label]]:w-full [&>[data-ui=label]]:truncate',
-          ],
-          compact && ['[&>[data-ui=label]]:px-1'],
+          'relative outline-0 isolate flex flex-1 shrink-0 gap-2 text-sm/6',
+          orientation === 'horizontal'
+            ? [
+                'flex-col',
+                'items-center',
+                'text-center',
+                labelPlacement === 'top' && [
+                  'min-w-0 *:data-[ui=label]:w-full *:data-[ui=label]:truncate',
+                ],
+              ]
+            : ['flex-row', 'items-baseline'],
+
+          ariaLabel && ['*:data-[ui=label]:sr-only'],
+
           typeof className == 'function'
             ? className({ completed, current })
             : className,
@@ -213,7 +239,7 @@ export function Step({
               ? counter({ completed, step })
               : counter}
 
-            {labelPlacement === 'bottom' && (
+            {!labelPlacement && (
               <span
                 data-ui="label"
                 {...(ariaLabel && { 'aria-label': ariaLabel })}
@@ -236,8 +262,11 @@ export function Step({
             )}
             {separator ? separator : <StepSeparator />}
 
-            {labelPlacement === 'bottom' && (
+            {!labelPlacement && (
               <span
+                {...(current && {
+                  ref: stepHeadingRef,
+                })}
                 data-ui="label"
                 {...(ariaLabel && { 'aria-label': ariaLabel })}
               >
@@ -250,22 +279,18 @@ export function Step({
         <span className="sr-only">
           {step <= value ? 'completed' : 'not completed'}
         </span>
-      </li>
+      </div>
     </StepContext.Provider>
   );
 }
-
-type CounterVariant = 'dot' | 'number';
 
 export function StepCounter({
   className,
   children,
   checkIcon = true,
-  variant = 'number',
   ...props
 }: React.JSX.IntrinsicElements['div'] & {
   checkIcon?: boolean;
-  variant?: CounterVariant;
 }) {
   const { step, completed, current } = useStepContext();
 
@@ -275,52 +300,23 @@ export function StepCounter({
       aria-hidden
       className={twMerge(
         'flex size-(--counter-size) shrink-0 items-center justify-center rounded-full p-(--counter-padding) text-sm/6 font-medium [&_svg[data-ui=icon]:not([class*=size-])]:size-full',
-
-        variant === 'number' && [
-          'transition-colors duration-300 ease-in-out',
-          'bg-(--counter) text-(--counter-text)',
-          (completed || current) && [
-            'bg-(--counter-highlight) text-(--counter-highlight-text)',
-          ],
+        'transition-colors duration-300 ease-in-out',
+        'bg-(--counter) text-(--counter-text)',
+        (completed || current) && [
+          'bg-(--counter-highlight) text-(--counter-highlight-text)',
         ],
-
-        variant === 'dot' && [
-          completed
-            ? 'bg-(--counter-highlight) text-(--counter-highlight-text)'
-            : [
-                'border-2',
-                current ? 'border-(--counter-highlight)' : 'border-(--counter)',
-              ],
-        ],
-
         className,
       )}
     >
       {completed && checkIcon ? (
-        <CheckIcon />
+        <>
+          &#x200B;
+          <CheckIcon />
+        </>
       ) : children ? (
         children
-      ) : variant === 'number' ? (
-        step
-      ) : current ? (
-        <Icon>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width={24}
-            height={24}
-            viewBox="0 0 48 48"
-            fill="currentColor"
-          >
-            <path
-              fill="currentColor"
-              stroke="currentColor"
-              strokeWidth={4}
-              d="M24 33a9 9 0 1 0 0-18a9 9 0 0 0 0 18Z"
-            ></path>
-          </svg>
-        </Icon>
       ) : (
-        <></>
+        step
       )}
     </div>
   );
@@ -331,8 +327,10 @@ export function StepSeparator({
   ...props
 }: Omit<React.JSX.IntrinsicElements['div'], 'children'>) {
   const { hasCounter, completed, current } = useStepContext();
-  const { alignment, labelPlacement, compact } =
-    React.useContext(StepListContext);
+  const { orientation } = useStepperContext();
+  const context = useStepperContext();
+  const labelPlacement =
+    context.orientation === 'horizontal' ? context.labelPlacement : undefined;
 
   return hasCounter ? (
     <div
@@ -341,28 +339,25 @@ export function StepSeparator({
       aria-hidden
       className={twMerge(
         'transition-colors duration-300 ease-in-out',
-        'absolute h-(--separator-h) rounded-(--separator-radius)',
+        'absolute rounded-(--separator-radius)',
 
-        labelPlacement === 'top'
-          ? ['bottom-[calc(var(--counter-size)/2)]', 'translate-y-1/2']
-          : ['top-[calc(var(--counter-size)/2)]', '-translate-y-1/2'],
-
-        'w-[calc(100%-var(--counter-size,0))]',
-
-        compact
+        orientation === 'horizontal'
           ? [
-              'left-[calc(var(--counter-size,0))]',
-              alignment === 'center' && [
-                'left-[calc(50%+calc(var(--counter-size,0)/2))]',
-                'w-[calc(100%-var(--counter-size,0))]',
-              ],
+              'h-(--separator-h)',
+              labelPlacement === 'top'
+                ? ['bottom-[calc(var(--counter-size)/2)]', 'translate-y-1/2']
+                : ['top-[calc(var(--counter-size)/2)]', '-translate-y-1/2'],
+
+              'w-[calc(100%-var(--counter-size,0))]',
+              'left-[calc(var(--counter-size,0)+0.25rem)]',
+              'left-[calc(50%+calc(var(--counter-size,0)/2)+0.125rem)]',
+              'w-[calc(100%-var(--counter-size,0)+0.5rem-0.25rem)]',
             ]
           : [
-              'left-[calc(var(--counter-size,0)+0.25rem)]',
-              alignment === 'center' && [
-                'left-[calc(50%+calc(var(--counter-size,0)/2)+0.125rem)]',
-                'w-[calc(100%-var(--counter-size,0)+0.5rem-0.25rem)]',
-              ],
+              'w-0.5',
+              'left-[calc(var(--counter-size,0)/2)] -z-10',
+              'top-[calc(var(--counter-size,0))]',
+              'h-[calc(var(--step-gap-y)+calc(100%-var(--counter-size,0)+0.25rem))]',
             ],
 
         'in-[.gap-x-0]:rounded-0',
@@ -386,29 +381,21 @@ export function StepSeparator({
   );
 }
 
-export function StepIndicatorHeading(
-  props: React.JSX.IntrinsicElements['div'],
-) {
-  const { stepHeadingRef } = useStepIndicator();
-  return (
-    <div {...props} className="outline-0" tabIndex={-1} ref={stepHeadingRef} />
-  );
-}
-
 export function StepPanel({
   children,
   step,
+  ...props
 }: {
   children: React.ReactNode;
   step: number;
-}) {
-  const { value, steps } = useStepIndicator();
+} & React.JSX.IntrinsicElements['div']) {
+  const { value, steps } = useStepperContext();
 
   if (step === value + 1) {
-    return children;
+    return <div {...props}>{children}</div>;
   }
 
   if (step == steps && value === steps) {
-    return children;
+    return <div {...props}>{children}</div>;
   }
 }

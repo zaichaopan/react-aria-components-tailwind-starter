@@ -123,7 +123,7 @@ export function CalendarHeader({ yearRange }: { yearRange?: YearRange }) {
         size="sm"
         isIconOnly
         aria-label="Previous"
-        className="not-hover:text-muted/75 focus-visible:-outline-offset-2"
+        className="not-hover:text-muted focus-visible:-outline-offset-2"
       >
         {direction === 'rtl' ? (
           <ChevronRightIcon className="size-5" />

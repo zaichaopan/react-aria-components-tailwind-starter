@@ -76,8 +76,8 @@ export function Avatar({
           }
           alt={alt}
           className={twMerge(
-            'size-full rounded-lg object-cover in-[.rounded-full]:rounded-full',
-            '[&:has(+[data-ui=avatar-badge])]:[mask:radial-gradient(circle_at_bottom_calc(var(--badge-size)/2)_right_calc(var(--badge-size)/2),_transparent_calc(var(--badge-size)/2_+_var(--badge-gap)_-_0.25px),_white_calc(var(--badge-size)/2_+_var(--badge-gap)_+_0.25px))]',
+            'size-full rounded-lg object-cover in-[.rounded-full]:rounded-full', 
+            '[&:has(+[data-ui=avatar-badge])]:[mask:radial-gradient(circle_at_bottom_calc(var(--badge-size)/2)_right_calc(var(--badge-size)/2),transparent_calc(var(--badge-size)/2+var(--badge-gap)-0.25px),white_calc(var(--badge-size)/2+var(--badge-gap)+0.25px))]',
           )}
         />
         {children}

@@ -1,38 +1,12 @@
-import React from 'react';
-import { twMerge } from 'tailwind-merge';
 import { docs } from '../.storybook/docs';
-import { Button } from '../src/button';
-import { Card, CardHeader, CardBody } from '../src/card';
-import { Checkbox, Checkboxes, CheckboxGroup } from '../src/checkbox';
-import { Description, Label } from '../src/field';
-import { Radio, RadioGroup, Radios } from '../src/radio-group';
+import { Card, CardHeader, CardBody, CardFooter } from '../src/card';
 import { Separator } from '../src/separator';
-import { Switch, Switches, SwitchField, SwitchGroup } from '../src/switch';
-import { Strong, Text } from '../src/text';
-import {
-  KeyboardIcon,
-  LanguagesIcon,
-  MonitorIcon,
-  MoonStarIcon,
-  Settings2Icon,
-  SunIcon,
-  SunMoonIcon,
-  UserRoundPenIcon,
-  VideoIcon,
-} from 'lucide-react';
-import {
-  Select,
-  SelectButton,
-  SelectListBox,
-  SelectListItem,
-  SelectPopover,
-} from '../src/select';
-import { Slider, SliderTack } from '../src/slider';
+import { Small, Strong, Text } from '../src/text';
 import { Icon } from '../src/icon';
-import { Avatar } from '../src/avatar';
-import { FileTrigger } from 'react-aria-components';
-import { PlusIcon } from '../src/icons/outline/plus';
-import { XIcon } from '../src/icons/outline/x';
+import { Avatar, AvatarGroup } from '../src/avatar';
+import { Heading } from '../src/heading';
+import { Link } from '../src/link';
+import { SettingIcon } from '../src/icons/outline/setting';
 
 const meta = {
   parameters: {
@@ -44,303 +18,111 @@ const meta = {
 export default meta;
 
 export const BasicExample = () => {
-  const [src, setSrc] = React.useState<string | undefined>(
-    'https://images.unsplash.com/photo-1717694371848-70ddf2293c7c?q=80&w=2306&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-  );
-
   return (
     <div className="mt-6 flex max-w-prose flex-col gap-4">
-      <Card>
-        <CardHeader>
-          <Icon>
-            <UserRoundPenIcon />
-          </Icon>
-          Profile
-        </CardHeader>
-        <CardBody className="items-center">
-          <div className="mr-ato flex flex-col items-center gap-y-2">
-            <div className="relative isolate">
-              <Avatar
-                alt="T W"
-                className="rounded-full"
-                src={src}
-                fallback="icon"
-                size={64}
-              ></Avatar>
-              {src ? (
-                <Button
-                  isIconOnly
-                  color="red"
-                  onPress={() => setSrc(undefined)}
-                  className="ring-background absolute end-0 top-0 z-10 size-5 translate-x-1/4 rounded-full ring-2 sm:size-5"
-                >
-                  <XIcon className="size-3.5 text-white" />
-                </Button>
-              ) : (
-                <FileTrigger
-                  onSelect={(e) => {
-                    if (!e) {
-                      return;
-                    }
-
-                    const file = Array.from(e)[0];
-                    setSrc(URL.createObjectURL(file));
-                  }}
-                >
-                  <Button
-                    isIconOnly
-                    className="ring-background absolute end-0 top-0 z-10 size-5 translate-x-1/4 rounded-full ring-2 [--btn-bg:var(--color-zinc-400)] sm:size-5"
-                  >
-                    <PlusIcon className="size-3.5 text-white" />
-                  </Button>
-                </FileTrigger>
-              )}
-            </div>
-
-            <div className="flex flex-col items-center">
-              <Strong>Upload Image</Strong>
-              <Text>Max file size: 1MB</Text>
-            </div>
-
-            <FileTrigger
-              onSelect={(e) => {
-                if (!e) {
-                  return;
-                }
-
-                const file = Array.from(e)[0];
-                setSrc(URL.createObjectURL(file));
-              }}
-            >
-              <Button>
-                <PlusIcon /> Add Image
-              </Button>
-            </FileTrigger>
-          </div>
+      <Card className="">
+        <CardHeader>Cash</CardHeader>
+        <CardBody className="flex flex-col">
+          <Heading elementType="div">$256,091</Heading>
+          <Separator soft className="mt-4 mb-2" />
+          <Small>Updated yesterday</Small>
         </CardBody>
       </Card>
 
       <Card>
-        <CardHeader>
-          <Icon>
-            <Settings2Icon />
-          </Icon>
-          System
-        </CardHeader>
-        <CardBody className="space-y-2">
-          <Checkbox>Auto-start</Checkbox>
-          <Separator soft />
-          <Checkbox>Open application in background</Checkbox>
-        </CardBody>
-      </Card>
-
-      <Card>
-        <CardHeader>
-          <Icon>
-            <SunMoonIcon />
-          </Icon>
-          Appearance
-        </CardHeader>
-        <CardBody className="space-y-2">
-          <RadioGroup
-            orientation="horizontal"
-            defaultValue="system"
-            aria-label="Appearance"
-          >
-            <Description>Customize your application appearance</Description>
-            <Radios className="shadow-outline size-fit rounded-full p-1">
-              <div className="relative isolate flex">
-                {[
-                  {
-                    value: 'system',
-                    label: 'System',
-                    icon: MonitorIcon,
-                    className: 'peer/system',
-                  },
-                  {
-                    value: 'light',
-                    label: 'Light mode',
-                    icon: SunIcon,
-                    className: 'peer/light',
-                  },
-                  {
-                    value: 'dark',
-                    label: 'Dark mode',
-                    icon: MoonStarIcon,
-                    className: 'peer/dark',
-                  },
-                ].map((option) => {
-                  return (
-                    <Radio
-                      key={option.value}
-                      aria-label={option.label}
-                      data-theme={option.value}
-                      className={({ isSelected }) => {
-                        return twMerge(
-                          'z-10 grid size-8 place-items-center rounded-full [&_svg]:size-4',
-                          option.className,
-                          isSelected &&
-                            'text-[lch(from_var(--accent)_calc((49.44_-_l)_*_infinity)_0_0)]',
-                        );
-                      }}
-                      value={option.value}
-                      render={<option.icon />}
-                    ></Radio>
-                  );
-                })}
-
-                <div
-                  className={twMerge(
-                    'bg-accent absolute top-0 left-0 h-full w-1/3 rounded-full transition-all ease-in-out peer-data-selected/dark:left-2/3 peer-data-selected/light:left-1/3',
-                  )}
-                ></div>
-              </div>
-            </Radios>
-          </RadioGroup>
-        </CardBody>
-      </Card>
-
-      <Card>
-        <CardHeader>
-          <Icon>
-            <KeyboardIcon />
-          </Icon>
-          Keyboard shortcut
-        </CardHeader>
-        <CardBody className="space-y-2">
-          <Text className="inline">
-            Use Teams shortcuts, or combine them with those of other apps. see{' '}
-            <Button variant="link" color="accent">
-              available shortcuts
-            </Button>
-          </Text>
-        </CardBody>
-      </Card>
-
-      <Card>
-        <CardHeader>
-          <Icon>
-            <VideoIcon />
-          </Icon>
-          Video settings
-        </CardHeader>
-        <CardBody className="space-y-4">
-          <Select selectedKey="faceTimeHd">
-            <div className="flex items-center gap-x-2">
-              <Label className="mb-0 flex-1">Camera</Label>
-              <SelectButton className="max-w-fit" />
-            </div>
-
-            <SelectPopover>
-              <SelectListBox>
-                <SelectListItem id="faceTimeHd">
-                  FaceTime HD Camera
-                </SelectListItem>
-              </SelectListBox>
-            </SelectPopover>
-          </Select>
-
-          <Separator soft />
-
-          <SwitchGroup>
-            <Switches>
-              <SwitchField>
-                <Switch labelPlacement="start">Green Screen</Switch>
-                <Description>
-                  Turn on Green screen for a better look when you're using a
-                  virtual background.
-                </Description>
-              </SwitchField>
-
-              <Separator soft />
-
-              <SwitchField>
-                <Switch labelPlacement="start">Mirror my video</Switch>
-                <Description>
-                  Changing this setting will only change the view for you. This
-                  setting doesn’t currently work in Together mode.
-                </Description>
-              </SwitchField>
-              <Separator soft />
-
-              <SwitchField>
-                <Switch labelPlacement="start"> Adjust brightness</Switch>
-                <Description>
-                  Enhance the quality of your video in low light conditions.
-                </Description>
-              </SwitchField>
-
-              <Separator soft />
-
-              <SwitchField>
-                <Switch labelPlacement="start" defaultSelected>
-                  Soft focus
-                </Switch>
-                <Description>
-                  Smoothen your appearance for a polished look.
-                </Description>
-              </SwitchField>
-            </Switches>
-          </SwitchGroup>
-
-          <Slider
-            minValue={0}
-            maxValue={100}
-            defaultValue={25}
-            aria-label="Soft focus level"
-            className="mb-4"
-          >
-            <SliderTack thumbLabels={['volume']} />
-          </Slider>
-        </CardBody>
-      </Card>
-
-      <Card>
-        <CardHeader>
-          <Icon>
-            <LanguagesIcon />
-          </Icon>
-          Edit spell check
-        </CardHeader>
-        <CardBody className="space-y-6">
-          <div className="space-y-2">
-            <div className="flex items-start gap-x-6">
-              <Text>
-                Customize Editor to check for spelling and grammar improvements
-                in up to three languages. If you'd like to include a different
-                language or remove an old one, select Manage spellcheck
-                languages.
-              </Text>
-              <Button variant="outline">Manage</Button>
-            </div>
-            <RadioGroup aria-label="Language">
-              <Radios>
-                <Radio value="en-US">English (United States)</Radio>
-                <Radio value="cn">中文(简体)</Radio>
-              </Radios>
-            </RadioGroup>
-          </div>
-
-          <Separator soft />
+        <CardBody className="flex flex-col py-4">
           <div>
-            <Switch labelPlacement="start">Spelling</Switch>
+            <Text> Minimum password length</Text>
+            <Strong>8 characters</Strong>
+          </div>
+          <Separator soft className="my-3" />
+          <div>
+            <Text>Reject compromised passwords</Text>
+            <Strong>On</Strong>
+          </div>
 
-            <CheckboxGroup aria-label="Spelling configurations">
-              <Checkboxes>
-                <Checkbox value="ignore-uppercase">
-                  Ignore words in UPPERCASE
-                </Checkbox>
-                <Checkbox value="ignore-numbers">
-                  Ignore words with numbers
-                </Checkbox>
-                <Checkbox value="ignore-internet">
-                  Ignore Internet and file addresses
-                </Checkbox>
-                <Checkbox value="flag-repeated">Flag repeated words</Checkbox>
-              </Checkboxes>
-            </CheckboxGroup>
+          <Separator soft className="my-3" />
+          <div>
+            <Text>Enforce minimum password length</Text>
+            <Strong>Off</Strong>
+          </div>
+
+          <Separator soft className="my-3" />
+          <div>
+            <Text>Password rules</Text>
+            <Strong>Nones</Strong>
+          </div>
+
+          <Separator soft className="my-3" />
+
+          <Link>
+            <Icon>
+              <SettingIcon />
+            </Icon>
+            Update password requirements
+          </Link>
+        </CardBody>
+      </Card>
+
+      <Card className="max-w-lg [--border-radius:var(--radius-3xl)] [--card-padding:--spacing(2)]">
+        <CardBody>
+          <Heading
+            elementType="div"
+            displayLevel={2}
+            className="leading-tight text-amber-600"
+          >
+            Tuesday, January 12, 2026 at 8 AM
+          </Heading>
+          <Heading elementType="div">
+            Design Systems Deep Dive for Scalable Products
+          </Heading>
+          <Text>Riley Thompson</Text>
+          <div className="flex items-center gap-x-3 pt-3">
+            <AvatarGroup aria-label="Online users">
+              {[
+                {
+                  name: 'M A',
+                  src: 'https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?q=80&w=3386&auto=format&fit=facearea&facepad=3&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+                },
+                {
+                  name: 'D P',
+                  src: 'https://images.unsplash.com/photo-1521119989659-a83eee488004?q=80&w=2306&auto=format&fit=facearea&facepad=3&w=256&h=256&q=80',
+                },
+                {
+                  name: 'M C',
+                  src: 'https://images.unsplash.com/photo-1706951261002-1bfcc612664f?q=80&w=2306&auto=format&fit=facearea&facepad=3&w=256&h=256&q=80',
+                },
+                {
+                  name: 'M H',
+                  src: 'https://images.unsplash.com/photo-1645002124895-009a4c3ea3af?q=80&w=2306&auto=format&fit=facearea&facepad=3&w=256&h=256&q=80',
+                },
+                {
+                  name: 'M J',
+                  src: 'https://images.unsplash.com/photo-1679611978819-f10168367155?q=80&w=2306&auto=format&fit=facearea&facepad=4&w=256&h=256',
+                },
+              ].map((user) => {
+                return (
+                  <Avatar
+                    key={user.name}
+                    size={32}
+                    className="rounded-full"
+                    alt={user.name}
+                    src={user.src}
+                  />
+                );
+              })}
+            </AvatarGroup>
+
+            <Strong>+50 people</Strong>
           </div>
         </CardBody>
+        <CardFooter>
+          <Text>
+            Learn how design systems create consistent, scalable UI through
+            shared components, tokens, and workflows—helping teams build and
+            evolve products efficiently.
+          </Text>
+        </CardFooter>
       </Card>
     </div>
   );

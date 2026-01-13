@@ -616,7 +616,7 @@ export const CustomTriggers = () => {
         variant="unstyle"
         buttonArrow={
           <Icon>
-            <ChevronsUpDownIcon className="text-muted/75 size-4" />
+            <ChevronsUpDownIcon className="text-muted size-4" />
           </Icon>
         }
         className="hover:border-border flex items-center border border-transparent py-1 ps-1 pe-2 hover:border"

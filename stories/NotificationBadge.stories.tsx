@@ -11,8 +11,9 @@ import {
 import { Link } from '../src/link';
 import { Button } from '../src/button';
 import React from 'react';
-import { Avatar } from '../src/avatar';
+import { Avatar, AvatarBadge } from '../src/avatar';
 import { TabList, Tabs, Tab } from '../src/tabs';
+import { AvailableIcon } from '../src/icons/solid/available';
 
 const meta = {
   parameters: {
@@ -30,7 +31,11 @@ export const NotificationBadgeOnLinks = () => {
         <Icon>
           <MessageCircle />
         </Icon>
-        <NotificationBadge variant="dot" aria-label="Chat - 6 new messages" />
+        <NotificationBadge
+          variant="dot"
+          value={6}
+          aria-label="Chat - 6 new messages"
+        />
       </Link>
 
       <Link className="p-2">
@@ -84,11 +89,17 @@ export const NotificationBadgeOnButtons = () => {
         <Icon>
           <MessagesSquareIcon />
         </Icon>
-        <NotificationBadge variant="dot" aria-label={`Chat- 10 new messages`} />
+        <NotificationBadge
+          variant="dot"
+          value={10}
+          aria-label={`Chat- 10 new messages`}
+        />
       </Button>
 
       <Button variant="plain" isIconOnly>
-        <Avatar alt="J P" aria-hidden colorful />
+        <Avatar alt="J P" aria-hidden colorful className='relative'>
+          <AvatarBadge badge={<AvailableIcon aria-label="Available" />} />
+        </Avatar>
         <NotificationBadge
           variant="numeric"
           value={10}
