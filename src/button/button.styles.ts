@@ -53,29 +53,33 @@ export function getButtonStyles(
     variant: {
       base: [
         'group inline-flex gap-x-2 justify-center items-center font-semibold',
-        'text-base/6 text-(--btn-color) sm:text-sm/6 [&>svg[data-ui=icon]:not([class*=size-])]:size-(--icon-size)',
+        'text-base/6 text-(--btn-color) sm:text-sm/6',
         isPressed && 'scale-[0.98]',
-        !isIconOnly && [
-          '[--icon-color:var(--btn-color)]/75'
+
+        // icon
+        [
+          '[&>svg[data-ui=icon]:not([class*=size-])]:size-(--icon-size)',
+          !isIconOnly && ['[--icon-color:var(--btn-color)]/75'],
+          !isHovered &&
+            !isPressed &&
+            '[&>svg[data-ui=icon]:not([class*=text-])]:text-(--icon-color)',
         ],
-        !isHovered &&
-        !isPressed &&
-        '[&>svg[data-ui=icon]:not([class*=text-])]:text-(--icon-color)',
+
         variant === 'solid'
           ? [
-            '[--btn-bg:var(--accent)] [--btn-color:lch(from_var(--btn-bg)_calc((49.44_-_l)_*_infinity)_0_0)]',
-            color === 'red' &&
-            '[--btn-bg:var(--color-red-600)] [--btn-color:white]',
-            color === 'green' &&
-            '[--btn-bg:var(--color-green-600)] [--btn-color:white]',
-          ]
+              '[--btn-bg:var(--accent)] [--btn-color:lch(from_var(--btn-bg)_calc((49.44_-_l)_*_infinity)_0_0)]',
+              color === 'red' &&
+                'outline-(--btn-bg) [--btn-bg:var(--color-red-600)] [--btn-color:white]',
+              color === 'green' &&
+                'outline-(--btn-bg) [--btn-bg:var(--color-green-600)] [--btn-color:white]',
+            ]
           : [
-            '[--btn-color:var(--foreground)]',
-            color === 'accent' && '[--btn-color:var(--accent)]',
-            color === 'red' &&
-            '[--btn-color:var(--color-red-600)] dark:[--btn-color:var(--color-red-500)]',
-            color === 'green' && '[--btn-color:var(--color-green-600)]',
-          ],
+              '[--btn-color:var(--foreground)]',
+              color === 'accent' && '[--btn-color:var(--accent)]',
+              color === 'red' &&
+                '[--btn-color:var(--color-red-600)] dark:[--btn-color:var(--color-red-500)]',
+              color === 'green' && '[--btn-color:var(--color-green-600)]',
+            ],
       ],
       solid: ['bg-(--btn-bg)', isHovered && !isDisabled && 'opacity-85'],
       outline: [
@@ -91,24 +95,25 @@ export function getButtonStyles(
     },
     size: {
       sm: [
-        // sm:36px
         isIconOnly
-          ? 'size-8 sm:size-7 [--icon-size:--spacing(5)] sm:[--icon-size:--spacing(4)]'
+          ? 'p-1.5 [--icon-size:--spacing(5)] sm:[--icon-size:--spacing(4)]'
           : variant !== 'link' &&
-          'h-8 sm:h-7 [--icon-size:--spacing(3)] text-sm/6 sm:text-xs/6 px-3',
+            'py-0.5 px-3 text-sm/6 sm:text-xs/6 [--icon-size:--spacing(3.5)]',
       ],
       md: [
+        // h: 36px
         '[--icon-size:--spacing(5)] sm:[--icon-size:--spacing(4)]',
         isIconOnly
           ? 'p-2.5 sm:p-1.5 [&>svg[data-ui=icon]]:m-0.5 sm:[&>svg[data-ui=icon]]:m-1'
-          : variant !== 'link' && 'px-3.5 py-2.5 sm:py-1.5',
+          : variant !== 'link' && 'px-4 sm:px-3 py-2.5 sm:py-1.5',
       ],
       lg: [
-        // lg: 44px,
+        // h: 44px,
+        'gap-x-3',
         '[--icon-size:--spacing(5)]',
         isIconOnly
           ? 'p-2.5 [&>svg[data-ui=icon]]:m-0.5'
-          : variant !== 'link' && 'px-3.5 py-2.5',
+          : variant !== 'link' && 'px-4 py-2.5',
       ],
     },
   };
@@ -119,8 +124,8 @@ export function getButtonStyles(
     style.variant[variant],
     style.size[size],
     !isCustomPending &&
-    isPending &&
-    'text-transparent [&>svg[data-ui=icon]:not([data-spinner])]:text-transparent',
+      isPending &&
+      'text-transparent [&>svg[data-ui=icon]:not([data-spinner])]:text-transparent',
     className,
   ]);
 }

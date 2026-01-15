@@ -173,7 +173,7 @@ export function CalloutIcon({
         'sm:row-end-(--callout-content-row-end)',
         'flex',
         'py-2',
-        'me-2',
+        'me-3',
         '[&_[data-ui=icon]:not([class*=text-])]:text-(--callout-icon)',
         '[&_[data-ui=icon]:not([class*=size-])]:w-5',
         '[&_[data-ui=icon]:not([class*=size-])]:h-lh',
@@ -205,7 +205,7 @@ export function CalloutTitle({
         inline && ['sm:-col-end-3'],
         'flex gap-x-2 gap-y-1 text-(--callout-heading)',
         '[&:has(+[data-ui=callout-description])]:pb-0',
-        '[&+[data-ui=callout-description]]:pt-1',
+        '[&+[data-ui=callout-description]]:pt-0',
         'py-2',
         className,
       )}
