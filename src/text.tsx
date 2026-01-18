@@ -56,8 +56,8 @@ export function TextLink(props: LinkProps) {
       className={composeTailwindRenderProps(props.className, [
         '[--link-color:var(--link,var(--foreground))]',
         'text-(--link-color) underline underline-offset-4 ',
-        'decoration-(--link-color)/15 dark:decoration-(--link-color)/30',
-        'hover:decoration-(--link-color)/30 dark:decoration-(--link-color)/30 hover:dark:decoration-(--link-color)/40',
+        'decoration-(--link-color)/25 dark:decoration-(--link-color)/30',
+        'hover:decoration-(--link-color)/40 dark:decoration-(--link-color)/30 hover:dark:decoration-(--link-color)/40',
       ])}
     />
   );

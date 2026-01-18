@@ -152,23 +152,7 @@ export function Switch(props: SwitchProps | CustomRenderSwitchProps) {
       {(renderProps) => (
         <>
           <SwitchToggle
-            className={twMerge([
-              'h-6 w-11',
-              placement === 'end' ? 'me-3' : 'ms-3',
-
-              '[&>[data-ui=handle]]:size-5',
-              renderProps.isSelected &&
-                'rtl:[&>[data-ui=handle]]-translate-x-5 [&>[data-ui=handle]]:translate-x-5',
-
-              size === 'lg'
-                ? []
-                : [
-                    'sm:h-5 sm:w-8',
-                    'sm:[&>[data-ui=handle]]:size-4',
-                    renderProps.isSelected &&
-                      'sm:[&>[data-ui=handle]]:translate-x-3 sm:rtl:[&>[data-ui=handle]]:-translate-x-3',
-                  ],
-            ])}
+            className={twMerge([placement === 'end' ? 'me-3' : 'ms-3'])}
             renderProps={renderProps}
           />
           {typeof children === 'function' ? children(renderProps) : children}
@@ -192,44 +176,62 @@ export function SwitchToggle({
       {...props}
       data-check-indicator
       className={twMerge(
-        'flex h-5 w-8 shrink-0 cursor-default items-center rounded-full bg-zinc-200 p-0.5 ring-1 ring-zinc-300/90 dark:bg-zinc-700 dark:ring-0 dark:inset-ring-1 dark:inset-ring-white/10',
+        '[--__thumb-size:var(--thumb-size,--spacing(4))]',
+        '[--__switch-bg:var(--switch-bg,var(--accent))]',
+        'h-[calc(var(--__thumb-size)+calc(--spacing(0.5)*2))]',
+        'w-[calc(calc(var(--__thumb-size)+calc(--spacing(0.5)))*2)]',
+        'flex shrink-0 items-center rounded-full p-0.5',
 
-        renderProps?.isReadOnly
-          ? 'opacity-50'
-          : renderProps?.isHovered &&
-              'ring-zinc-400/70 dark:inset-ring-white/15',
-        renderProps?.isSelected &&
-          'bg-accent dark:bg-accent ring-accent inset-ring-[rgba(255,255,255,0.1)]',
-        renderProps?.isDisabled && 'bg-gray-200 dark:bg-zinc-700',
-        renderProps?.isFocusVisible &&
-          'outline-ring outline-2 outline-offset-3',
+        '[--handle-selected:lch(from_var(--__switch-bg)_calc((64.28_-_l)_*_infinity)_0_0)]',
+        '[--switch-focus-ring:color-mix(in_oklab,_var(--__switch-bg)_65%,_var(--handle-selected))]',
 
-        // When it is inside menu item and the item is selected
-        'in-[&[data-ui=content][data-hovered=true]]:ring-zinc-400/70',
-        'in-[&[data-ui=content][data-hovered=true]]:dark:inset-ring-white/15',
+        // Readonly
+        'in-[&:is([data-ui=content],label)[data-readonly=true]]:opacity-50',
 
-        'in-[&[data-ui=content][data-selected=true]]:bg-accent',
-        'in-[&[data-ui=content][data-selected=true]]:dark:bg-accent',
-        'in-[&[data-ui=content][data-selected=true]]:ring-accent',
-        'in-[&[data-ui=content][data-selected=true]]:inset-ring-[rgba(255,255,255,0.1)]',
+        // Focus visible
+        'in-[&:is([data-ui=content],label)[data-focus-visible=true]]:outline-(--switch-focus-ring)',
+        'in-[&:is([data-ui=content],label)[data-focus-visible=true]]:outline-2',
+        'in-[&:is([data-ui=content],label)[data-focus-visible=true]]:outline-offset-3',
 
+        'ring-1',
+        'ring-(--switch-ring)',
+        '[--switch-ring:var(--color-zinc-400)]/50',
+
+        // When hover
+        'in-[&:is([data-ui=content],label)[data-hovered=true]]:[--switch-ring:var(--color-zinc-400)]/75',
+
+        // When selected
+        'in-[&:is([data-ui=content],label)[data-selected=true]]:[--switch-ring:color-mix(in_oklab,_var(--__switch-bg)_90%,_black)]',
+
+        // Dark
+        // Use inset ring
+        'dark:ring-0',
+        'dark:inset-ring-1',
+        'dark:inset-ring-white/10',
+        // When hover
+        'dark:in-[&:is([data-ui=content],label)[data-hovered=true]]:inset-ring-white/30',
+        // When selected
+        'dark:in-[&:is([data-ui=content],label)[data-selected=true]]:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.25)]',
+
+        // Bg
+        'bg-zinc-200 dark:bg-zinc-700',
+
+        // Selected
+        'in-[&:is([data-ui=content],label)[data-selected=true]]:bg-(--__switch-bg)',
+        'in-[&:is([data-ui=content],label)[data-selected=true]]:dark:bg-(--__switch-bg)',
+        'in-[&:is([data-ui=content],label)[data-selected=true]]:ring-(--switch-ring)',
         className,
       )}
     >
       <span
         data-ui="handle"
         className={twMerge(
-          'size-4',
+          'size-(--__thumb-size)',
           'rounded-full bg-white shadow-[0_1px_1px_rgba(0,0,0,0.25)] transition-all ease-in-out',
-
           // When it is inside menu item and the item is selected
-          'in-[&[data-ui=content][data-selected=true]]:translate-x-3',
-          'in-[&[data-ui=content][data-selected=true]]:rtl:-translate-x-3',
-          'in-[&[data-ui=content][data-selected=true]]:bg-[lch(from_var(--accent)_calc((49.44_-_l)_*_infinity)_0_0)]',
-
-          renderProps?.isSelected && [
-            'translate-x-3 bg-[lch(from_var(--accent)_calc((49.44_-_l)_*_infinity)_0_0)] rtl:-translate-x-3',
-          ],
+          'in-[&:is([data-ui=content],label)[data-selected=true]]:translate-x-(--__thumb-size)',
+          'in-[&:is([data-ui=content],label)[data-selected=true]]:rtl:-translate-x-(--__thumb-size)',
+          'in-[&:is([data-ui=content],label)[data-selected=true]]:bg-(--handle-selected)',
         )}
       />
     </div>

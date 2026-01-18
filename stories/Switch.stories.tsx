@@ -65,9 +65,107 @@ export const LabelPlacement = () => {
 
 export const Sizes = () => {
   return (
-    <Switch size="lg">
-      Annual billing&nbsp;<Text>(Save 10%)</Text>
-    </Switch>
+    <div className="flex flex-col space-y-4">
+      <Switch className="[--thumb-size:--spacing(5)]">
+        Annual billing&nbsp;<Text>(Save 10%)</Text>
+      </Switch>
+
+      <Switch className="[--thumb-size:--spacing(3)]">
+        Annual billing&nbsp;<Text>(Save 10%)</Text>
+      </Switch>
+    </div>
+  );
+};
+
+export const SwitchBackgrounds = () => {
+  return (
+    <div className="flex flex-col space-y-4">
+      <Switch className="[--switch-bg:white]" defaultSelected>
+        White
+      </Switch>
+
+      <Switch className="[--switch-bg:black]" defaultSelected>
+        Black
+      </Switch>
+
+      <Switch className="[--switch-bg:var(--color-zinc-600)]" defaultSelected>
+        Zinc
+      </Switch>
+
+      <Switch className="[--switch-bg:var(--color-red-600)]" defaultSelected>
+        Red
+      </Switch>
+
+      <Switch className="[--switch-bg:var(--color-orange-500)]" defaultSelected>
+        Orange
+      </Switch>
+
+      <Switch className="[--switch-bg:var(--color-amber-500)]" defaultSelected>
+        Amber
+      </Switch>
+
+      <Switch className="[--switch-bg:var(--color-yellow-500)]" defaultSelected>
+        Yellow
+      </Switch>
+
+      <Switch className="[--switch-bg:var(--color-lime-500)]" defaultSelected>
+        Lime
+      </Switch>
+
+      <Switch className="[--switch-bg:var(--color-green-600)]" defaultSelected>
+        Green
+      </Switch>
+
+      <Switch
+        className="[--switch-bg:var(--color-emerald-600)]"
+        defaultSelected
+      >
+        Emerald
+      </Switch>
+
+      <Switch className="[--switch-bg:var(--color-teal-600)]" defaultSelected>
+        Teal
+      </Switch>
+
+      <Switch className="[--switch-bg:var(--color-cyan-500)]" defaultSelected>
+        Cyan
+      </Switch>
+
+      <Switch className="[--switch-bg:var(--color-sky-500)]" defaultSelected>
+        Sky
+      </Switch>
+
+      <Switch className="[--switch-bg:var(--color-blue-500)]" defaultSelected>
+        Blue
+      </Switch>
+
+      <Switch className="[--switch-bg:var(--color-indigo-500)]" defaultSelected>
+        Indigo
+      </Switch>
+
+      <Switch className="[--switch-bg:var(--color-violet-500)]" defaultSelected>
+        Violet
+      </Switch>
+
+      <Switch className="[--switch-bg:var(--color-purple-500)]" defaultSelected>
+        Purple
+      </Switch>
+
+      <Switch
+        className="[--switch-bg:var(--color-fuchsia-500)]"
+        defaultSelected
+      >
+        Fuchsia
+      </Switch>
+
+      <Switch className="[--switch-bg:var(--color-pink-500)]" defaultSelected>
+        Pink
+      </Switch>
+
+      <Switch className="[--switch-bg:var(--color-rose-500)]" defaultSelected>
+        Rose
+      </Switch>
+    </div>
   );
 };
 

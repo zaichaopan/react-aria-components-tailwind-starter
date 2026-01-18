@@ -263,7 +263,7 @@ export function Checkbox(props: CheckboxProps) {
             renderProps.isDisabled && 'opacity-50',
             noCheckToggle && [
               renderProps.isFocusVisible &&
-                'outline-ring outline-2 outline-offset-2',
+                'outline-(var(--checkbox,--ring)) outline-2 outline-offset-2',
             ],
             getCheckboxStyle({
               variant,
@@ -283,10 +283,7 @@ export function Checkbox(props: CheckboxProps) {
               <CheckToggle
                 check={check}
                 renderProps={renderProps}
-                className={twMerge(
-                  placement === 'end' ? 'me-3' : 'ms-3',
-                  !check && 'size-4.5 sm:size-4',
-                )}
+                className={twMerge(placement === 'end' ? 'me-3' : 'ms-3')}
               />
             )}
 
@@ -316,27 +313,42 @@ export function CheckToggle({
       {...props}
       data-check-indicator
       className={twMerge([
-        'size-4',
-        'flex shrink-0 items-center justify-center rounded-sm shadow ring ring-zinc-950/15 dark:ring-white/20',
-        renderProps?.isReadOnly
-          ? 'opacity-50'
-          : renderProps?.isHovered && 'ring-zinc-950/25 dark:ring-white/25',
-        renderProps?.isSelected || renderProps?.isIndeterminate
-          ? 'ring-accent bg-accent shadow-[inset_0_1px_0_0_rgba(255,255,255,0.1)] dark:ring-0'
-          : 'dark:bg-white/5 dark:[--contract:1.05]',
+        '[--__checkbox:var(--checkbox,var(--accent))]',
+        '[--__checkbox-size:var(--checkbox-size,max(--spacing(4),--spacing(4.5)))]',
+        'sm:[--__checkbox-size:var(--checkbox-size,--spacing(4))]',
+
+        'size-(--__checkbox-size)',
+
+        'flex shrink-0 items-center justify-center rounded-sm shadow',
+
+        '[----check:lch(from_var(--__checkbox)_calc((64.28_-_l)_*_infinity)_0_0)]',
+        '[--checkbox-focus-ring:color-mix(in_oklab,_var(--__checkbox)_65%,_var(----check))]',
+
+        // Readonly
+        'in-[&:is([data-ui=content],label)[data-readonly=true]]:opacity-50',
+
+        // Focus visible
+        'in-[&:is([data-ui=content],label)[data-focus-visible=true]]:outline-(--checkbox-focus-ring)',
+        'in-[&:is([data-ui=content],label)[data-focus-visible=true]]:outline-2',
+        'in-[&:is([data-ui=content],label)[data-focus-visible=true]]:outline-offset-3',
 
         renderProps?.isInvalid && 'ring-red-600 dark:ring-red-600',
-        renderProps?.isFocusVisible &&
-          'outline-ring outline-2 outline-offset-3',
 
-        // when used in menu item as the selected indicator
-        'in-[&[data-ui=content][data-hovered=true]]:ring-zinc-950/25',
-        'in-[&[data-ui=content][data-hovered=true]]:dark:ring-white/25',
-        'in-[&[data-ui=content][data-selected=true]]:ring-accent',
-        'in-[&[data-ui=content][data-selected=true]]:dark:ring-0',
-        'in-[&[data-ui=content][data-selected=true]]:bg-accent',
-        'in-[&[data-ui=content][data-selected=true]]:dark:bg-accent',
-        'in-[&[data-ui=content][data-selected=true]]:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.1)]',
+        'ring-1',
+        'ring-(--checkbox-ring)',
+        '[--checkbox-ring:var(--color-zinc-400)]/50',
+        'dark:[--checkbox-ring:white]/20',
+
+        // Hover
+        'in-[&:is([data-ui=content],label)[data-hovered=true]]:[--checkbox-ring:var(--color-zinc-400)]/75',
+        'dark:in-[&:is([data-ui=content],label)[data-hovered=true]]:[--checkbox-ring:white]/30',
+
+        // Selected
+        'in-[&:is([data-ui=content],label)[data-selected=true]]:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.25)]',
+        'in-[&:is([data-ui=content],label)[data-selected=true]]:[--checkbox-ring:color-mix(in_oklab,_var(--__checkbox)_90%,_black)]',
+        // 'in-[&:is([data-ui=content],label)[data-selected=true]]:ring-(--checkbox-ring)',
+        'dark:in-[&:is([data-ui=content],label)[data-selected=true]]:ring-transparent',
+        'in-[&:is([data-ui=content],label)[data-selected=true]]:bg-(--__checkbox)',
 
         className,
       ])}
@@ -351,7 +363,8 @@ export function CheckToggle({
         <>
           <CheckIcon
             className={twMerge(
-              'hidden size-4 text-[lch(from_var(--accent)_calc((49.44_-_l)_*_infinity)_0_0)]',
+              'size-(--__checkbox-size)',
+              'hidden text-(----check)',
               renderProps?.isSelected &&
                 !renderProps.isIndeterminate &&
                 'inline',
@@ -361,7 +374,8 @@ export function CheckToggle({
 
           <MinusIcon
             className={twMerge(
-              'hidden size-4 text-[lch(from_var(--accent)_calc((49.44_-_l)_*_infinity)_0_0)]',
+              'size-(--__checkbox-size)',
+              'hidden text-(----check)',
               renderProps?.isIndeterminate && 'inline',
             )}
           />

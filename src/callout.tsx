@@ -19,74 +19,10 @@ const CalloutContext = React.createContext<{
 });
 
 const colors = {
-  zinc: [
-    '[--callout:var(--color-zinc-500)]',
-    '[--callout-border:color-mix(in_oklab,_var(--callout)_20%,_white)]',
-    'dark:[--callout-border:color-mix(in_oklab,_var(--callout)_50%,_black)]',
-    '[--callout-bg:color-mix(in_oklab,_var(--callout)_5%,_white)]',
-    'dark:[--callout-bg:color-mix(in_oklab,_var(--callout)_40%,_black)]',
-    '[--callout-heading:color-mix(in_oklab,_var(--callout)_30%,_black)]',
-    'dark:[--callout-heading:color-mix(in_oklab,_var(--callout)_50%,_white)]',
-    '[--callout-description:color-mix(in_oklab,_var(--callout)_95%,_black)]',
-    '[--callout-icon:color-mix(in_oklab,_var(--callout)_90%,_black)]',
-    '[--link:color-mix(in_oklab,_var(--callout)_50%,_black)]',
-    'dark:[--link:color-mix(in_oklab,_var(--callout)_80%,_black)]',
-  ],
-  red: [
-    '[--callout:var(--color-red-500)]',
-    '[--callout-border:color-mix(in_oklab,_var(--callout)_30%,_white)]',
-    'dark:[--callout-border:color-mix(in_oklab,_var(--callout)_40%,_black)]',
-    '[--callout-bg:color-mix(in_oklab,_var(--callout)_10%,_white)]',
-    'dark:[--callout-bg:color-mix(in_oklab,_var(--callout)_25%,_black)]',
-    '[--callout-heading:color-mix(in_oklab,_var(--callout)_70%,_black)]',
-    'dark:[--callout-heading:color-mix(in_oklab,_var(--callout)_85%,_black)]',
-    '[--callout-description:color-mix(in_oklab,_var(--callout)_75%,_black)]',
-    'dark:[--callout-description:color-mix(in_oklab,_var(--callout)_80%,_black)]',
-    '[--callout-icon:color-mix(in_oklab,_var(--callout)_90%,_black)]',
-    '[--link:color-mix(in_oklab,_var(--callout)_50%,_black)]',
-    'dark:[--link:color-mix(in_oklab,_var(--callout)_80%,_black)]',
-  ],
-  blue: [
-    '[--callout:var(--color-blue-500)]',
-    '[--callout-border:color-mix(in_oklab,_var(--callout)_35%,_white)]',
-    'dark:[--callout-border:color-mix(in_oklab,_var(--callout)_50%,_black)]',
-    '[--callout-bg:color-mix(in_oklab,_var(--callout)_10%,_white)]',
-    'dark:[--callout-bg:color-mix(in_oklab,_var(--callout)_25%,_black)]',
-    '[--callout-heading:color-mix(in_oklab,_var(--callout)_70%,_black)]',
-    'dark:[--callout-heading:color-mix(in_oklab,_var(--callout)_80%,_black)]',
-    '[--callout-description:color-mix(in_oklab,_var(--callout)_80%,_black)]',
-    'dark:[--callout-description:color-mix(in_oklab,_var(--callout)_75%,_black)]',
-    '[--callout-icon:color-mix(in_oklab,_var(--callout)_90%,_black)]',
-    '[--link:color-mix(in_oklab,_var(--callout)_50%,_black)]',
-    'dark:[--link:color-mix(in_oklab,_var(--callout)_80%,_black)]',
-  ],
-  yellow: [
-    '[--callout:var(--color-yellow-500)]',
-    '[--callout-border:color-mix(in_oklab,_var(--callout)_35%,_white)]',
-    'dark:[--callout-border:color-mix(in_oklab,_var(--callout)_35%,_black)]',
-    '[--callout-bg:color-mix(in_oklab,_var(--callout)_10%,_white)]',
-    'dark:[--callout-bg:color-mix(in_oklab,_var(--callout)_25%,_black)]',
-    '[--callout-heading:color-mix(in_oklab,_var(--callout)_55%,_black)]',
-    'dark:[--callout-heading:color-mix(in_oklab,_var(--callout)_85%,_black)]',
-    '[--callout-description:color-mix(in_oklab,_var(--callout)_60%,_black)]',
-    'dark:[--callout-description:color-mix(in_oklab,_var(--callout)_75%,_black)]',
-    '[--callout-icon:color-mix(in_oklab,_var(--callout)_90%,_black)]',
-    '[--link:color-mix(in_oklab,_var(--callout)_50%,_black)]',
-    'dark:[--link:color-mix(in_oklab,_var(--callout)_80%,_black)]',
-  ],
-  green: [
-    '[--callout:var(--color-green-500)]',
-    '[--callout-border:color-mix(in_oklab,_var(--callout)_40%,_white)]',
-    'dark:[--callout-border:color-mix(in_oklab,_var(--callout)_35%,_black)]',
-    '[--callout-bg:color-mix(in_oklab,_var(--callout)_10%,_white)]',
-    'dark:[--callout-bg:color-mix(in_oklab,_var(--callout)_25%,_black)]',
-    '[--callout-heading:color-mix(in_oklab,_var(--callout)_70%,_black)]',
-    'dark:[--callout-heading:color-mix(in_oklab,_var(--callout)_90%,_black)]',
-    '[--callout-description:color-mix(in_oklab,_var(--callout)_65%,_black)]',
-    '[--callout-icon:color-mix(in_oklab,_var(--callout)_90%,_black)]',
-    '[--link:color-mix(in_oklab,_var(--callout)_50%,_black)]',
-    'dark:[--link:color-mix(in_oklab,_var(--callout)_80%,_black)]',
-  ],
+  red: ['[--callout:var(--color-red-500)]'],
+  blue: ['[--callout:var(--color-blue-500)]'],
+  yellow: ['[--callout:var(--color-yellow-500)]'],
+  green: ['[--callout:var(--color-green-500)]'],
 };
 
 export type CalloutColor = keyof typeof colors;
@@ -128,21 +64,9 @@ export default function Callout({
           'aria-describedby': `des_${labelId}`,
         })}
         className={twMerge(
-          '[--callout-icon:var(--muted)]',
-          '[--callout-border:var(--border)]',
-
-          color
-            ? [
-                colors[color],
-                'dark:selection:bg-(--callout) dark:selection:text-white',
-              ]
-            : [
-                '[&:has(>[data-ui=callout-heading])]:[--callout-description:var(--muted)]',
-              ],
-
-          'group w-full border-(--callout-border) bg-(--callout-bg)',
+           color ? colors[color] : [],
+          'group w-full',
           'grid grid-cols-[auto_1fr_auto_auto] px-4 py-2',
-
           center
             ? [
                 'grid-cols-[auto_auto_auto_auto]',
@@ -152,6 +76,23 @@ export default function Callout({
               ]
             : 'rounded-lg border',
           '[&:has([data-ui=callout-heading]+[data-ui=callout-description])]:[--callout-content-row-end:3]',
+          [
+            'border-(--callout-border,var(--border)) bg-(--callout-bg)',
+            '[--callout-border:color-mix(in_oklab,_var(--callout)_30%,_white)]',
+            'dark:[--callout-border:color-mix(in_oklab,_var(--callout)_40%,_black)]',
+            '[--callout-bg:color-mix(in_oklab,_var(--callout)_5%,_white)]',
+            'dark:[--callout-bg:color-mix(in_oklab,_var(--callout)_25%,_black)]',
+            '[--callout-heading:color-mix(in_oklab,_var(--callout)_65%,_black)]',
+            'dark:[--callout-heading:color-mix(in_oklab,_var(--callout)_80%,_black)]',
+            '[--callout-description:color-mix(in_oklab,_var(--callout)_75%,_black)]',
+            'dark:[--callout-description:color-mix(in_oklab,_var(--callout)_80%,_black)]',
+            '[--callout-icon:color-mix(in_oklab,_var(--callout)_90%,_black)]',
+            '[--link:color-mix(in_oklab,_var(--callout)_50%,_black)]',
+            'dark:[--link:color-mix(in_oklab,_var(--callout)_80%,_black)]',
+
+             'dark:selection:bg-(--callout,color-mix(in_oklab,_var(--background)_75%,_white)) dark:selection:text-white',
+          ],
+
           className,
         )}
       />
@@ -174,7 +115,7 @@ export function CalloutIcon({
         'flex',
         'py-2',
         'me-3',
-        '[&_[data-ui=icon]:not([class*=text-])]:text-(--callout-icon)',
+        '[&_[data-ui=icon]:not([class*=text-])]:text-(--callout-icon,var(--muted))',
         '[&_[data-ui=icon]:not([class*=size-])]:w-5',
         '[&_[data-ui=icon]:not([class*=size-])]:h-lh',
         className,
@@ -200,6 +141,7 @@ export function CalloutTitle({
       displayLevel={displayLevel}
       data-ui="callout-heading"
       className={twMerge(
+        'peer',
         'col-start-2',
         '-col-end-2',
         inline && ['sm:-col-end-3'],
@@ -228,7 +170,8 @@ export function CalloutDescription({
       id={id ?? ariaDescribedBy}
       data-ui="callout-description"
       className={twMerge(
-        'text-(--callout-description)',
+        'text-(--callout-description,var(--foreground))',
+        'peer-[*]:text-(--callout-description,var(--muted))',
         'col-start-2',
         '-col-end-2 py-2',
         inline && ['sm:-col-end-3'],
@@ -249,7 +192,7 @@ export function CalloutActions({
       {...props}
       data-ui="callout-actions"
       className={twMerge(
-        'flex flex-wrap gap-2 ps-(--callout-indent)',
+        'flex flex-wrap gap-3 ps-(--callout-indent)',
         'col-start-2',
         '-col-end-2',
         'py-2',
@@ -289,7 +232,7 @@ export function CalloutControl({
         variant={variant}
         className={composeRenderProps(props.className, (className) =>
           twMerge(
-            'text-(--callout-icon)',
+            'text-(--callout-icon,var(--muted))',
             'hover:bg-transparent',
             'hover:text-(--callout-heading)',
             'px-2 py-1.5 dark:hover:bg-transparent',

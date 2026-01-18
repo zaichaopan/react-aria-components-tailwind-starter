@@ -24,6 +24,7 @@ import {
   GitCommitHorizontalIcon,
   GitBranchIcon,
   RefreshCwIcon,
+  ArrowRightLeftIcon,
 } from 'lucide-react';
 import {
   Button,
@@ -55,6 +56,7 @@ import { PlusIcon } from '../src/icons/outline/plus';
 import { MinusIcon } from '../src/icons/outline/minus';
 import { ChevronRightIcon } from '../src/icons/outline/chevron-right';
 import { XIcon } from '../src/icons/outline/x';
+import { TrashIcon } from '../src/icons/outline/trash';
 
 const meta: Meta = {
   parameters: {
@@ -66,7 +68,23 @@ const meta: Meta = {
 export default meta;
 
 export const BasicExample = () => {
-  return <Button>Button</Button>;
+  return (
+    <div className="flex flex-wrap gap-4">
+      <Button>Submit</Button>
+      <Button variant="outline">Cancel</Button>
+      <Button isIconOnly color="red">
+        <Icon aria-label="Delete">
+          <TrashIcon />
+        </Icon>
+      </Button>
+      <Button variant="plain">
+        
+        <Icon>
+          <ArrowRightLeftIcon />
+        </Icon>
+        Compare</Button>
+    </div>
+  );
 };
 
 export const ButtonColors = () => {
@@ -130,7 +148,7 @@ export const ButtonWithIcons = () => {
           </Icon>
           Export
         </Button>
-        <Button size="lg">
+        <Button size="sm">
           Live preview
           <Icon>
             <SquareArrowOutUpRight strokeWidth={1.5} />
@@ -157,6 +175,12 @@ export const IconOnlyButtons = () => {
       <Button isIconOnly>
         <Icon aria-label="Create New Folder">
           <FolderPlus />
+        </Icon>
+      </Button>
+
+      <Button isIconOnly color="red" size="sm">
+        <Icon aria-label="Delete">
+          <TrashIcon />
         </Icon>
       </Button>
       <Button variant="outline" isIconOnly>
@@ -242,7 +266,7 @@ export const CustomPendingUI = () => {
       </Button>
 
       <Button isPending={isPending} isCustomPending pendingLabel="Refreshing">
-        {isPending && <SpinnerIcon  className='size-4'/>}
+        {isPending && <SpinnerIcon className="size-4" />}
         Refresh
       </Button>
     </div>

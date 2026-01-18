@@ -38,6 +38,118 @@ export const BasicExample = () => {
   return <Checkbox>I accept to the terms and conditions</Checkbox>;
 };
 
+export const Sizes = () => {
+  return (
+    <div className="flex flex-col gap-6">
+      <Checkbox className="[--checkbox-size:--spacing(5)]">
+        I accept to the terms and conditions
+      </Checkbox>
+    </div>
+  );
+};
+
+export const Colors = () => {
+  return (
+    <div className="flex flex-col gap-6">
+      <Checkbox className="[--checkbox:white]" defaultSelected>
+        white
+      </Checkbox>
+      <Checkbox className="[--checkbox:black]" defaultSelected>
+        Zinc
+      </Checkbox>
+
+      <Checkbox className="[--checkbox:var(--color-zinc-600)]" defaultSelected>
+        Black
+      </Checkbox>
+
+      <Checkbox className="[--checkbox:var(--color-red-600)]" defaultSelected>
+        Red
+      </Checkbox>
+
+      <Checkbox
+        className="[--checkbox:var(--color-orange-500)]"
+        defaultSelected
+      >
+        Orange
+      </Checkbox>
+
+      <Checkbox className="[--checkbox:var(--color-amber-500)]" defaultSelected>
+        Amber
+      </Checkbox>
+
+      <Checkbox
+        className="[--checkbox:var(--color-yellow-500)]"
+        defaultSelected
+      >
+        Yellow
+      </Checkbox>
+
+      <Checkbox className="[--checkbox:var(--color-lime-500)]" defaultSelected>
+        Lime
+      </Checkbox>
+
+      <Checkbox className="[--checkbox:var(--color-green-600)]" defaultSelected>
+        Green
+      </Checkbox>
+
+      <Checkbox
+        className="[--checkbox:var(--color-emerald-600)]"
+        defaultSelected
+      >
+        Emerald
+      </Checkbox>
+
+      <Checkbox className="[--checkbox:var(--color-teal-600)]" defaultSelected>
+        Teal
+      </Checkbox>
+
+      <Checkbox className="[--checkbox:var(--color-cyan-500)]" defaultSelected>
+        Cyan
+      </Checkbox>
+
+      <Checkbox className="[--checkbox:var(--color-sky-500)]" defaultSelected>
+        Sky
+      </Checkbox>
+
+      <Checkbox
+        className="[--checkbox:var(--color-indigo-500)]"
+        defaultSelected
+      >
+        Indigo
+      </Checkbox>
+
+      <Checkbox
+        className="[--checkbox:var(--color-violet-500)]"
+        defaultSelected
+      >
+        Violet
+      </Checkbox>
+
+      <Checkbox
+        className="[--checkbox:var(--color-purple-500)]"
+        defaultSelected
+      >
+        Purple
+      </Checkbox>
+
+      <Checkbox
+        className="[--checkbox:var(--color-fuchsia-500)]"
+        defaultSelected
+      >
+        Fuchsia
+      </Checkbox>
+
+      <Checkbox className="[--checkbox:var(--color-pink-500)]" defaultSelected>
+        dPink
+      </Checkbox>
+
+      <Checkbox className="[--checkbox:var(--color-rose-500)]" defaultSelected>
+        Rose
+      </Checkbox>
+    </div>
+  );
+};
+
 export const CheckboxDescription = () => {
   return (
     <CheckboxField className="max-w-sm">
@@ -478,7 +590,7 @@ export function Customization() {
         className="max-w-72"
       >
         <Label>Genres</Label>
-        <Checkboxes className='gap-x-2'>
+        <Checkboxes className="gap-x-2">
           {[
             { label: 'Fantasy', value: 'Fantasy' },
             { label: 'Science fiction', value: 'Science fiction' },

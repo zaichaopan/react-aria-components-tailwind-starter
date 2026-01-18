@@ -17,7 +17,6 @@ import {
   SparklesIcon,
 } from 'lucide-react';
 import { ExclamationCircleIcon } from '../src/icons/outline/exclamation-circle';
-import { ArrowRightIcon } from '../src/icons/outline/arrow-right';
 import { ArrowUpRightIcon } from '../src/icons/outline/arrow-up-right';
 import { InformationCircleIcon } from '../src/icons/outline/information-circle';
 import { CloudOffIcon } from '../src/icons/outline/cloud-off';
@@ -37,62 +36,31 @@ export const BasicExample = () => {
   return (
     <div className="space-y-6 p-6">
       <Callout>
-        <CalloutTitle>
-          GitHub users are now required to enable two-factor authentication as
-          an additional security measure.
-        </CalloutTitle>
-      </Callout>
-
-      <Callout>
         <CalloutIcon>
           <InformationCircleIcon />
         </CalloutIcon>
         <CalloutTitle>
-          GitHub users are now required to enable two-factor authentication as
-          an additional security measure.
+          Scheduled maintenance on Saturday, 2-4 AM PT
         </CalloutTitle>
-      </Callout>
-
-      <Callout>
-        <CalloutIcon>
-          <InformationCircleIcon />
-        </CalloutIcon>
-        <CalloutTitle>
-          GitHub users are now required to enable two-factor authentication as
-          an additional security measure.
-        </CalloutTitle>
-        <CalloutControl />
-      </Callout>
-
-      <Callout>
-        <CalloutIcon>
-          <InformationCircleIcon />
-        </CalloutIcon>
-        <CalloutTitle>Info</CalloutTitle>
         <CalloutDescription>
-          GitHub users are now required to enable two-factor authentication as
-          an additional security measure.
+          Track status updates on status.acme.com{' '}
+          <TextLink>status.acme.com</TextLink>.
         </CalloutDescription>
-        <CalloutControl />
       </Callout>
 
       <Callout>
         <CalloutIcon>
           <InformationCircleIcon />
         </CalloutIcon>
-        <CalloutTitle>Info</CalloutTitle>
+        <CalloutTitle>Our terms of service has been updated</CalloutTitle>
         <CalloutDescription>
-          GitHub users are now required to enable two-factor authentication as
-          an additional security measure.
+          We've updated our terms to clarify how we handle data, billing, and
+          user permissions. Please review and accept the latest terms to avoid
+          impacting your service.
         </CalloutDescription>
         <CalloutActions>
-          <Button>Enable 2FA</Button>
-          <Button variant="plain">
-            Learn more
-            <Icon>
-              <ArrowUpRightIcon />
-            </Icon>
-          </Button>
+          <Button variant="outline">Set reminder</Button>
+          <Button>Review Terms</Button>
         </CalloutActions>
         <CalloutControl />
       </Callout>
@@ -100,65 +68,189 @@ export const BasicExample = () => {
   );
 };
 
+export const CalloutTitles = () => {
+  return (
+    <div className="space-y-6 p-6">
+      <Callout>
+        <CalloutTitle>
+          Your current access level limits what you can view or modify
+        </CalloutTitle>
+      </Callout>
+
+      <Callout>
+        <CalloutTitle>
+          Your current access level limits what you can view or modify
+        </CalloutTitle>
+        <CalloutControl />
+      </Callout>
+
+      <Callout>
+        <CalloutIcon>
+          <InformationCircleIcon />
+        </CalloutIcon>
+        <CalloutTitle>
+          Your current access level limits what you can view or modify
+        </CalloutTitle>
+      </Callout>
+      <Callout>
+        <CalloutIcon>
+          <InformationCircleIcon />
+        </CalloutIcon>
+        <CalloutTitle>
+          Your current access level limits what you can view or modify
+        </CalloutTitle>
+        <CalloutControl />
+      </Callout>
+    </div>
+  );
+};
+
+export const CalloutDescriptions = () => {
+  return (
+    <Callout>
+      <CalloutIcon>
+        <InformationCircleIcon />
+      </CalloutIcon>
+      <CalloutDescription>
+        We're working on centralizing SCIM and invite settings. For now, setup
+        is handled within individual product settings.{' '}
+        <TextLink>Learn more</TextLink>
+      </CalloutDescription>
+    </Callout>
+  );
+};
+
 export const Colors = () => {
   return (
     <div className="space-y-6 p-6">
-      <Callout color="zinc">
-        <CalloutIcon>
-          <InformationCircleIcon />
-        </CalloutIcon>
-        <CalloutTitle>Info</CalloutTitle>
-        <CalloutDescription>
-          GitHub users are now required to enable two-factor authentication as
-          an additional security measure.
-        </CalloutDescription>
-
-        <CalloutControl />
-      </Callout>
-      <Callout color="blue">
-        <CalloutIcon>
-          <InformationCircleIcon />
-        </CalloutIcon>
-        <CalloutTitle>Info</CalloutTitle>
-        <CalloutDescription>
-          GitHub users are now required to enable two-factor authentication as
-          an additional security measure.
-        </CalloutDescription>
-
-        <CalloutControl />
-      </Callout>
-      <Callout color="green">
-        <CalloutIcon>
-          <InformationCircleIcon />
-        </CalloutIcon>
-        <CalloutTitle>Info</CalloutTitle>
-        <CalloutDescription>
-          GitHub users are now required to enable two-factor authentication as
-          an additional security measure.
-        </CalloutDescription>
-        <CalloutControl />
-      </Callout>
-      <Callout color="yellow">
-        <CalloutIcon>
-          <InformationCircleIcon />
-        </CalloutIcon>
-        <CalloutTitle>Info</CalloutTitle>
-        <CalloutDescription>
-          GitHub users are now required to enable two-factor authentication as
-          an additional security measure.
-        </CalloutDescription>
-        <CalloutControl />
-      </Callout>
       <Callout color="red">
         <CalloutIcon>
           <InformationCircleIcon />
         </CalloutIcon>
-        <CalloutTitle>Info</CalloutTitle>
+        <CalloutTitle>
+          Scheduled maintenance on Saturday, 2-4 AM PT
+        </CalloutTitle>
         <CalloutDescription>
-          GitHub users are now required to enable two-factor authentication as
-          an additional security measure.
+          Track status updates on status.acme.com{' '}
+          <TextLink>status.acme.com</TextLink>.
         </CalloutDescription>
-        <CalloutControl />
+      </Callout>
+
+      <Callout color="blue">
+        <CalloutIcon>
+          <InformationCircleIcon />
+        </CalloutIcon>
+        <CalloutTitle>
+          Scheduled maintenance on Saturday, 2-4 AM PT
+        </CalloutTitle>
+        <CalloutDescription>
+          Track status updates on status.acme.com{' '}
+          <TextLink>status.acme.com</TextLink>.
+        </CalloutDescription>
+      </Callout>
+
+      <Callout color="yellow">
+        <CalloutIcon>
+          <InformationCircleIcon />
+        </CalloutIcon>
+        <CalloutTitle>
+          Scheduled maintenance on Saturday, 2-4 AM PT
+        </CalloutTitle>
+        <CalloutDescription>
+          Track status updates on status.acme.com{' '}
+          <TextLink>status.acme.com</TextLink>.
+        </CalloutDescription>
+      </Callout>
+
+      <Callout color="green">
+        <CalloutIcon>
+          <InformationCircleIcon />
+        </CalloutIcon>
+        <CalloutTitle>
+          Scheduled maintenance on Saturday, 2-4 AM PT
+        </CalloutTitle>
+        <CalloutDescription>
+          Track status updates on status.acme.com{' '}
+          <TextLink>status.acme.com</TextLink>.
+        </CalloutDescription>
+      </Callout>
+
+      <Callout className="[--callout:var(--color-violet-500)]">
+        <CalloutIcon>
+          <InformationCircleIcon />
+        </CalloutIcon>
+        <CalloutTitle>
+          Scheduled maintenance on Saturday, 2-4 AM PT
+        </CalloutTitle>
+        <CalloutDescription>
+          Track status updates on status.acme.com{' '}
+          <TextLink>status.acme.com</TextLink>.
+        </CalloutDescription>
+      </Callout>
+
+      <Callout className="[--callout:var(--color-lime-500)]">
+        <CalloutIcon>
+          <InformationCircleIcon />
+        </CalloutIcon>
+        <CalloutTitle>
+          Scheduled maintenance on Saturday, 2-4 AM PT
+        </CalloutTitle>
+        <CalloutDescription>
+          Track status updates on status.acme.com{' '}
+          <TextLink>status.acme.com</TextLink>.
+        </CalloutDescription>
+      </Callout>
+
+      <Callout className="[--callout:var(--color-pink-500)]">
+        <CalloutIcon>
+          <InformationCircleIcon />
+        </CalloutIcon>
+        <CalloutTitle>
+          Scheduled maintenance on Saturday, 2-4 AM PT
+        </CalloutTitle>
+        <CalloutDescription>
+          Track status updates on status.acme.com{' '}
+          <TextLink>status.acme.com</TextLink>.
+        </CalloutDescription>
+      </Callout>
+
+      <Callout className="[--callout:var(--color-sky-500)]">
+        <CalloutIcon>
+          <InformationCircleIcon />
+        </CalloutIcon>
+        <CalloutTitle>
+          Scheduled maintenance on Saturday, 2-4 AM PT
+        </CalloutTitle>
+        <CalloutDescription>
+          Track status updates on status.acme.com{' '}
+          <TextLink>status.acme.com</TextLink>.
+        </CalloutDescription>
+      </Callout>
+
+      <Callout className="[--callout:var(--color-teal-500)]">
+        <CalloutIcon>
+          <InformationCircleIcon />
+        </CalloutIcon>
+        <CalloutTitle>
+          Scheduled maintenance on Saturday, 2-4 AM PT
+        </CalloutTitle>
+        <CalloutDescription>
+          Track status updates on status.acme.com{' '}
+          <TextLink>status.acme.com</TextLink>.
+        </CalloutDescription>
+      </Callout>
+
+      <Callout className="[--callout:var(--color-zinc-500)] dark:[--callout:var(--color-zinc-300)]">
+        <CalloutIcon>
+          <InformationCircleIcon />
+        </CalloutIcon>
+        <CalloutTitle>
+          Scheduled maintenance on Saturday, 2-4 AM PT
+        </CalloutTitle>
+        <CalloutDescription>
+          Track status updates on status.acme.com{' '}
+          <TextLink>status.acme.com</TextLink>.
+        </CalloutDescription>
       </Callout>
     </div>
   );
@@ -183,21 +275,17 @@ export const InlineCallout = () => {
         <CalloutControl />
       </Callout>
 
-      <Callout inline color="zinc">
-        <CalloutControl />
-        <CalloutTitle>
-          Free Plan has a fixed upload file size limit of 50 MB.
-        </CalloutTitle>
+      <Callout inline>
+        <CalloutIcon>
+          <InformationCircleIcon />
+        </CalloutIcon>
+        <CalloutTitle>Scheduled maintenance</CalloutTitle>
         <CalloutDescription>
-          Upgrade to the Pro plan for a configurable upload file size limit of
-          up to 50 GB.
+          We'll be offline 2 - 4 AM UTC on July 14 while we upgrade our
+          database.
         </CalloutDescription>
-
         <CalloutActions>
-          <Button>
-            Upgrade to Pro
-            <ArrowRightIcon />
-          </Button>
+          <Button variant="outline">Dismiss</Button>
         </CalloutActions>
       </Callout>
 
@@ -218,7 +306,7 @@ export const InlineCallout = () => {
         </CalloutActions>
       </Callout>
 
-      <Callout inline color="green">
+      <Callout inline center className='[--callout:var(--color-purple-600)]'>
         <CalloutIcon>
           <Icon>
             <SparklesIcon />
@@ -228,7 +316,7 @@ export const InlineCallout = () => {
           Welcome to the March 2025 release. See what's new in the version 2.0
         </CalloutTitle>
         <CalloutActions>
-          <Button color="green">Upgrade Now</Button>
+          <Button>Upgrade Now</Button>
 
           <Button variant="plain">
             Release notes
@@ -253,7 +341,7 @@ export const InlineCallout = () => {
       </Callout>
 
       <Callout inline color="red">
-        <CalloutControl />
+        {/* <CalloutControl /> */}
         <CalloutIcon>
           <ExclamationCircleIcon />
         </CalloutIcon>
@@ -263,7 +351,8 @@ export const InlineCallout = () => {
         </CalloutTitle>
 
         <CalloutActions>
-          <Button variant="outline">Send crash report</Button>
+          <Button>Send crash report</Button>
+          <Button variant="outline">Dismiss</Button>
         </CalloutActions>
       </Callout>
     </div>
@@ -286,7 +375,7 @@ export const Banners = () => {
         <CalloutControl />
       </Callout>
 
-      <Callout inline center color="zinc">
+      <Callout inline center color="yellow">
         <CalloutIcon className="py-1">
           <InformationCircleIcon />
         </CalloutIcon>
@@ -403,18 +492,6 @@ export const AsAlert = () => {
           You will need <TextLink>admin privileges</TextLink> to install and
           access this application.
         </CalloutTitle>
-      </Callout>
-
-      <Callout role="alert" color="green">
-        <CalloutControl />
-        <CalloutIcon>
-          <CheckCircleIcon />
-        </CalloutIcon>
-        <CalloutTitle>You account has been created</CalloutTitle>
-        <CalloutDescription className="inline">
-          You can now <TextLink>sign in</TextLink> with your new account
-          credentials.
-        </CalloutDescription>
       </Callout>
 
       <Callout inline center role="alert" color="yellow">
